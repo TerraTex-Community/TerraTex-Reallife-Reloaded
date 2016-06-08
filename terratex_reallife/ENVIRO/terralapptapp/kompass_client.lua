@@ -196,6 +196,8 @@ function aktualizeKompass()
 
     local speedDVC=SpeedRESET/SpeedCounterRESET
 	guiSetText(kompassgui_Label[26],math.round(EntfernungRESET/100,3).." km | "..math.round(EntfernungRESET,1).." C")
+
+    if not speedDVC then speedDVC = 0 end
 	guiSetText(kompassgui_Label[25],math.round(speedDVC,2).." m/s | "..math.round(speedDVC*3.6,2).." km/h")
 	
 	oldx,oldy,oldz=x,y,z

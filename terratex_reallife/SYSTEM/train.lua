@@ -1,9 +1,9 @@
 
 trains={}
 trainCounter=0
-trainSpeedSave={1.0,0.7,0.4,0.2}
-traintimer={100,200,350,700 }
-traintraillers={1,3,6,9}
+trainSpeedSave={0.4,0.4,0.4,0.2}
+traintimer={350,350,350,700 }
+traintraillers={6,6,6,6}
 
 trainDropPoints={
  {1417.71484375,2634.1533203125,10.8203125,false},

@@ -96,13 +96,18 @@ function getClientRandomPlayer()
 
 end
 
+function getPlayersByDataValue(dataTag, dataValue )
+    if not dataTag then return getElementsByType ( "player" ) end
 
-
-
-
-
-
-
-
-
-
+    local returnTable = {}
+    for theKey,thePlayer in ipairs(getElementsByType ( "player" )) do
+        if(isPlayerLoggedIn(thePlayer))then
+            if (vioGetElementData(thePlayer, dataTag)) then
+                if (vioGetElementData(thePlayer, dataTag) == dataValue) then
+                    returnTable.insert(thePlayer)
+                end
+            end
+        end
+    end
+    return returnTable
+end

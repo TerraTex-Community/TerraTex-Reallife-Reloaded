@@ -39,10 +39,10 @@ config["mappername"]="[TTeam]Blizard"
 config["scriptername"]="[TTeam]Geramy92"
 
 --MYSQL CONFIG:
-config["mysqlhost"]="176.9.79.175"
-config["mysqluser"]="ttdemo"
-config["mysqlpassword"]="ttdemo"
-config["mysqldb"]="tt_demo"
+config["mysqlhost"]="localhost"
+config["mysqluser"]=""
+config["mysqlpassword"]=""
+config["mysqldb"]=""
 
 --IF You want to have a second unique log database set 'uniquelogdb' to true else let it be false
 --IF true setup the other entries

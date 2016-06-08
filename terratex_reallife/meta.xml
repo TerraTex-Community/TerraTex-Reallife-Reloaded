@@ -456,31 +456,6 @@
 				<script src="ENVIRO/terralapptapp/gps_resource/MinHeap.lua" type="server"/>
 				<script src="ENVIRO/terralapptapp/gps_resource/gps.lua" type="server"/>			
 			
-	<!-- WEBSYSTEM -->
-		<script src="WEB/web_func.lua" type="server" />		
-		<script src="WEB/web_app.lua" type="server" />
-		<script src="WEB/web_admin_ban.lua" type="server" />
-		<script src="WEB/web_players_online.lua" type="server" />		
-		<!---web_func_old.lua-->
-			<export function="web_GMX_Start" http="true" />
-			<export function="web_changeNick" http="true" />
-			<export function="web_setNewRank" http="true" />
-			<export function="web_BanNick" http="true" />
-			<export function="web_TimeBanNick" http="true" />
-			<export function="web_WarnNick" http="true" />
-			<export function="web_givePremium" http="true"/>
-			<export function="web_isPlayerOnline" http="true" />
-			<export function="web_getMiete" http="true" />
-			<export function="web_getKasse" http="true" />
-			<!--<export function="web_setMiete" http="true" />-->
-			<!--<export function="web_kickBewohner" http="true" />		-->
-		<!---web_players_online.lua-->
-			<export function="web_getPlayerList" http="true" />
-			<export function="web_getSlots" http="true" />
-        <!---web_app.lua-->
-            <export function="web_getWeatherData" http="true" />
-            <export function="web_getVehicleShopData" http="true" />
-			
 	<!--FILES-->
 		<!-- MAPS -->
         <script src="ENGINE/mapFileAdditions/mapEditorScriptingExtension_c.lua" type="client"/>

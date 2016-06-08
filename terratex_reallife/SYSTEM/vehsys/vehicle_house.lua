@@ -32,7 +32,7 @@ end
 function canPlayerHaveVehicle(thePlayer,vWert)
     local hrid=vioGetElementData(thePlayer,"hkey")
     local maxVWert=getMaxVehicleWert(hrid)
-    if(vWert>maxVWert)then
+    if(vWert>maxVWert and config["feature.stardard_of_living"])then
         return false
     else
         return true
@@ -40,6 +40,9 @@ function canPlayerHaveVehicle(thePlayer,vWert)
 end
 
 function stealTooExpensiveVehicles()
+    if (not config["feature.stardard_of_living"]) then
+        return
+    end
     setTimer(stealTooExpensiveVehicles,(4*60*60*1000),1)
 
     local allVehicles=getElementsByType("vehicle")

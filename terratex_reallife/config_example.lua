@@ -13,7 +13,7 @@ config["domains"]={"terratex.eu"}
 config["maindomain"]="http://terratex.eu"
 
 --Bugtracker URL
-config["bugdomain"]="https://github.com/geramy92/TT-SA-REALLIFE/issues";
+config["bugdomain"]="https://github.com/TerraTex-Community/TerraTex-Reallife-Reloaded/issues";
 
 --IP or Domain to Teamspeak3
 config["teamspeak"]="terratex.eu"

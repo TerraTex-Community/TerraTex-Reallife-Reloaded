@@ -1,0 +1,20 @@
+<map edf:definitions="editor_main">
+    <object id="object (noparkingsign1) (1)" doublesided="false" model="1233" interior="0" dimension="0" posX="2502" posY="-2232" posZ="14.10000038147" rotX="0" rotY="0" rotZ="269.99996948242"></object>
+    <object id="object (noparkingsign1) (2)" doublesided="false" model="1233" interior="0" dimension="0" posX="2540.5" posY="-2231.8999023438" posZ="14.10000038147" rotX="0" rotY="0" rotZ="269.99450683594"></object>
+    <object id="object (noparkingsign1) (3)" doublesided="false" model="1233" interior="0" dimension="0" posX="2584" posY="-2231.8999023438" posZ="14.10000038147" rotX="0" rotY="0" rotZ="269.99450683594"></object>
+    <object id="object (vgncarshade1) (1)" doublesided="false" model="3458" interior="0" dimension="0" posX="2597.1999511719" posY="-2201.1000976563" posZ="14" rotX="0" rotY="0" rotZ="269.5"></object>
+    <object id="object (vgncarshade1) (2)" doublesided="false" model="3458" interior="0" dimension="0" posX="2620.6999511719" posY="-2201.8000488281" posZ="14" rotX="0" rotY="0" rotZ="89.74462890625"></object>
+    <object id="object (paypark_lan01) (1)" doublesided="false" model="4638" interior="0" dimension="0" posX="2608.8000488281" posY="-2220.6000976563" posZ="14.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lhouse_barrier2) (1)" doublesided="false" model="994" interior="0" dimension="0" posX="2617.5" posY="-2221.6999511719" posZ="12.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lhouse_barrier2) (2)" doublesided="false" model="994" interior="0" dimension="0" posX="2594.6000976563" posY="-2221.5" posZ="12.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lhouse_barrier2) (3)" doublesided="false" model="994" interior="0" dimension="0" posX="2594.8000488281" posY="-2215.1999511719" posZ="12.5" rotX="0" rotY="0" rotZ="267.5"></object>
+</map>
+
+
+
+
+
+
+
+
+

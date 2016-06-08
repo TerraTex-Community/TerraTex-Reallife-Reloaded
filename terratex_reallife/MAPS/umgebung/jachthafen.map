@@ -1,0 +1,83 @@
+<map edf:definitions="editor_main">
+    <object id="object (WS_CF_LAMPS) (2)" doublesided="false" model="945" interior="0" dimension="0" posX="1305.8000488281" posY="-987.20001220703" posZ="35" rotX="0.19180297851563" rotY="88.009216308594" rotZ="2.0033264160156"></object>
+    <object id="object (canaljetty_LAw) (1)" doublesided="false" model="6230" interior="0" dimension="0" posX="143.599609375" posY="-1848.69921875" posZ="-5.9000000953674" rotX="0" rotY="0" rotZ="359.49462890625"></object>
+    <object id="object (canaljetty_LAw) (2)" doublesided="false" model="6230" interior="0" dimension="0" posX="143.2998046875" posY="-1891.5" posZ="-5.9000000953674" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (canaljetty_LAw) (3)" doublesided="false" model="6230" interior="0" dimension="0" posX="143.30000305176" posY="-1870.3000488281" posZ="-5.9000000953674" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="112" posY="-1835.69921875" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (cxref_woodstair) (2)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1843.1999511719" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (ws_jettynol_SFX) (1)" doublesided="false" model="3886" interior="0" dimension="0" posX="132" posY="-1834.9000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (MED_OFFICE8_CABINET) (1)" doublesided="false" model="2204" interior="0" dimension="0" posX="147.39999389648" posY="-1838.8000488281" posZ="3.2999999523163" rotX="67.75" rotY="180" rotZ="268.50006103516"></object>
+    <object id="object (cxref_woodstair) (3)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1834.9000244141" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (ws_jettynol_SFX) (7)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.10000610352" posY="-1843.1999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (8)" doublesided="false" model="3886" interior="0" dimension="0" posX="121.59999847412" posY="-1843.3000488281" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (9)" doublesided="false" model="3886" interior="0" dimension="0" posX="111.099609375" posY="-1843.2998046875" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (des_ranchjetty) (5)" doublesided="false" model="11495" interior="0" dimension="0" posX="115.69921875" posY="-1835" posZ="0.30000001192093" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="139.89999389648" posY="-1838.9000244141" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (MED_OFFICE8_CABINET) (2)" doublesided="false" model="2204" interior="0" dimension="0" posX="148" posY="-1817.1999511719" posZ="3.2999999523163" rotX="67.747192382813" rotY="179.99450683594" rotZ="268.49487304688"></object>
+    <object id="object (MED_OFFICE8_CABINET) (3)" doublesided="false" model="2204" interior="0" dimension="0" posX="147.39999389648" posY="-1860" posZ="3.2999999523163" rotX="67.747192382813" rotY="179.99450683594" rotZ="269.99493408203"></object>
+    <object id="object (MED_OFFICE8_CABINET) (4)" doublesided="false" model="2204" interior="0" dimension="0" posX="147.39999389648" posY="-1883" posZ="3.2999999523163" rotX="67.747192382813" rotY="179.99450683594" rotZ="269.74475097656"></object>
+    <object id="object (MED_OFFICE8_CABINET) (5)" doublesided="false" model="2204" interior="0" dimension="0" posX="147.39999389648" posY="-1904.5999755859" posZ="3.2999999523163" rotX="67.747192382813" rotY="179.99450683594" rotZ="269.99475097656"></object>
+    <object id="object (MED_OFFICE8_CABINET) (6)" doublesided="false" model="2204" interior="0" dimension="0" posX="147.39999389648" posY="-1925.8000488281" posZ="3.2999999523163" rotX="67.747192382813" rotY="179.99450683594" rotZ="269.99475097656"></object>
+    <object id="object (cxref_woodstair) (4)" doublesided="false" model="3361" interior="0" dimension="0" posX="137.19999694824" posY="-1813.3000488281" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.74450683594"></object>
+    <object id="object (cxref_woodstair) (5)" doublesided="false" model="3361" interior="0" dimension="0" posX="137.19999694824" posY="-1821.5" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.49450683594"></object>
+    <object id="object (cxref_woodstair) (6)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1856.0999755859" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (cxref_woodstair) (7)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1864.4000244141" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (cxref_woodstair) (8)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.69999694824" posY="-1879.0999755859" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.49450683594"></object>
+    <object id="object (cxref_woodstair) (9)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1887.4000244141" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.48913574219"></object>
+    <object id="object (cxref_woodstair) (10)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1900.8000488281" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.48913574219"></object>
+    <object id="object (cxref_woodstair) (11)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1909" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.48913574219"></object>
+    <object id="object (cxref_woodstair) (12)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1921.9000244141" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.48913574219"></object>
+    <object id="object (cxref_woodstair) (13)" doublesided="false" model="3361" interior="0" dimension="0" posX="136.60000610352" posY="-1930.1999511719" posZ="0.20000000298023" rotX="0" rotY="0" rotZ="179.48913574219"></object>
+    <object id="object (ws_jettynol_SFX) (10)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.69921875" posY="-1813.19921875" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (11)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.10000610352" posY="-1856.0999755859" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (12)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.19999694824" posY="-1879.0999755859" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (13)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.19921875" posY="-1900.69921875" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (14)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.19999694824" posY="-1921.9000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (17)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.69921875" posY="-1821.5" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (18)" doublesided="false" model="3886" interior="0" dimension="0" posX="132" posY="-1864.3994140625" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (19)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.099609375" posY="-1887.3994140625" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (20)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.10000610352" posY="-1909" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (21)" doublesided="false" model="3886" interior="0" dimension="0" posX="132.099609375" posY="-1930.19921875" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="140.5" posY="-1817.3000488281" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="139.89999389648" posY="-1860.0999755859" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="139.8994140625" posY="-1883.099609375" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="139.89999389648" posY="-1904.6999511719" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="139.89999389648" posY="-1925.9000244141" posZ="3.0999999046326" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (ws_jettynol_SFX) (10)" doublesided="false" model="3886" interior="0" dimension="0" posX="122.30000305176" posY="-1813.1999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (17)" doublesided="false" model="3886" interior="0" dimension="0" posX="122.30000305176" posY="-1821.5" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (des_ranchjetty) (5)" doublesided="false" model="11495" interior="0" dimension="0" posX="93.699996948242" posY="-1835" posZ="0.30000001192093" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="90.199996948242" posY="-1835.6999511719" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (ws_jettynol_SFX) (21)" doublesided="false" model="3886" interior="0" dimension="0" posX="121.69999694824" posY="-1930.1999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (21)" doublesided="false" model="3886" interior="0" dimension="0" posX="111.30000305176" posY="-1930.1999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (21)" doublesided="false" model="3886" interior="0" dimension="0" posX="100.90000152588" posY="-1930.1999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (des_ranchjetty) (5)" doublesided="false" model="11495" interior="0" dimension="0" posX="106.09999847412" posY="-1943.0999755859" posZ="0.30000001192093" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (des_ranchjetty) (5)" doublesided="false" model="11495" interior="0" dimension="0" posX="127" posY="-1943.0999755859" posZ="0.30000001192093" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (ws_jettynol_SFX) (19)" doublesided="false" model="3886" interior="0" dimension="0" posX="121.59999847412" posY="-1887.4000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (13)" doublesided="false" model="3886" interior="0" dimension="0" posX="122" posY="-1900.6999511719" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (des_ranchjetty) (5)" doublesided="false" model="11495" interior="0" dimension="0" posX="83.599998474121" posY="-1825" posZ="0.30000001192093" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (DYN_LIFE_P) (3)" doublesided="false" model="1461" interior="0" dimension="0" posX="82.800003051758" posY="-1823.1999511719" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (ws_jettynol_SFX) (18)" doublesided="false" model="3886" interior="0" dimension="0" posX="121.59999847412" posY="-1864.4000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (18)" doublesided="false" model="3886" interior="0" dimension="0" posX="111.30000305176" posY="-1864.4000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_jettynol_SFX) (18)" doublesided="false" model="3886" interior="0" dimension="0" posX="100.90000152588" posY="-1864.4000244141" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="100.90000152588" posY="-1866" posZ="1.5" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="117.80000305176" posY="-1889" posZ="1.5" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="118.09999847412" posY="-1902.1999511719" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="127.80000305176" posY="-1952.3000488281" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (DYN_LIFE_P) (2)" doublesided="false" model="1461" interior="0" dimension="0" posX="105.30000305176" posY="-1952.3000488281" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (1)" doublesided="false" model="1231" interior="0" dimension="0" posX="139.80000305176" posY="-1925.4000244141" posZ="5" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (2)" doublesided="false" model="1231" interior="0" dimension="0" posX="139.60000610352" posY="-1904.3000488281" posZ="5.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (3)" doublesided="false" model="1231" interior="0" dimension="0" posX="139.80000305176" posY="-1882.5999755859" posZ="5.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (4)" doublesided="false" model="1231" interior="0" dimension="0" posX="139.69999694824" posY="-1859.6999511719" posZ="5.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (5)" doublesided="false" model="1231" interior="0" dimension="0" posX="139.69999694824" posY="-1838.5" posZ="5.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (Streetlamp2) (6)" doublesided="false" model="1231" interior="0" dimension="0" posX="140.30000305176" posY="-1816.9000244141" posZ="5.0999999046326" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (canaljetty_LAw) (1)" doublesided="false" model="6230" interior="0" dimension="0" posX="143.599609375" posY="-1848.69921875" posZ="-5.9000000953674" rotX="0" rotY="0" rotZ="359.5"></object>
+</map>
+
+
+
+
+
+
+
+
+

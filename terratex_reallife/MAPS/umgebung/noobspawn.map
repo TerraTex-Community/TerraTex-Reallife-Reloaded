@@ -1,0 +1,55 @@
+<map edf:definitions="editor_main">
+ <object id="object (Stonebench1) (1)" doublesided="false" model="1256" interior="0" dimension="0" posX="1749" posY="-1863.5" posZ="13.199999809265" rotX="0" rotY="0" rotZ="270.99993896484"></object>
+    <object id="object (Stonebench1) (2)" doublesided="false" model="1256" interior="0" dimension="0" posX="1737.1999511719" posY="-1863.5" posZ="13.199999809265" rotX="0" rotY="0" rotZ="268.74536132813"></object>
+    <object id="object (vgshseing27) (1)" doublesided="false" model="8557" interior="0" dimension="0" posX="1767.3000488281" posY="-1851.4000244141" posZ="13.800000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vegasflag1) (1)" doublesided="false" model="7090" interior="0" dimension="0" posX="1742.8000488281" posY="-1865" posZ="21.10000038147" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (statue) (1)" doublesided="false" model="3935" interior="0" dimension="0" posX="1719.6999511719" posY="-1854.8000488281" posZ="14.300000190735" rotX="0" rotY="0" rotZ="267.75"></object>
+    <object id="object (fire_hydrant) (1)" doublesided="false" model="1211" interior="0" dimension="0" posX="1771.5" posY="-1860.1999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (1)" doublesided="false" model="1215" interior="0" dimension="0" posX="1723.6999511719" posY="-1850" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (2)" doublesided="false" model="1215" interior="0" dimension="0" posX="1722.8000488281" posY="-1859.1999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (3)" doublesided="false" model="1215" interior="0" dimension="0" posX="1736.6999511719" posY="-1849.8000488281" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (4)" doublesided="false" model="1215" interior="0" dimension="0" posX="1759.1999511719" posY="-1848.6999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (5)" doublesided="false" model="1215" interior="0" dimension="0" posX="1773.3000488281" posY="-1848.5999755859" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (6)" doublesided="false" model="1215" interior="0" dimension="0" posX="1789.4000244141" posY="-1849" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (7)" doublesided="false" model="1215" interior="0" dimension="0" posX="1803.1999511719" posY="-1848.9000244141" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollardlight) (8)" doublesided="false" model="1215" interior="0" dimension="0" posX="1810.1999511719" posY="-1848.9000244141" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Mpostbox1) (1)" doublesided="false" model="1258" interior="0" dimension="0" posX="1763.4000244141" posY="-1867.3000488281" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (newstandnew5) (1)" doublesided="false" model="1285" interior="0" dimension="0" posX="1788.3000488281" posY="-1867.4000244141" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (newstandnew4) (1)" doublesided="false" model="1286" interior="0" dimension="0" posX="1787.8000488281" posY="-1867.4000244141" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (newstandnew3) (1)" doublesided="false" model="1287" interior="0" dimension="0" posX="1787.1999511719" posY="-1867.5" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (newstandnew2) (1)" doublesided="false" model="1288" interior="0" dimension="0" posX="1786.4000244141" posY="-1867.5" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (chillidogcart) (1)" doublesided="false" model="1340" interior="0" dimension="0" posX="1779.0999755859" posY="-1861.6999511719" posZ="13.60000038147" rotX="0" rotY="0" rotZ="88"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (1)" doublesided="false" model="1346" interior="0" dimension="0" posX="1797.1999511719" posY="-1866.8000488281" posZ="13.89999961853" rotX="0" rotY="0" rotZ="178"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (2)" doublesided="false" model="1346" interior="0" dimension="0" posX="1799" posY="-1866.9000244141" posZ="13.89999961853" rotX="0" rotY="0" rotZ="177.99499511719"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (3)" doublesided="false" model="1346" interior="0" dimension="0" posX="1801.0999755859" posY="-1867" posZ="13.89999961853" rotX="0" rotY="0" rotZ="177.99499511719"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (4)" doublesided="false" model="1346" interior="0" dimension="0" posX="1803.0999755859" posY="-1867" posZ="13.89999961853" rotX="0" rotY="0" rotZ="177.99499511719"></object>
+    <object id="object (CJ_PHONE_KIOSK) (1)" doublesided="false" model="1363" interior="0" dimension="0" posX="1775.0999755859" posY="-1865.9000244141" posZ="13.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y02) (1)" doublesided="false" model="3506" interior="0" dimension="0" posX="1803" posY="-1861.6999511719" posZ="12.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y02) (2)" doublesided="false" model="3506" interior="0" dimension="0" posX="1775.5999755859" posY="-1861.5" posZ="12.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y02) (3)" doublesided="false" model="3506" interior="0" dimension="0" posX="1757.6999511719" posY="-1861.4000244141" posZ="12.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (1)" doublesided="false" model="970" interior="0" dimension="0" posX="1700.3000488281" posY="-1860" posZ="13.10000038147" rotX="0" rotY="0" rotZ="89"></object>
+    <object id="object (fencesmallb) (2)" doublesided="false" model="970" interior="0" dimension="0" posX="1700.3000488281" posY="-1865.5" posZ="13.10000038147" rotX="0" rotY="0" rotZ="90.24951171875"></object>
+    <object id="object (fencesmallb) (3)" doublesided="false" model="970" interior="0" dimension="0" posX="1700.4000244141" posY="-1869.9000244141" posZ="13.10000038147" rotX="0" rotY="0" rotZ="92.2470703125"></object>
+    <object id="object (kb_planter_bush2) (1)" doublesided="false" model="640" interior="0" dimension="0" posX="1767.4000244141" posY="-1861.6999511719" posZ="13.199999809265" rotX="0" rotY="0" rotZ="89.75"></object>
+    <object id="object (kb_planter_bush2) (2)" doublesided="false" model="640" interior="0" dimension="0" posX="1793.6999511719" posY="-1861.6999511719" posZ="13.199999809265" rotX="0" rotY="0" rotZ="89.747314453125"></object>
+    <object id="object (csrangel_lvs) (1)" doublesided="false" model="3462" interior="0" dimension="0" posX="1710.4000244141" posY="-1859.4000244141" posZ="13.800000190735" rotX="0" rotY="0" rotZ="90.25"></object>
+    <object id="object (noparkingsign1) (1)" doublesided="false" model="1233" interior="0" dimension="0" posX="1748.8000488281" posY="-1849.8000488281" posZ="13.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgsfountain) (1)" doublesided="false" model="3515" interior="0" dimension="0" posX="1802.0999755859" posY="-1845.1999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgsfountain) (3)" doublesided="false" model="3515" interior="0" dimension="0" posX="1714.4000244141" posY="-1854.4000244141" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (1)" doublesided="false" model="8990" interior="0" dimension="0" posX="1716.5" posY="-1859.5" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (2)" doublesided="false" model="8990" interior="0" dimension="0" posX="1708" posY="-1859.4000244141" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (3)" doublesided="false" model="8990" interior="0" dimension="0" posX="1731.5" posY="-1849.5" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (5)" doublesided="false" model="8990" interior="0" dimension="0" posX="1753.4000244141" posY="-1847.5" posZ="13.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (6)" doublesided="false" model="8990" interior="0" dimension="0" posX="1764.5" posY="-1847.6999511719" posZ="13.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (7)" doublesided="false" model="8990" interior="0" dimension="0" posX="1776.5999755859" posY="-1848.1999511719" posZ="13.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bush11_lvs) (8)" doublesided="false" model="8990" interior="0" dimension="0" posX="1788.9000244141" posY="-1848.5" posZ="13.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+</map>
+
+
+
+
+
+
+
+
+

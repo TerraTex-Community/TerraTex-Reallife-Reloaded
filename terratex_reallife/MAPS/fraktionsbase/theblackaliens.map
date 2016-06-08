@@ -1,0 +1,20 @@
+<map edf:definitions="editor_main">
+    <object id="object (rider1_door) (1)" doublesided="false" model="2959" interior="0" dimension="0" posX="1403.4000244141" posY="-1300.4000244141" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cr_cratestack) (1)" doublesided="false" model="3015" interior="0" dimension="0" posX="1405.8000488281" posY="-1298.3000488281" posZ="12.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cr_cratestack) (2)" doublesided="false" model="3015" interior="0" dimension="0" posX="1407.4000244141" posY="-1298.4000244141" posZ="12.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_BOX_PILE) (1)" doublesided="false" model="1431" interior="0" dimension="0" posX="1409.0999755859" posY="-1298.5999755859" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lamppost3) (1)" doublesided="false" model="1226" interior="0" dimension="0" posX="1406" posY="-1298.6999511719" posZ="13.10000038147" rotX="0" rotY="0" rotZ="94.75"></object>
+    <object id="object (kmb_cam) (1)" doublesided="false" model="2921" interior="0" dimension="0" posX="1403" posY="-1300.9000244141" posZ="16.299999237061" rotX="0" rotY="346.25" rotZ="216"></object>
+    
+	
+
+</map>
+
+
+
+
+
+
+
+
+

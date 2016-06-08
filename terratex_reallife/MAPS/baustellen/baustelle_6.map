@@ -1,0 +1,72 @@
+<map edf:definitions="editor_main">
+    <object id="object (trafficcone) (1)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363" posY="-1403.9000244141" posZ="12.800000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DockBarr1_LA) (1)" doublesided="false" model="3578" interior="0" dimension="0" posX="1389.5999755859" posY="-1450.1999511719" posZ="13.300000190735" rotX="0" rotY="0" rotZ="344.25"></object>
+    <object id="object (sw_pipepile02) (1)" doublesided="false" model="12930" interior="0" dimension="0" posX="1423.0999755859" posY="-1432.5" posZ="13.199999809265" rotX="0" rotY="0" rotZ="24"></object>
+    <object id="object (des_gravelpile04) (1)" doublesided="false" model="16302" interior="0" dimension="0" posX="1396.4000244141" posY="-1396.5999755859" posZ="12" rotX="0.25" rotY="0" rotZ="227.9988861084"></object>
+    <object id="object (des_gravelpile05) (1)" doublesided="false" model="16304" interior="0" dimension="0" posX="1420.1999511719" posY="-1400.0999755859" posZ="12.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_gravelpile06) (1)" doublesided="false" model="16305" interior="0" dimension="0" posX="1400.1999511719" posY="-1430.6999511719" posZ="13.60000038147" rotX="0.9510498046875" rotY="341.99743652344" rotZ="158.30419921875"></object>
+    <object id="object (helix_barrier) (1)" doublesided="false" model="981" interior="0" dimension="0" posX="1363.3000488281" posY="-1400.9000244141" posZ="13.10000038147" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (trafficcone) (7)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363" posY="-1405.4000244141" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (8)" doublesided="false" model="1238" interior="0" dimension="0" posX="1362.9000244141" posY="-1410.9000244141" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (9)" doublesided="false" model="1238" interior="0" dimension="0" posX="1366.6999511719" posY="-1416.5999755859" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (11)" doublesided="false" model="1238" interior="0" dimension="0" posX="1365.5" posY="-1416.4000244141" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (12)" doublesided="false" model="1238" interior="0" dimension="0" posX="1364.4000244141" posY="-1415.8000488281" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (13)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363" posY="-1398.0999755859" posZ="12.800000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (14)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363" posY="-1396.6999511719" posZ="12.800000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (15)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363.0999755859" posY="-1390.9000244141" posZ="12.800000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (16)" doublesided="false" model="1238" interior="0" dimension="0" posX="1363.5999755859" posY="-1385.5" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (17)" doublesided="false" model="1238" interior="0" dimension="0" posX="1364.6999511719" posY="-1385.0999755859" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (18)" doublesided="false" model="1238" interior="0" dimension="0" posX="1365.8000488281" posY="-1384.6999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (19)" doublesided="false" model="1238" interior="0" dimension="0" posX="1366.9000244141" posY="-1384.5" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (20)" doublesided="false" model="1238" interior="0" dimension="0" posX="1442.6999511719" posY="-1445.1999511719" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (helix_barrier) (2)" doublesided="false" model="981" interior="0" dimension="0" posX="1442.9000244141" posY="-1440.9000244141" posZ="13.10000038147" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (trafficcone) (21)" doublesided="false" model="1238" interior="0" dimension="0" posX="1442.8000488281" posY="-1444" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (22)" doublesided="false" model="1238" interior="0" dimension="0" posX="1442.8000488281" posY="-1437.8000488281" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (23)" doublesided="false" model="1238" interior="0" dimension="0" posX="1442.6999511719" posY="-1436.5999755859" posZ="12.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (24)" doublesided="false" model="1238" interior="0" dimension="0" posX="1444.0999755859" posY="-1432.1999511719" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (25)" doublesided="false" model="1238" interior="0" dimension="0" posX="1444.0999755859" posY="-1433.5999755859" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (26)" doublesided="false" model="1238" interior="0" dimension="0" posX="1443.8000488281" posY="-1435.0999755859" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (27)" doublesided="false" model="1238" interior="0" dimension="0" posX="1444" posY="-1446.9000244141" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (28)" doublesided="false" model="1238" interior="0" dimension="0" posX="1444.0999755859" posY="-1448.3000488281" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (29)" doublesided="false" model="1238" interior="0" dimension="0" posX="1444.1999511719" posY="-1449.5999755859" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (31)" doublesided="false" model="1238" interior="0" dimension="0" posX="1387.5" posY="-1451" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (32)" doublesided="false" model="1238" interior="0" dimension="0" posX="1388.5" posY="-1451.3000488281" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (33)" doublesided="false" model="1238" interior="0" dimension="0" posX="1389.5999755859" posY="-1451.6999511719" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (34)" doublesided="false" model="1238" interior="0" dimension="0" posX="1390.6999511719" posY="-1452" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (35)" doublesided="false" model="1238" interior="0" dimension="0" posX="1392.9000244141" posY="-1452.8000488281" posZ="12.89999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_ROADBARRIER_5) (1)" doublesided="false" model="1422" interior="0" dimension="0" posX="1398.4000244141" posY="-1450.8000488281" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_ROADBARRIER_5) (2)" doublesided="false" model="1422" interior="0" dimension="0" posX="1401.8000488281" posY="-1450.8000488281" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_ROADBARRIER_5) (3)" doublesided="false" model="1422" interior="0" dimension="0" posX="1405.1999511719" posY="-1450.8000488281" posZ="13.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgsEcnstrct14) (1)" doublesided="false" model="8875" interior="0" dimension="0" posX="1418.4000244141" posY="-1420" posZ="18.39999961853" rotX="0" rotY="0" rotZ="92"></object>
+    <object id="object (kmb_beam) (1)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1432.1999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (2)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1432.6999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (3)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1433.1999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (4)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1433.6999511719" posZ="13" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (5)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1432.5" posZ="13.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (6)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1433" posZ="13.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (7)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1433.5" posZ="13.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (8)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1433.1999511719" posZ="14" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (kmb_beam) (10)" doublesided="false" model="2960" interior="0" dimension="0" posX="1432.8000488281" posY="-1432.6999511719" posZ="14" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgsN_portaloo) (1)" doublesided="false" model="3504" interior="0" dimension="0" posX="1420.5" posY="-1450.1999511719" posZ="13.89999961853" rotX="0" rotY="0" rotZ="0.25"></object>
+    <object id="object (trailer2_01) (1)" doublesided="false" model="3168" interior="0" dimension="0" posX="1431.9000244141" posY="-1449.4000244141" posZ="12.5" rotX="0" rotY="0" rotZ="270.5"></object>
+    <object id="object (vgsN_portaloo) (2)" doublesided="false" model="3504" interior="0" dimension="0" posX="1418.9000244141" posY="-1450.1999511719" posZ="13.89999961853" rotX="0" rotY="0" rotZ="0.24462890625"></object>
+    <object id="object (vgsN_portaloo) (3)" doublesided="false" model="3504" interior="0" dimension="0" posX="1417.3000488281" posY="-1450.1999511719" posZ="13.89999961853" rotX="0" rotY="0" rotZ="359.99462890625"></object>
+    <object id="object (vgsEcnstrct12) (1)" doublesided="false" model="8873" interior="0" dimension="0" posX="1379.1999511719" posY="-1408.5" posZ="18.39999961853" rotX="0" rotY="0" rotZ="76"></object>
+    <object id="object (vgsEcnstrct08) (1)" doublesided="false" model="8879" interior="0" dimension="0" posX="1394.6999511719" posY="-1442.6999511719" posZ="18.39999961853" rotX="0" rotY="0" rotZ="328.75"></object>
+    <object id="object (tall_fence) (1)" doublesided="false" model="974" interior="0" dimension="0" posX="1398.6999511719" posY="-1451.1999511719" posZ="9.6000003814697" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tall_fence) (2)" doublesided="false" model="974" interior="0" dimension="0" posX="1405.4000244141" posY="-1451.0999755859" posZ="9.6000003814697" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tall_fence) (3)" doublesided="false" model="974" interior="0" dimension="0" posX="1413.3000488281" posY="-1369.6999511719" posZ="9.8999996185303" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tall_fence) (4)" doublesided="false" model="974" interior="0" dimension="0" posX="1406.5999755859" posY="-1369.6999511719" posZ="9.8999996185303" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_gravelpile04) (1)" doublesided="false" model="16302" interior="0" dimension="0" posX="1382.8000488281" posY="-1397.0999755859" posZ="11.39999961853" rotX="0" rotY="0" rotZ="229.99880981445"></object>
+    <object id="object (des_gravelpile04) (1)" doublesided="false" model="16302" interior="0" dimension="0" posX="1389" posY="-1400.9000244141" posZ="10.300000190735" rotX="0" rotY="0" rotZ="229.99880981445"></object>
+    <object id="object (des_gravelpile04) (1)" doublesided="false" model="16302" interior="0" dimension="0" posX="1393.6999511719" posY="-1424.4000244141" posZ="10.5" rotX="0" rotY="0" rotZ="233.99877929688"></object>
+</map>
+
+
+
+
+
+
+
+
+

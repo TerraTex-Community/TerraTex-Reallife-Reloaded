@@ -1,0 +1,10 @@
+<meta>
+	<info description="Shader - Car Paint reflect LITE" version="0.2.2" type="script" />
+	<script src="c_car_reflect_lite.lua" type="client" />
+	<script src="c_switch.lua" type="client" />
+	<file src="fx/car_refgrun.fx" type="client" />
+	<file src="fx/car_refgene.fx" type="client" />
+	<file src="fx/mta-helper.fx" type="client" />
+	<file src="images/smallnoise3d.dds" type="client" />
+	<file src="images/ColorRamp01.png" type="client" />
+</meta>

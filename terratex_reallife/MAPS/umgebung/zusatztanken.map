@@ -1,0 +1,163 @@
+<map edf:definitions="editor_main">
+	<!--Tanken: Boot in LV, Flughfen und Namebasetanke -->
+	   <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="1482.0747070313" posY="-2405.0385742188" posZ="16.771272659302" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (indust1las2_LAS) (1)" doublesided="false" model="3637" interior="0" dimension="0" posX="1487.4194335938" posY="-2400.185546875" posZ="20.61826133728" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (apfuel2_SFSe) (1)" doublesided="false" model="10814" interior="0" dimension="0" posX="1440.0590820313" posY="-2403.9345703125" posZ="16.664337158203" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (vgegassgn03_lvs) (1)" doublesided="false" model="9193" interior="0" dimension="0" posX="1482.0860595703" posY="-2401.8413085938" posZ="25.072742462158" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (phonebooth1) (1)" doublesided="true" model="1216" interior="0" dimension="0" posX="1492.6552734375" posY="-2410.4526367188" posZ="13.146691322327" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (helipad01) (1)" doublesided="false" model="3934" interior="0" dimension="0" posX="1485.8304443359" posY="-2426.0278320313" posZ="12.5546875" rotX="0" rotY="0" rotZ="269.40283203125" />
+    <object id="object (LA_chem_piping) (1)" doublesided="false" model="3643" interior="0" dimension="0" posX="1459.8123779297" posY="-2410.1342773438" posZ="17.771884918213" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (LA_chem_piping) (1)" doublesided="false" model="3643" interior="0" dimension="0" posX="1444.7941894531" posY="-2410.1337890625" posZ="17.771884918213" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (LA_chem_piping) (1)" doublesided="false" model="3643" interior="0" dimension="0" posX="1429.6481933594" posY="-2410.1337890625" posZ="17.771884918213" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (CJ_FF_TILL_que) (1)" doublesided="false" model="2753" interior="0" dimension="0" posX="1491.1610107422" posY="-2410.4033203125" posZ="13.551935195923" rotX="0" rotY="0" rotZ="180.7548828125" />
+    <object id="object (phonebooth1) (1)" doublesided="true" model="1216" interior="0" dimension="0" posX="1467.4829101563" posY="-2427.3950195313" posZ="13.246689796448" rotX="0" rotY="0" rotZ="89.324340820313" />
+    <object id="object (DockBarr1_LA) (6)" doublesided="false" model="3578" interior="0" dimension="0" posX="1500.4979248047" posY="-2404.6342773438" posZ="13.332720756531" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (DockBarr1_LA) (7)" doublesided="false" model="3578" interior="0" dimension="0" posX="1500.4970703125" posY="-2394.36328125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (DockBarr1_LA) (8)" doublesided="false" model="3578" interior="0" dimension="0" posX="1466.2854003906" posY="-2414.4428710938" posZ="13.332720756531" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (DockBarr1_LA) (9)" doublesided="false" model="3578" interior="0" dimension="0" posX="1466.28515625" posY="-2424.7431640625" posZ="13.332720756531" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (DockBarr1_LA) (10)" doublesided="false" model="3578" interior="0" dimension="0" posX="1461.3468017578" posY="-2429.6333007813" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (12)" doublesided="false" model="3578" interior="0" dimension="0" posX="1495.568359375" posY="-2409.537109375" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (13)" doublesided="false" model="3578" interior="0" dimension="0" posX="1485.267578125" posY="-2409.537109375" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (14)" doublesided="false" model="3578" interior="0" dimension="0" posX="1471.1798095703" posY="-2409.537109375" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (15)" doublesided="false" model="3578" interior="0" dimension="0" posX="1451.0509033203" posY="-2429.6328125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (16)" doublesided="false" model="3578" interior="0" dimension="0" posX="1440.8582763672" posY="-2429.6328125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (17)" doublesided="false" model="3578" interior="0" dimension="0" posX="1430.6326904297" posY="-2429.6328125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (18)" doublesided="false" model="3578" interior="0" dimension="0" posX="1426.0120849609" posY="-2429.6328125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (DockBarr1_LA) (19)" doublesided="false" model="3578" interior="0" dimension="0" posX="1421.1120605469" posY="-2424.7084960938" posZ="13.332720756531" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (DockBarr1_LA) (20)" doublesided="false" model="3578" interior="0" dimension="0" posX="1421.111328125" posY="-2414.5048828125" posZ="13.332720756531" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (DockBarr1_LA) (21)" doublesided="false" model="3578" interior="0" dimension="0" posX="1421.111328125" posY="-2409.9838867188" posZ="13.332720756531" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (CJ_FIRE_EXT) (1)" doublesided="false" model="2690" interior="0" dimension="0" posX="1489.8448486328" posY="-2410.4038085938" posZ="12.914103507996" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (CJ_food_post4) (1)" doublesided="false" model="2688" interior="0" dimension="0" posX="1491.9488525391" posY="-2410.1396484375" posZ="13.946650505066" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (1)" doublesided="false" model="3264" interior="0" dimension="0" posX="1474.3635253906" posY="-2409.6650390625" posZ="11.954696655273" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (2)" doublesided="false" model="3264" interior="0" dimension="0" posX="1482.1115722656" posY="-2409.6650390625" posZ="11.954696655273" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (3)" doublesided="false" model="3264" interior="0" dimension="0" posX="1457.5129394531" posY="-2429.7426757813" posZ="11.954696655273" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (4)" doublesided="false" model="3264" interior="0" dimension="0" posX="1442.5372314453" posY="-2429.7421875" posZ="11.954696655273" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (5)" doublesided="false" model="3264" interior="0" dimension="0" posX="1427.5623779297" posY="-2429.7421875" posZ="11.954696655273" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (privatesign3) (6)" doublesided="false" model="3264" interior="0" dimension="0" posX="1420.986328125" posY="-2417.9921875" posZ="11.954696655273" rotX="0" rotY="0" rotZ="269.73016357422" />
+    <object id="object (privatesign3) (7)" doublesided="false" model="3264" interior="0" dimension="0" posX="1500.6044921875" posY="-2399.1279296875" posZ="11.954696655273" rotX="0" rotY="0" rotZ="89.565612792969" />
+    <object id="object (LA_chem_piping) (1)" doublesided="false" model="3643" interior="0" dimension="0" posX="1470.7750244141" posY="-2398.13671875" posZ="17.771884918213" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="1473.1232910156" posY="-2399.1635742188" posZ="15.946285247803" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="1468.3995361328" posY="-2399.1630859375" posZ="15.946285247803" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="1469.7491455078" posY="-2393.4599609375" posZ="15.946285247803" rotX="0" rotY="0" rotZ="270" />
+    <object id="object (laxrf_refinerypipe) (1)" doublesided="false" model="3675" interior="0" dimension="0" posX="1471.8466796875" posY="-2393.462890625" posZ="15.946285247803" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (kmb_ot) (1)" doublesided="false" model="2954" interior="0" dimension="0" posX="1476.1374511719" posY="-2409.5090332031" posZ="13.079679489136" rotX="0" rotY="0" rotZ="269.97418212891" />
+    <object id="object (kmb_ot) (2)" doublesided="false" model="2954" interior="0" dimension="0" posX="1481.3114013672" posY="-2409.5087890625" posZ="13.079679489136" rotX="0" rotY="0" rotZ="269.97253417969" />
+    <object id="object (fire_break) (1)" doublesided="false" model="2961" interior="0" dimension="0" posX="1491.1014404297" posY="-2410.1982421875" posZ="14.327881813049" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (vegspetrolpump) (1)" doublesided="false" model="3465" interior="0" dimension="0" posX="1488.6994628906" posY="-2410.4111328125" posZ="13.820198059082" rotX="0" rotY="0" rotZ="89.384887695313" />
+    <object id="object (nt_securecam1_01) (1)" doublesided="false" model="1616" interior="0" dimension="0" posX="1509.5076904297" posY="-2424.4560546875" posZ="21.168121337891" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (nt_securecam1_01) (2)" doublesided="false" model="1616" interior="0" dimension="0" posX="1484.2180175781" posY="-2402.8959960938" posZ="21.168121337891" rotX="0" rotY="0" rotZ="113.14501953125" />
+    <object id="object (nt_securecam1_01) (3)" doublesided="false" model="1616" interior="0" dimension="0" posX="1461.6330566406" posY="-2409.6767578125" posZ="21.418117523193" rotX="0" rotY="0" rotZ="178.54272460938" />
+    <object id="object (shbbyhswall13_lvs) (19)" doublesided="false" model="9131" interior="0" dimension="0" posX="1490.4489746094" posY="-2410.3786621094" posZ="13.683603286743" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (vegasNnewfence2b) (8)" doublesided="false" model="7191" interior="0" dimension="0" posX="1491.73828125" posY="-2410.0751953125" posZ="-7.3129835128784" rotX="90" rotY="0" rotZ="90" />
+    <object id="object (vegasNnewfence2b) (9)" doublesided="false" model="7191" interior="0" dimension="0" posX="1488.513671875" posY="-2410.1000976563" posZ="-7.3129835128784" rotX="90" rotY="0" rotZ="90" />
+    <object id="object (shbbyhswall13_lvs) (20)" doublesided="false" model="9131" interior="0" dimension="0" posX="1486.97265625" posY="-2410.3708496094" posZ="13.683603286743" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (shbbyhswall13_lvs) (21)" doublesided="false" model="9131" interior="0" dimension="0" posX="1493.3505859375" posY="-2410.3779296875" posZ="13.683603286743" rotX="0" rotY="0" rotZ="90" />
+    <object id="object (shbbyhswall13_lvs) (22)" doublesided="false" model="9131" interior="0" dimension="0" posX="1491.9006347656" posY="-2410.3544921875" posZ="12.908603668213" rotX="0" rotY="270" rotZ="359.53015136719" />
+    <object id="object (CJ_FIRE_EXT) (1)" doublesided="false" model="2690" interior="0" dimension="0" posX="1487.4948730469" posY="-2410.4033203125" posZ="12.914103507996" rotX="0" rotY="0" rotZ="3.8113098144531" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1471.4071044922" posY="-2410.45703125" posZ="12.915497779846" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1467.2459716797" posY="-2428.20703125" posZ="12.915497779846" rotX="0" rotY="0" rotZ="269.19284057617" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1507.7681884766" posY="-2419.4311523438" posZ="12.915497779846" rotX="0" rotY="0" rotZ="289.14752197266" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1497.3364257813" posY="-2410.45703125" posZ="12.915497779846" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1442.5123291016" posY="-2430.4580078125" posZ="12.915497779846" rotX="0" rotY="0" rotZ="0" />
+    <object id="object (fire_hydrant) (2)" doublesided="false" model="1211" interior="0" dimension="0" posX="1420.3452148438" posY="-2417.9565429688" posZ="12.915497779846" rotX="0" rotY="0" rotZ="271.36959838867" />
+    <object id="object (shbbyhswall13_lvs) (20)" doublesided="false" model="9131" interior="0" dimension="0" posX="1486.9228515625" posY="-2410.3779296875" posZ="13.683603286743" rotX="0" rotY="0" rotZ="0" />
+
+    <object id="object (nt_gasstation) (1)" doublesided="false" model="3187" interior="0" dimension="0" posX="1629.3000488281" posY="568.90002441406" posZ="4.5999999046326" rotX="0" rotY="0" rotZ="180.5"></object>
+    <object id="object (xjetty01) (1)" doublesided="false" model="17068" interior="0" dimension="0" posX="1623.4000244141" posY="566.79998779297" posZ="0.80000001192093" rotX="0.99996948242188" rotY="0.50006103515625" rotZ="179.2412109375"></object>
+    <object id="object (xjetty01) (2)" doublesided="false" model="17068" interior="0" dimension="0" posX="1635" posY="566.70001220703" posZ="1" rotX="0.9996337890625" rotY="358.99966430664" rotZ="269.76309204102"></object>
+    <object id="object (xjetty01) (3)" doublesided="false" model="17068" interior="0" dimension="0" posX="1635" posY="561.29998779297" posZ="0.89999997615814" rotX="359.99710083008" rotY="0.24435424804688" rotZ="88.492919921875"></object>
+    <object id="object (xjetty01) (4)" doublesided="false" model="17068" interior="0" dimension="0" posX="1635" posY="559.59997558594" posZ="0.89999997615814" rotX="359.99160766602" rotY="359.74435424805" rotZ="268.23785400391"></object>
+    <object id="object (xjetty01) (5)" doublesided="false" model="17068" interior="0" dimension="0" posX="1638.4000244141" posY="578.29998779297" posZ="1" rotX="0.494384765625" rotY="0.49490356445313" rotZ="181.2366027832"></object>
+   <object id="object (CJ_BLOCKER_BENCH) (1)" doublesided="false" model="1368" interior="0" dimension="0" posX="1628.4000244141" posY="575.79998779297" posZ="1.3999999761581" rotX="0" rotY="0" rotZ="179"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (2)" doublesided="false" model="1368" interior="0" dimension="0" posX="1630.3000488281" posY="567.09997558594" posZ="1.5" rotX="0" rotY="0" rotZ="1.7447814941406"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (3)" doublesided="false" model="1368" interior="0" dimension="0" posX="1637.6999511719" posY="560.09997558594" posZ="1.5" rotX="0" rotY="0" rotZ="359.99133300781"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (4)" doublesided="false" model="1368" interior="0" dimension="0" posX="1626.0999755859" posY="560.40002441406" posZ="1.5" rotX="0" rotY="0" rotZ="357.48901367188"></object>
+    <object id="object (bouy) (1)" doublesided="false" model="1243" interior="0" dimension="0" posX="1602.4000244141" posY="499" posZ="-2.2999999523163" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (petrolpump) (1)" doublesided="false" model="1244" interior="0" dimension="0" posX="1629.6999511719" posY="560.59997558594" posZ="1.7999999523163" rotX="0" rotY="0" rotZ="89.25"></object>
+    <object id="object (petrolpump) (2)" doublesided="false" model="1244" interior="0" dimension="0" posX="1632.3000488281" posY="560.5" posZ="1.7999999523163" rotX="0" rotY="0" rotZ="86.247436523438"></object>
+    <object id="object (petrolpump) (3)" doublesided="false" model="1244" interior="0" dimension="0" posX="1641.6999511719" posY="560.09997558594" posZ="1.7999999523163" rotX="0" rotY="0" rotZ="86.24267578125"></object>
+    <object id="object (phonebooth1) (1)" doublesided="false" model="1216" interior="0" dimension="0" posX="1633.8000488281" posY="576.09997558594" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (phonebooth1) (2)" doublesided="false" model="1216" interior="0" dimension="0" posX="1632.9000244141" posY="576" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (Streetlamp1) (1)" doublesided="false" model="1232" interior="0" dimension="0" posX="1633.5999755859" posY="582.40002441406" posZ="3.2999999523163" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp1) (2)" doublesided="false" model="1232" interior="0" dimension="0" posX="1622.4000244141" posY="592.5" posZ="3.2999999523163" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (5)" doublesided="false" model="1368" interior="0" dimension="0" posX="1633.6999511719" posY="589.5" posZ="1.3999999761581" rotX="0" rotY="0" rotZ="270.74475097656"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (6)" doublesided="false" model="1368" interior="0" dimension="0" posX="1622.4000244141" posY="584.70001220703" posZ="1.3999999761581" rotX="0" rotY="0" rotZ="90.240203857422"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (7)" doublesided="false" model="1368" interior="0" dimension="0" posX="1616.6999511719" posY="603.40002441406" posZ="7.5" rotX="0" rotY="0" rotZ="0.9862060546875"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (8)" doublesided="false" model="1368" interior="0" dimension="0" posX="1594.6999511719" posY="603.59997558594" posZ="7.5" rotX="0" rotY="0" rotZ="0.9832763671875"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (9)" doublesided="false" model="1368" interior="0" dimension="0" posX="1586.0999755859" posY="606.09997558594" posZ="7.5" rotX="0" rotY="0" rotZ="269.73327636719"></object>
+    <object id="object (CJ_BLOCKER_BENCH) (10)" doublesided="false" model="1368" interior="0" dimension="0" posX="1645.5999755859" posY="603.09997558594" posZ="7.5" rotX="0" rotY="0" rotZ="0.4808349609375"></object>
+    <object id="object (Streetlamp2) (1)" doublesided="false" model="1231" interior="0" dimension="0" posX="1588.6999511719" posY="603.09997558594" posZ="9.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (2)" doublesided="false" model="1231" interior="0" dimension="0" posX="1608.5" posY="603.5" posZ="9.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (3)" doublesided="false" model="1231" interior="0" dimension="0" posX="1642.3000488281" posY="603.29998779297" posZ="9.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (4)" doublesided="false" model="1231" interior="0" dimension="0" posX="1654.4000244141" posY="603" posZ="9.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (5)" doublesided="false" model="1231" interior="0" dimension="0" posX="1634" posY="560.5" posZ="2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (6)" doublesided="false" model="1231" interior="0" dimension="0" posX="1645.0999755859" posY="560.09997558594" posZ="2" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Streetlamp2) (7)" doublesided="false" model="1231" interior="0" dimension="0" posX="1637.8000488281" posY="566" posZ="2.0999999046326" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (postbox1) (1)" doublesided="false" model="1291" interior="0" dimension="0" posX="1632.1999511719" posY="575.90002441406" posZ="1.2999999523163" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (noodlecart_prop) (1)" doublesided="false" model="1342" interior="0" dimension="0" posX="1632.8000488281" posY="585" posZ="1.7999999523163" rotX="0" rotY="0" rotZ="180.25004577637"></object>
+    <object id="object (kb_planter_bush) (1)" doublesided="false" model="638" interior="0" dimension="0" posX="1633.9000244141" posY="579.59997558594" posZ="1.5" rotX="0" rotY="0" rotZ="359.5"></object>
+    <object id="object (kb_planter_bush) (2)" doublesided="false" model="638" interior="0" dimension="0" posX="1634" posY="593.40002441406" posZ="1.5" rotX="0" rotY="0" rotZ="359.49462890625"></object>
+    <object id="object (kb_planter_bush) (3)" doublesided="false" model="638" interior="0" dimension="0" posX="1622.5" posY="588" posZ="1.5" rotX="0" rotY="0" rotZ="0.74462890625"></object>
+    <object id="object (kb_planter_bush) (4)" doublesided="false" model="638" interior="0" dimension="0" posX="1622.5999755859" posY="580.09997558594" posZ="1.5" rotX="0" rotY="0" rotZ="359.24157714844"></object>
+    <object id="object (kb_planter_bush) (5)" doublesided="false" model="638" interior="0" dimension="0" posX="1648.8000488281" posY="603.40002441406" posZ="7.4000000953674" rotX="0" rotY="0" rotZ="269.23645019531"></object>
+    <object id="object (kb_planter_bush) (6)" doublesided="false" model="638" interior="0" dimension="0" posX="1613" posY="603.29998779297" posZ="7.4000000953674" rotX="0" rotY="0" rotZ="269.23645019531"></object>
+    <object id="object (kb_planter_bush) (7)" doublesided="false" model="638" interior="0" dimension="0" posX="1597.6999511719" posY="603.59997558594" posZ="7.4000000953674" rotX="0" rotY="0.25" rotZ="268.98645019531"></object>
+    <object id="object (kb_planter_bush) (8)" doublesided="false" model="638" interior="0" dimension="0" posX="1586.1999511719" posY="608.79998779297" posZ="7.4000000953674" rotX="0" rotY="0.2471923828125" rotZ="181.23376464844"></object>
+    <object id="object (VgsN_nitree_y01) (1)" doublesided="false" model="3505" interior="0" dimension="0" posX="1604.5999755859" posY="603.79998779297" posZ="5.6999998092651" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y01) (2)" doublesided="false" model="3505" interior="0" dimension="0" posX="1588" posY="613.90002441406" posZ="5.6999998092651" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y01) (3)" doublesided="false" model="3505" interior="0" dimension="0" posX="1640.5999755859" posY="603.40002441406" posZ="5.6999998092651" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y01) (4)" doublesided="false" model="3505" interior="0" dimension="0" posX="1656.9000244141" posY="608.70001220703" posZ="5.6999998092651" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (VgsN_nitree_y01) (5)" doublesided="false" model="3505" interior="0" dimension="0" posX="1629.5" posY="592" posZ="-0.20000000298023" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_HIPPO_BIN) (1)" doublesided="false" model="1371" interior="0" dimension="0" posX="1622.5999755859" posY="582.5" posZ="1.3999999761581" rotX="0" rotY="0" rotZ="92"></object>
+    <object id="object (CJ_HIPPO_BIN) (2)" doublesided="false" model="1371" interior="0" dimension="0" posX="1633.6999511719" posY="587.40002441406" posZ="1.3999999761581" rotX="0" rotY="0" rotZ="271.99951171875"></object>
+    <object id="object (CJ_HIPPO_BIN) (3)" doublesided="false" model="1371" interior="0" dimension="0" posX="1643.5999755859" posY="603.5" posZ="7.3000001907349" rotX="0" rotY="0" rotZ="355.99951171875"></object>
+    <object id="object (CJ_HIPPO_BIN) (4)" doublesided="false" model="1371" interior="0" dimension="0" posX="1618.6999511719" posY="603.59997558594" posZ="7.3000001907349" rotX="0" rotY="0" rotZ="355.99548339844"></object>
+    <object id="object (CJ_HIPPO_BIN) (5)" doublesided="false" model="1371" interior="0" dimension="0" posX="1592.5999755859" posY="603.59997558594" posZ="7.3000001907349" rotX="0" rotY="0" rotZ="355.99548339844"></object>
+    <object id="object (CJ_HIPPO_BIN) (6)" doublesided="false" model="1371" interior="0" dimension="0" posX="1628" posY="560.5" posZ="1.8999999761581" rotX="0" rotY="0" rotZ="355.99548339844"></object>
+    <object id="object (indust1las2_LAS) (1)" doublesided="false" model="3637" interior="0" dimension="0" posX="1271.5999755859" posY="1440.3000488281" posZ="17.799999237061" rotX="0" rotY="0" rotZ="355.5"></object>
+    <object id="object (cxrf_oiltank) (1)" doublesided="false" model="3287" interior="0" dimension="0" posX="1283.5" posY="1445.1999511719" posZ="14.60000038147" rotX="0" rotY="0" rotZ="264"></object>
+    <object id="object (cxrf_oiltank) (2)" doublesided="false" model="3287" interior="0" dimension="0" posX="1283.0999755859" posY="1440.8000488281" posZ="14.60000038147" rotX="0" rotY="0" rotZ="263.99597167969"></object>
+    <object id="object (cxrf_oiltank) (3)" doublesided="false" model="3287" interior="0" dimension="0" posX="1282.5999755859" posY="1436.8000488281" posZ="14.60000038147" rotX="0" rotY="0" rotZ="263.99597167969"></object>
+    <object id="object (petrolpump) (5)" doublesided="false" model="1244" interior="0" dimension="0" posX="1287.9000244141" posY="1445" posZ="10.60000038147" rotX="0" rotY="0" rotZ="358.5"></object>
+    <object id="object (petrolpump) (6)" doublesided="false" model="1244" interior="0" dimension="0" posX="1287.5999755859" posY="1439.6999511719" posZ="10.60000038147" rotX="0" rotY="0" rotZ="358.49487304688"></object>
+    <object id="object (petrolpump) (7)" doublesided="false" model="1244" interior="0" dimension="0" posX="1287.0999755859" posY="1434.5" posZ="10.60000038147" rotX="0" rotY="0" rotZ="358.49487304688"></object>
+    <object id="object (petrolpump) (9)" doublesided="false" model="1244" interior="0" dimension="0" posX="-1118.3000488281" posY="-158" posZ="13.89999961853" rotX="0" rotY="0" rotZ="316"></object>
+    <object id="object (petrolpump) (10)" doublesided="false" model="1244" interior="0" dimension="0" posX="-1123.5999755859" posY="-163.39999389648" posZ="13.89999961853" rotX="0" rotY="0" rotZ="315.99975585938"></object>
+    <object id="object (petrolpump) (11)" doublesided="false" model="1244" interior="0" dimension="0" posX="-1131.0999755859" posY="-171.10000610352" posZ="13.89999961853" rotX="0" rotY="0" rotZ="315.99975585938"></object>
+    <object id="object (mil_hangar1_) (1)" doublesided="false" model="3268" interior="0" dimension="0" posX="276.89999389648" posY="2054.1999511719" posZ="16.5" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (petrolpump) (13)" doublesided="false" model="1244" interior="0" dimension="0" posX="283.10000610352" posY="2043.9000244141" posZ="17.39999961853" rotX="0" rotY="0" rotZ="83.75"></object>
+    <object id="object (petrolpump) (14)" doublesided="false" model="1244" interior="0" dimension="0" posX="280" posY="2044" posZ="17.39999961853" rotX="0" rotY="0" rotZ="85.248779296875"></object>
+    <object id="object (petrolpump) (15)" doublesided="false" model="1244" interior="0" dimension="0" posX="277.20001220703" posY="2044.0999755859" posZ="17.39999961853" rotX="0" rotY="0" rotZ="85.248413085938"></object>
+    <object id="object (petrolpump) (16)" doublesided="false" model="1244" interior="0" dimension="0" posX="273.5" posY="2044.0999755859" posZ="17.39999961853" rotX="0" rotY="0" rotZ="85.248413085938"></object>
+    <object id="object (a51_jetdoor) (1)" doublesided="false" model="3095" interior="0" dimension="0" posX="290.60000610352" posY="2055.6000976563" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (2)" doublesided="false" model="3095" interior="0" dimension="0" posX="281.60000610352" posY="2055.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (3)" doublesided="false" model="3095" interior="0" dimension="0" posX="281.70001220703" posY="2046.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (4)" doublesided="false" model="3095" interior="0" dimension="0" posX="290.70001220703" posY="2046.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (5)" doublesided="false" model="3095" interior="0" dimension="0" posX="272.60000610352" posY="2055.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (6)" doublesided="false" model="3095" interior="0" dimension="0" posX="272.79998779297" posY="2046.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (8)" doublesided="false" model="3095" interior="0" dimension="0" posX="272.5" posY="2064.6000976563" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (9)" doublesided="false" model="3095" interior="0" dimension="0" posX="281.5" posY="2064.6999511719" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_jetdoor) (10)" doublesided="false" model="3095" interior="0" dimension="0" posX="290.5" posY="2064.5" posZ="16.10000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (missile_07_SFXR) (1)" doublesided="false" model="3794" interior="0" dimension="0" posX="270.10000610352" posY="2067.3999023438" posZ="17.299999237061" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (missile_02_SFXR) (1)" doublesided="false" model="3787" interior="0" dimension="0" posX="275.10000610352" posY="2067.8000488281" posZ="17.200000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (missile_04_SFXR) (1)" doublesided="false" model="3795" interior="0" dimension="0" posX="279" posY="2066.1999511719" posZ="17" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (ammotrn_obj) (1)" doublesided="false" model="3066" interior="0" dimension="0" posX="272.60000610352" posY="2064.1999511719" posZ="17.700000762939" rotX="0" rotY="0" rotZ="87.5"></object>
+    <object id="object (ammotrn_obj) (2)" doublesided="false" model="3066" interior="0" dimension="0" posX="280.39999389648" posY="2063.8999023438" posZ="17.700000762939" rotX="0" rotY="0" rotZ="87.4951171875"></object>
+    <object id="object (ammotrn_obj) (3)" doublesided="false" model="3066" interior="0" dimension="0" posX="268.70001220703" posY="2057" posZ="17.700000762939" rotX="0" rotY="0" rotZ="183.49508666992"></object>
+    <object id="object (ammotrn_obj) (4)" doublesided="false" model="3066" interior="0" dimension="0" posX="269.10000610352" posY="2048" posZ="17.700000762939" rotX="0" rotY="0" rotZ="183.49365234375"></object>
+    <object id="object (RACK2) (1)" doublesided="false" model="925" interior="0" dimension="0" posX="274.10000610352" posY="2040.5999755859" posZ="17.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (RACK2) (2)" doublesided="false" model="925" interior="0" dimension="0" posX="283.10000610352" posY="2041.1999511719" posZ="17.700000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (sw_fueldrum03) (1)" doublesided="false" model="12913" interior="0" dimension="0" posX="271" posY="2072.3000488281" posZ="19.10000038147" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (sw_fueldrum03) (2)" doublesided="false" model="12913" interior="0" dimension="0" posX="278.89999389648" posY="2072.3999023438" posZ="19.10000038147" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (desn2_tsfuelpay) (1)" doublesided="false" model="16360" interior="0" dimension="0" posX="1286.8000488281" posY="1425.3000488281" posZ="9.8000001907349" rotX="0" rotY="0" rotZ="112.99548339844"></object>
+    <object id="object (desn2_tsfuelpay) (2)" doublesided="false" model="16360" interior="0" dimension="0" posX="-1136.5999755859" posY="-176.80000305176" posZ="13.300000190735" rotX="0" rotY="0" rotZ="68.994415283203"></object>
+</map>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+<map edf:definitions="editor_main">
+    <object id="object (shamcprkin) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="3448" doublesided="true" scale="1" dimension="0" posX="1494.00305" posY="-1618.255" posZ="-110.7143" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgn_corpbuild31) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="6971" doublesided="true" scale="1" dimension="0" posX="1510.6719" posY="-1633.0685" posZ="-110.8292" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (shamcprkin) (5)" breakable="true" interior="0" collisions="true" alpha="255" model="3448" doublesided="true" scale="1" dimension="0" posX="1494.0029" posY="-1618.2549" posZ="-106.4064" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vgn_corpbuild31) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="6971" doublesided="true" scale="1" dimension="0" posX="1477.2334" posY="-1580.1487" posZ="-110.8097" rotX="0" rotY="0" rotZ="271.054"></object>
+    <object id="object (vgn_corpbuild31) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="6971" doublesided="true" scale="1" dimension="0" posX="1560.196" posY="-1636.33" posZ="-102.1357" rotX="0" rotY="0" rotZ="0"></object>
+    <marker id="marker (corona) (1)" type="corona" color="#0000FFFF" size="2" interior="0" dimension="0" alpha="255" posX="1516.0326" posY="-1662.0262" posZ="-102.2161" rotX="0" rotY="0" rotZ="0"></marker>
+    <object id="object (xref_garagedoor) (1)" breakable="false" interior="0" collisions="false" alpha="255" model="2885" doublesided="true" scale="0.60000002" dimension="0" posX="1515.0457" posY="-1661.9918" posZ="-98.2254" rotX="0" rotY="0" rotZ="269.993"></object>
+</map>
+
+
+
+
+
+
+
+
+

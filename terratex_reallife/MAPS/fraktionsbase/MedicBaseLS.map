@@ -1,0 +1,62 @@
+<map edf:definitions="editor_main">
+    <object id="object (ADAM_V_DOOR) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1569" doublesided="false" scale="1" dimension="0" posX="2068.7" posY="-1410.8" posZ="47.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CARRIER_DOOR_SFSE) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3113" doublesided="false" scale="1" dimension="0" posX="2076.6" posY="-1422.1" posZ="46.9" rotX="0" rotY="285" rotZ="0"></object>
+    <object id="object (CARRIER_DOOR_SFSE) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="3113" doublesided="false" scale="1" dimension="0" posX="2062.3" posY="-1422.1" posZ="46.9" rotX="0" rotY="284.996" rotZ="180"></object>
+    <object id="object (helipad01) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3934" doublesided="false" scale="1" dimension="0" posX="2069.6" posY="-1422.3" posZ="47.53" rotX="0" rotY="359.92" rotZ="270"></object>
+    <object id="object (roofstuff18) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1692" doublesided="false" scale="0.9" dimension="0" posX="2069.2" posY="-1408.4" posZ="51.3" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cn2_savgardr2_) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="16501" doublesided="false" scale="1" dimension="0" posX="2069.5" posY="-1410.7" posZ="48.7" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (cn2_savgardr2_) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="16501" doublesided="false" scale="1" dimension="0" posX="2072.958" posY="-1408.597" posZ="47.34" rotX="90" rotY="0" rotZ="0"></object>
+    <object id="object (cn2_savgardr2_) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="16501" doublesided="false" scale="1" dimension="0" posX="2066.057" posY="-1408.597" posZ="47.34" rotX="90" rotY="0" rotZ="179.995"></object>
+    <object id="object (cn2_savgardr2_) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="16501" doublesided="false" scale="1" dimension="0" posX="2069.508" posY="-1406.492" posZ="48.7" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (cn2_savgardr2_) (5)" breakable="true" interior="0" collisions="true" alpha="255" model="16501" doublesided="false" scale="1" dimension="0" posX="2069.51" posY="-1408.59" posZ="50.81" rotX="0" rotY="270" rotZ="90"></object>
+    <object id="object (vegasairportlight) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3526" doublesided="false" scale="1" dimension="0" posX="2058.7" posY="-1432.9" posZ="47.6" rotX="0" rotY="0" rotZ="45"></object>
+    <object id="object (vegasairportlight) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="3526" doublesided="false" scale="1" dimension="0" posX="2080.2" posY="-1432.9" posZ="47.6" rotX="0" rotY="0" rotZ="135"></object>
+    <object id="object (vegasairportlight) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="3526" doublesided="false" scale="1" dimension="0" posX="2080.2" posY="-1411.3" posZ="47.6" rotX="0" rotY="0" rotZ="225"></object>
+    <object id="object (vegasairportlight) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="3526" doublesided="false" scale="1" dimension="0" posX="2058.7" posY="-1411.3" posZ="47.6" rotX="0" rotY="0" rotZ="315"></object>
+    <object id="object (fencesmallb) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2051.1" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2055.2" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2059.3" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (5)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2063.4" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (6)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2067.5" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (7)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2071.6" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (8)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2075.7" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (9)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1438.043" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (10)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2079.8" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (11)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2083.9" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (12)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2086" posY="-1440.1" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (13)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1438" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (14)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1433.9" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (15)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1429.8" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (16)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1425.7" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (17)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1433.927" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (18)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1421.6" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (19)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1417.5" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (20)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1429.801" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (21)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1413.4" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (22)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1425.69" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (23)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1409.3" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (24)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2088.1" posY="-1405.4" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (25)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1421.57" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (26)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2086" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (27)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2081.9" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (28)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1417.45" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (29)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2077.8" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (30)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2073.7" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (31)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1413.324" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (32)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.042" posY="-1409.204" posZ="47.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (fencesmallb) (33)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2069.6" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (34)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2065.5" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (35)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2061.4" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (36)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2057.3" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (37)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2053.2" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (fencesmallb) (38)" breakable="true" interior="0" collisions="true" alpha="255" model="970" doublesided="false" scale="1" dimension="0" posX="2049.1" posY="-1403.3" posZ="47.9" rotX="0" rotY="0" rotZ="0"></object>
+</map>
+
+
+
+
+
+
+
+
+

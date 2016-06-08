@@ -1,0 +1,33 @@
+<map edf:definitions="editor_main">
+    <object id="object (kmb_lockeddoor) (1)" interior="1" collisions="true" alpha="255" doublesided="false" model="2949" scale="1" dimension="0" posX="-2169.599609375" posY="640" posZ="1051.3800048828" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (kmb_lockeddoor) (2)" interior="3" collisions="true" alpha="255" doublesided="false" model="2949" scale="1" dimension="0" posX="824.4794921875" posY="9.3896484375" posZ="1003.1799926758" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <object id="object (imy_la_door) (2)" interior="3" collisions="true" alpha="255" doublesided="false" model="3109" scale="1" dimension="0" posX="820.3896484375" posY="7.509765625" posZ="1004.3699951172" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (kb_swivelchair2) (1)" interior="3" collisions="true" alpha="255" doublesided="false" model="1715" scale="1" dimension="0" posX="819.94921875" posY="6.3291015625" posZ="1003.1799926758" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (kb_swivelchair2) (2)" interior="3" collisions="true" alpha="255" doublesided="false" model="1715" scale="1" dimension="0" posX="819.279296875" posY="4.1796875" posZ="1003.1799926758" rotX="0" rotY="0" rotZ="70.999145507813"></object>
+    <object id="object (kb_swivelchair2) (3)" interior="3" collisions="true" alpha="255" doublesided="false" model="1715" scale="1" dimension="0" posX="819.1396484375" posY="1.349609375" posZ="1003.1799926758" rotX="0" rotY="0" rotZ="118.99841308594"></object>
+    <object id="object (kb_swivelchair2) (4)" interior="3" collisions="true" alpha="255" doublesided="false" model="1715" scale="1" dimension="0" posX="819.85998535156" posY="-0.43000000715256" posZ="1003.1799926758" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (shop_sec_cam) (1)" interior="3" collisions="true" alpha="255" doublesided="false" model="1886" scale="1" dimension="0" posX="821.51000976563" posY="6.9400000572205" posZ="1006.0999755859" rotX="15" rotY="0" rotZ="29"></object>
+    <object id="object (shop_sec_cam) (2)" interior="3" collisions="true" alpha="255" doublesided="false" model="1886" scale="1" dimension="0" posX="824.86999511719" posY="11.479999542236" posZ="1006.0999755859" rotX="15" rotY="0" rotZ="43"></object>
+    <object id="object (shop_sec_cam) (3)" interior="1" collisions="true" alpha="255" doublesided="false" model="1886" scale="1" dimension="0" posX="-2165.2199707031" posY="646.71002197266" posZ="1056.7099609375" rotX="16" rotY="0" rotZ="319"></object>
+    <object id="object (shop_sec_cam) (4)" interior="1" collisions="true" alpha="255" doublesided="false" model="1886" scale="1" dimension="0" posX="-2158" posY="643.02001953125" posZ="1056.5100097656" rotX="31" rotY="0" rotZ="319"></object>
+    <object id="object (swivelchair_A) (1)" interior="1" collisions="true" alpha="255" doublesided="false" model="1671" scale="1" dimension="0" posX="-2161.58984375" posY="638.3896484375" posZ="1051.8399658203" rotX="0" rotY="0" rotZ="159.99938964844"></object>
+    <object id="object (swivelchair_A) (2)" interior="1" collisions="true" alpha="255" doublesided="false" model="1671" scale="1" dimension="0" posX="-2158.8100585938" posY="638.40002441406" posZ="1051.8399658203" rotX="0" rotY="0" rotZ="187"></object>
+    <object id="object (visagesign04) (1)" interior="0" collisions="true" alpha="255" doublesided="false" model="3554" scale="0.41920930147171" dimension="0" posX="2209.080078125" posY="2122.939453125" posZ="13.020000457764" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (visagesign04) (2)" interior="0" collisions="true" alpha="255" doublesided="false" model="3554" scale="0.41920930147171" dimension="0" posX="2194.5500488281" posY="2122.9399414063" posZ="13.020000457764" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (otb_sign) (1)" interior="0" collisions="true" alpha="255" doublesided="false" model="12846" scale="1" dimension="0" posX="2203.1796875" posY="2122.26953125" posZ="22.729999542236" rotX="0" rotY="0" rotZ="44.994506835938"></object>
+    <object id="object (vgsN_scrollsgn01) (1)" interior="0" collisions="true" alpha="255" doublesided="false" model="7313" scale="1" dimension="0" posX="2201.759765625" posY="2126.44921875" posZ="14.319999694824" rotX="0" rotY="0" rotZ="179.99450683594"></object>
+    <ped id="ped (1)" dimension="0" model="59" interior="3" rotZ="270.00137329102" frozen="true" alpha="255" posX="820.03002929688" posY="1.8899999856949" posZ="1004.1799926758" rotX="0" rotY="0"></ped>
+    <ped id="ped (2)" dimension="0" model="59" interior="1" rotZ="0.00274658203125" frozen="true" alpha="255" posX="-2161.2197265625" posY="638.8994140625" posZ="1052.3800048828" rotX="0" rotY="0"></ped>
+    <object id="object (CJ_OTB_TILL_Q) (1)" interior="3" alpha="255" doublesided="false" model="2771" scale="1" dimension="0" posX="820.95001220703" posY="4.5799999237061" posZ="1004.3900146484" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (CJ_OTB_TILL_Q) (2)" interior="3" alpha="255" doublesided="false" model="2771" scale="1" dimension="0" posX="820.92999267578" posY="6.8299999237061" posZ="1004.3900146484" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (CJ_OTB_TILL_Q) (3)" interior="3" alpha="255" doublesided="false" model="2771" scale="1" dimension="0" posX="820.94000244141" posY="0.12999999523163" posZ="1004.3900146484" rotX="0" rotY="0" rotZ="90"></object>
+</map>
+
+
+
+
+
+
+
+
+

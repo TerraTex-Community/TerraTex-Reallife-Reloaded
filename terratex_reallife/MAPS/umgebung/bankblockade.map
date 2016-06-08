@@ -1,0 +1,18 @@
+	<map edf:definitions="editor_main">
+	
+	<object id="object (sfse_roadblock5) (1)" doublesided="false" model="4526" interior="0" dimension="0" posX="1859.3000488281" posY="-1045.8000488281" posZ="24.60000038147" rotX="0" rotY="0" rotZ="26"></object>
+    <object id="object (sub_roadright) (1)" doublesided="false" model="978" interior="0" dimension="0" posX="1855.4000244141" posY="-1063.6999511719" posZ="23.60000038147" rotX="0" rotY="0" rotZ="254"></object>
+    <object id="object (sub_roadright) (2)" doublesided="false" model="978" interior="0" dimension="0" posX="1850.5" posY="-1070.8000488281" posZ="23.60000038147" rotX="0" rotY="0" rotZ="215.99841308594"></object>
+    <object id="object (sub_roadright) (3)" doublesided="false" model="978" interior="0" dimension="0" posX="1862.3000488281" posY="-1045.6999511719" posZ="23.60000038147" rotX="0" rotY="0" rotZ="263.49841308594"></object>
+    <object id="object (sub_roadright) (4)" doublesided="false" model="978" interior="0" dimension="0" posX="1862.0999755859" posY="-1036.8000488281" posZ="23.5" rotX="0" rotY="0" rotZ="277.49609375"></object>
+	
+		
+</map>
+
+
+
+
+
+
+
+

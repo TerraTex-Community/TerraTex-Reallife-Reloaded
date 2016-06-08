@@ -1,0 +1,46 @@
+<map edf:definitions="editor_main">
+    <object id="object (bar_barriergate1) (1)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.6999511719" posY="-1776.5999755859" posZ="13.60000038147" rotX="0" rotY="0" rotZ="92.25"></object>
+    <object id="object (bar_barriergate1) (2)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.6999511719" posY="-1776.5999755859" posZ="16" rotX="0" rotY="0" rotZ="92.246704101563"></object>
+    <object id="object (bar_barriergate1) (3)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.5" posY="-1770" posZ="13.39999961853" rotX="0" rotY="0" rotZ="90.496704101563"></object>
+    <object id="object (bar_barriergate1) (4)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.5" posY="-1770" posZ="15.89999961853" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (5)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.5" posY="-1767.1999511719" posZ="13.5" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (6)" doublesided="false" model="991" interior="2" dimension="0" posX="1942.5" posY="-1767.1999511719" posZ="15.89999961853" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (7)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.4000244141" posY="-1768.1999511719" posZ="13.5" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (8)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.4000244141" posY="-1768.1999511719" posZ="15.800000190735" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (9)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.5" posY="-1774.8000488281" posZ="13.60000038147" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (10)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.5" posY="-1774.8000488281" posZ="16" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (11)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.5999755859" posY="-1777.9000244141" posZ="13.60000038147" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (bar_barriergate1) (12)" doublesided="false" model="991" interior="2" dimension="0" posX="1940.5999755859" posY="-1777.9000244141" posZ="16" rotX="0" rotY="0" rotZ="90.494384765625"></object>
+    <object id="object (vegspetrolpump) (1)" doublesided="false" model="3465" interior="0" dimension="0" posX="1009.0999755859" posY="-936" posZ="42.599998474121" rotX="0" rotY="0" rotZ="93"></object>
+    <object id="object (vegspetrolpump) (2)" doublesided="false" model="3465" interior="0" dimension="0" posX="1006.0999755859" posY="-936.40002441406" posZ="42.599998474121" rotX="0" rotY="0" rotZ="92.999267578125"></object>
+    <object id="object (vegspetrolpump) (3)" doublesided="false" model="3465" interior="0" dimension="0" posX="1001.700012207" posY="-937.09997558594" posZ="42.599998474121" rotX="0" rotY="0" rotZ="92.999267578125"></object>
+    <object id="object (vegspetrolpump) (4)" doublesided="false" model="3465" interior="0" dimension="0" posX="998.90002441406" posY="-937.40002441406" posZ="42.599998474121" rotX="0" rotY="0" rotZ="92.999267578125"></object>
+    <object id="object (vgshseing27) (1)" doublesided="false" model="8557" interior="0" dimension="0" posX="1047.3000488281" posY="-924.59997558594" posZ="43" rotX="0" rotY="0" rotZ="188.5"></object>
+    <object id="object (phonebooth1) (1)" doublesided="false" model="1216" interior="0" dimension="0" posX="1011.299987793" posY="-929.09997558594" posZ="42" rotX="0" rotY="0" rotZ="9"></object>
+    <object id="object (phonebooth1) (2)" doublesided="false" model="1216" interior="0" dimension="0" posX="1012" posY="-929" posZ="42" rotX="0" rotY="0" rotZ="8.997802734375"></object>
+    <object id="object (phonebooth1) (3)" doublesided="false" model="1216" interior="0" dimension="0" posX="1012.9000244141" posY="-928.90002441406" posZ="42" rotX="0" rotY="0" rotZ="8.997802734375"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (1)" doublesided="false" model="1346" interior="0" dimension="0" posX="1920.1999511719" posY="-1787.0999755859" posZ="13.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="Geldautomat" doublesided="false" model="2942" interior="0" dimension="0" posX="1001.200012207" posY="-925" posZ="41.900001525879" rotX="0" rotY="0" rotZ="273.25"></object>
+    <object id="Geldautomat2" doublesided="false" model="2942" interior="0" dimension="0" posX="1928.5999755859" posY="-1781.1999511719" posZ="13.199999809265" rotX="0" rotY="0" rotZ="85"></object>
+    <object id="object (vgegassgn03_lvs) (1)" doublesided="false" model="9193" interior="0" dimension="0" posX="1007.200012207" posY="-951.40002441406" posZ="46" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="Sprung" doublesided="false" model="1775" interior="0" dimension="0" posX="999.79998779297" posY="-914.79998779297" posZ="42.400001525879" rotX="0" rotY="0" rotZ="278"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (2)" doublesided="false" model="1346" interior="0" dimension="0" posX="1921.6999511719" posY="-1787.0999755859" posZ="13.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_PHONE_KIOSK2) (3)" doublesided="false" model="1346" interior="0" dimension="0" posX="1918.5" posY="-1787.0999755859" posZ="13.699999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (parkbench1) (1)" doublesided="false" model="1280" interior="0" dimension="0" posX="1928.8000488281" posY="-1784.0999755859" posZ="12.89999961853" rotX="0" rotY="0" rotZ="180.75001525879"></object>
+    <object id="object (parkbench1) (2)" doublesided="false" model="1280" interior="0" dimension="0" posX="1928.8000488281" posY="-1769.3000488281" posZ="12.89999961853" rotX="0" rotY="0" rotZ="180.7470703125"></object>
+    <object id="object (parkbench1) (4)" doublesided="false" model="1280" interior="0" dimension="0" posX="1014.9000244141" posY="-928.70001220703" posZ="41.700000762939" rotX="0" rotY="0" rotZ="98"></object>
+    <object id="object (parkbench1) (5)" doublesided="false" model="1280" interior="0" dimension="0" posX="1001.5999755859" posY="-928.29998779297" posZ="41.700000762939" rotX="0" rotY="0" rotZ="8.748046875"></object>
+    <object id="object (cntrlrsac1) (1)" doublesided="false" model="1597" interior="0" dimension="0" posX="1009" posY="-947.59997558594" posZ="43.900001525879" rotX="0" rotY="0" rotZ="277.75"></object>
+    <object id="object (cntrlrsac1) (2)" doublesided="false" model="1597" interior="0" dimension="0" posX="1001.4000244141" posY="-948.59997558594" posZ="43.900001525879" rotX="0" rotY="0" rotZ="277.74536132813"></object>
+    <object id="object (cntrlrsac1) (4)" doublesided="false" model="1597" interior="0" dimension="0" posX="1951.4000244141" posY="-1767.0999755859" posZ="15.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cntrlrsac1) (5)" doublesided="false" model="1597" interior="0" dimension="0" posX="1951.4000244141" posY="-1774.5" posZ="15.199999809265" rotX="0" rotY="0" rotZ="0"></object>
+</map>
+
+
+
+
+
+
+
+
+

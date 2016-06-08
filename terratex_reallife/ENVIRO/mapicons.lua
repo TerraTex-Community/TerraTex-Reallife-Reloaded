@@ -1,0 +1,47 @@
+function createBlipsOnStart()
+
+createBlip(1554.6064453125,-1675.6083984375,16.1953125,30,0.5 ,255,0,0,255,0,255,getRootElement())-- PD
+
+createBlip(2289.9482421875,2431.615234375,10.8203125,30,0.5 ,255,0,0,255,0,255,getRootElement())-- PD
+createBlip(1480.8837890625,-1770.935546875,18.795755386353,56,0.5,255,0,0,255,0,255 ,getRootElement())-- Stadthalle
+
+
+
+--createBlip ( x, y, z, 0, 2, 255, 0, 0, 255, 0 , 99999.0 )
+createBlip ( 1381.412109375,-1088.748046875,27.449289321899, 52, 0.5,255,0,0,255,0,255,getRootElement())--Bank
+createBlip ( 2745.8544921875,-1837.2998046875,10.328806877136, 33, 0.5,255,0,0,255,0,255,getRootElement())--Bank
+
+createBlip (2556.96875,2065.314453125,11.099519729614,6,2,255,0,0,255,0,255,getRootElement())--Bank
+createBlip (1368.4521484375,-1279.8427734375,13.546875,6,2,255,0,0,255,0,255,getRootElement())--Bank
+
+
+createBlip (2262.560546875,1382.1240234375,10.8203125,36,2,255,0,0,255,0,255,getRootElement())--Bank
+createBlip (1742.8310546875,-1862.2724609375,13.576497077942,36,2,255,0,0,255,0,255,getRootElement())--Bank
+
+
+--mapdeletes:
+removeWorldModel ( 986, 10, 2496.7109375,2771.6259765625,10.823530197144 )
+removeWorldModel ( 985, 10, 2496.7109375,2771.6259765625,10.823530197144)
+
+
+createBlip (1631.8291015625,-1172.669921875,24.079999923706,25,2,255,0,0,255,0,255,getRootElement())--tpolotls
+createBlip (2202.0600585938,2124.6599121094,10.819999694824,25,2,255,0,0,255,0,255,getRootElement())--tplotlv
+createBlip (2196.201171875,1677.2685546875,12.3671875,25,2,255,0,0,255,0,255,getRootElement())--casino
+
+
+createBlip (966.8759765625,2160.5458984375,10.820312,32,2,255,0,0,255,0,255,getRootElement())--casino
+
+
+
+end
+addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createBlipsOnStart)
+
+
+
+
+
+
+
+
+
+

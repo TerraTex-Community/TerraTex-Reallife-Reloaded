@@ -1,0 +1,33 @@
+<map edf:definitions="editor_main">
+    <object id="object (bollard) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1632.7" posY="-1714.9" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollard) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1631.1" posY="-1714.9" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollard) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1629.6" posY="-1714.9" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollard) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1628" posY="-1714.9" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollard) (5)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1626.5" posY="-1714.9" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bollard) (6)" breakable="true" interior="0" collisions="true" alpha="255" model="1214" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1625" posY="-1715" posZ="12.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cjgaragedoor) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="17951" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1658.4" posY="-1690.9" posZ="16.4" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (cjgaragedoor) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="17951" doublesided="true" scale="1" dimension="0" MSTalpha="255" posX="1658.4" posY="-1690.6" posZ="1169.7" rotX="0" rotY="0" rotZ="90"></object>
+    <removeWorldObject id="removeWorldObject (bonaplaza_LAn) (1)" radius="50.90332" interior="0" model="4014" lodModel="4187" posX="1664.648" posY="-1691.32" posZ="16.86719" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (bonaplaza_LAn) (2)" radius="50.90332" interior="0" model="4014" lodModel="4187" posX="1664.648" posY="-1691.32" posZ="16.86719" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <object id="object (carimp_LAn) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="4032" doublesided="true" scale="1" dimension="0" MSTalpha="255" posX="1652.61" posY="-1618.7" posZ="1166.5" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (carimp2_LAn) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="4232" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1677.4" posY="-1650.9" posZ="1166.5" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (bonaplaza_LAn) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="4014" doublesided="false" scale="1" dimension="0" MSTalpha="255" posX="1645.1" posY="-1721.2" posZ="1172.4" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (carimp_LAn) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="4032" doublesided="true" scale="1" dimension="0" MSTalpha="255" posX="1652.6" posY="-1618.6" posZ="1165.9" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (CJ_aircon2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="2649" doublesided="true" scale="1" dimension="0" MSTalpha="255" posX="1665.19995" posY="-1610.69995" posZ="1166.19995" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (CJ_aircon3) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="2653" doublesided="false" scale="0.6519209" dimension="0" MSTalpha="255" posX="1664" posY="-1610.28" posZ="1163.2" rotX="90" rotY="0" rotZ="270"></object>
+    <object id="object (CJ_aircon2) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="2649" doublesided="true" scale="1" dimension="0" MSTalpha="255" posX="1665.2" posY="-1627.08" posZ="1166.2" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (CJ_aircon3) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="2653" doublesided="false" scale="0.6519209" dimension="0" MSTalpha="255" posX="1664" posY="-1611.13" posZ="1163.2" rotX="90" rotY="0" rotZ="270"></object>
+    <object id="object (gen_roofbit1) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="2" dimension="0" MSTalpha="255" posX="1668.8" posY="-1610.7" posZ="1167.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (gen_roofbit1) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="1687" doublesided="false" scale="2" dimension="0" MSTalpha="255" posX="1668.9" posY="-1627.1" posZ="1167.4" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_aircon3) (5)" breakable="true" interior="0" collisions="true" alpha="255" model="2653" doublesided="false" scale="0.6519209" dimension="0" MSTalpha="255" posX="1664" posY="-1627.505" posZ="1163.2" rotX="90" rotY="0" rotZ="270"></object>
+    <object id="object (CJ_aircon3) (6)" breakable="true" interior="0" collisions="true" alpha="255" model="2653" doublesided="false" scale="0.6519209" dimension="0" MSTalpha="255" posX="1664" posY="-1626.647" posZ="1163.2" rotX="90" rotY="0" rotZ="270"></object>
+</map>
+
+
+
+
+
+
+
+
+

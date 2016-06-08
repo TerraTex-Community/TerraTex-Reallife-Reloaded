@@ -1,0 +1,16 @@
+<map edf:definitions="editor_main">
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (1)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="453.79999" posY="511.39999" posZ="1000.4" rotX="0" rotY="0" rotZ="0"></alldimensionsobject>
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (2)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="456.5" posY="511.39999" posZ="1000.4" rotX="0" rotY="0" rotZ="0"></alldimensionsobject>
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (3)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="453" posY="509" posZ="1000.4" rotX="0" rotY="0" rotZ="90"></alldimensionsobject>
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (4)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="452.92993" posY="505.70001" posZ="1000.4" rotX="0" rotY="0" rotZ="89.75"></alldimensionsobject>
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (5)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="453.10001" posY="514.70001" posZ="1000.4" rotX="0" rotY="0" rotZ="90"></alldimensionsobject>
+    <alldimensionsobject id="object (CJ_SPORTS_WALL) (6)" breakable="true" interior="12" alpha="0" model="2395" doublesided="false" scale="1" dimension="0" posX="442.60001" posY="510.70001" posZ="1000.4" rotX="0" rotY="0" rotZ="270"></alldimensionsobject>
+</map>
+
+
+
+
+
+
+
+

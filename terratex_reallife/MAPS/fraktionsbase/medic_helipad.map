@@ -1,0 +1,17 @@
+<map edf:definitions="editor_main"><!---- Medic ---->
+   <object id="object (copbits_sfn) (1)" doublesided="false" model="9241" interior="0" dimension="0" posX="1607.1999511719" posY="1798.3000488281" posZ="31.200000762939" rotX="0" rotY="0" rotZ="179.5"></object>
+    <object id="object (airuntest_las) (1)" doublesided="false" model="3666" interior="0" dimension="0" posX="1619.1999511719" posY="1810.4000244141" posZ="32.400001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (2)" doublesided="false" model="3666" interior="0" dimension="0" posX="1594.9000244141" posY="1810.6999511719" posZ="32.400001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (3)" doublesided="false" model="3666" interior="0" dimension="0" posX="1594.6999511719" posY="1786.1999511719" posZ="32.400001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (4)" doublesided="false" model="3666" interior="0" dimension="0" posX="1619.5" posY="1786" posZ="32.400001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_a51guardbox02) (1)" doublesided="false" model="16095" interior="0" dimension="0" posX="1591.5" posY="1781.1999511719" posZ="29.5" rotX="0" rotY="0" rotZ="269.99996948242"></object>
+</map>
+
+
+
+
+
+
+
+
+

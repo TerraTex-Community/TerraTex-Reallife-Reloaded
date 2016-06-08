@@ -1,0 +1,44 @@
+<map edf:definitions="editor_main">
+    <object id="object (CARRIER_LIFT2_SFSE) (1)" doublesided="false" model="3114" interior="0" dimension="0" posX="1640.9000244141" posY="-1624" posZ="78.800003051758" rotX="0" rotY="0" rotZ="44"></object>
+    <object id="object (CARRIER_LIFT2_SFSE) (2)" doublesided="false" model="3114" interior="0" dimension="0" posX="1667.9000244141" posY="-1622.6999511719" posZ="78.800003051758" rotX="0" rotY="0" rotZ="307.99478149414"></object>
+    <object id="object (CARRIER_LIFT2_SFSE) (3)" doublesided="false" model="3114" interior="0" dimension="0" posX="1668.5999755859" posY="-1649.4000244141" posZ="78.800003051758" rotX="0" rotY="0" rotZ="229.99069213867"></object>
+    <object id="object (CARRIER_LIFT2_SFSE) (4)" doublesided="false" model="3114" interior="0" dimension="0" posX="1641.4000244141" posY="-1649.9000244141" posZ="78.800003051758" rotX="0" rotY="0" rotZ="139.98779296875"></object>
+    <object id="object (helipad01) (1)" doublesided="false" model="3934" interior="0" dimension="0" posX="1669" posY="-1622.1999511719" posZ="79.400001525879" rotX="0" rotY="0" rotZ="310"></object>
+    <object id="object (helipad01) (2)" doublesided="false" model="3934" interior="0" dimension="0" posX="1639.8000488281" posY="-1623.5" posZ="79.400001525879" rotX="0" rotY="0" rotZ="225.49572753906"></object>
+    <object id="object (helipad01) (3)" doublesided="false" model="3934" interior="0" dimension="0" posX="1640.6999511719" posY="-1651.5999755859" posZ="79.400001525879" rotX="0" rotY="0" rotZ="231.99440002441"></object>
+    <object id="object (helipad01) (4)" doublesided="false" model="3934" interior="0" dimension="0" posX="1668.6999511719" posY="-1651.5" posZ="79.400001525879" rotX="0" rotY="0" rotZ="229.74279785156"></object>
+    <object id="object (cxref_woodstair) (1)" doublesided="false" model="3361" interior="0" dimension="0" posX="1650.5" posY="-1625.5999755859" posZ="80.699996948242" rotX="0" rotY="0" rotZ="105.75006103516"></object>
+    <object id="object (cxref_woodstair) (2)" doublesided="false" model="3361" interior="0" dimension="0" posX="1665.8000488281" posY="-1633" posZ="80.699996948242" rotX="0" rotY="0" rotZ="14.498901367188"></object>
+    <object id="object (cxref_woodstair) (3)" doublesided="false" model="3361" interior="0" dimension="0" posX="1644.0999755859" posY="-1641.0999755859" posZ="80.699996948242" rotX="0" rotY="0" rotZ="214.74523925781"></object>
+    <object id="object (cxref_woodstair) (4)" doublesided="false" model="3361" interior="0" dimension="0" posX="1658.3000488281" posY="-1648.1999511719" posZ="80.699996948242" rotX="0" rotY="0" rotZ="293.24645996094"></object>
+    <object id="object (vegasNbank1ug) (1)" doublesided="false" model="7245" interior="0" dimension="0" posX="1757.1999511719" posY="-1597" posZ="4050" rotX="0" rotY="0" rotZ="0"></object>
+   	<object id="object (trdcsgrgdoor_lvs) (1)" doublesided="false" model="3084" interior="0" dimension="0" posX="1742.5999755859" posY="-1583.3000488281" posZ="4056.3000488281" rotX="0" rotY="0" rotZ="269"></object>
+    <object id="object (trdcsgrgdoor_lvs) (2)" doublesided="false" model="3084" interior="0" dimension="0" posX="1742.5" posY="-1583" posZ="4053.1999511719" rotX="0" rotY="0" rotZ="268.99475097656"></object>
+    <object id="object (trdcsgrgdoor_lvs) (4)" doublesided="false" model="3084" interior="0" dimension="0" posX="1658.5999755859" posY="-1691" posZ="16.200000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Gen_doorEXT19) (1)" doublesided="false" model="1557" interior="0" dimension="0" posX="1648.3000488281" posY="-1691" posZ="14.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Gen_doorEXT19) (2)" doublesided="false" model="1557" interior="0" dimension="0" posX="1651.3000488281" posY="-1691.0999755859" posZ="14.60000038147" rotX="0" rotY="0" rotZ="178"></object>
+  <object id="object (airuntest_las) (1)" doublesided="false" model="3666" interior="0" dimension="0" posX="1645.6999511719" posY="-1660.5" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (2)" doublesided="false" model="3666" interior="0" dimension="0" posX="1630.1999511719" posY="-1647.4000244141" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (3)" doublesided="false" model="3666" interior="0" dimension="0" posX="1629.9000244141" posY="-1627.3000488281" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (4)" doublesided="false" model="3666" interior="0" dimension="0" posX="1644.5" posY="-1613.0999755859" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (5)" doublesided="false" model="3666" interior="0" dimension="0" posX="1665.6999511719" posY="-1611.4000244141" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (6)" doublesided="false" model="3666" interior="0" dimension="0" posX="1678.1999511719" posY="-1627.5999755859" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (7)" doublesided="false" model="3666" interior="0" dimension="0" posX="1679.1999511719" posY="-1645.0999755859" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (airuntest_las) (8)" doublesided="false" model="3666" interior="0" dimension="0" posX="1666.0999755859" posY="-1660.5999755859" posZ="79.800003051758" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (cr_door_02) (1)" doublesided="false" model="2948" interior="0" dimension="0" posX="1660.3000488281" posY="-1642" posZ="82.800003051758" rotX="0" rotY="0" rotZ="316"></object>
+    <object id="object (lhroofst14) (1)" doublesided="false" model="5822" interior="0" dimension="0" posX="1638" posY="-1636.0999755859" posZ="22" rotX="0" rotY="0" rotZ="44"></object>
+    <object id="object (satdishbig) (1)" doublesided="false" model="1595" interior="0" dimension="0" posX="1652.5" posY="-1637.9000244141" posZ="87.800003051758" rotX="0" rotY="0" rotZ="278"></object>
+    <object id="object (airuntest_las) (9)" doublesided="false" model="3666" interior="0" dimension="0" posX="1647.4000244141" posY="-1631.9000244141" posZ="27.700000762939" rotX="359.92889404297" rotY="269.2532043457" rotZ="39.406127929688"></object>
+    <object id="object (airuntest_las) (10)" doublesided="false" model="3666" interior="0" dimension="0" posX="1646.6999511719" posY="-1631.3000488281" posZ="45" rotX="359.92858886719" rotY="269.25296020508" rotZ="44.152496337891"></object>
+    <object id="object (airuntest_las) (11)" doublesided="false" model="3666" interior="0" dimension="0" posX="1646.8000488281" posY="-1631.3000488281" posZ="62" rotX="359.92858886719" rotY="269.25296020508" rotZ="43.652648925781"></object>
+    <object id="object (airuntest_las) (12)" doublesided="false" model="3666" interior="0" dimension="0" posX="1646.6999511719" posY="-1631.1999511719" posZ="78.300003051758" rotX="359.92858886719" rotY="269.2529296875" rotZ="39.90234375"></object>
+ </map>
+
+
+
+
+
+
+
+
+

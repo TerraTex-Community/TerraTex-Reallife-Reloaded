@@ -1,0 +1,53 @@
+<map edf:definitions="editor_main">
+    <object id="object (DYN_SCAFFOLD_3) (1)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1203.0999755859" posY="-919.94000244141" posZ="43.200000762939" rotX="0" rotY="0" rotZ="7"></object>
+    <object id="object (DYN_SCAFFOLD_3) (2)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1206.5999755859" posY="-917.90002441406" posZ="43.200000762939" rotX="0" rotY="0" rotZ="7"></object>
+    <object id="object (DYN_SCAFFOLD_3) (3)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1209.4000244141" posY="-917.5" posZ="43.200000762939" rotX="0" rotY="0" rotZ="7"></object>
+    <object id="object (DYN_SCAFFOLD_3) (4)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1211.1999511719" posY="-916.59997558594" posZ="43.200000762939" rotX="0" rotY="0" rotZ="98"></object>
+    <object id="object (portakabin) (1)" interior="0" alpha="255" doublesided="false" model="1684" scale="1" dimension="0" posX="1174.6999511719" posY="-884.70001220703" posZ="43.799999237061" rotX="0" rotY="0" rotZ="44"></object>
+    <object id="object (DYN_SCAFFOLD_3) (18)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1210.8000488281" posY="-913.76000976563" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (portakabin) (2)" interior="0" alpha="255" doublesided="false" model="1684" scale="1" dimension="0" posX="1217.0999755859" posY="-878.5" posZ="43.400001525879" rotX="0" rotY="0" rotZ="325.99475097656"></object>
+    <object id="object (vgsN_portaloo) (1)" interior="0" alpha="255" doublesided="false" model="3504" scale="1" dimension="0" posX="1192.6999511719" posY="-876.5" posZ="43.400001525879" rotX="0" rotY="0" rotZ="4"></object>
+    <object id="object (DYN_SCAFFOLD_3) (19)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1210.4000244141" posY="-910.95001220703" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (DYN_SCAFFOLD_3) (20)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1210" posY="-908.11999511719" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (vgsN_portaloo) (2)" interior="0" alpha="255" doublesided="false" model="3504" scale="1" dimension="0" posX="1194.3399658203" posY="-876.21997070313" posZ="43.400001525879" rotX="0" rotY="0" rotZ="10"></object>
+    <object id="object (vgsN_portaloo) (3)" interior="0" alpha="255" doublesided="false" model="3504" scale="1" dimension="0" posX="1196.0100097656" posY="-875.90002441406" posZ="43.400001525879" rotX="0" rotY="0" rotZ="11"></object>
+    <object id="object (vgsN_portaloo) (4)" interior="0" alpha="255" doublesided="false" model="3504" scale="1" dimension="0" posX="1197.6899414063" posY="-875.53997802734" posZ="43.400001525879" rotX="0" rotY="0" rotZ="10"></object>
+    <object id="object (DYN_SCAFFOLD_3) (21)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1209.6199951172" posY="-905.27001953125" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (vgsEcnstrct12) (1)" interior="0" alpha="255" doublesided="false" model="8873" scale="1" dimension="0" posX="1176.3000488281" posY="-922.40002441406" posZ="48.299999237061" rotX="0" rotY="0" rotZ="118"></object>
+    <object id="object (DYN_SCAFFOLD_3) (22)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1209.2099609375" posY="-902.41998291016" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (DYN_SCAFFOLD_3) (23)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1208.8000488281" posY="-899.57000732422" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (DYN_SCAFFOLD_3) (24)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1208.4100341797" posY="-896.71997070313" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (vgsEcnstrct12) (2)" interior="0" alpha="255" doublesided="false" model="8873" scale="1" dimension="0" posX="1228.0999755859" posY="-917.90002441406" posZ="48" rotX="0" rotY="0" rotZ="201.99865722656"></object>
+    <object id="object (DYN_SCAFFOLD_3) (25)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1208" posY="-893.86999511719" posZ="43.200000762939" rotX="0" rotY="0" rotZ="97.998046875"></object>
+    <object id="object (vgsEcnstrct12) (3)" interior="0" alpha="255" doublesided="false" model="8873" scale="1" dimension="0" posX="1221.5999755859" posY="-884.5" posZ="48" rotX="0" rotY="0" rotZ="261.99462890625"></object>
+    <object id="object (vgsEcnstrct12) (4)" interior="0" alpha="255" doublesided="false" model="8873" scale="1" dimension="0" posX="1172" posY="-891.90002441406" posZ="48.200000762939" rotX="0" rotY="0" rotZ="49.990966796875"></object>
+    <object id="object (CJ_CABLEROLL) (1)" interior="0" alpha="255" doublesided="false" model="933" scale="1" dimension="0" posX="1181.3000488281" posY="-880.59997558594" posZ="42.200000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_CABLEROLL) (2)" interior="0" alpha="255" doublesided="false" model="933" scale="1" dimension="0" posX="1183.0999755859" posY="-880.09997558594" posZ="42.200000762939" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_CABLEROLL) (3)" interior="0" alpha="255" doublesided="false" model="933" scale="1" dimension="0" posX="1182.1999511719" posY="-880.29998779297" posZ="43.150001525879" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (WS_floodbeams) (1)" interior="0" alpha="255" doublesided="false" model="3872" scale="1" dimension="0" posX="1222.8199462891" posY="-913.78997802734" posZ="48.779998779297" rotX="0" rotY="0" rotZ="322"></object>
+    <object id="object (BUST_CABINET_4) (1)" interior="0" alpha="255" doublesided="false" model="910" scale="1" dimension="0" posX="1185.5999755859" posY="-906.70001220703" posZ="43.5" rotX="0" rotY="0" rotZ="276"></object>
+    <object id="object (BUST_CABINET_4) (2)" interior="0" alpha="255" doublesided="false" model="910" scale="1" dimension="0" posX="1185.3000488281" posY="-904.5" posZ="43.5" rotX="0" rotY="0" rotZ="275.99853515625"></object>
+    <object id="object (DYN_DUMPSTER_1) (1)" interior="0" alpha="255" doublesided="false" model="1439" scale="1" dimension="0" posX="1207" posY="-876" posZ="42.029998779297" rotX="0" rotY="0" rotZ="328"></object>
+    <object id="object (WS_floodbeams) (2)" interior="0" alpha="255" doublesided="false" model="3872" scale="1" dimension="0" posX="1215.5" posY="-887.23999023438" posZ="48.779998779297" rotX="0" rotY="0" rotZ="24"></object>
+    <object id="object (DYN_DUMPSTER_1) (2)" interior="0" alpha="255" doublesided="false" model="1439" scale="1" dimension="0" posX="1186.5999755859" posY="-877.90002441406" posZ="42.25" rotX="0" rotY="0" rotZ="31.996826171875"></object>
+    <object id="object (CJ_BIG_SKIP1) (1)" interior="0" alpha="255" doublesided="false" model="1365" scale="1" dimension="0" posX="1222.0999755859" posY="-891" posZ="43" rotX="0" rotY="0" rotZ="38"></object>
+    <object id="object (WS_floodbeams) (3)" interior="0" alpha="255" doublesided="false" model="3872" scale="1" dimension="0" posX="1178.5500488281" posY="-893.15997314453" posZ="49.029998779297" rotX="0" rotY="0" rotZ="169"></object>
+    <object id="object (CJ_SKIP_Rubbish) (1)" interior="0" alpha="255" doublesided="false" model="1358" scale="1" dimension="0" posX="1202.0899658203" posY="-876.30999755859" posZ="43.200000762939" rotX="0" rotY="0" rotZ="304"></object>
+    <object id="object (CJ_SKIP_Rubbish) (2)" interior="0" alpha="255" doublesided="false" model="1358" scale="1" dimension="0" posX="1176.1999511719" posY="-914.70001220703" posZ="43.5" rotX="0" rotY="0" rotZ="303.99719238281"></object>
+    <object id="object (kmb_skip) (1)" interior="0" alpha="255" doublesided="false" model="2890" scale="1" dimension="0" posX="1188.0999755859" posY="-882.79998779297" posZ="42" rotX="0" rotY="0" rotZ="320"></object>
+    <object id="object (WS_floodbeams) (4)" interior="0" alpha="255" doublesided="false" model="3872" scale="1" dimension="0" posX="1179.7399902344" posY="-916.66998291016" posZ="49.080001831055" rotX="0" rotY="0" rotZ="238"></object>
+    <object id="object (des_quarstmound_03) (1)" interior="0" alpha="255" doublesided="false" model="16317" scale="1" dimension="0" posX="1196.8000488281" posY="-883.29998779297" posZ="39.799999237061" rotX="0" rotY="0" rotZ="332"></object>
+    <object id="object (DYN_SCAFFOLD_3) (26)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1196.9000244141" posY="-918.29998779297" posZ="43.200000762939" rotX="0" rotY="0" rotZ="6.998291015625"></object>
+    <object id="object (DYN_SCAFFOLD_3) (27)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1193.6999511719" posY="-916.5" posZ="43.200000762939" rotX="0" rotY="0" rotZ="6.998291015625"></object>
+    <object id="object (DYN_SCAFFOLD_3) (28)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1191" posY="-916.90002441406" posZ="43.200000762939" rotX="0" rotY="0" rotZ="6.998291015625"></object>
+    <object id="object (DYN_SCAFFOLD_3) (29)" interior="0" alpha="255" doublesided="false" model="1464" scale="1" dimension="0" posX="1188.3000488281" posY="-917.29998779297" posZ="43.200000762939" rotX="0" rotY="0" rotZ="6.998291015625"></object>
+</map>
+
+
+
+
+
+
+
+
+

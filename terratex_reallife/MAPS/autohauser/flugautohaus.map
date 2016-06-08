@@ -1,0 +1,29 @@
+<map edf:definitions="editor_main">
+    <removeWorldObject id="removeWorldObject (lamppost2) (1)" radius="8.8853034973145" interior="0" model="1290" lodModel="0" posX="1922.13818" posY="-2641.14941" posZ="19.47061" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (arhang_LAS) (1)" radius="49.409595489502" interior="0" model="3629" lodModel="3672" posX="1889.65625" posY="-2666.00781" posZ="18.88281" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (lamppost2) (2)" radius="8.8853034973145" interior="0" model="1290" lodModel="0" posX="1856.01172" posY="-2641.15405" posZ="20.29663" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (arhang_LAS) (2)" radius="49.409595489502" interior="0" model="3629" lodModel="3672" posX="1822.73438" posY="-2666.00781" posZ="18.88281" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (arhang_LAS) (3)" radius="49.409595489502" interior="0" model="3629" lodModel="3672" posX="1754.17188" posY="-2666.00781" posZ="18.88281" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <object id="object (bighangar1_SFx) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="3816" doublesided="false" scale="1" dimension="0" posX="1772" posY="-2665.7998" posZ="21" rotX="0" rotY="0" rotZ="179.995"></object>
+    <removeWorldObject id="removeWorldObject (arhang_LAS) (4)" radius="49.409595489502" interior="0" model="3629" lodModel="3672" posX="1682.72656" posY="-2666.00781" posZ="18.88281" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (arhang_LAS) (5)" radius="49.409595489502" interior="0" model="3629" lodModel="3672" posX="1617.28125" posY="-2666.00781" posZ="18.88281" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <object id="object (lamppost2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1290" doublesided="false" scale="1" dimension="0" posX="1654.99121" posY="-2636.14941" posZ="18.5703" rotX="0" rotY="0" rotZ="0"></object>
+    <removeWorldObject id="removeWorldObject (lamppost2) (3)" radius="8.8853034973145" interior="0" model="1290" lodModel="0" posX="1649.10303" posY="-2641.15112" posZ="18.19016" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <object id="object (bighangar1_SFx) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="3816" doublesided="false" scale="1" dimension="0" posX="1693.84473" posY="-2665.84375" posZ="21.0087" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (bighangar1_SFx) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="3816" doublesided="false" scale="1" dimension="0" posX="1616.0293" posY="-2665.84375" posZ="21.0087" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (lamppost2) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="1290" doublesided="false" scale="1" dimension="0" posX="1732.85779" posY="-2636.14941" posZ="18.5703" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lamppost2) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="1290" doublesided="false" scale="1" dimension="0" posX="1811.0459" posY="-2636.14941" posZ="18.5703" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bighangar1_SFx) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="3816" doublesided="false" scale="1" dimension="0" posX="1849.9" posY="-2665.8" posZ="21" rotX="0" rotY="0" rotZ="179.995"></object>
+    <object id="object (lamppost2) (4)" breakable="true" interior="0" collisions="true" alpha="255" model="1290" doublesided="false" scale="1" dimension="0" posX="1888.97327" posY="-2636.14941" posZ="18.5703" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (lamppost2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="1290" doublesided="false" scale="1" dimension="0" posX="1577.66748" posY="-2636.14941" posZ="18.5703" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (Vgs_guardhouse01) (3)" breakable="true" interior="0" alpha="255" model="8168" doublesided="false" scale="1" dimension="0" posX="1980.8" posY="-2306.8" posZ="14.5" rotX="0" rotY="0" rotZ="288"></object>
+</map>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+<meta>
+	<info description="Shader - Block world" version="0.0.2" type="script" />
+	<script src="c_block_world.lua" type="client" />
+	<file src="block_world.fx" type="client" />
+	<file src="mta-helper.fx" type="client" />
+</meta>

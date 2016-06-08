@@ -1,0 +1,48 @@
+<map edf:definitions="editor_main">
+    <object id="object (ci_watertank) (1)" doublesided="false" model="5836" interior="10" dimension="0" posX="-1078.8000488281" posY="1028.6999511719" posZ="1353.3000488281" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (tepee_room_) (1)" doublesided="false" model="3243" interior="10" dimension="0" posX="-1103.5999755859" posY="1093.5999755859" posZ="1340.6999511719" rotX="0" rotY="0" rotZ="82"></object>
+    <object id="object (tepee_room_) (2)" doublesided="false" model="3243" interior="10" dimension="0" posX="-1104.1999511719" posY="1083.1999511719" posZ="1340.6999511719" rotX="0" rotY="0" rotZ="81.996459960938"></object>
+    <object id="object (tepee_room_) (3)" doublesided="false" model="3243" interior="10" dimension="0" posX="-1113.5999755859" posY="1074.5" posZ="1340.6999511719" rotX="0" rotY="0" rotZ="29.996459960938"></object>
+    <object id="object (sanmonbhut1_LAW2) (1)" doublesided="false" model="3615" interior="10" dimension="0" posX="-1000" posY="1083.8000488281" posZ="1343.5999755859" rotX="0" rotY="0" rotZ="98"></object>
+    <object id="object (des_pueblo5) (1)" doublesided="false" model="11441" interior="10" dimension="0" posX="-1004.9000244141" posY="1034.5" posZ="1340.8000488281" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (des_pueblo5) (2)" doublesided="false" model="11441" interior="10" dimension="0" posX="-1018.9000244141" posY="1029.3000488281" posZ="1341.8000488281" rotX="0" rotY="0" rotZ="320"></object>
+    <object id="object (des_pueblo5) (3)" doublesided="false" model="11441" interior="10" dimension="0" posX="-1012.299987793" posY="1059.8000488281" posZ="1341.8000488281" rotX="0" rotY="0" rotZ="269.99877929688"></object>
+    <object id="object (des_pueblo3) (1)" doublesided="false" model="11442" interior="10" dimension="0" posX="-999.90002441406" posY="1050.3000488281" posZ="1341.4000244141" rotX="0" rotY="0" rotZ="251.99998474121"></object>
+    <object id="object (des_pueblo4) (1)" doublesided="false" model="11443" interior="10" dimension="0" posX="-1001.0999755859" posY="1066.6999511719" posZ="1341.8000488281" rotX="0" rotY="0" rotZ="269.99996948242"></object>
+    <object id="object (des_pueblo4) (2)" doublesided="false" model="11443" interior="10" dimension="0" posX="-1023.299987793" posY="1088.6999511719" posZ="1342.5999755859" rotX="0" rotY="0" rotZ="75.994506835938"></object>
+    <object id="object (des_pueblo4) (3)" doublesided="false" model="11443" interior="10" dimension="0" posX="-1054.0999755859" posY="1092" posZ="1342.1999511719" rotX="0" rotY="0" rotZ="321.99243164063"></object>
+    <object id="object (des_pueblo4) (4)" doublesided="false" model="11443" interior="10" dimension="0" posX="-1113.1999511719" posY="1034.1999511719" posZ="1342.1999511719" rotX="0" rotY="0" rotZ="7.9873046875"></object>
+    <object id="object (des_pueblo2) (1)" doublesided="false" model="11444" interior="10" dimension="0" posX="-1113.0999755859" posY="1052.5" posZ="1341.5" rotX="0" rotY="0" rotZ="182"></object>
+    <object id="object (des_fshed1_) (1)" doublesided="false" model="16287" interior="10" dimension="0" posX="-1072.8000488281" posY="1054" posZ="1342.4000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (drvin_screen) (1)" doublesided="false" model="16000" interior="10" dimension="0" posX="-1035.5" posY="1032.3000488281" posZ="1341.3000488281" rotX="0" rotY="0" rotZ="336"></object>
+    <object id="object (drvin_projhut) (1)" doublesided="false" model="16001" interior="10" dimension="0" posX="-1027.6999511719" posY="1063.3000488281" posZ="1342.8000488281" rotX="0" rotY="0" rotZ="264"></object>
+    <object id="object (ottosmash3) (1)" doublesided="false" model="3857" interior="10" dimension="0" posX="-1124.5999755859" posY="1055" posZ="1347.5999755859" rotX="0" rotY="0" rotZ="313.25"></object>
+    <object id="object (barrel4) (1)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1081.9000244141" posY="1057.1999511719" posZ="1342.4000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (2)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1095.4000244141" posY="1028.0999755859" posZ="1342.4000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (3)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1115" posY="1038.8000488281" posZ="1342.1999511719" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (4)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1073.3000488281" posY="1078.8000488281" posZ="1342.1999511719" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (5)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1036.5" posY="1095" posZ="1342.1999511719" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (6)" doublesided="false" model="1225" interior="10" dimension="0" posX="-1015.4000244141" posY="1073" posZ="1343.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (barrel4) (7)" doublesided="false" model="1225" interior="10" dimension="0" posX="-991.09997558594" posY="1039.0999755859" posZ="1341.0999755859" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_SMOKE_MACH) (1)" doublesided="false" model="2780" interior="10" dimension="0" posX="-1069.5" posY="1064.4000244141" posZ="1341.9000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_SMOKE_MACH) (2)" doublesided="false" model="2780" interior="10" dimension="0" posX="-1055.6999511719" posY="1060.0999755859" posZ="1341.9000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_SMOKE_MACH) (3)" doublesided="false" model="2780" interior="10" dimension="0" posX="-1050.4000244141" posY="1060.1999511719" posZ="1341.9000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (CJ_SMOKE_MACH) (4)" doublesided="false" model="2780" interior="10" dimension="0" posX="-1045.9000244141" posY="1060.3000488281" posZ="1341.9000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (SW_haybreak02) (1)" doublesided="false" model="3374" interior="10" dimension="0" posX="-1098.4000244141" posY="1072.5" posZ="1342.5999755859" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (SW_haybreak02) (2)" doublesided="false" model="3374" interior="10" dimension="0" posX="-1091.9000244141" posY="1090.0999755859" posZ="1342.5999755859" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (nt_windmill) (1)" doublesided="false" model="3425" interior="10" dimension="0" posX="-989.59997558594" posY="1084.5" posZ="1351.9000244141" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (vegascowboy1) (1)" doublesided="false" model="7073" interior="10" dimension="0" posX="-1020.5999755859" posY="1017.700012207" posZ="1350.3000488281" rotX="0" rotY="0" rotZ="268"></object>
+    <object id="object (vegcandysign1) (1)" doublesided="false" model="7392" interior="10" dimension="0" posX="-1042.3000488281" posY="1100" posZ="1350.8000488281" rotX="0" rotY="0" rotZ="272"></object>
+    <object id="object (pirateland02_lvS) (1)" doublesided="false" model="8483" interior="10" dimension="0" posX="-991.20001220703" posY="1105.9000244141" posZ="1347.8000488281" rotX="0" rotY="0" rotZ="260"></object>
+    <object id="object (des_cockbody) (1)" doublesided="false" model="16776" interior="10" dimension="0" posX="-1135.1999511719" posY="1041" posZ="1344.8000488281" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (des_ufosign) (1)" doublesided="false" model="16778" interior="10" dimension="0" posX="-1041.3000488281" posY="1069.3000488281" posZ="1345.5999755859" rotX="0" rotY="0" rotZ="0"></object>
+</map>
+
+
+
+
+
+
+
+
+

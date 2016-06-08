@@ -1,0 +1,25 @@
+<map edf:definitions="editor_main">
+    <object id="object (CJ_SKIP_Rubbish) (1)" doublesided="false" model="1358" interior="0" dimension="0" posX="2214.8999023438" posY="-2185.1000976563" posZ="13.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (DYN_DUMPSTER_1) (1)" doublesided="false" model="1439" interior="0" dimension="0" posX="2224.3999023438" posY="-2194.8000488281" posZ="12.300000190735" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (dead_tied_cop) (1)" doublesided="false" model="3092" interior="0" dimension="0" posX="2224.5" posY="-2195.1000976563" posZ="13.10000038147" rotX="72.317413330078" rotY="19.25927734375" rotZ="223.08790588379"></object>
+    <object id="object (BlackBag1) (1)" doublesided="false" model="1264" interior="0" dimension="0" posX="2224.8999023438" posY="-2194.8000488281" posZ="13.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (BlackBag1) (2)" doublesided="false" model="1264" interior="0" dimension="0" posX="2224.3000488281" posY="-2195.1999511719" posZ="13.39999961853" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (1)" doublesided="false" model="1238" interior="0" dimension="0" posX="2225.1999511719" posY="-2198.3000488281" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (2)" doublesided="false" model="1238" interior="0" dimension="0" posX="2226.6999511719" posY="-2197" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (3)" doublesided="false" model="1238" interior="0" dimension="0" posX="2227.8999023438" posY="-2195.3000488281" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (4)" doublesided="false" model="1238" interior="0" dimension="0" posX="2224.8000488281" posY="-2191.3999023438" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (5)" doublesided="false" model="1238" interior="0" dimension="0" posX="2217.6000976563" posY="-2184.3000488281" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (6)" doublesided="false" model="1238" interior="0" dimension="0" posX="2213.3000488281" posY="-2180.8000488281" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (7)" doublesided="false" model="1238" interior="0" dimension="0" posX="2210.8000488281" posY="-2180.8999023438" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (8)" doublesided="false" model="1238" interior="0" dimension="0" posX="2209.1000976563" posY="-2181.8999023438" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (trafficcone) (9)" doublesided="false" model="1238" interior="0" dimension="0" posX="2220.5" posY="-2187.1999511719" posZ="12.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+</map>
+
+
+
+
+
+
+
+
+

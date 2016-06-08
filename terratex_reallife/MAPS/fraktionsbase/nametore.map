@@ -1,0 +1,22 @@
+<map edf:definitions="editor_main">
+    <object id="object (cen_bit_17) (1)" doublesided="false" model="16210" interior="0" dimension="0" posX="362.7109375" posY="1730.3515625" posZ="25.9921875" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (a51_extfence02) (1)" doublesided="false" model="16670" interior="0" dimension="0" posX="330.7890625" posY="1813.21875" posZ="17.828125" rotX="0" rotY="0" rotZ="0.75796508789063"></object>
+    <object id="object (elecfence_BAR) (1)" doublesided="false" model="987" interior="0" dimension="0" posX="273.39999389648" posY="1826.9000244141" posZ="16.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (2)" doublesided="false" model="987" interior="0" dimension="0" posX="261.39999389648" posY="1826.8000488281" posZ="16.60000038147" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (elecfence_BAR) (3)" doublesided="true" model="987" interior="0" dimension="0" posX="273.5" posY="1816" posZ="16.60000038147" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (elecfence_BAR) (4)" doublesided="false" model="987" interior="0" dimension="0" posX="285.5" posY="1815.8000488281" posZ="16.700000762939" rotX="0" rotY="0" rotZ="179.98901367188"></object>
+    <object id="object (elecfence_BAR) (5)" doublesided="false" model="987" interior="0" dimension="0" posX="141.60000610352" posY="1941.3000488281" posZ="18.39999961853" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (elecfence_BAR) (6)" doublesided="false" model="987" interior="0" dimension="0" posX="141.60000610352" posY="1953.3000488281" posZ="18.39999961853" rotX="0" rotY="0" rotZ="89.994506835938"></object>
+    <object id="object (elecfence_BAR) (7)" doublesided="false" model="987" interior="0" dimension="0" posX="129.19999694824" posY="1953.4000244141" posZ="18.299999237061" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (elecfence_BAR) (8)" doublesided="false" model="987" interior="0" dimension="0" posX="129.19999694824" posY="1965.4000244141" posZ="18.5" rotX="0" rotY="0" rotZ="269.99450683594"></object>
+    <object id="object (ws_apgate) (1)" doublesided="false" model="988" interior="0" dimension="0" posX="96.699996948242" posY="1920.5" posZ="17.200000762939" rotX="0" rotY="0" rotZ="90"></object>
+</map>
+    
+
+
+
+
+
+
+
+

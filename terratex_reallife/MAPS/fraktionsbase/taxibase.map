@@ -1,0 +1,15 @@
+<map edf:definitions="editor_main">
+    <object id="object (garages1_LAn) (1)" doublesided="false" model="4199" interior="0" dimension="0" posX="1796.7120361328" posY="-2025.0601806641" posZ="14.461561203003" rotX="0" rotY="0" rotZ="269.75" />
+    <object id="object (gate_autoR) (1)" doublesided="false" model="985" interior="0" dimension="0" posX="1672.0603027344" posY="-2073.412109375" posZ="12.011854171753" rotX="0" rotY="0" rotZ="272.75" />
+    <object id="object (gate_autoR) (2)" doublesided="false" model="985" interior="0" dimension="0" posX="1671.6676025391" posY="-2065.6062011719" posZ="12.011854171753" rotX="0" rotY="0" rotZ="272.99658203125" />
+    <object id="object (odrampbit02) (1)" doublesided="false" model="5820" interior="0" dimension="0" posX="1711.1666259766" posY="-2069.6496582031" posZ="16.131731033325" rotX="0" rotY="0" rotZ="358.75" />
+</map>
+
+
+
+
+
+
+
+
+

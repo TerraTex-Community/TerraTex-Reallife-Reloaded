@@ -1,0 +1,95 @@
+<map edf:definitions="editor_main">
+    <object id="object (bustopm) (3)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2083.19995" posY="1006.20001" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (5)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2083.19995" posY="1612.90002" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (6)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2334.6001" posY="2405.6001" posZ="11.1" rotX="0" rotY="0" rotZ="272.25"></object>
+    <object id="object (bustopm) (8)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2876" posY="2608.5" posZ="11.1" rotX="0" rotY="0" rotZ="359.741"></object>
+    <object id="object (bustopm) (9)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2794.80005" posY="2325.19995" posZ="11.2" rotX="0" rotY="0" rotZ="4.241"></object>
+    <object id="object (bustopm) (1)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2320.3999" posY="2421.30005" posZ="11.1" rotX="0" rotY="0" rotZ="89"></object>
+    <object id="object (bustopm) (3)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2111.5" posY="2192.8999" posZ="11.1" rotX="0" rotY="0" rotZ="179.5"></object>
+    <object id="object (bustopm) (5)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1873.30005" posY="2057.19995" posZ="11.1" rotX="0" rotY="0" rotZ="77.75"></object>
+    <object id="object (bustopm) (8)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1559.19995" posY="1020.70001" posZ="11.1" rotX="0" rotY="0" rotZ="181.25"></object>
+    <object id="object (bustopm) (10)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1558.90002" posY="713.79999" posZ="11.1" rotX="0" rotY="0" rotZ="178.25"></object>
+    <object id="object (bustopm) (12)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1354.40002" posY="688.59998" posZ="11.1" rotX="0" rotY="0" rotZ="0.5"></object>
+    <object id="object (bustopm) (15)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1575" posY="740.90002" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (17)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2033.5" posY="1515.30005" posZ="11.1" rotX="0" rotY="0" rotZ="181.5"></object>
+    <object id="object (bustopm) (18)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2083.19995" posY="1487.19995" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (2)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2026.59998" posY="1027.90002" posZ="11.1" rotX="0" rotY="0.75" rotZ="178.5"></object>
+    <object id="Stadthalle" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1480.7998" posY="-1740.89941" posZ="13.8" rotX="0" rotY="0" rotZ="269.747"></object>
+    <object id="Busjob" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1247.5" posY="-1858.7998" posZ="13.7" rotX="0" rotY="0" rotZ="269.742"></object>
+    <object id="Rookiespawn" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1727.59961" posY="-1821.7998" posZ="13.8" rotX="0" rotY="0" rotZ="255.493"></object>
+    <object id="Mülljob" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2222.19922" posY="-1958.39941" posZ="13.8" rotX="0" rotY="0" rotZ="354.985"></object>
+    <object id="object (bustopm) (5)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2352.80005" posY="-1709.90002" posZ="13.8" rotX="0" rotY="0" rotZ="357.739"></object>
+    <object id="object (bustopm) (6)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2179.1001" posY="-1097.80005" posZ="25.5" rotX="1.75" rotY="0.25" rotZ="62.479"></object>
+    <object id="BSN" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1205.2998" posY="-927.89941" posZ="43.2" rotX="359.495" rotY="359.242" rotZ="96.224"></object>
+    <object id="Motorrad" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="424.89941" posY="-1319.39941" posZ="15.3" rotX="359.489" rotY="359.242" rotZ="119.471"></object>
+    <object id="object (bustopm) (9)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="398.70001" posY="-1725.09998" posZ="8.8" rotX="0.989" rotY="359.242" rotZ="266.491"></object>
+    <object id="object (bustopm) (10)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1974.59998" posY="-2175" posZ="13.8" rotX="0" rotY="0" rotZ="271.5"></object>
+    <object id="Trucker" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2772.19922" posY="-2474" posZ="13.9" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="Bank" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1338.89941" posY="-1087" posZ="24.6" rotX="0" rotY="0" rotZ="169.75"></object>
+    <object id="BSS" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="859.59961" posY="-1604.39941" posZ="13.8" rotX="0" rotY="0" rotZ="313.495"></object>
+    <object id="Papercuts" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1141.09961" posY="-1653" posZ="14.2" rotX="0" rotY="0" rotZ="181.247"></object>
+    <object id="Meeresreiniger" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2303.69995" posY="-2329.3999" posZ="13.7" rotX="0" rotY="2" rotZ="223.75"></object>
+    <object id="Pizzajob" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2088.1001" posY="-1845.59998" posZ="13.8" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="Fischerjob" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="349.89999" posY="-1652.80005" posZ="33.4" rotX="0" rotY="0" rotZ="264.75"></object>
+    <object id="object (bustopm) (4)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2403.19995" posY="-1263.19995" posZ="24.4" rotX="0" rotY="0" rotZ="270.75"></object>
+    <object id="object (bustopm) (7)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2854.1001" posY="2228.19995" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (11)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="683.29999" posY="-1412.40002" posZ="13.9" rotX="0" rotY="0" rotZ="271.5"></object>
+    <object id="object (bustopm) (13)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1815.69995" posY="-2060.19995" posZ="13.8" rotX="0" rotY="0" rotZ="180.25"></object>
+    <object id="object (bustopm) (14)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1605.09998" posY="1879.90002" posZ="11" rotX="0" rotY="0" rotZ="90.5"></object>
+    <object id="object (bustopm) (16)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2840.3999" posY="2228" posZ="11.1" rotX="0" rotY="0" rotZ="180.25"></object>
+    <object id="object (bustopm) (19)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="-126.6" posY="-405.29999" posZ="1.7" rotX="0" rotY="0" rotZ="232.498"></object>
+    <object id="object (bustopm) (20)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1977" posY="-1197.19995" posZ="26.1" rotX="0" rotY="0" rotZ="2"></object>
+    <object id="object (bustopm) (21)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1616.5" posY="-1323.09961" posZ="17.8" rotX="0" rotY="0" rotZ="357.995"></object>
+    <object id="object (bustopm) (22)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1404.80005" posY="-956.5" posZ="35.7" rotX="0" rotY="2" rotZ="260"></object>
+    <object id="object (bustopm) (25)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2226.6001" posY="1186.30005" posZ="11.1" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bustopm) (26)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2262.69995" posY="2129.69995" posZ="11.1" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bustopm) (27)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1484.09998" posY="2574.1001" posZ="11.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (28)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1436.90002" posY="2706.5" posZ="11.1" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bustopm) (29)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1580.19995" posY="2609.5" posZ="11.1" rotX="0" rotY="0" rotZ="179.5"></object>
+    <object id="object (bustopm) (30)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="-2621.6001" posY="1219.90002" posZ="54.2" rotX="0" rotY="2" rotZ="85.5"></object>
+    <object id="object (bustopm) (31)" interior="0" collisions="true" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="-1754.59998" posY="958.40002" posZ="25.2" rotX="0" rotY="0" rotZ="89.75"></object>
+    <object id="object (bustopm) (23)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2336.3999" posY="235.5" posZ="26.8" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (bustopm) (24)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2315.80005" posY="99.1" posZ="26.8" rotX="0" rotY="0" rotZ="91"></object>
+    <object id="object (bustopm) (32)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2268.30005" posY="34.7" posZ="26.8" rotX="0" rotY="0" rotZ="270.25"></object>
+    <object id="object (bustopm) (33)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2350.5" posY="-53.8" posZ="26.8" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (34)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2583.80005" posY="34.2" posZ="26.8" rotX="0" rotY="0" rotZ="271.25"></object>
+    <object id="object (bustopm) (35)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="350.89999" posY="-135.2" posZ="2" rotX="0" rotY="0" rotZ="89"></object>
+    <object id="object (bustopm) (36)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="264.89999" posY="-65" posZ="1.9" rotX="0" rotY="0" rotZ="90.25"></object>
+    <object id="object (bustopm) (37)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="151.8" posY="-64.6" posZ="1.9" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (bustopm) (38)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="66.6" posY="-203.8" posZ="1.9" rotX="0" rotY="0" rotZ="88.25"></object>
+    <object id="object (noparkingsign1) (1)" interior="0" alpha="255" doublesided="false" model="1233" scale="1" dimension="0" posX="1215.5" posY="-1824.80005" posZ="14.1" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (39)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1597.30005" posY="-1322.69995" posZ="17.8" rotX="0" rotY="0" rotZ="178"></object>
+    <object id="object (bustopm) (40)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1962.69995" posY="-1197.80005" posZ="26.1" rotX="0" rotY="0" rotZ="183.25"></object>
+    <object id="object (bustopm) (41)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2158.30005" posY="-1124.30005" posZ="25.8" rotX="0" rotY="0" rotZ="262"></object>
+    <object id="object (bustopm) (42)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="1828.5" posY="-1702.09998" posZ="13.8" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (43)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2661.8999" posY="-1650.19995" posZ="11.1" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (bustopm) (44)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2910.25586" posY="-1577.92285" posZ="11.12515" rotX="0" rotY="0" rotZ="344"></object>
+    <object id="object (bustopm) (45)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2345" posY="-1147.5" posZ="27.5" rotX="0" rotY="0" rotZ="92"></object>
+    <object id="object (bustopm) (46)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2551.19995" posY="48.9" posZ="26.8" rotX="0" rotY="0" rotZ="90.75"></object>
+    <object id="object (bustopm) (47)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2415.3999" posY="-20.8" posZ="26.8" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (bustopm) (48)" interior="0" alpha="255" doublesided="false" model="1257" scale="1" dimension="0" posX="2188.30005" posY="48.7" posZ="26.8" rotX="0" rotY="0" rotZ="90.75"></object>
+    <object id="object (bustopm) (1)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="1489.19995" posY="715.29999" posZ="11.1" rotX="0" rotY="0" rotZ="92"></object>
+    <object id="object (bustopm) (2)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="1122.59998" posY="1805.69995" posZ="11.1" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (bustopm) (3)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-427.79999" posY="1422.59998" posZ="33.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (4)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-895.40002" posY="1983.19995" posZ="60.8" rotX="0" rotY="0" rotZ="178"></object>
+    <object id="object (bustopm) (5)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-2698.5" posY="1764.40002" posZ="68.8" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (bustopm) (6)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-1958.80005" posY="1120.80005" posZ="53" rotX="348" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (7)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-2096.3999" posY="-284" posZ="35.8" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (bustopm) (8)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-2731.8999" posY="-306.29999" posZ="7.5" rotX="0" rotY="0" rotZ="134"></object>
+    <object id="object (bustopm) (9)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-2422.1001" posY="-625.20001" posZ="133" rotX="0" rotY="0" rotZ="216"></object>
+    <object id="object (bustopm) (10)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-2254.80005" posY="-2192.80005" posZ="34.8" rotX="0" rotY="0" rotZ="130"></object>
+    <object id="object (bustopm) (11)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="954.09998" posY="-1114.09998" posZ="24.1" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (bustopm) (12)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="933.70001" posY="-1239.40002" posZ="16.6" rotX="0" rotY="0" rotZ="180"></object>
+    <object id="object (bustopm) (13)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="-1037.90002" posY="-1191.19995" posZ="129.5" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (bustopm) (1)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="2499.1001" posY="-1263.80005" posZ="34.6" rotX="15" rotY="0" rotZ="270"></object>
+    <object id="object (bustopm) (2)" breakable="true" interior="0" alpha="255" model="1257" doublesided="false" scale="1" dimension="0" posX="1084.59998" posY="1185.30005" posZ="11.1" rotX="0" rotY="0" rotZ="270"></object>
+</map>
+
+
+
+
+
+
+
+
+

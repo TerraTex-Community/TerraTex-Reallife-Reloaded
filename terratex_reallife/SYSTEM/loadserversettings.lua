@@ -21,9 +21,6 @@ addCommandHandler("version",version_func,false,false)
 
 function loadSettingsFromDB()
 	setAircraftMaxVelocity ( 50)
-	--removeWorldModel ( 4026, 1000, 1497.609,-1543.709,17.549 )
-	--removeWorldModel ( 4016, 1000, 1497.609,-1543.709,17.549 )
-	--removeWorldModel ( 4218, 1000, 1497.609,-1543.709,17.549) 
 	setModelHandling (433,"maxVelocity",120)
 	setModelHandling (433,"engineAcceleration",25)
 	setModelHandling (433,"engineInertia",80)
@@ -50,9 +47,8 @@ function loadSettingsFromDB()
 	serversettings["Version"]=MySQL_GetString("serversettings", "Wert","Name='Version'")	
 	serversettings["atommuell"]=tonumber(MySQL_GetVar("serversettings", "Wert","Name='atommuell'"))
 	serversettings["playerOfMonthPic"]=MySQL_GetString("serversettings", "Wert","Name='spielerDesMonats'")
-	--setServerName ("German TerraTex Reallife by www.tt-rl.de Version "..serversettings["Version"])
 
-    setGameType("TerraTex Reallife Script "..serversettings["Version"])
+    setGameType("TerraTex Reallife Reloaded Script "..serversettings["Version"])
     setRuleValue ("Homepage",config["maindomain"])
     setMapName ("TerraTex")
     resetWaterLevel(0)
@@ -69,8 +65,8 @@ function loadSettingsFromDB()
 			mysql_query(handler,query)
 			local query="UPDATE vehicles SET fahrzeugalter=fahrzeugalter+1"
 			mysql_query(handler,query)
-			--local query="DELETE FROM vehicles WHERE SpawnX='0' and SpawnY='0' and SpawnZ='0' and fahrzeugalter>3"
-			--mysql_query(handler,query)
+			local query="DELETE FROM vehicles WHERE SpawnX='0' and SpawnY='0' and SpawnZ='0' and fahrzeugalter>3"
+			mysql_query(handler,query)
 			
 			local query="UPDATE players SET AktiveDays=AktiveDays+1"
 			mysql_query(handler,query)
@@ -84,10 +80,10 @@ function loadSettingsFromDB()
                 local queryb=""
 
                 while zahler<mysql_num_rows(result) do
-                    --queryb="DELETE FROM vehicles WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
-                 --   queryb="UPDATE vehicles SET abgeschleppt='1' WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
-                 --   save_offline_message(mysql_result(result,(zahler+1),1),"Inaktiv-System","Aufgrund deiner Inaktivität wurden alle Fahrzeuge abgeschleppt.")
-                --    mysql_query(handler,queryb)
+                    queryb="DELETE FROM vehicles WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
+                    queryb="UPDATE vehicles SET abgeschleppt='1' WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
+                    save_offline_message(mysql_result(result,(zahler+1),1),"Inaktiv-System","Aufgrund deiner Inaktivität wurden alle Fahrzeuge abgeschleppt.")
+                    mysql_query(handler,queryb)
                     changeaccounts=changeaccounts+1
                     zahler=zahler+1
                 end
@@ -100,10 +96,10 @@ function loadSettingsFromDB()
                 local queryb=""
 
                 while zahler<mysql_num_rows(result) do
-               --     queryb="DELETE FROM vehicles WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
-                    --queryb="UPDATE vehicles SET abgeschleppt='1' Besitzer='"..mysql_result(result,(zahler+1),1).."'"
-                --    save_offline_message(mysql_result(result,(zahler+1),1),"Inaktiv-System","Aufgrund deiner Inaktivität wurden alle Fahrzeuge, Haus, Biz und Prestige gelöscht.")
-                --    mysql_query(handler,queryb)
+                    queryb="DELETE FROM vehicles WHERE Besitzer='"..mysql_result(result,(zahler+1),1).."'"
+                    queryb="UPDATE vehicles SET abgeschleppt='1' Besitzer='"..mysql_result(result,(zahler+1),1).."'"
+                    save_offline_message(mysql_result(result,(zahler+1),1),"Inaktiv-System","Aufgrund deiner Inaktivität wurden alle Fahrzeuge, Haus, Biz und Prestige gelöscht.")
+                    mysql_query(handler,queryb)
                     changeaccounts=changeaccounts+1
                     zahler=zahler+1
                 end
@@ -115,9 +111,9 @@ function loadSettingsFromDB()
             if(result)then
                 local queryb=""
                 while zahler<mysql_num_rows(result) do
-                 --   queryb="UPDATE userdata SET hkey='0',bizKey='0',prestigeKey='0' WHERE Nickname='"..mysql_result(result,(zahler+1),1).."'"
-                --    mysql_query(handler,queryb)
-                 --   changeaccounts=changeaccounts+1
+                    queryb="UPDATE userdata SET hkey='0',bizKey='0',prestigeKey='0' WHERE Nickname='"..mysql_result(result,(zahler+1),1).."'"
+                    mysql_query(handler,queryb)
+                    changeaccounts=changeaccounts+1
                     zahler=zahler+1
                 end
             end
@@ -128,13 +124,10 @@ function loadSettingsFromDB()
                 local queryb=""
                 while zahler<mysql_num_rows(result) do
                     local dasatz = mysql_fetch_assoc(result)
-                --    queryb="DELETE FROM players WHERE Nickname='"..dasatz["Nickname"].."'"
-                --    mysql_query(handler,queryb)
+                    queryb="DELETE FROM players WHERE Nickname='"..dasatz["Nickname"].."'"
+                    mysql_query(handler,queryb)
 
-                --    queryb="INSERT INTO CP_deletes (Name) VALUES ('"..dasatz["Nickname"].."');"
-                --    mysql_query(handler,queryb)
-
-                 --   save_log( "nickdelete", dasatz["Nickname"])
+                    save_log( "nickdelete", dasatz["Nickname"])
                     changeaccounts=changeaccounts+1
                     zahler=zahler+1
                 end
@@ -273,7 +266,6 @@ function web_GMX_Start(SecureCode,AdminID)
 
 end
 
-
 local startResourceUPGMX=0
 function start_GMX()
 	
@@ -305,20 +297,9 @@ function start_GMX()
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),start_GMX)
 
-
 function resetLogins()
 	for theKey,thePlayer in ipairs(getElementsByType('player'))do
 		vioSetElementData(thePlayer,"loggedin",false)
 	end
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),resetLogins)
-
-
-
-
-
-
-
-
-
-

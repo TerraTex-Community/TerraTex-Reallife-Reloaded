@@ -252,16 +252,6 @@ INSERT INTO `buissness` (`ID`, `Name`, `Preis`, `Kasse`, `x`, `y`, `z`) VALUES
 (14, 'Maut', 150000, 29852.5, 1654, -51.6, 36.6),
 (15, 'Binco', 150000, 24141.7, 458.7, -1495.3, 31.1);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cp_deletes`
---
-
-CREATE TABLE IF NOT EXISTS `cp_deletes` (
-`ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51572 ;
 
 -- --------------------------------------------------------
 

@@ -22,7 +22,7 @@ function isAdminLevel(thePlayer, lvl)
     end
 
     if(not isElement(thePlayer))then
-        outputDebugString("ErrorHelp vioSetElementData: "..debug.traceback())
+        outputDebugString("ErrorHelp isAdminLevel: "..debug.traceback())
     end
 
     if(not(isPlayerLoggedIn(thePlayer)))then

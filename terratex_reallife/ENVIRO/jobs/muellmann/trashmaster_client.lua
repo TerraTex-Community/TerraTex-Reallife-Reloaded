@@ -209,23 +209,3 @@ addEventHandler("onClientMarkerHit", getRootElement(), enterTrashMasterCheckpoin
 function unfreezeTrashVehicle(theVehicle)
     setElementFrozen(theVehicle, false)
 end
-
-function teleportToJobMarkerForSomeTesting()
-    if (isAdminLevel(getLocalPlayer(), 3)) then
-        for theKey, theElement in ipairs(playerJobMarkers) do
-            if (isElement(theElement[4])) then
-                local vehicle = getPedOccupiedVehicle(getLocalPlayer())
-                setElementPosition(vehicle, getElementPosition(theElement[4]))
-                break
-            end
-        end
-    end
-end
-
-addCommandHandler("ttjm", teleportToJobMarkerForSomeTesting, false, false)
-
-
-
-
-
-

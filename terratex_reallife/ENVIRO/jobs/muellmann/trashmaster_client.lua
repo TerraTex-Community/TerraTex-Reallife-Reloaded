@@ -99,7 +99,7 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 
 function resizePlayerJobMarkers()
     playerJobMarkers = {}
-    playerJobMarkers = table.deepcopy(muellmarkers)
+    playerJobMarkers = table.copy(muellmarkers)
 end
 
 function onPlayerEnterTrashMaster_func()

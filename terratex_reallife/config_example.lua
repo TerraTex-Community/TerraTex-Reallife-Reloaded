@@ -60,9 +60,3 @@ config["logmysqldb"]=""
 config["dailyrestarttype"]="GMX"
 
 
-
--- ################  FEATURE SETTINGS  #################
--- An-/Abschalten des Lebensstanardfeatures (Besitz eines Hauses mit einen Mindestwert um bestimmte Fahrzeuge kaufen zu können)
-config["feature.stardard_of_living"] = false
-
-

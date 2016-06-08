@@ -24,27 +24,24 @@ config["clantag"]="[TTeam]"
 --Community Name - The Name of the Community, which should be written f.e. in credits
 config["communityname"]="TerraTex"
 
---passwort Hash Algo ... 
---Options:  
---   -> md5    (old System... not recommend)
---   -> osha256   (Sha256 before MTA:SA 1.4.1)
---   -> sha256    (Sha256 // avaible after MTA:SA 1.4.1)
---   -> sha512    (Sha512 // avaible after MTA:SA 1.4.1  -- recommend)
-config["password_hash"]="sha512"
-
 --Mappername
 config["mappername"]="[TTeam]Blizard"
 
 --Scriptername
 config["scriptername"]="[TTeam]Geramy92"
 
+-- ################  FEATURE SETTINGS  #################
+-- Pizzaroller Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.pizza"] = 50
 
---24h Restart type
--- Options:
--- GMX - Gamemoderestart at 3/4 o'clock
--- SHUTDOWN  - complete Shutdown of the server at 3/4 o'clock  (recommend but you have to setup a automatic restart Script on your host)
--- NONE - No Restart at 3/4 o'clock (not recommend)
-config["dailyrestarttype"]="GMX"
+-- Rookieroller / Faggio Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.faggio"] = 50
+
+-- Quad false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.quad"] = 90
+
+-- Waffentruck Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.muntruck"] = 100
 
 
 

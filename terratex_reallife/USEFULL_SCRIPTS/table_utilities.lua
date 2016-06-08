@@ -66,7 +66,7 @@ function table.copy(obj, seen)
     local s = seen or {}
     local res = setmetatable({}, getmetatable(obj))
     s[obj] = res
-    for k, v in pairs(obj) do res[copy(k, s)] = copy(v, s) end
+    for k, v in pairs(obj) do res[table.copy(k, s)] = table.copy(v, s) end
     return res
 end
 

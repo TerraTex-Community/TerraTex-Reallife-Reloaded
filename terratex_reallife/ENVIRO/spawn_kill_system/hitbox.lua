@@ -1,40 +1,3 @@
-
-
-function spezWeapon(thePlayer,cmd,toPlayerPart)
-	if(isAdminLevel(thePlayer,3))then
-		local toPlayer=getPlayerFromIncompleteName(toPlayerPart)
-		if(toPlayer)then
-			if(vioGetElementData(toPlayer,"spezWeapon"))then
-				vioSetElementData(toPlayer,"spezWeapon",false)
-				outputChatBox("false",thePlayer)
-			else
-				vioSetElementData(toPlayer,"spezWeapon",true)
-				outputChatBox("true",thePlayer)
-			end
-		end
-	end
-end
-addCommandHandler("spzw",spezWeapon,false,false)
-
-
-
-
-function onVehicleDamagePlayerDamage(loss)
-	local playerDamage=loss/20
-	local playersInVehicle=getVehicleOccupants(source)
-	local seats = getVehicleMaxPassengers(source)
-	if(seats)then
-		for seat = 0, seats do
-			if(playersInVehicle[seat])then
-				if(not(vioGetElementData(playersInVehicle[seat],"inArena")))then
-					triggerEvent("onCustomPlayerDamage",playersInVehicle[seat],false,49,math.random(3,9),playerDamage)
-				end
-			end
-		end
-	end
-end
-addEventHandler("onVehicleDamage",getRootElement(),onVehicleDamagePlayerDamage)
-
 --Weapon Balance
 function setWeaponStats_balanced()
     setWeaponProperty(22, "pro", "flag_type_dual", false)
@@ -59,11 +22,6 @@ function setWeaponStats_balanced()
 end
 addEventHandler("onResourceStart",getRootElement(),setWeaponStats_balanced)
 
-function readWeaponStats_balanced(thePlayer, cmd, weaponid, statname)
-    outputChatBox( tostring(getWeaponProperty ( tonumber(weaponid), "pro", statname )))
-end
-addCommandHandler("rws", readWeaponStats_balanced)
-
 
 function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 
@@ -79,10 +37,10 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 	if(attacker)then
 		if(vioGetElementData(attacker,"spezWeapon"))then
 			loss=loss*100
-		end	
+		end
 	end
-	
-	
+
+
 	triggerClientEvent(source,"StopHealingTimer",source)
 	if(vioGetElementData(source,"flys_spawner_damage"))then
 		loss=0
@@ -93,7 +51,7 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 	--* 6: Right Arm
     --7: Left Leg
     --* 8: Right leg
-    --* 9: Head 
+    --* 9: Head
 	local schaden={1,1,2.5,2.5,1,1,1,1,4}
 	local weaponDamage={
 	[22]=2.5,
@@ -111,11 +69,11 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 	if(attackerweapon)then
 		if(weaponDamage[attackerweapon])then
 			weaponNowDamage=weaponDamage[attackerweapon]
-			
+
 			if(vioGetElementData(source,"isCopSwat"))then
 				--loss=loss/3
 			end
-			
+
 		end
 	end
 
@@ -145,7 +103,7 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 		setPedArmor(source,armor)
 	end
 
-	
+
 end
 addEvent("onCustomPlayerDamage",true)
 addEventHandler("onCustomPlayerDamage",getRootElement(),onPlayerDamage_func)

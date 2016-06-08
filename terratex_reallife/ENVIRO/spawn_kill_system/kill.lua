@@ -33,16 +33,6 @@ function setDeath_command_func(thePlayer,command,toPlayer)
 end
 addCommandHandler("setdeath",setDeath_command_func,false,false)
 
-
-function fixVeh_Admin_func(thePlayer)
-		if(isAdminLevel(thePlayer,3))then
-			if(isPedInVehicle(thePlayer))then
-				fixVehicle(getPedOccupiedVehicle(thePlayer))
-			end	
-		end
-end
-addCommandHandler("fixveh",fixVeh_Admin_func,false,false)
-
 function showdeath_func(thePlayer)
 	if(vioGetElementData(thePlayer,"fraktion")==10)then
 		if(vioGetElementData(thePlayer,"isShowingMedicDeathBlip"))then

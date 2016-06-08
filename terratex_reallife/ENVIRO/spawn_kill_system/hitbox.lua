@@ -17,14 +17,10 @@ function setWeaponStats_balanced()
     setWeaponProperty(34, "pro", "weapon_range", 1000)
     setWeaponProperty(34, "std", "weapon_range", 1000)
     setWeaponProperty(34, "poor", "weapon_range", 1000)
-
-
 end
 addEventHandler("onResourceStart",getRootElement(),setWeaponStats_balanced)
 
-
 function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
-
     if(vioGetElementData(source,"smode"))then
         if(isElement(attacker))then
            if(attacker~=source)then
@@ -152,13 +148,3 @@ function setPedChockingStop_server(spruehtimer)
 end
 addEvent("spc_stop_event",true)
 addEventHandler("spc_stop_event",getRootElement(),setPedChockingStop_server)
-
-
-
-
-
-
-
-
-
-

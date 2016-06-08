@@ -7,7 +7,6 @@
 --
 
 function checkAdditionalPunishment(thePlayer)
-
     checkAdditionalPunishment_offline(getPlayerName(thePlayer))
 end
 

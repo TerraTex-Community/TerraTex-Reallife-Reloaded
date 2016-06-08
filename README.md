@@ -14,9 +14,11 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 
 1. Create A Database and import "geramy_reallife.sql" from Directory "SQL for INSTALL OR UPDATE"
 2. Create A Second Database (OR USE THE SAME LIKE IN 1.) and import "geramy_realife_logs.sql" from "SQL for INSTALL OR UPDATE"
-3. Edit config.lua and config_mysql.lua
+3. Edit config_example.lua and rename to config.lua
+4. Edit config_client_example.lua and rename to config_client.lua
 5. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
 6. Install MTA-Mysql Module
+
 
 
 Dieses Material steht unter der Creative-Commons-Lizenz Namensnennung-Nicht kommerziell 4.0 International. Um eine Kopie dieser Lizenz zu sehen, besuchen Sie http://creativecommons.org/licenses/by-nc/4.0/.

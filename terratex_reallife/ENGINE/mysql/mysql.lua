@@ -75,7 +75,7 @@ end
 -- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
 -- @return theValue if success false otherwise or false if there are more then one row as result
 MySql.helper.getFieldValueSync = function(tableName, fieldName, conditions, operation)
-    local query, params = prepareGetVarFunc(tableName, fieldName, conditions, operation);
+    local query, params = prepareGetValueFunc(tableName, fieldName, conditions, operation);
 
     local handler = dbQuery(MySql._mainConnection, query, unpack(params));
     local result, rows = dbPoll(handler, -1);

@@ -12,9 +12,8 @@ local deleteNullAfterDays=30
 
 --[[ SCRIPT ]]
 function onPlayerDevServerConnect(nickname)
-    local nicknameSecure=mysql_escape_string( handler, nickname )
     if(fileExists(":"..getResourceName(getThisResource()).."/devmode.dev")) then
-        local isDev=MySQL_GetVar("players","isDeveloper","Nickname LIKE '"..nicknameSecure.."'")
+        local isDev = MySql.helper.getFieldValueSync("players", "isDeveloper", {Nickname = nickname});
         if(isDev)then
             if(isDev==0)then
                 local timeQuery="Nickname='"..nicknameSecure.."' and TIMEDIFF(fromTimestamp, NOW())<0 and (TIMEDIFF(toTimestamp, NOW())>0 or toTimestamp IS NULL)"

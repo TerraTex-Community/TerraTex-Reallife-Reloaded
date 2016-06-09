@@ -24,7 +24,8 @@ weatheraktualTimer=false
 function setWetterOnResourceStart()
 	setCloudsEnabled ( true)
 	--regenleve
-	rainlevel=tonumber(MySQL_GetVar("serversettings", "Wert","Name='regenlevel'"))
+	rainlevel=MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "regenlevel" });
+
 	changeWeather()
 	local pickup=createPickup(1473.146484375,-1771.8291015625,18.795755386353,3,1239,5000)
 	addEventHandler("onPickupHit",pickup,sendOeffiWetterMessage,false)

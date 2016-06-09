@@ -173,8 +173,10 @@
 			else
 				local time=getRealTime()
 				local nickname=getPlayerName(thePlayer)
-				local premiumOutTime=(MySQL_GetVar("premium", "PremiumUntil","Name='"..nickname.."'"))-time.timestamp
-				local hasPremGutSchein=(MySQL_GetVar("premium", "PremiumGutScheine","Name='"..nickname.."'"))
+
+				local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
+				local hasPremGutSchein = MySql.helper.getFieldValueSync("premium", "PremiumGutScheine", {Name = nickname});
+
 				local thirty=2592000
 				outputChatBox("Dir wurden 30 Tage Premium gutgeschrieben!",thePlayer,0,255,0)
 				if(hasPremGutSchein>0)then

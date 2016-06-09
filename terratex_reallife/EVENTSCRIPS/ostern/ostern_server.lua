@@ -74,7 +74,7 @@ function eiHit(thePlayer)
         MySQL_SetVar("ostereier","State",1,"ID='"..id.."'")
         MySQL_SetVar("ostereier","gefundenVon",pName,"ID='"..id.."'")
 
-        local anzGefunden=MySQL_GetVar("ostereier","count(*)","gefundenVon='"..pName.."' AND event='ostern'")
+        local anzGefunden = MySql.helper.getFieldValueSync("ostereier", "count(*)", {gefundenVon = pName, event = "ostern"});
 
         outputChatBox("Osterhase: Glückwunsch, du hast jetzt schon "..anzGefunden.." Ostereier gefunden",thePlayer,math.random(1,255),math.random(1,255),math.random(1,255))
 

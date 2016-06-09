@@ -1,8 +1,8 @@
 function premium_func(thePlayer)
 	local time=getRealTime()
 	local nickname=getPlayerName(thePlayer)
-	local premiumOutTime=(MySQL_GetVar("premium", "PremiumUntil","Name='"..nickname.."'"))-time.timestamp
-	local hasPremGutSchein=(MySQL_GetVar("premium", "PremiumGutScheine","Name='"..nickname.."'"))
+	local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
+	local hasPremGutSchein = MySql.helper.getFieldValueSync("premium", "PremiumGutScheine", {Name = nickname});
 	triggerClientEvent(thePlayer,"showPremiumInfoGUI",thePlayer,premiumOutTime,hasPremGutSchein)
 end
 addCommandHandler("premium",premium_func,false,false)

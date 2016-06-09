@@ -104,7 +104,7 @@ addCommandHandler("delRZ", destroyRuheZone, false, false)
 function tcheck_func(thePlayer, cmd, toPlayer)
     if (isAdminLevel(thePlayer, 0)) then
         if (toPlayer) then
-            local playtime = MySQL_GetVar("userdata", "PlayTime", "Nickname='" .. toPlayer .. "'")
+            local playtime = MySql.helper.getFieldValueSync("userdata", "PlayTime", {Nickname = toPlayer});
             if (playtime) then
                 outputChatBox("Dieser Spieler hat " .. (math.round(playtime / 60)) .. " Spielstunden!", thePlayer, 255, 0, 0)
             else

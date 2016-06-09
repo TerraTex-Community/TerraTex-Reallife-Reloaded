@@ -40,16 +40,15 @@ function createAttackPickups()
 		vioSetElementData(attackIcons[8],"id",8)
 		addEventHandler("onPickupHit",attackIcons[8],showAttackPickupInfo)
 
-	attackerLadenInfos[1][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='1'")
-	attackerLadenInfos[2][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='2'")
-	attackerLadenInfos[3][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='3'")
-	attackerLadenInfos[4][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='4'")
-	
-	attackerLadenInfos[5][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='5'")
-	attackerLadenInfos[6][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='6'")
-	attackerLadenInfos[7][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='7'")
-	attackerLadenInfos[8][1]=MySQL_GetVar("attackerladen", "toFraktion", "ID='8'")
-	
+	attackerLadenInfos[1][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 1});
+	attackerLadenInfos[2][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 2});
+	attackerLadenInfos[3][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 3});
+	attackerLadenInfos[4][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 4});
+	attackerLadenInfos[5][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 5});
+	attackerLadenInfos[6][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 6});
+	attackerLadenInfos[7][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 7});
+	attackerLadenInfos[8][1] = MySql.helper.getFieldValueSync("attackerladen", "toFraktion", {ID = 8});
+
 	setTimer(giveLadenResources,3600000,1)
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createAttackPickups)

@@ -120,7 +120,7 @@ function setPlayerSpawn(source,spawn,skinid,fraktion,firstspawn)
 						
 						local time=getRealTime()
 						local nickname=getPlayerName(source)
-						local premiumOutTime=(MySQL_GetVar("premium", "PremiumUntil","Name='"..nickname.."'"))-time.timestamp
+						local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
 						if(premiumOutTime>0)then
 							local slot=vioGetElementData(source,"PremiumSpawn")				
 							if isElement(vioGetElementData(source,"slot"..slot)) then
@@ -146,7 +146,7 @@ function setPlayerSpawn(source,spawn,skinid,fraktion,firstspawn)
 					elseif(spawn==5)then
 						local time=getRealTime()
 						local nickname=getPlayerName(source)
-						local premiumOutTime=(MySQL_GetVar("premium", "PremiumUntil","Name='"..nickname.."'"))-time.timestamp
+						local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
 						if(premiumOutTime>0)then
 							if vioGetElementData(source,"job")>0 then
 								--outputChatBox(tostring(vioGetElementData(source,"job")))
@@ -192,8 +192,8 @@ function setPlayerSpawn(source,spawn,skinid,fraktion,firstspawn)
 					local weapons=MySQL_GetString("inventar", "Offline_Weapons","Nickname='"..nickname.."'")
 					local ammo=MySQL_GetString("inventar", "Offline_Ammo","Nickname='"..nickname.."'")
 					local source=thePlayer
-							
-					local resetweapons=MySQL_GetVar("userdata", "resetWeaponsAtNextLogin","Nickname='"..nickname.."'")
+
+					local resetweapons = MySql.helper.getFieldValueSync("userdata", "resetWeaponsAtNextLogin", {Nickname = nickname});
 					if(tonumber(hp)>0)then
 						setElementHealth(source,hp)					
 					end
@@ -271,7 +271,7 @@ function setPlayerSpawnWeapons(thePlayer,Fraktion,Rang)
 		end
 	end
 	local nickname=getPlayerName(thePlayer)
-	local resetweapons=MySQL_GetVar("userdata", "resetWeaponsAtNextLogin","Nickname='"..nickname.."'")
+	local resetweapons = MySql.helper.getFieldValueSync("userdata", "resetWeaponsAtNextLogin", {Nickname = nickname});
 	if(resetweapons==1)then
 		takeAllWeapons ( thePlayer )				 
 		MySQL_SetVar("userdata", "resetWeaponsAtNextLogin" , 0 , "Nickname='"..nickname.."'")

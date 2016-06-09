@@ -58,21 +58,21 @@ end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),onCreatetaxicars_func)
 
 function loadTaxiPricesFromDB()
-	local tarifa=MySQL_GetVar("taxipreise", "preis", "timezone='1' and tarifzone='1'")
-	local tarifb=MySQL_GetVar("taxipreise", "preis", "timezone='1' and tarifzone='2'")
-	local tarifc=MySQL_GetVar("taxipreise", "preis", "timezone='1' and tarifzone='3'")
+	local tarifa = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 1, tarifzone = 1});
+	local tarifb = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 1, tarifzone = 2});
+	local tarifc = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 1, tarifzone = 3});
 	taxiPrices[1]={tarifa,tarifb,tarifc}
 	
-	tarifa=MySQL_GetVar("taxipreise", "preis", "timezone='2' and tarifzone='1'")
-	tarifb=MySQL_GetVar("taxipreise", "preis", "timezone='2' and tarifzone='2'")
-	tarifc=MySQL_GetVar("taxipreise", "preis", "timezone='2' and tarifzone='3'")
+	tarifa = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 2, tarifzone = 1});
+	tarifb = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 2, tarifzone = 2});
+	tarifc = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 2, tarifzone = 3});
 	taxiPrices[2]={tarifa,tarifb,tarifc}
 	
-	tarifa=MySQL_GetVar("taxipreise", "preis", "timezone='3' and tarifzone='1'")
-	tarifb=MySQL_GetVar("taxipreise", "preis", "timezone='3' and tarifzone='2'")
-	tarifc=MySQL_GetVar("taxipreise", "preis", "timezone='3' and tarifzone='3'")
+	tarifa = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 3, tarifzone = 1});
+	tarifb = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 3, tarifzone = 2});
+	tarifc = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 3, tarifzone = 3});
 	taxiPrices[3]={tarifa,tarifb,tarifc}
-	taxiGrundPrice=MySQL_GetVar("taxipreise", "preis", "timezone='0' and tarifzone='0'")
+	taxiGrundPrice = MySql.helper.getFieldValueSync("taxipreise", "preis", {timezone = 0, tarifzone = 0});
 end
 
 function aktualizeTaxiPricesFromDB()

@@ -80,10 +80,10 @@ MySql.helper.getFieldValueSync = function(tableName, fieldName, conditions, oper
     local handler = dbQuery(MySql._mainConnection, query, unpack(params));
     local result, rows = dbPoll(handler, -1);
     if (rows == 1) then
-        if (isNumeric(result[0]["fieldName"])) then
-            return tonumber(result[0]["fieldName"]);
+        if (isNumeric(result[1]["fieldName"])) then
+            return tonumber(result[1]["fieldName"]);
         else
-            return result[0]["fieldName"];
+            return result[1]["fieldName"];
         end
     else
         return false;

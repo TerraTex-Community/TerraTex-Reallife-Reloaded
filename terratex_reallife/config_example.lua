@@ -59,4 +59,7 @@ config["logmysqldb"]=""
 -- NONE - No Restart at 3/4 o'clock (not recommend)
 config["dailyrestarttype"]="GMX"
 
+-- ################  FEATURE SETTINGS  #################
+-- Enable or Disable Standard of Living (Means you need a specific house value to buy expensive cars)
+config["feature.stardard_of_living"] = true
 

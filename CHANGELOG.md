@@ -1,3 +1,7 @@
+####09.06.2016
+------
+* [INFO] In Github Wiki are now automatic generated docs about things like Commands.
+
 ####08.06.2016
 ------
 * [ADDED] Config Vars to enable, disable or changing limitation of different vehicles

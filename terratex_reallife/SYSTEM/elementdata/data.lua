@@ -86,10 +86,8 @@ function changeVioElementData(player,dataString,value,valuebefore)
 	
 		if(dataString=="autoLic")then
 			if(value==-5)then
-				local query="INSERT INTO fuehrerscheinloose (Nickname,Fraktion) VALUES ('"..getPlayerName(player).."','"..vioGetElementData(player,"fraktion").."');"
-				mysql_query(logs_handler,query)	
-				--query="UPDATE userdata SET fuehrerscheinlooser=fuehrerscheinlooser+1 WHERE Nickname='"..getPlayerName(player).."'"
-				--mysql_query(handler,query)
+				local query="INSERT INTO log_loosedriverlicense (Nickname,Fraktion) VALUES ('"..getPlayerName(player).."','"..vioGetElementData(player,"fraktion").."');"
+				mysql_query(logs_handler,query)
 				vioSetElementData(player,"fuehrerscheinlooser",vioGetElementData(player,"fuehrerscheinlooser")+1)
 			end	
 		end	

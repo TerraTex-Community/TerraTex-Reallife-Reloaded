@@ -1,6 +1,6 @@
 playerJobMarkers = {}
 muellmarkers = {}
-trashPoints = 0
+local trashPoints = 0
 deponieMarker = false
 deponieBlip = false
 

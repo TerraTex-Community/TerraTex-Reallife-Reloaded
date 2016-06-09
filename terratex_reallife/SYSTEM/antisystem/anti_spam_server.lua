@@ -22,8 +22,6 @@ function antiflut(command)
 		--vioSetElementData(source,"antiflutreset",vioGetElementData(source,"antiflutreset")+1)
 		anti_flut_Data[source]=anti_flut_Data[source]+1
 		command=mysql_escape_string( logs_handler, command )
-		--local query="INSERT INTO test_log (Nickname,cmd,counter) VALUES ('"..getPlayerName(source).."','"..command.."','"..anti_flut_Data[source].."')"
-		--mysql_query(logs_handler,query)
 		if (isTimer(antifluttimer))then
 			if(anti_flut_Data[source]>50)then
 				local theReason="ChatBoxSpam"
@@ -78,8 +76,6 @@ function test_onconsole(command)
 		anti_flut_Data[source]=anti_flut_Data[source]+1
 		cmd=mysql_escape_string( logs_handler, cmd )
 		rest=mysql_escape_string( logs_handler, rest )
-	--local query="INSERT INTO test_log (Nickname,cmd,args,counter) VALUES ('"..getPlayerName(source).."','"..cmd.."','"..rest.."','"..anti_flut_Data[source].."')"
-		--mysql_query(logs_handler,query)
 		
 		if (isTimer(antifluttimer))then
 			if(anti_flut_Data[source]>150)then

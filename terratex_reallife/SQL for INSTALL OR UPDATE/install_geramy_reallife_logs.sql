@@ -117,20 +117,6 @@ CREATE TABLE IF NOT EXISTS `fuehrerscheinloose` (
   `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `nickchange_log`
---
-
-CREATE TABLE IF NOT EXISTS `nickchange_log` (
-`ID` int(11) NOT NULL,
-  `FromName` varchar(128) NOT NULL,
-  `ToName` varchar(128) NOT NULL,
-  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Admin` varchar(128) DEFAULT NULL,
-  `UUID` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -177,21 +163,6 @@ CREATE TABLE IF NOT EXISTS `serverwerbung_log` (
   `Message` longtext NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `test_log`
---
-
-CREATE TABLE IF NOT EXISTS `test_log` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `cmd` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `args` varchar(1024) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `counter` int(11) NOT NULL,
-  `timer` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -240,12 +211,6 @@ ALTER TABLE `fuehrerscheinloose`
  ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `nickchange_log`
---
-ALTER TABLE `nickchange_log`
- ADD PRIMARY KEY (`ID`), ADD KEY `UUID` (`UUID`);
-
---
 -- Indexes for table `playermoney_log`
 --
 ALTER TABLE `playermoney_log`
@@ -263,11 +228,6 @@ ALTER TABLE `premium_log`
 ALTER TABLE `serverwerbung_log`
  ADD PRIMARY KEY (`ID`);
 
---
--- Indexes for table `test_log`
---
-ALTER TABLE `test_log`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `ID` (`ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -308,11 +268,7 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `fuehrerscheinloose`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nickchange_log`
---
-ALTER TABLE `nickchange_log`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `playermoney_log`
 --
@@ -328,11 +284,8 @@ MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `serverwerbung_log`
 MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `test_log`
---
-ALTER TABLE `test_log`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

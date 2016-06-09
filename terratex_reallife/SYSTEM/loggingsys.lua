@@ -26,7 +26,7 @@ function save_ad_log(name,text)
 	
 	if(countAdmins==0)then	
 		text= mysql_escape_string(handler,text)
-		local query="INSERT INTO ad_log (Nickname,Text) VALUES ('"..name.."','"..text.."');"
+		local query="INSERT INTO log_ad (Nickname,Text) VALUES ('"..name.."','"..text.."');"
 		mysql_query(logs_handler,query)
 	end
 
@@ -34,7 +34,7 @@ end
 
 
 function save_steuer_log(player, betrag, type )
-    local query="INSERT INTO steuer_log (Nickname,Type,Betrag) VALUES ('"..getPlayerName(player).."','"..type.."','"..betrag.."');"
+    local query="INSERT INTO log_steuern (Nickname,Type,Betrag) VALUES ('"..getPlayerName(player).."','"..type.."','"..betrag.."');"
     mysql_query(logs_handler,query)
 end
 
@@ -70,7 +70,7 @@ function chat_log(thePlayer,message)
 
 	message=mysql_escape_string( logs_handler, message )
 	
---local query="INSERT INTO chat_log (Nickname,Message) VALUES ('"..getPlayerName(thePlayer).."','"..message.."');"
+--	local query="INSERT INTO log_chat (Nickname,Message) VALUES ('"..getPlayerName(thePlayer).."','"..message.."');"
 --	mysql_query(logs_handler,query)
 	
 	checkServerWerbung(thePlayer,message)
@@ -147,7 +147,7 @@ function checkBeleidigung(thePlayer,Message)
 	local InsertID=false
 	if(counterleicht>0)or(counterschwer>0)then
 		--save_log("Beleidigung",getPlayerName(thePlayer)..": "..Message)
-		local query="INSERT INTO beleidigung_log (Nickname,Message,bestraft_per_system) VALUES ('"..getPlayerName(thePlayer).."','"..newmessage.."','"..bestraft.."');"
+		local query="INSERT INTO log_badword (Nickname,Message,bestraft_per_system) VALUES ('"..getPlayerName(thePlayer).."','"..newmessage.."','"..bestraft.."');"
 		mysql_query(logs_handler,query)
 		InsertID=mysql_insert_id ( logs_handler)
 	end
@@ -254,7 +254,7 @@ function bban_func(thePlayer,cmd,id)
 						mysql_query(handler,querys)	
 						outputChatBox(string.format("Der Spieler %s wurde vom Anti-Beleidigungs-System gebannt. Grund: %s", pname, reasons),getRootElement(),255,0,0)
 						kickPlayer(theBeBanned,reasons)
-						query="UPDATE beleidigung_log SET bestraft_per_system=1 WHERE ID='"..maybeBeleidigung[id][3].."'"
+						query="UPDATE log_badword SET bestraft_per_system=1 WHERE ID='"..maybeBeleidigung[id][3].."'"
 						mysql_query(logs_handler,query)
 						maybeBeleidigung[id][4]=true
 					else
@@ -269,7 +269,7 @@ function bban_func(thePlayer,cmd,id)
 						mysql_query(handler,querys)	
 						outputChatBox(string.format("Der Spieler %s wurde vom Anti-Beleidigungs-System gebannt. Grund: %s", pname, reasons),getRootElement(),255,0,0)
 						kickPlayer(theBeBanned,reasons)
-						local query="UPDATE beleidigung_log SET bestraft_per_system=1 WHERE ID='"..maybeBeleidigung[id][3].."'"
+						local query="UPDATE log_badword SET bestraft_per_system=1 WHERE ID='"..maybeBeleidigung[id][3].."'"
 						mysql_query(logs_handler,query)
 						maybeBeleidigung[id][4]=true				
 					end
@@ -338,7 +338,7 @@ function checkServerWerbung(thePlayer,Message)
 			end
 		end
 		save_log("Serverwerbung",getPlayerName(thePlayer)..": "..newmessage)
-		local query="INSERT INTO serverwerbung_log (Nickname,Message) VALUES ('"..getPlayerName(thePlayer).."','"..newmessage.."');"
+		local query="INSERT INTO log_serveradvertising (Nickname,Message) VALUES ('"..getPlayerName(thePlayer).."','"..newmessage.."');"
 		mysql_query(logs_handler,query)
 	end
 end

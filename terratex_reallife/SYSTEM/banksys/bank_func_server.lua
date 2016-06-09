@@ -61,7 +61,7 @@ function saveMoneyLog(thePlayer, Typ, Kategorie, Betrag, Grund, GrundAdd)
 	
 	
 	
-    local query = "INSERT INTO playermoney_log (Nickname, UniqueID, Typ, Kategorie, Betrag, Stand, Grund, GrundZusatz, DateStamp) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+    local query = "INSERT INTO log_playermoney (Nickname, UniqueID, Typ, Kategorie, Betrag, Stand, Grund, GrundZusatz, DateStamp) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
     local query = string.format(query, playerName, playerUUID, Typ, Kategorie, Betrag, Stand, Grund, GrundAdd, timer.timestamp )
     mysql_query(logs_handler, query)
 end
@@ -89,7 +89,7 @@ function saveMoneyLog_withNickname(thePlayer, Typ, Kategorie, Betrag, Grund, Gru
 
 
 
-    local query = "INSERT INTO playermoney_log (Nickname, UniqueID, Typ, Kategorie, Betrag, Stand, Grund, GrundZusatz, DateStamp) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
+    local query = "INSERT INTO log_playermoney (Nickname, UniqueID, Typ, Kategorie, Betrag, Stand, Grund, GrundZusatz, DateStamp) VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"
     local query = string.format(query, playerName, playerUUID, Typ, Kategorie, Betrag, Stand, Grund, GrundAdd, timer.timestamp )
     mysql_query(logs_handler, query)
 end

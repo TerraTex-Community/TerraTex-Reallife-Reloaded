@@ -236,7 +236,7 @@ function changeBizKasse(theBizID, Betrag, reason)
         bizData[theBizID]["Kasse"]=bizData[theBizID]["Kasse"]+Betrag
 
         --in BizLogTable eintragen
-        local query="INSERT INTO biz_log (BizID,Betrag,reason) VALUES ('"..theBizID.."','"..Betrag.."','"..reason.."')"
+        local query="INSERT INTO log_biz (BizID,Betrag,reason) VALUES ('"..theBizID.."','"..Betrag.."','"..reason.."')"
         mysql_query(logs_handler,query)
     end
 end

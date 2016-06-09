@@ -783,7 +783,7 @@ function delstvo_func(theMaker,Command,anzahl,thePlayerName,...)
 						end
 					end	
 					--save_log( "delstvo", string.format( "%s löscht %s", getPlayerName(theMaker), getPlayerName(thePlayer)))
-				    local query="INSERT INTO delstvo (Wer,Wieviele,Von,Grund) VALUES ('%s','%s','%s','%s')"
+				    local query="INSERT INTO log_delstvo (Wer,Wieviele,Von,Grund) VALUES ('%s','%s','%s','%s')"
                     mysql_query(logs_handler,string.format(query,getPlayerName(theMaker),anzahl,getPlayerName(thePlayer),reason))
 
 

@@ -189,7 +189,7 @@
 				vioSetElementData(thePlayer,"premium",(time.timestamp+thirty))
 				outputChatBox(string.format("Du hast nun noch %s Tage Premium!", math.round((((thirty/60)/60)/24))),thePlayer,0,255,0)
 				changePlayerMoney(thePlayer,-50000,"sonstiges","Premium")
-				local query="INSERT INTO premium_log (Nickname,how) VALUES ('"..getPlayerName(thePlayer).."','ingamegeld');"
+				local query="INSERT INTO log_premium (Nickname,how) VALUES ('"..getPlayerName(thePlayer).."','ingamegeld');"
 				mysql_query(logs_handler,query)
 				
 			end		

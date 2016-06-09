@@ -17,7 +17,6 @@
             <script src="FIXES/warpPedIntoVehicle.lua" type="server" />
 		<!-- MYSQL -->
 			<script src="ENGINE/mysql/mysql_start.lua" type="server" />
-			<script src="ENGINE/mysql/log_mysql_start.lua" type="server" />
 			<script src="ENGINE/mysql/mysql.lua" type="server" />
 		<!-- USEFUL -->
 			<script src="USEFULL_SCRIPTS/debug.lua" type="shared"/>

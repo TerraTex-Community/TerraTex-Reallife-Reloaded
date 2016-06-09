@@ -44,14 +44,6 @@ config["mysqluser"]=""
 config["mysqlpassword"]=""
 config["mysqldb"]=""
 
---IF You want to have a second unique log database set 'uniquelogdb' to true else let it be false
---IF true setup the other entries
-config["uniquelogdb"]=false
-config["logmysqlhost"]="localhost"
-config["logmysqluser"]=""
-config["logmysqlpassword"]=""
-config["logmysqldb"]=""
-
 --24h Restart type
 -- Options:
 -- GMX - Gamemoderestart at 3/4 o'clock

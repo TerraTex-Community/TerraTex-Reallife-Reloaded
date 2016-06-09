@@ -3,6 +3,9 @@
 * [INFO] In Github Wiki are now automatic generated docs about things like Commands.
 * [ADDED] New native MySQL Connection (not used yet + no functions yet)
 * [REMOVED] Old mysql_insert_actual.lua file which copied all players in new tables if a new table was created. In the future that should be done on the login function of the user.
+* [REMOVED] Seperate Database / -connection for logging. All Tables will be renamed and stored in one database.
+
+> <b>No seperate Logdatabase supported anymore, please copy your logging tables to the same database like the data tables.</b>
 
 ####08.06.2016
 ------

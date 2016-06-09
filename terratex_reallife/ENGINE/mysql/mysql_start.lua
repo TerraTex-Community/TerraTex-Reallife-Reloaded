@@ -22,6 +22,8 @@ function MySQL_Startup()
     gMysqlDatabase = config["mysqldb"]
 
     handler = mysql_connect(gMysqlHost, gMysqlUser, gMysqlPass, gMysqlDatabase)
+    logs_handler = handler
+
     if (not handler) then
         outputDebugString("Couldn't run query: Unable to connect to the MySQL server!")
         outputDebugString("Please shutdown the server and start the MySQL server!")

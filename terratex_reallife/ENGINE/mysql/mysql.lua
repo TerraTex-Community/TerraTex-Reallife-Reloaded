@@ -8,8 +8,6 @@
 
 MySql = {}
 MySql.mainConnection = false;
-MySql.logConnection =false;
-
 
 MySql.init = function()
     local gMysqlHost = config["mysqlhost"];
@@ -26,25 +24,7 @@ MySql.init = function()
         outputDebugString("Please edit config.lua and set a correct database configuration.", 1 , 255, 0, 0);
         stopResource(getThisResource());
     end
-
-    if(config["uniquelogdb"])then
-        gMysqlHost=config["logmysqlhost"];
-        gMysqlUser=config["logmysqluser"];
-        gMysqlPass=config["logmysqlpassword"];
-        gMysqlDatabase=config["logmysqldb"];
-        gMysqlConnectString = "host=" .. gMysqlHost .. ";charset=utf8;dbname=" .. gMysqlDatabase;
-    end
-
-    MySql.logConnection = dbConnect ( "mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);
-    -- @TODO: Is "SET NAMES 'utf8';" needed?
-
-    if (not MySql.logConnection) then
-        outputDebugString("MySQL-Error: Not possible to connect to logging database!", 1, 255, 0, 0);
-        outputDebugString("Please edit config.lua and set a correct logging database configuration.", 1 , 255, 0, 0);
-        stopResource(getThisResource());
-    end
 end
-
 
 -- Run Init()
 MySql.init();

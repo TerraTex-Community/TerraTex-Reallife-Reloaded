@@ -606,7 +606,7 @@ function LoginPlayerData(nickname, pw)
             outputChatBox("Du hast kein Premium? Kauf dir doch welches! Infos unter /premium!", source, 0, 255, 0)
         end
 
-        local onlineSchutzUntil = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutzUntil", {Name = nickname}) - time.timestamp;
+        local onlineSchutzUntil = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutzUntil", {Nickname = nickname}) - time.timestamp;
         vioSetElementData(source, "onlineschutzuntil", 0)
         if (onlineSchutzUntil > 0) then
             local days = math.round(((onlineSchutzUntil / 60) / 60) / 24)

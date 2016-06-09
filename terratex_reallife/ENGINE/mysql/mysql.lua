@@ -16,7 +16,7 @@ MySql.init = function()
     local gMysqlUser = config["mysqluser"];
     local gMysqlPass = config["mysqlpassword"];
     local gMysqlDatabase = config["mysqldb"];
-    local gMysqlConnectString = "host=" .. gMysqlHost .. ",charset=utf8,dbname=" .. gMysqlDatabase;
+    local gMysqlConnectString = "host=" .. gMysqlHost .. ";charset=utf8;dbname=" .. gMysqlDatabase;
 
     MySql.mainConnection = dbConnect ( "mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);
     -- @TODO: Is "SET NAMES 'utf8';" needed?
@@ -32,7 +32,7 @@ MySql.init = function()
         gMysqlUser=config["logmysqluser"];
         gMysqlPass=config["logmysqlpassword"];
         gMysqlDatabase=config["logmysqldb"];
-        gMysqlConnectString = "host=" .. gMysqlHost .. ",charset=utf8,dbname=" .. gMysqlDatabase;
+        gMysqlConnectString = "host=" .. gMysqlHost .. ";charset=utf8;dbname=" .. gMysqlDatabase;
     end
 
     MySql.logConnection = dbConnect ( "mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);

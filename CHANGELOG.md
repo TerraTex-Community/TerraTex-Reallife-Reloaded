@@ -1,6 +1,8 @@
 ####09.06.2016
 ------
 * [INFO] In Github Wiki are now automatic generated docs about things like Commands.
+* [ADDED] New native MySQL Connection (not used yet + no functions yet)
+* [REMOVED] Old mysql_insert_actual.lua file which copied all players in new tables if a new table was created. In the future that should be done on the login function of the user.
 
 ####08.06.2016
 ------

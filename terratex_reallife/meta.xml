@@ -18,7 +18,7 @@
 		<!-- MYSQL -->
 			<script src="ENGINE/mysql/mysql_start.lua" type="server" />
 			<script src="ENGINE/mysql/log_mysql_start.lua" type="server" />
-			<script src="ENGINE/mysql/mysql_insert_aktual.lua" type="server" />
+			<script src="ENGINE/mysql/mysql.lua" type="server" />
 		<!-- USEFUL -->
 			<script src="USEFULL_SCRIPTS/debug.lua" type="shared"/>
 			<script src="USEFULL_SCRIPTS/camera_client.lua" type="client"/>

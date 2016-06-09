@@ -941,18 +941,6 @@ CREATE TABLE IF NOT EXISTS `multiaccount_serial` (
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `newtables`
---
-
-CREATE TABLE IF NOT EXISTS `newtables` (
-`ID` int(11) NOT NULL,
-  `tablename` varchar(255) NOT NULL,
-  `newNameSpalte` varchar(255) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `ostereier`
 --
 

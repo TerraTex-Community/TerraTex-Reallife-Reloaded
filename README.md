@@ -5,21 +5,18 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 
 ##Requirements
 
-* Server MTA:SA 1.4
+* Server MTA:SA 1.5
 * Module MTA-Mysql: https://wiki.multitheftauto.com/wiki/Modules/MTA-MySQL
-* 1 (or better 2) MySQL Databases
+* MySQL Database
 
 
 ##Installation
 
-1. Create A Database and import "geramy_reallife.sql" from Directory "SQL for INSTALL OR UPDATE"
-2. Create A Second Database (OR USE THE SAME LIKE IN 1.) and import "geramy_realife_logs.sql" from "SQL for INSTALL OR UPDATE"
-3. Edit config_example.lua and rename to config.lua
-4. Edit config_client_example.lua and rename to config_client.lua
-5. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
-6. Install MTA-Mysql Module
-
-
+1. Create A Database and import all sql files (update files as last files) from Directory "SQL for INSTALL OR UPDATE"
+2. Edit config_example.lua and rename to config.lua
+3. Edit config_client_example.lua and rename to config_client.lua
+4. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
+5. Install MTA-Mysql Module
 
 Dieses Material steht unter der Creative-Commons-Lizenz Namensnennung-Nicht kommerziell 4.0 International. Um eine Kopie dieser Lizenz zu sehen, besuchen Sie http://creativecommons.org/licenses/by-nc/4.0/.
 

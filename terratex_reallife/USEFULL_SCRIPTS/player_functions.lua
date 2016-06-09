@@ -104,7 +104,7 @@ function getPlayersByDataValue(dataTag, dataValue )
         if(isPlayerLoggedIn(thePlayer))then
             if (vioGetElementData(thePlayer, dataTag)) then
                 if (vioGetElementData(thePlayer, dataTag) == dataValue) then
-                    returnTable.insert(thePlayer)
+                    table.insert(returnTable, thePlayer)
                 end
             end
         end

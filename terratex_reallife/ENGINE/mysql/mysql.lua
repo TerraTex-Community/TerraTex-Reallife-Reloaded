@@ -116,6 +116,9 @@ MySql.helper.update = function(tableName, updateValues, conditions, operation)
     query = query .. conditionQuery;
     params = table.concat(params, conditionParams);
 
+    outputDebugString(query);
+    debug.print(params);
+
     return dbExec(MySql._connection, query, unpack(params));
 end
 

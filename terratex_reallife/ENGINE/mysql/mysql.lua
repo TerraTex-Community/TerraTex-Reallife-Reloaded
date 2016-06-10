@@ -92,8 +92,10 @@ end
 -- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
 -- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
 MySql.helper.update = function(tableName, updateValues, conditions, operation)
-    local query = "UPDATE ";
+    local query = "UPDATE `??` SET ";
+
     local params = {};
+    table.insert(params, tableName);
 
     local isFirstUpdateValue = true;
     for column, value in pairs(updateValues) do
@@ -108,16 +110,10 @@ MySql.helper.update = function(tableName, updateValues, conditions, operation)
         table.insert(params, value);
     end
 
-    query = query .. " FROM `??`";
-    table.insert(params, tableName);
-
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 
     query = query .. conditionQuery;
     params = table.concat(params, conditionParams);
-
-    outputDebugString(query);
-    debug.print(params);
 
     return dbExec(MySql._connection, query, unpack(params));
 end

@@ -83,7 +83,7 @@ _mysql_query = mysql_query
 function mysql_query(handler, query)
     Mysql_CheckConnection(handler)
     local times = getRealTime()
---    outputDebugString("[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. query)
+    outputDebugString("Execute Old Query: " .. query)
     local result = _mysql_query(handler, query)
     if (not result) then
         outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))

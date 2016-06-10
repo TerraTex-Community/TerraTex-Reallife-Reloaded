@@ -12,7 +12,8 @@ function playHalteStellenSound_func(haltestellenname)
     haltestellenname=string.gsub(haltestellenname, "ä", "ae")
     haltestellenname=string.gsub(haltestellenname, "ü", "ue")
     haltestellenname=string.gsub(haltestellenname, "ö", "oe")
-	playSound(string.format("http://translate.google.com/translate_tts?tl=de&q=Die naeschste Haltestelle ist: %s", haltestellenname))
+	playSound(string.format("http://www.voicerss.org/controls/speech.ashx?hl=de-de&src=Die nächste Haltestelle ist: %s&c=mp3", haltestellenname))
+
 end
 addEventHandler("playHalteStellenSound",getRootElement(),playHalteStellenSound_func)
 

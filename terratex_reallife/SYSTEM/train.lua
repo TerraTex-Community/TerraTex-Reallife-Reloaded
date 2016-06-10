@@ -76,7 +76,7 @@ function createTrains_func()
 		
 		setTimer(resetTrainSpeed,(traintimer[trainCounter+1]),0,(trainCounter+1))
 		trainCounter=trainCounter+1
-		setTimer(createTrains_func,10000,1)
+		setTimer(createTrains_func,20000,1)
 	end
 	
 	

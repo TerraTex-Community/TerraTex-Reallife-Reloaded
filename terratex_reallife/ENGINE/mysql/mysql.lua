@@ -128,8 +128,8 @@ end
 MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation)
     local query = "SELECT `??` FROM `??`";
     local params = {};
-    params.insert(params, fieldName);
-    params.insert(params, tableName);
+    table.insert(params, fieldName);
+    table.insert(params, tableName);
 
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 

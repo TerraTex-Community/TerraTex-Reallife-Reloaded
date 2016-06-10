@@ -82,12 +82,14 @@ end
 _mysql_query = mysql_query
 function mysql_query(handler, query)
     Mysql_CheckConnection(handler)
+    outputDebugString("[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. query)
     local result = _mysql_query(handler, query)
     if (not result) then
         outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
         save_log("mysql_error", "Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler) .. "\nQuery: " .. query)
         return false
     else
+        outputDebugString("[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] got result")
         return result
     end
 end

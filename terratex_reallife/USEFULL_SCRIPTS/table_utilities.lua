@@ -70,11 +70,15 @@ end
 
 function table.concat(table1, table2)
     local newTable = {};
-    for theKey, theValue in ipairs(table1) do
-        table.insert(newTable, theValue);
-    end
-    for theKey, theValue in ipairs(table2) do
-        table.insert(newTable, theValue);
+    if (not table2 or table2.getn() ~= 0 ) then
+        for theKey, theValue in ipairs(table1) do
+            table.insert(newTable, theValue);
+        end
+        for theKey, theValue in ipairs(table2) do
+            table.insert(newTable, theValue);
+        end
+    else
+        newTable = table1;
     end
     return newTable;
 end

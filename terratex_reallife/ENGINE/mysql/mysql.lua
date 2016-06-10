@@ -7,7 +7,7 @@
 --
 
 MySql = {}
-MySql._mainConnection = false;
+MySql._connection = false;
 
 --- Starts Connection to Database for later mysql handling
 MySql.init = function()
@@ -17,10 +17,10 @@ MySql.init = function()
     local gMysqlDatabase = config["mysqldb"];
     local gMysqlConnectString = "host=" .. gMysqlHost .. ";charset=utf8;dbname=" .. gMysqlDatabase;
 
-    MySql._mainConnection = dbConnect("mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);
+    MySql._connection = dbConnect("mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);
     -- @TODO: Is "SET NAMES 'utf8';" needed?
 
-    if (not MySql._mainConnection) then
+    if (not MySql._connection) then
         outputDebugString("MySQL-Error: Not possible to connect to database!", 1, 255, 0, 0);
         outputDebugString("Please edit config.lua and set a correct database configuration.", 1, 255, 0, 0);
         stopResource(getThisResource());
@@ -83,7 +83,7 @@ MySql.helper.delete = function(tableName, conditions, operation)
     query = query .. conditionQuery;
     params = table.concat(params, conditionParams);
 
-    return dbExec(query, unpack(params));
+    return dbExec(MySql._connection, query, unpack(params));
 end
 
 --- Set a spezifc values to database
@@ -116,7 +116,7 @@ MySql.helper.update = function(tableName, updateValues, conditions, operation)
     query = query .. conditionQuery;
     params = table.concat(params, conditionParams);
 
-    return dbExec(query, unpack(params));
+    return dbExec(MySql._connection, query, unpack(params));
 end
 
 --- Get a spezifc value from database
@@ -136,7 +136,7 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
     query = query .. conditionQuery;
     params = table.concat(params, conditionParams);
 
-    local handler = dbQuery(MySql._mainConnection, query, unpack(params));
+    local handler = dbQuery(MySql._connection, query, unpack(params));
     local result, rows = dbPoll(handler, -1);
     if (rows == 1) then
         if (isNumeric(result[1][fieldName])) then

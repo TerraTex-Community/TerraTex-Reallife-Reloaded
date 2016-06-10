@@ -31,7 +31,7 @@ function onPlayerDevServerConnect(nickname)
 
         MySql.helper.delete("dev_beta", conditionTable)
         if(deleteNullAfterDays>0)then
-            dbExec("DELETE FROM dev_beta WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))<-"..deleteNullAfterDays.." and toTimestamp IS NULL");
+            dbExec(MySql._connection, "DELETE FROM dev_beta WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))< ? and toTimestamp IS NULL", -deleteNullAfterDays);
         end
     end
 end

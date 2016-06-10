@@ -45,7 +45,7 @@ addEventHandler("TTTsetField",getRootElement(),TTTsetField_func)
 
 addEvent("cancelTTTQuestion_Event",true)
 function cancelTTTQuestion_Event_func(gameID)
-    MySQL_DelRow("tapp_tictactoe","ID='"..gameID.."'")
+    MySql.helper.delete("tapp_tictactoe", {ID = gameID});
     showError(source,"Du hast die Anfrage ablehnt!")
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 

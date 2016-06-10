@@ -24,12 +24,14 @@ function onPlayerDevServerConnect(nickname)
         else
             cancelEvent(true,"Der Developmentserver von "..config["communityname"].." ist nur für Entwickler und ausgewähle Betatester gedacht!")
         end
-        --[[QUERY DELETES]]
-        local delQuery="TIMEDIFF(fromTimestamp, NOW())<0 AND (TIMEDIFF(toTimestamp, NOW()))<0"
-        MySQL_DelRow("dev_beta",delQuery)
+
+        local conditionTable = {};
+        conditionTable["TIMEDIFF(fromTimestamp, NOW())"] = {"<", 0};
+        conditionTable["TIMEDIFF(toTimestamp, NOW())"] = {"<", 0};
+
+        MySql.helper.delete("dev_beta", conditionTable)
         if(deleteNullAfterDays>0)then
-            delQuery="DATEDIFF(DATE(fromTimestamp), DATE(NOW()))<-"..deleteNullAfterDays.." and toTimestamp IS NULL"
-            MySQL_DelRow("dev_beta",delQuery)
+            dbExec("DELETE FROM dev_beta WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))<-"..deleteNullAfterDays.." and toTimestamp IS NULL");
         end
     end
 end

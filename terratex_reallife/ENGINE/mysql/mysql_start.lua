@@ -36,18 +36,6 @@ function MySQL_End()
     mysql_close(handler)
 end
 
-function MySQL_DelRow(tablename, bedingung)
-
-    local result = mysql_query(handler, "DELETE FROM " .. tablename .. " WHERE " .. bedingung)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        mysql_free_result(result)
-        return false
-    end
-end
-
-
 function MySQL_DatasetExist(tablename, bedingung)
 
     local result = mysql_query(handler, "SELECT * from " .. tablename .. " WHERE " .. bedingung)

@@ -28,7 +28,6 @@ MySql.init = function()
 end
 
 -- Functions todo:
--- MySQL_DelRow(tablename, bedingung)
 -- MySQL_DatasetExist(tablename, bedingung)
 -- MySQL_GetResultsCount(tablename, bedingung)
 -- function mysql_query(handler, query)
@@ -70,7 +69,24 @@ local function prepareConditions(conditions, operation)
     return query, params
 end
 
---- Get a spezifc value from database
+--- Deletes Content from database
+-- @param tableName Name of the Table
+-- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+MySql.helper.delete = function(tableName, conditions, operation)
+    local query = "DELETE FROM `??`";
+    local params = {};
+    table.insert(params, tableName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.concat(params, conditionParams);
+
+    return dbExec(query, unpack(params));
+end
+
+--- Set a spezifc values to database
 -- @param tableName Name of the Table
 -- @param updateValues Table with the values that has to be updated Form: {"fieldName = "value"}
 -- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}

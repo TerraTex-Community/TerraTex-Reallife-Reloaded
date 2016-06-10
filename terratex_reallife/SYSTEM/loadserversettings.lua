@@ -41,7 +41,7 @@ function loadSettingsFromDB()
     serversettings["steuersatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "steuersatz" });
     serversettings["sozialabgabesatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "sozialabgabesatz" });
     serversettings["matspreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "matspreis" });
-    serversettings["lottojackpot"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "lottojackpot" });
+    serversettings["lottojackpot"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Jackpot" });
     serversettings["Ueberweisungssteuer"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Ueberweisungssteuer" });
     serversettings["tankpreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "tankpreis" });
     serversettings["Version"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Version" });

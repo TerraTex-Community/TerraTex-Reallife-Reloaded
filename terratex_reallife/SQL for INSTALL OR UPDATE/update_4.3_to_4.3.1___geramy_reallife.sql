@@ -9,3 +9,5 @@ INSERT INTO data_fraktions_raenge (FrakID, RangID, Name) VALUES
 (13 , 4, 'Tunner'),
 (13 , 5, 'Undergrundracer'),
 (13 , 6, 'Rennprofi');
+
+INSERT INTO fraktionskasse (FrakID, Munition, Kasse) VALUES (13,0,0);

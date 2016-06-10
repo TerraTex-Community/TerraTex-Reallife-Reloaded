@@ -117,7 +117,11 @@ function payday(thePlayer)
     end
 
     if (vioGetElementData(thePlayer, "fraktion") > 0) then
+
         local bonus = MySql.helper.getValueSync("fraktionskasse", "gehalt", { FrakID = vioGetElementData(thePlayer, "fraktion") });
+        if not bonus then
+            bonus = 0;
+        end
         
         Einnahmen = Einnahmen + bonus
 

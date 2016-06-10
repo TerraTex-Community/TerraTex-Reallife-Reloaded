@@ -29,8 +29,9 @@ end
 
 -- Functions todo:
 -- MySQL_SetVar(tablename, feldname, var, bedingung)
--- MySQL_DelRow(tablename, bedingung)
 -- MySQL_SetString(tablename, feldname, var, bedingung)
+
+-- MySQL_DelRow(tablename, bedingung)
 -- MySQL_DatasetExist(tablename, bedingung)
 -- MySQL_GetResultsCount(tablename, bedingung)
 -- function mysql_query(handler, query)
@@ -74,15 +75,48 @@ end
 
 --- Get a spezifc value from database
 -- @param tableName Name of the Table
+-- @param updateValues Table with the values that has to be updated Form: {"fieldName = "value"}
+-- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+MySql.helper.update = function(tableName, updateValues, conditions, operation)
+    local query = "UPDATE ";
+    local params = {};
+
+    local isFirstUpdateValue = true;
+    for column, value in pairs(updateValues) do
+        if (not isFirstUpdateValue) then
+            query = query .. ", ";
+        else
+            isFirstUpdateValue = false;
+        end
+
+        query = query .. "`??` = ?";
+        table.insert(params, column);
+        table.insert(params, value);
+    end
+
+    query = query .. " FROM `??`";
+    table.insert(params, tableName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.concat(params, conditionParams);
+
+    return dbExec(query, unpack(params));
+end
+
+--- Get a spezifc value from database
+-- @param tableName Name of the Table
 -- @param fieldName Name of Field where to find the value
--- @param conditions Optional: Table with conditions (optional) Form: { "fieldName": "value" }
+-- @param conditions Optional: Table with conditions (optional) Form:{ "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
 -- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
 -- @return theValue if success false otherwise or false if there are more then one row as result
 MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation)
     local query = "SELECT `??` FROM `??`";
     local params = {};
-    params.insert(params, tableName);
     params.insert(params, fieldName);
+    params.insert(params, tableName);
 
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 

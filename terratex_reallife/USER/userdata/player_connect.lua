@@ -199,8 +199,8 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             local resultre = mysql_query(handler, lobquery)
             local lobquery = "INSERT INTO rechte (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
-            local lomquery = "UPDATE players SET RegDat=LastUpdate WHERE Nickname='" .. nickname .. "';"
-            local resultre = mysql_query(handler, lomquery)
+
+            dbExec(MySql._connection, "UPDATE players SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
 
             showCursor(source, false)
             triggerClientEvent(source, "hideRegisterGui", source)
@@ -308,8 +308,7 @@ function LoginPlayerData(nickname, pw)
         MySql.helper.update("players", { Serial = serial }, { Nickname = nickname});
         MySql.helper.update("players", { IP = ip }, { Nickname = nickname});
 
-        local acQuery = "UPDATE players SET LastLogin=LastUpdate WHERE Nickname='" .. nickname .. "'"
-        mysql_query(handler, acQuery)
+        dbExec(MySql._connection, "UPDATE players SET LastLogin=LastUpdate WHERE Nickname = ?", nickname);
 
         local playersData = mysql.getFirstTableRow(handler, "players", "Nickname='" .. nickname .. "'")
         local userdataData = mysql.getFirstTableRow(handler, "userdata", "Nickname='" .. nickname .. "'")
@@ -734,8 +733,9 @@ function loadGutschriften(thePlayer)
         mysql_query(handler, "DELETE FROM servermessage WHERE ID='" .. dasatz["ID"] .. "'")
         zahler = zahler + 1
     end
-    mysql_query(handler, "UPDATE players SET AktiveDays=0 WHERE Nickname='" .. getPlayerName(thePlayer) .. "'")
-    mysql_query(handler, "UPDATE userdata SET AktiveDays=0 WHERE Nickname='" .. getPlayerName(thePlayer) .. "'")
+
+    MySql.helper.update("players", {AktiveDays = 0}, {Nickname = getPlayerName(thePlayer)});
+    MySql.helper.update("userdata", {AktiveDays = 0}, {Nickname = getPlayerName(thePlayer)});
 end
 
 

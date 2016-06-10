@@ -76,19 +76,16 @@ function loadTaxiPricesFromDB()
 end
 
 function aktualizeTaxiPricesFromDB()
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[1][1],"timezone='1' and tarifzone='1'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[1][2],"timezone='1' and tarifzone='2'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[1][3],"timezone='1' and tarifzone='3'")
-	
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[2][1],"timezone='2' and tarifzone='1'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[2][2],"timezone='2' and tarifzone='2'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[2][3],"timezone='2' and tarifzone='3'")
-		
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[3][1],"timezone='3' and tarifzone='1'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[3][2],"timezone='3' and tarifzone='2'")
-	MySQL_SetVar("taxipreise", "preis", taxiPrices[3][3],"timezone='3' and tarifzone='3'")
-	
-	MySQL_SetVar("taxipreise", "preis", taxiGrundPrice,"timezone='0' and tarifzone='0'")
+	MySql.helper.update("taxipreise", { preis = taxiPrices[1][1] }, { timezone = 1, tarifzone = 1});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[1][2] }, { timezone = 1, tarifzone = 2});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[1][3] }, { timezone = 1, tarifzone = 3});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[2][1] }, { timezone = 2, tarifzone = 1});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[2][2] }, { timezone = 2, tarifzone = 2});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[2][3] }, { timezone = 2, tarifzone = 3});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[3][1] }, { timezone = 3, tarifzone = 1});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[3][2] }, { timezone = 3, tarifzone = 2});
+	MySql.helper.update("taxipreise", { preis = taxiPrices[3][3] }, { timezone = 3, tarifzone = 3});
+	MySql.helper.update("taxipreise", { preis = taxiGrundPrice }, { timezone = 0, tarifzone = 0});
 end
 
 

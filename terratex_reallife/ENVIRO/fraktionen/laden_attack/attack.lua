@@ -79,7 +79,7 @@ end
 
 function giveLadenResources()
 	for theKey=1,8,1 do
-		MySQL_SetVar("attackerladen", "toFraktion", attackerLadenInfos[theKey][1], "ID='"..theKey.."'")
+		MySql.helper.update("attackerladen", { toFraktion = attackerLadenInfos[theKey][1] }, { ID = theKey });
 		if(attackerLadenInfos[theKey][2]>0)then
 			attackerLadenInfos[theKey][2]=attackerLadenInfos[theKey][2]-1
 		end

@@ -165,28 +165,27 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadSettingsFromDB)
 
 function saveSettingsInDB()
-    MySQL_SetVar("serversettings", "Wert", serversettings["drogenpreis"], "Name='drogenpreis'")
-    MySQL_SetVar("serversettings", "Wert", serversettings["lottojackpot"], "Name='Jackpot'")
-    MySQL_SetVar("serversettings", "Wert", serversettings["matspreis"], "Name='matspreis'")
-    MySQL_SetVar("serversettings", "Wert", serversettings["tankpreis"], "Name='tankpreis'")
-    MySQL_SetVar("serversettings", "Wert", serversettings["atommuell"], "Name='atommuell'")
-    MySQL_SetVar("serversettings", "Wert", rainlevel, "Name='regenlevel'")
 
+    MySql.helper.update("serversettings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
+    MySql.helper.update("serversettings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("serversettings", { Wert = rainlevel }, { Name = "regenlevel"});
 
-    --outputDebugString("Serversettings saved!")
     setTimer(saveSettingsInDB, 3600000, 1)
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), saveSettingsInDB)
 
 function stopResource_func()
-    --MySQL_SetVar("serversettings", "Wert" , serversettings["User_Schnitt"], "Name='Last_Daily_User'")
-    --MySQL_SetVar("serversettings", "Wert" , serversettings["Max_User"], "Name='Last_Max_Daily_Users'")
-    MySQL_SetVar("serversettings", "Wert", rainlevel, "Name='regenlevel'")
-    --MySQL_SetVar("serversettings", "Wert" , serversettings["Max_User"], "Name='Max_Users' AND Wert<"..serversettings["Max_User"])
-    MySQL_SetVar("serversettings", "Wert", serversettings["atommuell"], "Name='atommuell'")
-    --query="INSERT INTO Tagesdurchschnitte (Anzahl) VALUES ('"..serversettings["User_Schnitt"].."')"
-    --mysql_query(handler,query)
+    MySql.helper.update("serversettings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
+    MySql.helper.update("serversettings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
+    MySql.helper.update("serversettings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("serversettings", { Wert = rainlevel }, { Name = "regenlevel"});
+
 
     local time = getRealTime()
     if (fileExists("LOGS/chat.log")) then

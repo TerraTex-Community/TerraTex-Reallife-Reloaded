@@ -18,7 +18,7 @@ function top_on_player_join()
 
 
     if (value < maxUsers) then
-        MySQL_SetVar("serversettings", "Wert", maxUsers, "Name='Max_Users'")
+        MySql.helper.update("serversettings", { Wert = "maxUsers" }, { Name = "Max_Users"});
     end
     --Max_Users
 end

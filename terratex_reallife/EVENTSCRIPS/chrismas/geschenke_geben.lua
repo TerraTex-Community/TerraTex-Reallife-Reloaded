@@ -107,8 +107,8 @@ function give_AdventsPresent(player,presentID)
 		local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", {Name = getPlayerName(player)}) - time.timestamp;
 		if(premiumOutTime>0)then
 			thirty=thirty+premiumOutTime
-		end		
-		MySQL_SetVar("premium", "PremiumUntil",(time.timestamp+thirty),"Name='"..getPlayerName(player).."'")
+		end
+		MySql.helper.update("premium", { PremiumUntil = (time.timestamp+thirty) }, { Name = getPlayerName(player)});
 		vioSetElementData(player,"premium",(time.timestamp+thirty))
 		outputChatBox(string.format("Du hast nun noch %s Tage Premium!", math.round((((thirty/60)/60)/24))),player,166,0,166)
 	end

@@ -36,65 +36,6 @@ function MySQL_End()
     mysql_close(handler)
 end
 
---function MySQL_GetVar(tablename, feldname, bedingung)
---
---    local result = mysql_query(handler, "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung)
---    local sendetquery = "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung
---    if (not result) then
---        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
---        outputDebugString("ErrorQuery: " .. sendetquery)
---    else
---        if (mysql_num_rows(result) > 0) then
---            local dsatz = mysql_fetch_assoc(result)
---            local savename = feldname
---            mysql_free_result(result)
---            return tonumber(dsatz[feldname])
---        else
---            mysql_free_result(result)
---            return false
---        end
---    end
---end
-
---function MySQL_GetString(tablename, feldname, bedingung)
---
---    local result = mysql_query(handler, "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung)
---    local sendetquery = "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung
---    if (not result) then
---        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
---        outputDebugString("ErrorQuery: " .. sendetquery)
---    else
---        if (mysql_num_rows(result) > 0) then
---            local dsatz = mysql_fetch_assoc(result)
---            local savename = feldname
---            mysql_free_result(result)
---            return dsatz[feldname]
---        else
---            mysql_free_result(result)
---            return false
---        end
---    end
---end
-
-function MySQL_SetVar(tablename, feldname, var, bedingung)
-
-    if (type(var) == "table") then
-        outputDebugString("ErrorHelp MySQL_SetVar: " .. debug.traceback())
-    else
-        if var then
-            local result = mysql_query(handler, "UPDATE " .. tablename .. " SET " .. feldname .. " = '" .. var .. "' WHERE " .. bedingung .. ";")
-            local sendetquery = "UPDATE " .. tablename .. " SET " .. feldname .. " = '" .. var .. "' WHERE " .. bedingung .. ";"
-            if (not result) then
-                outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-                outputDebugString("Errorquery: " .. sendetquery)
-            else
-                mysql_free_result(result)
-                return false
-            end
-        end
-    end
-end
-
 function MySQL_DelRow(tablename, bedingung)
 
     local result = mysql_query(handler, "DELETE FROM " .. tablename .. " WHERE " .. bedingung)
@@ -106,20 +47,6 @@ function MySQL_DelRow(tablename, bedingung)
     end
 end
 
-function MySQL_SetString(tablename, feldname, var, bedingung)
-
-    if var then
-        local result = mysql_query(handler, "UPDATE " .. tablename .. " SET " .. feldname .. " = '" .. var .. "' WHERE " .. bedingung .. ";")
-        local sendetquery = "UPDATE " .. tablename .. " SET " .. feldname .. " = '" .. var .. "' WHERE " .. bedingung .. ";"
-        if (not result) then
-            outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-            outputDebugString("Errorquery: " .. sendetquery)
-        else
-            mysql_free_result(result)
-            return false
-        end
-    end
-end
 
 function MySQL_DatasetExist(tablename, bedingung)
 

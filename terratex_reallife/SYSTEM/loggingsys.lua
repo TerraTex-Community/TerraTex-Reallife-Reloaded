@@ -170,10 +170,7 @@ function checkBeleidigung(thePlayer, Message)
                     end
                 end
             end
-            --maybeBeleidigung[]={Nickname,Text,DBID,bestraft,serial,ip}
         end
-
-        --save_log("Beleidigung",getPlayerName(thePlayer)..": "..newmessage)
     end
     if (counterschwer > 0) then
         local reasons = "Beleidigungen sind unerwünscht!"
@@ -190,14 +187,14 @@ function checkBeleidigung(thePlayer, Message)
         mysql_query(handler, querys)
 
         vioSetElementData(thePlayer, "tbans", vioGetElementData(thePlayer, "tbans") + 1)
-        pln = getPlayerName(thePlayer)
+        local pln = getPlayerName(thePlayer)
         if (vioGetElementData(thePlayer, "tbans") == 1) then
-            MySQL_SetVar("userdata", "tban_reason1", reasons, "Nickname='" .. pln .. "'")
+            MySql.helper.update("userdata", { tban_reason1 = reasons }, { Nickname = pln });
         end
         if (vioGetElementData(thePlayer, "tbans") > 1) then
             local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
 
-            MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
+            MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
             local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','Anti-Beleidigungs-System','" .. newreason .. "');"
             mysql_query(handler, querys)
@@ -230,13 +227,13 @@ function bban_func(thePlayer, cmd, id)
 
                         --local querys="INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin,Beweistext) VALUES ('"..pname.."','".. Serial.."','".. IP .."','"..reasons.."','Anti-Beleidigungs-System','"..maybeBeleidigung[id][2].."');"
                         vioSetElementData(theBeBanned, "tbans", vioGetElementData(theBeBanned, "tbans") + 1)
-                        pln = getPlayerName(theBeBanned)
+                        local pln = getPlayerName(theBeBanned)
                         if (vioGetElementData(thePlayer, "tbans") == 1) then
-                            MySQL_SetVar("userdata", "tban_reason1", reasons, "Nickname='" .. pln .. "'")
+                            MySql.helper.update("userdata", { tban_reason1 = reasons }, { Nickname = pln });
                         end
                         if (vioGetElementData(theBeBanned, "tbans") > 1) then
                             local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
-                            MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
+                            MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
                             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
                             local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','Anti-Beleidigungs-System','" .. newreason .. "');"
                             mysql_query(handler, querys)

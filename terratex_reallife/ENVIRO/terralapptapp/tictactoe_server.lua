@@ -15,9 +15,9 @@ Fields:
 
 addEvent("TTTsetField",true)
 function TTTsetField_func(gameID,newState, newWinner, Fields, gegnerName,Winnername)
-    MySQL_SetVar("tapp_tictactoe","State",newState,"ID='"..gameID.."'")
-    MySQL_SetVar("tapp_tictactoe","Winner",newWinner,"ID='"..gameID.."'")
-    MySQL_SetVar("tapp_tictactoe","Spielstand",Fields,"ID='"..gameID.."'")
+    MySql.helper.update("tapp_tictactoe", { State = newState }, { ID = gameID});
+    MySql.helper.update("tapp_tictactoe", { Winner = newWinner }, { ID = gameID});
+    MySql.helper.update("tapp_tictactoe", { Spielstand = Fields }, { ID = gameID});
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 
 
@@ -63,7 +63,7 @@ addEventHandler("cancelTTTQuestion_Event",getRootElement(),cancelTTTQuestion_Eve
 
 addEvent("acceptTTTQuestion_Event",true)
 function acceptTTTQuestion_Event_func(gameID,gegnerName)
-    MySQL_SetVar("tapp_tictactoe","State",math.random(1,2),"ID='"..gameID.."'")
+    MySql.helper.update("tapp_tictactoe", { State = math.random(1,2) }, { ID = gameID});
     showError(source,"Du hast die Anfrage angenommen!")
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 

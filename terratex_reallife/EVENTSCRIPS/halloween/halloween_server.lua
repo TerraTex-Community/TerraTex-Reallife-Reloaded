@@ -69,8 +69,8 @@ function kurbissHit(thePlayer)
         destroyElement(source)
         local pName=getPlayerName(thePlayer)
 
-        MySQL_SetVar("ostereier","State",1,"ID='"..id.."'")
-        MySQL_SetVar("ostereier","gefundenVon",pName,"ID='"..id.."'")
+        MySql.helper.update("ostereier", { State = 1 }, { ID = id});
+        MySql.helper.update("ostereier", { gefundenVon = pName }, { ID = id});
 
         local anzGefunden = MySql.helper.getValueSync("ostereier", "count(*)", {gefundenVon = pName, event = "halloween"});
 

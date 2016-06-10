@@ -7,7 +7,7 @@ function BuyTapp_func(price, theTapp)
 		if (tonumber(tapptable[theTapp]) == 1) then
 			outputChatBox("Du besitzt diese Tapp bereits!", source, 255, 0, 0)
 		else
-			MySQL_SetVar("terratapps", theTapp, 1, "Nickname='" .. getPlayerName(source) .. "'")
+			MySql.helper.update("terratapps", { theTapp = 1 }, { Nickname = getPlayerName(source)});
 			tapptable[theTapp] = 1
             changePlayerMoney(source,-price,"sonstiges","Tappkauf")
 			outputChatBox(string.format("Du hast die Tapp %s gekauft, zum Starten die TerraLappTapp neustarten!", theTapp), source, 0, 255, 0)

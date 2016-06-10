@@ -367,11 +367,11 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
 
                             vioSetElementData(toPlayer, "tbans", vioGetElementData(toPlayer, "tbans") + 1)
                             if (vioGetElementData(toPlayer, "tbans") == 1) then
-                                MySQL_SetVar("userdata", "tban_reason1", reason, "Nickname='" .. pln .. "'")
+                                MySql.helper.update("userdata", {tban_reason1 = reason}, {Nickname = pln} );
                             end
                             if (vioGetElementData(toPlayer, "tbans") > 1) then
                                 local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
-                                MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
+                                MySql.helper.update("userdata", {tban_reason1 = "no_reason"}, {Nickname = pln} );
                                 local newreason = "2 Timebans: " .. tban_reason .. " + " .. reason
                                 local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','" .. adm .. "','" .. newreason .. "');"
                                 mysql_query(handler, querys)
@@ -937,7 +937,7 @@ function force_nickchange(thePlayer, cmd, toPlayerPart)
                 outputChatBox(getPlayerName(toPlayer) .. " wurde vom Server gekickt und zu einem Nickchange gezwungen!", getRootElement(), 255, 0, 0)
                 kickPlayer(toPlayer, thePlayer, "Dein Account wurde gesperrt, da dein Nickname nicht den Richtlinien entspricht. Beantrage einen Nickchange auf " .. config["maindomain"])
 
-                MySQL_SetVar("players", "force_nickchange", "1", "Nickname='" .. nick .. "'")
+                MySql.helper.update("players", {force_nickchange = 1}, {Nickname = nick} );
 
             else
                 showError(thePlayer, "Spieler ist nicht existent")

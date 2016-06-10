@@ -133,13 +133,10 @@ function save_priv_carsB()
 	outputDebugString("Started Cars Saving")
 	if not(fileExists(":"..getResourceName(getThisResource()).."/devmode.dev")) then
 		for theKey,thetable in ipairs(privVeh) do
---			if(thetable[3]==-2)then
---				MySQL_SetVar("vehicles", "abgeschleppt", "1", "Besitzer='"..thetable[1].."' and SlotID='"..thetable[2].."'")
---            else
             if(isElement(thetable[3]))then
-				MySQL_SetVar("vehicles", "Tank", vioGetElementData(thetable[3],"tank"), "ID='"..vioGetElementData(thetable[3],"dbid").."'")
-				MySQL_SetVar("vehicles", "kmstand", vioGetElementData(thetable[3],"kmstand"), "ID='"..vioGetElementData(thetable[3],"dbid").."'")
-			end	
+				MySql.helper.update("vehicles", { Tank = vioGetElementData(thetable[3],"tank") }, { ID = vioGetElementData(thetable[3],"dbid")});
+				MySql.helper.update("vehicles", { kmstand = vioGetElementData(thetable[3],"kmstand") }, { ID = vioGetElementData(thetable[3],"dbid")});
+			end
 		end
 	end
 		outputDebugString("Cars saved!")

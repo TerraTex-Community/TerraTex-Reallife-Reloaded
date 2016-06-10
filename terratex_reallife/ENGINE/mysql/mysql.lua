@@ -28,9 +28,6 @@ MySql.init = function()
 end
 
 -- Functions todo:
--- MySQL_SetVar(tablename, feldname, var, bedingung)
--- MySQL_SetString(tablename, feldname, var, bedingung)
-
 -- MySQL_DelRow(tablename, bedingung)
 -- MySQL_DatasetExist(tablename, bedingung)
 -- MySQL_GetResultsCount(tablename, bedingung)

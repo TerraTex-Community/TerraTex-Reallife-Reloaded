@@ -204,7 +204,7 @@ function scheidung_func(thePlayer)
                 local Nickname = MySql.helper.getValueSync("players", "Nickname", { ID = vioGetElementData(thePlayer, "verheiratet") });
 
                 if Nickname then
-                    MySQL_SetVar("userdata", "verheiratet", 0, "Nickname='" .. Nickname .. "'")
+                    MySql.helper.update("userdata", { verheiratet = 0 }, { Nickname = Nickname});
                     save_offline_message(Nickname, getPlayerName(thePlayer), "Tut mir leid, ich habe mich soeben von dir Scheiden lassen!")
                 end
                 changePlayerMoney(thePlayer, -15000, "sonstiges", "Scheidung")

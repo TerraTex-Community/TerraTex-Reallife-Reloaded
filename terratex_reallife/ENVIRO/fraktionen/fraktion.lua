@@ -226,16 +226,16 @@ addCommandHandler("fsteuer", fsteuer_func, false, false)
 function save_frakkasse(counter)
 
     for theFraktion, theMoney in pairs(frakkasse) do
-        MySQL_SetVar("fraktionskasse", "Kasse", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Kasse = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakmun) do
-        MySQL_SetVar("fraktionskasse", "Munition", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Munition = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakdrogen) do
-        MySQL_SetVar("fraktionskasse", "Drogen", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Drogen = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(fraksteuer) do
-        MySQL_SetVar("fraktionskasse", "Steuersatz", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Steuersatz = theMoney }, { FrakID = theFraktion });
     end
 
     setTimer(save_frakkasse, 3600000, 1)
@@ -245,17 +245,17 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), sa
 
 function save_frakkasseB()
     for theFraktion, theMoney in pairs(frakkasse) do
-        MySQL_SetVar("fraktionskasse", "Kasse", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Kasse = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakmun) do
-        MySQL_SetVar("fraktionskasse", "Munition", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Munition = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakdrogen) do
-        MySQL_SetVar("fraktionskasse", "Drogen", theMoney, "FrakID='" .. theFraktion .. "'")
+        MySql.helper.update("fraktionskasse", { Drogen = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(fraksteuer) do
-        MySQL_SetVar("fraktionskasse", "Steuersatz", theMoney, "FrakID='" .. theFraktion .. "'")
-    end --outputDebugString("Fraktionskassen gespeichert!")
+        MySql.helper.update("fraktionskasse", { Steuersatz = theMoney }, { FrakID = theFraktion });
+    end
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_frakkasseB)
@@ -531,7 +531,7 @@ function setblacklist_func(thePlayer, command, toPlayerName, grund, ...)
                                 local resultre = mysql_query(handler, query)
                                 mysql_free_result(resultre)
 
-                                local id = MySql.helper.getValueSync("blacklist", "ID", {Name = toPlayerName, Fraktion = vioGetElementData(thePlayer, "fraktion")});
+                                local id = MySql.helper.getValueSync("blacklist", "ID", { Name = toPlayerName, Fraktion = vioGetElementData(thePlayer, "fraktion") });
 
                                 table.insert(blacklist[vioGetElementData(thePlayer, "fraktion")], { toPlayerName, id })
                                 showError(thePlayer, "Dieser Spieler ist jetzt auf der Blacklist!")

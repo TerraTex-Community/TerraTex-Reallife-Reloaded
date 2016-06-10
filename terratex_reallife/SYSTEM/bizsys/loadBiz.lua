@@ -62,8 +62,7 @@ end
 function savebizzes_norm(timer)
     outputDebugString("Started Biz Save")
     for theKey, theBiz in ipairs(bizData) do
-        --mysql_query(handler,"UPDATE buissness SET Kasse='"..theBiz["Kasse"].."' WHERE ID='"..theKey.."'")
-        MySQL_SetVar("buissness", "Kasse", theBiz["Kasse"], "ID='" .. theKey .. "'")
+        MySql.helper.update("buissness", { Kasse = theBiz["Kasse"] }, { ID = theKey});
     end
     outputDebugString("Biz Saved")
     setTimer(savebizzes_norm, 3600000, 1)
@@ -75,11 +74,8 @@ function savebizzes(timer)
     outputDebugString("Started Biz Save")
 
     for theKey, theBiz in ipairs(bizData) do
-        --mysql_query(handler,"UPDATE buissness SET Kasse='"..theBiz["Kasse"].."' WHERE ID='"..theKey.."'")
-        MySQL_SetVar("buissness", "Kasse", theBiz["Kasse"], "ID='" .. theKey .. "'")
+        MySql.helper.update("buissness", { Kasse = theBiz["Kasse"] }, { ID = theKey});
     end
-    --outputDebugString("Biz Safed!")
-
     outputDebugString("Biz Saved")
 end
 

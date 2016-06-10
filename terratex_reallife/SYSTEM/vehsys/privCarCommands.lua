@@ -164,12 +164,15 @@ function park_func(thePlayer)
                         vioSetElementData(theVehicle, "spawnrz", spawnrz)
                         vioSetElementData(theVehicle, "colors", colors)
                         vioSetElementData(theVehicle, "abgeschleppt", 0)
-                        MySQL_SetVar("vehicles", "SpawnX", spawnx, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
-                        MySQL_SetVar("vehicles", "SpawnY", spawny, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
-                        MySQL_SetVar("vehicles", "SpawnZ", spawnz, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
-                        MySQL_SetVar("vehicles", "SpawnRX", spawnrx, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
-                        MySQL_SetVar("vehicles", "SpawnRY", spawnry, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
-                        MySQL_SetVar("vehicles", "SpawnRZ", spawnrz, "ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
+
+                        MySql.helper.update("vehicles", { SpawnX = spawnx }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("vehicles", { SpawnY = spawny }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("vehicles", { SpawnZ = spawnz }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("vehicles", { SpawnRX = spawnrx }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("vehicles", { SpawnRY = spawnry }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("vehicles", { SpawnRZ = spawnrz }, { ID = vioGetElementData(theVehicle, "dbid")});
+
+
                         showError(thePlayer, "Dein Fahrzeug wurde erfolgreich an dieser Position geparkt!")
                     end
                 end

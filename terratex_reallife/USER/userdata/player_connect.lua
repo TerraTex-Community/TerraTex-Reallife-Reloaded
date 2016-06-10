@@ -305,8 +305,9 @@ function LoginPlayerData(nickname, pw)
 
         local ip = getPlayerIP(source)
         local serial = getPlayerSerial(source)
-        MySQL_SetVar("players", "Serial", serial, "Nickname='" .. nickname .. "'")
-        MySQL_SetVar("players", "IP", ip, "Nickname='" .. nickname .. "'")
+        MySql.helper.update("players", { Serial = serial }, { Nickname = nickname});
+        MySql.helper.update("players", { IP = ip }, { Nickname = nickname});
+
         local acQuery = "UPDATE players SET LastLogin=LastUpdate WHERE Nickname='" .. nickname .. "'"
         mysql_query(handler, acQuery)
 

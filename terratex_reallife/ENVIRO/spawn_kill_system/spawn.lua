@@ -269,7 +269,7 @@ function setPlayerSpawnWeapons(thePlayer, Fraktion, Rang)
     local resetweapons = MySql.helper.getValueSync("userdata", "resetWeaponsAtNextLogin", { Nickname = nickname });
     if (resetweapons == 1) then
         takeAllWeapons(thePlayer)
-        MySQL_SetVar("userdata", "resetWeaponsAtNextLogin", 0, "Nickname='" .. nickname .. "'")
+        MySql.helper.update("userdata", { resetWeaponsAtNextLogin = 0 }, { Nickname = nickname});
     end
 end
 

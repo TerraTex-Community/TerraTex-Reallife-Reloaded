@@ -15,19 +15,19 @@ function onSavePlayerQuit(quitType,reson,responsibleElement)
 			end	
 			
 			local nickname=getPlayerName(source)
-			
-			MySQL_SetVar("inventar", "Offline_HP",hp,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Armor",armor,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Weapons",weapons,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Ammo",ammos,"Nickname='"..nickname.."'")
-				
+
+			MySql.helper.update("inventar", { Offline_HP = hp }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Armor = armor }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Weapons = weapons }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Ammo = ammos }, { Nickname = nickname});
+
 		
 		else
 			local nickname=getPlayerName(source)
-			MySQL_SetVar("inventar", "Offline_HP",0,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Armor",0,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Weapons",0,"Nickname='"..nickname.."'")		
-			MySQL_SetVar("inventar", "Offline_Ammo",0,"Nickname='"..nickname.."'")
+			MySql.helper.update("inventar", { Offline_HP = 0 }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Armor = 0 }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Weapons = 0 }, { Nickname = nickname});
+			MySql.helper.update("inventar", { Offline_Ammo = 0 }, { Nickname = nickname});
 		
 		end
 	end

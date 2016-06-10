@@ -34,8 +34,6 @@ function table.getSize(table)
     return i
 end
 
-
-
 function table.getMax(table)
     local i=0
     for theKey, theContent in pairs(table) do
@@ -70,5 +68,14 @@ function table.copy(obj, seen)
     return res
 end
 
-
+function table.concat(table1, table2)
+    local newTable = {};
+    for theKey, theValue in ipairs(table1) do
+        table.insert(newTable, theValue);
+    end
+    for theKey, theValue in ipairs(table2) do
+        table.insert(newTable, theValue);
+    end
+    return newTable;
+end
 

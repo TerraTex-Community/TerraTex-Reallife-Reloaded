@@ -38,11 +38,9 @@ end
 
 MySql.helper = {};
 
-local function prepareGetValueFunc(tableName, fieldName, conditions, operation)
-    local query = "SELECT `??` FROM `??`";
+local function prepareConditions(conditions, operation)
+    local query = "";
     local params = {};
-    table.insert(params, fieldName);
-    table.insert(params, tableName);
 
     if (conditions) then
         assert(type(conditions) == "table", "datatype table expected got " .. type(conditions));
@@ -81,7 +79,15 @@ end
 -- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
 -- @return theValue if success false otherwise or false if there are more then one row as result
 MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation)
-    local query, params = prepareGetValueFunc(tableName, fieldName, conditions, operation);
+    local query = "SELECT `??` FROM `??`";
+    local params = {};
+    params.insert(params, tableName);
+    params.insert(params, fieldName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.concat(params, conditionParams);
 
     local handler = dbQuery(MySql._mainConnection, query, unpack(params));
     local result, rows = dbPoll(handler, -1);

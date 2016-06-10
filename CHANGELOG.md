@@ -1,5 +1,6 @@
 
 ####10.06.2016
+* [ADDED]   New Helperfunction table.concat
 * [REMOVED] Senseless Admincommands
 * [REMOVED] Old Function MySQL_GetString removed
 * [REMOVED] MySql.helper.getColumn doesn't make any sense

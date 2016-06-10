@@ -28,8 +28,6 @@ MySql.init = function()
 end
 
 -- Functions todo:
--- MySQL_GetVar(tablename, feldname, bedingung)
--- MySQL_GetString(tablename, feldname, bedingung)
 -- MySQL_SetVar(tablename, feldname, var, bedingung)
 -- MySQL_DelRow(tablename, bedingung)
 -- MySQL_SetString(tablename, feldname, var, bedingung)
@@ -52,6 +50,7 @@ local function prepareGetValueFunc(tableName, fieldName, conditions, operation)
 
         if (not operation) then operation = "AND" end
         local firstCondition = true;
+        local compare, value;
 
         for theField, theValue in pairs(conditions) do
             if not firstCondition then
@@ -59,9 +58,16 @@ local function prepareGetValueFunc(tableName, fieldName, conditions, operation)
             else
                 firstCondition = false;
             end
-            query = query .. "`??` = ?";
+            compare = "=";
+            value = theValue;
+            if (type(theValue) == "table") then
+                compare = theValue[1];
+                value = theValue[2];
+            end
+
+            query = query .. "`??` " .. compare .. " ?";
             table.insert(params, theField);
-            table.insert(params, theValue);
+            table.insert(params, value);
         end
     end
 

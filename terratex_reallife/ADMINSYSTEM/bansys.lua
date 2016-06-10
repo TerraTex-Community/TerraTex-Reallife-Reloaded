@@ -104,7 +104,7 @@ addCommandHandler("delRZ", destroyRuheZone, false, false)
 function tcheck_func(thePlayer, cmd, toPlayer)
     if (isAdminLevel(thePlayer, 0)) then
         if (toPlayer) then
-            local playtime = MySql.helper.getFieldValueSync("userdata", "PlayTime", {Nickname = toPlayer});
+            local playtime = MySql.helper.getFieldValueSync("userdata", "PlayTime", { Nickname = toPlayer });
             if (playtime) then
                 outputChatBox("Dieser Spieler hat " .. (math.round(playtime / 60)) .. " Spielstunden!", thePlayer, 255, 0, 0)
             else
@@ -370,7 +370,7 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
                                 MySQL_SetVar("userdata", "tban_reason1", reason, "Nickname='" .. pln .. "'")
                             end
                             if (vioGetElementData(toPlayer, "tbans") > 1) then
-                                local tban_reason = MySQL_GetString("userdata", "tban_reason1", "Nickname='" .. pln .. "'")
+                                local tban_reason = MySql.helper.getFieldValueSync("userdata", "tban_reason1", { Nickname = pln });
                                 MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
                                 local newreason = "2 Timebans: " .. tban_reason .. " + " .. reason
                                 local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','" .. adm .. "','" .. newreason .. "');"

@@ -26,10 +26,9 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
 
         local testtag = pregReplace(config["clantag"], "\\[", "")
         testtag = pregReplace(testtag, "\\]", "")
-        if (string.find(playerNick, testtag)) then
+        if (string.find(string.lower(playerNick), string.lower(testtag))) then
             --outputDebugString(theSonder)
-            if (MySQL_GetString("players", "Nickname", "Nickname='" .. playerNick .. "'")) then
-
+            if (MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = playerNick })) then
             else
                 cancelEvent(true, "Das ClanTag " .. config["clantag"] .. " kann nur durch einen Admin vergeben werden!")
                 return true;
@@ -56,26 +55,27 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
 
 
         if (MySQL_DatasetExist("ban", "IP='" .. IP .. "'")) then
-            local reason = MySQL_GetString("ban", "Grund", "IP='" .. IP .. "'")
-            local datum = MySQL_GetString("ban", "Bandatum", "IP='" .. IP .. "'")
-            local admin = MySQL_GetString("ban", "Admin", "IP='" .. IP .. "'")
+            local reason = MySql.helper.getFieldValueSync("ban", "Grund", { IP = IP });
+
+            local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { IP = IP });
+            local admin = MySql.helper.getFieldValueSync("ban", "Admin", { IP = IP });
             local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
             cancelEvent(true, banstring)
             return true;
         else
 
             if (MySQL_DatasetExist("ban", "Nickname='" .. uname .. "'")) then
-                local reason = MySQL_GetString("ban", "Grund", "Nickname='" .. uname .. "'")
-                local datum = MySQL_GetString("ban", "Bandatum", "Nickname='" .. uname .. "'")
-                local admin = MySQL_GetString("ban", "Admin", "Nickname='" .. uname .. "'")
+                local reason = MySql.helper.getFieldValueSync("ban", "Grund", { Nickname = uname });
+                local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { Nickname = uname });
+                local admin = MySql.helper.getFieldValueSync("ban", "Admin", { Nickname = uname });
                 local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                 cancelEvent(true, banstring)
                 return true;
             else
                 if (MySQL_DatasetExist("ban", "Serial='" .. serial .. "'")) then
-                    local reason = MySQL_GetString("ban", "Grund", "Serial='" .. serial .. "'")
-                    local datum = MySQL_GetString("ban", "Bandatum", "Serial='" .. serial .. "'")
-                    local admin = MySQL_GetString("ban", "Admin", "Serial='" .. serial .. "'")
+                    local reason = MySql.helper.getFieldValueSync("ban", "Grund", { Serial = serial });
+                    local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { Serial = serial });
+                    local admin = MySql.helper.getFieldValueSync("ban", "Admin", { Serial = serial });
                     local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                     cancelEvent(true, banstring)
                     return true;
@@ -206,7 +206,6 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             local resultre = mysql_query(handler, lobquery)
             local lobquery = "INSERT INTO rechte (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
-            --local timestring=MySQL_GetString("players", "LastLogin", "Nickname='"..nickname.."'")
             local lomquery = "UPDATE players SET RegDat=LastUpdate WHERE Nickname='" .. nickname .. "';"
             local resultre = mysql_query(handler, lomquery)
 
@@ -244,10 +243,10 @@ function resetIsLogged(source)
 end
 
 function LoginPlayerData(nickname, pw)
+    local passdb = MySql.helper.getFieldValueSync("players", "Passwort", { Nickname = nickname });
+    local saltdb = MySql.helper.getFieldValueSync("players", "Salt", { Nickname = nickname });
 
-    nickname = mysql_escape_string(handler, nickname)
-    local passdb = MySQL_GetString("players", "Passwort", "Nickname='" .. nickname .. "'")
-    local saltdb = MySQL_GetString("players", "Salt", "Nickname='" .. nickname .. "'")
+    local pass;
     pw = saltdb .. pw
     if (config["password_hash"] == "md5") then
         pass = md5(pw)
@@ -385,7 +384,8 @@ function LoginPlayerData(nickname, pw)
 
         vioSetElementData(source, "verheiratet", tonumber(userdataData["verheiratet"]))
         if (vioGetElementData(source, "verheiratet") ~= 0) then
-            vioSetElementData(source, "verheiratetMitName", MySQL_GetString("players", "Nickname", "ID='" .. vioGetElementData(source, "verheiratet") .. "'"))
+            vioSetElementData(source, "verheiratetMitName", MySql.helper.getFieldValueSync("players", "Nickname", { ID = vioGetElementData(source, "verheiratet") }))
+
             if (vioGetElementData(source, "verheiratetMitName") == false) then
                 vioSetElementData(source, "verheiratet", 0)
                 vioSetElementData(source, "verheiratetMitName", "niemand")
@@ -592,7 +592,7 @@ function LoginPlayerData(nickname, pw)
         setPlayerMoney(source, vioGetElementData(source, "money"))
 
         local time = getRealTime()
-        local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
+        local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
 
         vioSetElementData(source, "premium", 0)
         if (premiumOutTime > 0) then
@@ -606,7 +606,7 @@ function LoginPlayerData(nickname, pw)
             outputChatBox("Du hast kein Premium? Kauf dir doch welches! Infos unter /premium!", source, 0, 255, 0)
         end
 
-        local onlineSchutzUntil = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutzUntil", {Nickname = nickname}) - time.timestamp;
+        local onlineSchutzUntil = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
         vioSetElementData(source, "onlineschutzuntil", 0)
         if (onlineSchutzUntil > 0) then
             local days = math.round(((onlineSchutzUntil / 60) / 60) / 24)
@@ -680,8 +680,8 @@ function loadTapps(thePlayer)
     appTable["Notizblock"] = MySql.helper.getFieldValueSync("terratapps", "Notizblock", { Nickname = getPlayerName(thePlayer) })
     appTable["Colorpicker"] = MySql.helper.getFieldValueSync("terratapps", "Colorpicker", { Nickname = getPlayerName(thePlayer) })
     appTable["TicTacToe"] = MySql.helper.getFieldValueSync("terratapps", "TicTacToe", { Nickname = getPlayerName(thePlayer) })
-    appTable["MineSweeper"] =MySql.helper.getFieldValueSync("terratapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
-    appTable["OnlineBanking"] =MySql.helper.getFieldValueSync("terratapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
+    appTable["MineSweeper"] = MySql.helper.getFieldValueSync("terratapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
+    appTable["OnlineBanking"] = MySql.helper.getFieldValueSync("terratapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
     appTable["OnlineSchutz"] = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
     vioSetElementData(thePlayer, "tappapps", appTable)
 

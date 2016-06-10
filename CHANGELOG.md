@@ -1,7 +1,16 @@
+
+####10.06.2016
+* [REMOVED] Senseless Admincommands
+* [REMOVED] Old Function MySQL_GetString removed
+* [CHANGED] Functions MySql.helper.getFieldValueSync and MySql.helper.getColumn supports now other compare options then "=" (set a table {comparer, value} instead of value in this case)
+* [CHANGED] Some Commandhandlers from addCommandHandler with anonym functions to named functions (for autogeneration of docs)
+
 ####09.06.2016
 ------
 * [INFO] In Github Wiki are now automatic generated docs about things like Commands.
 * [ADDED] New native MySQL Connection (not used yet + no functions yet)
+* [ADDED] MySql.helper.getFieldValueSync Function
+* [ADDED] MySql.helper.getColumn Function
 * [REMOVED] Old mysql_insert_actual.lua file which copied all players in new tables if a new table was created. In the future that should be done on the login function of the user.
 * [REMOVED] Seperate Database / -connection for logging. All Tables will be renamed and stored in one database.
 * [REMOVED] The tables test_log and nickchange_log are removed

@@ -99,8 +99,9 @@ function reloadCarsDB_func(thePlayer, Command, toPlayerName)
                     setElementModel(ele, newmodel)
                     local colorstr = MySql.helper.getFieldValueSync("vehicles", "Colors", { ID = id });
                     vioSetElementData(ele, "colors", colorstr)
-                    colors = {}
+                    local colors = {}
                     local counter = 0
+                    local countlast;
                     for color = 0, 3, 1 do
                         countlast = counter
                         if (color < 3) then
@@ -118,7 +119,8 @@ function reloadCarsDB_func(thePlayer, Command, toPlayerName)
                             addVehicleUpgrade(theVehicle, theTuning)
                         end
                     end
-                    no_handel = MySQL_GetString("vehicles", "no_handel", "ID='" .. id .. "'")
+                    local no_handel = MySql.helper.getFieldValueSync("vehicles", "no_handel", { ID = id });
+
                     vioSetElementData(thevehicle, "model", newmodel)
                     vioSetElementData(thevehicle, "colors", colorstr)
                     vioSetElementData(thevehicle, "tuning", tuning)

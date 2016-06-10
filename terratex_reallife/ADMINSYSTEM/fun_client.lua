@@ -24,9 +24,6 @@ function switchSpeedMode(cmd,id)
 end
 addCommandHandler("speedhack",switchSpeedMode,false,false)
 
-
-
-
 function setNewSpeed_hack()
 	if(isPedInVehicle(getLocalPlayer()))then
 		local veh=getPedOccupiedVehicle(getLocalPlayer())
@@ -48,22 +45,16 @@ function checkPressedHackKey()
 
 end
 
---[[added devmode option]
--
--
- ]]
-
-addCommandHandler( "devmode",
-    function ()
-        if(isAdminLevel(getLocalPlayer(),4))then
-            if(getDevelopmentMode())then
-                setDevelopmentMode ( false )
-            else
-                setDevelopmentMode ( true )
-            end
-        end
-    end
-)
+function devMode()
+	if(isAdminLevel(getLocalPlayer(),4))then
+		if(getDevelopmentMode())then
+			setDevelopmentMode ( false )
+		else
+			setDevelopmentMode ( true )
+		end
+	end
+end
+addCommandHandler( "devmode", devMode, false, false)
 
 
 

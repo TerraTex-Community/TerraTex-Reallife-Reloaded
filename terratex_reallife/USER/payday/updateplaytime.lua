@@ -59,7 +59,8 @@ end
 
 function controlWeber(thePlayer)
     if math.round(vioGetElementData(thePlayer, "playtime") / 60) == 25 then
-        local werber = MySQL_GetString("players", "werber", "Nickname='" .. getPlayerName(thePlayer) .. "'")
+        local werber = MySql.helper.getFieldValueSync("players", "werber", { Nickname = getPlayerName(thePlayer) });
+
         if (MySQL_DatasetExist("players", "Nickname='" .. werber .. "'")) then
             if (getPlayerName(thePlayer) ~= werber) then
                 local query = "INSERT INTO gutschriften (Nickname,Geld,Grund) VALUES ('" .. werber .. "','1500','Der von dir geworbene Spieler " .. getPlayerName(thePlayer) .. " hat 25 Spielstunden erreicht!');"

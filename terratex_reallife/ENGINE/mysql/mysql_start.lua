@@ -56,25 +56,25 @@ end
 --    end
 --end
 
-function MySQL_GetString(tablename, feldname, bedingung)
-
-    local result = mysql_query(handler, "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung)
-    local sendetquery = "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-        outputDebugString("ErrorQuery: " .. sendetquery)
-    else
-        if (mysql_num_rows(result) > 0) then
-            local dsatz = mysql_fetch_assoc(result)
-            local savename = feldname
-            mysql_free_result(result)
-            return dsatz[feldname]
-        else
-            mysql_free_result(result)
-            return false
-        end
-    end
-end
+--function MySQL_GetString(tablename, feldname, bedingung)
+--
+--    local result = mysql_query(handler, "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung)
+--    local sendetquery = "SELECT " .. feldname .. " from " .. tablename .. "  WHERE " .. bedingung
+--    if (not result) then
+--        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
+--        outputDebugString("ErrorQuery: " .. sendetquery)
+--    else
+--        if (mysql_num_rows(result) > 0) then
+--            local dsatz = mysql_fetch_assoc(result)
+--            local savename = feldname
+--            mysql_free_result(result)
+--            return dsatz[feldname]
+--        else
+--            mysql_free_result(result)
+--            return false
+--        end
+--    end
+--end
 
 function MySQL_SetVar(tablename, feldname, var, bedingung)
 

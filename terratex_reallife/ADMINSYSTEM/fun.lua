@@ -55,7 +55,7 @@ function rveh_func(player,command,useTank, vehtype)
 end
 addCommandHandler("rveh",rveh_func,false,false)
 
-addCommandHandler( "flip", function (thePlayer)
+function flip(thePlayer)
     if(isAdminLevel(thePlayer,3))then
         if(isPedInVehicle(thePlayer))then
             local veh=getPedOccupiedVehicle(thePlayer)
@@ -63,4 +63,5 @@ addCommandHandler( "flip", function (thePlayer)
             setElementRotation(veh, (rx-180),ry,rz)
         end
     end
-end)
+end
+addCommandHandler( "flip", flip, false, false)

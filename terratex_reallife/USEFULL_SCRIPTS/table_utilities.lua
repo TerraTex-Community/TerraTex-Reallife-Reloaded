@@ -70,7 +70,7 @@ end
 
 function table.concat(table1, table2)
     local newTable = {};
-    if (not table2 or table2.getn() ~= 0 ) then
+    if (not table2 or table.getn(table2) ~= 0 ) then
         for theKey, theValue in ipairs(table1) do
             table.insert(newTable, theValue);
         end

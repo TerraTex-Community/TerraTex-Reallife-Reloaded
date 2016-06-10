@@ -33,7 +33,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                 cancelEvent(true, "Das ClanTag " .. config["clantag"] .. " kann nur durch einen Admin vergeben werden!")
                 return true;
             end
-        elseif (MySQL_DatasetExist("players", "Nickname='" .. config["clantag"] .. playerNick .. "'")) then
+        elseif (MySql.helper.existSync("players", {Nickname = config["clantag"] .. playerNick })) then
             cancelEvent(true, "Ein Mitglied des " .. config["clantag"] .. "s trägt bereits diesen Namen!")
             return true;
         end
@@ -43,41 +43,40 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
             return true;
         end
 
-        local IP = mysql_escape_string(handler, playerIP)
-        local uname = mysql_escape_string(handler, playerNick)
-        local serial = mysql_escape_string(handler, playerSerial)
 
-        if (MySQL_DatasetExist("ban", "IP='" .. IP .. "'")) then
-            local reason = MySql.helper.getValueSync("ban", "Grund", { IP = IP });
+        if (MySql.helper.existSync("ban", {IP = playerIP })) then
 
-            local datum = MySql.helper.getValueSync("ban", "Bandatum", { IP = IP });
-            local admin = MySql.helper.getValueSync("ban", "Admin", { IP = IP });
+            local reason = MySql.helper.getValueSync("ban", "Grund", { IP = playerIP });
+
+            local datum = MySql.helper.getValueSync("ban", "Bandatum", { IP = playerIP });
+            local admin = MySql.helper.getValueSync("ban", "Admin", { IP = playerIP });
             local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
             cancelEvent(true, banstring)
             return true;
         else
 
-            if (MySQL_DatasetExist("ban", "Nickname='" .. uname .. "'")) then
-                local reason = MySql.helper.getValueSync("ban", "Grund", { Nickname = uname });
-                local datum = MySql.helper.getValueSync("ban", "Bandatum", { Nickname = uname });
-                local admin = MySql.helper.getValueSync("ban", "Admin", { Nickname = uname });
+            if (MySql.helper.existSync("ban", {Nickname = playerNick })) then
+                local reason = MySql.helper.getValueSync("ban", "Grund", { Nickname = playerNick });
+                local datum = MySql.helper.getValueSync("ban", "Bandatum", { Nickname = playerNick });
+                local admin = MySql.helper.getValueSync("ban", "Admin", { Nickname = playerNick });
                 local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                 cancelEvent(true, banstring)
                 return true;
             else
-                if (MySQL_DatasetExist("ban", "Serial='" .. serial .. "'")) then
-                    local reason = MySql.helper.getValueSync("ban", "Grund", { Serial = serial });
-                    local datum = MySql.helper.getValueSync("ban", "Bandatum", { Serial = serial });
-                    local admin = MySql.helper.getValueSync("ban", "Admin", { Serial = serial });
+                if (MySql.helper.existSync("ban", {Serial = playerSerial })) then
+                    local reason = MySql.helper.getValueSync("ban", "Grund", { Serial = playerSerial });
+                    local datum = MySql.helper.getValueSync("ban", "Bandatum", { Serial = playerSerial });
+                    local admin = MySql.helper.getValueSync("ban", "Admin", { Serial = playerSerial });
                     local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                     cancelEvent(true, banstring)
                     return true;
                 else
 
-                    if (MySQL_DatasetExist("timeban", "Nickname='" .. uname .. "'")) then
-                        local reason = MySql.helper.getValueSync("timeban", "Grund", { Nickname = uname });
-                        local admin = MySql.helper.getValueSync("timeban", "Admin", { Nickname = uname });
-                        local rest = MySql.helper.getValueSync("timeban", "Minuten", { Nickname = uname });
+                    if (MySql.helper.existSync("timeban", {Nickname = playerNick })) then
+
+                        local reason = MySql.helper.getValueSync("timeban", "Grund", { Nickname = playerNick });
+                        local admin = MySql.helper.getValueSync("timeban", "Admin", { Nickname = playerNick });
+                        local rest = MySql.helper.getValueSync("timeban", "Minuten", { Nickname = playerNick });
                         local timestring = rest .. " Minuten"
                         if (rest >= 120) then
                             rest = math.round(rest / 60, 0)
@@ -92,9 +91,11 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
         --MultiaccCheck
-        if not (MySQL_DatasetExist("players", "Nickname='" .. uname .. "'")) then
-            if (MySQL_DatasetExist("players", "Serial='" .. serial .. "'")) then
-                if (MySQL_DatasetExist("multiaccount_serial", "Serial='" .. serial .. "'")) then
+        if not (MySql.helper.existSync("players", {Nickname = uname })) then
+
+            if (MySql.helper.existSync("players", {Serial = serial })) then
+                if (MySql.helper.existSync("multiaccount_serial", {Serial = serial })) then
+
                     local multiSerialAccounts = {}
                     local id = 0
                     local result = mysql_query(handler, "SELECT * from multiaccount_serial WHERE Serial='" .. serial .. "'")
@@ -139,9 +140,8 @@ addEventHandler("onPlayerConnect", getRootElement(), playerConnect)
 addEvent("clientisreadyforlogin", true)
 function playerreadylogin()
 
-    local uname = mysql_escape_string(handler, getPlayerName(source))
     vioSetElementData(source, "logtries", 0)
-    if (MySQL_DatasetExist("players", "Nickname='" .. uname .. "'")) then
+    if (MySql.helper.existSync("players", {Nickname = getPlayerName(source) })) then
         triggerClientEvent(source, "showLoginGui", source, source)
     else
         triggerClientEvent(source, "showRegisterGui", source, source)
@@ -162,9 +162,10 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
     local geby = mysql_escape_string(handler, geby)
     local werber = mysql_escape_string(handler, werber)
 
-    if (werber ~= "" and MySQL_DatasetExist("players", "Nickname='" .. werber .. "'")) or werber == "" then
+    if (werber ~= "" and MySql.helper.existSync("players", {Nickname = werber })) or werber == "" then
 
-        if not (MySQL_DatasetExist("players", "Nickname='" .. nickname .. "'")) then
+        if not (MySql.helper.existSync("players", {Nickname = nickname })) then
+
 
             if (config["password_hash"] == "md5") then
                 pass = md5(salt .. pass)
@@ -206,9 +207,8 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             triggerClientEvent(source, "hideRegisterGui", source)
             showError(source, "Du wurdest erfolgreich registriert! Logge dich nun ein!")
 
-            local uname = mysql_escape_string(handler, getPlayerName(source))
             vioSetElementData(source, "logtries", 0)
-            if (MySQL_DatasetExist("players", "Nickname='" .. uname .. "'")) then
+            if (MySql.helper.existSync("players", {Nickname = getPlayerName(source)})) then
                 triggerClientEvent(source, "showLoginGui", source, source)
             else
                 triggerClientEvent(source, "showRegisterGui", source, source)
@@ -256,29 +256,28 @@ function LoginPlayerData(nickname, pw)
         setTimer(resetIsLogged, 5000, 1, source)
         triggerClientEvent(source, "bindclicksys_event", source)
 
-        --MySQL_DatasetExist(table,bed)
-        if not (MySQL_DatasetExist("userdata", "Nickname='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("userdata", {Nickname = getPlayerName(source)})) then
             local lobquery = "INSERT INTO userdata (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
 
-        if not (MySQL_DatasetExist("inventar", "Nickname='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("inventar", {Nickname = getPlayerName(source)})) then
             local lobquery = "INSERT INTO inventar (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
-        if not (MySQL_DatasetExist("archievments", "Nickname='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("archievments", {Nickname = getPlayerName(source)})) then
             local lobquery = "INSERT INTO archievments (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
-        if not (MySQL_DatasetExist("premium", "Name='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("premium", {Name = getPlayerName(source)})) then
             local lobquery = "INSERT INTO premium (Name) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
-        if not (MySQL_DatasetExist("terratapps", "Nickname='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("terratapps", {Nickname = getPlayerName(source)})) then
             local lobquery = "INSERT INTO terratapps (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
-        if not (MySQL_DatasetExist("rechte", "Nickname='" .. getPlayerName(source) .. "'")) then
+        if not (MySql.helper.existSync("rechte", {Nickname = getPlayerName(source)})) then
             local lobquery = "INSERT INTO rechte (Nickname) VALUES('" .. nickname .. "');"
             local resultre = mysql_query(handler, lobquery)
         end
@@ -390,7 +389,7 @@ function LoginPlayerData(nickname, pw)
             local g = 0
             while (g == 0) do
                 telenummer = math.random(100000, 999999)
-                if not (MySQL_DatasetExist("userdata", "Telefonnummer='" .. telenummer .. "'")) then
+                if not (MySql.helper.existSync("userdata", {Telefonnummer = telenummer})) then
                     g = telenummer
                 end
             end
@@ -532,7 +531,8 @@ function LoginPlayerData(nickname, pw)
 
         vioSetElementData(source, "last_fishes", 0)
 
-        local warns = tonumber(MySQL_GetResultsCount("warns", "Nickname='" .. nickname .. "'"))
+        local warns = MySql.helper.getCountSync("warns", {Nickname = nickname})
+
         vioSetElementData(source, "warns", warns)
         vioSetElementData(source, "telefontoggle", 0)
         vioSetElementData(source, "Tazer", 0)
@@ -678,7 +678,7 @@ function loadTapps(thePlayer)
     appTable["OnlineSchutz"] = MySql.helper.getValueSync("terratapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
     vioSetElementData(thePlayer, "tappapps", appTable)
 
-    local mails = MySQL_GetResultsCount("emails", "neu='1' and Empfaenger='" .. getPlayerName(thePlayer) .. "'")
+    local mails = MySql.helper.getCountSync("emails", {neu = 1, Empfaenger = getPlayerName(thePlayer)})
     if (mails) then
         if (tonumber(mails)) then
             if (tonumber(mails) > 0) then

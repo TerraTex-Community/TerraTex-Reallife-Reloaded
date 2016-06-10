@@ -339,8 +339,9 @@ function checkMultiaccount(thePlayer)
     local IP = getPlayerIP(thePlayer)
     local Serial = getPlayerSerial(thePlayer)
     local pname = getPlayerName(thePlayer)
-    local multiIP = MySQL_GetResultsCount("players", "IP='" .. IP .. "' and Nickname!='" .. pname .. "'")
-    local multiSerial = MySQL_GetResultsCount("players", "Serial='" .. Serial .. "' and Nickname!='" .. pname .. "'")
+    local multiIP = MySql.helper.getCountSync("players", {IP = IP, Nickname = {"!=", pname}})
+
+    local multiSerial = MySql.helper.getCountSync("players", {Serial = Serial, Nickname = {"!=", pname}})
     if (multiIP > 0 or multiSerial > 0) then
         local players = getElementsByType("player")
         for theKey, thePlayers in ipairs(players) do
@@ -359,11 +360,10 @@ function multiacc_func(thePlayer, command, toPlayerName)
     if (isAdminLevel(thePlayer, 1)) then
         local pname = toPlayerName
         local IP = MySql.helper.getValueSync("players", "IP", { Nickname = pname });
-
         local Serial = MySql.helper.getValueSync("players", "Serial", { Nickname = pname });
         if (IP and Serial) then
-            local multiIP = MySQL_GetResultsCount("players", "IP='" .. IP .. "'")
-            local multiSerial = MySQL_GetResultsCount("players", "Serial='" .. Serial .. "'")
+            local multiIP = MySql.helper.getCountSync("players", {IP = IP})
+            local multiSerial = MySql.helper.getCountSync("players", {Serial = Serial})
             local multiIPAccounts = {}
             local multiSerialAccounts = {}
 

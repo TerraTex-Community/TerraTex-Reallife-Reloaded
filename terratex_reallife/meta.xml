@@ -52,7 +52,6 @@
 		<script src="SYSTEM/scheinesys_vehicle.lua" type="server" />
 		<script src="SYSTEM/loadserversettings.lua" type="server" />
         <script src="SYSTEM/isDevServer_client.lua" type="client" />
-		<script src="SYSTEM/statistik.lua" type="server" />
 		<script src="SYSTEM/infomessages.lua" type="server" />
 		<!-- Banksys -->
 			<script src="SYSTEM/banksys/bank_func_shared.lua" type="shared" />

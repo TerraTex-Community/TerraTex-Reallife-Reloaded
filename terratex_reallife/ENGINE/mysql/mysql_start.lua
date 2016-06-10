@@ -36,38 +36,6 @@ function MySQL_End()
     mysql_close(handler)
 end
 
-function MySQL_DatasetExist(tablename, bedingung)
-
-    local result = mysql_query(handler, "SELECT * from " .. tablename .. " WHERE " .. bedingung)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        if (mysql_num_rows(result) > 0) then
-            mysql_free_result(result)
-            return true
-        else
-            mysql_free_result(result)
-            return false
-        end
-    end
-end
-
-function MySQL_GetResultsCount(tablename, bedingung)
-
-    local result = mysql_query(handler, "SELECT count(*) as Anzahl from " .. tablename .. "  WHERE " .. bedingung)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        if (mysql_num_rows(result) > 0) then
-            local dsatz = mysql_fetch_assoc(result)
-            mysql_free_result(result)
-            return tonumber(dsatz["Anzahl"])
-        else
-            mysql_free_result(result)
-            return 0
-        end
-    end
-end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), MySQL_Startup)
 

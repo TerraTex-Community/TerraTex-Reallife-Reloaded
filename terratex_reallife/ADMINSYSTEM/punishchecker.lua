@@ -29,7 +29,7 @@ function checkAdditionalPunishment_offline(playerName)
                     end
                     save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast " .. dasatz["warn"] .. " Warns erhalten")
 
-                    if (MySQL_GetResultsCount("warns", "Nickname='" .. dasatz["Nickname"] .. "'") > 2) then
+                    if (MySql.helper.getCountSync("warns", {Nickname = dasatz["Nickname"]}) > 2) then
                         local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
 
                         local qquery = "INSERT INTO ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. dasatz["Nickname"] .. "','" .. serial .. "','0','3 Warns','Warnsystem')"
@@ -50,9 +50,6 @@ function checkAdditionalPunishment_offline(playerName)
                     tryKickPlayer = true
                 end
             end
-
-
-
 
             mysql_query(handler, "DELETE FROM bewaehrungsstrafen WHERE ID='" .. dasatz["ID"] .. "'")
 

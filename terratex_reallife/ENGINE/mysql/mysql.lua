@@ -28,8 +28,6 @@ MySql.init = function()
 end
 
 -- Functions todo:
--- MySQL_DatasetExist(tablename, bedingung)
--- MySQL_GetResultsCount(tablename, bedingung)
 -- function mysql_query(handler, query)
 --  mysql.getFirstTableRow(handlers, tablename, bedingung)
 
@@ -67,6 +65,35 @@ local function prepareConditions(conditions, operation)
     end
 
     return query, params
+end
+
+
+--- Checks if there are datasets that pass the conditions
+-- @param tableName Name of the Table
+-- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+MySql.helper.existSync = function(tableName, conditions, operation)
+    local result = MySql.helper.getCountSync(tableName, conditions, operation);
+    return (result and result > 0);
+end
+
+--- Returns how many lines will pass the conditions
+-- @param tableName Name of the Table
+-- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+MySql.helper.getCountSync = function(tableName, conditions, operation)
+    local query = "SELECT count(*) AS counted FROM `??`";
+    local params = {};
+    table.insert(params, tableName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.merge(params, conditionParams);
+
+    local handler = dbQuery(MySql._connection, query, unpack(params));
+    local result = dbPoll(handler, -1);
+    return tonumber(result[1]["counted"]);
 end
 
 --- Deletes Content from database

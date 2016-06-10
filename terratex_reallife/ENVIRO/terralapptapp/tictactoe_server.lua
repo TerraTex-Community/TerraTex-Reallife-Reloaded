@@ -88,7 +88,14 @@ function tictactoe_herausforderung_func(gegnerName)
     if(gegner)then
         local playerName=getPlayerName(source)
         local gegnerName=getPlayerName(gegner)
-        if(MySQL_DatasetExist("tapp_tictactoe","((Nickname='"..playerName.."' and Gegner='"..gegnerName.."') or (Nickname='"..gegnerName.."' and Gegner='"..playerName.."')) and `Winner` = 0"))then
+
+        local query = "SELECT count(*) as anzahl FROM tapp_tictactoe WHERE ";
+        query = query .. "((Nickname = ? and Gegner = ? ) or (Nickname=? and Gegner=?)) and `Winner` = 0";
+
+        local execQ = dbQuery(MySql._connection, query,playerName,gegnerName,gegnerName,playerName );
+        local result = dbPoll(execQ, -1);
+
+        if(result[1]["anzahl"] > 0)then
             showError(source,"Es gibt bereits ein offenes Spiel, offene Herrausforderung oder eine offene Anfrage Spiel mit diesem Spieler!")
         else
             local appTable=vioGetElementData(gegner,"tappapps")

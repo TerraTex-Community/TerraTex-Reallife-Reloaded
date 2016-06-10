@@ -45,6 +45,7 @@ function sendgetRequestAndFriendList()
     vioSetElementData(source, "friendlist_table", friendlistTable)
     triggerClientEvent(source, "sendrequestInfos", source, requestTable, sendRequestTable, friendlistTable)
 end
+
 addEventHandler("getRequestAndFriendList", getRootElement(), sendgetRequestAndFriendList)
 
 function onPlayerQuitForFriendlist()
@@ -59,6 +60,7 @@ function onPlayerQuitForFriendlist()
         end
     end
 end
+
 addEventHandler("onPlayerQuit", getRootElement(), onPlayerQuitForFriendlist)
 
 function onPlayerJoinForFriendlist()
@@ -78,7 +80,8 @@ addEventHandler("onPlayerJoin", getRootElement(), onPlayerJoinForFriendlist)
 
 addEvent("ablehnenAnfrageFriendlist", true)
 function ablehnenAnfrageFriendlist_func(name)
-    if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+    if (MySql.helper.existSync("tlt_friendrequest", { Toname = getPlayerName(source), Fromname = name })) then
+
         local query = "DELETE FROM tlt_friendrequest WHERE Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'"
         mysql_query(handler, query)
         showError(source, string.format("Du hast %ss anfrage abgelehnt!", name))
@@ -98,7 +101,8 @@ addEventHandler("ablehnenAnfrageFriendlist", getRootElement(), ablehnenAnfrageFr
 
 addEvent("annehmenAnfrageFriendlist", true)
 function annehmenAnfrageFriendlist_func(name)
-    if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+    if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+
         local query = "INSERT INTO tlt_friendlist (Nickname,Friendname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
         mysql_query(handler, query)
         query = "INSERT INTO tlt_friendlist (Friendname,Nickname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
@@ -125,15 +129,16 @@ addEvent("sendAnfrageFriendlist", true)
 function sendAnfrageFriendlist_func(name)
     if (name) then
         if (name ~= "") then
-            if (MySQL_DatasetExist("players", "Nickname='" .. name .. "'")) then
-                if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
+            if (MySql.helper.existSync("tlt_friendrequest", {Nickname = name})) then
+
+                if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
                     showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                 else
-                    if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                     else
 
-                        if (MySQL_DatasetExist("tlt_friendlist", "Nickname='" .. getPlayerName(source) .. "' and Friendname='" .. name .. "'")) then
+                        if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                             showError(source, "Ihr seit doch bereits Freunde!")
                         else
                             local query = "INSERT INTO tlt_friendrequest (Fromname,Toname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
@@ -148,16 +153,17 @@ function sendAnfrageFriendlist_func(name)
                         end
                     end
                 end
-            elseif (MySQL_DatasetExist("players", "Nickname='" .. config["clantag"] .. name .. "'")) then
+            elseif (MySql.helper.existSync("players", {Nickname = config["clantag"] .. name })) then
+
                 name = config["clantag"] .. name
-                if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
+                if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
                     showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                 else
-                    if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+                    if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
                         showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                     else
 
-                        if (MySQL_DatasetExist("tlt_friendlist", "Nickname='" .. getPlayerName(source) .. "' and Friendname='" .. name .. "'")) then
+                        if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                             showError(source, "Ihr seit doch bereits Freunde!")
                         else
                             local query = "INSERT INTO tlt_friendrequest (Fromname,Toname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
@@ -173,18 +179,18 @@ function sendAnfrageFriendlist_func(name)
                     end
                 end
             else
-                --	outputChatBox("lala")
-                if (MySQL_GetResultsCount("players", "Nickname LIKE '%" .. name .. "%'") == 1) then
+                if (MySql.helper.getCountSync("players", { Nickname = { "LIKE", "%" .. name .. "%" } }) == 1) then
+
                     name = MySql.helper.getValueSync("players", "Nickname", { Nickname = { "LIKE", name } });
 
-                    if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
+                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                     else
-                        if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+                        if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
                             showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                         else
 
-                            if (MySQL_DatasetExist("tlt_friendlist", "Nickname='" .. getPlayerName(source) .. "' and Friendname='" .. name .. "'")) then
+                            if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                                 showError(source, "Ihr seit doch bereits Freunde!")
                             else
                                 local query = "INSERT INTO tlt_friendrequest (Fromname,Toname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
@@ -200,17 +206,17 @@ function sendAnfrageFriendlist_func(name)
                         end
                     end
 
-                elseif (MySQL_GetResultsCount("players", "Nickname LIKE '" .. config["clantag"] .. "%" .. name .. "%'") == 1) then
+                elseif (MySql.helper.getCountSync("players", { Nickname = { "LIKE", config["clantag"] .. "%" .. name .. "%" } }) == 1) then
 
-                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = {"LIKE", (config["clantag"] .. "%" .. name .. "%")} });
-                    if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
+                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = { "LIKE", (config["clantag"] .. "%" .. name .. "%") } });
+                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                     else
-                        if (MySQL_DatasetExist("tlt_friendrequest", "Toname='" .. getPlayerName(source) .. "' and Fromname='" .. name .. "'")) then
+                        if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
                             showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                         else
 
-                            if (MySQL_DatasetExist("tlt_friendlist", "Nickname='" .. getPlayerName(source) .. "' and Friendname='" .. name .. "'")) then
+                            if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                                 showError(source, "Ihr seit doch bereits Freunde!")
                             else
                                 local query = "INSERT INTO tlt_friendrequest (Fromname,Toname) VALUES ('" .. getPlayerName(source) .. "','" .. name .. "');"
@@ -239,7 +245,8 @@ addEventHandler("sendAnfrageFriendlist", getRootElement(), sendAnfrageFriendlist
 
 addEvent("getAnfrageBackFriendlist", true)
 function getAnfrageBackFriendlist_func(name)
-    if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
+    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
+
         local query = "DELETE FROM tlt_friendrequest WHERE Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'"
         mysql_query(handler, query)
     end
@@ -329,4 +336,5 @@ function deleteFromFriendlist_func(name)
     end
     triggerEvent("getRequestAndFriendList", source)
 end
+
 addEventHandler("deleteFromFriendlist_Event", getRootElement(), deleteFromFriendlist_func)

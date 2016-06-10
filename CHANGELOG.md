@@ -3,11 +3,15 @@
 * [ADDED] New Helperfunction table.concat
 * [ADDED] MySql.helper.update()
 * [ADDED] MySql.helper.delete()
+* [ADDED] MySql.helper.getCountSync()
+* [ADDED] MySql.helper.existSync()
 * [REMOVED] Senseless Admincommands
 * [REMOVED] Old Function MySQL_GetString removed
 * [REMOVED] Old Function MySQL_SetVar removed
 * [REMOVED] Old Function MySQL_SetString removed
 * [REMOVED] Old Function MySQL_DelRow removed
+* [REMOVED] Old Function MySQL_GetResultsCount removed
+* [REMOVED] Old Function MySQL_DatasetExist removed
 * [REMOVED] MySql.helper.getColumn doesn't make any sense
 * [CHANGED] Rename MySql.helper.getFieldValueSync to MySql.helper.getValueSync
 * [CHANGED] Function MySql.helper.getFieldValueSync supports now other compare options then "=" (set a table {comparer, value} instead of value in this case)

@@ -111,7 +111,7 @@ end
 
 addEventHandler ( "onClientHUDRender", getRootElement ( ),
 	function ( )
-		local visibleTileNames = table.merge ( engineGetVisibleTextureNames ( "radar??" ), engineGetVisibleTextureNames ( "radar???" ) )
+		local visibleTileNames = table.merge_gps ( engineGetVisibleTextureNames ( "radar??" ), engineGetVisibleTextureNames ( "radar???" ) )
 		
 		for name, data in pairs ( renderStuff ) do
 			if not table.find ( visibleTileNames, name ) then

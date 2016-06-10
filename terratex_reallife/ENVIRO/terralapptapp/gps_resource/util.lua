@@ -71,7 +71,7 @@ function table.each(t, callback, ...)
 	return t
 end
 
-function table.merge ( ... )
+function table.merge_gps ( ... )
 	local ret = { }
 	
 	for index, tbl in ipairs ( {...} ) do

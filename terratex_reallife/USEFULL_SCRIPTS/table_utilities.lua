@@ -68,7 +68,7 @@ function table.copy(obj, seen)
     return res
 end
 
-function table.concat(table1, table2)
+function table.merge(table1, table2)
     local newTable = {};
     if (not table2 or table.getn(table2) ~= 0 ) then
         for theKey, theValue in ipairs(table1) do

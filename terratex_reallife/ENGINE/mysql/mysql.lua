@@ -81,7 +81,7 @@ MySql.helper.delete = function(tableName, conditions, operation)
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 
     query = query .. conditionQuery;
-    params = table.concat(params, conditionParams);
+    params = table.merge(params, conditionParams);
 
     return dbExec(MySql._connection, query, unpack(params));
 end
@@ -113,7 +113,7 @@ MySql.helper.update = function(tableName, updateValues, conditions, operation)
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 
     query = query .. conditionQuery;
-    params = table.concat(params, conditionParams);
+    params = table.merge(params, conditionParams);
 
     return dbExec(MySql._connection, query, unpack(params));
 end
@@ -133,7 +133,7 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
     local conditionQuery, conditionParams = prepareConditions(conditions, operation);
 
     query = query .. conditionQuery;
-    params = table.concat(params, conditionParams);
+    params = table.merge(params, conditionParams);
 
     local handler = dbQuery(MySql._connection, query, unpack(params));
     local result, rows = dbPoll(handler, -1);

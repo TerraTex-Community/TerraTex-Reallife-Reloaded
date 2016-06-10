@@ -37,16 +37,16 @@ function loadSettingsFromDB()
         setModelHandling(vehicle, "engineInertia", originalTABEL["engineInertia"] * Handler)
     end
 
-    serversettings["drogenpreis"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "drogenpreis" });
-    serversettings["steuersatz"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "steuersatz" });
-    serversettings["sozialabgabesatz"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "sozialabgabesatz" });
-    serversettings["matspreis"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "matspreis" });
-    serversettings["lottojackpot"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "lottojackpot" });
-    serversettings["Ueberweisungssteuer"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "Ueberweisungssteuer" });
-    serversettings["tankpreis"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "tankpreis" });
-    serversettings["Version"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "Version" });
-    serversettings["atommuell"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "atommuell" });
-    serversettings["playerOfMonthPic"] = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "spielerDesMonats" });
+    serversettings["drogenpreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "drogenpreis" });
+    serversettings["steuersatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "steuersatz" });
+    serversettings["sozialabgabesatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "sozialabgabesatz" });
+    serversettings["matspreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "matspreis" });
+    serversettings["lottojackpot"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "lottojackpot" });
+    serversettings["Ueberweisungssteuer"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Ueberweisungssteuer" });
+    serversettings["tankpreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "tankpreis" });
+    serversettings["Version"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Version" });
+    serversettings["atommuell"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "atommuell" });
+    serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "spielerDesMonats" });
 
 
     setGameType("TerraTex Reallife Reloaded Script " .. serversettings["Version"])
@@ -57,7 +57,7 @@ function loadSettingsFromDB()
 
     serversettings["Max_User"] = 0
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
-        local lastDailyReset = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "DailyReset" });
+        local lastDailyReset = MySql.helper.getValueSync("serversettings", "Wert", { Name = "DailyReset" });
 
         local time = getRealTime()
         local timestamp = time.timestamp

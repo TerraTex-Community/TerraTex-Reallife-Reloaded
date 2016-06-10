@@ -24,7 +24,7 @@ function loadPrestigeFromDB()
             prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
 
 
-            prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getFieldValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
+            prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
             prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
             vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
             addEventHandler("onPickupHit", prestigeObjects[tonumber(dasatz["ID"])]["pickup"], showPrestigeInfos)

@@ -54,7 +54,7 @@ function stealTooExpensiveVehicles()
             if (player) then
                 hkey = vioGetElementData(player, "hkey")
             else
-                hkey = MySql.helper.getFieldValueSync("userdata", "newhkey", { Nickname = besitzer });
+                hkey = MySql.helper.getValueSync("userdata", "newhkey", { Nickname = besitzer });
             end
             local maxWert = getMaxVehicleWert(hkey)
             if (buyWert > maxWert) then

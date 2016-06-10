@@ -420,7 +420,7 @@ function buyCar(thevehicle)
                             privCars[spawnVeh] = true
                             local query = "INSERT INTO vehicles ( SlotID,Besitzer,Model,SpawnX,SpawnY,SpawnZ,SpawnRX,SpawnRY,SpawnRZ,Colors,kaufpreis) VALUES ('" .. firstfreeslot .. "','" .. getPlayerName(source) .. "','" .. getElementModel(spawnVeh) .. "','0','0','0','0','0','0','0|0|0|0','" .. vehicle[4] .. "')"
                             mysql_query(handler, query)
-                            local dbid = MySql.helper.getFieldValueSync("vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
+                            local dbid = MySql.helper.getValueSync("vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
 
                             outputDebugString("Buyed Car dbid:" .. tostring(dbid))
                             vioSetElementData(spawnVeh, "dbid", dbid)

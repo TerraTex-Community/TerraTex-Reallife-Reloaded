@@ -175,7 +175,7 @@ function sendAnfrageFriendlist_func(name)
             else
                 --	outputChatBox("lala")
                 if (MySQL_GetResultsCount("players", "Nickname LIKE '%" .. name .. "%'") == 1) then
-                    name = MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = { "LIKE", name } });
+                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = { "LIKE", name } });
 
                     if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
@@ -202,7 +202,7 @@ function sendAnfrageFriendlist_func(name)
 
                 elseif (MySQL_GetResultsCount("players", "Nickname LIKE '" .. config["clantag"] .. "%" .. name .. "%'") == 1) then
 
-                    name = MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = {"LIKE", (config["clantag"] .. "%" .. name .. "%")} });
+                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = {"LIKE", (config["clantag"] .. "%" .. name .. "%")} });
                     if (MySQL_DatasetExist("tlt_friendrequest", "Fromname='" .. getPlayerName(source) .. "' and Toname='" .. name .. "'")) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                     else

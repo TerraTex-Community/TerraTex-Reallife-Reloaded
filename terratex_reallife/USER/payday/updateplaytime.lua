@@ -59,7 +59,7 @@ end
 
 function controlWeber(thePlayer)
     if math.round(vioGetElementData(thePlayer, "playtime") / 60) == 25 then
-        local werber = MySql.helper.getFieldValueSync("players", "werber", { Nickname = getPlayerName(thePlayer) });
+        local werber = MySql.helper.getValueSync("players", "werber", { Nickname = getPlayerName(thePlayer) });
 
         if (MySQL_DatasetExist("players", "Nickname='" .. werber .. "'")) then
             if (getPlayerName(thePlayer) ~= werber) then
@@ -67,7 +67,7 @@ function controlWeber(thePlayer)
                 mysql_query(handler, query)
                 query = "UPDATE userdata SET werbernum=werbernum+1 WHERE Nickname='" .. werber .. "'"
                 mysql_query(handler, query)
-                local maxwerb = MySql.helper.getFieldValueSync("userdata", "werbernum", { Nickname = werber });
+                local maxwerb = MySql.helper.getValueSync("userdata", "werbernum", { Nickname = werber });
 
                 if (maxwerb == 5) then
                     query = "INSERT INTO gutschriften (Nickname,Geld,VehSlots,Grund) VALUES ('" .. werber .. "','10000','2','Es haben 5 von dir Geworbene Spieler 25 Spielstunden erreicht!');"
@@ -117,7 +117,7 @@ function payday(thePlayer)
     end
 
     if (vioGetElementData(thePlayer, "fraktion") > 0) then
-        local bonus = MySql.helper.getFieldValueSync("fraktionskasse", "gehalt", { FrakID = vioGetElementData(thePlayer, "fraktion") });
+        local bonus = MySql.helper.getValueSync("fraktionskasse", "gehalt", { FrakID = vioGetElementData(thePlayer, "fraktion") });
         
         Einnahmen = Einnahmen + bonus
 

@@ -13,7 +13,7 @@ function loadBizFromDB_func()
             bizData[zahler]["Name"] = dasatz["Name"]
             bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
             bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
-            bizData[zahler]["Besitzer"] = MySql.helper.getFieldValueSync("userdata", "Nickname", { bizKey = zahler });
+            bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { bizKey = zahler });
 
             local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
             addEventHandler("onPickupHit", bizpickup, showBizInfo)

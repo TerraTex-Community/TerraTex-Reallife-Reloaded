@@ -208,7 +208,7 @@ function getcar_func(thePlayer,cmd,IDs)
 							vioSetElementData(thevehicle,"kmstand",dasatz["kmstand"])
 							vioSetElementData(thevehicle,"premColor","-1")
 							local time=getRealTime()
-							local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = dasatz["Besitzer"]}) - time.timestamp;
+							local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", {Name = dasatz["Besitzer"]}) - time.timestamp;
 
 							if(premiumOutTime>0)then
 								local lights=getStringComponents(vioGetElementData(thevehicle,"Lichterfarbe"))

@@ -35,7 +35,7 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
     end
 
     --Besitzer auslesen
-    self.besitzer = MySql.helper.getFieldValueSync("userdata", "Nickname", { newhkey = ID });
+    self.besitzer = MySql.helper.getValueSync("userdata", "Nickname", { newhkey = ID });
 
     --Erstellung des Pickups
     self.pickup = createPickup(hx, hy, hz, 3, 1273, 5000)

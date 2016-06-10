@@ -28,7 +28,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         testtag = pregReplace(testtag, "\\]", "")
         if (string.find(string.lower(playerNick), string.lower(testtag))) then
             --outputDebugString(theSonder)
-            if (MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = playerNick })) then
+            if (MySql.helper.getValueSync("players", "Nickname", { Nickname = playerNick })) then
             else
                 cancelEvent(true, "Das ClanTag " .. config["clantag"] .. " kann nur durch einen Admin vergeben werden!")
                 return true;
@@ -43,48 +43,41 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
             return true;
         end
 
-
-
-
-
-
         local IP = mysql_escape_string(handler, playerIP)
         local uname = mysql_escape_string(handler, playerNick)
         local serial = mysql_escape_string(handler, playerSerial)
 
-
-
         if (MySQL_DatasetExist("ban", "IP='" .. IP .. "'")) then
-            local reason = MySql.helper.getFieldValueSync("ban", "Grund", { IP = IP });
+            local reason = MySql.helper.getValueSync("ban", "Grund", { IP = IP });
 
-            local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { IP = IP });
-            local admin = MySql.helper.getFieldValueSync("ban", "Admin", { IP = IP });
+            local datum = MySql.helper.getValueSync("ban", "Bandatum", { IP = IP });
+            local admin = MySql.helper.getValueSync("ban", "Admin", { IP = IP });
             local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
             cancelEvent(true, banstring)
             return true;
         else
 
             if (MySQL_DatasetExist("ban", "Nickname='" .. uname .. "'")) then
-                local reason = MySql.helper.getFieldValueSync("ban", "Grund", { Nickname = uname });
-                local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { Nickname = uname });
-                local admin = MySql.helper.getFieldValueSync("ban", "Admin", { Nickname = uname });
+                local reason = MySql.helper.getValueSync("ban", "Grund", { Nickname = uname });
+                local datum = MySql.helper.getValueSync("ban", "Bandatum", { Nickname = uname });
+                local admin = MySql.helper.getValueSync("ban", "Admin", { Nickname = uname });
                 local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                 cancelEvent(true, banstring)
                 return true;
             else
                 if (MySQL_DatasetExist("ban", "Serial='" .. serial .. "'")) then
-                    local reason = MySql.helper.getFieldValueSync("ban", "Grund", { Serial = serial });
-                    local datum = MySql.helper.getFieldValueSync("ban", "Bandatum", { Serial = serial });
-                    local admin = MySql.helper.getFieldValueSync("ban", "Admin", { Serial = serial });
+                    local reason = MySql.helper.getValueSync("ban", "Grund", { Serial = serial });
+                    local datum = MySql.helper.getValueSync("ban", "Bandatum", { Serial = serial });
+                    local admin = MySql.helper.getValueSync("ban", "Admin", { Serial = serial });
                     local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                     cancelEvent(true, banstring)
                     return true;
                 else
 
                     if (MySQL_DatasetExist("timeban", "Nickname='" .. uname .. "'")) then
-                        local reason = MySql.helper.getFieldValueSync("timeban", "Grund", { Nickname = uname });
-                        local admin = MySql.helper.getFieldValueSync("timeban", "Admin", { Nickname = uname });
-                        local rest = MySql.helper.getFieldValueSync("timeban", "Minuten", { Nickname = uname });
+                        local reason = MySql.helper.getValueSync("timeban", "Grund", { Nickname = uname });
+                        local admin = MySql.helper.getValueSync("timeban", "Admin", { Nickname = uname });
+                        local rest = MySql.helper.getValueSync("timeban", "Minuten", { Nickname = uname });
                         local timestring = rest .. " Minuten"
                         if (rest >= 120) then
                             rest = math.round(rest / 60, 0)
@@ -132,7 +125,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
             end
         end
 
-        if (MySql.helper.getFieldValueSync("players", "force_nickchange", { Nickname = uname }) == 1) then
+        if (MySql.helper.getValueSync("players", "force_nickchange", { Nickname = uname }) == 1) then
             cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage einen Nickchange auf " .. config["maindomain"] .. " um einen Account wieder freizuschalten.")
             return true;
         end
@@ -243,8 +236,8 @@ function resetIsLogged(source)
 end
 
 function LoginPlayerData(nickname, pw)
-    local passdb = MySql.helper.getFieldValueSync("players", "Passwort", { Nickname = nickname });
-    local saltdb = MySql.helper.getFieldValueSync("players", "Salt", { Nickname = nickname });
+    local passdb = MySql.helper.getValueSync("players", "Passwort", { Nickname = nickname });
+    local saltdb = MySql.helper.getValueSync("players", "Salt", { Nickname = nickname });
 
     local pass;
     pw = saltdb .. pw
@@ -384,7 +377,7 @@ function LoginPlayerData(nickname, pw)
 
         vioSetElementData(source, "verheiratet", tonumber(userdataData["verheiratet"]))
         if (vioGetElementData(source, "verheiratet") ~= 0) then
-            vioSetElementData(source, "verheiratetMitName", MySql.helper.getFieldValueSync("players", "Nickname", { ID = vioGetElementData(source, "verheiratet") }))
+            vioSetElementData(source, "verheiratetMitName", MySql.helper.getValueSync("players", "Nickname", { ID = vioGetElementData(source, "verheiratet") }))
 
             if (vioGetElementData(source, "verheiratetMitName") == false) then
                 vioSetElementData(source, "verheiratet", 0)
@@ -592,7 +585,7 @@ function LoginPlayerData(nickname, pw)
         setPlayerMoney(source, vioGetElementData(source, "money"))
 
         local time = getRealTime()
-        local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
+        local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
 
         vioSetElementData(source, "premium", 0)
         if (premiumOutTime > 0) then
@@ -606,7 +599,7 @@ function LoginPlayerData(nickname, pw)
             outputChatBox("Du hast kein Premium? Kauf dir doch welches! Infos unter /premium!", source, 0, 255, 0)
         end
 
-        local onlineSchutzUntil = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
+        local onlineSchutzUntil = MySql.helper.getValueSync("terratapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
         vioSetElementData(source, "onlineschutzuntil", 0)
         if (onlineSchutzUntil > 0) then
             local days = math.round(((onlineSchutzUntil / 60) / 60) / 24)
@@ -671,18 +664,18 @@ addEventHandler("loginPlayer", getRootElement(), LoginPlayerData)
 function loadTapps(thePlayer)
     local appTable = {}
     appTable["Tapp-Marketplace"] = 1
-    appTable["Friendlist"] = MySql.helper.getFieldValueSync("terratapps", "Friendlist", { Nickname = getPlayerName(thePlayer) })
-    appTable["GPS"] = MySql.helper.getFieldValueSync("terratapps", "GPS", { Nickname = getPlayerName(thePlayer) })
-    appTable["Stopuhr"] = MySql.helper.getFieldValueSync("terratapps", "Stopuhr", { Nickname = getPlayerName(thePlayer) })
-    appTable["Blitzermelder"] = MySql.helper.getFieldValueSync("terratapps", "Blitzermelder", { Nickname = getPlayerName(thePlayer) })
-    appTable["Kompass"] = MySql.helper.getFieldValueSync("terratapps", "Kompass", { Nickname = getPlayerName(thePlayer) })
-    appTable["EMail"] = MySql.helper.getFieldValueSync("terratapps", "EMail", { Nickname = getPlayerName(thePlayer) })
-    appTable["Notizblock"] = MySql.helper.getFieldValueSync("terratapps", "Notizblock", { Nickname = getPlayerName(thePlayer) })
-    appTable["Colorpicker"] = MySql.helper.getFieldValueSync("terratapps", "Colorpicker", { Nickname = getPlayerName(thePlayer) })
-    appTable["TicTacToe"] = MySql.helper.getFieldValueSync("terratapps", "TicTacToe", { Nickname = getPlayerName(thePlayer) })
-    appTable["MineSweeper"] = MySql.helper.getFieldValueSync("terratapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
-    appTable["OnlineBanking"] = MySql.helper.getFieldValueSync("terratapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
-    appTable["OnlineSchutz"] = MySql.helper.getFieldValueSync("terratapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
+    appTable["Friendlist"] = MySql.helper.getValueSync("terratapps", "Friendlist", { Nickname = getPlayerName(thePlayer) })
+    appTable["GPS"] = MySql.helper.getValueSync("terratapps", "GPS", { Nickname = getPlayerName(thePlayer) })
+    appTable["Stopuhr"] = MySql.helper.getValueSync("terratapps", "Stopuhr", { Nickname = getPlayerName(thePlayer) })
+    appTable["Blitzermelder"] = MySql.helper.getValueSync("terratapps", "Blitzermelder", { Nickname = getPlayerName(thePlayer) })
+    appTable["Kompass"] = MySql.helper.getValueSync("terratapps", "Kompass", { Nickname = getPlayerName(thePlayer) })
+    appTable["EMail"] = MySql.helper.getValueSync("terratapps", "EMail", { Nickname = getPlayerName(thePlayer) })
+    appTable["Notizblock"] = MySql.helper.getValueSync("terratapps", "Notizblock", { Nickname = getPlayerName(thePlayer) })
+    appTable["Colorpicker"] = MySql.helper.getValueSync("terratapps", "Colorpicker", { Nickname = getPlayerName(thePlayer) })
+    appTable["TicTacToe"] = MySql.helper.getValueSync("terratapps", "TicTacToe", { Nickname = getPlayerName(thePlayer) })
+    appTable["MineSweeper"] = MySql.helper.getValueSync("terratapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
+    appTable["OnlineBanking"] = MySql.helper.getValueSync("terratapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
+    appTable["OnlineSchutz"] = MySql.helper.getValueSync("terratapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
     vioSetElementData(thePlayer, "tappapps", appTable)
 
     local mails = MySQL_GetResultsCount("emails", "neu='1' and Empfaenger='" .. getPlayerName(thePlayer) .. "'")

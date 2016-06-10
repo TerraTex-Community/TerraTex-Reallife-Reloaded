@@ -174,8 +174,8 @@
 				local time=getRealTime()
 				local nickname=getPlayerName(thePlayer)
 
-				local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
-				local hasPremGutSchein = MySql.helper.getFieldValueSync("premium", "PremiumGutScheine", {Name = nickname});
+				local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", {Name = nickname}) - time.timestamp;
+				local hasPremGutSchein = MySql.helper.getValueSync("premium", "PremiumGutScheine", {Name = nickname});
 
 				local thirty=2592000
 				outputChatBox("Dir wurden 30 Tage Premium gutgeschrieben!",thePlayer,0,255,0)

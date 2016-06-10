@@ -2,7 +2,9 @@
 ####10.06.2016
 * [REMOVED] Senseless Admincommands
 * [REMOVED] Old Function MySQL_GetString removed
-* [CHANGED] Functions MySql.helper.getFieldValueSync and MySql.helper.getColumn supports now other compare options then "=" (set a table {comparer, value} instead of value in this case)
+* [REMOVED] MySql.helper.getColumn doesn't make any sense
+* [CHANGED] Rename MySql.helper.getFieldValueSync to MySql.helper.getValueSync
+* [CHANGED] Function MySql.helper.getFieldValueSync supports now other compare options then "=" (set a table {comparer, value} instead of value in this case)
 * [CHANGED] Some Commandhandlers from addCommandHandler with anonym functions to named functions (for autogeneration of docs)
 
 ####09.06.2016

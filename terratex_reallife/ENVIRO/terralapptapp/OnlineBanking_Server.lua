@@ -9,9 +9,9 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
 				if (betrag > 0) then
 					local empf
 					if (MySQL_GetResultsCount("players", "Nickname = '" .. empfaenger .. "'") == 1) then
-						empf = MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = empfaenger });
+						empf = MySql.helper.getValueSync("players", "Nickname", { Nickname = empfaenger });
 					elseif (MySQL_GetResultsCount("players", "Nickname = '"..config["clantag"].. empfaenger .. "'") == 1) then
-						empf = MySql.helper.getFieldValueSync("players", "Nickname", { Nickname = (config["clantag"] .. empfaenger) });
+						empf = MySql.helper.getValueSync("players", "Nickname", { Nickname = (config["clantag"] .. empfaenger) });
 					end
 					if (empf) then
 						if (MySQL_DatasetExist("userdata", "Nickname='" .. empf .. "'")) then

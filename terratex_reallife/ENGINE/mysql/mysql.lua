@@ -80,7 +80,7 @@ end
 -- @param conditions Optional: Table with conditions (optional) Form: { "fieldName": "value" }
 -- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
 -- @return theValue if success false otherwise or false if there are more then one row as result
-MySql.helper.getFieldValueSync = function(tableName, fieldName, conditions, operation)
+MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation)
     local query, params = prepareGetValueFunc(tableName, fieldName, conditions, operation);
 
     local handler = dbQuery(MySql._mainConnection, query, unpack(params));
@@ -96,42 +96,6 @@ MySql.helper.getFieldValueSync = function(tableName, fieldName, conditions, oper
     end
 end
 
---- Get a table with the values of a columns spezified by conditions
--- @param tableName Name of the Table
--- @param fieldName Name of Field where to find the value
--- @param conditions Optional: Table with conditions (optional) Form: { "fieldName": "value" }
--- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
--- @param callback Callbackfunction
--- @param callbackParams Params of callback
-MySql.helper.getColumn = function(tableName, fieldName, conditions, operation, callback, callbackParams)
-    if (type(conditions) == "function") then
-        if (type(operation) == "table") then
-            callbackParams = operation;
-        end
-        callback = conditions;
-        conditions = nil;
-        operation = nil;
-    end
-
-    if (type(operation) == "function") then
-        if (type(callback) == "table") then
-            callbackParams = callback;
-        end
-        callback = operation;
-        operation = nil;
-    end
-
-
-    assert(type(callback) == "function", "Function as callback expected got " .. type(callback));
-
-    local query, params = prepareGetVarFunc(tableName, fieldName, conditions, operation);
-
-    if (type(operation) == "callbackParams") then
-        dbQuery(callback, callbackParams, MySql._mainConnection, query, unpack(params))
-    else
-        dbQuery(callback, MySql._mainConnection, query, unpack(params))
-    end
-end
 
 -- init mysql
 MySql.init();

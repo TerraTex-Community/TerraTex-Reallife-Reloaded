@@ -14,7 +14,7 @@ function top_on_player_join()
     local query = "UPDATE top_user_daily SET user='" .. maxUsers .. "' WHERE user<" .. maxUsers .. " and date=CURDATE()"
     mysql_query(handler, query)
 
-    local value = MySql.helper.getFieldValueSync("serversettings", "Wert", { Name = "Max_Users" });
+    local value = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Max_Users" });
 
 
     if (value < maxUsers) then

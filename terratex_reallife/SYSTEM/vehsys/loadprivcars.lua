@@ -77,9 +77,9 @@ function loadPrivCars()
 			
 			vioSetElementData(thevehicle,"premColor","-1")
 			local time=getRealTime()
-			if(tonumber(MySql.helper.getFieldValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"]})))then
+			if(tonumber(MySql.helper.getValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"]})))then
 
-				local premiumOutTime = MySql.helper.getFieldValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
+				local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
 				if(premiumOutTime>0)then
 					local lights=getStringComponents(vioGetElementData(thevehicle,"Lichterfarbe"))
 					setVehicleHeadLightColor (thevehicle,tonumber(lights[1]),tonumber(lights[2]),tonumber(lights[3]))
@@ -254,8 +254,8 @@ function onvehicleexplode_exec(source)
 			end
 			save_offline_message(vioGetElementData(source,"besitzer"),"Fahrzeugsystem","Ihr Fahrzeug im Slot "..vioGetElementData(source,"slotid").." wurde zerstört")
 			local time=getRealTime()
-			local premium = MySql.helper.getFieldValueSync("premium", "PremiumUntil", {Name = vioGetElementData(source,"besitzer")}) - time.timestamp;
-			local versicherung=MySql.helper.getFieldValueSync("userdata", "versicherung", {Nickname = vioGetElementData(source,"besitzer")});
+			local premium = MySql.helper.getValueSync("premium", "PremiumUntil", {Name = vioGetElementData(source,"besitzer")}) - time.timestamp;
+			local versicherung=MySql.helper.getValueSync("userdata", "versicherung", {Nickname = vioGetElementData(source,"besitzer")});
 
 			if(versicherung==1 or premium>0)then
 				local satz=0

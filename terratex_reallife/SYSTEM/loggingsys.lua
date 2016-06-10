@@ -195,7 +195,7 @@ function checkBeleidigung(thePlayer, Message)
             MySQL_SetVar("userdata", "tban_reason1", reasons, "Nickname='" .. pln .. "'")
         end
         if (vioGetElementData(thePlayer, "tbans") > 1) then
-            local tban_reason = MySql.helper.getFieldValueSync("userdata", "tban_reason1", { Nickname = pln });
+            local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
 
             MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
@@ -235,7 +235,7 @@ function bban_func(thePlayer, cmd, id)
                             MySQL_SetVar("userdata", "tban_reason1", reasons, "Nickname='" .. pln .. "'")
                         end
                         if (vioGetElementData(theBeBanned, "tbans") > 1) then
-                            local tban_reason = MySql.helper.getFieldValueSync("userdata", "tban_reason1", { Nickname = pln });
+                            local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
                             MySQL_SetVar("userdata", "tban_reason1", "no_reason", "Nickname='" .. pln .. "'")
                             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
                             local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','Anti-Beleidigungs-System','" .. newreason .. "');"
@@ -361,9 +361,9 @@ end
 function multiacc_func(thePlayer, command, toPlayerName)
     if (isAdminLevel(thePlayer, 1)) then
         local pname = toPlayerName
-        local IP = MySql.helper.getFieldValueSync("players", "IP", { Nickname = pname });
+        local IP = MySql.helper.getValueSync("players", "IP", { Nickname = pname });
 
-        local Serial = MySql.helper.getFieldValueSync("players", "Serial", { Nickname = pname });
+        local Serial = MySql.helper.getValueSync("players", "Serial", { Nickname = pname });
         if (IP and Serial) then
             local multiIP = MySQL_GetResultsCount("players", "IP='" .. IP .. "'")
             local multiSerial = MySQL_GetResultsCount("players", "Serial='" .. Serial .. "'")

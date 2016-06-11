@@ -52,8 +52,9 @@ function createTrains_func()
         local trainID = 537 + rand
 
         local marker = math.floor(#trainPortPoints / #traintraillers * trainCounter)
-
-        trains[trainCounter + 1] = createVehicle(trainID, trainPortPoints[marker][1], trainPortPoints[marker][2], trainPortPoints[marker][3], 0, 0, 0, "Zug", true)
+        outputDebugString("marker: " .. marker);
+        local coord = trainPortPoints[marker];
+        trains[trainCounter + 1] = createVehicle(trainID, coord[1], coord[2], coord[3], 0, 0, 0, "Zug", true)
         setTrainDerailable(trains[trainCounter + 1], false)
         setTrainDirection(trains[trainCounter + 1], true)
         vioSetElementData(trains[trainCounter + 1], "lastSnycMark", marker)

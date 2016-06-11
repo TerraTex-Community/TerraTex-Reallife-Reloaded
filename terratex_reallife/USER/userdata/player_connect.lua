@@ -91,14 +91,14 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
         --MultiaccCheck
-        if not (MySql.helper.existSync("players", {Nickname = uname })) then
+        if not (MySql.helper.existSync("players", {Nickname = playerNick })) then
 
-            if (MySql.helper.existSync("players", {Serial = serial })) then
-                if (MySql.helper.existSync("multiaccount_serial", {Serial = serial })) then
+            if (MySql.helper.existSync("players", {Serial = playerSerial })) then
+                if (MySql.helper.existSync("multiaccount_serial", {Serial = playerSerial })) then
 
                     local multiSerialAccounts = {}
                     local id = 0
-                    local result = mysql_query(handler, "SELECT * from multiaccount_serial WHERE Serial='" .. serial .. "'")
+                    local result = mysql_query(handler, "SELECT * from multiaccount_serial WHERE Serial='" .. playerSerial .. "'")
                     while (true) do
                         local dsatz = mysql_fetch_assoc(result)
                         if (not dsatz) then break else
@@ -111,7 +111,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                 else
                     local multiSerialAccounts = {}
                     local id = 0
-                    local result = mysql_query(handler, "SELECT * from players WHERE Serial='" .. serial .. "'")
+                    local result = mysql_query(handler, "SELECT * from players WHERE Serial='" .. playerSerial .. "'")
                     while (true) do
                         local dsatz = mysql_fetch_assoc(result)
                         if (not dsatz) then break else
@@ -119,14 +119,13 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                         end
                     end
                     mysql_free_result(result)
-                    --@todo: set Link to Accountshowsystem if wanted (need Controlpanel)
                     cancelEvent(true, string.format("Es wurden bereits Accounts von diesem PC, auf dem Server registriert. Infos über bereits registrierte Accounts auf: http://cp.terratex.eu/?page=multi&id=%s [Such ID: %s]", id, id))
                     return true;
                 end
             end
         end
 
-        if (MySql.helper.getValueSync("players", "force_nickchange", { Nickname = uname }) == 1) then
+        if (MySql.helper.getValueSync("players", "force_nickchange", { Nickname = playerNick }) == 1) then
             cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage einen Nickchange auf " .. config["maindomain"] .. " um einen Account wieder freizuschalten.")
             return true;
         end

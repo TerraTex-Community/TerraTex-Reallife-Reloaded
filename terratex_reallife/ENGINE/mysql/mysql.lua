@@ -74,7 +74,7 @@ end
 MySql.helper.getSync = function(tableName, fieldList, conditions, operation)
     local query = "SELECT";
     local params = {};
-    if (typeof(fieldList) == "table") then
+    if (type(fieldList) == "table") then
         local firstSelect = true;
         for theKey, theValue in pairs(fieldList) do
             if (not firstSelect) then

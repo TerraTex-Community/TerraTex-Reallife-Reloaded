@@ -138,6 +138,8 @@ MySql.helper.getCountSync = function(tableName, conditions, operation)
         outputDebugString("ERROR IN MySql.helper.getCountSync: " .. errorCode);
         outputDebugString(errorString);
         outputDebugString("in Query: " .. query .." Params: " .. table.concat(params, ", "));
+        outputDebugString("Stacktrace: ");
+        outputDebugString(debug.traceback());
     end
     return tonumber(result[1]["counted"]);
 end

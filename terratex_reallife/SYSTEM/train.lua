@@ -52,7 +52,10 @@ function createTrains_func()
         local trainID = 537 + rand
 
         local marker = math.floor(#trainPortPoints / #traintraillers * trainCounter)
-        outputDebugString("marker: " .. marker);
+
+        if (marker > #trainPortPoints) then marker = #trainPortPoints -1; end
+        if (marker == 0) then marker = 1; end
+
         local coord = trainPortPoints[marker];
         trains[trainCounter + 1] = createVehicle(trainID, coord[1], coord[2], coord[3], 0, 0, 0, "Zug", true)
         setTrainDerailable(trains[trainCounter + 1], false)

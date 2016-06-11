@@ -601,11 +601,11 @@ function admins_func(theMaker, command)
     local adminpre = " "
 
     local adminList = {}
-    for k, v in ipairs(getPlayersByDataValue("adminlvl", 4)) do adminList.insert(v) end
-    for k, v in ipairs(getPlayersByDataValue("adminlvl", 3)) do adminList.insert(v) end
-    for k, v in ipairs(getPlayersByDataValue("adminlvl", 2)) do adminList.insert(v) end
-    for k, v in ipairs(getPlayersByDataValue("adminlvl", 1)) do adminList.insert(v) end
-    for k, v in ipairs(getPlayersByDataValue("SupportLVL", 1)) do adminList.insert(v) end
+    for k, v in ipairs(getPlayersByDataValue("adminlvl", 4)) do table.insert(adminList, v) end
+    for k, v in ipairs(getPlayersByDataValue("adminlvl", 3)) do table.insert(adminList, v) end
+    for k, v in ipairs(getPlayersByDataValue("adminlvl", 2)) do table.insert(adminList, v) end
+    for k, v in ipairs(getPlayersByDataValue("adminlvl", 1)) do table.insert(adminList, v) end
+    for k, v in ipairs(getPlayersByDataValue("SupportLVL", 1)) do table.insert(adminList, v) end
 
     for theKey, thePlayer in ipairs(adminList) do
         if (isPlayerLoggedIn(thePlayer)) then

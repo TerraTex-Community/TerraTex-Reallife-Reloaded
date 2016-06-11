@@ -1,5 +1,9 @@
+####11.06.2016
+------
+* [FIXED] Adminlist /admins was not working
 
 ####10.06.2016
+------
 * [ADDED] New Helperfunction table.concat
 * [ADDED] MySql.helper.update()
 * [ADDED] MySql.helper.delete()

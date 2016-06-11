@@ -63,95 +63,87 @@ function loadSettingsFromDB()
         local timestamp = time.timestamp
 
         if (timestamp - (22 * 60 * 60) > lastDailyReset) then
-            local query = "UPDATE serversettings SET Wert='" .. timestamp .. "' WHERE Name='DailyReset'"
-            mysql_query(handler, query)
-            local query = "UPDATE vehicles SET fahrzeugalter=fahrzeugalter+1"
-            mysql_query(handler, query)
-            local query = "DELETE FROM vehicles WHERE SpawnX='0' and SpawnY='0' and SpawnZ='0' and fahrzeugalter>3"
-            mysql_query(handler, query)
+            MySql.helper.update("serversettings", {Wert = timestamp}, {Name = 'DailyReset'});
+            dbExec(MySql._connection, "UPDATE vehicles SET fahrzeugalter=fahrzeugalter+1");
+            MySql.helper.delete("vehicles", {
+                SpawnX = 0,
+                SpawnY = 0,
+                SpawnZ = 0,
+                fahrzeugalter = {">", 3}
+            });
 
-            local query = "UPDATE players SET AktiveDays=AktiveDays+1"
-            mysql_query(handler, query)
-            local query = "UPDATE userdata SET AktiveDays=AktiveDays+1"
-            mysql_query(handler, query)
+            dbExec(MySql._connection, "UPDATE players SET AktiveDays=AktiveDays+1");
+            dbExec(MySql._connection, "UPDATE userdata SET AktiveDays=AktiveDays+1");
+
             local changeaccounts = 0
-            local query = "SELECT Nickname FROM players WHERE AktiveDays>30 AND AktiveDays<35"
-            local result = mysql_query(handler, query)
-            if (result) then
-                local zahler = 0
-                local queryb = ""
 
-                while zahler < mysql_num_rows(result) do
-                    queryb = "DELETE FROM vehicles WHERE Besitzer='" .. mysql_result(result, (zahler + 1), 1) .. "'"
-                    queryb = "UPDATE vehicles SET abgeschleppt='1' WHERE Besitzer='" .. mysql_result(result, (zahler + 1), 1) .. "'"
-                    save_offline_message(mysql_result(result, (zahler + 1), 1), "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge abgeschleppt.")
-                    mysql_query(handler, queryb)
+            local result = MySql.helper.getSync("players", "Nickname", {
+                {"AktiveDays", ">", 30},
+                {"AktiveDays", "<", 35}
+            });
+
+            if (result) then
+                for theKey, theRow in ipairs(result) do
+                    MySql.helper.update("vehicles", {abgeschleppt = 1}, {Besitzer = theRow["Nickname"]});
+                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge abgeschleppt.")
+
                     changeaccounts = changeaccounts + 1
-                    zahler = zahler + 1
                 end
             end
 
-            local query = "SELECT Nickname FROM players WHERE AktiveDays>90 AND AktiveDays<95"
-            local result = mysql_query(handler, query)
-            if (result) then
-                local zahler = 0
-                local queryb = ""
+            result = MySql.helper.getSync("players", "Nickname", {
+                {"AktiveDays", ">", 60},
+                {"AktiveDays", "<", 65}
+            });
 
-                while zahler < mysql_num_rows(result) do
-                    queryb = "DELETE FROM vehicles WHERE Besitzer='" .. mysql_result(result, (zahler + 1), 1) .. "'"
-                    queryb = "UPDATE vehicles SET abgeschleppt='1' Besitzer='" .. mysql_result(result, (zahler + 1), 1) .. "'"
-                    save_offline_message(mysql_result(result, (zahler + 1), 1), "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge, Haus, Biz und Prestige gelöscht.")
-                    mysql_query(handler, queryb)
+            if (result) then
+                for theKey, theRow in ipairs(result) do
+                    MySql.helper.delete("vehicles", {Besitzer = theRow["Nickname"]});
+                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge gelöscht.")
                     changeaccounts = changeaccounts + 1
-                    zahler = zahler + 1
                 end
             end
 
-            local query = "SELECT Nickname FROM players WHERE AktiveDays>90 AND AktiveDays<95"
-            local result = mysql_query(handler, query)
-            local zahler = 0
+            result = MySql.helper.getSync("players", "Nickname", {
+                {"AktiveDays", ">", 90},
+                {"AktiveDays", "<", 95}
+            });
             if (result) then
-                local queryb = ""
-                while zahler < mysql_num_rows(result) do
-                    queryb = "UPDATE userdata SET hkey='0',bizKey='0',prestigeKey='0' WHERE Nickname='" .. mysql_result(result, (zahler + 1), 1) .. "'"
-                    mysql_query(handler, queryb)
-                    changeaccounts = changeaccounts + 1
-                    zahler = zahler + 1
+                for theKey, theRow in ipairs(result) do
+                    MySql.helper.update("userdata", {
+                        Fraktion = 0,
+                        newhkey = 0,
+                        bizkey = 0,
+                        prestigeKey = 0
+                    }, {Nickname = theRow["Nickname"]})
+                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurde deine Fraktion, dein Haus, dein Prestige und dein Business zurückgesetzt.")
+
+                    changeaccounts = changeaccounts + 1;
                 end
             end
+
             local query = "SELECT userdata.* FROM userdata LEFT JOIN players ON players.Nickname=userdata.Nickname WHERE userdata.PlayTime<=600 and players.AktiveDays>=30"
-            local result = mysql_query(handler, query)
-            local zahler = 0
-            if (result) then
-                local queryb = ""
-                while zahler < mysql_num_rows(result) do
-                    local dasatz = mysql_fetch_assoc(result)
-                    queryb = "DELETE FROM players WHERE Nickname='" .. dasatz["Nickname"] .. "'"
-                    mysql_query(handler, queryb)
+            local handler = dbQuery(MySql._connection, query);
+            local result = dbPoll(handler, -1);
 
-                    save_log("nickdelete", dasatz["Nickname"])
-                    changeaccounts = changeaccounts + 1
-                    zahler = zahler + 1
+            if (result) then
+                for theKey, dasatz in ipairs(result) do
+                    MySql.helper.delete("players", {Nickname = dasatz["Nickname"]});
+
+                    save_log("nickdelete", dasatz["Nickname"]);
+                    changeaccounts = changeaccounts + 1;
                 end
             end
 
-            local query = "SELECT Nickname FROM players WHERE AktiveDays>365"
-            local result = mysql_query(handler, query)
-            local zahler = 0
-            local queryb = ""
+            result = MySql.helper.getSync("players", "Nickname", {
+                AktiveDays = {">", 365}
+            });
             if (result) then
-                while zahler < mysql_num_rows(result) do
-                    local dasatz = mysql_fetch_assoc(result)
-                    --	queryb="DELETE FROM players WHERE Nickname='"..dasatz["Nickname"].."'"
-                    --	mysql_query(handler,queryb)
+                for theKey, dasatz in ipairs(result) do
+                    MySql.helper.delete("players", {Nickname = dasatz["Nickname"]});
 
-                    --	queryb="INSERT INTO CP_deletes (Name) VALUES ('"..dasatz["Nickname"].."');"
-                    --	mysql_query(handler,queryb)
-
-                    --	save_log( "nickdelete", dasatz["Nickname"])
-                    --
-                    changeaccounts = changeaccounts + 1
-                    zahler = zahler + 1
+                    save_log("nickdelete", dasatz["Nickname"]);
+                    changeaccounts = changeaccounts + 1;
                 end
             end
             outputDebugString(tostring(changeaccounts) .. " Accounts have been Changed")
@@ -200,12 +192,13 @@ end
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), stopResource_func)
 
 function reduceSchutzGeld(timestate)
-    local query = "UPDATE userdata SET schutzgeld=schutzgeld-1 WHERE schutzgeld>0"
-    mysql_query(handler, query)
+    local query = "UPDATE userdata SET schutzgeld=schutzgeld-1 WHERE schutzgeld>0";
+    dbExec(MySql._connection, query);
+
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
         if (vioGetElementData(thePlayer, "schutzgeld")) then
             if (vioGetElementData(thePlayer, "schutzgeld") > 0) then
-                vioSetElementData(thePlayer, "schutzgeld", vioGetElementData(thePlayer, "schutzgeld"))
+                vioSetElementData(thePlayer, "schutzgeld", vioGetElementData(thePlayer, "schutzgeld") - 1)
             end
         end
     end
@@ -243,17 +236,9 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), af
 
 function timebanreduce()
     local query = "UPDATE timeban SET Minuten=Minuten-1;"
-    local reason = mysql_query(handler, query)
-    if not reason then
-        outputDebugString("ERROR IN REDUCE TIMEBAN!" .. query)
-        outputDebugString(mysql_error(handler))
-    end
-    local query = "DELETE FROM timeban WHERE Minuten<='0'"
-    local reason = mysql_query(handler, query)
-    if not reason then
-        outputDebugString("ERROR IN REDUCE TIMEBAN!" .. query)
-        outputDebugString(mysql_error(handler))
-    end
+    dbExec(MySql._connection, query);
+    MySql.helper.delete("timeban", {Minuten = {"<=", 0}});
+
     setTimer(timebanreduce, 60000, 1)
 end
 
@@ -265,7 +250,6 @@ function start_GMX()
     if (string.upper(config["dailyrestarttype"]) ~= "NONE") then
         local hours = getRealTime()
         setTime(hours.hour, hours.minute)
-        --outputDebugString(tostring(hours.hour).." "..tostring(hours.minute))
         if (hours.hour == 3) then
             if (startResourceUPGMX > 0) then
                 outputDebugString("AUTO GMX Started by Console")

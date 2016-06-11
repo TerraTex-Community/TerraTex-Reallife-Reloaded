@@ -8,6 +8,7 @@
 * [FIXED] Adminlist /admins was not working
 * [CHANGED] Trains are now spawning on different positions
 * [GENERAL] Reworked all mysql_querys in email_server.lua
+* [GENERAL] Reworked all mysql_querys in loadserversettings.lua
 
 ####10.06.2016
 ------

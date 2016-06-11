@@ -42,7 +42,7 @@ local function prepareConditions(conditions, operation)
 
         if (not operation) then operation = "AND" end
         local firstCondition = true;
-        local compare, value;
+        local compare, value, field;
 
         for theField, theValue in pairs(conditions) do
             if not firstCondition then
@@ -52,13 +52,20 @@ local function prepareConditions(conditions, operation)
             end
             compare = "=";
             value = theValue;
+            field = theField;
             if (type(theValue) == "table") then
-                compare = theValue[1];
-                value = theValue[2];
+                if (table.getSize(theValue) == 2) then
+                    compare = theValue[1];
+                    value = theValue[2];
+                else
+                    compare = theValue[2];
+                    value = theValue[3];
+                    field = theValue[1];
+                end
             end
 
             query = query .. "`??` " .. compare .. " ?";
-            table.insert(params, theField);
+            table.insert(params, field);
             table.insert(params, value);
         end
     end

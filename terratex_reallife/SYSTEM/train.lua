@@ -41,6 +41,11 @@ trainSpawnItem = 1550
 trainSpawnItemWaitTime = 10000
 
 local trailers = { 590, 569, 570 }
+
+function createTrans_Timer_Func()
+    setTimer(createTrains_func, 10000, 1);
+end
+
 function createTrains_func()
     if (trainCounter < 4) then
         local rand = math.random(0, 1)
@@ -68,7 +73,7 @@ function createTrains_func()
         createTrains_func()
     end
 end
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTrains_func)
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTrans_Timer_Func)
 
 function isPlayerNearTrain(theTrainID)
     local x, y, z = getElementPosition(trains[theTrainID])

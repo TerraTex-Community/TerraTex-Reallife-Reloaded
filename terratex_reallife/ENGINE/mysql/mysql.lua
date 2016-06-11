@@ -133,7 +133,12 @@ MySql.helper.getCountSync = function(tableName, conditions, operation)
     params = table.merge(params, conditionParams);
 
     local handler = dbQuery(MySql._connection, query, unpack(params));
-    local result = dbPoll(handler, -1);
+    local result, errorCode, errorString = dbPoll(handler, -1);
+    if not result then
+        outputDebugString("ERROR IN MySql.helper.getCountSync: " .. errorCode);
+        outputDebugString(errorString);
+        outputDebugString("in Query: " .. query .." Params: " .. table.concat(params, ", "));
+    end
     return tonumber(result[1]["counted"]);
 end
 

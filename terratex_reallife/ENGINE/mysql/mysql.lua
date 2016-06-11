@@ -144,6 +144,65 @@ MySql.helper.getCountSync = function(tableName, conditions, operation)
     return tonumber(result[1]["counted"]);
 end
 
+
+local function generateInsertQuery(tableName, insertValue)
+    local query = "INSERT INTO (";
+    local params = {};
+    local values = {};
+    local valueQuery = "";
+
+    local firstInsert = true;
+    for theKey, theValue in pairs(insertValue) do
+        if (firstInsert) then
+            firstInsert = false;
+        else
+            query = query ..",";
+            valueQuery = valueQuery .. ",";
+        end
+        query = query .. "`??`";
+        valueQuery = valueQuery .. "`??`";
+        table.insert(params, theKey);
+        table.insert(values, theValue);
+    end
+
+    query = query .. ") VALUES (" .. valueQuery .. ")";
+    params = table.merge(params, values);
+
+    return query, params
+end
+
+MySql.helper.insert = function(tableName, insertValues, callback, callbackParams)
+    local query, params = generateInsertQuery(tableName, insertValues);
+
+    if (callback) then
+        if (callbackParams) then
+            dbQuery(callback, callbackParams, MySql._connection, query, unpack(params));
+        else
+            dbQuery(callback, MySql._connection, query, unpack(params));
+        end
+    else
+        dbExec(query, unpack(params));
+    end
+end
+
+MySql.helper.insertSync = function(tableName, insertValues)
+    local query, params = generateInsertQuery(tableName, insertValues);
+
+    local handler = dbQuery(MySql._connection, query, unpack(params));
+    local result, rows, lastInsertId = dbPoll(handler, -1);
+
+    if result then
+        return lastInsertId;
+    else
+        outputDebugString("ERROR IN MySql.helper.insertSync: " .. errorCode);
+        outputDebugString(errorString);
+        outputDebugString("in Query: " .. query .." Params: " .. table.concat(params, ", "));
+        outputDebugString("Stacktrace: ");
+        outputDebugString(debug.traceback());
+        return false;
+    end
+end
+
 --- Deletes Content from database
 -- @param tableName Name of the Table
 -- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}

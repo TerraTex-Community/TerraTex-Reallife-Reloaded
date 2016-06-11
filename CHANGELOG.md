@@ -1,10 +1,13 @@
 ####11.06.2016
 ------
 * [ADDED] MySql.helper.getSync()
+* [ADDED] MySql.helper.insert()
+* [ADDED] MySql.helper.insertSync()
 * [REMOVED] mysql.getFirstTableRow()
 * [REMOVED] Rubbellose werden bei Zügen nicht mehr gespawned
 * [FIXED] Adminlist /admins was not working
 * [CHANGED] Trains are now spawning on different positions
+* [GENERAL] Reworked all mysql_querys in email_server.lua
 
 ####10.06.2016
 ------

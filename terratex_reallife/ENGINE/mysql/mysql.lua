@@ -29,7 +29,6 @@ end
 
 -- Functions todo:
 -- function mysql_query(handler, query)
---  mysql.getFirstTableRow(handlers, tablename, bedingung)
 
 MySql.helper = {};
 
@@ -67,6 +66,48 @@ local function prepareConditions(conditions, operation)
     return query, params
 end
 
+--- Request Data from Database
+-- @param tableName Name of the Table
+-- @param fieldList "*" or table with colnames or {colname = alias, colname}
+-- @param conditions Optional: Table with conditions (optional) Form: { "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+MySql.helper.getSync = function(tableName, fieldList, conditions, operation)
+    local query = "SELECT";
+    local params = {};
+    if (typeof(fieldList) == "table") then
+        local firstSelect = true;
+        for theKey, theValue in pairs(fieldList) do
+            if (not firstSelect) then
+                query = query .. ","
+            else
+                firstSelect = false;
+            end
+            if (not isNumeric(theKey)) then
+                query = query .. " ?? AS ??";
+                table.insert(params, theKey);
+                table.insert(params, theValue);
+            else
+                query = query .. " ??";
+                table.insert(params, theValue);
+            end
+        end
+    else
+        query = query .. " *";
+    end
+
+    query = query .. " FROM ?? ";
+    table.insert(params, tableName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.merge(params, conditionParams);
+
+    local handler = dbQuery(MySql._connection, query, unpack(params));
+    local result = dbPoll(handler, -1);
+
+    return result;
+end
 
 --- Checks if there are datasets that pass the conditions
 -- @param tableName Name of the Table

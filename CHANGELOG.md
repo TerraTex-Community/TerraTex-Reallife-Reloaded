@@ -1,6 +1,10 @@
 ####11.06.2016
 ------
+* [ADDED] MySql.helper.getSync()
+* [REMOVED] mysql.getFirstTableRow()
+* [REMOVED] Rubbellose werden bei Zügen nicht mehr gespawned
 * [FIXED] Adminlist /admins was not working
+* [CHANGED] Trains are now spawning on different positions
 
 ####10.06.2016
 ------

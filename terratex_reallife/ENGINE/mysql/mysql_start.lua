@@ -3,13 +3,6 @@ if not mysql_query then
     stopResource(getThisResource())
 end
 
--- _mysql_error = mysql_error
-
--- function mysql_error(...)
--- 	outputDebugString(debug.traceback())
--- 	return _mysql_error(...)
--- end
-
 function MySQL_Startup()
     if (handler) then
         if (pcall(MySQL_END)) then end
@@ -36,7 +29,6 @@ function MySQL_End()
     mysql_close(handler)
 end
 
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), MySQL_Startup)
 
 function Mysql_CheckConnection()
@@ -58,26 +50,7 @@ function mysql_query(handler, query)
         save_log("mysql_error", "Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler) .. "\nQuery: " .. query)
         return false
     else
---        outputDebugString("[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] got result")
         return result
     end
 end
 
-mysql = {}
-mysql.__index = mysql
-
-function mysql.getFirstTableRow(handlers, tablename, bedingung)
-    local query = "SELECT * FROM " .. tablename .. " WHERE " .. bedingung
-    local result = mysql_query(handlers, query)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        if (mysql_num_rows(result) > 0) then
-            local dsatz = mysql_fetch_assoc(result)
-            mysql_free_result(result)
-            return dsatz
-        else
-            return false
-        end
-    end
-end

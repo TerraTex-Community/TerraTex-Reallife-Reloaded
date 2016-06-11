@@ -309,14 +309,22 @@ function LoginPlayerData(nickname, pw)
 
         dbExec(MySql._connection, "UPDATE players SET LastLogin=LastUpdate WHERE Nickname = ?", nickname);
 
-        local playersData = mysql.getFirstTableRow(handler, "players", "Nickname='" .. nickname .. "'")
-        local userdataData = mysql.getFirstTableRow(handler, "userdata", "Nickname='" .. nickname .. "'")
-        local lizensenData = mysql.getFirstTableRow(handler, "lizensen", "Nickname='" .. nickname .. "'")
-        local inventarData = mysql.getFirstTableRow(handler, "inventar", "Nickname='" .. nickname .. "'")
-        local jobskillsData = mysql.getFirstTableRow(handler, "jobskills", "Nickname='" .. nickname .. "'")
-        local archievmentsData = mysql.getFirstTableRow(handler, "archievments", "Nickname='" .. nickname .. "'")
-        local zeugnisData = mysql.getFirstTableRow(handler, "zeugnis", "Nickname='" .. nickname .. "'")
-        local rechteData = mysql.getFirstTableRow(handler, "rechte", "Nickname='" .. nickname .. "'")
+        local tmp = MySql.helper.getSync("players", "*", {Nickname = nickname});
+        local playersData = tmp[1];
+        tmp = MySql.helper.getSync("userdata", "*", {Nickname = nickname});
+        local userdataData = tmp[1];
+        tmp = MySql.helper.getSync("lizensen", "*", {Nickname = nickname});
+        local lizensenData = tmp[1];
+        tmp = MySql.helper.getSync("inventar", "*", {Nickname = nickname});
+        local inventarData = tmp[1];
+        tmp = MySql.helper.getSync("jobskills", "*", {Nickname = nickname});
+        local jobskillsData = tmp[1];
+        tmp = MySql.helper.getSync("archievments", "*", {Nickname = nickname});
+        local archievmentsData = tmp[1];
+        tmp = MySql.helper.getSync("zeugnis", "*", {Nickname = nickname});
+        local zeugnisData = tmp[1];
+        tmp = MySql.helper.getSync("rechte", "*", {Nickname = nickname});
+        local rechteData = tmp[1];
 
         setPlayerName(source, playersData["Nickname"])
 

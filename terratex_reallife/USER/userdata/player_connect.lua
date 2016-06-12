@@ -579,7 +579,7 @@ function LoginPlayerData(nickname, pw)
         triggerClientEvent(source, "empfangeRuhezonenData", source, ruhezonen)
         sendalkacolshape_func(source)
     else
-        logversuche = tonumber(vioGetElementData(source, "logtries"))
+        local logversuche = tonumber(vioGetElementData(source, "logtries"))
         logversuche = logversuche + 1
         vioSetElementData(source, "logtries", logversuche)
         local rest = 5 - logversuche

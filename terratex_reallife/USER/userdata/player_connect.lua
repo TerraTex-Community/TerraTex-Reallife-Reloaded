@@ -663,7 +663,7 @@ function loadGutschriften(thePlayer)
         MySql.helper.delete("gutschriften", { ID = dasatz["ID"] });
     end
 
-    local result = MySql.helper.getSync("servermessage", { Nickname = getPlayerName(thePlayer) });
+    local result = MySql.helper.getSync("servermessage", "*", { Nickname = getPlayerName(thePlayer) });
 
     for theKey, dasatz in ipairs(result) do
         outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", dasatz["VonName"], dasatz["Message"], dasatz["Time"]), thePlayer)

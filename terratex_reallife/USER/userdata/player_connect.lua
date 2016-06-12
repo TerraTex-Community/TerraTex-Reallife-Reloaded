@@ -133,13 +133,6 @@ addEventHandler("clientisreadyforlogin", getRootElement(), playerreadylogin)
 function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
 
     local salt = randomstring(25)
-    local nickname = mysql_escape_string(handler, nickname)
-    local pass = mysql_escape_string(handler, pass)
-    local email = mysql_escape_string(handler, email)
-    local gebt = mysql_escape_string(handler, gebt)
-    local gebm = mysql_escape_string(handler, gebm)
-    local geby = mysql_escape_string(handler, geby)
-    local werber = mysql_escape_string(handler, werber)
 
     if (werber ~= "" and MySql.helper.existSync("players", { Nickname = werber })) or werber == "" then
 
@@ -166,7 +159,7 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             MySql.helper.insert("archievments", { Nickname = nickname });
             MySql.helper.insert("terratapps", { Nickname = nickname });
             MySql.helper.insert("rechte", { Nickname = nickname });
-            MySql.helper.insert("handler", { Name = nickname });
+            MySql.helper.insert("premium", { Name = nickname });
 
             dbExec(MySql._connection, "UPDATE players SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
 

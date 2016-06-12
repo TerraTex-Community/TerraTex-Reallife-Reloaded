@@ -153,10 +153,11 @@ end
 
 
 local function generateInsertQuery(tableName, insertValue)
-    local query = "INSERT INTO (";
+    local query = "INSERT INTO `??` (";
     local params = {};
     local values = {};
     local valueQuery = "";
+    table.insert(params, tableName);
 
     local firstInsert = true;
     for theKey, theValue in pairs(insertValue) do

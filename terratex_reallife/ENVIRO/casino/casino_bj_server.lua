@@ -9,7 +9,7 @@ function reduceBlackJackHandMoney_func(money,typ)
 	if not saveTagesGewinnePerSpieler[getPlayerName(source)] then saveTagesGewinnePerSpieler[getPlayerName(source)]={} end
 	if not saveTagesGewinnePerSpieler[getPlayerName(source)][typ] then saveTagesGewinnePerSpieler[getPlayerName(source)][typ]=0 end
 	saveTagesGewinnePerSpieler[getPlayerName(source)][typ]=saveTagesGewinnePerSpieler[getPlayerName(source)][typ]-money
-	local query="INSERT INTO casinolog (Nickname,Spiel,Betrag,tagesgewinn) VALUES ('"..getPlayerName(source).."','"..typ.."','"..-money.."','"..saveTagesGewinnePerSpieler[getPlayerName(source)][typ].."')"
+	local query="INSERT INTO log_casino (Nickname,Spiel,Betrag,tagesgewinn) VALUES ('"..getPlayerName(source).."','"..typ.."','"..-money.."','"..saveTagesGewinnePerSpieler[getPlayerName(source)][typ].."')"
 	mysql_query(logs_handler,query);
 	
 end

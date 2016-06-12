@@ -436,7 +436,8 @@ function payday(thePlayer)
     end
 
     local WerberUeber25SpielstundenQuery = "SELECT * FROM players LEFT JOIN userdata ON userdata.Nickname=players.Nickname WHERE players.werber = ? and userdata.playtime>1500";
-    local result = dbQuery(MySql._connection, WerberUeber25SpielstundenQuery, getPlayerName(thePlayer))
+    local query = dbQuery(MySql._connection, WerberUeber25SpielstundenQuery, getPlayerName(thePlayer))
+    local result = dbPoll(query, -1);
     local WerberUeber25Spielstunden = table.getSize(result);
     if (WerberUeber25Spielstunden > 4) then
         if (vioGetElementData(thePlayer, "Erfolg_TerraFriend") ~= 1) then

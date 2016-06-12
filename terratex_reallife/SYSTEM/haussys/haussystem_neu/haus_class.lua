@@ -74,9 +74,8 @@ function Haus:save()
     MySql.helper.update("haussys_hdb", {
         Miete = self.miete,
         Kasse = self.kasse,
-        IRID = self.irid,
-        ID = self.ID
-    });
+        IRID = self.irid
+    }, {ID = self.ID});
     outputDebugString("Save House " .. self.ID)
 end
 

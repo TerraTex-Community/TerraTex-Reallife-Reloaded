@@ -188,7 +188,7 @@ MySql.helper.insert = function(tableName, insertValues, callback, callbackParams
             dbQuery(callback, MySql._connection, query, unpack(params));
         end
     else
-        dbExec(query, unpack(params));
+        dbExec(MySql._connection, query, unpack(params));
     end
 end
 

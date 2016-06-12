@@ -27,11 +27,3 @@ function BuyTapp_func(price, theTapp)
 	end	
 end
 addEventHandler("BuyTapp", getRootElement(), BuyTapp_func)
-
-
-
-
-
-
-
-

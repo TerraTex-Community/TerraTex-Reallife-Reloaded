@@ -150,7 +150,6 @@
 		<script src="ADMINSYSTEM/bansys.lua" type="server" />
 		<script src="ADMINSYSTEM/waffen.lua" type="server" />
 		<script src="ADMINSYSTEM/spec.lua" type="server" />
-		<script src="ADMINSYSTEM/admin_gui.lua" type="client" />
 		<script src="ADMINSYSTEM/fun.lua" type="server" />
 		<script src="ADMINSYSTEM/fun_client.lua" type="client" />
 		<script src="ADMINSYSTEM/development_func.lua" type="server" />		

@@ -851,6 +851,7 @@ function gmx_start()
 end
 
 function gmx_end()
+    restoreAllWorldModels ()
     setServerPassword(nil)
     restartResource(getThisResource())
 end

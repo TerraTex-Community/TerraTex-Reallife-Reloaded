@@ -65,3 +65,31 @@ function flip(thePlayer)
     end
 end
 addCommandHandler( "flip", flip, false, false)
+
+function tune_perkm(thePlayer,cmd,kmh)
+    if(isAdminLevel(thePlayer,3))then
+        local kmold=kmh
+        local kmh=tonumber(kmh)*2.5
+
+        local model=getElementModel(getPedOccupiedVehicle(thePlayer))
+        local vehicle=getPedOccupiedVehicle(thePlayer)
+        local originalTABEL=getOriginalHandling ( model )
+        local Handler=(originalTABEL["maxVelocity"]+tonumber(kmh))/originalTABEL["maxVelocity"]
+        local HandlerB=(originalTABEL["maxVelocity"]+tonumber(kmold))/originalTABEL["maxVelocity"]
+        setVehicleHandling (vehicle,"maxVelocity",originalTABEL["maxVelocity"]*Handler)
+        setVehicleHandling (vehicle,"engineAcceleration",originalTABEL["engineAcceleration"]*Handler)
+        setVehicleHandling (vehicle,"engineInertia",originalTABEL["engineInertia"]*Handler)
+
+        setVehicleHandling (vehicle,"tractionLoss",originalTABEL["tractionLoss"]*HandlerB)
+        setVehicleHandling (vehicle,"tractionMultiplier",originalTABEL["tractionMultiplier"]*HandlerB)
+
+        if(originalTABEL["tractionLoss"]*HandlerB>100)then
+            setVehicleHandling (vehicle,"tractionLoss",100)
+        end
+        if(originalTABEL["tractionMultiplier"]*HandlerB>100)then
+            setVehicleHandling (vehicle,"tractionMultiplier",100)
+        end
+        outputChatBox("done",thePlayer)
+    end
+end
+addCommandHandler("tunekmh",tune_perkm,false,false)

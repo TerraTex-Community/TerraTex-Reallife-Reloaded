@@ -27,6 +27,7 @@ function table.deletevalue(thetable,value,newkeys)
 end
 
 function table.getSize(table)
+    assert(type(table) == "table", "Table Espected got ".. type(table));
     local i=0
     for theKey, theContent in pairs(table) do
         i=i+1

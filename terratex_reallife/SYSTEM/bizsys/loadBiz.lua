@@ -1,33 +1,26 @@
 bizData = {}
 bizPickupInfo = {}
 function loadBizFromDB_func()
-    local query = "SELECT * FROM buissness ORDER BY `buissness`.`ID` ASC"
-    local result = mysql_query(handler, query)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        zahler = 1
-        while (mysql_num_rows(result) >= zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            bizData[zahler] = {}
-            bizData[zahler]["Name"] = dasatz["Name"]
-            bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
-            bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
-            bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { bizKey = zahler });
+    local result = MySql.helper.getSync("buissness", "*");
+    local zahler;
+    for theKey, dasatz in ipairs(result) do
+        zahler = tonumber(dasatz["ID"]);
+        bizData[zahler] = {}
+        bizData[zahler]["Name"] = dasatz["Name"]
+        bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
+        bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
+        bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { bizKey = zahler });
 
-            local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
-            addEventHandler("onPickupHit", bizpickup, showBizInfo)
-            bizPickupInfo[bizpickup] = zahler
-            bizData[zahler]["Pickup"] = bizpickup
-            local BesitzerText = "Wert: " .. bizData[zahler]["Preis"]
-            if (bizData[zahler]["Besitzer"]) then
-                BesitzerText = "Besitzer: " .. bizData[zahler]["Besitzer"]
-            end
-            setElementShowText(bizpickup, { 0, 0, 255, 255 }, bizData[zahler]["Name"] .. "\n" .. BesitzerText, true, 15, 1.3, 0.2)
-            zahler = zahler + 1
+        local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
+        addEventHandler("onPickupHit", bizpickup, showBizInfo)
+        bizPickupInfo[bizpickup] = zahler
+        bizData[zahler]["Pickup"] = bizpickup
+        local BesitzerText = "Wert: " .. bizData[zahler]["Preis"]
+        if (bizData[zahler]["Besitzer"]) then
+            BesitzerText = "Besitzer: " .. bizData[zahler]["Besitzer"]
         end
+        setElementShowText(bizpickup, { 0, 0, 255, 255 }, bizData[zahler]["Name"] .. "\n" .. BesitzerText, true, 15, 1.3, 0.2)
     end
-    mysql_free_result(result)
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadBizFromDB_func)
@@ -85,7 +78,7 @@ function bizbank_func(thePlayer, Command, betrag)
     if (vioGetElementData(thePlayer, "bizKey") == 0) then
         showError(thePlayer, "Du besitzt kein Biz!")
     else
-        biz = vioGetElementData(thePlayer, "bizKey")
+        local biz = vioGetElementData(thePlayer, "bizKey")
         local bx, by, bz = getElementPosition(bizData[biz]["Pickup"])
         local sx, sy, sz = getElementPosition(thePlayer)
         local dis = getDistanceBetweenPoints3D(sx, sy, sz, bx, by, bz)
@@ -146,7 +139,6 @@ function sellbizto_func(thePlayer, Command, toPlayerName)
                         if (bizData[biz]["Besitzer"]) then
                             BesitzerText = string.format("Besitzer: %s", bizData[biz]["Besitzer"])
                         end
-                        --setElementShowText(bizpickup,,true,15,1.3,0.2)
                         changeElementShowText(bizData[biz]["Pickup"], { 0, 0, 255, 255 }, bizData[biz]["Name"] .. "\n" .. BesitzerText)
                     else
                         showError(thePlayer, "Du bist nicht in der Nähe deines Biz!")
@@ -160,7 +152,6 @@ function sellbizto_func(thePlayer, Command, toPlayerName)
         showError(thePlayer, "Nutzung: /sellbizto [SPielername]")
     end
 end
-
 addCommandHandler("sellbizto", sellbizto_func, false, false)
 
 function bizhelp_func(thePlayer)
@@ -171,7 +162,6 @@ function bizhelp_func(thePlayer)
     outputChatBox("/sellbiz - Biz an das System verkaufen (65% des Kaufpreises)", thePlayer)
     outputChatBox("/sellbizto - Biz an einen anderen Spieler Übergeben", thePlayer)
 end
-
 addCommandHandler("bizhelp", bizhelp_func, false, false)
 
 function sellbiz_func(thePlayer)
@@ -189,7 +179,6 @@ function sellbiz_func(thePlayer)
             if (bizData[biz]["Besitzer"]) then
                 BesitzerText = string.format("Besitzer: %s", bizData[biz]["Besitzer"])
             end
-            --setElementShowText(bizpickup,,true,15,1.3,0.2)
             changeElementShowText(bizData[biz]["Pickup"], { 0, 0, 255, 255 }, bizData[biz]["Name"] .. "\n" .. BesitzerText)
 
         else
@@ -197,11 +186,9 @@ function sellbiz_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("sellbiz", sellbiz_func, false, false)
 
 function buybiz_func(thePlayer, Command)
-    --outputChatBox(tostring(vioGetElementData(thePlayer,"bizKey")))
     local x, y, z = getElementPosition(thePlayer)
     local biz = getBizNum(x, y, z)
     if (biz) then
@@ -220,7 +207,6 @@ function buybiz_func(thePlayer, Command)
                     if (bizData[biz]["Besitzer"]) then
                         BesitzerText = string.format("Besitzer: %s", bizData[biz]["Besitzer"])
                     end
-                    --setElementShowText(bizpickup,,true,15,1.3,0.2)
                     changeElementShowText(bizData[biz]["Pickup"], { 0, 0, 255, 255 }, bizData[biz]["Name"] .. "\n" .. BesitzerText)
                 end
             else
@@ -231,23 +217,16 @@ function buybiz_func(thePlayer, Command)
         showError(thePlayer, "Du bist bei keinem Biz!")
     end
 end
-
 addCommandHandler("buybiz", buybiz_func, false, false)
 
 function changeBizKasse(theBizID, Betrag, reason)
     if (bizData[theBizID]) then
         bizData[theBizID]["Kasse"] = bizData[theBizID]["Kasse"] + Betrag
 
-        --in BizLogTable eintragen
-        local query = "INSERT INTO log_biz (BizID,Betrag,reason) VALUES ('" .. theBizID .. "','" .. Betrag .. "','" .. reason .. "')"
-        mysql_query(logs_handler, query)
+        MySql.helper.insert("log_biz", {
+            BizID = theBizID,
+            Betrag = Betrag,
+            reason = reason
+        });
     end
 end
-
-
-
-
-
-
-
-

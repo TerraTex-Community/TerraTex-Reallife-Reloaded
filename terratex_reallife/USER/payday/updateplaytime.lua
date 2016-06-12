@@ -6,7 +6,7 @@ function update_play_time_func()
         if (isPlayerLoggedIn(thePlayer)) then
             if (vioGetElementData(thePlayer, "afk_status") == 0) then
                 vioSetElementData(thePlayer, "playtime", (vioGetElementData(thePlayer, "playtime") + 1))
-                paydaytime = math.mod((vioGetElementData(thePlayer, "playtime")), 60)
+                local paydaytime = math.mod((vioGetElementData(thePlayer, "playtime")), 60)
                 if (paydaytime == 0) then
                     payday(thePlayer)
                 end
@@ -64,17 +64,24 @@ function controlWeber(thePlayer)
         if (MySql.helper.existSync("players", {Nickname = werber })) then
 
             if (getPlayerName(thePlayer) ~= werber) then
-                local query = "INSERT INTO gutschriften (Nickname,Geld,Grund) VALUES ('" .. werber .. "','1500','Der von dir geworbene Spieler " .. getPlayerName(thePlayer) .. " hat 25 Spielstunden erreicht!');"
-                mysql_query(handler, query)
-                query = "UPDATE userdata SET werbernum=werbernum+1 WHERE Nickname='" .. werber .. "'"
-                mysql_query(handler, query)
+                MySql.helper.insert("gutschriften", {
+                    Nickname = werber,
+                    Geld = 1500,
+                    Grund = "Der von dir geworbene Spieler " .. getPlayerName(thePlayer) .. " hat 25 Spielstunden erreicht!"
+                });
+                dbExec(MySql._connection, "UPDATE userdata SET werbernum = werbernum + 1 WHERE Nickname = ?", werber);
                 local maxwerb = MySql.helper.getValueSync("userdata", "werbernum", { Nickname = werber });
 
                 if (maxwerb == 5) then
-                    query = "INSERT INTO gutschriften (Nickname,Geld,VehSlots,Grund) VALUES ('" .. werber .. "','10000','2','Es haben 5 von dir Geworbene Spieler 25 Spielstunden erreicht!');"
-                    mysql_query(handler, query)
-                    query = "UPDATE userdata SET werbernum=0 WHERE Nickname='" .. werber .. "'"
-                    mysql_query(handler, query)
+                    MySql.helper.update("userdata", {werbernum = 0}, {Nickname = werber});
+
+                    MySql.helper.insert("gutschriften", {
+                        Nickname = werber,
+                        Geld = 10000,
+                        VehSlots = 2,
+                        Grund = "Es haben 5 von dir Geworbene Spieler 25 Spielstunden erreicht!"
+                    });
+
                 end
             end
         end
@@ -319,9 +326,7 @@ function payday(thePlayer)
         end
     end
 
-
     --- Show The Pay Day
-
     outputChatBox("|______________|PayDay|______________|", thePlayer, 0, 255, 0)
     outputChatBox(string.format("Einnahmen: %s", toprice(Einnahmen)), thePlayer, 0, 255, 0)
     outputChatBox(string.format("Ausgaben:  %s", toprice(Ausgaben)), thePlayer, 0, 255, 0)
@@ -346,17 +351,16 @@ function payday(thePlayer)
             triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "My Own Biz", "Besitze dein eigenes Buisness")
         end
     end
+
     --MIETRAUSWURF
     if (isinrent == -1) then
         outputChatBox("Da du die Miete nicht bezahlen konntest, wurdest du rausgeworfen!", thePlayer, 255, 0, 0)
     end
+
     -- MIETE VON KONTO
     if (showMieteString) then
         outputChatBox("Da dein Gehalt nicht zum Zahlen der Miete ausreicht, wurde die Miete direkt vom Konto abgebucht!", thePlayer, 255, 0, 0)
     end
-
-
-
 
     --WERBER/STVO/POKALE
     controlWeber(thePlayer)
@@ -368,42 +372,50 @@ function payday(thePlayer)
             outputChatBox("Du hast jetzt 10 PayDays keine StVO-Punkte mehr bekommen. Deine StVO-Punkte wurden gelöscht!", thePlayer, 255, 0, 0)
         end
     end
+
     if (vioGetElementData(thePlayer, "waffenLic") < 0) then
         vioSetElementData(thePlayer, "waffenLic", vioGetElementData(thePlayer, "waffenLic") + 1)
     end
+
     if (vioGetElementData(thePlayer, "truckLic") < 0) then
         vioSetElementData(thePlayer, "truckLic", vioGetElementData(thePlayer, "truckLic") + 1)
     end
+
     if (vioGetElementData(thePlayer, "planeLic") < 0) then
         vioSetElementData(thePlayer, "planeLic", vioGetElementData(thePlayer, "planeLic") + 1)
     end
+
     if (vioGetElementData(thePlayer, "heliLic") < 0) then
         vioSetElementData(thePlayer, "heliLic", vioGetElementData(thePlayer, "heliLic") + 1)
     end
+
     if (vioGetElementData(thePlayer, "autoLic") < 0) then
         vioSetElementData(thePlayer, "autoLic", vioGetElementData(thePlayer, "autoLic") + 1)
     end
+
     if (vioGetElementData(thePlayer, "bikeLic") < 0) then
         vioSetElementData(thePlayer, "bikeLic", vioGetElementData(thePlayer, "bikeLic") + 1)
     end
 
-
     if (vioGetElementData(thePlayer, "lasttruckLic") > 0) then
         vioSetElementData(thePlayer, "lasttruckLic", vioGetElementData(thePlayer, "lasttruckLic") - 1)
     end
+
     if (vioGetElementData(thePlayer, "lastplaneLic") > 0) then
         vioSetElementData(thePlayer, "lastplaneLic", vioGetElementData(thePlayer, "lastplaneLic") - 1)
     end
+
     if (vioGetElementData(thePlayer, "lastheliLic") > 0) then
         vioSetElementData(thePlayer, "lastheliLic", vioGetElementData(thePlayer, "lastheliLic") - 1)
     end
+
     if (vioGetElementData(thePlayer, "lastautoLic") > 0) then
         vioSetElementData(thePlayer, "lastautoLic", vioGetElementData(thePlayer, "lastautoLic") - 1)
     end
+
     if (vioGetElementData(thePlayer, "lastbikeLic") > 0) then
         vioSetElementData(thePlayer, "lastbikeLic", vioGetElementData(thePlayer, "lastbikeLic") - 1)
     end
-
 
     if (vioGetElementData(thePlayer, "Erfolg_Mein_erstes_Geld") ~= 1) then
         vioSetElementData(thePlayer, "Erfolg_Mein_erstes_Geld", 1)
@@ -425,9 +437,9 @@ function payday(thePlayer)
     end
 
 
-    local WerberUeber25SpielstundenQuery = "SELECT * FROM players LEFT JOIN userdata ON userdata.Nickname=players.Nickname WHERE players.werber='" .. getPlayerName(thePlayer) .. "' and userdata.playtime>1500"
-    local result = mysql_query(handler, WerberUeber25SpielstundenQuery)
-    local WerberUeber25Spielstunden = mysql_num_rows(result)
+    local WerberUeber25SpielstundenQuery = "SELECT * FROM players LEFT JOIN userdata ON userdata.Nickname=players.Nickname WHERE players.werber = ? and userdata.playtime>1500";
+    local result = dbQuery(MySql._connection, WerberUeber25SpielstundenQuery, getPlayerName(thePlayer))
+    local WerberUeber25Spielstunden = table.getSize(result);
     if (WerberUeber25Spielstunden > 4) then
         if (vioGetElementData(thePlayer, "Erfolg_TerraFriend") ~= 1) then
             vioSetElementData(thePlayer, "Erfolg_TerraFriend", 1)
@@ -436,7 +448,6 @@ function payday(thePlayer)
     end
 end
 
-
 function payday_cmd_func(thePlayer)
     if (vioGetElementData(thePlayer, "lastPayDayberechnung")) then
         triggerClientEvent(thePlayer, "showPayDayGui", thePlayer, vioGetElementData(thePlayer, "lastPayDayberechnung"))
@@ -444,13 +455,4 @@ function payday_cmd_func(thePlayer)
         outputChatBox("Du hattest seit deinem letzten Login keinen PayDay", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("payday", payday_cmd_func, false, false)
-
-
-
-
-
-
-
-

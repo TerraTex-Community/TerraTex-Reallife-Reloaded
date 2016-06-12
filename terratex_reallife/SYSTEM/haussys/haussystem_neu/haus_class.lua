@@ -12,9 +12,6 @@
 --      preis, miete, kasse, city, qm, stockwerke, wert, ID, besitzer, locked,
 -- }]]
 
-
-
-
 Haus = {}
 Haus.__index = Haus
 
@@ -54,7 +51,6 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
         self.locked = true
     end
 
-
     --Informationen am Pickup (Hausschild)
     local showText = "Hausnummer: %s\nBesitzer: %s\n%s\n"
     local bT = self.besitzer
@@ -75,9 +71,12 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
 end
 
 function Haus:save()
-    local query = "UPDATE haussys_hdb SET Miete='%s', Kasse='%s', IRID='%s' WHERE ID='%s'"
-    query = string.format(query, self.miete, self.kasse, self.irid, self.ID)
-    mysql_query(handler, query)
+    MySql.helper.update("haussys_hdb", {
+        Miete = self.miete,
+        Kasse = self.kasse,
+        IRID = self.irid,
+        ID = self.ID
+    });
     outputDebugString("Save House " .. self.ID)
 end
 
@@ -102,12 +101,9 @@ function Haus:getCity()
     return self.city
 end
 
-
-
 function Haus:destructor()
     destroyElement(self.pickup)
-    local query = "DELETE FROM haussys_hdb WHERE ID=" .. self.ID .. "'"
-    mysql_query(handler, query)
+    MySql.helper.delete("haussys_hdb", {ID = self.ID});
     self = nil
 end
 
@@ -172,14 +168,15 @@ end
 function Haus:setMiete(miete)
     self.miete = miete
 
-    local query = "SELECT * FROM userdata WHERE hkey='" .. -(self.ID) .. "'"
-    local result = mysql_query(handler, query)
-    while (true) do
-        local row = mysql_fetch_assoc(result)
-        if not row then break end
-        local newQuery = "INSERT INTO servermessage (VonName,Message,Nickname) VALUES ('Mietsystem','Die Miete deiner Wohnung wurde auf " .. miete .. " gesetzt!','" .. row["Nickname"] .. "')"
-        mysql_query(handler, newQuery)
+    local result = MySql.helper.getSync("userdata", "Nickname", {hkey = (-self.ID)});
+    for theKey, theRow in ipairs(result) do
+        MySql.helper.insert("servermessage", {
+            VonName = "Mietsystem",
+            Message = "Die Miete deiner Wohnung wurde auf " .. miete .. " gesetzt!",
+            Nickname = theRow["Nickname"]
+        })
     end
+
     for theKey, toPlayer in ipairs(getElementsByType("player")) do
         if (vioGetElementData(toPlayer, "hkey")) then
             if (self.ID == -vioGetElementData(toPlayer, "hkey")) then
@@ -243,7 +240,6 @@ function Haus:updateInfoText()
     end
 
     showText = string.format(showText, self.ID, bT, hT)
-
 
     changeElementShowText(self.pickup, { 0, 0, 255, 255 }, showText)
 end
@@ -316,11 +312,3 @@ function Haus:isPlayerInHouse(thePlayer, dis)
         return false
     end
 end
-
-
-
-
-
-
-
-

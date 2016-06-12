@@ -5,11 +5,8 @@
 -- Time: 16:05
 -- To change this template use File | Settings | File Templates.
 --
-
 haeuser={}
 iraeume={}
-
-
 
 -- Das nächstmögliche Haus suchen
 function getNearestHouseByPlayer(thePlayer)
@@ -31,70 +28,43 @@ function getNearestHouseByCoords(x,y,z)
     return nearestHouse,nearestHouseDis
 end
 
-
 -- Häuser Laden
 function haussys_startup()
-    local query="Select * From haussys_hdb"
-    local result=mysql_query(handler,query)
-    local zahler=0
-    if(not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        zahler=0
-        while (mysql_num_rows(result)>zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-
-             haeuser[tonumber(dasatz["ID"])]=new(Haus,
-                                                    dasatz["ID"],
-                                                    dasatz["CoordX"],
-                                                    dasatz["CoordY"],
-                                                    dasatz["CoordZ"],
-                                                    dasatz["IRID"],
-                                                    dasatz["Preis"],
-                                                    dasatz["Miete"],
-                                                    dasatz["Kasse"],
-                                                    dasatz["city"],
-                                                    dasatz["QM"],
-                                                    dasatz["Stockwerke"],
-                                                    dasatz["Wert"])
-
-
-            zahler=zahler+1
-        end
+    local result = MySql.helper.getSync("haussys_hdb", "*");
+    for theKey, dasatz in ipairs(result) do
+         haeuser[tonumber(dasatz["ID"])]=new(Haus,
+                                                dasatz["ID"],
+                                                dasatz["CoordX"],
+                                                dasatz["CoordY"],
+                                                dasatz["CoordZ"],
+                                                dasatz["IRID"],
+                                                dasatz["Preis"],
+                                                dasatz["Miete"],
+                                                dasatz["Kasse"],
+                                                dasatz["city"],
+                                                dasatz["QM"],
+                                                dasatz["Stockwerke"],
+                                                dasatz["Wert"]);
 
         outputDebugString("# "..zahler.." Houses loaded!")
-        mysql_free_result(result)
     end
 
-    local query="Select * From haussys_irdb"
-    local result=mysql_query(handler,query)
-    if(not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        local zahler=0
-        local dasatz={}
-        while (mysql_num_rows(result)>zahler) do
-            dasatz = mysql_fetch_assoc(result)
-
-            iraeume[tonumber(dasatz["ID"])]=new(IRaum,
-                                        dasatz["ID"],
-                                        dasatz["CoordX"],
-                                        dasatz["CoordY"],
-                                        dasatz["CoordZ"],
-                                        dasatz["Interior"],
-                                        dasatz["Preis"],
-                                        dasatz["QM"],
-                                        dasatz["Stockwerke"],
-                                        dasatz["Wert"])
-
-            zahler=zahler+1
-        end
+    result = MySql.helper.getSync("haussys_irdb", "*");
+    for theKey, dasatz in ipairs(result) do
+        iraeume[tonumber(dasatz["ID"])]=new(IRaum,
+                                    dasatz["ID"],
+                                    dasatz["CoordX"],
+                                    dasatz["CoordY"],
+                                    dasatz["CoordZ"],
+                                    dasatz["Interior"],
+                                    dasatz["Preis"],
+                                    dasatz["QM"],
+                                    dasatz["Stockwerke"],
+                                    dasatz["Wert"]);
         outputDebugString("# "..zahler.." Interior-Rooms loaded!")
-        mysql_free_result(result)
     end
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),haussys_startup)
-
 
 --[[Adminbefehle zum Häusersystem]]
 function haussys_addNewIR_func(thePlayer,cmd,Preis,QM,Stockwerke,Wert,...)
@@ -104,12 +74,18 @@ function haussys_addNewIR_func(thePlayer,cmd,Preis,QM,Stockwerke,Wert,...)
             local int=getElementInterior(thePlayer)
             local comment=""..table.concat({...}," ")
 
-            local query="INSERT INTO haussys_irdb (CoordX,CoordY,CoordZ,Interior,Preis,QM,Stockwerke,Wert,Beschreibung) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')"
-            query=string.format(query,x,y,z,int,Preis,QM,Stockwerke,Wert,comment)
+            local id = MySql.helper.insertSync("haussys_irdb", {
+                CoordX = x,
+                CoordY = y,
+                CoordZ = z,
+                Interior = int,
+                Preis = Preis,
+                QM = QM,
+                Stockwerke = Stockwerke,
+                Wert = Wert,
+                Beschreibung = comment
+            });
 
-
-            mysql_query(handler,query)
-            local id=mysql_insert_id(handler)
             iraeume[id]=new(IRaum,id,x,y,z,int,Preis,QM,Stockwerke,Wert)
 
             showError(thePlayer,"Innenraum wurde hinzugefügt.")
@@ -129,15 +105,20 @@ function haussys_addNewHouse_func(thePlayer,cmd,Preis,city,QM,Stockwerke,Wert,..
             local x,y,z=getElementPosition(thePlayer)
             local comment=""..table.concat({...}," ")
 
-            local query="INSERT INTO haussys_hdb (CoordX,CoordY,CoordZ,Preis,city,QM,Stockwerke,Wert,Beschreibung) VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s')"
-            query=string.format(query,x,y,z,Preis,city,QM,Stockwerke,Wert,comment)
-
-            mysql_query(handler,query)
-            local id=mysql_insert_id(handler)
+            local id = MySql.helper.insertSync("haussys_hdb", {
+                CoordX = x,
+                CoordY = y,
+                CoordZ = z,
+                Preis = Preis,
+                city = city,
+                QM = QM,
+                Stockwerke = Stockwerke,
+                Wert = Wert,
+                Beschreibung = comment
+            });
 
             haeuser[id]=new(Haus,id,x,y,z,0,Preis,0,0,city,QM,Stockwerke,Wert)
             showError(thePlayer,"Haus wurde hinzugefügt.")
-
         else
             outputChatBox("Befehlssyntax: /addhouse Preis city QM Stockwerke Wert Kommentar",thePlayer)
             outputChatBox("city: 0=>LS; 1=>LV; 2=>sonstiges; 3=>nicht handelbar",thePlayer)
@@ -162,7 +143,6 @@ function haussys_deleteHouse_func(thePlayer)
 end
 addCommandHandler("delhouse",haussys_deleteHouse_func,false,false)
 
-
 function haussys_deleteHouse_func(thePlayer)
     if(isAdminLevel(thePlayer,4))then
         local hausid, dis=getNearestHouseByPlayer(thePlayer)
@@ -173,8 +153,7 @@ function haussys_deleteHouse_func(thePlayer)
                 if(getPlayerFromName(besitzerName))then
                     vioSetElementData(getPlayerFromName(besitzerName,"hkey",0))
                 else
-                    local query="UPDATE userdata SET newhkey='0' WHERE Nickname='"..besitzerName.."'"
-                    mysql_query(handler,query)
+                    MySql.helper.update("userdata", {newhkey = 0}, {Nickname = besitzerName});
                 end
                 haus:setBesitzer(false)
                 showError(thePlayer,"Haus entzogen.")
@@ -214,7 +193,6 @@ function haussys_ir(thePlayer, cmd, id)
 end
 addCommandHandler("ir",haussys_ir,false,false)
 
-
 function isPlayerInAnyHouse(thePlayer)
     local dim=getElementDimension(thePlayer)
     if(dim>0)then
@@ -227,14 +205,3 @@ function isPlayerInAnyHouse(thePlayer)
     end
     return false
 end
-
-
-
-
-
-
-
-
-
-
-

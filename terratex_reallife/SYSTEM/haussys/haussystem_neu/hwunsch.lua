@@ -3,29 +3,20 @@
 local hwunsche={}
 
 function inWunschSystemStart()
-    local query="Select * From haussys_wunsch"
-    local result=mysql_query(handler,query)
-    local zahler=0
-    if(not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        zahler=0
-        while (mysql_num_rows(result)>zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            local wunsch={
-                ["ID"]=tonumber(dasatz["ID"]),
-                ["x"]=tonumber(dasatz["x"]),
-                ["y"]=tonumber(dasatz["y"]),
-                ["z"]=tonumber(dasatz["z"]),
-                ["nickname"]=dasatz["Nickname"],
-                ["timestamp"]=tonumber(dasatz["unixtimestamp"])
-            }
-            table.insert(hwunsche,wunsch)
-            zahler=zahler+1
-        end
+    local result = MySql.helper.getSync("haussys_wunsch", "*");
+
+    for theKey, dasatz in ipairs(result) do
+        local wunsch={
+            ["ID"]=tonumber(dasatz["ID"]),
+            ["x"]=tonumber(dasatz["x"]),
+            ["y"]=tonumber(dasatz["y"]),
+            ["z"]=tonumber(dasatz["z"]),
+            ["nickname"]=dasatz["Nickname"],
+            ["timestamp"]=tonumber(dasatz["unixtimestamp"])
+        }
+        table.insert(hwunsche,wunsch)
 
         outputDebugString("# "..zahler.." Houses loaded!")
-        mysql_free_result(result)
     end
 
 end
@@ -48,12 +39,15 @@ function setNewWunsch(thePlayer)
        end
     end
     if(not hasWunschSinceTime and not isNearOtherWunsch )then
-       local query="INSERT INTO haussys_wunsch (Nickname,x,y,z,unixtimestamp) VALUES ('%s','%s','%s','%s','%s')"
-        query=string.format(query,getPlayerName(thePlayer),x,y,z,time.timestamp)
-        mysql_query(handler,query)
-        showError(thePlayer,"Dein Wunsch wurde registriert. Er wird beim nächsten Einfügen von Häusern berücksichtigt (sofern möglich).")
+        local id = MySql.helper.insertSync("haussys_wunsch", {
+            Nickname = getPlayerName(thePlayer),
+            x = x,
+            y = y,
+            z = z,
+            unixtimestamp = time.timestamp
+        });
 
-        local id=mysql_insert_id(handler)
+        showError(thePlayer,"Dein Wunsch wurde registriert. Er wird beim nächsten Einfügen von Häusern berücksichtigt (sofern möglich).")
 
         table.insert(hwunsche,{
             ["ID"]=id,
@@ -80,21 +74,17 @@ addCommandHandler("gotoWunsch",gotowunsch_func,false,false)
 
 function deletewunsch_func(thePlayer,cmd,id)
     id=tonumber(id)
-    local query="DELETE FROM haussys_wunsch WHERE ID='"..hwunsche[id]["ID"].."'"
-    mysql_query(handler,query)
+    MySql.helper.delete("haussys_wunsch", {ID = hwunsche[id]["ID"]});
     hwunsche=table.removeKey(hwunsche,id,true)
 end
 addCommandHandler("deletewunsch",deletewunsch_func,false,false)
 
 function deletelastwunsch(thePlayer)
-    local id= vioGetElementData(thePlayer,"lastHWunsch")
-    local query="DELETE FROM haussys_wunsch WHERE ID='"..hwunsche[id]["ID"].."'"
-    mysql_query(handler,query)
+    local id= vioGetElementData(thePlayer,"lastHWunsch");
+    MySql.helper.delete("haussys_wunsch", {ID = hwunsche[id]["ID"]});
     hwunsche=table.removeKey(hwunsche,id,true)
 end
 addCommandHandler("deletelastwunsch",deletelastwunsch,false,false)
-
-
 
 function gotonextwunsch_func(thePlayer)
     local id=vioGetElementData(thePlayer,"lastHWunsch") + 1
@@ -106,8 +96,3 @@ function gotonextwunsch_func(thePlayer)
     end
 end
 addCommandHandler("gotonextWunsch",gotonextwunsch_func,false,false)
-
-
-
-
-

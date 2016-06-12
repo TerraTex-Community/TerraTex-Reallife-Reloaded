@@ -5,17 +5,27 @@ function frakdepot_log(Fraktion, Typ, Betrag, Name, Grund)
     local time = getRealTime()
     local timestamp = time.timestamp
     if not Grund then
-        local logquery = "INSERT INTO frakkasse_zahlungen (Fraktion, Typ, Betrag, Datum, Name) VALUES ('" .. Fraktion .. "','" .. Typ .. "','" .. Betrag .. "','" .. timestamp .. "','" .. Name .. "')"
-        mysql_query(handler, logquery)
+        MySql.helper.insert("frakkasse_zahlungen", {
+            Fraktion = Fraktion,
+            Typ = Typ,
+            Betrag = Betrag,
+            Datum = timestamp,
+            Name = Name
+        });
 
     else
-        local logquery = "INSERT INTO frakkasse_zahlungen (Fraktion, Typ, Betrag, Datum, Name, Grund) VALUES ('" .. Fraktion .. "','" .. Typ .. "','" .. Betrag .. "','" .. timestamp .. "','" .. Name .. "','" .. Grund .. "')"
-        mysql_query(handler, logquery)
+        MySql.helper.insert("frakkasse_zahlungen", {
+            Fraktion = Fraktion,
+            Typ = Typ,
+            Betrag = Betrag,
+            Datum = timestamp,
+            Name = Name,
+            Grund = Grund
+        });
     end
 end
 
 function save_ad_log(name, text)
-    text = mysql_escape_string(logs_handler, text)
     local countAdmins = 0
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
         if (isAdminLevel(thePlayer, 0)) then
@@ -24,16 +34,20 @@ function save_ad_log(name, text)
     end
 
     if (countAdmins == 0) then
-        text = mysql_escape_string(handler, text)
-        local query = "INSERT INTO log_ad (Nickname,Text) VALUES ('" .. name .. "','" .. text .. "');"
-        mysql_query(logs_handler, query)
+        MySql.helper.insert("log_ad", {
+            Nickname = name,
+            Text = text
+        });
     end
 end
 
 
 function save_steuer_log(player, betrag, type)
-    local query = "INSERT INTO log_steuern (Nickname,Type,Betrag) VALUES ('" .. getPlayerName(player) .. "','" .. type .. "','" .. betrag .. "');"
-    mysql_query(logs_handler, query)
+    MySql.helper.insert("log_steuern", {
+        Nickname = getPlayerName(player),
+        Type = type,
+        Betrag = betrag
+    });
 end
 
 function save_log(logname, message)
@@ -59,26 +73,24 @@ function chat_log(thePlayer, message)
     local name = getPlayerName(thePlayer)
     local times = getRealTime()
 
-
-
     local logtext = "[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. name .. ": " .. message
-    save_log("chat", logtext)
+    save_log("chat", logtext);
 
-    message = mysql_escape_string(logs_handler, message)
-
-    --	local query="INSERT INTO log_chat (Nickname,Message) VALUES ('"..getPlayerName(thePlayer).."','"..message.."');"
-    --	mysql_query(logs_handler,query)
+    MySql.helper.insert("log_chat", {
+        Nickname = getPlayerName(thePlayer),
+        Message = message
+    });
 
     checkServerWerbung(thePlayer, message)
     checkBeleidigung(thePlayer, message)
 end
 
 function afind(message, symbol)
-    stcounter = 0
-    x, y = string.find(message, symbol, 1, true)
+    local stcounter = 0
+    local x, y = string.find(message, symbol, 1, true)
     if (x) then
         stcounter = stcounter + 1
-        n = 0
+        local n = 0
         while n ~= 1 do
             x, y = string.find(message, symbol, y + 1, true)
             if (x) then
@@ -125,13 +137,10 @@ function checkBeleidigung(thePlayer, Message)
     for theKey, theBeleidigung in ipairs(leichteListe) do
         counterleicht = counterleicht + afind(Message, theBeleidigung)
     end
+
     for theKey, theBeleidigung in ipairs(schwereListe) do
         counterschwer = counterschwer + afind(Message, theBeleidigung)
     end
-
-
-
-
 
     local bestraft = 0
     if (counterschwer > 0) then
@@ -139,10 +148,11 @@ function checkBeleidigung(thePlayer, Message)
     end
     local InsertID = false
     if (counterleicht > 0) or (counterschwer > 0) then
-        --save_log("Beleidigung",getPlayerName(thePlayer)..": "..Message)
-        local query = "INSERT INTO log_badword (Nickname,Message,bestraft_per_system) VALUES ('" .. getPlayerName(thePlayer) .. "','" .. newmessage .. "','" .. bestraft .. "');"
-        mysql_query(logs_handler, query)
-        InsertID = mysql_insert_id(logs_handler)
+        InsertID = MySql.helper.insertSync("log_badword", {
+            Nickname = getPlayerName(thePlayer),
+            Message = newmessage,
+            bestraft_per_system = bestraft
+        });
     end
     if (counterleicht > 0) or (counterschwer > 0) then
 
@@ -178,30 +188,34 @@ function checkBeleidigung(thePlayer, Message)
         local theBeBanned = thePlayer
         local IP = getPlayerIP(theBeBanned)
         local Serial = getPlayerSerial(theBeBanned)
-        local reasons = mysql_escape_string(handler, reasons)
-        local pname = mysql_escape_string(handler, pname)
 
-        --local querys="INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin,Beweistext) VALUES ('"..pname.."','".. Serial.."','".. IP .."','"..reasons.."','Anti-Beleidigungs-System','"..Message.."');"
-        local querys = "INSERT INTO timeban (Nickname,Grund,Admin,Minuten,Serial) VALUES ('" .. pname .. "','" .. reasons .. " (FÜR TEXT: " .. Message .. ")','Anti-Beleidigungs-System','4320','" .. Serial .. "')"
-
-        mysql_query(handler, querys)
+        MySql.helper.insert("timeban", {
+            Nickname = pname,
+            Grund = reasons .. "(FÜR TEXT: " .. Message .. ")",
+            Admin = "Anti-Beleidigungs-System",
+            Minuten = "4320",
+            Serial = Serial
+        });
 
         vioSetElementData(thePlayer, "tbans", vioGetElementData(thePlayer, "tbans") + 1)
         local pln = getPlayerName(thePlayer)
         if (vioGetElementData(thePlayer, "tbans") == 1) then
             MySql.helper.update("userdata", { tban_reason1 = reasons }, { Nickname = pln });
         end
+
         if (vioGetElementData(thePlayer, "tbans") > 1) then
             local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
 
             MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
-            local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','Anti-Beleidigungs-System','" .. newreason .. "');"
-            mysql_query(handler, querys)
+
+            MySql.helper.insert("warns", {
+                Nickname = pln,
+                Admin = "Anti-Beleidigungs-System",
+                Grund = newreason
+            });
             vioSetElementData(thePlayer, "tbans", 0)
         end
-
-
 
         outputChatBox(string.format("Der Spieler %s wurde vom Anti-Beleidigungs-System gebannt. Grund: %s", pname, reasons), getRootElement(), 255, 0, 0)
         kickPlayer(thePlayer, reasons)
@@ -225,7 +239,6 @@ function bban_func(thePlayer, cmd, id)
                         local reasons = mysql_escape_string(handler, reasons)
                         local pname = mysql_escape_string(handler, pname)
 
-                        --local querys="INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin,Beweistext) VALUES ('"..pname.."','".. Serial.."','".. IP .."','"..reasons.."','Anti-Beleidigungs-System','"..maybeBeleidigung[id][2].."');"
                         vioSetElementData(theBeBanned, "tbans", vioGetElementData(theBeBanned, "tbans") + 1)
                         local pln = getPlayerName(theBeBanned)
                         if (vioGetElementData(thePlayer, "tbans") == 1) then
@@ -235,18 +248,28 @@ function bban_func(thePlayer, cmd, id)
                             local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
                             MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
                             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
-                            local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','Anti-Beleidigungs-System','" .. newreason .. "');"
-                            mysql_query(handler, querys)
+
+                            MySql.helper.insert("warns", {
+                                Nickname = pln,
+                                Admin = "Anti-Beleidigungs-System",
+                                Grund = newreason
+                            });
+
                             vioSetElementData(theBeBanned, "tbans", 0)
                         end
 
+                        MySql.helper.insert("timeban", {
+                            Nickname = pname,
+                            Grund = reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")",
+                            Admin = "Anti-Beleidigungs-System",
+                            Minuten = 4320,
+                            Serial = Serial
+                        });
 
-                        local querys = "INSERT INTO timeban (Nickname,Grund,Admin,Minuten,Serial) VALUES ('" .. pname .. "','" .. reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")','Anti-Beleidigungs-System','4320','" .. Serial .. "')"
-                        mysql_query(handler, querys)
                         outputChatBox(string.format("Der Spieler %s wurde vom Anti-Beleidigungs-System gebannt. Grund: %s", pname, reasons), getRootElement(), 255, 0, 0)
                         kickPlayer(theBeBanned, reasons)
-                        query = "UPDATE log_badword SET bestraft_per_system=1 WHERE ID='" .. maybeBeleidigung[id][3] .. "'"
-                        mysql_query(logs_handler, query)
+
+                        MySql.helper.update("log_badword", {bestraft_per_system = 1}, {ID = maybeBeleidigung[id][3]});
                         maybeBeleidigung[id][4] = true
                     else
                         local IP = maybeBeleidigung[id][6]
@@ -255,13 +278,18 @@ function bban_func(thePlayer, cmd, id)
                         local pname = maybeBeleidigung[id][1]
                         checkAdditionalPunishment_offline(pname)
 
-                        --local querys="INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin,Beweistext) VALUES ('"..pname.."','".. Serial.."','".. IP .."','"..reasons.."','Anti-Beleidigungs-System','"..maybeBeleidigung[id][2].."');"
-                        local querys = "INSERT INTO timeban (Nickname,Grund,Admin,Minuten,Serial) VALUES ('" .. pname .. "','" .. reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")','Anti-Beleidigungs-System','4320','" .. Serial .. "')"
-                        mysql_query(handler, querys)
+                        MySql.helper.insert("timeban", {
+                            Nickname = pname,
+                            Grund = reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")",
+                            Admin = "Anti-Beleidigungs-System",
+                            Minuten = 4320,
+                            Serial = Serial
+                        });
+
                         outputChatBox(string.format("Der Spieler %s wurde vom Anti-Beleidigungs-System gebannt. Grund: %s", pname, reasons), getRootElement(), 255, 0, 0)
                         kickPlayer(theBeBanned, reasons)
-                        local query = "UPDATE log_badword SET bestraft_per_system=1 WHERE ID='" .. maybeBeleidigung[id][3] .. "'"
-                        mysql_query(logs_handler, query)
+
+                        MySql.helper.update("log_badword", {bestraft_per_system = 1}, {ID = maybeBeleidigung[id][3]});
                         maybeBeleidigung[id][4] = true
                     end
                 else
@@ -275,7 +303,6 @@ function bban_func(thePlayer, cmd, id)
         end
     end
 end
-
 addCommandHandler("bban", bban_func, false, false)
 
 function checkServerWerbung(thePlayer, Message)
@@ -305,7 +332,6 @@ function checkServerWerbung(thePlayer, Message)
     counter = counter + afind(Message, ".ws")
     counter = counter + afind(Message, "vio")
 
-
     if (pregFind(Message, '[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}')) then
         counter = counter + 1;
     end
@@ -315,9 +341,6 @@ function checkServerWerbung(thePlayer, Message)
             counter = 0
         end
     end
-
-
-
 
     if (counter > 0) then
         local players = getElementsByType("player")
@@ -329,88 +352,12 @@ function checkServerWerbung(thePlayer, Message)
                 end
             end
         end
+
         save_log("Serverwerbung", getPlayerName(thePlayer) .. ": " .. newmessage)
-        local query = "INSERT INTO log_serveradvertising (Nickname,Message) VALUES ('" .. getPlayerName(thePlayer) .. "','" .. newmessage .. "');"
-        mysql_query(logs_handler, query)
+
+        MySql.helper.insert("log_serveradvertising", {
+            Nickname = getPlayerName(thePlayer),
+            Message = newmessage
+        });
     end
 end
-
-function checkMultiaccount(thePlayer)
-    local IP = getPlayerIP(thePlayer)
-    local Serial = getPlayerSerial(thePlayer)
-    local pname = getPlayerName(thePlayer)
-    local multiIP = MySql.helper.getCountSync("players", {IP = IP, Nickname = {"!=", pname}})
-
-    local multiSerial = MySql.helper.getCountSync("players", {Serial = Serial, Nickname = {"!=", pname}})
-    if (multiIP > 0 or multiSerial > 0) then
-        local players = getElementsByType("player")
-        for theKey, thePlayers in ipairs(players) do
-            if (isPlayerLoggedIn(thePlayers)) then
-                if (isAdminLevel(thePlayers, 1)) then
-                    --outputChatBox("Möglicher Multiaccount detected: "..pname.." ACCOUNTS: per IP: "..multiIP.." per SERIAL: "..multiSerial,thePlayers,255,10,0)
-                    --outputChatBox("Mehr Multiaccountinfos mit /multiacc [Nickname]",thePlayers,255,0,0)
-                end
-            end
-        end
-        save_log("multiAccount", "Möglicher Multiaccount detected: " .. pname .. " ACCOUNTS: per IP: " .. multiIP .. " per SERIAL: " .. multiSerial)
-    end
-end
-
-function multiacc_func(thePlayer, command, toPlayerName)
-    if (isAdminLevel(thePlayer, 1)) then
-        local pname = toPlayerName
-        local IP = MySql.helper.getValueSync("players", "IP", { Nickname = pname });
-        local Serial = MySql.helper.getValueSync("players", "Serial", { Nickname = pname });
-        if (IP and Serial) then
-            local multiIP = MySql.helper.getCountSync("players", {IP = IP})
-            local multiSerial = MySql.helper.getCountSync("players", {Serial = Serial})
-            local multiIPAccounts = {}
-            local multiSerialAccounts = {}
-
-            local result = mysql_query(handler, "SELECT * from players WHERE IP='" .. IP .. "'")
-            while (true) do
-                local dsatz = mysql_fetch_assoc(result)
-                if (not dsatz) then break else
-                    table.insert(multiIPAccounts, { dsatz["Nickname"], dsatz["RegDat"], dsatz["LastLogin"] })
-                end
-            end
-            mysql_free_result(result)
-            local result = mysql_query(handler, "SELECT * from players WHERE Serial='" .. Serial .. "'")
-            while (true) do
-                local dsatz = mysql_fetch_assoc(result)
-                if (not dsatz) then break else
-                    table.insert(multiSerialAccounts, { dsatz["Nickname"], dsatz["RegDat"], dsatz["LastLogin"] })
-                end
-            end
-            mysql_free_result(result)
-
-
-            local multi = multiIP + multiSerial
-            outputChatBox(string.format("Zu dem Spieler %s wurden %s Accounts gefunden: ", pname, multi), thePlayer, 255, 0, 0)
-            for theKey, thePlayerTable in ipairs(multiIPAccounts) do
-                outputChatBox(string.format("(IP)Nickname: %s; RegDat%s; LastLogin:%s", thePlayerTable[1], thePlayerTable[2], thePlayerTable[3]), thePlayer, 255, 0, 0)
-            end
-            for theKey, thePlayerTable in ipairs(multiSerialAccounts) do
-                outputChatBox(string.format("(IP)Nickname: %s; RegDat%s; LastLogin:%s", thePlayerTable[1], thePlayerTable[2], thePlayerTable[3]), thePlayer, 255, 0, 0)
-            end
-
-
-
-
-        else
-            outputChatBox(string.format("In Der Datenbank existiert kein Spieler mit dem Namen %s.", pname), thePlayer, 255, 0, 0)
-        end
-    end
-end
-
-addCommandHandler("multiacc", multiacc_func, false, false)
-
-
-
-
-
-
-
-
-
-

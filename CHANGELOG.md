@@ -2,9 +2,17 @@
 ------
 * [GENERAL] Refactored all mysql_querys in d_uv_scripted.lua
 * [GENERAL] Refactored all mysql_querys in player_connect.lua
+* [GENERAL] Refactored all mysql_querys in loggingsys.lua
+* [GENERAL] Refactored all mysql_querys in bank_func_server.lua
+* [GENERAL] Refactored all mysql_querys in loadBiz.lua
+* [GENERAL] Refactored all mysql_querys in haus_class.lua
+* [GENERAL] Refactored all mysql_querys in hwunsch.lua
+* [GENERAL] Refactored all mysql_querys in system.lua
 * [ADDED] Readded /tunekmh (was requested by an Admin)
 * [FIXED] Added restoreAllWorldModels to GMX Process to prevent Map Issues
 * [REMOVED] AdminGUI removed because it is too outdated
+* [REMOVED] Removed /multiacc
+* [REMOVED] Removed multiaccountcheck function 
 
 ####11.06.2016
 ------

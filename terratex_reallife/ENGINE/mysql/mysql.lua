@@ -167,7 +167,7 @@ local function generateInsertQuery(tableName, insertValue)
             valueQuery = valueQuery .. ",";
         end
         query = query .. "`??`";
-        valueQuery = valueQuery .. "`??`";
+        valueQuery = valueQuery .. "?";
         table.insert(params, theKey);
         table.insert(values, theValue);
     end

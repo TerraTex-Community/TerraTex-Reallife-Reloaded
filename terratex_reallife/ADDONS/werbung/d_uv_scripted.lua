@@ -3,8 +3,8 @@ local werbeschilder = 19
 function onResourceStart_WerbeSchilderGenerieren()
 
     local timer = getRealTime()
-    local query = "DELETE FROM werbungen WHERE DatumBis<'" .. (timer.year + 1900) .. "-" .. (timer.month + 1) .. "-" .. timer.monthday .. "'"
-    mysql_query(handler, query)
+    local dateToday = (timer.year + 1900) .. "-" .. (timer.month + 1) .. "-" .. timer.monthday .. "'";
+    MySql.helper.delete("werbungen", {DatumBis = {"<", dateToday}});
 
     for i = 1, (werbeschilder), 1 do
         local count = MySql.helper.getCountSync("werbungen");
@@ -12,9 +12,10 @@ function onResourceStart_WerbeSchilderGenerieren()
             werbungenTable[i] = { "WERBEBILDER/standardwerbung.png", 0 }
             sendFileToClient(werbungenTable[i][1], getRootElement(), "werbung", i, werbungenTable[i][2])
         else
-            local query = "SELECT * FROM werbungen ORDER BY RAND() LIMIT 1"
-            local result = mysql_query(handler, query)
-            local dsatz = mysql_fetch_assoc(result)
+            local query = dbQuery(MySql._connection, "SELECT * FROM werbungen ORDER BY RAND() LIMIT 1");
+            local result = dbPoll(query, -1);
+            local dsatz = result[1];
+
             if (fileExists("WERBEBILDER/" .. dsatz["picName"])) then
                 werbungenTable[i] = { "WERBEBILDER/" .. dsatz["picName"], tonumber(dsatz["animation"]) }
                 sendFileToClient(werbungenTable[i][1], getRootElement(), "werbung", i, werbungenTable[i][2])
@@ -25,10 +26,7 @@ function onResourceStart_WerbeSchilderGenerieren()
     end
     setTimer(onResourceStart_WerbeSchilderGenerieren, 3600000, 1)
 end
-
 addEventHandler("onResourceStart", resourceRoot, onResourceStart_WerbeSchilderGenerieren)
-
-
 
 addEvent("requestPlayerOfMonth", true)
 function onResourceLoadPlayerOfMonth(thePlayer)
@@ -41,9 +39,6 @@ function onResourceLoadPlayerOfMonth(thePlayer)
 end
 
 addEventHandler("requestPlayerOfMonth", getRootElement(), onResourceLoadPlayerOfMonth)
--- addCommandHandler("testit",onResourceStart_WerbeSchilderGenerieren)
-
-
 
 function sendFileToClient(file, client, typer, ID, animation)
     local fh = fileExists(file) and fileOpen(file)
@@ -53,9 +48,6 @@ function sendFileToClient(file, client, typer, ID, animation)
     fileClose(fh)
 
     if (typer == "month") then
-        -- outputChatBox("startLoading")
-
-        -- outputDebugString(file)
         triggerLatentClientEvent(client, "onClientLoadPlayerOfTheMonth", true, getRootElement(), data)
     else
         triggerLatentClientEvent(client, "onClientLoadWerbung", true, getRootElement(), data, ID, animation)

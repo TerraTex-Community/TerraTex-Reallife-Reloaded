@@ -1,3 +1,8 @@
+####12.06.2016
+------
+* [GENERAL] Refactored all mysql_querys in d_uv_scripted.lua
+* [GENERAL] Refactored all mysql_querys in player_connect.lua
+
 ####11.06.2016
 ------
 * [ADDED] MySql.helper.getSync()

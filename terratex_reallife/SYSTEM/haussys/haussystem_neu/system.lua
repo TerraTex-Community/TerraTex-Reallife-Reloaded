@@ -45,9 +45,8 @@ function haussys_startup()
                                                 dasatz["QM"],
                                                 dasatz["Stockwerke"],
                                                 dasatz["Wert"]);
-
-        outputDebugString("# "..zahler.." Houses loaded!")
     end
+    outputDebugString("# "..table.getSize(haeuser).." Houses loaded!");
 
     result = MySql.helper.getSync("haussys_irdb", "*");
     for theKey, dasatz in ipairs(result) do
@@ -61,8 +60,8 @@ function haussys_startup()
                                     dasatz["QM"],
                                     dasatz["Stockwerke"],
                                     dasatz["Wert"]);
-        outputDebugString("# "..zahler.." Interior-Rooms loaded!")
     end
+    outputDebugString("# "..table.getSize(iraeume).." Interior-Rooms loaded!");
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),haussys_startup)
 

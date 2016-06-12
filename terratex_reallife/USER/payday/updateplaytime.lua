@@ -28,7 +28,6 @@ function update_play_time_func()
         end
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), update_play_time_func)
 
 function checkTimeErfolge(thePlayer, PlayTime)
@@ -435,7 +434,6 @@ function payday(thePlayer)
             triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "Fraktionseinsteinsteiger", "Sei in einer Fraktion")
         end
     end
-
 
     local WerberUeber25SpielstundenQuery = "SELECT * FROM players LEFT JOIN userdata ON userdata.Nickname=players.Nickname WHERE players.werber = ? and userdata.playtime>1500";
     local result = dbQuery(MySql._connection, WerberUeber25SpielstundenQuery, getPlayerName(thePlayer))

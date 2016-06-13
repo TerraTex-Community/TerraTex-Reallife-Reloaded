@@ -1016,17 +1016,3 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
     end
 end
 addCommandHandler("sdm", setplayersdm, false, false)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

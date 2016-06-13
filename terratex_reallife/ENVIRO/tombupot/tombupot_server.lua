@@ -5,7 +5,7 @@ local winTimeHour = 20
 local winTimeMinute = 0
 
 function createTombuPotLottery()
-    mark = createMarker(822.28997802734, 1.8700000047684, 1003.1799926758, "cylinder", 2)
+    local mark = createMarker(822.28997802734, 1.8700000047684, 1003.1799926758, "cylinder", 2)
     setElementInterior(mark, 3)
     addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
     mark = createMarker(-2161.1398925781, 640.29998779297, 1051.3800048828, "cylinder", 2)
@@ -13,7 +13,6 @@ function createTombuPotLottery()
     addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
     setTimer(isLotteryTime, 60000, 1)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTombuPotLottery)
 
 function requestNewTombuTicket(thePlayer)
@@ -33,13 +32,12 @@ function acceptedBuyTomboTicket_func()
     if (getPlayerMoney(source) < tombuTicketPrice) then
         showError(source, "Du hast nicht genug Geld!")
     else
-        changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines TombupotTickets")
-        local query = "INSERT INTO tombupot (Nickname) VALUES ('" .. getPlayerName(source) .. "')"
-        mysql_query(handler, query)
+        changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines TombupotTickets");
+
+        MySql.helper.insert("tombupot", {Nickname = getPlayerName(source)});
         outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupotlottery erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
     end
 end
-
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)
 
 function isLotteryTime()
@@ -50,20 +48,24 @@ function isLotteryTime()
         local gewinn = tickets * tombuTicketPrice * 0.9
         outputChatBox(string.format("Es wurden %s Tickets gekauft, dass ergibt einen Gewinn von %s", tickets, gewinn))
         outputChatBox("Der Gewinner wird ermittelt.......")
-        local query = "SELECT * FROM tombupot ORDER BY RAND() LIMIT 1"
-        local result = mysql_query(handler, query)
-        local dsatz = mysql_fetch_assoc(result)
+
+        local query = dbQuery(MySql._connection, "SELECT * FROM tombupot ORDER BY RAND() LIMIT 1");
+        local result = dbPoll(query, -1);
+        local dsatz = result[1];
+
         outputChatBox(string.format(".... und es hat %s gewonnen!!!!", dsatz["Nickname"]))
         local thePlayer = getPlayerFromName(dsatz["Nickname"])
         if (thePlayer) then
             changePlayerMoney(thePlayer, gewinn, "sonstiges", "Gewinn in der Tombupotlotterie")
             outputChatBox("Dein Gewinn wurde dir auf die Hand gegeben!", thePlayer, 155, 155, 0)
         else
-            query = "INSERT INTO gutschriften (Nickname,Grund,Geld) VALUES ('" .. dsatz["Nickname"] .. "','" .. "Du hast in der TombupotLottery gewonnen!" .. "','" .. gewinn .. "')"
-            mysql_query(handler, query)
+            MySql.helper.insert("gutschriften", {
+                Nickname = dsatz["Nickname"],
+                Grund = "Du hast in der TombupotLottery gewonnen!",
+                Geld = gewinn
+            });
         end
-        query = "TRUNCATE TABLE tombupot";
-        mysql_query(handler, query)
+        dbExec(MySql._connection, "TRUNCATE TABLE tombupot");
 
         outputChatBox("Vergesst nicht an der nächsten Tombupotlottery teilzunehmen!")
         outputChatBox("Tickets für die Teilnahme gibts in allen Lottoläden! (Würfel auf der Karte!)")

@@ -12,34 +12,18 @@ fraktionbezeichner = {}
 fraktionsrange = {}
 
 function teamserstellen()
-    --read Fraktionsnamen und Ränge aus DB
-    local query = "SELECT * from data_fraktions_namen"
-    local result = mysql_query(handler, query)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        local zahler = 0
-        while (mysql_num_rows(result) > zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            fraktionbezeichner[tonumber(dasatz["ID"])] = dasatz["Name"]
-            zahler = zahler + 1
-        end
+
+    local result = MySql.helper.getSync("data_fraktions_namen", "*");
+    for theKey, dasatz in ipairs(result) do
+        fraktionbezeichner[tonumber(dasatz["ID"])] = dasatz["Name"];
     end
 
-    query = "SELECT * from data_fraktions_raenge"
-    result = mysql_query(handler, query)
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        local zahler = 0
-        while (mysql_num_rows(result) > zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            if (not fraktionsrange[tonumber(dasatz["FrakID"])]) then
-                fraktionsrange[tonumber(dasatz["FrakID"])] = {}
-            end
-            fraktionsrange[tonumber(dasatz["FrakID"])][tonumber(dasatz["RangID"])] = dasatz["Name"]
-            zahler = zahler + 1
+    result = MySql.helper.getSync("data_fraktions_raenge", "*");
+    for theKey, dasatz in ipairs(result) do
+        if (not fraktionsrange[tonumber(dasatz["FrakID"])]) then
+            fraktionsrange[tonumber(dasatz["FrakID"])] = {}
         end
+        fraktionsrange[tonumber(dasatz["FrakID"])][tonumber(dasatz["RangID"])] = dasatz["Name"]
     end
 
     blacklist[0] = false
@@ -235,7 +219,6 @@ function save_frakkasse(counter)
 
     setTimer(save_frakkasse, 3600000, 1)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), save_frakkasse)
 
 function save_frakkasseB()
@@ -252,7 +235,6 @@ function save_frakkasseB()
         MySql.helper.update("fraktionskasse", { Steuersatz = theMoney }, { FrakID = theFraktion });
     end
 end
-
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_frakkasseB)
 
 function frakkasse_func(thePlayer, Command, money, grund, ...)
@@ -293,7 +275,6 @@ function frakkasse_func(thePlayer, Command, money, grund, ...)
         outputChatBox(string.format("In der Fraktionkasse befinden sich: %s", toprice(frakkasse[frak])), thePlayer, 255, 255, 0)
     end
 end
-
 addCommandHandler("frakkasse", frakkasse_func, false, false)
 
 function heal_func(thePlayer)
@@ -320,7 +301,6 @@ function heal_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("heal", heal_func, false, false)
 
 function frakdrogen_func(thePlayer, Command, money)
@@ -367,7 +347,6 @@ function frakdrogen_func(thePlayer, Command, money)
         end
     end
 end
-
 addCommandHandler("frakdrug", frakdrogen_func, false, false)
 
 function frakmats_func(thePlayer, Command, money)
@@ -414,41 +393,27 @@ function frakmats_func(thePlayer, Command, money)
         end
     end
 end
-
 addCommandHandler("frakmats", frakmats_func, false, false)
 
 function loadfromBlacklistDB()
     for n = 1, table.getn(team), 1 do
         if (blacklist[n] ~= false) then
-            local privquery = "SELECT * FROM blacklist WHERE Fraktion='" .. n .. "'"
-            local result = mysql_query(handler, privquery)
-            if (not result) then
-                outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-            else
-                local zahler = 0
-                while (mysql_num_rows(result) > zahler) do
-                    local dasatz = mysql_fetch_assoc(result)
-                    table.insert(blacklist[n], { dasatz["Name"], dasatz["ID"], dasatz["Von"], dasatz["Grund"] })
-                    zahler = zahler + 1
-                end
+            local result = MySql.helper.getSync("blacklist", {Fraktion = n});
+            for theKey, dasatz in ipairs(result) do
+                table.insert(blacklist[n], { dasatz["Name"], dasatz["ID"], dasatz["Von"], dasatz["Grund"] });
             end
         end
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadfromBlacklistDB)
 
 function checkbyblacklist_func(thePlayer, cmd, types, frakid)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 4 or isAdminLevel(thePlayer, 1)) then
         if (not (frakid) or vioGetElementData(thePlayer, "adminlvl") == 0) then
             local frakid = vioGetElementData(thePlayer, "fraktion")
-            local privquery = "SELECT * FROM blacklist WHERE Fraktion='" .. frakid .. "'"
-            local result = mysql_query(handler, privquery)
+            local result = MySql.helper.getSync("blacklist", {Fraktion = frakid});
             outputChatBox("Blacklist: ", thePlayer, 255, 255, 0)
-            while (true) do
-                data = mysql_fetch_assoc(result)
-                if not data then break end
-                --debug.print(data)
+            for theKey, data in ipairs(result) do
                 local playerName = data["Name"]
                 local vonName = data["Von"]
                 local Grund = data["Grund"]
@@ -465,15 +430,13 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
                     outputChatBox(string.format("%s von %s wegen %s", playerName, vonName, Grund), thePlayer, 255, 255, 0)
                 end
             end
-
         elseif (frakid and isAdminLevel(thePlayer, 1)) then
             frakid = tonumber(frakid)
-            local privquery = "SELECT * FROM blacklist WHERE Fraktion='" .. frakid .. "'"
-            local result = mysql_query(handler, privquery)
+            local result = MySql.helper.getSync("blacklist", {Fraktion = frakid});
+
             outputChatBox(string.format("Blacklist der Fraktion %s: ", fraktionbezeichner[frakid]), thePlayer, 255, 255, 0)
-            while (true) do
-                data = mysql_fetch_assoc(result)
-                if not data then break end
+
+            for theKey, data in ipairs(result) do
                 local playerName = data["Name"]
                 local vonName = data["Von"]
                 local Grund = data["Grund"]
@@ -496,9 +459,7 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
         showError(thePlayer, "keine Berechtigung!")
     end
 end
-
 addCommandHandler("checkblacklist", checkbyblacklist_func, false, false)
-
 
 function setblacklist_func(thePlayer, command, toPlayerName, grund, ...)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 2) then
@@ -522,11 +483,12 @@ function setblacklist_func(thePlayer, command, toPlayerName, grund, ...)
                             if (vioGetElementData(toPlayer, "playtime") < 1500) then
                                 showError(thePlayer, "Dieser Spieler ist noch im Neulingsstatus (ROOKIE) und kann daher auf keine Blacklist gesetzt werden!")
                             else
-                                local query = "INSERT INTO blacklist (Name,Fraktion,Von,Grund) VALUES ('" .. toPlayerName .. "','" .. vioGetElementData(thePlayer, "fraktion") .. "','" .. getPlayerName(thePlayer) .. "','" .. reason .. "')"
-                                local resultre = mysql_query(handler, query)
-                                mysql_free_result(resultre)
-
-                                local id = MySql.helper.getValueSync("blacklist", "ID", { Name = toPlayerName, Fraktion = vioGetElementData(thePlayer, "fraktion") });
+                                local id = MySql.helper.insertSync("blacklist", {
+                                    Name = toPlayerName,
+                                    Fraktion = vioGetElementData(thePlayer, "fraktion"),
+                                    Von = getPlayerName(thePlayer),
+                                    Grund = reason
+                                });
 
                                 table.insert(blacklist[vioGetElementData(thePlayer, "fraktion")], { toPlayerName, id })
                                 showError(thePlayer, "Dieser Spieler ist jetzt auf der Blacklist!")
@@ -543,9 +505,7 @@ function setblacklist_func(thePlayer, command, toPlayerName, grund, ...)
         end
     end
 end
-
 addCommandHandler("setblacklist", setblacklist_func, false, false)
-
 
 function unsetblacklist_func(thePlayer, command, toPlayerName)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 2) then
@@ -566,9 +526,10 @@ function unsetblacklist_func(thePlayer, command, toPlayerName)
                     if not (isonit) then
                         showError(thePlayer, "Dieser Spieler ist nicht auf der Blacklist!")
                     else
-                        local query = "DELETE FROM blacklist WHERE Name='" .. toPlayerName .. "' and Fraktion='" .. vioGetElementData(thePlayer, "fraktion") .. "'"
-                        local resultre = mysql_query(handler, query)
-                        mysql_free_result(resultre)
+                        MySql.helper.delete("blacklist", {
+                            Name = toPlayerName,
+                            Fraktion = vioGetElementData(thePlayer, "fraktion")
+                        });
                         table.remove(blacklist[vioGetElementData(thePlayer, "fraktion")], isonitkey)
                         showError(thePlayer, "Dieser Spieler ist jetzt nicht mehr auf der Blacklist!")
                     end
@@ -580,7 +541,6 @@ function unsetblacklist_func(thePlayer, command, toPlayerName)
         end
     end
 end
-
 addCommandHandler("unsetblacklist", unsetblacklist_func, false, false)
 
 function blacklist_func(thePlayer)
@@ -606,7 +566,6 @@ function blacklist_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("blacklist", blacklist_func, false, false)
 
 function showSchutz_func(thePlayer, cmd, state)
@@ -642,7 +601,6 @@ function showSchutz_func(thePlayer, cmd, state)
         end
     end
 end
-
 addCommandHandler("showschutz", showSchutz_func, false, false)
 
 function isPlayerSchutzOnline(player)
@@ -697,15 +655,4 @@ function schutzgeld_func(thePlayer, command, toplayername, betrag)
         outputChatBox("Du gehörst zu keiner Mafia/Gang", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("schutzgeld", schutzgeld_func, false, false)
-
-
-
-
-
-
-
-
-
-

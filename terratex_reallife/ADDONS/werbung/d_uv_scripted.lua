@@ -31,7 +31,7 @@ addEventHandler("onResourceStart", resourceRoot, onResourceStart_WerbeSchilderGe
 addEvent("requestPlayerOfMonth", true)
 function onResourceLoadPlayerOfMonth(thePlayer)
     if not source then source = thePlayer end
-    sendFileToClient("WERBEBILDER/playermonth/" .. serversettings["playerOfMonthPic"], source, "month", 0)
+    sendFileToClient("WERBEBILDER/big_wall/" .. serversettings["playerOfMonthPic"], source, "month", 0)
 
     for i = 1, (werbeschilder), 1 do
         sendFileToClient(werbungenTable[i][1], source, "werbung", i, werbungenTable[i][2])

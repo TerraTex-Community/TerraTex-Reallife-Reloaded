@@ -9,7 +9,7 @@ function startTrinkCreate()
         table.insert(sprunktable, { colShape, dasatz["X"], dasatz["Y"], dasatz["Z"], dasatz["Rot"] })
 
     end
-    outputDebugString("# " .. table.getSize(dasatz) .. " Sprunkautomaten loaded!")
+    outputDebugString("# " .. table.getSize(sprunktable) .. " Sprunkautomaten loaded!")
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), startTrinkCreate)
 

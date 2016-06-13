@@ -703,6 +703,7 @@ function a_func(theMaker, Command, ...)
         if (vioGetElementData(theMaker, "adminlvl") == 2) then adminpre = "SuperModerator " end
         if (vioGetElementData(theMaker, "adminlvl") == 3) then adminpre = "Administrator " end
         if (vioGetElementData(theMaker, "adminlvl") == 4) then adminpre = "Serverleiter " end
+        if (vioGetElementData(theMaker, "adminlvl") == 5) then adminpre = "[Hidden] " end
         local players = getElementsByType("player")
         for theKey, thePlayer in ipairs(players) do
             if (isPlayerLoggedIn(thePlayer)) then
@@ -1014,7 +1015,6 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
         end
     end
 end
-
 addCommandHandler("sdm", setplayersdm, false, false)
 
 

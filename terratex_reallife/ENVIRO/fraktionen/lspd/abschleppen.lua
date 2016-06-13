@@ -145,7 +145,7 @@ function getcar_func(thePlayer, cmd, IDs)
                             end
                         end
 
-                        local result = MySql.helper.getSync("vehicles", {
+                        local result = MySql.helper.getSync("vehicles", "*", {
                             Besitzer = getPlayerName(thePlayer),
                             SlotID = id
                         });

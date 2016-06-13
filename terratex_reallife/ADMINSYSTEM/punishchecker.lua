@@ -13,7 +13,7 @@ end
 function checkAdditionalPunishment_offline(playerName)
     local tryKickPlayer = false
 
-    local result = MySql.helper.getSync("bewaehrungsstrafen", { Nickname = playerName });
+    local result = MySql.helper.getSync("bewaehrungsstrafen", "*", { Nickname = playerName });
 
     for theKey, dasatz in ipairs(result) do
 

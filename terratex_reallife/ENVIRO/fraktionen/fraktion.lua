@@ -398,7 +398,7 @@ addCommandHandler("frakmats", frakmats_func, false, false)
 function loadfromBlacklistDB()
     for n = 1, table.getn(team), 1 do
         if (blacklist[n] ~= false) then
-            local result = MySql.helper.getSync("blacklist", {Fraktion = n});
+            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = n});
             for theKey, dasatz in ipairs(result) do
                 table.insert(blacklist[n], { dasatz["Name"], dasatz["ID"], dasatz["Von"], dasatz["Grund"] });
             end
@@ -411,7 +411,7 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 4 or isAdminLevel(thePlayer, 1)) then
         if (not (frakid) or vioGetElementData(thePlayer, "adminlvl") == 0) then
             local frakid = vioGetElementData(thePlayer, "fraktion")
-            local result = MySql.helper.getSync("blacklist", {Fraktion = frakid});
+            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = frakid});
             outputChatBox("Blacklist: ", thePlayer, 255, 255, 0)
             for theKey, data in ipairs(result) do
                 local playerName = data["Name"]
@@ -432,7 +432,7 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
             end
         elseif (frakid and isAdminLevel(thePlayer, 1)) then
             frakid = tonumber(frakid)
-            local result = MySql.helper.getSync("blacklist", {Fraktion = frakid});
+            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = frakid});
 
             outputChatBox(string.format("Blacklist der Fraktion %s: ", fraktionbezeichner[frakid]), thePlayer, 255, 255, 0)
 

@@ -1,3 +1,8 @@
+####13.06.2016
+------
+* [CHANGED] Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
+* [FIXED] The Value set by /fsteuer will be rounded to disallow decimals
+
 ####12.06.2016
 ------
 * [GENERAL] Refactored all mysql_querys in d_uv_scripted.lua

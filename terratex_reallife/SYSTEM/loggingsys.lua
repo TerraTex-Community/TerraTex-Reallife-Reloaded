@@ -107,23 +107,15 @@ local leichteListe = {}
 local schwereListe = {}
 
 function load_beleidigungslisten()
-    local query = "SELECT * FROM beleidigungsystem"
-    local result = mysql_query(handler, query)
-    while (true) do
-        local dsatz = mysql_fetch_assoc(result)
-        if (dsatz) then
-            if (dsatz["Type"] == "0") then
-                table.insert(leichteListe, dsatz["Beleidigung"])
-            else
-                table.insert(schwereListe, dsatz["Beleidigung"])
-            end
+    local result = MySql.helper.getSync("beleidigungsystem", "*");
+    for theKey, dsatz in ipairs(result) do
+        if (dsatz["Type"] == "0") then
+            table.insert(leichteListe, dsatz["Beleidigung"])
         else
-            break
+            table.insert(schwereListe, dsatz["Beleidigung"])
         end
     end
-    local dsatz = mysql_fetch_assoc(result)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), load_beleidigungslisten)
 
 local maybeBeleidigung = {}

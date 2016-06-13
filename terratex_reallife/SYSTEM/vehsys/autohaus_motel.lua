@@ -418,9 +418,20 @@ function buyCar(thevehicle)
                             setTimer(fixVehicle, 3000, 1, spawnVeh)
                             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
                             privCars[spawnVeh] = true
-                            local query = "INSERT INTO vehicles ( SlotID,Besitzer,Model,SpawnX,SpawnY,SpawnZ,SpawnRX,SpawnRY,SpawnRZ,Colors,kaufpreis) VALUES ('" .. firstfreeslot .. "','" .. getPlayerName(source) .. "','" .. getElementModel(spawnVeh) .. "','0','0','0','0','0','0','0|0|0|0','" .. vehicle[4] .. "')"
-                            mysql_query(handler, query)
-                            local dbid = MySql.helper.getValueSync("vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
+
+                            local dbid = MySql.helper.insertSync("vehicles", {
+                                SlotID = firstfreeslot,
+                                Besitzer = getPlayerName(source),
+                                Model = getElementModel(spawnVeh),
+                                SpawnX = 0,
+                                SpawnY = 0,
+                                SpawnZ = 0,
+                                SpawnRX = 0,
+                                SpawnRY = 0,
+                                SpawnRZ = 0,
+                                Colors = "0|0|0|0",
+                                kaufpreis = vehicle[4]
+                            });
 
                             outputDebugString("Buyed Car dbid:" .. tostring(dbid))
                             vioSetElementData(spawnVeh, "dbid", dbid)

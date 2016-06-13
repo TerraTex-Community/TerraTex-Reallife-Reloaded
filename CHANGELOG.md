@@ -23,6 +23,11 @@
 * [GENERAL] Refactored all mysql_querys in anti_spam_server.lua
 * [GENERAL] Refactored all mysql_querys in data.lua
 * [GENERAL] Refactored all mysql_querys in prestige_load.lua
+* [GENERAL] Refactored all mysql_querys in autohaus_motel.lua
+* [GENERAL] Refactored all mysql_querys in start_veh.lua
+* [GENERAL] Refactored all mysql_querys in vehicle_house.lua
+* [GENERAL] Refactored all mysql_querys in privCarCommands.lua
+* [GENERAL] Refactored all mysql_querys in loadprivcars.lua
 * [CHANGED] #6 Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
 * [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
 * [FIXED] #7 The Value set by /fsteuer will be rounded to disallow decimals

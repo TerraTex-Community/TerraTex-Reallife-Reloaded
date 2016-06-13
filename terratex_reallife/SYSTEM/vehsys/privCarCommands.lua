@@ -326,8 +326,9 @@ function deletecar_func(thePlayer, command, SloteID)
                             table.remove(privVeh, theKey)
                         end
                     end
-                    local query = "DELETE FROM vehicles WHERE ID='" .. vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") .. "';"
-                    mysql_query(handler, query)
+
+                    MySql.helper.delete("vehicles", {ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
+
                     carPrice = math.round((carPrice / 100) * 15, 0)
                     if (vioGetElementData(thePlayer, "premium") > 0) then
                         if (premPrice == 0) then
@@ -393,8 +394,14 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID)
                                         setVehicleColor(vioGetElementData(thePlayer, "slot" .. SlotID), colorA, colorB, 0, 0)
                                         vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "besitzer", getPlayerName(newplayer))
                                         vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "slotid", firstfreeslot)
-                                        local query = "UPDATE vehicles SET SlotID='" .. firstfreeslot .. "',Besitzer='" .. getPlayerName(newplayer) .. "' WHERE ID='" .. vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") .. "'"
-                                        mysql_query(handler, query)
+
+                                        MySql.helper.update("vehicles", {
+                                            SlotID = firstfreeslot,
+                                            Besitzer = getPlayerName(newplayer)
+                                        }, {
+                                            ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid")
+                                        });
+
                                         local vehname = getVehicleNameFromModel(getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID)))
                                         showError(thePlayer, "Dieser Spieler hat das Fahrzeug erfolgreich erhalten")
                                         outputChatBox(string.format("Dir wurde von %s ein %s in deinen Slot %s übergeben!", getPlayerName(thePlayer), vehname, firstfreeslot), newplayer, 255, 255, 0)

@@ -75,9 +75,16 @@ function stealTooExpensiveVehicles()
                     local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, message)
                     save_log("abschlepp", logtext)
 
-                    local query = "UPDATE vehicles SET SpawnX='0',SpawnY='0',SpawnZ='0',SpawnRX='0',SpawnRY='0',SpawnRZ='0' WHERE ID='" .. vioGetElementData(theVehicle, "dbid") .. "'"
-                    mysql_query(handler, query)
-                    mysql_query(handler, "UPDATE vehicles SET abgeschleppt=1 WHERE ID='" .. vioGetElementData(theVehicle, "dbid") .. "'")
+                    MySql.helper.update("vehicles", {
+                        SpawnX = 0,
+                        SpawnY = 0,
+                        SpawnZ = 0,
+                        SpawnRX = 0,
+                        SpawnRY = 0,
+                        SpawnRZ = 0,
+                        abgeschleppt = 1
+                    }, {ID = vioGetElementData(theVehicle, "dbid")});
+
                     for theKey, theTable in ipairs(privVeh) do
                         if (theTable[3] == source) then
                             table.remove(privVeh, theKey)
@@ -91,13 +98,4 @@ function stealTooExpensiveVehicles()
         end
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), stealTooExpensiveVehicles)
-
-
-
-
-
-
-
-

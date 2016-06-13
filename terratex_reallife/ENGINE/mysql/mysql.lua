@@ -27,9 +27,6 @@ MySql.init = function()
     end
 end
 
--- Functions todo:
--- function mysql_query(handler, query)
-
 MySql.helper = {};
 
 local function prepareConditions(conditions, operation)

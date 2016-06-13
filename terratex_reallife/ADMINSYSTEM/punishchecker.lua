@@ -11,54 +11,68 @@ function checkAdditionalPunishment(thePlayer)
 end
 
 function checkAdditionalPunishment_offline(playerName)
-
-    local query = "SELECT * FROM bewaehrungsstrafen WHERE Nickname='" .. playerName .. "'"
-    local result = mysql_query(handler, query)
     local tryKickPlayer = false
 
-    local zahler = 0
-    if (mysql_num_rows(result) > 0) then
-        while (mysql_num_rows(result) > zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            local time = getTimestamp()
-            if (time < tonumber(dasatz["until"])) then
-                if (tonumber(dasatz["warn"]) > 0) then
-                    for i = 0, tonumber(dasatz["warn"]), 1 do
-                        local qquery = "INSERT INTO warns (Admin,Grund,Nickname) VALUES ('" .. dasatz["Adminname"] .. "','" .. dasatz["Grund"] .. "','" .. dasatz["Nickname"] .. "')"
-                        mysql_query(handler, qquery)
-                    end
-                    save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast " .. dasatz["warn"] .. " Warns erhalten")
+    local result = MySql.helper.getSync("bewaehrungsstrafen", { Nickname = playerName });
 
-                    if (MySql.helper.getCountSync("warns", {Nickname = dasatz["Nickname"]}) > 2) then
-                        local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
+    for theKey, dasatz in ipairs(result) do
 
-                        local qquery = "INSERT INTO ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. dasatz["Nickname"] .. "','" .. serial .. "','0','3 Warns','Warnsystem')"
-                        mysql_query(handler, qquery)
-                        tryKickPlayer = true
-                    end
+        local time = getTimestamp()
+        if (time < tonumber(dasatz["until"])) then
+            if (tonumber(dasatz["warn"]) > 0) then
+                for i = 0, tonumber(dasatz["warn"]), 1 do
+
+                    MySql.helper.insert("warns", {
+                        Admin = dasatz["Adminname"],
+                        Grund = dasatz["Grund"],
+                        Nickname = dasatz["Nickname"]
+                    });
+
                 end
-                if (tonumber(dasatz["tban"]) > 0) then
-                    local qquery = "INSERT INTO timeban (Nickname,Grund,Admin,Minuten) VALUES ('" .. dasatz["Nickname"] .. "','Bewährungsstrafe: " .. dasatz["Grund"] .. "','" .. dasatz["Adminname"] .. "','" .. dasatz["tban"] .. "')"
-                    mysql_query(handler, qquery)
-                    save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast einen Timeban erhalten")
-                    tryKickPlayer = true
-                end
-                if (tonumber(dasatz["perma"]) > 0) then
+                save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast " .. dasatz["warn"] .. " Warns erhalten")
+
+                if (MySql.helper.getCountSync("warns", { Nickname = dasatz["Nickname"] }) > 2) then
                     local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
-                    local qquery = "INSERT INTO ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. dasatz["Nickname"] .. "','" .. serial .. "','0','Bewährungsstrafe: " .. dasatz["Grund"] .. "','" .. dasatz["Adminname"] .. "')"
-                    mysql_query(handler, qquery)
+
+                    MySql.helper.insert("ban", {
+                        Nickname = dasatz["Nickname"],
+                        Serial = serial,
+                        IP = 0,
+                        Grund = "3 Warns",
+                        Admin = "Warnsystem"
+                    });
                     tryKickPlayer = true
                 end
             end
-
-            mysql_query(handler, "DELETE FROM bewaehrungsstrafen WHERE ID='" .. dasatz["ID"] .. "'")
-
-            if (tryKickPlayer) then
-                if (getPlayerFromName(playerName)) then
-                    setTimer(kickMeIfYouCan, 10000, 1, getPlayerFromName(playerName))
-                end
+            if (tonumber(dasatz["tban"]) > 0) then
+                MySql.helper.insert("timeban", {
+                    Nickname = dasatz["Nickname"],
+                    Grund = "Bewährungsstrafe: " .. dasatz["Grund"],
+                    Admin = dasatz["Adminname"],
+                    Minuten = dasatz["tban"]
+                });
+                save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast einen Timeban erhalten")
+                tryKickPlayer = true
             end
-            zahler = zahler + 1
+            if (tonumber(dasatz["perma"]) > 0) then
+                local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
+
+                MySql.helper.insert("ban", {
+                    Nickname = dasatz["Nickname"],
+                    Serial = serial,
+                    IP = 0,
+                    Grund = "Bewährungsstrafe: " .. dasatz["Grund"],
+                    Admin = dasatz["Adminname"]
+                });
+                tryKickPlayer = true
+            end
+        end
+
+        MySql.helper.delete("bewaehrungsstrafen", {ID = dasatz["ID"]});
+        if (tryKickPlayer) then
+            if (getPlayerFromName(playerName)) then
+                setTimer(kickMeIfYouCan, 10000, 1, getPlayerFromName(playerName))
+            end
         end
     end
 end
@@ -66,11 +80,4 @@ end
 function kickMeIfYouCan(thePlayer)
     kickPlayer(thePlayer, "Deine Bewährungsstrafe wurde durch dein Fehlverhalten fällig")
 end
-
-
-
-
-
-
-
 

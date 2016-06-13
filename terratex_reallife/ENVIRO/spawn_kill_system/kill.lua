@@ -19,7 +19,6 @@ function setEndDeath_command_func(thePlayer, command, toPlayer)
         end
     end
 end
-
 addCommandHandler("enddeath", setEndDeath_command_func, false, false)
 
 function setDeath_command_func(thePlayer, command, toPlayer)
@@ -32,7 +31,6 @@ function setDeath_command_func(thePlayer, command, toPlayer)
         end
     end
 end
-
 addCommandHandler("setdeath", setDeath_command_func, false, false)
 
 function showdeath_func(thePlayer)
@@ -46,7 +44,6 @@ function showdeath_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("showdeath", showdeath_func, false, false)
 
 function onDiscoDeleteIcons()
@@ -55,9 +52,7 @@ function onDiscoDeleteIcons()
         destroyElement(vioGetElementData(source, "isDeathPlayerBlip"))
     end
 end
-
 addEventHandler("onPlayerQuit", getRootElement(), onDiscoDeleteIcons)
-
 
 function death_func(ammo, attacker, weapon, bodypart)
     if not (vioGetElementData(source, "inArena")) then
@@ -81,7 +76,6 @@ function death_func(ammo, attacker, weapon, bodypart)
             end
         end
         vioSetElementData(source, "isDeathPlayerBlip", mechaBlip)
-
 
         local todelast = vioGetElementData(source, "todelast")
         local deathtime = 200 + (todelast) * 30
@@ -162,8 +156,6 @@ function death_func(ammo, attacker, weapon, bodypart)
                 setPedHeadless(source, true)
             end
 
-
-
             if (isBeamter(attacker)) and (vioGetElementData(source, "wanteds") > 0) then
                 vioSetElementData(source, "alkaknast", getNearestKnastID(source))
 
@@ -183,9 +175,6 @@ function death_func(ammo, attacker, weapon, bodypart)
                     outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(source)), 255, 0, 0)
                 end
             end
-
-
-        else
         end
 
         vioSetElementData(source, "todelast", (todelast))
@@ -194,7 +183,6 @@ function death_func(ammo, attacker, weapon, bodypart)
         loadKrankenhaus(source)
     end
 end
-
 addEventHandler("onPlayerWasted", getRootElement(), death_func)
 
 addEvent("killMyDeathIcon", true)
@@ -206,17 +194,22 @@ function killMyDeathIcon()
         vioSetElementData(source, "isDeathPlayer", false)
     end
 end
-
 addEventHandler("killMyDeathIcon", getRootElement(), killMyDeathIcon)
 
 function medicWiederBeleben(thePlayer)
     if (vioGetElementData(thePlayer, "fraktion") == 10) then
-        setElementFrozen(thePlayer, true)
-        outputChatBox("Du beginnst diese Leiche wiederzubeleben! (Dauer 10 Sekunden)", thePlayer)
-        local surriver = vioGetElementData(source, "isDeathPlayer")
-        destroyElement(vioGetElementData(surriver, "isDeathPlayerBlip"))
-        destroyElement(source)
-        setTimer(medic_wiederbelebenende, 10000, 1, thePlayer, surriver)
+        if (not isPedInVehicle(thePlayer)) then
+            if (vioGetElementData(thePlayer, "isMedicDuty")) then
+                setElementFrozen(thePlayer, true)
+                outputChatBox("Du beginnst diese Leiche wiederzubeleben! (Dauer 10 Sekunden)", thePlayer)
+                local surriver = vioGetElementData(source, "isDeathPlayer")
+                destroyElement(vioGetElementData(surriver, "isDeathPlayerBlip"))
+                destroyElement(source)
+                setTimer(medic_wiederbelebenende, 10000, 1, thePlayer, surriver)
+            else
+                outputChatBox("Du bist nicht im Dienst!", thePlayer, 255 ,0 ,0);
+            end
+        end
     end
 end
 

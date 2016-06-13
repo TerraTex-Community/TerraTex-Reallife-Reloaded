@@ -102,11 +102,3 @@ local function handlerMedicDuty(thePlayer)
 	end
 end
 addCommandHandler("duty", handlerMedicDuty, false, false)
-
-
-
-
-
-
-
-

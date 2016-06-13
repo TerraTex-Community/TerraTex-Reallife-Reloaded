@@ -1,9 +1,10 @@
 ####13.06.2016
 ------
-* [CHANGED] Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
+* [CHANGED] #6 Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
 * [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
-* [FIXED] The Value set by /fsteuer will be rounded to disallow decimals
-* [FIXED] /buyprestige should be paid from the bank account of the player
+* [FIXED] #7 The Value set by /fsteuer will be rounded to disallow decimals
+* [FIXED] #11 /buyprestige should be paid from the bank account of the player
+* [FIXED] #12 Medics have to be in Duty and must not to be in a vehicle to heal a player
 
 ####12.06.2016
 ------

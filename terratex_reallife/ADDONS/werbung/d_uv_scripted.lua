@@ -42,7 +42,7 @@ addEventHandler("requestPlayerOfMonth", getRootElement(), onResourceLoadPlayerOf
 
 function sendFileToClient(file, client, typer, ID, animation)
     local fh = fileExists(file) and fileOpen(file)
-    assert(fh)
+    assert(fh, "File does not exist: " .. file)
 
     local data = fileRead(fh, fileGetSize(fh))
     fileClose(fh)

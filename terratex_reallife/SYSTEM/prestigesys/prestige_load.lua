@@ -3,56 +3,52 @@ prestigeObjects = {}
 --- Berechnung Stufengeld: =(6*POTENZ(10;-11))*POTENZ(A1;2)+0,0002*A1+69,444*0,5
 function loadPrestigeFromDB()
 
-    local query = "Select * From prestige"
-    local result = mysql_query(handler, query)
-    local zahler = 0
-    if (not result) then
-        outputDebugString("Error executing the query: (" .. mysql_errno(handler) .. ") " .. mysql_error(handler))
-    else
-        zahler = 0
-        while (mysql_num_rows(result) > zahler) do
-            local dasatz = mysql_fetch_assoc(result)
-            -- ID 	x y	z stufe	name preis stufengeld
-            prestigeObjects[tonumber(dasatz["ID"])] = {}
-            prestigeObjects[tonumber(dasatz["ID"])]["x"] = dasatz["x"]
-            prestigeObjects[tonumber(dasatz["ID"])]["y"] = dasatz["y"]
-            prestigeObjects[tonumber(dasatz["ID"])]["z"] = dasatz["z"]
-            prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = tonumber(dasatz["stufe"])
-            prestigeObjects[tonumber(dasatz["ID"])]["name"] = dasatz["name"]
-            prestigeObjects[tonumber(dasatz["ID"])]["preis"] = tonumber(dasatz["preis"])
-            prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"] = tonumber(dasatz["grundpreis"])
-            prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
-            prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
-            prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
-            vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
-            addEventHandler("onPickupHit", prestigeObjects[tonumber(dasatz["ID"])]["pickup"], showPrestigeInfos)
+    local result = MySql.helper.getSync("prestige", "*");
 
-            local Text = dasatz["name"]
-            Text = string.format("%s\nWert: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["preis"])
-            Text = string.format("%s\nStufe: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["stufe"])
-            if (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) then
-                Text = string.format("%s\nBesitzer: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["besitzer"])
-            end
-            setElementShowText(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], { 0, 0, 255, 255 }, Text, false, 15, 1.3, 0.2)
-            --outputDebugString(Text)
+    for theKey, dasatz in ipairs(result) do
+        -- ID 	x y	z stufe	name preis stufengeld
+        prestigeObjects[tonumber(dasatz["ID"])] = {}
+        prestigeObjects[tonumber(dasatz["ID"])]["x"] = dasatz["x"]
+        prestigeObjects[tonumber(dasatz["ID"])]["y"] = dasatz["y"]
+        prestigeObjects[tonumber(dasatz["ID"])]["z"] = dasatz["z"]
+        prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = tonumber(dasatz["stufe"])
+        prestigeObjects[tonumber(dasatz["ID"])]["name"] = dasatz["name"]
+        prestigeObjects[tonumber(dasatz["ID"])]["preis"] = tonumber(dasatz["preis"])
+        prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"] = tonumber(dasatz["grundpreis"])
+        prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
+        prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
+        prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
+        vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
+        addEventHandler("onPickupHit", prestigeObjects[tonumber(dasatz["ID"])]["pickup"], showPrestigeInfos)
 
-            if (not (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) and prestigeObjects[tonumber(dasatz["ID"])]["stufe"] > 1) then
-                prestigeObjects[tonumber(dasatz["ID"])]["preis"] = prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"]
-                prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = 1
-                local query = "UPDATE prestige SET preis='" .. prestigeObjects[tonumber(dasatz["ID"])]["preis"] .. "',stufe='1' WHERE ID='" .. dasatz["ID"] .. "'"
-                mysql_query(handler, query)
-            end
+        local Text = dasatz["name"]
+        Text = string.format("%s\nWert: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["preis"])
+        Text = string.format("%s\nStufe: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["stufe"])
 
-            if (tonumber(dasatz["stufe"]) == 1) then
-                prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["grundpreis"])
-            end
-
-            zahler = zahler + 1
+        if (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) then
+            Text = string.format("%s\nBesitzer: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["besitzer"])
         end
 
-        outputDebugString("# " .. zahler .. " Prestigeobjects loaded!")
-        mysql_free_result(result)
+        setElementShowText(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], { 0, 0, 255, 255 }, Text, false, 15, 1.3, 0.2)
+
+        if (not (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) and prestigeObjects[tonumber(dasatz["ID"])]["stufe"] > 1) then
+            prestigeObjects[tonumber(dasatz["ID"])]["preis"] = prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"]
+            prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = 1
+
+            MySql.helper.update("prestige", {
+                preis = prestigeObjects[tonumber(dasatz["ID"])]["preis"],
+                stufe = 1
+            }, {
+                ID = dasatz["ID"]
+            });
+        end
+
+        if (tonumber(dasatz["stufe"]) == 1) then
+            prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["grundpreis"])
+        end
     end
+
+    outputDebugString("# " .. table.getSize(prestigeObjects) .. " Prestigeobjects loaded!")
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrestigeFromDB)
 
@@ -80,15 +76,22 @@ function upgradePrestige_func(thePlayer)
                 changePlayerBank(thePlayer, -preis, "sonstiges", "Prestigeupgrade")
                 prestigeObjects[id]["preis"] = prestigeObjects[id]["preis"] + preis
                 prestigeObjects[id]["stufe"] = prestigeObjects[id]["stufe"] + 1
-                local query = "UPDATE prestige SET stufengeld='" .. preis .. "',stufe='" .. prestigeObjects[id]["stufe"] .. "',preis='" .. prestigeObjects[id]["preis"] .. "' WHERE ID='" .. id .. "'"
-                mysql_query(handler, query)
+
+                MySql.helper.update("prestige", {
+                    stufengeld = preis,
+                    stufe = prestigeObjects[id]["stufe"],
+                    preis = prestigeObjects[id]["preis"]
+                }, {ID = id});
+
                 outputChatBox(string.format("Du hast dein Prestige auf Stufe %s aufgewertet!", prestigeObjects[id]["stufe"]), thePlayer, 255, 0, 0)
+
                 local Text = prestigeObjects[id]["name"]
                 Text = string.format("%s\nWert: %s", Text, toprice(prestigeObjects[id]["preis"]))
                 Text = string.format("%s\nStufe: %s", Text, prestigeObjects[id]["stufe"])
                 if (prestigeObjects[id]["besitzer"]) then
                     Text = string.format("%s\nBesitzer: %s", Text, prestigeObjects[id]["besitzer"])
                 end
+
                 changeElementShowText(prestigeObjects[id]["pickup"], { 0, 0, 255, 255 }, Text)
             end
         else
@@ -97,7 +100,6 @@ function upgradePrestige_func(thePlayer)
     end
 end
 addCommandHandler("upgradeprestige", upgradePrestige_func, false, false)
--- PrestigeUpdate bis zum Release auskommentiert
 
 function infoPrestige_func(thePlayer)
     if (vioGetElementData(thePlayer, "prestigeKey") == 0) then
@@ -107,7 +109,6 @@ function infoPrestige_func(thePlayer)
         if (getElementsDistance(prestigeObjects[id]["pickup"], thePlayer) < 20) then
             local preis = getUpgradePreis(id)
             outputChatBox("Dein Nächstes Upgrade kostet: " .. toprice(preis) .. " ", thePlayer, 150, 230, 45)
-
         else
             showError(thePlayer, "Du bist nicht in der Nähe deines Prestigobjektes")
         end
@@ -115,7 +116,6 @@ function infoPrestige_func(thePlayer)
 end
 addCommandHandler("upgradeprestigeInfo", infoPrestige_func, false, false)
 addCommandHandler("upi", infoPrestige_func, false, false)
-
 
 function sellprestige_func(thePlayer)
     if (vioGetElementData(thePlayer, "prestigeKey") == 0) then
@@ -142,7 +142,6 @@ function sellprestige_func(thePlayer)
 end
 addCommandHandler("sellprestige", sellprestige_func, false, false)
 
-
 function sellprestigeto_func(thePlayer, cmd, toPlayerName)
     if (vioGetElementData(thePlayer, "prestigeKey") == 0) then
         outputChatBox("Du besitzt kein PrestigeObject!", thePlayer, 255, 0, 0)
@@ -160,7 +159,6 @@ function sellprestigeto_func(thePlayer, cmd, toPlayerName)
                         prestigeObjects[id]["besitzer"] = getPlayerName(toPlayer)
                         outputChatBox(string.format("Du hast das Prestigeobject %s an %s übergeben!", prestigeObjects[id]["name"], getPlayerName(toPlayer)), thePlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast das Prestigeobject %s von %s erhalten!", prestigeObjects[id]["name"], getPlayerName(thePlayer)), toPlayer, 255, 0, 0)
-
 
                         local Text = prestigeObjects[id]["name"]
                         Text = string.format("%s\nWert: %s", Text, prestigeObjects[id]["preis"])
@@ -230,9 +228,18 @@ function addPrestige_func(thePlayer, cmd, preis, stufengeld, name, ...)
             local stufengeld = tonumber(stufengeld)
             if (preis) and (stufengeld) then
                 local x, y, z = getElementPosition(thePlayer)
-                local query = "INSERT INTO prestige (x,y,z,stufe,name,preis,stufengeld,grundpreis) VALUES ('" .. x .. "','" .. y .. "','" .. z .. "','1','" .. name .. "','" .. preis .. "','" .. stufengeld .. "','" .. preis .. "')"
-                local queryhandler = mysql_query(handler, query)
-                local newid = mysql_insert_id(handler)
+
+                local newid = MySql.helper.insertSync("prestige", {
+                    x = x,
+                    y = y,
+                    z = z,
+                    stufe = 1,
+                    name = name,
+                    preis = preis,
+                    stufengeld = stufengeld,
+                    grundpreis = preis
+                });
+
                 prestigeObjects[newid] = {}
                 prestigeObjects[newid]["x"] = x
                 prestigeObjects[newid]["y"] = y

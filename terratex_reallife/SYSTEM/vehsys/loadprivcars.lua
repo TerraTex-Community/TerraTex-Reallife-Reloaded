@@ -147,7 +147,7 @@ function save_car(veh)
         vioSetElementData(veh, "tuning", "0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0")
     end
 
-    MySql.helper.update({
+    MySql.helper.update("vehicles", {
         Tuning = vioGetElementData(veh, "tuning"),
         Colors = vioGetElementData(veh, "colors"),
         paintjob = vioGetElementData(veh, "paintjob"),

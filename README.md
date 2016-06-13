@@ -6,7 +6,6 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 ##Requirements
 
 * Server MTA:SA 1.5
-* Module MTA-Mysql: https://wiki.multitheftauto.com/wiki/Modules/MTA-MySQL
 * MySQL Database
 
 
@@ -16,7 +15,6 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 2. Edit config_example.lua and rename to config.lua
 3. Edit config_client_example.lua and rename to config_client.lua
 4. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
-5. Install MTA-Mysql Module
 
 Dieses Material steht unter der Creative-Commons-Lizenz Namensnennung-Nicht kommerziell 4.0 International. Um eine Kopie dieser Lizenz zu sehen, besuchen Sie http://creativecommons.org/licenses/by-nc/4.0/.
 

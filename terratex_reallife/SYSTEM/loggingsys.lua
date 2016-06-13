@@ -228,8 +228,6 @@ function bban_func(thePlayer, cmd, id)
                         checkAdditionalPunishment(theBeBanned)
                         local IP = getPlayerIP(theBeBanned)
                         local Serial = getPlayerSerial(theBeBanned)
-                        local reasons = mysql_escape_string(handler, reasons)
-                        local pname = mysql_escape_string(handler, pname)
 
                         vioSetElementData(theBeBanned, "tbans", vioGetElementData(theBeBanned, "tbans") + 1)
                         local pln = getPlayerName(theBeBanned)
@@ -266,7 +264,6 @@ function bban_func(thePlayer, cmd, id)
                     else
                         local IP = maybeBeleidigung[id][6]
                         local Serial = maybeBeleidigung[id][5]
-                        local reasons = mysql_escape_string(handler, reasons)
                         local pname = maybeBeleidigung[id][1]
                         checkAdditionalPunishment_offline(pname)
 

@@ -35,6 +35,7 @@
 * [FIXED] #12 Medics have to be in Duty and must not to be in a vehicle to heal a player
 * [REMOVED] Dutycounter removed
 * [REMOVED] removed never used command /aktping
+* [REMOVED] old mysql_start.lua
 
 ####12.06.2016
 ------

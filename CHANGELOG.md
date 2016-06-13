@@ -1,7 +1,9 @@
 ####13.06.2016
 ------
 * [CHANGED] Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
+* [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
 * [FIXED] The Value set by /fsteuer will be rounded to disallow decimals
+* [FIXED] /buyprestige should be paid from the bank account of the player
 
 ####12.06.2016
 ------

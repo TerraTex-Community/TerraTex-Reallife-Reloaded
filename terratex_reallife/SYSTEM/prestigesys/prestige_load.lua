@@ -22,8 +22,6 @@ function loadPrestigeFromDB()
             prestigeObjects[tonumber(dasatz["ID"])]["preis"] = tonumber(dasatz["preis"])
             prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"] = tonumber(dasatz["grundpreis"])
             prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
-
-
             prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
             prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
             vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
@@ -56,7 +54,6 @@ function loadPrestigeFromDB()
         mysql_free_result(result)
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrestigeFromDB)
 
 function showPrestigeInfos(thePlayer)
@@ -69,7 +66,6 @@ function showPrestigeInfos(thePlayer)
     local boni = math.round(getPayDayBonus(id), 2)
     showError(thePlayer, string.format("Dieses Prestigeobject gehört %s\nPrestige-Stufe: %s\nWert: %s\nPrestigebonus: %s", besitzer, prestigeObjects[id]["stufe"], wert, boni))
 end
-
 
 function upgradePrestige_func(thePlayer)
     if (vioGetElementData(thePlayer, "prestigeKey") == 0) then
@@ -100,7 +96,6 @@ function upgradePrestige_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("upgradeprestige", upgradePrestige_func, false, false)
 -- PrestigeUpdate bis zum Release auskommentiert
 
@@ -118,7 +113,6 @@ function infoPrestige_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("upgradeprestigeInfo", infoPrestige_func, false, false)
 addCommandHandler("upi", infoPrestige_func, false, false)
 
@@ -129,11 +123,10 @@ function sellprestige_func(thePlayer)
     else
         local id = vioGetElementData(thePlayer, "prestigeKey")
         if (getElementsDistance(prestigeObjects[id]["pickup"], thePlayer) < 20) then
-            changePlayerMoney(thePlayer, math.round(prestigeObjects[id]["grundpreis"] / 2, 2), "sonstiges", "Prestigeverkauf")
+            changePlayerBank(thePlayer, math.round(prestigeObjects[id]["grundpreis"] / 2, 2), "sonstiges", "Prestigeverkauf")
             vioSetElementData(thePlayer, "prestigeKey", 0)
             prestigeObjects[id]["besitzer"] = false
             outputChatBox("Du hast das Prestigeobject erfolgreich verkauft!", thePlayer, 255, 0, 0)
-
 
             local Text = prestigeObjects[id]["name"]
             Text = string.format("%s\nWert: %s", Text, prestigeObjects[id]["preis"])
@@ -147,7 +140,6 @@ function sellprestige_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("sellprestige", sellprestige_func, false, false)
 
 
@@ -189,7 +181,6 @@ function sellprestigeto_func(thePlayer, cmd, toPlayerName)
         end
     end
 end
-
 addCommandHandler("giveprestige", sellprestigeto_func, false, false)
 
 function buyprestige_func(thePlayer)
@@ -207,15 +198,13 @@ function buyprestige_func(thePlayer)
         else
             local preis = prestigeObjects[id]["preis"]
             if (not (prestigeObjects[id]["besitzer"])) then
-                if (getPlayerMoney(thePlayer) < preis) then
+                if (getPlayerBank(thePlayer) < preis) then
                     outputChatBox("Du hast nicht genug Geld bei dir um dieses Prestigeobject zu kaufen!", thePlayer, 255, 0, 0)
                 else
-                    changePlayerMoney(thePlayer, -preis, "sonstiges", "Prestigekauf")
+                    changePlayerBank(thePlayer, -preis, "sonstiges", "Prestigekauf")
                     vioSetElementData(thePlayer, "prestigeKey", id)
                     prestigeObjects[id]["besitzer"] = getPlayerName(thePlayer)
                     outputChatBox(string.format("Du hast erfolgreich das Prestigeobject %s gekauft!", prestigeObjects[id]["name"]), thePlayer, 255, 0, 0)
-
-
 
                     local Text = prestigeObjects[id]["name"]
                     Text = string.format("%s\nWert: %s", Text, prestigeObjects[id]["preis"])
@@ -231,7 +220,6 @@ function buyprestige_func(thePlayer)
         outputChatBox("Du bist nicht in der Nähe eines Prestigeobjectes!", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("buyprestige", buyprestige_func, false, false)
 
 function addPrestige_func(thePlayer, cmd, preis, stufengeld, name, ...)
@@ -274,7 +262,6 @@ function addPrestige_func(thePlayer, cmd, preis, stufengeld, name, ...)
         end
     end
 end
-
 addCommandHandler("addprestige", addPrestige_func, false, false)
 
 function getPayDayBonus(id)
@@ -289,11 +276,7 @@ function getPayDayBonus(id)
     return payday
 end
 
-
-
 function getUpgradePreis(id)
-
-    --local payday=0.000000002*prestigeObjects[id]["grundpreis"]*prestigeObjects[id]["grundpreis"]+0.0025*prestigeObjects[id]["grundpreis"]-220
     local start = prestigeObjects[id]["grundpreis"]
 
     for i = 2, prestigeObjects[id]["stufe"] + 1, 1 do
@@ -303,23 +286,3 @@ function getUpgradePreis(id)
     start = math.round(start, 2)
     return start
 end
-
--- function prestigeTest(thePlayer,cmd,id)
--- id=tonumber(id)
--- outputChatBox(getPayDayBonus(id))
--- end
--- addCommandHandler("pt",prestigeTest)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

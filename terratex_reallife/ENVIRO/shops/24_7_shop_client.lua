@@ -44,61 +44,59 @@ addEventHandler("onClientResourceStart",resourceRoot,
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "4", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Lottoschein", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "15", false, false )		
-		
 
-		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "6", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "5", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Snack", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "1.95", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "7", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "6", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Hamburger", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "4.85", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "8", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "7", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Fertigessen", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "9.99", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "9", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "8", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Schnellhilfe", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "49.75", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "10", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "9", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Carfinder", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "53.45", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "11", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "10", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Hufeisenhelfer", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "485.75", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "12", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "11", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "TerraLappTapp", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "10000", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "13", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "12", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "digitale Tachoerweiterung", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "10000", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "14", false, false )		
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "13", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Würfel", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "2.50", false, false )
 
         row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "15", false, false )
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "14", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "5er Packung Kondome", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "2.50", false, false )
 
         row = guiGridListAddRow ( SuperShop_Grid[1] )
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "16", false, false )
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "15", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "5 Blutteststreifen", false, false )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "145.29", false, false )
 		
@@ -119,7 +117,7 @@ function buy_SuperShop_Gui()
 
 end
 
-local oldValues={[6]=1.95,[7]=4.85,[8]=9.99,[9]=49.75}
+local oldValues={[5]=1.95,[6]=4.85,[7]=9.99,[8]=49.75}
 
 function closeSuperShopGUI()
 
@@ -145,10 +143,10 @@ faktor=1
 		faktor=0.9
 	end
 	
-    guiGridListSetItemText ( SuperShop_Grid[1], 5, SuperShop_Colum[3], (oldValues[6]*faktor), false, false )
-    guiGridListSetItemText ( SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[7]*faktor), false, false )
-    guiGridListSetItemText ( SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[8]*faktor), false, false )
-    guiGridListSetItemText ( SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[9]*faktor), false, false )
+    guiGridListSetItemText ( SuperShop_Grid[1], 5, SuperShop_Colum[3], (oldValues[5]*faktor), false, false )
+    guiGridListSetItemText ( SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[6]*faktor), false, false )
+    guiGridListSetItemText ( SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[7]*faktor), false, false )
+    guiGridListSetItemText ( SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[8]*faktor), false, false )
 	guiSetVisible( SuperShop_Window[1] ,true)
 	showCursor(true)
 end

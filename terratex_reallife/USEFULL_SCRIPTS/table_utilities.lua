@@ -27,7 +27,7 @@ function table.deletevalue(thetable,value,newkeys)
 end
 
 function table.getSize(table)
-    if (type(table)~=table) then
+    if (type(table)~= "table") then
         outputDebugString(debug.traceback());
     end
     assert(type(table) == "table", "Table Espected got ".. type(table));

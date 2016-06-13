@@ -1,8 +1,6 @@
 function nickChangeHandler(oldNick, newNick)
-
     cancelEvent()
 end
-
 addEventHandler("onPlayerChangeNick", getRootElement(), nickChangeHandler)
 
 function outputAdminMessage(message, colorA, ColorB, ColorC)
@@ -16,7 +14,6 @@ function outputAdminMessage(message, colorA, ColorB, ColorC)
     end
 end
 
-
 function mark_Ruhe_Point_A(thePlayer)
     if (isAdminLevel(thePlayer, 3)) then
         local posX, posY, posZ = getElementPosition(thePlayer)
@@ -25,7 +22,6 @@ function mark_Ruhe_Point_A(thePlayer)
         outputChatBox("pos1 set", thePlayer)
     end
 end
-
 addCommandHandler("marka", mark_Ruhe_Point_A, false, false)
 
 function mark_Ruhe_Point_B(thePlayer)
@@ -37,7 +33,6 @@ function mark_Ruhe_Point_B(thePlayer)
         outputChatBox("pos2 set", thePlayer)
     end
 end
-
 addCommandHandler("markb", mark_Ruhe_Point_B, false, false)
 
 function addRuheZone(thePlayer)
@@ -64,9 +59,14 @@ function addRuheZone(thePlayer)
 
             local sizeX = posXB - posXA
             local sizeY = posYB - posYA
-            local query = "INSERT INTO ruhezonen (leftX,buttonY,sizeX,sizeY) VALUES ('" .. posXA .. "','" .. posYA .. "','" .. sizeX .. "','" .. sizeY .. "');"
-            mysql_query(handler, query)
-            local ID = mysql_insert_id(handler)
+
+            local ID = MySql.helper.insertSync("ruhezonen", {
+                leftX = posXA,
+                buttonY = posYA,
+                sizeX = sizeX,
+                sizeY = sizeY
+            });
+
             outputChatBox("Ruhezone ID " .. ID .. " created", thePlayer, 255, 0, 0)
             local area = createRadarArea(posXA, posYA, sizeX, sizeY, 0, 200, 0, 150, getRootElement())
             ruhezonen[ID] = area
@@ -76,7 +76,6 @@ function addRuheZone(thePlayer)
         end
     end
 end
-
 addCommandHandler("addruhe", addRuheZone, false, false)
 
 function destroyRuheZone(thePlayer, cmd, ID)
@@ -86,20 +85,15 @@ function destroyRuheZone(thePlayer, cmd, ID)
                 destroyElement(ruhezonen[ID])
                 ruhezonen[ID] = false
                 triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
-                local query = "DELETE FROM ruhezonen WHERE ID='" .. ID .. "'"
-                mysql_query(handler, query)
+                MySql.helper.delete("ruhezonen", {ID = ID});
                 outputChatBox("Ruhezone gelöscht", thePlayer, 255, 0, 0)
-
             else
                 outputChatBox("ungültige ID", thePlayer, 255, 0, 0)
             end
         end
     end
 end
-
 addCommandHandler("delRZ", destroyRuheZone, false, false)
-
-
 
 function tcheck_func(thePlayer, cmd, toPlayer)
     if (isAdminLevel(thePlayer, 0)) then
@@ -115,9 +109,7 @@ function tcheck_func(thePlayer, cmd, toPlayer)
         end
     end
 end
-
 addCommandHandler("tcheck", tcheck_func, false, false)
-
 
 local gppoints = {
     ["noob"] = { 1737.099609375, -1862.0546875, 13.576762199408 }, --noob
@@ -146,7 +138,6 @@ function gotopoint(thePlayer, cmd, point)
         end
     end
 end
-
 addCommandHandler("gp", gotopoint, false, false)
 
 function gj_func(thePlayer, cmd, jobid)
@@ -162,7 +153,6 @@ function gj_func(thePlayer, cmd, jobid)
         end
     end
 end
-
 addCommandHandler("gj", gj_func, false, false)
 
 function skydive_func(thePlayer, cmd, toPlayerNamePart)
@@ -179,10 +169,7 @@ function skydive_func(thePlayer, cmd, toPlayerNamePart)
         end
     end
 end
-
 addCommandHandler("sky", skydive_func, false, false)
-
-
 
 function freeze_func(thePlayer, cmd, toPlayerNamePart)
     if (isAdminLevel(thePlayer, 1)) then
@@ -215,17 +202,13 @@ function freeze_func(thePlayer, cmd, toPlayerNamePart)
         end
     end
 end
-
 addCommandHandler("freeze", freeze_func, false, false)
-
-
 
 function exitbyadminfreeze(thePlayer)
     if (vioGetElementData(thePlayer, "adminfreeze")) then
         cancelEvent()
     end
 end
-
 addEventHandler("onVehicleStartExit", getRootElement(), exitbyadminfreeze)
 
 function setAdminFreezeDurated(toPlayer)
@@ -237,7 +220,6 @@ function setAdminFreezeDurated(toPlayer)
         end
     end
 end
-
 
 function set_mark_admin(thePlayer)
     if (isAdminLevel(thePlayer, 0)) then
@@ -252,7 +234,6 @@ function set_mark_admin(thePlayer)
         outputChatBox("Der Marker wurde gespeichert! DU kannst dich mit /gotomark hinteleportieren!", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("setMark", set_mark_admin, false, false)
 
 function gotomark_func(thePlayer)
@@ -268,7 +249,6 @@ function gotomark_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("gotomark", gotomark_func, false, false)
 
 function save_all_user(thePlayer)
@@ -279,7 +259,6 @@ function save_all_user(thePlayer)
         end
     end
 end
-
 addCommandHandler("sau", save_all_user, false, false)
 
 function ban_func(thePlayer, command, theBeBanned, ...)
@@ -287,28 +266,25 @@ function ban_func(thePlayer, command, theBeBanned, ...)
     local reasons = table.concat({ ... }, "  ")
     local consolenelement = getElementsByType("console")
     if (thePlayer == consolenelement[1]) then
-
-
         local banmeele = getPlayerFromIncompleteName(theBeBanned)
         if not (banmeele == false) then
             local pname = getPlayerName(banmeele)
             theBeBanned = getPlayerFromIncompleteName(theBeBanned)
-            local aname = getPlayerName(thePlayer)
             local IP = getPlayerIP(theBeBanned)
             local Serial = getPlayerSerial(theBeBanned)
-            reasons = mysql_escape_string(handler, reasons)
-            pname = mysql_escape_string(handler, pname)
 
-            local querys = "INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. pname .. "','" .. Serial .. "','" .. IP .. "','" .. reasons .. "','Console');"
-            local result = mysql_query(handler, querys)
-            mysql_free_result(result)
+            MySql.helper.insert("Ban", {
+                Nickname = pname,
+                Serial = Serial,
+                IP = IP,
+                Grund = reasons,
+                Admin = "Console"
+            });
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons, getRootElement(), 255, 0, 0)
             kickPlayer(banmeele, reasons)
         end
-
     else
         if (isAdminLevel(thePlayer, 1)) then
-
             local banmeele = getPlayerFromIncompleteName(theBeBanned)
             if isElement(banmeele) then
                 local pname = getPlayerName(banmeele)
@@ -316,12 +292,14 @@ function ban_func(thePlayer, command, theBeBanned, ...)
                 local aname = getPlayerName(thePlayer)
                 local IP = getPlayerIP(theBeBanned)
                 local Serial = getPlayerSerial(theBeBanned)
-                local reason = mysql_escape_string(handler, reasons)
-                pname = mysql_escape_string(handler, pname)
 
-                local querys = "INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. pname .. "','" .. Serial .. "','" .. IP .. "','" .. reason .. "','" .. aname .. "');"
-                local result = mysql_query(handler, querys)
-                mysql_free_result(result)
+                MySql.helper.insert("Ban", {
+                    Nickname = pname,
+                    Serial = Serial,
+                    IP = IP,
+                    Grund = reasons,
+                    Admin = aname
+                });
                 outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gebannt. Grund :" .. reason, getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, thePlayer, reasons)
             else
@@ -330,7 +308,6 @@ function ban_func(thePlayer, command, theBeBanned, ...)
         end
     end
 end
-
 addCommandHandler("rban", ban_func, false, false)
 
 function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
@@ -348,9 +325,14 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
                         local adm = getPlayerName(theAdmin)
                         local pln = getPlayerName(toPlayer)
                         local pser = getPlayerSerial(toPlayer)
-                        local query = "INSERT INTO timeban (Nickname,Serial,Admin,Grund,Minuten) VALUES ('" .. pln .. "','" .. pser .. "','" .. adm .. "','" .. reason .. "','" .. timer .. "')"
-                        local result = mysql_query(handler, query)
-                        mysql_free_result(result)
+
+                        MySql.helper.insert("timeban", {
+                            Nickname = pln,
+                            Serial = pser,
+                            Admin = adm,
+                            Grund = reason,
+                            Minuten = timer
+                        });
                         outputChatBox(pln .. " wurde von " .. adm .. " für " .. timer .. " Minuten gebannt! Grund:" .. reason, getRootElement(), 255, 0, 0)
                         local sreason = "Du wurdest " .. timer .. " Minuten von " .. adm .. " gebannt! Grund:" .. reason
                         kickPlayer(toPlayer, theAdmin, sreason)
@@ -373,15 +355,26 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
                                 local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
                                 MySql.helper.update("userdata", {tban_reason1 = "no_reason"}, {Nickname = pln} );
                                 local newreason = "2 Timebans: " .. tban_reason .. " + " .. reason
-                                local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pln .. "','" .. adm .. "','" .. newreason .. "');"
-                                mysql_query(handler, querys)
+
+                                MySql.helper.insert("warns", {
+                                    Nickname = pln,
+                                    Admin = adm,
+                                    Grund = newreason
+                                });
+
                                 reason = reason .. " + Automatischer Warn für 2 Timebans!"
                                 vioSetElementData(toPlayer, "tbans", 0)
                             end
                         end
-                        local query = "INSERT INTO timeban (Nickname,Serial,Admin,Grund,Minuten) VALUES ('" .. pln .. "','" .. pser .. "','" .. adm .. "','" .. reason .. "','" .. timers .. "')"
-                        local result = mysql_query(handler, query)
-                        mysql_free_result(result)
+
+                        MySql.helper.insert("timeban", {
+                            Nickname = pln,
+                            Serial = pser,
+                            Admin = adm,
+                            Grund = reason,
+                            Minuten = timers
+                        });
+
                         outputChatBox(pln .. " wurde von " .. adm .. " für " .. timer .. " Stunden gebannt! Grund:" .. reason, getRootElement(), 255, 0, 0)
                         local sreason = "Du wurdest " .. timer .. " Stunden von " .. adm .. " gebannt! Grund:" .. reason
                         kickPlayer(toPlayer, theAdmin, sreason)
@@ -395,11 +388,7 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
         end
     end
 end
-
 addCommandHandler("tban", tban_func, false, false)
-
-
-
 
 function warn_func(thePlayer, command, theBeBanned, ...)
 
@@ -407,38 +396,39 @@ function warn_func(thePlayer, command, theBeBanned, ...)
 
     if (isAdminLevel(thePlayer, 1)) then
 
-
         local banmeele = getPlayerFromIncompleteName(theBeBanned)
         if not (banmeele == false) then
             checkAdditionalPunishment(banmeele)
             local pname = getPlayerName(banmeele)
-            theBeBanned = getPlayerFromIncompleteName(theBeBanned)
             local aname = getPlayerName(thePlayer)
-            local reason = mysql_escape_string(handler, reasons)
-            theBeBanned = mysql_escape_string(handler, pname)
 
-            local querys = "INSERT INTO warns (Nickname,Admin,Grund) VALUES ('" .. pname .. "','" .. aname .. "','" .. reasons .. "');"
-            local result = mysql_query(handler, querys)
-            mysql_free_result(result)
+            MySql.helper.insert("warns", {
+                Nickname = pname,
+                Admin = aname,
+                Grund = reasons
+            });
+
             outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " verwarnt. Grund :" .. reason, getRootElement(), 255, 0, 0)
             vioSetElementData(banmeele, "warns", vioGetElementData(banmeele, "warns") + 1)
+
             local IP = getPlayerIP(banmeele)
             local Serial = getPlayerSerial(banmeele)
             if (vioGetElementData(banmeele, "warns") > 2) then
-                reasons = mysql_escape_string(handler, reasons)
-                pname = mysql_escape_string(handler, pname)
-                local querys = "INSERT INTO Ban (Nickname,Serial,IP,Grund,Admin) VALUES ('" .. pname .. "','" .. Serial .. "','" .. IP .. "','3 Warns','" .. aname .. "');"
-                local result = mysql_query(handler, querys)
-                mysql_free_result(result)
+
+                MySql.helper.insert("Ban", {
+                    Nickname = pname,
+                    Serial = Serial,
+                    IP = IP,
+                    Grund = "3 Warns",
+                    Admin = aname
+                });
                 outputChatBox("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund : 3 Warns", getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, reasons)
             end
         end
     end
 end
-
 addCommandHandler("warn", warn_func, false, false)
-
 
 function rkick_func(thePlayer, command, theBeBanned, ...)
 
@@ -449,12 +439,6 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
         local banmeele = getPlayerFromIncompleteName(theBeBanned)
         if not (banmeele == false) then
             local pname = getPlayerName(banmeele)
-            theBeBanned = getPlayerFromIncompleteName(theBeBanned)
-            local aname = getPlayerName(thePlayer)
-            local IP = getPlayerIP(theBeBanned)
-            local Serial = getPlayerSerial(theBeBanned)
-            reasons = mysql_escape_string(handler, reasons)
-            theBeBanned = mysql_escape_string(handler, pname)
 
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
             kickPlayer(banmeele, reasons)
@@ -466,12 +450,7 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
             local banmeele = getPlayerFromIncompleteName(theBeBanned)
             if isElement(banmeele) then
                 local pname = getPlayerName(banmeele)
-                theBeBanned = getPlayerFromIncompleteName(theBeBanned)
                 local aname = getPlayerName(thePlayer)
-                local IP = getPlayerIP(theBeBanned)
-                local Serial = getPlayerSerial(theBeBanned)
-                local reason = mysql_escape_string(handler, reasons)
-                theBeBanned = mysql_escape_string(handler, pname)
 
                 outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gekickt. Grund :" .. reason, getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, thePlayer, reasons)
@@ -481,10 +460,7 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
         end
     end
 end
-
 addCommandHandler("rkick", rkick_func, false, false)
-
-
 
 function goto_func(theMaker, Command, thePlayerName)
     if (isAdminLevel(theMaker, 0)) then
@@ -517,10 +493,7 @@ function goto_func(theMaker, Command, thePlayerName)
         end
     end
 end
-
 addCommandHandler("goto", goto_func, false, false)
-
-
 
 function gethere_func(theMaker, Command, thePlayerName)
     if (isAdminLevel(theMaker, 0)) then
@@ -536,8 +509,6 @@ function gethere_func(theMaker, Command, thePlayerName)
 
                 setElementVelocity(theVehicle, 0, 0, 0)
                 setElementPosition(theVehicle, gx + 2, gy + 2, gz + 1)
-
-
             else
 
                 local gx, gy, gz = getElementPosition(theMaker)
@@ -552,10 +523,7 @@ function gethere_func(theMaker, Command, thePlayerName)
         end
     end
 end
-
 addCommandHandler("gethere", gethere_func, false, false)
-
-
 
 function slap_func(theMaker, Command, thePlayerName)
     if (isAdminLevel(theMaker, 1)) then
@@ -568,16 +536,12 @@ function slap_func(theMaker, Command, thePlayerName)
             local aname = getPlayerName(theMaker)
             outputChatBox(aname .. " hat " .. getPlayerName(thePlayer) .. " angezündet!", theMaker, 255, 255, 0)
             outputChatBox(aname .. " hat " .. getPlayerName(thePlayer) .. " angezündet!", thePlayer, 255, 255, 0)
-
-
         else
             outputChatBox("Falscher Spielername", theMaker, 255, 0, 0)
         end
     end
 end
-
 addCommandHandler("slap", slap_func, false, false)
-
 
 function occ_func(theMaker, Command, ...)
     local message = table.concat({ ... }, "  ")
@@ -592,14 +556,11 @@ function occ_func(theMaker, Command, ...)
         outputChatBox(message, getRootElement(), 255, 20, 147)
     end
 end
-
 addCommandHandler("o", occ_func, false, false)
-
 
 function admins_func(theMaker, command)
     outputChatBox("Adminliste:", theMaker)
     local adminpre = " "
-
     local adminList = {}
 
     if(isAdminLevel(theMaker, 1)) then
@@ -624,9 +585,7 @@ function admins_func(theMaker, command)
         end
     end
 end
-
 addCommandHandler("admins", admins_func, false, false)
-
 
 function report_func(theMaker, command, text, ...)
     if not (text) then
@@ -655,7 +614,6 @@ function report_func(theMaker, command, text, ...)
         end
     end
 end
-
 addCommandHandler("report", report_func, false, false)
 
 function w_func(theMaker, Command, thePlayerName, ...)
@@ -673,9 +631,7 @@ function w_func(theMaker, Command, thePlayerName, ...)
         end
     end
 end
-
 addCommandHandler("w", w_func, false, false)
-
 
 function re_func(theMaker, Command, ...)
     local message = table.concat({ ... }, "  ")
@@ -692,7 +648,6 @@ function re_func(theMaker, Command, ...)
         outputChatBox("Dir hat keine Person geschrieben!", theMaker, 255, 0, 0)
     end
 end
-
 addCommandHandler("re", re_func, false, false)
 
 function a_func(theMaker, Command, ...)
@@ -714,7 +669,6 @@ function a_func(theMaker, Command, ...)
         end
     end
 end
-
 addCommandHandler("a", a_func, false, false)
 
 local gmxtimer = false
@@ -754,9 +708,7 @@ function gmx_func(theMaker, cmd, zeitinminuten, grund, ...)
         gmxtimer = setTimer(gmx_start, second, 1)
     end
 end
-
 addCommandHandler("gmx", gmx_func, false, false)
-
 
 function shutdown_func(theMaker, cmd, zeitinminuten, grund, ...)
     if (grund) then
@@ -790,7 +742,6 @@ function shutdown_func(theMaker, cmd, zeitinminuten, grund, ...)
         gmxtimer = setTimer(startShutDown, second, 1)
     end
 end
-
 addCommandHandler("stopserver", shutdown_func, false, false)
 
 function startShutDown()
@@ -870,7 +821,6 @@ function clearChat_func(theMaker)
         end
     end
 end
-
 addCommandHandler("cleartext", clearChat_func, false, false)
 
 function check_func(thePlayer, command, toPlayerNamePart)
@@ -907,9 +857,7 @@ function check_func(thePlayer, command, toPlayerNamePart)
         end
     end
 end
-
 addCommandHandler("rcheck", check_func, false, false)
-
 
 function setMoney_func(thePlayer, Command, toPlayerNamePart, theMoney)
     if (isAdminLevel(thePlayer, 2)) then
@@ -932,9 +880,7 @@ function setMoney_func(thePlayer, Command, toPlayerNamePart, theMoney)
         end
     end
 end
-
 addCommandHandler("setMoney", setMoney_func, false, false)
-
 
 function force_nickchange(thePlayer, cmd, toPlayerPart)
     if (isAdminLevel(thePlayer, 2)) then
@@ -955,10 +901,7 @@ function force_nickchange(thePlayer, cmd, toPlayerPart)
         end
     end
 end
-
 addCommandHandler("forcenick", force_nickchange, false, false)
-
-
 
 function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
     if (isAdminLevel(thePlayer, 1)) then

@@ -19,12 +19,15 @@
 * [GENERAL] Refactored all mysql_querys in ostern_server.lua
 * [GENERAL] Refactored all mysql_querys in faq/server.lua
 * [GENERAL] Refactored all mysql_querys in loggingsys.lua
+* [GENERAL] Refactored all mysql_querys in anti_ping_server.lua
+* [GENERAL] Refactored all mysql_querys in anti_spam_server.lua
 * [CHANGED] #6 Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
 * [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
 * [FIXED] #7 The Value set by /fsteuer will be rounded to disallow decimals
 * [FIXED] #11 /buyprestige should be paid from the bank account of the player
 * [FIXED] #12 Medics have to be in Duty and must not to be in a vehicle to heal a player
 * [REMOVED] Dutycounter removed
+* [REMOVED] removed never used command /aktping
 
 ####12.06.2016
 ------

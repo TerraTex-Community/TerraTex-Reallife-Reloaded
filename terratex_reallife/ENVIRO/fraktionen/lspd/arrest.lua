@@ -789,15 +789,18 @@ function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                             outputChatBox(string.format("Er hat %s StVO-Punkte! Reporter: %s", vioGetElementData(thePlayer, "stvo"), getPlayerName(theMaker)), player, 255, 255, 0)
                         end
                     end
-                    --save_log( "delstvo", string.format( "%s löscht %s", getPlayerName(theMaker), getPlayerName(thePlayer)))
-                    local query = "INSERT INTO log_delstvo (Wer,Wieviele,Von,Grund) VALUES ('%s','%s','%s','%s')"
-                    mysql_query(logs_handler, string.format(query, getPlayerName(theMaker), anzahl, getPlayerName(thePlayer), reason))
+
+                    MySql.helper.insert("log_delstvo", {
+                        Wer = getPlayerName(theMaker),
+                        Wieviele = anzahl,
+                        Von = getPlayerName(thePlayer),
+                        Grund = reason
+                    });
                 end
             end
         end
     end
 end
-
 addCommandHandler("delstvo", delstvo_func, false, false)
 
 function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
@@ -847,7 +850,6 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
         end
     end
 end
-
 addCommandHandler("stvo", stvo_func, false, false)
 
 function wanteds_func(thePlayer)
@@ -878,9 +880,7 @@ function wanteds_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("wanteds", wanteds_func, false, false)
-
 
 function clear_func(theMaker, Command, thePlayerName, ...)
     if (isBeamter(theMaker)) then
@@ -906,7 +906,6 @@ function clear_func(theMaker, Command, thePlayerName, ...)
         end
     end
 end
-
 addCommandHandler("clear", clear_func, false, false)
 
 function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
@@ -933,9 +932,7 @@ function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
         end
     end
 end
-
 addCommandHandler("ticket", ticket_func, false, false)
-
 
 function sos_func(thePlayer)
     if (isBeamter(thePlayer)) then
@@ -971,19 +968,4 @@ function sos_func(thePlayer)
         setTimer(destroyElement, 10000, 1, blip)
     end
 end
-
 addCommandHandler("sos", sos_func, false, false)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

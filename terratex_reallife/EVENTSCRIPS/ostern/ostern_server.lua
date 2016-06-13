@@ -18,21 +18,21 @@ function ostern_init()
     local timer=getRealTime()
     --vom 18.04.2014 - 21.04.2014
     if((timer.monthday>=5 and timer.monthday<=7) and (timer.month+1)==4 and (timer.year+1900)==2015)then
+
         local query="SELECT * FROM ostereier WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
-        local result=mysql_query(handler,query)
-        local zahl=0
-        while(mysql_num_rows(result) > zahl) do
-            local dsatz = mysql_fetch_assoc(result)
+        local runQuery = dbQuery(MySql._connection, query);
+        local result = dbPoll(runQuery, -1);
+        for theKey, dsatz in ipairs(result) do
+
             local ei=createPickup(dsatz["X"],dsatz["Y"],dsatz["Z"], 3, eiID )
             setElementDimension(ei, tonumber(dsatz["Dim"]))
             setElementInterior(ei, tonumber(dsatz["Inte"]))
+
             vioSetElementData(ei,"isEi",true)
             vioSetElementData(ei,"eiID",tonumber(dsatz["ID"]))
             addEventHandler("onPickupHit",ei,eiHit)
             table.insert(eier,ei)
-            zahl=zahl+1
         end
-        mysql_free_result(result)
 
         lastTimer = setTimer(respawnEier,respawntime*60*1000,1)
     end
@@ -47,20 +47,20 @@ function respawnEier()
    end
    eier={}
    local query="SELECT * FROM ostereier WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
-   local result=mysql_query(handler,query)
-   local zahl=0
-   while(mysql_num_rows(result) > zahl) do
-       local dsatz = mysql_fetch_assoc(result)
+
+   local runQuery = dbQuery(MySql._connection, query);
+   local result = dbPoll(runQuery, -1);
+   for theKey, dsatz in ipairs(result) do
+
        local ei=createPickup(dsatz["X"],dsatz["Y"],dsatz["Z"], 3, eiID )
        setElementDimension(ei, tonumber(dsatz["Dim"]))
        setElementInterior(ei, tonumber(dsatz["Inte"]))
+
        vioSetElementData(ei,"isEi",true)
        vioSetElementData(ei,"eiID",tonumber(dsatz["ID"]))
        addEventHandler("onPickupHit",ei,eiHit)
        table.insert(eier,ei)
-       zahl=zahl+1
    end
-   mysql_free_result(result)
 
    lastTimer = setTimer(respawnEier,respawntime*60*1000,1)
 end
@@ -98,15 +98,21 @@ function addEi_func(thePlayer,cmd,comment,...)
             commentar=comment.." "..table.concat({...}," ")
         end
 
-
         local int=getElementInterior(thePlayer)
         local dim=getElementDimension(thePlayer)
         local x,y,z=getElementPosition(thePlayer)
 
         local insertQuery="INSERT INTO ostereier (x,y,z,inte,dim,comment) VALUES ('%s','%s','%s','%s','%s','%s')"
-        insertQuery=string.format(insertQuery,x,y,z,int,dim,commentar)
 
-        mysql_query(handler,insertQuery)
+        MySql.helper.insert("ostereier", {
+            x = x,
+            y = y,
+            z = z,
+            inte = int,
+            dim = dim,
+            comment = commentar,
+            event = "ostern"
+        });
 
         local ei=createPickup(x,y,z, 3, eiID, 200 )
         setElementDimension(ei, dim)
@@ -115,14 +121,3 @@ function addEi_func(thePlayer,cmd,comment,...)
     end
 end
 addCommandHandler("addei",addEi_func,false,false)
-
-
-
-
-
-
-
-
-
-
-

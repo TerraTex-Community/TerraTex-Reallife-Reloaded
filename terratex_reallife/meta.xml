@@ -259,7 +259,6 @@
 		<!--FRAKTION-->		
 			<script src="ENVIRO/fraktionen/fraktion.lua" type="server" />
 			<script src="ENVIRO/fraktionen/respawn_functions.lua" type="server" />
-			<script src="ENVIRO/fraktionen/dutytimer.lua" type="server" />
 			<script src="ENVIRO/fraktionen/leadercommands.lua" type="server" />
 			<!-- LSPD / Beamte allgemein -->
 				<script src="ENVIRO/fraktionen/lspd/alka.lua" type="server" />

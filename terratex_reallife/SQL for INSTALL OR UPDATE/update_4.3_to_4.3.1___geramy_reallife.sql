@@ -11,3 +11,6 @@ INSERT INTO data_fraktions_raenge (FrakID, RangID, Name) VALUES
 (13 , 6, 'Rennprofi');
 
 INSERT INTO fraktionskasse (FrakID, Munition, Kasse) VALUES (13,0,0);
+
+DROP TABLE dutycounter;
+DROP TABLE view_duty_cops_date;

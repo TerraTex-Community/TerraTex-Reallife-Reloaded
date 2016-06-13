@@ -95,17 +95,22 @@ function death_func(ammo, attacker, weapon, bodypart)
                     end
                 end
                 if (isonit) then
-                    wasOnABlacklist = true
-                    local query = "DELETE FROM Blacklist WHERE Name='" .. toPlayerName .. "' and Fraktion='" .. vioGetElementData(attacker, "fraktion") .. "'"
-                    local resultre = mysql_query(handler, query)
-                    mysql_free_result(resultre)
-                    table.remove(blacklist[vioGetElementData(attacker, "fraktion")], isonitkey)
+                    wasOnABlacklist = true;
+
+                    MySql.helper.delete("Blacklist", {
+                        Name = toPlayerName,
+                        Fraktion = vioGetElementData(attacker, "fraktion")
+                    });
+
+                    table.remove(blacklist[vioGetElementData(attacker, "fraktion")], isonitkey);
+
                     for theKey, thePlayers in ipairs(getPlayersInTeam(team[vioGetElementData(attacker, "fraktion")])) do
                         outputChatBox(string.format("Der Spieler %s wurde von %s von der Blacklist getötet!", toPlayerName, getPlayerName(attacker)), thePlayers, 0, 0, 255)
                     end
                     outputChatBox("Du wurdest von einer Gang/Mafia getötet! Passe besser auf dich auf und lege dich nicht mit den falschen Leuten an!", source, 0, 0, 255)
                 end
             end
+
             if (vioGetElementData(source, "kopfgeld") > 0) and (vioGetElementData(attacker, "job") == 7 or (vioGetElementData(attacker, "fraktion") == 8)) then
                 changePlayerMoney(attacker, vioGetElementData(source, "kopfgeld"), "job", "Kopfgeld Auszahlung")
                 local koppgeld = vioGetElementData(source, "kopfgeld")
@@ -207,7 +212,7 @@ function medicWiederBeleben(thePlayer)
                 destroyElement(source)
                 setTimer(medic_wiederbelebenende, 10000, 1, thePlayer, surriver)
             else
-                outputChatBox("Du bist nicht im Dienst!", thePlayer, 255 ,0 ,0);
+                outputChatBox("Du bist nicht im Dienst!", thePlayer, 255, 0, 0);
             end
         end
     end
@@ -257,7 +262,6 @@ function setDeathEnd()
         setPlayerSpawn(source, vioGetElementData(source, "spawnplace"), vioGetElementData(source, "skinid"), vioGetElementData(source, "fraktion"))
     end
 end
-
 addEvent("setTodeZeitEnd", true)
 addEventHandler("setTodeZeitEnd", getRootElement(), setDeathEnd)
 
@@ -265,7 +269,6 @@ addEvent("setDeathBlipPos", true)
 function setDeathBlipPos_func(x, y, z)
     setElementPosition(source, x, y, z)
 end
-
 addEventHandler("setDeathBlipPos", getRootElement(), setDeathBlipPos_func)
 
 

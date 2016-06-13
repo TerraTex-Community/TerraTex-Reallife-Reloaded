@@ -193,21 +193,17 @@ addEvent("sendMeFrakData", true)
 function sendMeFrakData_func()
     triggerClientEvent(source, "receiveFrakData", source, fraktionbezeichner, fraktionsrange)
 end
-
 addEventHandler("sendMeFrakData", getRootElement(), sendMeFrakData_func)
-
-
-
-
 
 function fsteuer_func(thePlayer, command, steuersatz)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 5) then
         if (steuersatz) then
             if (tonumber(steuersatz)) then
                 steuersatz = tonumber(steuersatz)
+                steuersatz = math.floor(steuersatz)
                 if (steuersatz > 0 and steuersatz < 41) then
                     local fraktion = vioGetElementData(thePlayer, "fraktion")
-                    fraksteuer[fraktion] = tonumber(steuersatz)
+                    fraksteuer[fraktion] = steuersatz
                     outputChatBox(string.format("Der Steuersatz der Fraktion wurde auf %s Prozent festgesetzt!", steuersatz), thePlayer, 255, 0, 0)
                 else
                     outputChatBox("Der Steuersatz muss zwischen 1 und 40 Prozent liegen", thePlayer, 255, 0, 0)
@@ -220,7 +216,6 @@ function fsteuer_func(thePlayer, command, steuersatz)
         end
     end
 end
-
 addCommandHandler("fsteuer", fsteuer_func, false, false)
 
 function save_frakkasse(counter)

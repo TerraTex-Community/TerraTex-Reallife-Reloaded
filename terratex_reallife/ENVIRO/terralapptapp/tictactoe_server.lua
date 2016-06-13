@@ -100,8 +100,11 @@ function tictactoe_herausforderung_func(gegnerName)
         else
             local appTable=vioGetElementData(gegner,"tappapps")
             if(appTable["TicTacToe"]==1)then
-                local Query="INSERT INTO tapp_tictactoe (Nickname, Gegner) VALUES ('"..playerName.."','"..gegnerName.."')"
-                mysql_query(handler,Query)
+                MySql.helper.insert("tapp_tictactoe", {
+                    Nickname = playerName,
+                    Gegner = gegnerName
+                });
+
                 outputChatBox("Du hast eine neue TicTacToe-Herrausforderung erhalten!",gegner,155,0,0)
                 showError(gegner,"Du hast eine neue TicTacToe-Herrausforderung erhalten!")
                 showError(source,string.format("Du hast %s herrausgefordert!", gegnerName))
@@ -117,29 +120,15 @@ function tictactoe_herausforderung_func(gegnerName)
 end
 addEventHandler("tictactoe_herausforderung",getRootElement(),tictactoe_herausforderung_func)
 
-
-
 addEvent("getTicTacToeData",true);
 function getTicTacToeData_func()
-    local query="SELECT * FROM tapp_tictactoe WHERE Nickname='"..getPlayerName(source).."' or Gegner='"..getPlayerName(source).."' ORDER BY ID DESC"
-	local result = mysql_query(handler,query)
-	local zahler=0		
-	local gameTable={}
-	while (mysql_num_rows(result)>zahler) do
-		local dsatz = mysql_fetch_assoc(result)
+
+    local query="SELECT * FROM tapp_tictactoe WHERE Nickname = ? or Gegner = ? ORDER BY ID DESC";
+    local runQuery = dbQuery(MySql._connection, query, getPlayerName(source), getPlayerName(source))
+	local result = dbPoll(runQuery, -1);
+	for theKey, dsatz in ipairs(result) do
 		table.insert(gameTable,dsatz)
-		zahler=zahler+1
     end
     triggerClientEvent(source,"sendTTTDataToClient",source,gameTable)
 end
 addEventHandler("getTicTacToeData",getRootElement(),getTicTacToeData_func)
-
-
-
-
-
-
-
-
-
-

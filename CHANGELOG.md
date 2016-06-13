@@ -11,6 +11,8 @@
 * [GENERAL] Refactored all mysql_querys in ruhezone_server.lua
 * [GENERAL] Refactored all mysql_querys in kill.lua
 * [GENERAL] Refactored all mysql_querys in friendlist_server.lua
+* [GENERAL] Refactored all mysql_querys in OnlineBanking_Server.lua
+* [GENERAL] Refactored all mysql_querys in tictactoe_server.lua
 * [CHANGED] #6 Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
 * [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
 * [FIXED] #7 The Value set by /fsteuer will be rounded to disallow decimals

@@ -27,8 +27,9 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                                 end
                             end
                             changePlayerBank(sender, -ueberweiser, "spieler", string.format("Überweisung an %s Grund: %s", empf, grund))
-                            local query = "UPDATE userdata SET Bank = Bank + " .. betrag .. " WHERE Nickname = '" .. empf .. "'" -- Geld dem Empfänger in der Datenbank gutschreiben.
-                            mysql_query(handler, query)
+                            local query = "UPDATE userdata SET Bank = Bank + ? WHERE Nickname = ?"
+                            dbExec(MySql._connection, query, betrag, empf);
+
                             saveMoneyLog_withNickname(empf, "Bank", "spieler", betrag, string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
                             save_offline_message(empf, "SA Bank Systems", string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
                             triggerClientEvent(sender, "obUeberweisungClient", sender, false)

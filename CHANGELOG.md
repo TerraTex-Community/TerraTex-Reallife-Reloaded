@@ -21,6 +21,7 @@
 * [GENERAL] Refactored all mysql_querys in loggingsys.lua
 * [GENERAL] Refactored all mysql_querys in anti_ping_server.lua
 * [GENERAL] Refactored all mysql_querys in anti_spam_server.lua
+* [GENERAL] Refactored all mysql_querys in data.lua
 * [CHANGED] #6 Hiddenadmins are now shown on /admins for Admins with minimum rank "Moderator"
 * [CHANGED] The sellprice will be transfered to the bank account on /sellprestige
 * [FIXED] #7 The Value set by /fsteuer will be rounded to disallow decimals

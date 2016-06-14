@@ -40,14 +40,14 @@ function createAttackPickups()
 		vioSetElementData(attackIcons[8],"id",8)
 		addEventHandler("onPickupHit",attackIcons[8],showAttackPickupInfo)
 
-	attackerLadenInfos[1][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 1});
-	attackerLadenInfos[2][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 2});
-	attackerLadenInfos[3][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 3});
-	attackerLadenInfos[4][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 4});
-	attackerLadenInfos[5][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 5});
-	attackerLadenInfos[6][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 6});
-	attackerLadenInfos[7][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 7});
-	attackerLadenInfos[8][1] = MySql.helper.getValueSync("attackerladen", "toFraktion", {ID = 8});
+	attackerLadenInfos[1][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 1});
+	attackerLadenInfos[2][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 2});
+	attackerLadenInfos[3][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 3});
+	attackerLadenInfos[4][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 4});
+	attackerLadenInfos[5][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 5});
+	attackerLadenInfos[6][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 6});
+	attackerLadenInfos[7][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 7});
+	attackerLadenInfos[8][1] = MySql.helper.getValueSync("faction_shops", "toFraktion", {ID = 8});
 
 	setTimer(giveLadenResources,3600000,1)
 end
@@ -79,7 +79,7 @@ end
 
 function giveLadenResources()
 	for theKey=1,8,1 do
-		MySql.helper.update("attackerladen", { toFraktion = attackerLadenInfos[theKey][1] }, { ID = theKey });
+		MySql.helper.update("faction_shops", { toFraktion = attackerLadenInfos[theKey][1] }, { ID = theKey });
 		if(attackerLadenInfos[theKey][2]>0)then
 			attackerLadenInfos[theKey][2]=attackerLadenInfos[theKey][2]-1
 		end

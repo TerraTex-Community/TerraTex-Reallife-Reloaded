@@ -201,10 +201,10 @@ function scheidung_func(thePlayer)
             if (getPlayerMoney(thePlayer) < 15000.00) then
                 outputChatBox("Du hast nicht genügend Geld dich Scheiden zu lassen (Kosten 15,000.00$)!", thePlayer, 255, 0, 0)
             else
-                local Nickname = MySql.helper.getValueSync("players", "Nickname", { ID = vioGetElementData(thePlayer, "verheiratet") });
+                local Nickname = MySql.helper.getValueSync("user", "Nickname", { ID = vioGetElementData(thePlayer, "verheiratet") });
 
                 if Nickname then
-                    MySql.helper.update("userdata", { verheiratet = 0 }, { Nickname = Nickname});
+                    MySql.helper.update("user_data", { verheiratet = 0 }, { Nickname = Nickname});
                     save_offline_message(Nickname, getPlayerName(thePlayer), "Tut mir leid, ich habe mich soeben von dir Scheiden lassen!")
                 end
                 changePlayerMoney(thePlayer, -15000, "sonstiges", "Scheidung")

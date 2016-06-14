@@ -3,7 +3,7 @@
 local hwunsche={}
 
 function inWunschSystemStart()
-    local result = MySql.helper.getSync("haussys_wunsch", "*");
+    local result = MySql.helper.getSync("objects_houses_wishes", "*");
 
     for theKey, dasatz in ipairs(result) do
         local wunsch={
@@ -39,7 +39,7 @@ function setNewWunsch(thePlayer)
        end
     end
     if(not hasWunschSinceTime and not isNearOtherWunsch )then
-        local id = MySql.helper.insertSync("haussys_wunsch", {
+        local id = MySql.helper.insertSync("objects_houses_wishes", {
             Nickname = getPlayerName(thePlayer),
             x = x,
             y = y,
@@ -74,14 +74,14 @@ addCommandHandler("gotoWunsch",gotowunsch_func,false,false)
 
 function deletewunsch_func(thePlayer,cmd,id)
     id=tonumber(id)
-    MySql.helper.delete("haussys_wunsch", {ID = hwunsche[id]["ID"]});
+    MySql.helper.delete("objects_houses_wishes", {ID = hwunsche[id]["ID"]});
     hwunsche=table.removeKey(hwunsche,id,true)
 end
 addCommandHandler("deletewunsch",deletewunsch_func,false,false)
 
 function deletelastwunsch(thePlayer)
     local id= vioGetElementData(thePlayer,"lastHWunsch");
-    MySql.helper.delete("haussys_wunsch", {ID = hwunsche[id]["ID"]});
+    MySql.helper.delete("objects_houses_wishes", {ID = hwunsche[id]["ID"]});
     hwunsche=table.removeKey(hwunsche,id,true)
 end
 addCommandHandler("deletelastwunsch",deletelastwunsch,false,false)

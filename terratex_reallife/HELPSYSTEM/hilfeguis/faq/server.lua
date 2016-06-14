@@ -1,7 +1,7 @@
 local faq = {}
 
 function loadFAQ()
-    local query = "SELECT * FROM faq LEFT JOIN faq_kat ON faq_kat.ID = faq.katID ORDER BY faq_kat.Order";
+    local query = "SELECT * FROM data_faq LEFT JOIN data_faq_category ON data_faq_category.ID = data_faq.katID ORDER BY data_faq_category.Order";
     local runQuery = dbQuery(MySql._connection, query);
     local result = dbPoll(runQuery, -1);
 

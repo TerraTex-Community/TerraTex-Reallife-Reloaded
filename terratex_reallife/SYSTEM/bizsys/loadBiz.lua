@@ -9,7 +9,7 @@ function loadBizFromDB_func()
         bizData[zahler]["Name"] = dasatz["Name"]
         bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
         bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
-        bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { bizKey = zahler });
+        bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { bizKey = zahler });
 
         local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
         addEventHandler("onPickupHit", bizpickup, showBizInfo)
@@ -55,7 +55,7 @@ end
 function savebizzes_norm(timer)
     outputDebugString("Started Biz Save")
     for theKey, theBiz in ipairs(bizData) do
-        MySql.helper.update("buissness", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+        MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
     end
     outputDebugString("Biz Saved")
     setTimer(savebizzes_norm, 3600000, 1)
@@ -67,7 +67,7 @@ function savebizzes(timer)
     outputDebugString("Started Biz Save")
 
     for theKey, theBiz in ipairs(bizData) do
-        MySql.helper.update("buissness", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+        MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
     end
     outputDebugString("Biz Saved")
 end

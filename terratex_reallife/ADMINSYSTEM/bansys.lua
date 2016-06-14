@@ -60,7 +60,7 @@ function addRuheZone(thePlayer)
             local sizeX = posXB - posXA
             local sizeY = posYB - posYA
 
-            local ID = MySql.helper.insertSync("ruhezonen", {
+            local ID = MySql.helper.insertSync("objects_restareas", {
                 leftX = posXA,
                 buttonY = posYA,
                 sizeX = sizeX,
@@ -85,7 +85,7 @@ function destroyRuheZone(thePlayer, cmd, ID)
                 destroyElement(ruhezonen[ID])
                 ruhezonen[ID] = false
                 triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
-                MySql.helper.delete("ruhezonen", {ID = ID});
+                MySql.helper.delete("objects_restareas", {ID = ID});
                 outputChatBox("Ruhezone gelöscht", thePlayer, 255, 0, 0)
             else
                 outputChatBox("ungültige ID", thePlayer, 255, 0, 0)
@@ -98,7 +98,7 @@ addCommandHandler("delRZ", destroyRuheZone, false, false)
 function tcheck_func(thePlayer, cmd, toPlayer)
     if (isAdminLevel(thePlayer, 0)) then
         if (toPlayer) then
-            local playtime = MySql.helper.getValueSync("userdata", "PlayTime", { Nickname = toPlayer });
+            local playtime = MySql.helper.getValueSync("user_data", "PlayTime", { Nickname = toPlayer });
             if (playtime) then
                 outputChatBox("Dieser Spieler hat " .. (math.round(playtime / 60)) .. " Spielstunden!", thePlayer, 255, 0, 0)
             else
@@ -273,7 +273,7 @@ function ban_func(thePlayer, command, theBeBanned, ...)
             local IP = getPlayerIP(theBeBanned)
             local Serial = getPlayerSerial(theBeBanned)
 
-            MySql.helper.insert("Ban", {
+            MySql.helper.insert("admin_user_bans", {
                 Nickname = pname,
                 Serial = Serial,
                 IP = IP,
@@ -293,7 +293,7 @@ function ban_func(thePlayer, command, theBeBanned, ...)
                 local IP = getPlayerIP(theBeBanned)
                 local Serial = getPlayerSerial(theBeBanned)
 
-                MySql.helper.insert("Ban", {
+                MySql.helper.insert("admin_user_bans", {
                     Nickname = pname,
                     Serial = Serial,
                     IP = IP,
@@ -326,7 +326,7 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
                         local pln = getPlayerName(toPlayer)
                         local pser = getPlayerSerial(toPlayer)
 
-                        MySql.helper.insert("timeban", {
+                        MySql.helper.insert("admin_user_timebans", {
                             Nickname = pln,
                             Serial = pser,
                             Admin = adm,
@@ -349,14 +349,14 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
 
                             vioSetElementData(toPlayer, "tbans", vioGetElementData(toPlayer, "tbans") + 1)
                             if (vioGetElementData(toPlayer, "tbans") == 1) then
-                                MySql.helper.update("userdata", {tban_reason1 = reason}, {Nickname = pln} );
+                                MySql.helper.update("user_data", {tban_reason1 = reason}, {Nickname = pln} );
                             end
                             if (vioGetElementData(toPlayer, "tbans") > 1) then
-                                local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
-                                MySql.helper.update("userdata", {tban_reason1 = "no_reason"}, {Nickname = pln} );
+                                local tban_reason = MySql.helper.getValueSync("user_data", "tban_reason1", { Nickname = pln });
+                                MySql.helper.update("user_data", {tban_reason1 = "no_reason"}, {Nickname = pln} );
                                 local newreason = "2 Timebans: " .. tban_reason .. " + " .. reason
 
-                                MySql.helper.insert("warns", {
+                                MySql.helper.insert("admin_user_warns", {
                                     Nickname = pln,
                                     Admin = adm,
                                     Grund = newreason
@@ -367,7 +367,7 @@ function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
                             end
                         end
 
-                        MySql.helper.insert("timeban", {
+                        MySql.helper.insert("admin_user_timebans", {
                             Nickname = pln,
                             Serial = pser,
                             Admin = adm,
@@ -402,7 +402,7 @@ function warn_func(thePlayer, command, theBeBanned, ...)
             local pname = getPlayerName(banmeele)
             local aname = getPlayerName(thePlayer)
 
-            MySql.helper.insert("warns", {
+            MySql.helper.insert("admin_user_warns", {
                 Nickname = pname,
                 Admin = aname,
                 Grund = reasons
@@ -415,7 +415,7 @@ function warn_func(thePlayer, command, theBeBanned, ...)
             local Serial = getPlayerSerial(banmeele)
             if (vioGetElementData(banmeele, "warns") > 2) then
 
-                MySql.helper.insert("Ban", {
+                MySql.helper.insert("admin_user_bans", {
                     Nickname = pname,
                     Serial = Serial,
                     IP = IP,
@@ -891,7 +891,7 @@ function force_nickchange(thePlayer, cmd, toPlayerPart)
                 outputChatBox(getPlayerName(toPlayer) .. " wurde vom Server gekickt und zu einem Nickchange gezwungen!", getRootElement(), 255, 0, 0)
                 kickPlayer(toPlayer, thePlayer, "Dein Account wurde gesperrt, da dein Nickname nicht den Richtlinien entspricht. Beantrage einen Nickchange auf " .. config["maindomain"])
 
-                MySql.helper.update("players", {force_nickchange = 1}, {Nickname = nick} );
+                MySql.helper.update("user", {force_nickchange = 1}, {Nickname = nick} );
 
             else
                 showError(thePlayer, "Spieler ist nicht existent")

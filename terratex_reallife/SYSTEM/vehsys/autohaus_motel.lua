@@ -419,7 +419,7 @@ function buyCar(thevehicle)
                             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
                             privCars[spawnVeh] = true
 
-                            local dbid = MySql.helper.insertSync("vehicles", {
+                            local dbid = MySql.helper.insertSync("user_vehicles", {
                                 SlotID = firstfreeslot,
                                 Besitzer = getPlayerName(source),
                                 Model = getElementModel(spawnVeh),

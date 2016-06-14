@@ -1,3 +1,7 @@
+####14.06.2016
+------
+* [GENERAL] Restructured all database tables
+
 ####13.06.2016
 ------
 * [GENERAL] Refactored all mysql_querys in bansys.lua

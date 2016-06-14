@@ -58,23 +58,23 @@ end
 
 function controlWeber(thePlayer)
     if math.round(vioGetElementData(thePlayer, "playtime") / 60) == 25 then
-        local werber = MySql.helper.getValueSync("players", "werber", { Nickname = getPlayerName(thePlayer) });
+        local werber = MySql.helper.getValueSync("user", "werber", { Nickname = getPlayerName(thePlayer) });
 
-        if (MySql.helper.existSync("players", {Nickname = werber })) then
+        if (MySql.helper.existSync("user", {Nickname = werber })) then
 
             if (getPlayerName(thePlayer) ~= werber) then
-                MySql.helper.insert("gutschriften", {
+                MySql.helper.insert("user_gifts", {
                     Nickname = werber,
                     Geld = 1500,
                     Grund = "Der von dir geworbene Spieler " .. getPlayerName(thePlayer) .. " hat 25 Spielstunden erreicht!"
                 });
-                dbExec(MySql._connection, "UPDATE userdata SET werbernum = werbernum + 1 WHERE Nickname = ?", werber);
-                local maxwerb = MySql.helper.getValueSync("userdata", "werbernum", { Nickname = werber });
+                dbExec(MySql._connection, "UPDATE user_data SET werbernum = werbernum + 1 WHERE Nickname = ?", werber);
+                local maxwerb = MySql.helper.getValueSync("user_data", "werbernum", { Nickname = werber });
 
                 if (maxwerb == 5) then
-                    MySql.helper.update("userdata", {werbernum = 0}, {Nickname = werber});
+                    MySql.helper.update("user_data", {werbernum = 0}, {Nickname = werber});
 
-                    MySql.helper.insert("gutschriften", {
+                    MySql.helper.insert("user_gifts", {
                         Nickname = werber,
                         Geld = 10000,
                         VehSlots = 2,
@@ -124,7 +124,7 @@ function payday(thePlayer)
 
     if (vioGetElementData(thePlayer, "fraktion") > 0) then
 
-        local bonus = MySql.helper.getValueSync("fraktionskasse", "gehalt", { FrakID = vioGetElementData(thePlayer, "fraktion") });
+        local bonus = MySql.helper.getValueSync("faction_inventory", "gehalt", { FrakID = vioGetElementData(thePlayer, "fraktion") });
         if not bonus then
             bonus = 0;
         end
@@ -435,7 +435,7 @@ function payday(thePlayer)
         end
     end
 
-    local WerberUeber25SpielstundenQuery = "SELECT * FROM players LEFT JOIN userdata ON userdata.Nickname=players.Nickname WHERE players.werber = ? and userdata.playtime>1500";
+    local WerberUeber25SpielstundenQuery = "SELECT * FROM user LEFT JOIN user_data ON user_data.Nickname=user.Nickname WHERE user.werber = ? and user_data.playtime>1500";
     local query = dbQuery(MySql._connection, WerberUeber25SpielstundenQuery, getPlayerName(thePlayer))
     local result = dbPoll(query, -1);
     local WerberUeber25Spielstunden = table.getSize(result);

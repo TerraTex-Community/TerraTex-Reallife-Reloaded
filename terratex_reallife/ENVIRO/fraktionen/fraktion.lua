@@ -13,12 +13,12 @@ fraktionsrange = {}
 
 function teamserstellen()
 
-    local result = MySql.helper.getSync("data_fraktions_namen", "*");
+    local result = MySql.helper.getSync("faction_names", "*");
     for theKey, dasatz in ipairs(result) do
         fraktionbezeichner[tonumber(dasatz["ID"])] = dasatz["Name"];
     end
 
-    result = MySql.helper.getSync("data_fraktions_raenge", "*");
+    result = MySql.helper.getSync("faction_ranks", "*");
     for theKey, dasatz in ipairs(result) do
         if (not fraktionsrange[tonumber(dasatz["FrakID"])]) then
             fraktionsrange[tonumber(dasatz["FrakID"])] = {}
@@ -54,124 +54,122 @@ function teamserstellen()
     --Set Settings of the Fraktion
     --SAPD
     vioSetElementData(team[1], "hidden", false)
-    frakkasse[1] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 1 });
+    frakkasse[1] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 1 });
     blacklist[1] = false;
     frakmun[1] = false;
     frakdrogen[1] = false;
     frakschutz[1] = false;
-    fraksteuer[1] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 1 });
+    fraksteuer[1] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 1 });
 
     -- Grove Street
     vioSetElementData(team[2], "hidden", false)
     blacklist[2] = {};
-    frakkasse[2] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 2 });
-    frakmun[2] = MySql.helper.getValueSync("fraktionskasse", "Munition", { FrakID = 2 });
-    frakdrogen[2] = MySql.helper.getValueSync("fraktionskasse", "Drogen", { FrakID = 2 });
+    frakkasse[2] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 2 });
+    frakmun[2] = MySql.helper.getValueSync("faction_inventory", "Munition", { FrakID = 2 });
+    frakdrogen[2] = MySql.helper.getValueSync("faction_inventory", "Drogen", { FrakID = 2 });
     frakschutz[2] = {};
-    fraksteuer[2] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 2 });
+    fraksteuer[2] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 2 });
 
     --NEWS
     vioSetElementData(team[3], "hidden", false)
     blacklist[3] = false;
-    frakkasse[3] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 3 });
+    frakkasse[3] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 3 });
     frakmun[3] = false;
     frakdrogen[3] = false;
     frakschutz[3] = false;
-    fraksteuer[3] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 3 });
+    fraksteuer[3] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 3 });
 
     --TAXI
     vioSetElementData(team[4], "hidden", false)
     blacklist[4] = false;
-    frakkasse[4] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 4 });
+    frakkasse[4] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 4 });
     frakmun[4] = false;
     frakdrogen[4] = false;
     frakschutz[4] = false;
-    fraksteuer[4] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 4 });
+    fraksteuer[4] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 4 });
 
     -- SEK
     vioSetElementData(team[5], "hidden", false)
     blacklist[5] = false;
-    frakkasse[5] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 5 });
+    frakkasse[5] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 5 });
     frakmun[5] = false;
     frakdrogen[5] = false;
     frakschutz[5] = false;
-    fraksteuer[5] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 5 });
+    fraksteuer[5] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 5 });
 
     -- LLS
     vioSetElementData(team[6], "hidden", false)
     blacklist[6] = {};
-    frakkasse[6] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 6 });
-    frakmun[6] = MySql.helper.getValueSync("fraktionskasse", "Munition", { FrakID = 6 });
-    frakdrogen[6] = MySql.helper.getValueSync("fraktionskasse", "Drogen", { FrakID = 6 });
+    frakkasse[6] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 6 });
+    frakmun[6] = MySql.helper.getValueSync("faction_inventory", "Munition", { FrakID = 6 });
+    frakdrogen[6] = MySql.helper.getValueSync("faction_inventory", "Drogen", { FrakID = 6 });
     frakschutz[6] = {};
-    fraksteuer[6] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 6 });
+    fraksteuer[6] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 6 });
 
     -- NAME
     vioSetElementData(team[7], "hidden", false)
     blacklist[7] = false;
-    frakkasse[7] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 7 });
+    frakkasse[7] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 7 });
     frakmun[7] = false;
     frakdrogen[7] = false;
     frakschutz[7] = false;
-    fraksteuer[7] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 7 });
+    fraksteuer[7] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 7 });
 
     -- Black Aliens
     vioSetElementData(team[8], "hidden", true)
     blacklist[8] = false;
-    frakkasse[8] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 8 });
+    frakkasse[8] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 8 });
     frakmun[8] = false;
     frakdrogen[8] = false;
     frakschutz[8] = false;
-    fraksteuer[8] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 8 });
+    fraksteuer[8] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 8 });
 
     --LVPD
     vioSetElementData(team[9], "hidden", true)
     blacklist[9] = false;
-    frakkasse[9] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 9 });
+    frakkasse[9] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 9 });
     frakmun[9] = false;
     frakdrogen[9] = false;
     frakschutz[9] = false;
-    fraksteuer[9] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 9 });
+    fraksteuer[9] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 9 });
 
     -- Medics
     vioSetElementData(team[10], "hidden", false)
     blacklist[10] = false;
-    frakkasse[10] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 10 });
+    frakkasse[10] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 10 });
     frakmun[10] = false;
     frakdrogen[10] = false;
     frakschutz[10] = false;
-    fraksteuer[10] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 10 });
+    fraksteuer[10] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 10 });
 
     -- CashForce
     vioSetElementData(team[11], "hidden", false)
     blacklist[11] = {};
-    frakkasse[11] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 11 });
-    frakmun[11] = MySql.helper.getValueSync("fraktionskasse", "Munition", { FrakID = 11 });
-    frakdrogen[11] = MySql.helper.getValueSync("fraktionskasse", "Drogen", { FrakID = 11 });
+    frakkasse[11] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 11 });
+    frakmun[11] = MySql.helper.getValueSync("faction_inventory", "Munition", { FrakID = 11 });
+    frakdrogen[11] = MySql.helper.getValueSync("faction_inventory", "Drogen", { FrakID = 11 });
     frakschutz[11] = {};
-    fraksteuer[11] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 11 });
+    fraksteuer[11] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 11 });
 
     -- Violettas
     vioSetElementData(team[12], "hidden", false)
     blacklist[12] = {};
-    frakkasse[12] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 12 });
-    frakmun[12] = MySql.helper.getValueSync("fraktionskasse", "Munition", { FrakID = 12 });
-    frakdrogen[12] = MySql.helper.getValueSync("fraktionskasse", "Drogen", { FrakID = 12 });
+    frakkasse[12] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 12 });
+    frakmun[12] = MySql.helper.getValueSync("faction_inventory", "Munition", { FrakID = 12 });
+    frakdrogen[12] = MySql.helper.getValueSync("faction_inventory", "Drogen", { FrakID = 12 });
     frakschutz[12] = {};
-    fraksteuer[12] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 12 });
+    fraksteuer[12] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 12 });
 
     --Racers
     vioSetElementData(team[13], "hidden", false)
     blacklist[13] = {};
-    frakkasse[13] = MySql.helper.getValueSync("fraktionskasse", "Kasse", { FrakID = 13 });
-    frakmun[13] = MySql.helper.getValueSync("fraktionskasse", "Munition", { FrakID = 13 });
-    frakdrogen[13] = MySql.helper.getValueSync("fraktionskasse", "Drogen", { FrakID = 13 });
+    frakkasse[13] = MySql.helper.getValueSync("faction_inventory", "Kasse", { FrakID = 13 });
+    frakmun[13] = MySql.helper.getValueSync("faction_inventory", "Munition", { FrakID = 13 });
+    frakdrogen[13] = MySql.helper.getValueSync("faction_inventory", "Drogen", { FrakID = 13 });
     frakschutz[13] = {};
-    fraksteuer[13] = MySql.helper.getValueSync("fraktionskasse", "Steuersatz", { FrakID = 13 });
+    fraksteuer[13] = MySql.helper.getValueSync("faction_inventory", "Steuersatz", { FrakID = 13 });
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), teamserstellen)
-
 
 addEvent("sendMeFrakData", true)
 function sendMeFrakData_func()
@@ -205,16 +203,16 @@ addCommandHandler("fsteuer", fsteuer_func, false, false)
 function save_frakkasse(counter)
 
     for theFraktion, theMoney in pairs(frakkasse) do
-        MySql.helper.update("fraktionskasse", { Kasse = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Kasse = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakmun) do
-        MySql.helper.update("fraktionskasse", { Munition = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Munition = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakdrogen) do
-        MySql.helper.update("fraktionskasse", { Drogen = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Drogen = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(fraksteuer) do
-        MySql.helper.update("fraktionskasse", { Steuersatz = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Steuersatz = theMoney }, { FrakID = theFraktion });
     end
 
     setTimer(save_frakkasse, 3600000, 1)
@@ -223,16 +221,16 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), sa
 
 function save_frakkasseB()
     for theFraktion, theMoney in pairs(frakkasse) do
-        MySql.helper.update("fraktionskasse", { Kasse = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Kasse = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakmun) do
-        MySql.helper.update("fraktionskasse", { Munition = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Munition = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(frakdrogen) do
-        MySql.helper.update("fraktionskasse", { Drogen = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Drogen = theMoney }, { FrakID = theFraktion });
     end
     for theFraktion, theMoney in pairs(fraksteuer) do
-        MySql.helper.update("fraktionskasse", { Steuersatz = theMoney }, { FrakID = theFraktion });
+        MySql.helper.update("faction_inventory", { Steuersatz = theMoney }, { FrakID = theFraktion });
     end
 end
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_frakkasseB)
@@ -398,7 +396,7 @@ addCommandHandler("frakmats", frakmats_func, false, false)
 function loadfromBlacklistDB()
     for n = 1, table.getn(team), 1 do
         if (blacklist[n] ~= false) then
-            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = n});
+            local result = MySql.helper.getSync("faction_blacklist", "*", {Fraktion = n});
             for theKey, dasatz in ipairs(result) do
                 table.insert(blacklist[n], { dasatz["Name"], dasatz["ID"], dasatz["Von"], dasatz["Grund"] });
             end
@@ -411,7 +409,7 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 4 or isAdminLevel(thePlayer, 1)) then
         if (not (frakid) or vioGetElementData(thePlayer, "adminlvl") == 0) then
             local frakid = vioGetElementData(thePlayer, "fraktion")
-            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = frakid});
+            local result = MySql.helper.getSync("faction_blacklist", "*", {Fraktion = frakid});
             outputChatBox("Blacklist: ", thePlayer, 255, 255, 0)
             for theKey, data in ipairs(result) do
                 local playerName = data["Name"]
@@ -432,7 +430,7 @@ function checkbyblacklist_func(thePlayer, cmd, types, frakid)
             end
         elseif (frakid and isAdminLevel(thePlayer, 1)) then
             frakid = tonumber(frakid)
-            local result = MySql.helper.getSync("blacklist", "*", {Fraktion = frakid});
+            local result = MySql.helper.getSync("faction_blacklist", "*", {Fraktion = frakid});
 
             outputChatBox(string.format("Blacklist der Fraktion %s: ", fraktionbezeichner[frakid]), thePlayer, 255, 255, 0)
 
@@ -483,7 +481,7 @@ function setblacklist_func(thePlayer, command, toPlayerName, grund, ...)
                             if (vioGetElementData(toPlayer, "playtime") < 1500) then
                                 showError(thePlayer, "Dieser Spieler ist noch im Neulingsstatus (ROOKIE) und kann daher auf keine Blacklist gesetzt werden!")
                             else
-                                local id = MySql.helper.insertSync("blacklist", {
+                                local id = MySql.helper.insertSync("faction_blacklist", {
                                     Name = toPlayerName,
                                     Fraktion = vioGetElementData(thePlayer, "fraktion"),
                                     Von = getPlayerName(thePlayer),
@@ -526,7 +524,7 @@ function unsetblacklist_func(thePlayer, command, toPlayerName)
                     if not (isonit) then
                         showError(thePlayer, "Dieser Spieler ist nicht auf der Blacklist!")
                     else
-                        MySql.helper.delete("blacklist", {
+                        MySql.helper.delete("faction_blacklist", {
                             Name = toPlayerName,
                             Fraktion = vioGetElementData(thePlayer, "fraktion")
                         });

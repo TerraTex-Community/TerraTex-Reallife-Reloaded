@@ -8,13 +8,13 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                 betrag = math.round(betrag, 2)
                 if (betrag > 0) then
                     local empf
-                    if (MySql.helper.getCountSync("players", { Nickname = empfaenger }) == 1) then
-                        empf = MySql.helper.getValueSync("players", "Nickname", { Nickname = empfaenger });
-                    elseif (MySql.helper.getCountSync("players", { Nickname = config["clantag"] .. empfaenger }) == 1) then
-                        empf = MySql.helper.getValueSync("players", "Nickname", { Nickname = (config["clantag"] .. empfaenger) });
+                    if (MySql.helper.getCountSync("user", { Nickname = empfaenger }) == 1) then
+                        empf = MySql.helper.getValueSync("user", "Nickname", { Nickname = empfaenger });
+                    elseif (MySql.helper.getCountSync("user", { Nickname = config["clantag"] .. empfaenger }) == 1) then
+                        empf = MySql.helper.getValueSync("user", "Nickname", { Nickname = (config["clantag"] .. empfaenger) });
                     end
                     if (empf) then
-                        if (MySql.helper.existSync("userdata", { Nickname = empf })) then
+                        if (MySql.helper.existSync("user_data", { Nickname = empf })) then
 
                             local ueberweiser = betrag
                             if ((((vioGetElementData(sender, "onlineschutzuntil") / 60) / 60) / 24) <= 0) then
@@ -27,7 +27,7 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                                 end
                             end
                             changePlayerBank(sender, -ueberweiser, "spieler", string.format("Überweisung an %s Grund: %s", empf, grund))
-                            local query = "UPDATE userdata SET Bank = Bank + ? WHERE Nickname = ?"
+                            local query = "UPDATE user_data SET Bank = Bank + ? WHERE Nickname = ?"
                             dbExec(MySql._connection, query, betrag, empf);
 
                             saveMoneyLog_withNickname(empf, "Bank", "spieler", betrag, string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))

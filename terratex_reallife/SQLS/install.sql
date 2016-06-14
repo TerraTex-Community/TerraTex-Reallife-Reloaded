@@ -5694,7 +5694,7 @@ CREATE TABLE `user_vehicles` (
   `kmstand` float NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `user_warns` (
+CREATE TABLE `admin_user_warns` (
   `ID` int(11) NOT NULL,
   `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Nickname` varchar(255) NOT NULL,
@@ -5925,7 +5925,7 @@ ALTER TABLE `user_vehicles`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Unique` (`Besitzer`,`SlotID`);
 
-ALTER TABLE `user_warns`
+ALTER TABLE `admin_user_warns`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Nickname` (`Nickname`);
 
@@ -6034,7 +6034,7 @@ ALTER TABLE `user_tombupot`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `user_vehicles`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `user_warns`
+ALTER TABLE `admin_user_warns`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `admin_data_badwords`
@@ -6145,8 +6145,8 @@ ALTER TABLE `user_tombupot`
 ALTER TABLE `user_vehicles`
   ADD CONSTRAINT `user_vehicles_ibfk_1` FOREIGN KEY (`Besitzer`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `user_warns`
-  ADD CONSTRAINT `user_warns_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `admin_user_warns`
+  ADD CONSTRAINT `admin_user_warns_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
 SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -48,7 +48,7 @@ function wantAKart_Event_func()
             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
             privCars[spawnVeh] = true
 
-            MySql.helper.insert("vehicles", {
+            MySql.helper.insert("user_vehicles", {
                 SlotID = firstfreeslot,
                 Besitzer = getPlayerName(source),
                 Model = randid,
@@ -62,7 +62,7 @@ function wantAKart_Event_func()
                 kaufpreis = 1000
             });
 
-            local dbid = MySql.helper.getValueSync("vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
+            local dbid = MySql.helper.getValueSync("user_vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
             outputDebugString("Buyed Car dbid:" .. tostring(dbid))
             vioSetElementData(spawnVeh, "dbid", dbid)
 
@@ -113,11 +113,11 @@ function give_AdventsPresent(player, presentID)
         outputChatBox("Zum Advent hast du 30 Tage Premium geschenkt bekommen", player, 166, 0, 166)
         local thirty = 2592000
         local time = getRealTime()
-        local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = getPlayerName(player) }) - time.timestamp;
+        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = getPlayerName(player) }) - time.timestamp;
         if (premiumOutTime > 0) then
             thirty = thirty + premiumOutTime
         end
-        MySql.helper.update("premium", { PremiumUntil = (time.timestamp + thirty) }, { Name = getPlayerName(player) });
+        MySql.helper.update("user_premium", { PremiumUntil = (time.timestamp + thirty) }, { Name = getPlayerName(player) });
         vioSetElementData(player, "premium", (time.timestamp + thirty))
         outputChatBox(string.format("Du hast nun noch %s Tage Premium!", math.round((((thirty / 60) / 60) / 24))), player, 166, 0, 166)
     end

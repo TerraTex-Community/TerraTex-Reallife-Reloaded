@@ -21,7 +21,7 @@ function abschleppNullSystem()
         local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, message)
         save_log("abschlepp", logtext)
 
-        MySql.helper.update("vehicles", {
+        MySql.helper.update("user_vehicles", {
             SpawnX = 0,
             SpawnY = 0,
             SpawnZ = 0,
@@ -69,7 +69,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                 local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s: %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, name, message)
                 save_log("abschlepp", logtext)
 
-                MySql.helper.update("vehicles", {
+                MySql.helper.update("user_vehicles", {
                     SpawnX = 0,
                     SpawnY = 0,
                     SpawnZ = 0,
@@ -145,7 +145,7 @@ function getcar_func(thePlayer, cmd, IDs)
                             end
                         end
 
-                        local result = MySql.helper.getSync("vehicles", "*", {
+                        local result = MySql.helper.getSync("user_vehicles", "*", {
                             Besitzer = getPlayerName(thePlayer),
                             SlotID = id
                         });
@@ -164,7 +164,7 @@ function getcar_func(thePlayer, cmd, IDs)
                         vioSetElementData(thePlayer, "slot" .. id, thevehicle)
                         vioSetElementData(thevehicle, "abgeschleppt", 0)
 
-                        MySql.helper.update("vehicles", {
+                        MySql.helper.update("user_vehicles", {
                             SpawnX = 0,
                             SpawnY = 0,
                             SpawnZ = 0,
@@ -222,7 +222,7 @@ function getcar_func(thePlayer, cmd, IDs)
                         vioSetElementData(thevehicle, "kmstand", dasatz["kmstand"])
                         vioSetElementData(thevehicle, "premColor", "-1")
                         local time = getRealTime()
-                        local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
+                        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
 
                         if (premiumOutTime > 0) then
                             local lights = getStringComponents(vioGetElementData(thevehicle, "Lichterfarbe"))

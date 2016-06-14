@@ -1,6 +1,6 @@
 addEvent("SendeMirMeineEmailsZu", true)
 function SendeMirMeineEmailsZu_func()
-    local emails = MySql.helper.getSync("emails", "*", {Empfaenger = getPlayerName(source)});
+    local emails = MySql.helper.getSync("user_emails", "*", {Empfaenger = getPlayerName(source)});
     local emailTable = {};
 
     for theKey, dasatz in ipairs(emails) do
@@ -18,24 +18,24 @@ addEventHandler("SendeMirMeineEmailsZu", getRootElement(), SendeMirMeineEmailsZu
 
 addEvent("setEMailReaded", true)
 function setEMailReaded_func(id)
-    MySql.helper.update("emails", {neu = 0}, {ID = id});
+    MySql.helper.update("user_emails", {neu = 0}, {ID = id});
 end
 addEventHandler("setEMailReaded", getRootElement(), setEMailReaded_func)
 
 addEvent("deleteEMail", true)
 function deleteEMail_func(id)
-    MySql.helper.delete("emails", {ID = id});
+    MySql.helper.delete("user_emails", {ID = id});
 end
 addEventHandler("deleteEMail", getRootElement(), deleteEMail_func)
 
 addEvent("sendEMail", true)
 function sendEMail_func(empfaenger, betreff, inhalt)
     local sender = getPlayerName(source)
-    if (MySql.helper.existSync("players", { Nickname = empfaenger })) then
+    if (MySql.helper.existSync("user", { Nickname = empfaenger })) then
 
         if not (vioGetElementData(source, "sendEMailLastSec")) then
 
-            MySql.helper.insert("emails", {
+            MySql.helper.insert("user_emails", {
                 Empfaenger = empfaenger,
                 Sender = sender,
                 Betreff = betreff,

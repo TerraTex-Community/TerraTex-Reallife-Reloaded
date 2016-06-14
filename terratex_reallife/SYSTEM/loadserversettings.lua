@@ -37,16 +37,16 @@ function loadSettingsFromDB()
         setModelHandling(vehicle, "engineInertia", originalTABEL["engineInertia"] * Handler)
     end
 
-    serversettings["drogenpreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "drogenpreis" });
-    serversettings["steuersatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "steuersatz" });
-    serversettings["sozialabgabesatz"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "sozialabgabesatz" });
-    serversettings["matspreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "matspreis" });
-    serversettings["lottojackpot"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Jackpot" });
-    serversettings["Ueberweisungssteuer"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Ueberweisungssteuer" });
-    serversettings["tankpreis"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "tankpreis" });
-    serversettings["Version"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "Version" });
-    serversettings["atommuell"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "atommuell" });
-    serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("serversettings", "Wert", { Name = "spielerDesMonats" });
+    serversettings["drogenpreis"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "drogenpreis" });
+    serversettings["steuersatz"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "steuersatz" });
+    serversettings["sozialabgabesatz"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "sozialabgabesatz" });
+    serversettings["matspreis"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "matspreis" });
+    serversettings["lottojackpot"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Jackpot" });
+    serversettings["Ueberweisungssteuer"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Ueberweisungssteuer" });
+    serversettings["tankpreis"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "tankpreis" });
+    serversettings["Version"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Version" });
+    serversettings["atommuell"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "atommuell" });
+    serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "spielerDesMonats" });
 
 
     setGameType("TerraTex Reallife Reloaded Script " .. serversettings["Version"])
@@ -57,54 +57,54 @@ function loadSettingsFromDB()
 
     serversettings["Max_User"] = 0
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
-        local lastDailyReset = MySql.helper.getValueSync("serversettings", "Wert", { Name = "DailyReset" });
+        local lastDailyReset = MySql.helper.getValueSync("data_settings", "Wert", { Name = "DailyReset" });
 
         local time = getRealTime()
         local timestamp = time.timestamp
 
         if (timestamp - (22 * 60 * 60) > lastDailyReset) then
-            MySql.helper.update("serversettings", {Wert = timestamp}, {Name = 'DailyReset'});
+            MySql.helper.update("data_settings", {Wert = timestamp}, {Name = 'DailyReset'});
             dbExec(MySql._connection, "UPDATE vehicles SET fahrzeugalter=fahrzeugalter+1");
-            MySql.helper.delete("vehicles", {
+            MySql.helper.delete("user_vehicles", {
                 SpawnX = 0,
                 SpawnY = 0,
                 SpawnZ = 0,
                 fahrzeugalter = {">", 3}
             });
 
-            dbExec(MySql._connection, "UPDATE players SET AktiveDays=AktiveDays+1");
-            dbExec(MySql._connection, "UPDATE userdata SET AktiveDays=AktiveDays+1");
+            dbExec(MySql._connection, "UPDATE user SET AktiveDays=AktiveDays+1");
+            dbExec(MySql._connection, "UPDATE user_data SET AktiveDays=AktiveDays+1");
 
             local changeaccounts = 0
 
-            local result = MySql.helper.getSync("players", "Nickname", {
+            local result = MySql.helper.getSync("user", "Nickname", {
                 {"AktiveDays", ">", 30},
                 {"AktiveDays", "<", 35}
             });
 
             if (result) then
                 for theKey, theRow in ipairs(result) do
-                    MySql.helper.update("vehicles", {abgeschleppt = 1}, {Besitzer = theRow["Nickname"]});
+                    MySql.helper.update("user_vehicles", {abgeschleppt = 1}, {Besitzer = theRow["Nickname"]});
                     save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge abgeschleppt.")
 
                     changeaccounts = changeaccounts + 1
                 end
             end
 
-            result = MySql.helper.getSync("players", "Nickname", {
+            result = MySql.helper.getSync("user", "Nickname", {
                 {"AktiveDays", ">", 60},
                 {"AktiveDays", "<", 65}
             });
 
             if (result) then
                 for theKey, theRow in ipairs(result) do
-                    MySql.helper.delete("vehicles", {Besitzer = theRow["Nickname"]});
+                    MySql.helper.delete("user_vehicles", {Besitzer = theRow["Nickname"]});
                     save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge gelöscht.")
                     changeaccounts = changeaccounts + 1
                 end
             end
 
-            result = MySql.helper.getSync("players", "Nickname", {
+            result = MySql.helper.getSync("user", "Nickname", {
                 {"AktiveDays", ">", 90},
                 {"AktiveDays", "<", 95}
             });
@@ -122,25 +122,25 @@ function loadSettingsFromDB()
                 end
             end
 
-            local query = "SELECT userdata.* FROM userdata LEFT JOIN players ON players.Nickname=userdata.Nickname WHERE userdata.PlayTime<=600 and players.AktiveDays>=30"
+            local query = "SELECT user_data.* FROM user_data LEFT JOIN user ON user.Nickname=user_data.Nickname WHERE user_data.PlayTime<=600 and user.AktiveDays>=30"
             local handler = dbQuery(MySql._connection, query);
             local result = dbPoll(handler, -1);
 
             if (result) then
                 for theKey, dasatz in ipairs(result) do
-                    MySql.helper.delete("players", {Nickname = dasatz["Nickname"]});
+                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
 
                     save_log("nickdelete", dasatz["Nickname"]);
                     changeaccounts = changeaccounts + 1;
                 end
             end
 
-            result = MySql.helper.getSync("players", "Nickname", {
+            result = MySql.helper.getSync("user", "Nickname", {
                 AktiveDays = {">", 365}
             });
             if (result) then
                 for theKey, dasatz in ipairs(result) do
-                    MySql.helper.delete("players", {Nickname = dasatz["Nickname"]});
+                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
 
                     save_log("nickdelete", dasatz["Nickname"]);
                     changeaccounts = changeaccounts + 1;
@@ -158,12 +158,12 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), lo
 
 function saveSettingsInDB()
 
-    MySql.helper.update("serversettings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
-    MySql.helper.update("serversettings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
-    MySql.helper.update("serversettings", { Wert = rainlevel }, { Name = "regenlevel"});
+    MySql.helper.update("data_settings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
+    MySql.helper.update("data_settings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("data_settings", { Wert = rainlevel }, { Name = "regenlevel"});
 
     setTimer(saveSettingsInDB, 3600000, 1)
 end
@@ -171,12 +171,12 @@ end
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), saveSettingsInDB)
 
 function stopResource_func()
-    MySql.helper.update("serversettings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
-    MySql.helper.update("serversettings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
-    MySql.helper.update("serversettings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
-    MySql.helper.update("serversettings", { Wert = rainlevel }, { Name = "regenlevel"});
+    MySql.helper.update("data_settings", { Wert = serversettings["drogenpreis"] }, { Name = "drogenpreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["lottojackpot"] }, { Name = "Jackpot"});
+    MySql.helper.update("data_settings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
+    MySql.helper.update("data_settings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("data_settings", { Wert = rainlevel }, { Name = "regenlevel"});
 
 
     local time = getRealTime()
@@ -192,7 +192,7 @@ end
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), stopResource_func)
 
 function reduceSchutzGeld(timestate)
-    local query = "UPDATE userdata SET schutzgeld=schutzgeld-1 WHERE schutzgeld>0";
+    local query = "UPDATE user_data SET schutzgeld=schutzgeld-1 WHERE schutzgeld>0";
     dbExec(MySql._connection, query);
 
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
@@ -235,9 +235,9 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), afk_timer)
 
 function timebanreduce()
-    local query = "UPDATE timeban SET Minuten=Minuten-1;"
+    local query = "UPDATE admin_user_timebans SET Minuten=Minuten-1;"
     dbExec(MySql._connection, query);
-    MySql.helper.delete("timeban", {Minuten = {"<=", 0}});
+    MySql.helper.delete("admin_user_timebans", {Minuten = {"<=", 0}});
 
     setTimer(timebanreduce, 60000, 1)
 end

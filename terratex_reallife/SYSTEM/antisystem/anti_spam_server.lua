@@ -20,7 +20,7 @@ function antiflut(command)
                 local IP = getPlayerIP(source)
                 local Serial = getPlayerSerial(source)
 
-                MySql.helper.insert("Ban", {
+                MySql.helper.insert("admin_user_bans", {
                     Nickname = pname,
                     Serial = Serial,
                     IP = IP,
@@ -70,7 +70,7 @@ function test_onconsole(command)
                 local IP = getPlayerIP(source)
                 local Serial = getPlayerSerial(source)
 
-                MySql.helper.insert("Ban", {
+                MySql.helper.insert("admin_user_bans", {
                     Nickname = pname,
                     Serial = Serial,
                     IP = IP,

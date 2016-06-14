@@ -30,7 +30,7 @@ end
 
 -- Häuser Laden
 function haussys_startup()
-    local result = MySql.helper.getSync("haussys_hdb", "*");
+    local result = MySql.helper.getSync("objects_houses", "*");
     for theKey, dasatz in ipairs(result) do
          haeuser[tonumber(dasatz["ID"])]=new(Haus,
                                                 dasatz["ID"],
@@ -48,7 +48,7 @@ function haussys_startup()
     end
     outputDebugString("# "..table.getSize(haeuser).." Houses loaded!");
 
-    result = MySql.helper.getSync("haussys_irdb", "*");
+    result = MySql.helper.getSync("objects_houses_rooms", "*");
     for theKey, dasatz in ipairs(result) do
         iraeume[tonumber(dasatz["ID"])]=new(IRaum,
                                     dasatz["ID"],
@@ -73,7 +73,7 @@ function haussys_addNewIR_func(thePlayer,cmd,Preis,QM,Stockwerke,Wert,...)
             local int=getElementInterior(thePlayer)
             local comment=""..table.concat({...}," ")
 
-            local id = MySql.helper.insertSync("haussys_irdb", {
+            local id = MySql.helper.insertSync("objects_houses_rooms", {
                 CoordX = x,
                 CoordY = y,
                 CoordZ = z,
@@ -104,7 +104,7 @@ function haussys_addNewHouse_func(thePlayer,cmd,Preis,city,QM,Stockwerke,Wert,..
             local x,y,z=getElementPosition(thePlayer)
             local comment=""..table.concat({...}," ")
 
-            local id = MySql.helper.insertSync("haussys_hdb", {
+            local id = MySql.helper.insertSync("objects_houses", {
                 CoordX = x,
                 CoordY = y,
                 CoordZ = z,
@@ -152,7 +152,7 @@ function haussys_deleteHouse_func(thePlayer)
                 if(getPlayerFromName(besitzerName))then
                     vioSetElementData(getPlayerFromName(besitzerName,"hkey",0))
                 else
-                    MySql.helper.update("userdata", {newhkey = 0}, {Nickname = besitzerName});
+                    MySql.helper.update("user_data", {newhkey = 0}, {Nickname = besitzerName});
                 end
                 haus:setBesitzer(false)
                 showError(thePlayer,"Haus entzogen.")

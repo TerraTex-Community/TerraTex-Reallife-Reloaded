@@ -3,7 +3,7 @@ prestigeObjects = {}
 --- Berechnung Stufengeld: =(6*POTENZ(10;-11))*POTENZ(A1;2)+0,0002*A1+69,444*0,5
 function loadPrestigeFromDB()
 
-    local result = MySql.helper.getSync("prestige", "*");
+    local result = MySql.helper.getSync("objects_prestiges", "*");
 
     for theKey, dasatz in ipairs(result) do
         -- ID 	x y	z stufe	name preis stufengeld
@@ -16,7 +16,7 @@ function loadPrestigeFromDB()
         prestigeObjects[tonumber(dasatz["ID"])]["preis"] = tonumber(dasatz["preis"])
         prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"] = tonumber(dasatz["grundpreis"])
         prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
-        prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("userdata", "Nickname", { prestigeKey = dasatz["ID"] });
+        prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { prestigeKey = dasatz["ID"] });
         prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
         vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
         addEventHandler("onPickupHit", prestigeObjects[tonumber(dasatz["ID"])]["pickup"], showPrestigeInfos)
@@ -35,7 +35,7 @@ function loadPrestigeFromDB()
             prestigeObjects[tonumber(dasatz["ID"])]["preis"] = prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"]
             prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = 1
 
-            MySql.helper.update("prestige", {
+            MySql.helper.update("objects_prestiges", {
                 preis = prestigeObjects[tonumber(dasatz["ID"])]["preis"],
                 stufe = 1
             }, {
@@ -77,7 +77,7 @@ function upgradePrestige_func(thePlayer)
                 prestigeObjects[id]["preis"] = prestigeObjects[id]["preis"] + preis
                 prestigeObjects[id]["stufe"] = prestigeObjects[id]["stufe"] + 1
 
-                MySql.helper.update("prestige", {
+                MySql.helper.update("objects_prestiges", {
                     stufengeld = preis,
                     stufe = prestigeObjects[id]["stufe"],
                     preis = prestigeObjects[id]["preis"]
@@ -229,7 +229,7 @@ function addPrestige_func(thePlayer, cmd, preis, stufengeld, name, ...)
             if (preis) and (stufengeld) then
                 local x, y, z = getElementPosition(thePlayer)
 
-                local newid = MySql.helper.insertSync("prestige", {
+                local newid = MySql.helper.insertSync("objects_prestiges", {
                     x = x,
                     y = y,
                     z = z,

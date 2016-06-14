@@ -10,7 +10,7 @@ addEventHandler("setElementCollisionsEnabled_Event", getRootElement(), setElemen
 
 function loadPrivCars()
 
-    local result = MySql.helper.getSync("vehicles", "*");
+    local result = MySql.helper.getSync("user_vehicles", "*");
 
     for theKey, dasatz in ipairs(result) do
         local thevehicle = createVehicle(dasatz["Model"], dasatz["SpawnX"], dasatz["SpawnY"], dasatz["SpawnZ"], dasatz["SpawnRX"], dasatz["SpawnRY"], dasatz["SpawnRZ"], dasatz["Besitzer"])
@@ -46,7 +46,7 @@ function loadPrivCars()
             local message = "Fahrzeugslot " .. dasatz["SlotID"] .. " | Besitzer " .. nameofCar .. " | Abschlepper " .. name
             save_offline_message(dasatz["Besitzer"], "Abschleppsystem", "Dein Fahrzeug im Slot " .. dasatz["SlotID"] .. " wurde abgeschleppt, da es keinen Parkplatz hatte (/park)")
 
-            MySql.helper.update("vehicles", {abgeschleppt = 1}, {ID = dasatz["ID"]});
+            MySql.helper.update("user_vehicles", {abgeschleppt = 1}, {ID = dasatz["ID"]});
 
             local times = getRealTime()
             local logtext = "[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. name .. ": " .. message
@@ -75,9 +75,9 @@ function loadPrivCars()
 
         vioSetElementData(thevehicle, "premColor", "-1")
         local time = getRealTime()
-        if (tonumber(MySql.helper.getValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"] }))) then
+        if (tonumber(MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = dasatz["Besitzer"] }))) then
 
-            local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
+            local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
             if (premiumOutTime > 0) then
                 local lights = getStringComponents(vioGetElementData(thevehicle, "Lichterfarbe"))
                 setVehicleHeadLightColor(thevehicle, tonumber(lights[1]), tonumber(lights[2]), tonumber(lights[3]))
@@ -132,8 +132,8 @@ function save_priv_carsB()
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
         for theKey, thetable in ipairs(privVeh) do
             if (isElement(thetable[3])) then
-                MySql.helper.update("vehicles", { Tank = vioGetElementData(thetable[3], "tank") }, { ID = vioGetElementData(thetable[3], "dbid") });
-                MySql.helper.update("vehicles", { kmstand = vioGetElementData(thetable[3], "kmstand") }, { ID = vioGetElementData(thetable[3], "dbid") });
+                MySql.helper.update("user_vehicles", { Tank = vioGetElementData(thetable[3], "tank") }, { ID = vioGetElementData(thetable[3], "dbid") });
+                MySql.helper.update("user_vehicles", { kmstand = vioGetElementData(thetable[3], "kmstand") }, { ID = vioGetElementData(thetable[3], "dbid") });
             end
         end
     end
@@ -147,7 +147,7 @@ function save_car(veh)
         vioSetElementData(veh, "tuning", "0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0")
     end
 
-    MySql.helper.update("vehicles", {
+    MySql.helper.update("user_vehicles", {
         Tuning = vioGetElementData(veh, "tuning"),
         Colors = vioGetElementData(veh, "colors"),
         paintjob = vioGetElementData(veh, "paintjob"),
@@ -180,7 +180,7 @@ function onvehicleexplode_exec(source)
             local dis = getDistanceBetweenPoints3D(xc, yc, zc, xp, yp, zp)
             if (dis < 50) then
 
-                MySql.helper.delete("vehicles", {ID = vioGetElementData(source, "dbid")});
+                MySql.helper.delete("user_vehicles", {ID = vioGetElementData(source, "dbid")});
                 local besitzer = getPlayerFromName(vioGetElementData(source, "besitzer"))
 
                 for theKey, theTable in ipairs(privVeh) do
@@ -240,7 +240,7 @@ function onvehicleexplode_exec(source)
             local xc, yc, zc = getElementPosition(source)
             local dis = getDistanceBetweenPoints3D(xc, yc, zc, spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][1], spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][2], spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][3])
             if (dis < 50) then
-                MySql.helper.delete("vehicles", {ID = vioGetElementData(source, "dbid")});
+                MySql.helper.delete("user_vehicles", {ID = vioGetElementData(source, "dbid")});
 
                 local besitzer = getPlayerFromName(vioGetElementData(source, "besitzer"))
 
@@ -251,8 +251,8 @@ function onvehicleexplode_exec(source)
                 end
                 save_offline_message(vioGetElementData(source, "besitzer"), "Fahrzeugsystem", "Ihr Fahrzeug im Slot " .. vioGetElementData(source, "slotid") .. " wurde zerstört")
                 local time = getRealTime()
-                local premium = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = vioGetElementData(source, "besitzer") }) - time.timestamp;
-                local versicherung = MySql.helper.getValueSync("userdata", "versicherung", { Nickname = vioGetElementData(source, "besitzer") });
+                local premium = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = vioGetElementData(source, "besitzer") }) - time.timestamp;
+                local versicherung = MySql.helper.getValueSync("user_data", "versicherung", { Nickname = vioGetElementData(source, "besitzer") });
 
                 if (versicherung == 1 or premium > 0) then
                     local satz = 0
@@ -285,7 +285,7 @@ function onvehicleexplode_exec(source)
                         wert = vioGetElementData(source, "kaufpreis")
                     end
                     --Ausgabe und Auszahlung
-                    MySql.helper.insert("gutschriften", {
+                    MySql.helper.insert("user_gifts", {
                         Nickname = vioGetElementData(source, "besitzer"),
                         Grund = "Fahrzeugsystem: Eine Versicherung hat ihnen " .. math.round(satz * 100) .. "% vom Einkaufspreis wieder gutgeschrieben!",
                         Geld = (wert * satz)

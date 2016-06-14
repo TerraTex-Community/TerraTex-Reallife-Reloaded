@@ -13,10 +13,10 @@ local deleteNullAfterDays = 30
 --[[ SCRIPT ]]
 function onPlayerDevServerConnect(nickname)
     if (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
-        local isDev = MySql.helper.getValueSync("players", "isDeveloper", { Nickname = nickname });
+        local isDev = MySql.helper.getValueSync("user", "isDeveloper", { Nickname = nickname });
         if (isDev) then
             if (isDev == 0) then
-                local execQ = dbQuery(MySql._connection, "SELECT count(*) as anzahl FROM dev_beta WHERE Nickname = ? AND TIMEDIFF(fromTimestamp, NOW())<0 and (TIMEDIFF(toTimestamp, NOW())>0 or toTimestamp IS NULL)", nickname);
+                local execQ = dbQuery(MySql._connection, "SELECT count(*) as anzahl FROM admin_dev_access WHERE Nickname = ? AND TIMEDIFF(fromTimestamp, NOW())<0 and (TIMEDIFF(toTimestamp, NOW())>0 or toTimestamp IS NULL)", nickname);
                 local result = dbPoll(execQ, -1);
                 if (tonumber(result[1]["anzahl"]) > 0) then
                     cancelEvent(true, "Der Developmentserver von " .. config["communityname"] .. " ist nur für Entwickler und ausgewähle Betatester gedacht!")
@@ -30,9 +30,9 @@ function onPlayerDevServerConnect(nickname)
         conditionTable["TIMEDIFF(fromTimestamp, NOW())"] = { "<", 0 };
         conditionTable["TIMEDIFF(toTimestamp, NOW())"] = { "<", 0 };
 
-        MySql.helper.delete("dev_beta", conditionTable)
+        MySql.helper.delete("admin_dev_access", conditionTable)
         if (deleteNullAfterDays > 0) then
-            dbExec(MySql._connection, "DELETE FROM dev_beta WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))< ? and toTimestamp IS NULL", -deleteNullAfterDays);
+            dbExec(MySql._connection, "DELETE FROM admin_dev_access WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))< ? and toTimestamp IS NULL", -deleteNullAfterDays);
         end
     end
 end

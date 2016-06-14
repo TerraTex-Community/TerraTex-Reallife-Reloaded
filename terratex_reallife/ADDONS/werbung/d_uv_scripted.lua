@@ -4,15 +4,15 @@ function onResourceStart_WerbeSchilderGenerieren()
 
     local timer = getRealTime()
     local dateToday = (timer.year + 1900) .. "-" .. (timer.month + 1) .. "-" .. timer.monthday .. "'";
-    MySql.helper.delete("werbungen", {DatumBis = {"<", dateToday}});
+    MySql.helper.delete("data_advertising", {DatumBis = {"<", dateToday}});
 
     for i = 1, (werbeschilder), 1 do
-        local count = MySql.helper.getCountSync("werbungen");
+        local count = MySql.helper.getCountSync("data_advertising");
         if (count == 0) then
             werbungenTable[i] = { "WERBEBILDER/standardwerbung.png", 0 }
             sendFileToClient(werbungenTable[i][1], getRootElement(), "werbung", i, werbungenTable[i][2])
         else
-            local query = dbQuery(MySql._connection, "SELECT * FROM werbungen ORDER BY RAND() LIMIT 1");
+            local query = dbQuery(MySql._connection, "SELECT * FROM data_advertising ORDER BY RAND() LIMIT 1");
             local result = dbPoll(query, -1);
             local dsatz = result[1];
 

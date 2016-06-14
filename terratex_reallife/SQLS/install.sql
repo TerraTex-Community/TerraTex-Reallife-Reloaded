@@ -5339,7 +5339,7 @@ INSERT INTO `objects_sprunk` (`ID`, `X`, `Y`, `Z`, `Rot`, `Kommentar`) VALUES
 (48, 2480.81, -1958.52, 13.583, 181.967, 'Sprunk kl. Waffen Snack'),
 (49, 2224.28, -1153.42, 1025.8, 270.77, '');
 
-CREATE TABLE `object_prestiges` (
+CREATE TABLE `objects_prestiges` (
   `ID` int(11) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,
@@ -5351,7 +5351,7 @@ CREATE TABLE `object_prestiges` (
   `grundpreis` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `object_prestiges` (`ID`, `x`, `y`, `z`, `stufe`, `name`, `preis`, `stufengeld`, `grundpreis`) VALUES
+INSERT INTO `objects_prestiges` (`ID`, `x`, `y`, `z`, `stufe`, `name`, `preis`, `stufengeld`, `grundpreis`) VALUES
 (3, 1479.54, -1617.26, 14.2, 1, 'Stadtpark Siegessäule', 800000, 2765510, 800000),
 (4, 2316.44, 2363.64, 10.8203, 1, 'Antiker Brunnen (LVPD)', 350000, 350000, 350000),
 (5, 1573.92, -1329.1, 16.4844, 1, 'Star Tower', 850000, 1012350, 850000),
@@ -5848,7 +5848,7 @@ ALTER TABLE `objects_restareas`
 ALTER TABLE `objects_sprunk`
   ADD PRIMARY KEY (`ID`);
 
-ALTER TABLE `object_prestiges`
+ALTER TABLE `objects_prestiges`
   ADD PRIMARY KEY (`ID`);
 
 ALTER TABLE `user`
@@ -5998,7 +5998,7 @@ ALTER TABLE `objects_restareas`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `objects_sprunk`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `object_prestiges`
+ALTER TABLE `objects_prestiges`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `user`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;

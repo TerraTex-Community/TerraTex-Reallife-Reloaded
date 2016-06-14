@@ -1,7 +1,7 @@
 bizData = {}
 bizPickupInfo = {}
 function loadBizFromDB_func()
-    local result = MySql.helper.getSync("buissness", "*");
+    local result = MySql.helper.getSync("objects_businesses", "*");
     local zahler;
     for theKey, dasatz in ipairs(result) do
         zahler = tonumber(dasatz["ID"]);

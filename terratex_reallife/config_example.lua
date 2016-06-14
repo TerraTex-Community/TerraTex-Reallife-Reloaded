@@ -24,25 +24,11 @@ config["clantag"]="[TTeam]"
 --Community Name - The Name of the Community, which should be written f.e. in credits
 config["communityname"]="TerraTex"
 
---passwort Hash Algo ... 
---Options:  
---   -> md5    (old System... not recommend)
---   -> osha256   (Sha256 before MTA:SA 1.4.1)
---   -> sha256    (Sha256 // avaible after MTA:SA 1.4.1)
---   -> sha512    (Sha512 // avaible after MTA:SA 1.4.1  -- recommend)
-config["password_hash"]="sha512"
-
 --Mappername
 config["mappername"]="[TTeam]Blizard"
 
 --Scriptername
 config["scriptername"]="[TTeam]Geramy92"
-
---MYSQL CONFIG:
-config["mysqlhost"]="localhost"
-config["mysqluser"]=""
-config["mysqlpassword"]=""
-config["mysqldb"]=""
 
 --24h Restart type
 -- Options:
@@ -54,4 +40,19 @@ config["dailyrestarttype"]="GMX"
 -- ################  FEATURE SETTINGS  #################
 -- Enable or Disable Standard of Living (Means you need a specific house value to buy expensive cars)
 config["feature.stardard_of_living"] = true
+
+-- Pizzaroller Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.pizza"] = 50
+
+-- Rookieroller / Faggio Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.faggio"] = 50
+
+-- Quad false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.quad"] = 90
+
+-- Waffentruck Limitierung false = aus | zahlenwert = max km/h Default Roller:
+config["feature.limiter.muntruck"] = 100
+
+
+
 

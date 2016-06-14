@@ -13,7 +13,7 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 
 1. Create A Database and import all sql files (update files as last files) from Directory "SQL for INSTALL OR UPDATE"
 2. Edit config_example.lua and rename to config.lua
-3. Edit config_client_example.lua and rename to config_client.lua
+3. Edit database_config_example.lua and rename to database_config.lua
 4. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
 
 Dieses Material steht unter der Creative-Commons-Lizenz Namensnennung-Nicht kommerziell 4.0 International. Um eine Kopie dieser Lizenz zu sehen, besuchen Sie http://creativecommons.org/licenses/by-nc/4.0/.

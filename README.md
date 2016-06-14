@@ -11,7 +11,7 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 
 ##Installation
 
-1. Create A Database and import all sql files (update files as last files) from Directory "SQL for INSTALL OR UPDATE"
+1. Create A Database and import all sql files (update files in correct Order) from Directory "terratex_reallife/SQLS"
 2. Edit config_example.lua and rename to config.lua
 3. Edit database_config_example.lua and rename to database_config.lua
 4. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin

@@ -1,146 +1,21 @@
--- phpMyAdmin SQL Dump
--- version 4.2.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Erstellungszeit: 13. Nov 2014 um 18:19
--- Server Version: 10.0.10-MariaDB
--- PHP-Version: 5.4.24
-
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
---
--- Datenbank: `geramy_reallife`
---
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `archievments`
---
-
-CREATE TABLE IF NOT EXISTS `archievments` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `Erfolg_Fischermeister` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Fischermeister` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_MrLicenses` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_First_50` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_First_100` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_First_1000` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Millionaer` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_10erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_20erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_50erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Busmeister` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Busmeister` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Lotto1` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Lotto2` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Lotto3` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Rubbellosgluck` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_10erLos` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Benzin_leer` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Mein_erstes_Geld` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_MyOwnHome` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_MyOwnBiz` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Autoeinsteiger` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Mein_erstes_Brot` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Ersatztanke` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Fraktionseinsteiger` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_10Hufeisen` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_100Hufeisen` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_1000Hufeisen` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Meisterpilot` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Meisterpilot` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Meistertrucker` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Meistertrucker` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_KMPokal` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_TerraFriend` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Strassenreiniger` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Strassenreiniger` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Meeresreiniger` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Meeresreiniger` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Muellsammler` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Muellsammler` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Pizzaraser` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Pizzaraser` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Farmerjunge` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Farmerjunge` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Steinraeumer` int(11) NOT NULL DEFAULT '0',
-  `Erfolg_Steinraeumer` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Langlaeufer` float NOT NULL DEFAULT '0',
-  `Erfolg_Langlaeufer` int(11) NOT NULL DEFAULT '0',
-  `Punkte_Rekordschwimmer` float NOT NULL DEFAULT '0',
-  `Erfolg_Rekordschwimmer` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56525 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `attackerladen`
---
-
-CREATE TABLE IF NOT EXISTS `attackerladen` (
+CREATE TABLE `admin_data_badwords` (
   `ID` int(11) NOT NULL,
-  `toFraktion` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `attackerladen`
---
-
-INSERT INTO `attackerladen` (`ID`, `toFraktion`) VALUES
-(1, 2),
-(2, 2),
-(3, 11),
-(4, 6),
-(5, 11),
-(6, 11),
-(7, 11),
-(8, 11);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `ban`
---
-
-CREATE TABLE IF NOT EXISTS `ban` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(50) CHARACTER SET latin1 NOT NULL,
-  `Serial` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
-  `IP` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
-  `Grund` longtext COLLATE utf8_bin NOT NULL,
-  `Admin` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT 'terratex',
-  `Bandatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Beweistext` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'keiner'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3524 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `beleidigungsystem`
---
-
-CREATE TABLE IF NOT EXISTS `beleidigungsystem` (
-`ID` int(11) NOT NULL,
   `Beleidigung` varchar(250) NOT NULL,
   `Type` int(11) NOT NULL DEFAULT '0',
   `connectedTo` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `beleidigungsystem`
---
-
-INSERT INTO `beleidigungsystem` (`ID`, `Beleidigung`, `Type`, `connectedTo`) VALUES
+INSERT INTO `admin_data_badwords` (`ID`, `Beleidigung`, `Type`, `connectedTo`) VALUES
 (3, 'hurensohn', 1, NULL),
 (4, 'hundesohn', 1, NULL),
 (5, 'bastard', 1, NULL),
@@ -184,14 +59,27 @@ INSERT INTO `beleidigungsystem` (`ID`, `Beleidigung`, `Type`, `connectedTo`) VAL
 (46, 'puta', 0, NULL),
 (47, 'wixer', 1, 'wixxer');
 
--- --------------------------------------------------------
+CREATE TABLE `admin_dev_access` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `fromTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `toTimestamp` timestamp NULL DEFAULT NULL,
+  `Kommentar` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Tabellenstruktur für Tabelle `bewaehrungsstrafen`
---
+CREATE TABLE `admin_user_bans` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `Serial` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `IP` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
+  `Grund` longtext COLLATE utf8_bin NOT NULL,
+  `Admin` varchar(50) CHARACTER SET latin1 NOT NULL DEFAULT 'terratex',
+  `Bandatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Beweistext` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'keiner'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-CREATE TABLE IF NOT EXISTS `bewaehrungsstrafen` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `admin_user_paroles` (
+  `ID` int(11) NOT NULL,
   `Nickname` varchar(250) NOT NULL,
   `until` int(11) NOT NULL DEFAULT '0',
   `warn` int(11) DEFAULT '0',
@@ -199,76 +87,165 @@ CREATE TABLE IF NOT EXISTS `bewaehrungsstrafen` (
   `perma` int(11) DEFAULT '0',
   `Grund` text,
   `Adminname` varchar(250) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+CREATE TABLE `admin_user_timebans` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(50) NOT NULL,
+  `Grund` text NOT NULL,
+  `Admin` varchar(50) NOT NULL DEFAULT 'none',
+  `Minuten` int(11) NOT NULL DEFAULT '30',
+  `Serial` varchar(255) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `blacklist`
---
+CREATE TABLE `admin_whitelist` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) NOT NULL,
+  `ANTIHIGHPING` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `blacklist` (
-`ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Fraktion` int(11) NOT NULL DEFAULT '0',
-  `Von` varchar(255) NOT NULL DEFAULT 'none',
-  `Grund` varchar(255) NOT NULL DEFAULT 'none'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10564 ;
+CREATE TABLE `admin_whitelist_multiaccounts` (
+  `ID` int(11) NOT NULL,
+  `Serial` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+CREATE TABLE `data_advertising` (
+  `ID` int(11) NOT NULL,
+  `picName` varchar(255) NOT NULL,
+  `DatumBis` date NOT NULL,
+  `animation` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `buissness`
---
+CREATE TABLE `data_faq` (
+  `ID` int(11) NOT NULL,
+  `Frage` mediumtext NOT NULL,
+  `Antwort` mediumtext NOT NULL,
+  `katID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `buissness` (
-`ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Preis` int(11) NOT NULL,
-  `Kasse` float NOT NULL,
-  `x` float NOT NULL,
-  `y` float NOT NULL,
-  `z` float NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+INSERT INTO `data_faq` (`ID`, `Frage`, `Antwort`, `katID`) VALUES
+(1, 'Wie kann ich mein Passwort ändern?', 'Zum Passwort ändern einfach mit den Ingame-Login-Daten auf cp.tt-rl.de einloggen und unter Einstellungen das Passwort ändern.', 3),
+(2, 'Wie kann ich mich in einer Fraktion bewerben?', 'Um dich bei einer Fraktion bewerben zu können, musst du dich im Forum www.tt-rl.de anmelden. Dort kannst du in dem Bewerbungsforum der entsprechenden Fraktion ein Bewerbungsthread posten.', 4),
+(3, 'Warum ist mein Auto immer abgeschleppt, wenn ich es respawne?', 'Nach dem Kauf oder dem auslösen aus dem LSPD muss das Fahrzeug erst mit /park geparkt werden.', 5),
+(4, 'Ich habe mich in ein Haus eingemietet und komme nun nicht mehr raus.', 'Ein Haus ist standardmäßig abgeschlossen. Als Mieter kannst du es mit /hlock aufschließen und es mit /out verlassen.', 6),
+(5, 'Wie erreiche ich ein Supporter / Moderator?', 'Uns kannst du jederzeit über /report oder im Forum unter www.tt-rl.de erreichen.', 4),
+(6, 'Wieso erhalte ich mein Gehalt beim Jobben nicht?', 'Bei den Jobs gibt es verschiedene Arten, wann und wie die Vergütung bezahlt wird. Alle Bezahlungen mit der Bezeichnung ''Gehalt'' werden beim PayDay als sonstiges Gehalt ausgezahlt.', 4);
 
---
--- Daten für Tabelle `buissness`
---
+CREATE TABLE `data_faq_category` (
+  `ID` int(11) NOT NULL,
+  `kat` varchar(250) NOT NULL,
+  `order` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `buissness` (`ID`, `Name`, `Preis`, `Kasse`, `x`, `y`, `z`) VALUES
-(1, 'Burgershot', 150000, 940631, 1206.24, -917.818, 43.076),
-(2, 'PizzaStack', 150000, 12492.9, 2105.09, -1802.86, 13.5547),
-(3, 'CluckinBell', 150000, 8047.49, 2420.71, -1503.81, 24),
-(4, 'Sprunk', 150000, 119.62, 2852.51, -1533.15, 11.0938),
-(5, 'PaynSpray', 150000, 17058.4, 1029.19, -1030.36, 32.0561),
-(6, 'Tunning', 150000, 117108, 1047.45, -1027.11, 32.1016),
-(7, 'Tankstelle', 150000, 105551, 1010.41, -929.694, 42.3281),
-(8, '24/7', 150000, 144700, 1312.66, -898.358, 39.5781),
-(9, 'Bar & Strip Industries', 150000, 5677.72, 1835.75, -1687.61, 13.3765),
-(10, 'Unitel Telefon', 150000, 29799.3, 1579.45, -1854.68, 13.5127),
-(11, 'Los Santos Arena', 150000, 6567.55, 2727.84, -1827.66, 11.8438),
-(12, 'SexShop', 150000, 14651.4, 2086.43, 2080.12, 11.0579),
-(13, 'Caligulas Casino', 150000, 613.11, 2194.57, 1682.27, 12.3672),
-(14, 'Maut', 150000, 29852.5, 1654, -51.6, 36.6),
-(15, 'Binco', 150000, 24141.7, 458.7, -1495.3, 31.1);
+INSERT INTO `data_faq_category` (`ID`, `kat`, `order`) VALUES
+(3, 'Account', 0),
+(4, 'Allgemein', 10),
+(5, 'Fahrzeuge', 20),
+(6, 'Häuser', 30);
 
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `data_fraktions_namen`
---
-
-CREATE TABLE IF NOT EXISTS `data_fraktions_namen` (
+CREATE TABLE `data_jobnames` (
   `ID` int(11) NOT NULL,
   `Name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `data_fraktions_namen`
---
+INSERT INTO `data_jobnames` (`ID`, `Name`) VALUES
+(0, 'Kein Job'),
+(1, 'Fischer'),
+(2, 'Drogendealer'),
+(3, 'Müllmann'),
+(4, 'Busfahrer'),
+(5, 'Mechaniker'),
+(6, 'Detektiv'),
+(7, 'Hitman'),
+(8, 'Pizzalieferant'),
+(9, 'Anwalt'),
+(10, 'Waffendealer'),
+(11, 'Trucker'),
+(12, 'Pilot'),
+(13, 'Straßenreiniger'),
+(14, 'Farmer'),
+(15, 'Bergwerksarbeiter'),
+(16, 'Nutte'),
+(17, 'Meeresreiniger'),
+(18, 'Hotdogverkäufer');
 
-INSERT INTO `data_fraktions_namen` (`ID`, `Name`) VALUES
+CREATE TABLE `data_settings` (
+  `Name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `Wert` varchar(255) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci;
+
+INSERT INTO `data_settings` (`Name`, `Wert`) VALUES
+('atommuell', '42'),
+('DailyReset', '1465832842'),
+('drogenpreis', '1'),
+('Jackpot', '30318'),
+('matspreis', '0.950000'),
+('regenlevel', '-2.300000'),
+('sozialabgabesatz', '20'),
+('spielerDesMonats', 'default.png'),
+('steuersatz', '25'),
+('tankpreis', '1.537000'),
+('Ueberweisungssteuer', '0'),
+('Version', '3.4.1');
+
+CREATE TABLE `data_taxi_prices` (
+  `ID` int(11) NOT NULL,
+  `timezone` int(11) NOT NULL,
+  `tarifzone` int(11) NOT NULL,
+  `preis` float NOT NULL DEFAULT '10'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `data_taxi_prices` (`ID`, `timezone`, `tarifzone`, `preis`) VALUES
+(1, 1, 1, 1.5),
+(2, 1, 2, 15),
+(3, 1, 3, 50),
+(4, 2, 1, 2),
+(5, 2, 2, 20),
+(6, 2, 3, 75),
+(7, 3, 1, 1.5),
+(8, 3, 2, 25),
+(9, 3, 3, 85),
+(10, 0, 0, 5);
+
+CREATE TABLE `faction_blacklist` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Fraktion` int(11) NOT NULL DEFAULT '0',
+  `Von` varchar(255) NOT NULL DEFAULT 'none',
+  `Grund` varchar(255) NOT NULL DEFAULT 'none'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `faction_inventory` (
+  `FrakID` int(11) NOT NULL,
+  `Munition` int(11) NOT NULL,
+  `Kasse` float NOT NULL,
+  `Drogen` int(11) NOT NULL DEFAULT '0',
+  `Steuersatz` int(11) NOT NULL DEFAULT '5',
+  `gehalt` int(11) NOT NULL DEFAULT '0',
+  `max_members` int(11) NOT NULL DEFAULT '20'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `faction_inventory` (`FrakID`, `Munition`, `Kasse`, `Drogen`, `Steuersatz`, `gehalt`, `max_members`) VALUES
+(1, 0, 0, 0, 5, 0, 30),
+(2, 0, 0, 0, 5, 0, 15),
+(3, 0, 0, 0, 5, 0, 20),
+(4, 0, 0, 0, 5, 0, 20),
+(5, 0, 0, 0, 5, 0, 20),
+(6, 0, 0, 0, 5, 0, 15),
+(7, 0, 0, 0, 5, 0, 20),
+(8, 0, 0, 0, 5, 0, 20),
+(9, 0, 0, 0, 5, 0, 20),
+(10, 0, 0, 0, 5, 0, 20),
+(11, 0, 0, 0, 5, 0, 15),
+(12, 0, 0, 0, 5, 0, 15),
+(13, 0, 0, 0, 5, 0, 20);
+
+CREATE TABLE `faction_names` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `faction_names` (`ID`, `Name`) VALUES
 (0, 'Zivilist'),
 (1, 'San Andreas Police Department'),
 (2, 'Grove Street'),
@@ -281,26 +258,17 @@ INSERT INTO `data_fraktions_namen` (`ID`, `Name`) VALUES
 (9, 'LVPD (gestrichen)'),
 (10, 'San Andreas Medics'),
 (11, 'Cash Force'),
-(12, 'Pink Panthers');
+(12, 'Pink Panthers'),
+(13, 'Shark Racers');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `data_fraktions_raenge`
---
-
-CREATE TABLE IF NOT EXISTS `data_fraktions_raenge` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `faction_ranks` (
+  `ID` int(11) NOT NULL,
   `FrakID` int(11) NOT NULL,
   `RangID` int(11) NOT NULL,
   `Name` varchar(250) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `data_fraktions_raenge`
---
-
-INSERT INTO `data_fraktions_raenge` (`ID`, `FrakID`, `RangID`, `Name`) VALUES
+INSERT INTO `faction_ranks` (`ID`, `FrakID`, `RangID`, `Name`) VALUES
 (1, 0, 0, 'Kein Rang'),
 (2, 1, 1, 'Rekrut'),
 (3, 1, 2, 'Officer'),
@@ -373,77 +341,172 @@ INSERT INTO `data_fraktions_raenge` (`ID`, `FrakID`, `RangID`, `Name`) VALUES
 (70, 12, 3, 'Gettofreak'),
 (71, 12, 4, 'Dealer'),
 (72, 12, 5, 'Underboss'),
-(73, 12, 6, 'Big Boss');
+(73, 12, 6, 'Big Boss'),
+(74, 13, 1, 'Fahranfänger'),
+(75, 13, 2, 'Crasher'),
+(76, 13, 3, 'Schrotti'),
+(77, 13, 4, 'Tunner'),
+(78, 13, 5, 'Undergrundracer'),
+(79, 13, 6, 'Rennprofi');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `data_jobnamen`
---
-
-CREATE TABLE IF NOT EXISTS `data_jobnamen` (
+CREATE TABLE `faction_shops` (
   `ID` int(11) NOT NULL,
-  `Name` varchar(250) NOT NULL
+  `toFraktion` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+INSERT INTO `faction_shops` (`ID`, `toFraktion`) VALUES
+(1, 2),
+(2, 6),
+(3, 6),
+(4, 2),
+(5, 11),
+(6, 12),
+(7, 12),
+(8, 11);
+
+CREATE TABLE `faction_userrights` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `AllLeader` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `log_ad` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Text` longtext NOT NULL,
+  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `log_badword` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Message` longtext CHARACTER SET utf8 NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bestraft_per_system` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `log_biz` (
+  `ID` int(11) NOT NULL,
+  `BizID` int(11) NOT NULL,
+  `Betrag` decimal(65,2) NOT NULL,
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `reason` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `data_jobnamen`
---
+CREATE TABLE `log_casino` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Spiel` varchar(255) NOT NULL,
+  `Betrag` int(11) NOT NULL DEFAULT '0',
+  `tagesgewinn` int(11) NOT NULL DEFAULT '0',
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `data_jobnamen` (`ID`, `Name`) VALUES
-(0, 'Kein Job'),
-(1, 'Fischer'),
-(2, 'Drogendealer'),
-(3, 'Müllmann'),
-(4, 'Busfahrer'),
-(5, 'Mechaniker'),
-(6, 'Detektiv'),
-(7, 'Hitman'),
-(8, 'Pizzalieferant'),
-(9, 'Anwalt'),
-(10, 'Waffendealer'),
-(11, 'Trucker'),
-(12, 'Pilot'),
-(13, 'Straßenreiniger'),
-(14, 'Farmer'),
-(15, 'Bergwerksarbeiter'),
-(16, 'Nutte'),
-(17, 'Meeresreiniger'),
-(18, 'Hotdogverkäufer');
+CREATE TABLE `log_chat` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Message` varchar(300) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MEMORY DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+CREATE TABLE `log_delstvo` (
+  `ID` int(11) NOT NULL,
+  `Wer` varchar(250) NOT NULL,
+  `Wieviele` int(11) NOT NULL,
+  `Von` varchar(250) NOT NULL,
+  `Grund` text NOT NULL,
+  `Wann` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `dev_beta`
---
+CREATE TABLE `log_faction_inventory` (
+  `ID` int(11) NOT NULL,
+  `Fraktion` int(11) NOT NULL DEFAULT '0',
+  `Typ` int(11) NOT NULL DEFAULT '1',
+  `Betrag` int(11) NOT NULL DEFAULT '0',
+  `Datum` int(11) NOT NULL DEFAULT '0',
+  `real_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Name` varchar(255) NOT NULL,
+  `Grund` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `dev_beta` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `fromTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `toTimestamp` timestamp NULL DEFAULT NULL,
-  `Kommentar` text
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+CREATE TABLE `log_loosedriverlicense` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Fraktion` int(11) NOT NULL DEFAULT '0',
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+CREATE TABLE `log_playermoney` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) NOT NULL,
+  `UniqueID` varchar(128) NOT NULL,
+  `Typ` enum('Money','Bank') NOT NULL,
+  `Kategorie` varchar(250) NOT NULL COMMENT 'Kategorie wird durch Script vorgegeben',
+  `Betrag` decimal(65,2) NOT NULL,
+  `Stand` decimal(65,2) NOT NULL DEFAULT '0.00',
+  `Grund` text,
+  `GrundZusatz` text,
+  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `DateStamp` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `drivein`
---
+CREATE TABLE `log_premium` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `how` varchar(255) NOT NULL DEFAULT 'echtgeld'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `drivein` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `log_serveradvertising` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Message` longtext NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `log_steuern` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) NOT NULL,
+  `Type` varchar(250) NOT NULL,
+  `Betrag` decimal(65,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `objects_businesses` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Preis` int(11) NOT NULL,
+  `Kasse` float NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `objects_businesses` (`ID`, `Name`, `Preis`, `Kasse`, `x`, `y`, `z`) VALUES
+(1, 'Burgershot', 150000, 0, 1206.24, -917.818, 43.076),
+(2, 'PizzaStack', 150000, 0, 2105.09, -1802.86, 13.5547),
+(3, 'CluckinBell', 150000, 0, 2420.71, -1503.81, 24),
+(4, 'Sprunk', 150000, 0, 2852.51, -1533.15, 11.0938),
+(5, 'PaynSpray', 150000, 0, 1029.19, -1030.36, 32.0561),
+(6, 'Tunning', 150000, 0, 1047.45, -1027.11, 32.1016),
+(7, 'Tankstelle', 150000, 0, 1010.41, -929.694, 42.3281),
+(8, '24/7', 150000, 0, 1312.66, -898.358, 39.5781),
+(9, 'Bar & Strip Industries', 150000, 0, 1835.75, -1687.61, 13.3765),
+(10, 'Unitel Telefon', 150000, 0, 1579.45, -1854.68, 13.5127),
+(11, 'Los Santos Arena', 150000, 0, 2727.84, -1827.66, 11.8438),
+(12, 'SexShop', 150000, 0, 2086.43, 2080.12, 11.0579),
+(13, 'Caligulas Casino', 150000, 0, 2194.57, 1682.27, 12.3672),
+(14, 'Maut', 150000, 0, 1654, -51.6, 36.6),
+(15, 'Binco', 150000, 0, 458.7, -1495.3, 31.1);
+
+CREATE TABLE `objects_drivein` (
+  `ID` int(11) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,
   `z` float NOT NULL,
   `typ` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `drivein`
---
-
-INSERT INTO `drivein` (`ID`, `x`, `y`, `z`, `typ`) VALUES
+INSERT INTO `objects_drivein` (`ID`, `x`, `y`, `z`, `typ`) VALUES
 (2, 1214.11, -904.675, 41.9216, 'burger'),
 (3, 2411.4, -1488.34, 22.8281, 'huhn'),
 (4, 2396.53, -1917.86, 12.3828, 'huhn'),
@@ -454,498 +517,8 @@ INSERT INTO `drivein` (`ID`, `x`, `y`, `z`, `typ`) VALUES
 (9, -2352.52, -153.615, 34.0248, 'burger'),
 (10, 800.689, -1629.59, 12.0874, 'burger');
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `dutycounter`
---
-
-CREATE TABLE IF NOT EXISTS `dutycounter` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `timestamp` int(20) NOT NULL DEFAULT '0',
-  `online` int(11) NOT NULL DEFAULT '0',
-  `dutycops` int(11) NOT NULL DEFAULT '0',
-  `idcops` int(11) NOT NULL DEFAULT '0',
-  `dutymedic` int(11) NOT NULL DEFAULT '0',
-  `dutytaxi` int(11) NOT NULL DEFAULT '0',
-  `idname` int(11) DEFAULT '0',
-  `datum` date DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=87081 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `emails`
---
-
-CREATE TABLE IF NOT EXISTS `emails` (
-`ID` int(11) NOT NULL,
-  `Empfaenger` varchar(250) NOT NULL,
-  `Sender` varchar(250) NOT NULL,
-  `Betreff` text NOT NULL,
-  `Inhalt` longtext NOT NULL,
-  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `neu` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=588 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `faq`
---
-
-CREATE TABLE IF NOT EXISTS `faq` (
-`ID` int(11) NOT NULL,
-  `Frage` mediumtext NOT NULL,
-  `Antwort` mediumtext NOT NULL,
-  `katID` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Daten für Tabelle `faq`
---
-
-INSERT INTO `faq` (`ID`, `Frage`, `Antwort`, `katID`) VALUES
-(1, 'Wie kann ich mein Passwort ändern?', 'Zum Passwort ändern einfach mit den Ingame-Login-Daten auf cp.tt-rl.de einloggen und unter Einstellungen das Passwort ändern.', 3),
-(2, 'Wie kann ich mich in einer Fraktion bewerben?', 'Um dich bei einer Fraktion bewerben zu können, musst du dich im Forum www.tt-rl.de anmelden. Dort kannst du in dem Bewerbungsforum der entsprechenden Fraktion ein Bewerbungsthread posten.', 4),
-(3, 'Warum ist mein Auto immer abgeschleppt, wenn ich es respawne?', 'Nach dem Kauf oder dem auslösen aus dem LSPD muss das Fahrzeug erst mit /park geparkt werden.', 5),
-(4, 'Ich habe mich in ein Haus eingemietet und komme nun nicht mehr raus.', 'Ein Haus ist standardmäßig abgeschlossen. Als Mieter kannst du es mit /hlock aufschließen und es mit /out verlassen.', 6),
-(5, 'Wie erreiche ich ein Supporter / Moderator?', 'Uns kannst du jederzeit über /report oder im Forum unter www.tt-rl.de erreichen.', 4),
-(6, 'Wieso erhalte ich mein Gehalt beim Jobben nicht?', '[Gilt ab Update 3.2] Bei den Jobs gibt es verschiedene Arten, wann und wie die Vergütung bezahlt wird. Alle Bezahlungen mit der Bezeichnung ''Gehalt'' werden beim PayDay als sonstiges Gehalt ausgezahlt.', 4);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `faq_kat`
---
-
-CREATE TABLE IF NOT EXISTS `faq_kat` (
-`ID` int(11) NOT NULL,
-  `kat` varchar(250) NOT NULL,
-  `order` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Daten für Tabelle `faq_kat`
---
-
-INSERT INTO `faq_kat` (`ID`, `kat`, `order`) VALUES
-(3, 'Account', 0),
-(4, 'Allgemein', 10),
-(5, 'Fahrzeuge', 20),
-(6, 'Häuser', 30);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `frakkasse_zahlungen`
---
-
-CREATE TABLE IF NOT EXISTS `frakkasse_zahlungen` (
-`ID` int(11) NOT NULL,
-  `Fraktion` int(11) NOT NULL DEFAULT '0',
-  `Typ` int(11) NOT NULL DEFAULT '1',
-  `Betrag` int(11) NOT NULL DEFAULT '0',
-  `Datum` int(11) NOT NULL DEFAULT '0',
-  `real_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Name` varchar(255) NOT NULL,
-  `Grund` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `fraktionskasse`
---
-
-CREATE TABLE IF NOT EXISTS `fraktionskasse` (
-  `FrakID` int(11) NOT NULL,
-  `Munition` int(11) NOT NULL,
-  `Kasse` float NOT NULL,
-  `Drogen` int(11) NOT NULL DEFAULT '0',
-  `Steuersatz` int(11) NOT NULL DEFAULT '5',
-  `gehalt` int(11) NOT NULL DEFAULT '0',
-  `max_members` int(11) NOT NULL DEFAULT '20'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Daten für Tabelle `fraktionskasse`
---
-
-INSERT INTO `fraktionskasse` (`FrakID`, `Munition`, `Kasse`, `Drogen`, `Steuersatz`, `gehalt`, `max_members`) VALUES
-(1, 0, 0, 0, 1, 0, 30),
-(2, 0, 0, 0, 1, 0, 15),
-(3, 0, 0, 0, 1, 0, 20),
-(4, 0, 0, 0, 1, 0, 20),
-(5, 0, 0, 0, 1, 0, 20),
-(6, 0, 0, 0, 1, 0, 15),
-(7, 0, 0, 0, 1, 0, 20),
-(8, 0, 0, 0, 1, 0, 20),
-(9, 0, 0, 0, 1, 0, 20),
-(10, 0, 0, 0, 1, 0, 20),
-(11, 0, 0, 0, 1, 0, 15),
-(12, 0, 0, 0, 1, 0, 15);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `gutschriften`
---
-
-CREATE TABLE IF NOT EXISTS `gutschriften` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `Grund` text NOT NULL,
-  `Geld` int(11) NOT NULL DEFAULT '0',
-  `VehSlots` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1828 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `haussys_hdb`
---
-
-CREATE TABLE IF NOT EXISTS `haussys_hdb` (
-`ID` int(11) NOT NULL,
-  `IRID` int(11) NOT NULL DEFAULT '0',
-  `CoordX` float NOT NULL DEFAULT '0',
-  `CoordY` float NOT NULL DEFAULT '0',
-  `CoordZ` float NOT NULL DEFAULT '0',
-  `Preis` int(11) NOT NULL DEFAULT '0',
-  `Miete` int(11) NOT NULL DEFAULT '0',
-  `Kasse` int(11) NOT NULL DEFAULT '0',
-  `city` int(11) NOT NULL DEFAULT '0' COMMENT '0=LS; 1=LV; 2=sonstiges Land; 3= nicht handelbar',
-  `QM` int(11) NOT NULL DEFAULT '0' COMMENT 'Quadratmeter (geschätzte Zahl für Mögliche Innenraum-Größe)',
-  `Stockwerke` int(11) NOT NULL DEFAULT '0',
-  `Wert` int(11) NOT NULL DEFAULT '0' COMMENT '0=> Arm; 1=> Mittel; 2=> Luxus',
-  `Beschreibung` text COMMENT 'Beschreibung für DB'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=133 ;
-
---
--- Daten für Tabelle `haussys_hdb`
---
-
-INSERT INTO `haussys_hdb` (`ID`, `IRID`, `CoordX`, `CoordY`, `CoordZ`, `Preis`, `Miete`, `Kasse`, `city`, `QM`, `Stockwerke`, `Wert`, `Beschreibung`) VALUES
-(1, 27, 1653.96, -1655.43, 22.5156, 10000000, 600, 2900, 0, 2500, 26, 2, 'Geramys Haus'),
-(2, 5, 2067.96, -1628.97, 13.8762, 28000, 25, 0, 0, 126, 1, 0, 'GroveStreet'),
-(3, 19, 2068.19, -1643.9, 13.8058, 25000, 0, 0, 0, 101, 1, 0, 'Grove Street'),
-(4, 23, 254.841, -1367.02, 53.1094, 1800000, 550, 4650, 0, 518, 2, 2, 'Villa Vinewood'),
-(5, 20, 298.242, -1338.05, 53.4415, 1200000, 0, 0, 0, 200, 2, 2, 'Villa Vinewood'),
-(6, 26, 2479.62, -1063.83, 66.9982, 16000, 150, 3924, 0, 65, 1, 0, 'gammelwood'),
-(7, 18, 827.991, -858.31, 70.3308, 500000, 300, 0, 0, 190, 1, 1, 'Vinewood'),
-(8, 23, 980.477, -677.268, 121.976, 3500000, 510, 360, 0, 680, 3, 2, 'Vinewoodvilla'),
-(9, 5, 657.229, -1652.62, 15.4062, 52000, 570, 3406, 0, 147, 1, 0, 'Beach'),
-(10, 25, 1981.61, -1682.93, 17.0538, 350000, 450, 150, 0, 174, 2, 1, 'Alhambra'),
-(11, 18, 1421.76, -886.055, 50.6798, 560000, 155, 0, 0, 242, 2, 1, 'vinewood'),
-(12, 8, 2808.07, -1176.04, 25.3798, 420000, 200, 0, 0, 358, 2, 1, 'Stand-bohrinsel'),
-(13, 8, 2808.16, -1190.38, 25.3402, 420000, 225, 0, 0, 358, 2, 1, 'strand-bohrinsel'),
-(14, 10, 1242.37, -1075.36, 31.5547, 650000, 200, 0, 0, 227, 3, 1, 'Nahe Bank'),
-(15, 29, 1285.1, -1065.78, 31.6789, 650000, 350, 11200, 0, 227, 3, 1, 'bank'),
-(16, 9, 1242.45, -1100.55, 27.9766, 650000, 675, 9275, 0, 227, 3, 1, 'bank'),
-(17, 0, 1285.02, -1091.39, 28.2578, 650000, 300, 0, 0, 227, 3, 1, 'bank'),
-(18, 16, 870.386, -25.2002, 63.9635, 10000, 65, 46, 0, 50, 1, 0, 'im wald'),
-(19, 15, 645.976, -1117.43, 44.207, 1200000, 600, 400, 0, 555, 1, 2, 'Vinewood'),
-(20, 5, 1684.96, -2098.16, 13.8343, 65000, 150, 1230, 0, 152, 1, 0, 'bahnhof'),
-(21, 26, 2290.52, -1796.02, 13.5469, 220000, 400, 0, 0, 266, 2, 0, 'arena'),
-(22, 5, 2307.53, -1785.73, 13.5569, 220000, 400, 2775, 0, 226, 2, 0, 'arena'),
-(23, 7, 300.303, -1154.51, 81.391, 3200000, 250, 0, 3, 580, 2, 2, 'tommys haus'),
-(24, 4, 1298.49, -798.503, 84.1406, 5000000, 800, 25700, 0, 1500, 3, 2, 'Maddogs'),
-(25, 1, 2287.52, -1080.9, 48.1097, 90000, 300, 34850, 0, 428, 2, 0, 'komisches haus'),
-(26, 19, -2552.03, 2266.58, 5.47552, 450000, 0, 0, 2, 140, 1, 1, 'Haus in Bayside'),
-(27, 6, -2523.69, 2239.19, 5.39844, 490000, 600, 0, 2, 190, 1, 1, 'bayside'),
-(28, 5, 1715.19, -2124.83, 14.0566, 85000, 150, 980, 0, 174, 1, 0, 'airportgegend'),
-(29, 26, 1332.05, -633.037, 109.135, 2250000, 400, 48700, 0, 265, 1, 2, 'vinewood'),
-(30, 16, 977.623, -771.456, 112.203, 2500000, 500, 0, 0, 273, 2, 2, 'Vinewood Holzhaus'),
-(31, 10, 2782.17, -1306.42, 38.8717, 987654, 300, 1250, 0, 262, 3, 1, 'am strand'),
-(32, 5, 2393.11, -1646.04, 13.9051, 12000, 40, 0, 0, 156, 1, 0, 'grove street'),
-(33, 24, 1468.42, -906.004, 54.8359, 1400000, 450, 0, 0, 286, 2, 1, 'Vinewood'),
-(34, 16, 2306.92, -1679.2, 14.3316, 15500, 150, 995, 0, 110, 1, 0, 'grovestreet'),
-(35, 23, 1497.11, -688.86, 95.2309, 3800000, 500, 1, 0, 632, 2, 2, 'vinewood'),
-(36, 29, 1535.03, -800.355, 72.8495, 455000, 510, 0, 0, 180, 1, 1, 'vinewood'),
-(37, 0, 2334.69, -1234.66, 27.9766, 254000, 350, 150, 0, 262, 2, 0, 'gammelwood'),
-(38, 13, 2324.3, -1218.91, 27.9766, 254000, 400, 0, 0, 262, 2, 0, 'gammelwood'),
-(39, 10, 559.029, -1076.11, 72.922, 574322, 680, 0, 0, 276, 2, 1, 'vinewood'),
-(40, 16, 1106.22, -299.678, 74.5391, 921000, 1200, 9900, 2, 100, 1, 0, 'farm'),
-(41, 21, 985.413, 1901.15, 11.4609, 434000, 460, 120, 1, 175, 1, 1, 'lv'),
-(42, 25, 1045.15, -642.922, 120.117, 1150000, 0, 0, 0, 175, 2, 2, 'vinewood'),
-(43, 27, 1095.25, -647.894, 113.648, 1950000, 550, 14950, 0, 325, 2, 2, 'vinewood'),
-(44, 13, 1030.79, 1928.15, 11.4683, 222000, 350, 2546, 1, 231, 1, 0, 'lv'),
-(45, 19, 2363.12, 142.085, 28.4416, 250000, 350, 0, 2, 94, 1, 1, 'mafiastadt'),
-(46, 0, 2368.44, -1675.15, 14.1682, 25123, 0, 0, 0, 185, 1, 0, 'grovestreet'),
-(47, 16, 2017.67, -1703.22, 14.2344, 14000, 300, 32563, 0, 85, 1, 0, 'grovestreet'),
-(48, 7, 700.372, -1060.02, 49.4217, 1652300, 350, 0, 0, 472, 2, 2, 'vinewood'),
-(49, 16, -910.938, 2685.94, 42.3703, 1500000, 400, 0, 2, 170, 1, 1, 'bootshaus'),
-(50, 6, 745.668, -591.004, 18.0129, 500600, 750, 0, 2, 195, 1, 1, 'mafia'),
-(51, 26, 2067.05, -1731.71, 14.2066, 23000, 85, 8195, 0, 101, 1, 0, 'grovestreet'),
-(52, 28, 2465.37, -2020.77, 14.1242, 15000, 50, 0, 0, 155, 1, 0, 'noch gammeligeres wood'),
-(53, 14, 2518.35, 128.983, 27.6756, 200000, 350, 439, 2, 97, 1, 1, 'mafia'),
-(54, 19, 2065.12, -1703.55, 14.1484, 35000, 90, 154, 0, 116, 1, 0, 'grovestreet'),
-(55, 25, 315.673, -1769.89, 4.63275, 1320000, 500, 64000, 0, 165, 3, 1, 'strand fischer'),
-(56, 7, 252.997, -1269.89, 74.3378, 1750000, 500, 600, 0, 510, 2, 2, 'vinewood'),
-(57, 25, 835.891, -894.812, 68.7689, 1900000, 650, 3150, 0, 247, 2, 2, 'vinewood'),
-(58, 29, 946.239, -710.49, 122.62, 850000, 550, 7199, 0, 167, 1, 1, 'vinewood'),
-(59, 24, 1034.82, -812.811, 101.852, 1400000, 600, 1100, 0, 286, 2, 1, 'vinewood'),
-(60, 16, 2016.33, -1641.58, 13.7824, 25000, 150, 11610, 0, 102, 1, 0, 'grovestreet'),
-(61, 23, 189.659, -1308.33, 70.2497, 3800000, 600, 6900, 0, 656, 2, 2, 'vinewood'),
-(62, 0, 1925.53, 663.599, 10.8203, 170000, 0, 0, 1, 170, 1, 1, 'lv'),
-(63, 21, 1929.23, 742.657, 10.8203, 170000, 150, 55, 1, 170, 1, 1, 'lv'),
-(64, 21, 1956.82, 738.087, 10.8203, 170000, 200, 0, 1, 170, 1, 1, 'lv'),
-(65, 5, 1957.01, 691.37, 10.8203, 170000, 175, 0, 1, 170, 1, 1, 'lv'),
-(66, 21, 1896.77, 736.583, 14.2763, 170000, 150, 0, 1, 170, 1, 1, 'lv'),
-(67, 26, 1896.74, 669.854, 14.2762, 170000, 50, 0, 1, 170, 1, 1, 'lv'),
-(68, 19, 2245.57, -122.291, 28.1535, 200000, 350, 1728, 2, 97, 1, 1, 'mafia'),
-(69, 16, 2203.13, -89.2988, 28.1535, 200000, 400, 147, 2, 97, 1, 1, 'mafia'),
-(70, 11, 724.743, -999.398, 52.7344, 1250000, 500, 200, 0, 225, 2, 1, 'vinewood'),
-(71, 22, 251.338, -1220.3, 76.1024, 3100000, 500, 30700, 0, 610, 2, 2, 'vinewood'),
-(72, 8, 808.247, -759.268, 76.5314, 850000, 0, 0, 0, 285, 2, 1, 'vinewood'),
-(73, 10, 2782.07, -1333.25, 32.3715, 987654, 300, 0, 0, 262, 3, 1, 'strand'),
-(74, 0, 1059.04, -1105.42, 28.0451, 463000, 400, 1400, 0, 190, 1, 1, 'tuning'),
-(75, 14, 2415.39, -52.2822, 28.1535, 200000, 300, 0, 2, 97, 1, 1, 'mafia'),
-(76, 14, 2438.9, -54.9648, 28.1535, 200000, 270, 1008, 2, 97, 1, 1, 'mafia'),
-(77, 14, 2392.5, -54.9121, 28.1536, 200000, 300, 612, 2, 97, 1, 1, 'mafia'),
-(78, 14, 2367.42, -49.125, 28.1535, 200000, 250, 0, 2, 97, 1, 1, 'mafia'),
-(79, 19, 2438.66, -1105.53, 42.7512, 27000, 120, 9763, 0, 101, 1, 0, 'gammelwood'),
-(80, 19, 2457.17, -1102.5, 43.8672, 34000, 50, 0, 0, 120, 1, 0, 'gammelwood'),
-(81, 29, 910.283, -817.364, 103.126, 450000, 250, 0, 0, 150, 2, 1, 'vinewood'),
-(82, 14, 1938.54, -1911.24, 15.2568, 300000, 400, 868, 0, 80, 1, 1, 'bahnhof'),
-(83, 8, 852.35, -1422.78, 14.1176, 750000, 350, 198, 0, 335, 2, 1, ''),
-(84, 16, 2091.32, -1278.92, 26.1543, 350000, 350, 0, 0, 100, 1, 1, 'glenpark'),
-(85, 19, 2257.24, -1643.97, 15.8082, 18500, 100, 1510, 0, 100, 1, 0, 'grove'),
-(86, 19, 2282.22, -1641.49, 15.8898, 18500, 100, 847, 0, 101, 1, 0, 'grove'),
-(87, 19, 2249.91, -1238.92, 25.8984, 14000, 2000, 232, 0, 72, 1, 0, 'grove'),
-(88, 22, 219.319, -1249.74, 78.336, 2820000, 500, 22650, 0, 510, 2, 2, 'vinewood'),
-(89, 6, 652.363, -1694.17, 14.5603, 250000, 400, 7700, 0, 140, 2, 1, 'kp'),
-(90, 23, 1928.95, 2774.5, 10.8203, 650000, 350, 0, 1, 513, 2, 1, 'lv'),
-(91, 8, 2000.19, -1114.77, 27.125, 500000, 199, 0, 0, 273, 2, 1, 'glenpark'),
-(92, 0, 1905.8, -1112.95, 26.6641, 160000, 0, 0, 0, 140, 1, 1, 'glenpark'),
-(93, 16, 2272.28, -118.276, 28.1535, 200000, 300, 94, 0, 97, 1, 1, 'mafia'),
-(94, 5, 2407.78, -1106.97, 40.2957, 75000, 400, 248, 0, 143, 1, 0, 'gammelwood'),
-(95, 21, 228.096, -1405.52, 51.6094, 450000, 500, 100, 0, 163, 1, 1, 'vinewood'),
-(96, 19, 2326.63, -1717.16, 13.9074, 18500, 50, 0, 0, 110, 1, 0, 'grove'),
-(97, 19, 2244.33, -1637.75, 15.9074, 18500, 0, 0, 0, 110, 1, 0, 'grove'),
-(98, 16, 2013.58, -1656.12, 14.1363, 29000, 100, 3607, 0, 102, 1, 0, 'asd'),
-(99, 14, 1287.24, -867.874, 46.8361, 250000, 350, 7689, 0, 119, 1, 1, 'bsn'),
-(100, 19, 1280.83, -874.654, 46.8438, 250000, 200, 100, 0, 119, 1, 1, 'bsn'),
-(101, 14, 1291.02, -896.865, 46.6251, 250000, 0, 0, 0, 119, 1, 1, 'bsn'),
-(102, 19, 1242.1, -878.105, 46.6406, 250000, 100, 0, 0, 119, 1, 1, 'bsn'),
-(103, 14, 2551.07, 57.2842, 27.6756, 211000, 350, 5344, 2, 97, 1, 1, 'mafia'),
-(104, 23, -2706.51, 864.772, 70.7031, 550000, 400, 0, 2, 300, 2, 1, 'sf'),
-(105, 10, 1142.01, -1068.71, 31.7656, 705000, 300, 200, 0, 227, 3, 1, 'bank'),
-(106, 8, 822.421, -1505.17, 14.3936, 950000, 550, 405, 0, 500, 2, 1, 'beach'),
-(107, 16, 1939.14, -1114.48, 27.4523, 170000, 201, 50, 0, 120, 1, 1, 'glen'),
-(108, 5, 2327.27, -1681.8, 14.9297, 19612, 0, 0, 0, 145, 1, 0, 'grove'),
-(109, 16, 2507.65, -2020.74, 14.2101, 20000, 500, 0, 0, 155, 1, 0, 'gammel'),
-(110, 12, -2437.48, 2354.68, 5.44307, 321125, 100, 0, 2, 240, 1, 0, 'bay'),
-(111, 8, 1967.34, 2766.39, 10.8265, 650000, 300, 900, 1, 296, 2, 1, 'lv'),
-(112, 10, 1112.59, -741.969, 100.133, 785000, 999, 0, 0, 253, 2, 1, 'vinewood'),
-(113, 23, -2662.13, 877.042, 79.7738, 1010101, 350, 200, 2, 375, 2, 1, 'sf'),
-(114, 1, 848.258, -745.317, 94.9693, 450000, 0, 0, 0, 201, 2, 0, 'vinewood'),
-(115, 5, 785.885, -828.583, 70.2896, 650000, 0, 0, 0, 201, 2, 0, 'vinewood'),
-(116, 5, 2696.31, -1990.36, 14.2229, 150000, 200, 200, 0, 180, 1, 0, 'ls'),
-(117, 23, 1378.56, -1753.06, 14.1406, 1512313, 600, 97700, 0, 373, 2, 1, 'stadthalle'),
-(118, 29, -2710.93, 967.471, 54.4609, 900000, 350, 0, 2, 209, 1, 2, 'sf'),
-(119, 0, 2842.15, -1334.79, 14.7421, 375000, 200, 0, 2, 192, 1, 1, 'beach'),
-(120, 25, 1980.38, -1719.02, 17.0304, 350000, 350, 3425, 0, 165, 2, 1, 'asd'),
-(121, 8, 841.422, -1471.37, 14.3116, 950000, 535, 1240, 0, 500, 2, 1, 'asd'),
-(122, 14, 1928.7, -1916.14, 15.2568, 311000, 300, 228, 0, 80, 1, 1, 'asd'),
-(123, 18, 937.849, -848.31, 93.6309, 850000, 500, 0, 0, 180, 2, 1, 'vinewood'),
-(124, 25, 1540.24, -851.521, 64.3361, 785000, 450, 350, 0, 253, 2, 1, 'asd'),
-(125, 5, 768.08, -1655.89, 5.60938, 350000, 100, 0, 0, 152, 1, 1, 'am kanal'),
-(126, 23, 1443.25, -628.837, 95.7186, 2300000, 380, 10980, 0, 560, 2, 2, 'vinew'),
-(127, 29, 891.31, -783.106, 101.314, 1500000, 600, 4300, 0, 260, 1, 2, 'vine'),
-(128, 8, 1274.36, 2522.55, 10.8203, 650000, 1000, 0, 1, 296, 2, 1, 'asd'),
-(129, 29, 766.924, -1605.83, 13.8039, 350000, 250, 0, 0, 152, 1, 1, 'asd'),
-(130, 25, -2348.3, 2423.55, 7.32946, 1500000, 350, 16650, 2, 182, 2, 2, 'bayside'),
-(131, 7, 497.229, -1095.03, 82.3592, 2350000, 200, 0, 0, 560, 2, 2, 'vinewood'),
-(132, 29, 1527.23, -773.154, 80.5781, 495000, 500, 500, 0, 180, 1, 1, 'vinewood');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `haussys_irdb`
---
-
-CREATE TABLE IF NOT EXISTS `haussys_irdb` (
-`ID` int(11) NOT NULL,
-  `CoordX` float NOT NULL DEFAULT '0',
-  `CoordY` float NOT NULL DEFAULT '0',
-  `CoordZ` float NOT NULL DEFAULT '0',
-  `Interior` int(11) NOT NULL DEFAULT '0',
-  `Preis` int(11) NOT NULL DEFAULT '0',
-  `QM` int(11) NOT NULL DEFAULT '0' COMMENT 'Quadratmeter (geschätzte Zahl für Mögliche Innenraum-Größe)',
-  `Stockwerke` int(11) NOT NULL DEFAULT '0',
-  `Wert` int(11) NOT NULL DEFAULT '0' COMMENT '0=> Arm; 1=> Mittel; 2=> Luxus',
-  `Beschreibung` text COMMENT 'Beschreibender Text für DB'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
-
---
--- Daten für Tabelle `haussys_irdb`
---
-
-INSERT INTO `haussys_irdb` (`ID`, `CoordX`, `CoordY`, `CoordZ`, `Interior`, `Preis`, `QM`, `Stockwerke`, `Wert`, `Beschreibung`) VALUES
-(0, 0, 0, 0, 0, 0, 0, 0, 0, 'Dummyeintrag für keinen Innenraum'),
-(1, 2807.63, -1174.09, 1025.57, 8, 10000, 170, 2, 0, 'Innenraum mit der Kanone'),
-(2, 344.153, 304.833, 999.148, 6, 3000, 56, 1, 0, 'Sadomaso'),
-(3, 1261.13, -785.543, 1091.91, 5, 1250000, 1000, 2, 2, 'Madogs oben'),
-(4, 1298.7, -796.326, 1084.01, 5, 1250000, 1000, 2, 2, 'Madogsunten'),
-(5, 222.941, 1287.44, 1082.14, 1, 5000, 116, 1, 0, 'Armer Innenraum'),
-(6, 260.949, 1284.75, 1080.26, 4, 39000, 135, 1, 1, ''),
-(7, 140.18, 1366.58, 1083.86, 5, 450000, 450, 2, 2, 'Luxus mit der großen Treppe vorm Eingang'),
-(8, 82.9492, 1322.44, 1083.87, 9, 65000, 270, 2, 1, ''),
-(9, -283.749, 1471.18, 1084.38, 15, 35000, 147, 2, 1, ''),
-(10, -260.6, 1456.62, 1084.37, 4, 55000, 212, 2, 1, ''),
-(11, -42.4658, 1405.76, 1084.43, 8, 30000, 200, 1, 1, ''),
-(12, -68.8877, 1351.44, 1080.21, 6, 4500, 180, 1, 0, ''),
-(13, 2332.97, -1077.15, 1049.02, 6, 7000, 204, 1, 0, ''),
-(14, 2233.87, -1115.04, 1050.88, 5, 11000, 67, 1, 1, ''),
-(15, 2365.25, -1135.43, 1050.88, 8, 220000, 268, 1, 2, ''),
-(16, 2282.98, -1140.28, 1050.9, 11, 3000, 48, 1, 0, ''),
-(17, 2196.57, -1204.59, 1049.02, 6, 250000, 370, 1, 2, ''),
-(18, 2270.23, -1210.58, 1047.56, 10, 28000, 176, 1, 1, ''),
-(19, 2308.87, -1212.71, 1049.02, 6, 4000, 69, 1, 0, ''),
-(20, 2218.22, -1076.28, 1050.48, 1, 60000, 103, 1, 2, ''),
-(21, 2237.67, -1081.54, 1049.02, 2, 25000, 155, 1, 1, ''),
-(22, 2317.89, -1026.57, 1050.22, 9, 380000, 332, 2, 2, ''),
-(23, 225.593, 1021.89, 1084.02, 7, 50000, 300, 2, 1, ''),
-(24, 235.266, 1186.97, 1080.26, 3, 45000, 280, 2, 1, ''),
-(25, 23.9795, 1340.31, 1084.38, 10, 25000, 120, 2, 1, ''),
-(26, 266.698, 304.927, 999.148, 2, 2000, 26, 1, 0, ''),
-(27, 2324.64, -1149.34, 1050.71, 12, 275000, 270, 2, 2, ''),
-(28, 422.557, 2536.52, 10, 10, 2500, 62, 1, 0, ''),
-(29, 443.377, 509.298, 1001.42, 12, 40000, 131, 1, 1, '');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `haussys_wunsch`
---
-
-CREATE TABLE IF NOT EXISTS `haussys_wunsch` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) NOT NULL,
-  `x` float NOT NULL,
-  `y` float NOT NULL,
-  `z` float NOT NULL,
-  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `unixtimestamp` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=536 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `inventar`
---
-
-CREATE TABLE IF NOT EXISTS `inventar` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `Benzinkanister` int(11) NOT NULL DEFAULT '0',
-  `Lotto` varchar(255) NOT NULL DEFAULT '0|0|0',
-  `Lottoschein` int(11) NOT NULL DEFAULT '0',
-  `Rubbellos` int(11) NOT NULL DEFAULT '0',
-  `Drogen` int(11) NOT NULL DEFAULT '0',
-  `Materials` int(11) NOT NULL DEFAULT '0',
-  `Snack` int(11) NOT NULL DEFAULT '0',
-  `Hamburger` int(11) NOT NULL DEFAULT '0',
-  `Fertigessen` int(11) NOT NULL DEFAULT '0',
-  `Schnellhilfe` int(11) NOT NULL DEFAULT '0',
-  `CarFinder` int(11) NOT NULL DEFAULT '0',
-  `UseCarFinder` int(11) NOT NULL DEFAULT '0',
-  `Offline_HP` float NOT NULL DEFAULT '0',
-  `Offline_Armor` float NOT NULL DEFAULT '0',
-  `Offline_Weapons` varchar(255) NOT NULL DEFAULT '0',
-  `Offline_Ammo` varchar(255) NOT NULL DEFAULT '0',
-  `Hufeisenhelfer` int(11) NOT NULL DEFAULT '0',
-  `geschenk` int(11) NOT NULL DEFAULT '0',
-  `terralapptapp` int(11) NOT NULL DEFAULT '0',
-  `tachodig_addon` int(11) NOT NULL DEFAULT '0',
-  `adgutscheine` int(11) NOT NULL DEFAULT '0',
-  `adaktiv` int(11) NOT NULL DEFAULT '0',
-  `dice` int(11) NOT NULL DEFAULT '0',
-  `Kondome` int(11) NOT NULL DEFAULT '0',
-  `blutmesser` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56632 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `jobskills`
---
-
-CREATE TABLE IF NOT EXISTS `jobskills` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `fischSkill` int(11) NOT NULL DEFAULT '0',
-  `fischSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `busSkill` int(11) NOT NULL DEFAULT '0',
-  `busSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `muellSkill` int(11) NOT NULL DEFAULT '0',
-  `muellSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `pizzaSkill` int(11) NOT NULL DEFAULT '0',
-  `pizzaSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `flyersSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `flyersSkill` int(11) NOT NULL DEFAULT '0',
-  `truckSkill` int(11) NOT NULL DEFAULT '0',
-  `truckSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `sweeperSkill` int(11) NOT NULL DEFAULT '0',
-  `sweeperSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `farmerSkill` int(11) NOT NULL DEFAULT '0',
-  `farmerSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `bergWerkSkillPoints` int(11) NOT NULL DEFAULT '0',
-  `bergWerksSkill` int(11) NOT NULL DEFAULT '0',
-  `meeresSkill` int(11) NOT NULL DEFAULT '0',
-  `meeresSkillPoints` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65369 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `lizensen`
---
-
-CREATE TABLE IF NOT EXISTS `lizensen` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `lastautoLic` int(11) NOT NULL DEFAULT '0',
-  `lasttruckLic` int(11) NOT NULL DEFAULT '0',
-  `lastplaneLic` int(11) NOT NULL DEFAULT '0',
-  `lastbikeLic` int(11) NOT NULL DEFAULT '0',
-  `lastheliLic` int(11) NOT NULL DEFAULT '0',
-  `autoLic` int(11) NOT NULL DEFAULT '0',
-  `truckLic` int(11) NOT NULL DEFAULT '0',
-  `planeLic` int(11) NOT NULL DEFAULT '0',
-  `bikeLic` int(11) NOT NULL DEFAULT '0',
-  `heliLic` int(11) NOT NULL DEFAULT '0',
-  `boatLic` int(11) NOT NULL DEFAULT '0',
-  `quadLic` int(11) NOT NULL DEFAULT '0',
-  `sonstigeLic` int(11) NOT NULL DEFAULT '0',
-  `waffenLic` int(11) NOT NULL DEFAULT '0',
-  `angelLic` int(11) NOT NULL DEFAULT '0',
-  `reiseLic` int(11) NOT NULL DEFAULT '0',
-  `persoLic` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65369 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `multiaccount_serial`
---
-
-CREATE TABLE IF NOT EXISTS `multiaccount_serial` (
-`ID` int(11) NOT NULL,
-  `Serial` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `ostereier`
---
-
-CREATE TABLE IF NOT EXISTS `ostereier` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `objects_events_pickups` (
+  `ID` int(11) NOT NULL,
   `X` float NOT NULL DEFAULT '0',
   `Y` float DEFAULT '0',
   `Z` float NOT NULL DEFAULT '0',
@@ -955,13 +528,9 @@ CREATE TABLE IF NOT EXISTS `ostereier` (
   `gefundenVon` varchar(250) DEFAULT NULL,
   `comment` text,
   `event` varchar(100) NOT NULL DEFAULT 'ostern'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4543 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `ostereier`
---
-
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (7, 347.338, 163.359, 1014.19, 3, 0, 0, NULL, 'Stadthalle - 1 Stock - Büro', 'ostern'),
 (8, 327.949, 153.13, 1014.19, 3, 0, 0, NULL, 'Stadthalle - 1. Stock - Büro', 'ostern'),
 (9, 331.055, 161.899, 1014.19, 3, 0, 0, NULL, 'Stadthalle - 1. Stock - Büro', 'ostern'),
@@ -1570,10 +1139,10 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (614, 2919.01, -1595.78, 10.597, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
 (615, 2855.86, -1584.9, 21.0614, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
 (616, 2825.95, -1531.43, 10.691, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
-(617, 2792.1, -1535.29, 10.6532, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
+(617, 2792.1, -1535.29, 10.6532, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
 (618, 2791.84, -1576.31, 10.6728, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
-(619, 2769.69, -1601.41, 10.4896, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
+(619, 2769.69, -1601.41, 10.4896, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (620, 2766.01, -1602.92, 10.9219, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
 (621, 2766.45, -1617.68, 10.9219, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
 (622, 2768.47, -1626.45, 10.9272, 0, 0, 0, NULL, 'LS - Freie Wildbahn', 'ostern'),
@@ -2237,10 +1806,10 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (1281, 1285.82, 1182.87, 10.3841, 0, 0, 0, NULL, '', 'ostern'),
 (1282, 1294.61, 1182.95, 10.3822, 0, 0, 0, NULL, '', 'ostern'),
 (1283, 1335.67, 1153.04, 10.3935, 0, 0, 0, NULL, '', 'ostern'),
-(1284, 670.809, -1023.27, 55.7596, 0, 0, 0, NULL, 'vine-haus ', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
+(1284, 670.809, -1023.27, 55.7596, 0, 0, 0, NULL, 'vine-haus ', 'ostern'),
 (1285, 672.951, -1020.46, 55.7596, 0, 0, 0, NULL, 'vine-haus ', 'ostern'),
-(1286, 1353.15, 1153.68, 10.3876, 0, 0, 0, NULL, '', 'ostern'),
+(1286, 1353.15, 1153.68, 10.3876, 0, 0, 0, NULL, '', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (1287, 676.702, -1012.11, 55.7596, 0, 0, 0, NULL, 'vine-haus ', 'ostern'),
 (1288, 683.988, -1013.42, 52.7833, 0, 0, 0, NULL, 'vine-haus ', 'ostern'),
 (1289, 682.733, -1022.02, 51.7839, 0, 0, 0, NULL, 'vine-haus ', 'ostern'),
@@ -2949,9 +2518,9 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (1993, 891.354, -1864.78, 7.77949, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (1994, 867.042, -1837.49, 10.1379, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (1995, 1554.16, 2130.91, 11.0265, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
-(1996, 1560.8, 2125.35, 11.0255, 0, 0, 0, NULL, 'Maxx ', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
-(1997, 797.475, -1755.57, 13.0555, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
+(1996, 1560.8, 2125.35, 11.0255, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
+(1997, 797.475, -1755.57, 13.0555, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (1998, 1538.65, 2135.79, 10.5066, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
 (1999, 1545.83, 2095.87, 10.9099, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
 (2000, 1540.15, 2102.41, 10.5805, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
@@ -3663,9 +3232,9 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (2709, -472.942, -2659.12, 156.874, 0, 0, 0, NULL, 'geramy ', 'ostern'),
 (2710, -481.141, -2656.72, 157.049, 0, 0, 0, NULL, 'geramy ', 'ostern'),
 (2711, -486.849, -2653.88, 156.119, 0, 0, 0, NULL, 'geramy ', 'ostern'),
-(2712, -2788.09, -89.6641, 9.29216, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
-(2713, -495.472, -2677.21, 154.909, 0, 0, 0, NULL, 'geramy ', 'ostern'),
+(2712, -2788.09, -89.6641, 9.29216, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
+(2713, -495.472, -2677.21, 154.909, 0, 0, 0, NULL, 'geramy ', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (2714, 2275.06, -69.4258, 26.5315, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
 (2715, 1797.41, 824.712, 10.2038, 0, 0, 0, NULL, 'Liz ', 'ostern'),
 (2716, -504.603, -2688.37, 151.203, 0, 0, 0, NULL, 'geramy ', 'ostern'),
@@ -4392,9 +3961,9 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (3438, 2414.94, 61.1191, 28.4416, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
 (3439, -2868.78, 817.95, 38.8731, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (3440, 2410.2, 64.8164, 27.8438, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
-(3441, -2876.76, 829.854, 38.9335, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
-(3442, 2404.62, 80.543, 27.8392, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
+(3441, -2876.76, 829.854, 38.9335, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
+(3442, 2404.62, 80.543, 27.8392, 0, 0, 0, NULL, 'Maxx ', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (3443, -2873.48, 836.82, 38.9399, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (3444, -2870.28, 842.859, 38.9216, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (3445, 2428.08, 80.8613, 27.8322, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
@@ -5113,9 +4682,9 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (4158, 2587.93, -2068.45, 3.28072, 0, 0, 0, NULL, 'Liz ', 'ostern'),
 (4159, 1561.17, -1724.57, 28.4502, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (4160, 1558.59, -1724.64, 28.4208, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
-(4161, 2557.95, -2203.24, -0.653929, 0, 0, 0, NULL, 'Liz ', 'ostern');
-INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
-(4162, 2258.95, 1512.22, 16.7861, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
+(4161, 2557.95, -2203.24, -0.653929, 0, 0, 0, NULL, 'Liz ', 'ostern'),
+(4162, 2258.95, 1512.22, 16.7861, 0, 0, 0, NULL, 'Maxx ', 'ostern');
+INSERT INTO `objects_events_pickups` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenVon`, `comment`, `event`) VALUES
 (4163, 1554.83, -1723.7, 28.3443, 0, 0, 0, NULL, 'DarkCitizen ', 'ostern'),
 (4164, 2551.64, -2129.9, 2.15951, 0, 0, 0, NULL, 'Liz ', 'ostern'),
 (4165, 2268.82, 1521.25, 16.7852, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
@@ -5493,188 +5062,233 @@ INSERT INTO `ostereier` (`ID`, `X`, `Y`, `Z`, `Inte`, `Dim`, `State`, `gefundenV
 (4541, 1531.43, 1675.63, 10.8203, 0, 0, 0, NULL, 'Maxx ', 'ostern'),
 (4542, 1388.1, 1732.59, 10.8203, 0, 0, 0, NULL, 'Maxx ', 'ostern');
 
--- --------------------------------------------------------
+CREATE TABLE `objects_houses` (
+  `ID` int(11) NOT NULL,
+  `IRID` int(11) NOT NULL DEFAULT '0',
+  `CoordX` float NOT NULL DEFAULT '0',
+  `CoordY` float NOT NULL DEFAULT '0',
+  `CoordZ` float NOT NULL DEFAULT '0',
+  `Preis` int(11) NOT NULL DEFAULT '0',
+  `Miete` int(11) NOT NULL DEFAULT '0',
+  `Kasse` int(11) NOT NULL DEFAULT '0',
+  `city` int(11) NOT NULL DEFAULT '0' COMMENT '0=LS; 1=LV; 2=sonstiges Land; 3= nicht handelbar',
+  `QM` int(11) NOT NULL DEFAULT '0' COMMENT 'Quadratmeter (geschätzte Zahl für Mögliche Innenraum-Größe)',
+  `Stockwerke` int(11) NOT NULL DEFAULT '0',
+  `Wert` int(11) NOT NULL DEFAULT '0' COMMENT '0=> Arm; 1=> Mittel; 2=> Luxus',
+  `Beschreibung` text COMMENT 'Beschreibung für DB'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `players`
---
+INSERT INTO `objects_houses` (`ID`, `IRID`, `CoordX`, `CoordY`, `CoordZ`, `Preis`, `Miete`, `Kasse`, `city`, `QM`, `Stockwerke`, `Wert`, `Beschreibung`) VALUES
+(1, 27, 1653.96, -1655.43, 22.5156, 10000000, 100, 0, 0, 2500, 26, 2, 'Geramys Haus'),
+(2, 5, 2067.96, -1628.97, 13.8762, 28000, 100, 0, 0, 126, 1, 0, 'GroveStreet'),
+(3, 19, 2068.19, -1643.9, 13.8058, 25000, 100, 0, 0, 101, 1, 0, 'Grove Street'),
+(4, 23, 254.841, -1367.02, 53.1094, 1800000, 100, 0, 0, 518, 2, 2, 'Villa Vinewood'),
+(5, 20, 298.242, -1338.05, 53.4415, 1200000, 100, 0, 0, 200, 2, 2, 'Villa Vinewood'),
+(6, 26, 2479.62, -1063.83, 66.9982, 16000, 100, 0, 0, 65, 1, 0, 'gammelwood'),
+(7, 18, 827.991, -858.31, 70.3308, 500000, 100, 0, 0, 190, 1, 1, 'Vinewood'),
+(8, 23, 980.477, -677.268, 121.976, 3500000, 100, 0, 0, 680, 3, 2, 'Vinewoodvilla'),
+(9, 5, 657.229, -1652.62, 15.4062, 52000, 100, 0, 0, 147, 1, 0, 'Beach'),
+(10, 25, 1981.61, -1682.93, 17.0538, 350000, 100, 0, 0, 174, 2, 1, 'Alhambra'),
+(11, 18, 1421.76, -886.055, 50.6798, 560000, 100, 0, 0, 242, 2, 1, 'vinewood'),
+(12, 8, 2808.07, -1176.04, 25.3798, 420000, 100, 0, 0, 358, 2, 1, 'Stand-bohrinsel'),
+(13, 8, 2808.16, -1190.38, 25.3402, 420000, 100, 0, 0, 358, 2, 1, 'strand-bohrinsel'),
+(14, 10, 1242.37, -1075.36, 31.5547, 650000, 100, 0, 0, 227, 3, 1, 'Nahe Bank'),
+(15, 29, 1285.1, -1065.78, 31.6789, 650000, 100, 0, 0, 227, 3, 1, 'bank'),
+(16, 9, 1242.45, -1100.55, 27.9766, 650000, 100, 0, 0, 227, 3, 1, 'bank'),
+(17, 0, 1285.02, -1091.39, 28.2578, 650000, 100, 0, 0, 227, 3, 1, 'bank'),
+(18, 16, 870.386, -25.2002, 63.9635, 10000, 100, 0, 0, 50, 1, 0, 'im wald'),
+(19, 15, 645.976, -1117.43, 44.207, 1200000, 100, 0, 0, 555, 1, 2, 'Vinewood'),
+(20, 5, 1684.96, -2098.16, 13.8343, 65000, 100, 0, 0, 152, 1, 0, 'bahnhof'),
+(21, 26, 2290.52, -1796.02, 13.5469, 220000, 100, 0, 0, 266, 2, 0, 'arena'),
+(22, 5, 2307.53, -1785.73, 13.5569, 220000, 100, 0, 0, 226, 2, 0, 'arena'),
+(23, 7, 300.303, -1154.51, 81.391, 3200000, 100, 0, 3, 580, 2, 2, 'tommys haus'),
+(24, 4, 1298.49, -798.503, 84.1406, 5000000, 100, 0, 0, 1500, 3, 2, 'Maddogs'),
+(25, 1, 2287.52, -1080.9, 48.1097, 90000, 100, 0, 0, 428, 2, 0, 'komisches haus'),
+(26, 19, -2552.03, 2266.58, 5.47552, 450000, 100, 0, 2, 140, 1, 1, 'Haus in Bayside'),
+(27, 6, -2523.69, 2239.19, 5.39844, 490000, 100, 0, 2, 190, 1, 1, 'bayside'),
+(28, 5, 1715.19, -2124.83, 14.0566, 85000, 100, 0, 0, 174, 1, 0, 'airportgegend'),
+(29, 26, 1332.05, -633.037, 109.135, 2250000, 100, 0, 0, 265, 1, 2, 'vinewood'),
+(30, 16, 977.623, -771.456, 112.203, 2500000, 100, 0, 0, 273, 2, 2, 'Vinewood Holzhaus'),
+(31, 10, 2782.17, -1306.42, 38.8717, 987654, 100, 0, 0, 262, 3, 1, 'am strand'),
+(32, 5, 2393.11, -1646.04, 13.9051, 12000, 100, 0, 0, 156, 1, 0, 'grove street'),
+(33, 24, 1468.42, -906.004, 54.8359, 1400000, 100, 0, 0, 286, 2, 1, 'Vinewood'),
+(34, 16, 2306.92, -1679.2, 14.3316, 15500, 100, 0, 0, 110, 1, 0, 'grovestreet'),
+(35, 23, 1497.11, -688.86, 95.2309, 3800000, 100, 0, 0, 632, 2, 2, 'vinewood'),
+(36, 29, 1535.03, -800.355, 72.8495, 455000, 100, 0, 0, 180, 1, 1, 'vinewood'),
+(37, 0, 2334.69, -1234.66, 27.9766, 254000, 100, 0, 0, 262, 2, 0, 'gammelwood'),
+(38, 13, 2324.3, -1218.91, 27.9766, 254000, 100, 0, 0, 262, 2, 0, 'gammelwood'),
+(39, 10, 559.029, -1076.11, 72.922, 574322, 100, 0, 0, 276, 2, 1, 'vinewood'),
+(40, 16, 1106.22, -299.678, 74.5391, 921000, 100, 0, 2, 100, 1, 0, 'farm'),
+(41, 21, 985.413, 1901.15, 11.4609, 434000, 100, 0, 1, 175, 1, 1, 'lv'),
+(42, 25, 1045.15, -642.922, 120.117, 1150000, 100, 0, 0, 175, 2, 2, 'vinewood'),
+(43, 27, 1095.25, -647.894, 113.648, 1950000, 100, 0, 0, 325, 2, 2, 'vinewood'),
+(44, 13, 1030.79, 1928.15, 11.4683, 222000, 100, 0, 1, 231, 1, 0, 'lv'),
+(45, 19, 2363.12, 142.085, 28.4416, 250000, 100, 0, 2, 94, 1, 1, 'mafiastadt'),
+(46, 0, 2368.44, -1675.15, 14.1682, 25123, 100, 0, 0, 185, 1, 0, 'grovestreet'),
+(47, 16, 2017.67, -1703.22, 14.2344, 14000, 100, 0, 0, 85, 1, 0, 'grovestreet'),
+(48, 7, 700.372, -1060.02, 49.4217, 1652300, 100, 0, 0, 472, 2, 2, 'vinewood'),
+(49, 16, -910.938, 2685.94, 42.3703, 1500000, 100, 0, 2, 170, 1, 1, 'bootshaus'),
+(50, 6, 745.668, -591.004, 18.0129, 500600, 100, 0, 2, 195, 1, 1, 'mafia'),
+(51, 26, 2067.05, -1731.71, 14.2066, 23000, 100, 0, 0, 101, 1, 0, 'grovestreet'),
+(52, 28, 2465.37, -2020.77, 14.1242, 15000, 100, 0, 0, 155, 1, 0, 'noch gammeligeres wood'),
+(53, 14, 2518.35, 128.983, 27.6756, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(54, 19, 2065.12, -1703.55, 14.1484, 35000, 100, 0, 0, 116, 1, 0, 'grovestreet'),
+(55, 25, 315.673, -1769.89, 4.63275, 1320000, 100, 0, 0, 165, 3, 1, 'strand fischer'),
+(56, 7, 252.997, -1269.89, 74.3378, 1750000, 100, 0, 0, 510, 2, 2, 'vinewood'),
+(57, 25, 835.891, -894.812, 68.7689, 1900000, 100, 0, 0, 247, 2, 2, 'vinewood'),
+(58, 29, 946.239, -710.49, 122.62, 850000, 100, 0, 0, 167, 1, 1, 'vinewood'),
+(59, 24, 1034.82, -812.811, 101.852, 1400000, 100, 0, 0, 286, 2, 1, 'vinewood'),
+(60, 16, 2016.33, -1641.58, 13.7824, 25000, 100, 0, 0, 102, 1, 0, 'grovestreet'),
+(61, 23, 189.659, -1308.33, 70.2497, 3800000, 100, 0, 0, 656, 2, 2, 'vinewood'),
+(62, 0, 1925.53, 663.599, 10.8203, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(63, 21, 1929.23, 742.657, 10.8203, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(64, 21, 1956.82, 738.087, 10.8203, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(65, 5, 1957.01, 691.37, 10.8203, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(66, 21, 1896.77, 736.583, 14.2763, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(67, 26, 1896.74, 669.854, 14.2762, 170000, 100, 0, 1, 170, 1, 1, 'lv'),
+(68, 19, 2245.57, -122.291, 28.1535, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(69, 16, 2203.13, -89.2988, 28.1535, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(70, 11, 724.743, -999.398, 52.7344, 1250000, 100, 0, 0, 225, 2, 1, 'vinewood'),
+(71, 22, 251.338, -1220.3, 76.1024, 3100000, 100, 0, 0, 610, 2, 2, 'vinewood'),
+(72, 8, 808.247, -759.268, 76.5314, 850000, 100, 0, 0, 285, 2, 1, 'vinewood'),
+(73, 10, 2782.07, -1333.25, 32.3715, 987654, 100, 0, 0, 262, 3, 1, 'strand'),
+(74, 0, 1059.04, -1105.42, 28.0451, 463000, 100, 0, 0, 190, 1, 1, 'tuning'),
+(75, 14, 2415.39, -52.2822, 28.1535, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(76, 14, 2438.9, -54.9648, 28.1535, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(77, 14, 2392.5, -54.9121, 28.1536, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(78, 14, 2367.42, -49.125, 28.1535, 200000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(79, 19, 2438.66, -1105.53, 42.7512, 27000, 100, 0, 0, 101, 1, 0, 'gammelwood'),
+(80, 19, 2457.17, -1102.5, 43.8672, 34000, 100, 0, 0, 120, 1, 0, 'gammelwood'),
+(81, 29, 910.283, -817.364, 103.126, 450000, 100, 0, 0, 150, 2, 1, 'vinewood'),
+(82, 14, 1938.54, -1911.24, 15.2568, 300000, 100, 0, 0, 80, 1, 1, 'bahnhof'),
+(83, 8, 852.35, -1422.78, 14.1176, 750000, 100, 0, 0, 335, 2, 1, ''),
+(84, 16, 2091.32, -1278.92, 26.1543, 350000, 100, 0, 0, 100, 1, 1, 'glenpark'),
+(85, 19, 2257.24, -1643.97, 15.8082, 18500, 100, 0, 0, 100, 1, 0, 'grove'),
+(86, 19, 2282.22, -1641.49, 15.8898, 18500, 100, 0, 0, 101, 1, 0, 'grove'),
+(87, 19, 2249.91, -1238.92, 25.8984, 14000, 100, 0, 0, 72, 1, 0, 'grove'),
+(88, 22, 219.319, -1249.74, 78.336, 2820000, 100, 0, 0, 510, 2, 2, 'vinewood'),
+(89, 6, 652.363, -1694.17, 14.5603, 250000, 100, 0, 0, 140, 2, 1, 'kp'),
+(90, 23, 1928.95, 2774.5, 10.8203, 650000, 100, 0, 1, 513, 2, 1, 'lv'),
+(91, 8, 2000.19, -1114.77, 27.125, 500000, 100, 0, 0, 273, 2, 1, 'glenpark'),
+(92, 0, 1905.8, -1112.95, 26.6641, 160000, 100, 0, 0, 140, 1, 1, 'glenpark'),
+(93, 16, 2272.28, -118.276, 28.1535, 200000, 100, 0, 0, 97, 1, 1, 'mafia'),
+(94, 5, 2407.78, -1106.97, 40.2957, 75000, 100, 0, 0, 143, 1, 0, 'gammelwood'),
+(95, 21, 228.096, -1405.52, 51.6094, 450000, 100, 0, 0, 163, 1, 1, 'vinewood'),
+(96, 19, 2326.63, -1717.16, 13.9074, 18500, 100, 0, 0, 110, 1, 0, 'grove'),
+(97, 16, 2244.33, -1637.75, 15.9074, 18500, 100, 0, 0, 110, 1, 0, 'grove'),
+(98, 16, 2013.58, -1656.12, 14.1363, 29000, 100, 0, 0, 102, 1, 0, 'asd'),
+(99, 14, 1287.24, -867.874, 46.8361, 250000, 100, 0, 0, 119, 1, 1, 'bsn'),
+(100, 19, 1280.83, -874.654, 46.8438, 250000, 100, 0, 0, 119, 1, 1, 'bsn'),
+(101, 14, 1291.02, -896.865, 46.6251, 250000, 100, 0, 0, 119, 1, 1, 'bsn'),
+(102, 19, 1242.1, -878.105, 46.6406, 250000, 100, 0, 0, 119, 1, 1, 'bsn'),
+(103, 14, 2551.07, 57.2842, 27.6756, 211000, 100, 0, 2, 97, 1, 1, 'mafia'),
+(104, 23, -2706.51, 864.772, 70.7031, 550000, 100, 0, 2, 300, 2, 1, 'sf'),
+(105, 10, 1142.01, -1068.71, 31.7656, 705000, 100, 0, 0, 227, 3, 1, 'bank'),
+(106, 8, 822.421, -1505.17, 14.3936, 950000, 100, 0, 0, 500, 2, 1, 'beach'),
+(107, 16, 1939.14, -1114.48, 27.4523, 170000, 100, 0, 0, 120, 1, 1, 'glen'),
+(108, 5, 2327.27, -1681.8, 14.9297, 19612, 100, 0, 0, 145, 1, 0, 'grove'),
+(109, 16, 2507.65, -2020.74, 14.2101, 20000, 100, 0, 0, 155, 1, 0, 'gammel'),
+(110, 12, -2437.48, 2354.68, 5.44307, 321125, 100, 0, 2, 240, 1, 0, 'bay'),
+(111, 8, 1967.34, 2766.39, 10.8265, 650000, 100, 0, 1, 296, 2, 1, 'lv'),
+(112, 10, 1112.59, -741.969, 100.133, 785000, 100, 0, 0, 253, 2, 1, 'vinewood'),
+(113, 23, -2662.13, 877.042, 79.7738, 1010101, 100, 0, 2, 375, 2, 1, 'sf'),
+(114, 1, 848.258, -745.317, 94.9693, 450000, 100, 0, 0, 201, 2, 0, 'vinewood'),
+(115, 5, 785.885, -828.583, 70.2896, 650000, 100, 0, 0, 201, 2, 0, 'vinewood'),
+(116, 5, 2696.31, -1990.36, 14.2229, 150000, 100, 0, 0, 180, 1, 0, 'ls'),
+(117, 23, 1378.56, -1753.06, 14.1406, 1512313, 100, 0, 0, 373, 2, 1, 'stadthalle'),
+(118, 29, -2710.93, 967.471, 54.4609, 900000, 100, 0, 2, 209, 1, 2, 'sf'),
+(119, 0, 2842.15, -1334.79, 14.7421, 375000, 100, 0, 2, 192, 1, 1, 'beach'),
+(120, 25, 1980.38, -1719.02, 17.0304, 350000, 100, 0, 0, 165, 2, 1, 'asd'),
+(121, 8, 841.422, -1471.37, 14.3116, 950000, 100, 0, 0, 500, 2, 1, 'asd'),
+(122, 14, 1928.7, -1916.14, 15.2568, 311000, 100, 0, 0, 80, 1, 1, 'asd'),
+(123, 18, 937.849, -848.31, 93.6309, 850000, 100, 0, 0, 180, 2, 1, 'vinewood'),
+(124, 25, 1540.24, -851.521, 64.3361, 785000, 100, 0, 0, 253, 2, 1, 'asd'),
+(125, 5, 768.08, -1655.89, 5.60938, 350000, 100, 0, 0, 152, 1, 1, 'am kanal'),
+(126, 23, 1443.25, -628.837, 95.7186, 2300000, 100, 0, 0, 560, 2, 2, 'vinew'),
+(127, 29, 891.31, -783.106, 101.314, 1500000, 100, 0, 0, 260, 1, 2, 'vine'),
+(128, 8, 1274.36, 2522.55, 10.8203, 650000, 100, 0, 1, 296, 2, 1, 'asd'),
+(129, 29, 766.924, -1605.83, 13.8039, 350000, 100, 0, 0, 152, 1, 1, 'asd'),
+(130, 25, -2348.3, 2423.55, 7.32946, 1500000, 100, 0, 2, 182, 2, 2, 'bayside'),
+(131, 7, 497.229, -1095.03, 82.3592, 2350000, 100, 0, 0, 560, 2, 2, 'vinewood'),
+(132, 29, 1527.23, -773.154, 80.5781, 495000, 100, 0, 0, 180, 1, 1, 'vinewood');
 
-CREATE TABLE IF NOT EXISTS `players` (
-`ID` int(11) NOT NULL,
-  `UUID` varchar(128) DEFAULT NULL,
+CREATE TABLE `objects_houses_rooms` (
+  `ID` int(11) NOT NULL,
+  `CoordX` float NOT NULL DEFAULT '0',
+  `CoordY` float NOT NULL DEFAULT '0',
+  `CoordZ` float NOT NULL DEFAULT '0',
+  `Interior` int(11) NOT NULL DEFAULT '0',
+  `Preis` int(11) NOT NULL DEFAULT '0',
+  `QM` int(11) NOT NULL DEFAULT '0' COMMENT 'Quadratmeter (geschätzte Zahl für Mögliche Innenraum-Größe)',
+  `Stockwerke` int(11) NOT NULL DEFAULT '0',
+  `Wert` int(11) NOT NULL DEFAULT '0' COMMENT '0=> Arm; 1=> Mittel; 2=> Luxus',
+  `Beschreibung` text COMMENT 'Beschreibender Text für DB'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `objects_houses_rooms` (`ID`, `CoordX`, `CoordY`, `CoordZ`, `Interior`, `Preis`, `QM`, `Stockwerke`, `Wert`, `Beschreibung`) VALUES
+(0, 0, 0, 0, 0, 0, 0, 0, 0, 'Dummyeintrag für keinen Innenraum'),
+(1, 2807.63, -1174.09, 1025.57, 8, 10000, 170, 2, 0, 'Innenraum mit der Kanone'),
+(2, 344.153, 304.833, 999.148, 6, 3000, 56, 1, 0, 'Sadomaso'),
+(3, 1261.13, -785.543, 1091.91, 5, 1250000, 1000, 2, 2, 'Madogs oben'),
+(4, 1298.7, -796.326, 1084.01, 5, 1250000, 1000, 2, 2, 'Madogsunten'),
+(5, 222.941, 1287.44, 1082.14, 1, 5000, 116, 1, 0, 'Armer Innenraum'),
+(6, 260.949, 1284.75, 1080.26, 4, 39000, 135, 1, 1, ''),
+(7, 140.18, 1366.58, 1083.86, 5, 450000, 450, 2, 2, 'Luxus mit der großen Treppe vorm Eingang'),
+(8, 82.9492, 1322.44, 1083.87, 9, 65000, 270, 2, 1, ''),
+(9, -283.749, 1471.18, 1084.38, 15, 35000, 147, 2, 1, ''),
+(10, -260.6, 1456.62, 1084.37, 4, 55000, 212, 2, 1, ''),
+(11, -42.4658, 1405.76, 1084.43, 8, 30000, 200, 1, 1, ''),
+(12, -68.8877, 1351.44, 1080.21, 6, 4500, 180, 1, 0, ''),
+(13, 2332.97, -1077.15, 1049.02, 6, 7000, 204, 1, 0, ''),
+(14, 2233.87, -1115.04, 1050.88, 5, 11000, 67, 1, 1, ''),
+(15, 2365.25, -1135.43, 1050.88, 8, 220000, 268, 1, 2, ''),
+(16, 2282.98, -1140.28, 1050.9, 11, 3000, 48, 1, 0, ''),
+(17, 2196.57, -1204.59, 1049.02, 6, 250000, 370, 1, 2, ''),
+(18, 2270.23, -1210.58, 1047.56, 10, 28000, 176, 1, 1, ''),
+(19, 2308.87, -1212.71, 1049.02, 6, 4000, 69, 1, 0, ''),
+(20, 2218.22, -1076.28, 1050.48, 1, 60000, 103, 1, 2, ''),
+(21, 2237.67, -1081.54, 1049.02, 2, 25000, 155, 1, 1, ''),
+(22, 2317.89, -1026.57, 1050.22, 9, 380000, 332, 2, 2, ''),
+(23, 225.593, 1021.89, 1084.02, 7, 50000, 300, 2, 1, ''),
+(24, 235.266, 1186.97, 1080.26, 3, 45000, 280, 2, 1, ''),
+(25, 23.9795, 1340.31, 1084.38, 10, 25000, 120, 2, 1, ''),
+(26, 266.698, 304.927, 999.148, 2, 2000, 26, 1, 0, ''),
+(27, 2324.64, -1149.34, 1050.71, 12, 275000, 270, 2, 2, ''),
+(28, 422.557, 2536.52, 10, 10, 2500, 62, 1, 0, ''),
+(29, 443.377, 509.298, 1001.42, 12, 40000, 131, 1, 1, '');
+
+CREATE TABLE `objects_houses_wishes` (
+  `ID` int(11) NOT NULL,
   `Nickname` varchar(250) NOT NULL,
-  `Passwort` varchar(600) NOT NULL,
-  `EMail` varchar(250) NOT NULL,
-  `Geb_T` int(11) NOT NULL,
-  `Geb_M` int(11) NOT NULL,
-  `Geb_Y` int(11) NOT NULL,
-  `werber` text NOT NULL,
-  `Salt` varchar(250) NOT NULL,
-  `Serial` varchar(250) NOT NULL,
-  `IP` varchar(250) NOT NULL,
-  `RegDat` timestamp NULL DEFAULT '0000-00-00 00:00:00',
-  `AktiveDays` int(11) NOT NULL DEFAULT '0',
-  `LastLogin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `LastUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Urlaub_Until` int(11) NOT NULL DEFAULT '0',
-  `nickchange` int(11) NOT NULL DEFAULT '0',
-  `force_nickchange` int(11) NOT NULL DEFAULT '0',
-  `isDeveloper` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56578 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `premium`
---
-
-CREATE TABLE IF NOT EXISTS `premium` (
-`ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `PremiumUntil` bigint(20) NOT NULL DEFAULT '0',
-  `PremiumGutScheine` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56216 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `prestige`
---
-
-CREATE TABLE IF NOT EXISTS `prestige` (
-`ID` int(11) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,
   `z` float NOT NULL,
-  `stufe` int(11) NOT NULL DEFAULT '1',
-  `name` varchar(255) NOT NULL,
-  `preis` float NOT NULL,
-  `stufengeld` float NOT NULL,
-  `grundpreis` float NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
+  `datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `unixtimestamp` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `prestige`
---
-
-INSERT INTO `prestige` (`ID`, `x`, `y`, `z`, `stufe`, `name`, `preis`, `stufengeld`, `grundpreis`) VALUES
-(3, 1479.54, -1617.26, 14.2, 13, 'Stadtpark Siegessäule', 19084200, 2765510, 800000),
-(4, 2316.44, 2363.64, 10.8203, 1, 'Antiker Brunnen (LVPD)', 350000, 350000, 350000),
-(5, 1573.92, -1329.1, 16.4844, 4, 'Star Tower', 3683410, 1012350, 850000),
-(6, 2096.26, 1285.05, 10.8203, 2, 'Monument ', 917487, 467487, 450000),
-(7, 2009.25, 1544.67, 12.5529, 10, 'Piratenschiff ', 7388890, 1147510, 500000),
-(8, 384.474, -2028.55, 7.83594, 8, 'Das Riesenrad', 3661250, 627150, 350000),
-(9, 2323.79, 1283.3, 97.5352, 2, 'Pyramide ', 2038860, 1038860, 1000000),
-(10, 927.96, -1209.37, 16.9564, 13, 'Filmstudio ', 14313100, 2074130, 600000),
-(11, -367.817, 1581.48, 76.108, 12, 'Big Ear', 22438200, 3302260, 1100000),
-(12, 1428.85, -809.517, 76.4837, 14, 'Vinewood Sign', 11140900, 1598760, 400000),
-(13, 1969.17, -1197.42, 18.7061, 15, 'Glenpark ', 14621000, 2087470, 450000),
-(14, 1918.15, -1409.29, 13.5703, 16, 'Skaterpark ', 5684090, 810448, 150000),
-(15, 1129.13, -1488.45, 22.769, 17, 'Mall ', 33155900, 4735550, 750000),
-(16, 2184.31, 1114.27, 12.6484, 1, 'Come-A-Lot ', 1500000, 1655350, 1500000),
-(17, 3106.76, -2145.43, 30.8122, 8, 'Bohrinsel ', 4707320, 806336, 450000),
-(18, -2696.43, 1933.87, 217.274, 10, 'Golden Gate Bridge', 147777000, 22950200, 10000000),
-(19, -2232.24, -1738.11, 480.84, 1, 'Mount Chilliad', 2500000, 7505140, 2500000);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `rechte`
---
-
-CREATE TABLE IF NOT EXISTS `rechte` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `AllLeader` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32357 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `ruhezonen`
---
-
-CREATE TABLE IF NOT EXISTS `ruhezonen` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `objects_restareas` (
+  `ID` int(11) NOT NULL,
   `leftX` float NOT NULL,
   `buttonY` float NOT NULL,
   `sizeX` float NOT NULL,
   `sizeY` float NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `ruhezonen`
---
-
-INSERT INTO `ruhezonen` (`ID`, `leftX`, `buttonY`, `sizeX`, `sizeY`) VALUES
+INSERT INTO `objects_restareas` (`ID`, `leftX`, `buttonY`, `sizeX`, `sizeY`) VALUES
 (1, 1409.26, -1775.27, 162.734, 180),
 (6, 1711.76, -1881.09, 96.0605, 38.5078);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `servermessage`
---
-
-CREATE TABLE IF NOT EXISTS `servermessage` (
-`ID` int(11) NOT NULL,
-  `VonName` varchar(255) NOT NULL DEFAULT 'none',
-  `Message` text NOT NULL,
-  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Nickname` varchar(255) NOT NULL DEFAULT 'none'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=315762 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `serversettings`
---
-
-CREATE TABLE IF NOT EXISTS `serversettings` (
-`ID` int(255) NOT NULL,
-  `Name` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `Wert` varchar(255) CHARACTER SET utf8 NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_general_mysql500_ci AUTO_INCREMENT=18 ;
-
---
--- Daten für Tabelle `serversettings`
---
-
-INSERT INTO `serversettings` (`ID`, `Name`, `Wert`) VALUES
-(1, 'drogenpreis', '5'),
-(2, 'Jackpot', '100000'),
-(3, 'Max_Users', '0'),
-(6, 'Version', '3.4.1'),
-(8, 'matspreis', '0.97'),
-(9, 'tankpreis', '1.572'),
-(10, 'sozialabgabesatz', '20'),
-(11, 'steuersatz', '25'),
-(12, 'Ueberweisungssteuer', '0'),
-(13, 'atommuell', '0'),
-(14, 'regenlevel', '0'),
-(16, 'spielerDesMonats', 'juli2013.png'),
-(17, 'DailyReset', '1414029776');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `sprunk`
---
-
-CREATE TABLE IF NOT EXISTS `sprunk` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `objects_sprunk` (
+  `ID` int(11) NOT NULL,
   `X` float NOT NULL,
   `Y` float NOT NULL,
   `Z` float NOT NULL,
   `Rot` float NOT NULL,
   `Kommentar` text
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `sprunk`
---
-
-INSERT INTO `sprunk` (`ID`, `X`, `Y`, `Z`, `Rot`, `Kommentar`) VALUES
+INSERT INTO `objects_sprunk` (`ID`, `X`, `Y`, `Z`, `Rot`, `Kommentar`) VALUES
 (1, 1729.72, -1943.86, 13.5687, 0.195007, 'ls bahnhof'),
 (2, -16.0938, -90.8506, 1003.55, 185.334, '24/7'),
 (3, -17.6758, -90.9707, 1003.55, 185.021, '24/7'),
@@ -5725,144 +5339,117 @@ INSERT INTO `sprunk` (`ID`, `X`, `Y`, `Z`, `Rot`, `Kommentar`) VALUES
 (48, 2480.81, -1958.52, 13.583, 181.967, 'Sprunk kl. Waffen Snack'),
 (49, 2224.28, -1153.42, 1025.8, 270.77, '');
 
--- --------------------------------------------------------
+CREATE TABLE `object_prestiges` (
+  `ID` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `stufe` int(11) NOT NULL DEFAULT '1',
+  `name` varchar(255) NOT NULL,
+  `preis` float NOT NULL,
+  `stufengeld` float NOT NULL,
+  `grundpreis` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `tapp_tictactoe`
---
+INSERT INTO `object_prestiges` (`ID`, `x`, `y`, `z`, `stufe`, `name`, `preis`, `stufengeld`, `grundpreis`) VALUES
+(3, 1479.54, -1617.26, 14.2, 1, 'Stadtpark Siegessäule', 800000, 2765510, 800000),
+(4, 2316.44, 2363.64, 10.8203, 1, 'Antiker Brunnen (LVPD)', 350000, 350000, 350000),
+(5, 1573.92, -1329.1, 16.4844, 1, 'Star Tower', 850000, 1012350, 850000),
+(6, 2096.26, 1285.05, 10.8203, 1, 'Monument ', 450000, 467487, 450000),
+(7, 2009.25, 1544.67, 12.5529, 1, 'Piratenschiff ', 500000, 1147510, 500000),
+(8, 384.474, -2028.55, 7.83594, 1, 'Das Riesenrad', 350000, 627150, 350000),
+(9, 2323.79, 1283.3, 97.5352, 1, 'Pyramide ', 1000000, 1038860, 1000000),
+(10, 927.96, -1209.37, 16.9564, 1, 'Filmstudio ', 600000, 2074130, 600000),
+(11, -367.817, 1581.48, 76.108, 1, 'Big Ear', 1100000, 3302260, 1100000),
+(12, 1428.85, -809.517, 76.4837, 1, 'Vinewood Sign', 400000, 1598760, 400000),
+(13, 1969.17, -1197.42, 18.7061, 1, 'Glenpark ', 450000, 2087470, 450000),
+(14, 1918.15, -1409.29, 13.5703, 1, 'Skaterpark ', 150000, 810448, 150000),
+(15, 1129.13, -1488.45, 22.769, 1, 'Mall ', 750000, 4735550, 750000),
+(16, 2184.31, 1114.27, 12.6484, 1, 'Come-A-Lot ', 1500000, 1655350, 1500000),
+(17, 3106.76, -2145.43, 30.8122, 1, 'Bohrinsel ', 450000, 806336, 450000),
+(18, -2696.43, 1933.87, 217.274, 1, 'Golden Gate Bridge', 10000000, 22950200, 10000000),
+(19, -2232.24, -1738.11, 480.84, 1, 'Mount Chilliad', 25000000, 35000000, 25000000);
 
-CREATE TABLE IF NOT EXISTS `tapp_tictactoe` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `Gegner` varchar(250) CHARACTER SET latin1 NOT NULL,
-  `Spielstand` varchar(50) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0',
-  `Winner` int(11) NOT NULL DEFAULT '0',
-  `State` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1023 ;
+CREATE TABLE `user` (
+  `ID` int(11) NOT NULL,
+  `UUID` varchar(128) DEFAULT NULL,
+  `Nickname` varchar(250) NOT NULL,
+  `Passwort` varchar(600) NOT NULL,
+  `EMail` varchar(250) NOT NULL,
+  `Geb_T` int(11) NOT NULL,
+  `Geb_M` int(11) NOT NULL,
+  `Geb_Y` int(11) NOT NULL,
+  `werber` text NOT NULL,
+  `Salt` varchar(250) NOT NULL,
+  `Serial` varchar(250) NOT NULL,
+  `IP` varchar(250) NOT NULL,
+  `RegDat` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `AktiveDays` int(11) NOT NULL DEFAULT '0',
+  `LastLogin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `LastUpdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Urlaub_Until` int(11) NOT NULL DEFAULT '0',
+  `nickchange` int(11) NOT NULL DEFAULT '0',
+  `force_nickchange` int(11) NOT NULL DEFAULT '0',
+  `isDeveloper` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `taxipreise`
---
-
-CREATE TABLE IF NOT EXISTS `taxipreise` (
-`ID` int(11) NOT NULL,
-  `timezone` int(11) NOT NULL,
-  `tarifzone` int(11) NOT NULL,
-  `preis` float NOT NULL DEFAULT '10'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
-
---
--- Daten für Tabelle `taxipreise`
---
-
-INSERT INTO `taxipreise` (`ID`, `timezone`, `tarifzone`, `preis`) VALUES
-(1, 1, 1, 1.5),
-(2, 1, 2, 15),
-(3, 1, 3, 50),
-(4, 2, 1, 2),
-(5, 2, 2, 20),
-(6, 2, 3, 75),
-(7, 3, 1, 1.5),
-(8, 3, 2, 25),
-(9, 3, 3, 85),
-(10, 0, 0, 5);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `terratapps`
---
-
-CREATE TABLE IF NOT EXISTS `terratapps` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `user_achievements` (
+  `ID` int(11) NOT NULL,
   `Nickname` varchar(255) NOT NULL,
-  `Friendlist` int(11) NOT NULL DEFAULT '0',
-  `GPS` int(11) NOT NULL DEFAULT '0',
-  `Stopuhr` int(11) NOT NULL DEFAULT '0',
-  `Blitzermelder` int(11) NOT NULL DEFAULT '0',
-  `Kompass` int(11) NOT NULL DEFAULT '0',
-  `EMail` int(11) NOT NULL DEFAULT '0',
-  `Notizblock` int(11) NOT NULL DEFAULT '0',
-  `Colorpicker` int(11) NOT NULL DEFAULT '0',
-  `TicTacToe` int(11) NOT NULL DEFAULT '0',
-  `MineSweeper` int(1) NOT NULL DEFAULT '0',
-  `OnlineBanking` int(1) NOT NULL DEFAULT '0',
-  `OnlineSchutz` int(1) NOT NULL DEFAULT '0',
-  `OnlineSchutzUntil` bigint(20) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=51478 ;
+  `Erfolg_Fischermeister` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Fischermeister` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_MrLicenses` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_First_50` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_First_100` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_First_1000` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Millionaer` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_10erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_20erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_50erFahrzeugrausch` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Busmeister` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Busmeister` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Lotto1` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Lotto2` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Lotto3` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Rubbellosgluck` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_10erLos` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Benzin_leer` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Mein_erstes_Geld` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_MyOwnHome` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_MyOwnBiz` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Autoeinsteiger` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Mein_erstes_Brot` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Ersatztanke` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Fraktionseinsteiger` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_10Hufeisen` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_100Hufeisen` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_1000Hufeisen` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Meisterpilot` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Meisterpilot` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Meistertrucker` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Meistertrucker` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_KMPokal` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_TerraFriend` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Strassenreiniger` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Strassenreiniger` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Meeresreiniger` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Meeresreiniger` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Muellsammler` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Muellsammler` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Pizzaraser` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Pizzaraser` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Farmerjunge` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Farmerjunge` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Steinraeumer` int(11) NOT NULL DEFAULT '0',
+  `Erfolg_Steinraeumer` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Langlaeufer` float NOT NULL DEFAULT '0',
+  `Erfolg_Langlaeufer` int(11) NOT NULL DEFAULT '0',
+  `Punkte_Rekordschwimmer` float NOT NULL DEFAULT '0',
+  `Erfolg_Rekordschwimmer` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `timeban`
---
-
-CREATE TABLE IF NOT EXISTS `timeban` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(50) NOT NULL,
-  `Grund` text NOT NULL,
-  `Admin` varchar(50) NOT NULL DEFAULT 'none',
-  `Minuten` int(11) NOT NULL DEFAULT '30',
-  `Serial` varchar(255) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1714 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tlt_friendlist`
---
-
-CREATE TABLE IF NOT EXISTS `tlt_friendlist` (
-  `Nickname` varchar(255) NOT NULL,
-  `Friendname` varchar(255) NOT NULL DEFAULT 'noname',
-`ID` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17565 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tlt_friendrequest`
---
-
-CREATE TABLE IF NOT EXISTS `tlt_friendrequest` (
-  `Fromname` varchar(255) NOT NULL,
-  `Toname` varchar(255) NOT NULL,
-`ID` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11136 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `tombupot`
---
-
-CREATE TABLE IF NOT EXISTS `tombupot` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `top_user_daily`
---
-
-CREATE TABLE IF NOT EXISTS `top_user_daily` (
-`ID` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `userdata`
---
-
-CREATE TABLE IF NOT EXISTS `userdata` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `user_data` (
+  `ID` int(11) NOT NULL,
   `Nickname` varchar(255) NOT NULL,
   `AdminLVL` int(11) NOT NULL DEFAULT '0',
   `SupportLVL` int(11) NOT NULL DEFAULT '0',
@@ -5913,16 +5500,178 @@ CREATE TABLE IF NOT EXISTS `userdata` (
   `fuehrerscheinlooser` int(11) NOT NULL DEFAULT '0',
   `stvoprostunde` float NOT NULL DEFAULT '0',
   `lebensversicherung` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56518 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
+CREATE TABLE `user_emails` (
+  `ID` int(11) NOT NULL,
+  `Empfaenger` varchar(250) NOT NULL,
+  `Sender` varchar(250) NOT NULL,
+  `Betreff` text NOT NULL,
+  `Inhalt` longtext NOT NULL,
+  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `neu` int(11) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Tabellenstruktur für Tabelle `vehicles`
---
+CREATE TABLE `user_gifts` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Grund` text NOT NULL,
+  `Geld` int(11) NOT NULL DEFAULT '0',
+  `VehSlots` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE IF NOT EXISTS `vehicles` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `user_grades` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `NAME_orientierung` int(11) NOT NULL DEFAULT '0',
+  `NAME_theorie_Beamte` int(11) NOT NULL DEFAULT '0',
+  `NAME_Gelaendefahr` int(11) NOT NULL DEFAULT '0',
+  `NAME_sozial` int(11) NOT NULL DEFAULT '0',
+  `NAME_Waffenumgang` int(11) NOT NULL DEFAULT '0',
+  `NAME_spezFahrtest` int(11) NOT NULL DEFAULT '0',
+  `NAME_Strategisch` int(11) NOT NULL DEFAULT '0',
+  `NAME_praktisch_Beamte` int(11) NOT NULL DEFAULT '0',
+  `refresh` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_inventory` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Benzinkanister` int(11) NOT NULL DEFAULT '0',
+  `Lotto` varchar(255) NOT NULL DEFAULT '0|0|0',
+  `Lottoschein` int(11) NOT NULL DEFAULT '0',
+  `Rubbellos` int(11) NOT NULL DEFAULT '0',
+  `Drogen` int(11) NOT NULL DEFAULT '0',
+  `Materials` int(11) NOT NULL DEFAULT '0',
+  `Snack` int(11) NOT NULL DEFAULT '0',
+  `Hamburger` int(11) NOT NULL DEFAULT '0',
+  `Fertigessen` int(11) NOT NULL DEFAULT '0',
+  `Schnellhilfe` int(11) NOT NULL DEFAULT '0',
+  `CarFinder` int(11) NOT NULL DEFAULT '0',
+  `UseCarFinder` int(11) NOT NULL DEFAULT '0',
+  `Offline_HP` float NOT NULL DEFAULT '0',
+  `Offline_Armor` float NOT NULL DEFAULT '0',
+  `Offline_Weapons` varchar(255) NOT NULL DEFAULT '0',
+  `Offline_Ammo` varchar(255) NOT NULL DEFAULT '0',
+  `Hufeisenhelfer` int(11) NOT NULL DEFAULT '0',
+  `geschenk` int(11) NOT NULL DEFAULT '0',
+  `terralapptapp` int(11) NOT NULL DEFAULT '0',
+  `tachodig_addon` int(11) NOT NULL DEFAULT '0',
+  `adgutscheine` int(11) NOT NULL DEFAULT '0',
+  `adaktiv` int(11) NOT NULL DEFAULT '0',
+  `dice` int(11) NOT NULL DEFAULT '0',
+  `Kondome` int(11) NOT NULL DEFAULT '0',
+  `blutmesser` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_jobskills` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `fischSkill` int(11) NOT NULL DEFAULT '0',
+  `fischSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `busSkill` int(11) NOT NULL DEFAULT '0',
+  `busSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `muellSkill` int(11) NOT NULL DEFAULT '0',
+  `muellSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `pizzaSkill` int(11) NOT NULL DEFAULT '0',
+  `pizzaSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `flyersSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `flyersSkill` int(11) NOT NULL DEFAULT '0',
+  `truckSkill` int(11) NOT NULL DEFAULT '0',
+  `truckSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `sweeperSkill` int(11) NOT NULL DEFAULT '0',
+  `sweeperSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `farmerSkill` int(11) NOT NULL DEFAULT '0',
+  `farmerSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `bergWerkSkillPoints` int(11) NOT NULL DEFAULT '0',
+  `bergWerksSkill` int(11) NOT NULL DEFAULT '0',
+  `meeresSkill` int(11) NOT NULL DEFAULT '0',
+  `meeresSkillPoints` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_licenses` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `lastautoLic` int(11) NOT NULL DEFAULT '0',
+  `lasttruckLic` int(11) NOT NULL DEFAULT '0',
+  `lastplaneLic` int(11) NOT NULL DEFAULT '0',
+  `lastbikeLic` int(11) NOT NULL DEFAULT '0',
+  `lastheliLic` int(11) NOT NULL DEFAULT '0',
+  `autoLic` int(11) NOT NULL DEFAULT '0',
+  `truckLic` int(11) NOT NULL DEFAULT '0',
+  `planeLic` int(11) NOT NULL DEFAULT '0',
+  `bikeLic` int(11) NOT NULL DEFAULT '0',
+  `heliLic` int(11) NOT NULL DEFAULT '0',
+  `boatLic` int(11) NOT NULL DEFAULT '0',
+  `quadLic` int(11) NOT NULL DEFAULT '0',
+  `sonstigeLic` int(11) NOT NULL DEFAULT '0',
+  `waffenLic` int(11) NOT NULL DEFAULT '0',
+  `angelLic` int(11) NOT NULL DEFAULT '0',
+  `reiseLic` int(11) NOT NULL DEFAULT '0',
+  `persoLic` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_offline_messages` (
+  `ID` int(11) NOT NULL,
+  `VonName` varchar(255) NOT NULL DEFAULT 'none',
+  `Message` text NOT NULL,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Nickname` varchar(255) NOT NULL DEFAULT 'none'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_premium` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `PremiumUntil` bigint(20) NOT NULL DEFAULT '0',
+  `PremiumGutScheine` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_tapps` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL,
+  `Friendlist` int(11) NOT NULL DEFAULT '0',
+  `GPS` int(11) NOT NULL DEFAULT '0',
+  `Stopuhr` int(11) NOT NULL DEFAULT '0',
+  `Blitzermelder` int(11) NOT NULL DEFAULT '0',
+  `Kompass` int(11) NOT NULL DEFAULT '0',
+  `EMail` int(11) NOT NULL DEFAULT '0',
+  `Notizblock` int(11) NOT NULL DEFAULT '0',
+  `Colorpicker` int(11) NOT NULL DEFAULT '0',
+  `TicTacToe` int(11) NOT NULL DEFAULT '0',
+  `MineSweeper` int(1) NOT NULL DEFAULT '0',
+  `OnlineBanking` int(1) NOT NULL DEFAULT '0',
+  `OnlineSchutz` int(1) NOT NULL DEFAULT '0',
+  `OnlineSchutzUntil` bigint(20) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_tapps_friendlist` (
+  `Nickname` varchar(255) NOT NULL,
+  `Friendname` varchar(255) NOT NULL DEFAULT 'noname',
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_tapps_friendlist_request` (
+  `Fromname` varchar(255) NOT NULL,
+  `Toname` varchar(255) NOT NULL,
+  `ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_tapps_tictactoe` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `Gegner` varchar(250) CHARACTER SET latin1 NOT NULL,
+  `Spielstand` varchar(50) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0',
+  `Winner` int(11) NOT NULL DEFAULT '0',
+  `State` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `user_tombupot` (
+  `ID` int(11) NOT NULL,
+  `Nickname` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `user_vehicles` (
+  `ID` int(11) NOT NULL,
   `Besitzer` varchar(255) NOT NULL DEFAULT '0',
   `Model` int(11) NOT NULL DEFAULT '0',
   `SlotID` int(11) NOT NULL DEFAULT '0',
@@ -5943,940 +5692,462 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   `Lichterfarbe` varchar(255) NOT NULL DEFAULT '255|255|255',
   `no_handel` int(11) NOT NULL DEFAULT '0',
   `kmstand` float NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=86109 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `view_duty_cops_date`
---
-
-CREATE TABLE IF NOT EXISTS `view_duty_cops_date` (
-  `a` int(11) NOT NULL,
-  `b` int(11) NOT NULL,
-  `c` int(11) NOT NULL,
-  `d` int(11) NOT NULL,
-  `e` int(11) NOT NULL,
-  `f` int(11) NOT NULL,
-  `g` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `warns`
---
-
-CREATE TABLE IF NOT EXISTS `warns` (
-`ID` int(11) NOT NULL,
+CREATE TABLE `user_warns` (
+  `ID` int(11) NOT NULL,
   `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Nickname` varchar(255) NOT NULL,
   `Admin` varchar(255) NOT NULL,
   `Grund` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1371 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `werbungen`
---
-
-CREATE TABLE IF NOT EXISTS `werbungen` (
-`ID` int(11) NOT NULL,
-  `picName` varchar(255) NOT NULL,
-  `DatumBis` date NOT NULL,
-  `animation` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
-
---
--- Daten für Tabelle `werbungen`
---
-
-
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `whitelist`
---
-
-CREATE TABLE IF NOT EXISTS `whitelist` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(250) NOT NULL,
-  `ANTIHIGHPING` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `zeugnis`
---
-
-CREATE TABLE IF NOT EXISTS `zeugnis` (
-`ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `NAME_orientierung` int(11) NOT NULL DEFAULT '0',
-  `NAME_theorie_Beamte` int(11) NOT NULL DEFAULT '0',
-  `NAME_Gelaendefahr` int(11) NOT NULL DEFAULT '0',
-  `NAME_sozial` int(11) NOT NULL DEFAULT '0',
-  `NAME_Waffenumgang` int(11) NOT NULL DEFAULT '0',
-  `NAME_spezFahrtest` int(11) NOT NULL DEFAULT '0',
-  `NAME_Strategisch` int(11) NOT NULL DEFAULT '0',
-  `NAME_praktisch_Beamte` int(11) NOT NULL DEFAULT '0',
-  `refresh` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34182 ;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `_dateview_duty_cops`
---
-
-CREATE TABLE IF NOT EXISTS `_dateview_duty_cops` (
-  `Nickname` varchar(250) NOT NULL,
-  `ONLINE` decimal(32,0) DEFAULT NULL,
-  `DUTY` decimal(32,0) DEFAULT NULL,
-  `INNENDIENST` decimal(32,0) DEFAULT NULL,
-  `ID_ONLINE_QUOTE` decimal(39,4) DEFAULT NULL,
-  `ID_DUTY_QUOTE` decimal(39,4) DEFAULT NULL,
-  `DUTY_ONLINE_QUOTE` decimal(36,4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Daten für Tabelle `_dateview_duty_cops`
---
-
-INSERT INTO `_dateview_duty_cops` (`Nickname`, `ONLINE`, `DUTY`, `INNENDIENST`, `ID_ONLINE_QUOTE`, `ID_DUTY_QUOTE`, `DUTY_ONLINE_QUOTE`) VALUES
-('Achhylles', '127515', '92540', '20765', '16.2844', '22.4389', '0.7257'),
-('AzeR', '4050', '3765', '715', '17.6543', '18.9907', '0.9296'),
-('Blacko', '33575', '23205', '7015', '20.8935', '30.2306', '0.6911'),
-('BlueSpartan', '445', '445', '0', '0.0000', '0.0000', '1.0000'),
-('bonjourno', '480', '420', '0', '0.0000', '0.0000', '0.8750'),
-('BreakNNeck', '57220', '33805', '8130', '14.2083', '24.0497', '0.5908'),
-('BroS', '67730', '60930', '20735', '30.6142', '34.0309', '0.8996'),
-('BxB', '17140', '15465', '7390', '43.1155', '47.7853', '0.9023'),
-('cedroecc', '25960', '16470', '5150', '19.8382', '31.2690', '0.6344'),
-('Cheeseknocker', '116075', '102535', '29565', '25.4706', '28.8341', '0.8834'),
-('Daniel', '151605', '114195', '22375', '14.7587', '19.5937', '0.7532'),
-('DarkCitizen', '14740', '9180', '3030', '20.5563', '33.0065', '0.6228'),
-('Dash', '14255', '12365', '5120', '35.9172', '41.4072', '0.8674'),
-('DerLucas', '40010', '33655', '10925', '27.3057', '32.4617', '0.8412'),
-('DerPuDDing', '4870', '4395', '2575', '52.8747', '58.5893', '0.9025'),
-('Dexter', '9045', '8095', '2060', '22.7750', '25.4478', '0.8950'),
-('Dino1003', '20505', '19555', '3595', '17.5323', '18.3840', '0.9537'),
-('Doody', '70965', '50525', '2505', '3.5299', '4.9579', '0.7120'),
-('ElBarto', '57790', '49295', '6405', '11.0832', '12.9932', '0.8530'),
-('Faris', '50780', '40060', '13335', '26.2603', '33.2876', '0.7889'),
-('Floawesome', '29000', '22575', '5665', '19.5345', '25.0941', '0.7784'),
-('Frontaltaube', '3080', '2240', '930', '30.1948', '41.5179', '0.7273'),
-('Genetikk', '71685', '67325', '23995', '33.4728', '35.6405', '0.9392'),
-('GeRmAn', '6850', '5540', '760', '11.0949', '13.7184', '0.8088'),
-('Hendrik235', '14475', '12940', '3795', '26.2176', '29.3277', '0.8940'),
-('Hi998', '64690', '54045', '11520', '17.8080', '21.3156', '0.8354'),
-('HyperStyle', '10845', '9995', '5090', '46.9341', '50.9255', '0.9216'),
-('JO3LHD', '10345', '8850', '1115', '10.7782', '12.5989', '0.8555'),
-('Jocker', '31950', '25935', '6995', '21.8936', '26.9713', '0.8117'),
-('Juh', '32020', '26145', '7120', '22.2361', '27.2327', '0.8165'),
-('Klobuerste', '18690', '13940', '7570', '40.5029', '54.3042', '0.7459'),
-('KofferRadio', '4300', '3325', '935', '21.7442', '28.1203', '0.7733'),
-('Kruemelmonster', '20820', '16245', '1980', '9.5101', '12.1884', '0.7803'),
-('Liz', '68230', '54655', '18115', '26.5499', '33.1443', '0.8010'),
-('MaMo', '73485', '57710', '18970', '25.8148', '32.8713', '0.7853'),
-('Marco', '170630', '139185', '37560', '22.0125', '26.9857', '0.8157'),
-('Marlon', '19055', '16860', '6905', '36.2372', '40.9549', '0.8848'),
-('Maxim', '43025', '36580', '14550', '33.8175', '39.7758', '0.8502'),
-('Mazy', '18370', '15335', '4615', '25.1225', '30.0946', '0.8348'),
-('MeTeor', '37370', '28860', '10355', '27.7094', '35.8801', '0.7723'),
-('MineCrime', '20490', '17685', '4260', '20.7906', '24.0882', '0.8631'),
-('mo0onlightzzz', '154900', '119445', '42500', '27.4371', '35.5812', '0.7711'),
-('ModernPl4er', '122060', '87250', '33255', '27.2448', '38.1146', '0.7148'),
-('Mox', '16375', '15170', '1850', '11.2977', '12.1951', '0.9264'),
-('Mysan', '600', '540', '45', '7.5000', '8.3333', '0.9000'),
-('Nick', '165905', '147830', '42070', '25.3579', '28.4584', '0.8911'),
-('Nico', '17305', '14890', '5115', '29.5579', '34.3519', '0.8604'),
-('Odin', '2745', '2265', '0', '0.0000', '0.0000', '0.8251'),
-('Opsine', '17030', '16150', '3410', '20.0235', '21.1146', '0.9483'),
-('Otter', '8405', '6635', '1700', '20.2261', '25.6217', '0.7894'),
-('Popkornkopf', '12050', '9970', '1915', '15.8921', '19.2076', '0.8274'),
-('Rainn', '2380', '2230', '285', '11.9748', '12.7803', '0.9370'),
-('Reaper', '11015', '9115', '3540', '32.1380', '38.8371', '0.8275'),
-('Reazon', '77615', '67580', '31200', '40.1984', '46.1675', '0.8707'),
-('Reborn', '4690', '3215', '1520', '32.4094', '47.2784', '0.6855'),
-('Ritter', '2650', '2555', '45', '1.6981', '1.7613', '0.9642'),
-('Roc', '70215', '63945', '16710', '23.7983', '26.1318', '0.9107'),
-('Ruffamilia', '10820', '8195', '2465', '22.7819', '30.0793', '0.7574'),
-('SharkYx3', '40890', '31355', '7525', '18.4030', '23.9994', '0.7668'),
-('Sikk', '95920', '85850', '25215', '26.2875', '29.3710', '0.8950'),
-('Sil3nt', '15160', '12375', '5075', '33.4763', '41.0101', '0.8163'),
-('SirMafi', '22840', '17125', '4350', '19.0455', '25.4015', '0.7498'),
-('SkyxFlash', '129240', '102970', '30195', '23.3635', '29.3241', '0.7967'),
-('Snow', '138715', '110410', '26880', '19.3779', '24.3456', '0.7959'),
-('Sommersalami', '17850', '11690', '5015', '28.0952', '42.8999', '0.6549'),
-('TerrorKing', '2760', '2600', '40', '1.4493', '1.5385', '0.9420'),
-('TheAwesomeOne', '12090', '9915', '3280', '27.1299', '33.0812', '0.8201'),
-('TheMaster', '9150', '6465', '1715', '18.7432', '26.5275', '0.7066'),
-('TheMasterMan', '2060', '1840', '1010', '49.0291', '54.8913', '0.8932'),
-('TheTruth', '39525', '37605', '13460', '34.0544', '35.7931', '0.9514'),
-('TheUnownA', '24010', '20850', '5090', '21.1995', '24.4125', '0.8684'),
-('TimonAkaRaiden', '53360', '34660', '11220', '21.0270', '32.3716', '0.6496'),
-('Toyman', '1715', '1645', '805', '46.9388', '48.9362', '0.9592'),
-('Vanity', '5540', '5005', '1525', '27.5271', '30.4695', '0.9034'),
-('Vasco', '177535', '127125', '43510', '24.5078', '34.2262', '0.7161'),
-('West', '16490', '12935', '4175', '25.3184', '32.2768', '0.7844'),
-('WhityUntertan', '35355', '29440', '7260', '20.5346', '24.6603', '0.8327'),
-('xBooster', '1220', '590', '260', '21.3115', '44.0678', '0.4836'),
-('xErik', '212990', '170195', '52095', '24.4589', '30.6090', '0.7991'),
-('xScooter', '3395', '2675', '545', '16.0530', '20.3738', '0.7879'),
-('YaniCH', '17340', '13570', '4720', '27.2203', '34.7826', '0.7826'),
-('[TTeam]Axel', '92315', '76920', '14900', '16.1404', '19.3708', '0.8332'),
-('[TTeam]Blizard', '26205', '21745', '6970', '26.5980', '32.0533', '0.8298'),
-('[TTeam]Dom', '550', '260', '0', '0.0000', '0.0000', '0.4727'),
-('[TTeam]Johann', '32605', '22270', '105', '0.3220', '0.4715', '0.6830'),
-('[TTeam]Maxx', '205', '150', '0', '0.0000', '0.0000', '0.7317');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `archievments`
---
-ALTER TABLE `archievments`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `attackerladen`
---
-ALTER TABLE `attackerladen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `ban`
---
-ALTER TABLE `ban`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `beleidigungsystem`
---
-ALTER TABLE `beleidigungsystem`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Beleidigung` (`Beleidigung`), ADD KEY `connectedTo` (`connectedTo`);
-
---
--- Indexes for table `bewaehrungsstrafen`
---
-ALTER TABLE `bewaehrungsstrafen`
- ADD PRIMARY KEY (`ID`), ADD KEY `Adminname` (`Adminname`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `blacklist`
---
-ALTER TABLE `blacklist`
- ADD PRIMARY KEY (`ID`), ADD KEY `Name` (`Name`);
-
---
--- Indexes for table `buissness`
---
-ALTER TABLE `buissness`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `cp_deletes`
---
-ALTER TABLE `cp_deletes`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `data_fraktions_namen`
---
-ALTER TABLE `data_fraktions_namen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `data_fraktions_raenge`
---
-ALTER TABLE `data_fraktions_raenge`
- ADD PRIMARY KEY (`ID`), ADD KEY `FrakID` (`FrakID`);
-
---
--- Indexes for table `data_jobnamen`
---
-ALTER TABLE `data_jobnamen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `dev_beta`
---
-ALTER TABLE `dev_beta`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `drivein`
---
-ALTER TABLE `drivein`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `dutycounter`
---
-ALTER TABLE `dutycounter`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `UNIQUE` (`Nickname`,`timestamp`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `emails`
---
-ALTER TABLE `emails`
- ADD PRIMARY KEY (`ID`), ADD KEY `Empfaenger` (`Empfaenger`), ADD KEY `Sender` (`Sender`);
-
---
--- Indexes for table `faq`
---
-ALTER TABLE `faq`
- ADD PRIMARY KEY (`ID`), ADD KEY `katID` (`katID`);
-
---
--- Indexes for table `faq_kat`
---
-ALTER TABLE `faq_kat`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `frakkasse_zahlungen`
---
-ALTER TABLE `frakkasse_zahlungen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `fraktionskasse`
---
-ALTER TABLE `fraktionskasse`
- ADD PRIMARY KEY (`FrakID`);
-
---
--- Indexes for table `gutschriften`
---
-ALTER TABLE `gutschriften`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `haussys_hdb`
---
-ALTER TABLE `haussys_hdb`
- ADD PRIMARY KEY (`ID`), ADD KEY `IRID` (`IRID`), ADD KEY `IRID_2` (`IRID`);
-
---
--- Indexes for table `haussys_irdb`
---
-ALTER TABLE `haussys_irdb`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `haussys_wunsch`
---
-ALTER TABLE `haussys_wunsch`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `inventar`
---
-ALTER TABLE `inventar`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `jobskills`
---
-ALTER TABLE `jobskills`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `lizensen`
---
-ALTER TABLE `lizensen`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `multiaccount_serial`
---
-ALTER TABLE `multiaccount_serial`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `newtables`
---
-ALTER TABLE `newtables`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `ostereier`
---
-ALTER TABLE `ostereier`
- ADD PRIMARY KEY (`ID`), ADD KEY `gefundenVon` (`gefundenVon`), ADD KEY `event` (`event`);
-
---
--- Indexes for table `players`
---
-ALTER TABLE `players`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `premium`
---
-ALTER TABLE `premium`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Name` (`Name`);
-
---
--- Indexes for table `prestige`
---
-ALTER TABLE `prestige`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `rechte`
---
-ALTER TABLE `rechte`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `ruhezonen`
---
-ALTER TABLE `ruhezonen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `servermessage`
---
-ALTER TABLE `servermessage`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `serversettings`
---
-ALTER TABLE `serversettings`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `sprunk`
---
-ALTER TABLE `sprunk`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `tapp_tictactoe`
---
-ALTER TABLE `tapp_tictactoe`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`,`Gegner`), ADD KEY `Gegner` (`Gegner`);
-
---
--- Indexes for table `taxipreise`
---
-ALTER TABLE `taxipreise`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `terratapps`
---
-ALTER TABLE `terratapps`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `timeban`
---
-ALTER TABLE `timeban`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `tlt_friendlist`
---
-ALTER TABLE `tlt_friendlist`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`), ADD KEY `Friendname` (`Friendname`);
-
---
--- Indexes for table `tlt_friendrequest`
---
-ALTER TABLE `tlt_friendrequest`
- ADD PRIMARY KEY (`ID`), ADD KEY `Fromname` (`Fromname`), ADD KEY `Toname` (`Toname`);
-
---
--- Indexes for table `tombupot`
---
-ALTER TABLE `tombupot`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `top_user_daily`
---
-ALTER TABLE `top_user_daily`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `userdata`
---
-ALTER TABLE `userdata`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`), ADD KEY `verheiratet` (`verheiratet`), ADD KEY `verheiratet_2` (`verheiratet`);
-
---
--- Indexes for table `vehicles`
---
-ALTER TABLE `vehicles`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Unique` (`Besitzer`,`SlotID`);
-
---
--- Indexes for table `warns`
---
-ALTER TABLE `warns`
- ADD PRIMARY KEY (`ID`), ADD KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `werbungen`
---
-ALTER TABLE `werbungen`
- ADD PRIMARY KEY (`ID`);
-
---
--- Indexes for table `whitelist`
---
-ALTER TABLE `whitelist`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- Indexes for table `zeugnis`
---
-ALTER TABLE `zeugnis`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Nickname` (`Nickname`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `archievments`
---
-ALTER TABLE `archievments`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56525;
---
--- AUTO_INCREMENT for table `ban`
---
-ALTER TABLE `ban`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3524;
---
--- AUTO_INCREMENT for table `beleidigungsystem`
---
-ALTER TABLE `beleidigungsystem`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
---
--- AUTO_INCREMENT for table `bewaehrungsstrafen`
---
-ALTER TABLE `bewaehrungsstrafen`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `blacklist`
---
-ALTER TABLE `blacklist`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10564;
---
--- AUTO_INCREMENT for table `buissness`
---
-ALTER TABLE `buissness`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `cp_deletes`
---
-ALTER TABLE `cp_deletes`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51572;
---
--- AUTO_INCREMENT for table `data_fraktions_raenge`
---
-ALTER TABLE `data_fraktions_raenge`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=74;
---
--- AUTO_INCREMENT for table `dev_beta`
---
-ALTER TABLE `dev_beta`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
---
--- AUTO_INCREMENT for table `drivein`
---
-ALTER TABLE `drivein`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `dutycounter`
---
-ALTER TABLE `dutycounter`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=87081;
---
--- AUTO_INCREMENT for table `emails`
---
-ALTER TABLE `emails`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=588;
---
--- AUTO_INCREMENT for table `faq`
---
-ALTER TABLE `faq`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `faq_kat`
---
-ALTER TABLE `faq_kat`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `frakkasse_zahlungen`
---
-ALTER TABLE `frakkasse_zahlungen`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `gutschriften`
---
-ALTER TABLE `gutschriften`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1828;
---
--- AUTO_INCREMENT for table `haussys_hdb`
---
-ALTER TABLE `haussys_hdb`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=133;
---
--- AUTO_INCREMENT for table `haussys_irdb`
---
-ALTER TABLE `haussys_irdb`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT for table `haussys_wunsch`
---
-ALTER TABLE `haussys_wunsch`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=536;
---
--- AUTO_INCREMENT for table `inventar`
---
-ALTER TABLE `inventar`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56632;
---
--- AUTO_INCREMENT for table `jobskills`
---
-ALTER TABLE `jobskills`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65369;
---
--- AUTO_INCREMENT for table `lizensen`
---
-ALTER TABLE `lizensen`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65369;
---
--- AUTO_INCREMENT for table `multiaccount_serial`
---
-ALTER TABLE `multiaccount_serial`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
---
--- AUTO_INCREMENT for table `newtables`
---
-ALTER TABLE `newtables`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `ostereier`
---
-ALTER TABLE `ostereier`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4543;
---
--- AUTO_INCREMENT for table `players`
---
-ALTER TABLE `players`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56578;
---
--- AUTO_INCREMENT for table `premium`
---
-ALTER TABLE `premium`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56216;
---
--- AUTO_INCREMENT for table `prestige`
---
-ALTER TABLE `prestige`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
---
--- AUTO_INCREMENT for table `rechte`
---
-ALTER TABLE `rechte`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32357;
---
--- AUTO_INCREMENT for table `ruhezonen`
---
-ALTER TABLE `ruhezonen`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `servermessage`
---
-ALTER TABLE `servermessage`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=315762;
---
--- AUTO_INCREMENT for table `serversettings`
---
-ALTER TABLE `serversettings`
-MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `sprunk`
---
-ALTER TABLE `sprunk`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=50;
---
--- AUTO_INCREMENT for table `tapp_tictactoe`
---
-ALTER TABLE `tapp_tictactoe`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1023;
---
--- AUTO_INCREMENT for table `taxipreise`
---
-ALTER TABLE `taxipreise`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `terratapps`
---
-ALTER TABLE `terratapps`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=51478;
---
--- AUTO_INCREMENT for table `timeban`
---
-ALTER TABLE `timeban`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1714;
---
--- AUTO_INCREMENT for table `tlt_friendlist`
---
-ALTER TABLE `tlt_friendlist`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17565;
---
--- AUTO_INCREMENT for table `tlt_friendrequest`
---
-ALTER TABLE `tlt_friendrequest`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11136;
---
--- AUTO_INCREMENT for table `tombupot`
---
-ALTER TABLE `tombupot`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `top_user_daily`
---
-ALTER TABLE `top_user_daily`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `userdata`
---
-ALTER TABLE `userdata`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56518;
---
--- AUTO_INCREMENT for table `vehicles`
---
-ALTER TABLE `vehicles`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=86109;
---
--- AUTO_INCREMENT for table `warns`
---
-ALTER TABLE `warns`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1371;
---
--- AUTO_INCREMENT for table `werbungen`
---
-ALTER TABLE `werbungen`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
---
--- AUTO_INCREMENT for table `whitelist`
---
-ALTER TABLE `whitelist`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `zeugnis`
---
-ALTER TABLE `zeugnis`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34182;
---
--- Constraints der exportierten Tabellen
---
-
---
--- Constraints der Tabelle `archievments`
---
-ALTER TABLE `archievments`
-ADD CONSTRAINT `archievments_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `ban`
---
-ALTER TABLE `ban`
-ADD CONSTRAINT `ban_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `beleidigungsystem`
---
-ALTER TABLE `beleidigungsystem`
-ADD CONSTRAINT `beleidigungsystem_ibfk_1` FOREIGN KEY (`connectedTo`) REFERENCES `beleidigungsystem` (`Beleidigung`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `bewaehrungsstrafen`
---
-ALTER TABLE `bewaehrungsstrafen`
-ADD CONSTRAINT `bewaehrungsstrafen_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `bewaehrungsstrafen_ibfk_2` FOREIGN KEY (`Adminname`) REFERENCES `players` (`Nickname`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `blacklist`
---
-ALTER TABLE `blacklist`
-ADD CONSTRAINT `blacklist_ibfk_1` FOREIGN KEY (`Name`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `data_fraktions_raenge`
---
-ALTER TABLE `data_fraktions_raenge`
-ADD CONSTRAINT `data_fraktions_raenge_ibfk_1` FOREIGN KEY (`FrakID`) REFERENCES `data_fraktions_namen` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `dev_beta`
---
-ALTER TABLE `dev_beta`
-ADD CONSTRAINT `dev_beta_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `dutycounter`
---
-ALTER TABLE `dutycounter`
-ADD CONSTRAINT `dutycounter_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `emails`
---
-ALTER TABLE `emails`
-ADD CONSTRAINT `emails_ibfk_1` FOREIGN KEY (`Empfaenger`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `emails_ibfk_2` FOREIGN KEY (`Sender`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `faq`
---
-ALTER TABLE `faq`
-ADD CONSTRAINT `faq_ibfk_1` FOREIGN KEY (`katID`) REFERENCES `faq_kat` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `gutschriften`
---
-ALTER TABLE `gutschriften`
-ADD CONSTRAINT `gutschriften_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `haussys_hdb`
---
-ALTER TABLE `haussys_hdb`
-ADD CONSTRAINT `haussys_hdb_ibfk_1` FOREIGN KEY (`IRID`) REFERENCES `haussys_irdb` (`ID`) ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `haussys_wunsch`
---
-ALTER TABLE `haussys_wunsch`
-ADD CONSTRAINT `haussys_wunsch_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `inventar`
---
-ALTER TABLE `inventar`
-ADD CONSTRAINT `inventar_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `jobskills`
---
-ALTER TABLE `jobskills`
-ADD CONSTRAINT `jobskills_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `lizensen`
---
-ALTER TABLE `lizensen`
-ADD CONSTRAINT `lizensen_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `ostereier`
---
-ALTER TABLE `ostereier`
-ADD CONSTRAINT `ostereier_ibfk_1` FOREIGN KEY (`gefundenVon`) REFERENCES `players` (`Nickname`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `premium`
---
-ALTER TABLE `premium`
-ADD CONSTRAINT `premium_ibfk_1` FOREIGN KEY (`Name`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `rechte`
---
-ALTER TABLE `rechte`
-ADD CONSTRAINT `rechte_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `servermessage`
---
-ALTER TABLE `servermessage`
-ADD CONSTRAINT `servermessage_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `tapp_tictactoe`
---
-ALTER TABLE `tapp_tictactoe`
-ADD CONSTRAINT `tapp_tictactoe_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `tapp_tictactoe_ibfk_2` FOREIGN KEY (`Gegner`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `terratapps`
---
-ALTER TABLE `terratapps`
-ADD CONSTRAINT `terratapps_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `timeban`
---
-ALTER TABLE `timeban`
-ADD CONSTRAINT `timeban_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `tlt_friendlist`
---
-ALTER TABLE `tlt_friendlist`
-ADD CONSTRAINT `tlt_friendlist_ibfk_1` FOREIGN KEY (`Friendname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `tlt_friendlist_ibfk_2` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `tlt_friendrequest`
---
-ALTER TABLE `tlt_friendrequest`
-ADD CONSTRAINT `tlt_friendrequest_ibfk_1` FOREIGN KEY (`Fromname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `tlt_friendrequest_ibfk_2` FOREIGN KEY (`Toname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `tombupot`
---
-ALTER TABLE `tombupot`
-ADD CONSTRAINT `tombupot_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `userdata`
---
-ALTER TABLE `userdata`
-ADD CONSTRAINT `userdata_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `vehicles`
---
-ALTER TABLE `vehicles`
-ADD CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`Besitzer`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `warns`
---
-ALTER TABLE `warns`
-ADD CONSTRAINT `warns_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `whitelist`
---
-ALTER TABLE `whitelist`
-ADD CONSTRAINT `whitelist_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints der Tabelle `zeugnis`
---
-ALTER TABLE `zeugnis`
-ADD CONSTRAINT `zeugnis_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `players` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `admin_data_badwords`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Beleidigung` (`Beleidigung`),
+  ADD KEY `connectedTo` (`connectedTo`);
+
+ALTER TABLE `admin_dev_access`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `admin_user_bans`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `admin_user_paroles`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Adminname` (`Adminname`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `admin_user_timebans`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `admin_whitelist`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `admin_whitelist_multiaccounts`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `data_advertising`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `data_faq`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `katID` (`katID`);
+
+ALTER TABLE `data_faq_category`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `data_jobnames`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `data_settings`
+  ADD PRIMARY KEY (`Name`);
+
+ALTER TABLE `data_taxi_prices`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `faction_blacklist`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Name` (`Name`);
+
+ALTER TABLE `faction_inventory`
+  ADD PRIMARY KEY (`FrakID`);
+
+ALTER TABLE `faction_names`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `faction_ranks`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FrakID` (`FrakID`);
+
+ALTER TABLE `faction_shops`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `faction_userrights`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `log_ad`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_ad_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_badword`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_badword_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_biz`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `log_casino`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_casino_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_chat`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_chat_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_delstvo`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_delstvo_user_Nickname_fk` (`Von`),
+  ADD KEY `log_delstvo_user_wer_Nickname_fk` (`Wer`);
+
+ALTER TABLE `log_faction_inventory`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `log_loosedriverlicense`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_loosedriverlicense_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_playermoney`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_playermoney_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_premium`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_premium_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_serveradvertising`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_serveradvertising_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `log_steuern`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `log_steuern_user_Nickname_fk` (`Nickname`);
+
+ALTER TABLE `objects_businesses`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `objects_drivein`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `objects_events_pickups`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `gefundenVon` (`gefundenVon`),
+  ADD KEY `event` (`event`);
+
+ALTER TABLE `objects_houses`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `IRID` (`IRID`),
+  ADD KEY `IRID_2` (`IRID`);
+
+ALTER TABLE `objects_houses_rooms`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `objects_houses_wishes`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `objects_restareas`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `objects_sprunk`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `object_prestiges`
+  ADD PRIMARY KEY (`ID`);
+
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`) USING BTREE;
+
+ALTER TABLE `user_achievements`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_data`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`),
+  ADD KEY `verheiratet` (`verheiratet`),
+  ADD KEY `verheiratet_2` (`verheiratet`);
+
+ALTER TABLE `user_emails`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Empfaenger` (`Empfaenger`),
+  ADD KEY `Sender` (`Sender`);
+
+ALTER TABLE `user_gifts`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_grades`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_inventory`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_jobskills`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_licenses`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_offline_messages`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_premium`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Name` (`Name`);
+
+ALTER TABLE `user_tapps`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_tapps_friendlist`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`),
+  ADD KEY `Friendname` (`Friendname`);
+
+ALTER TABLE `user_tapps_friendlist_request`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Fromname` (`Fromname`),
+  ADD KEY `Toname` (`Toname`);
+
+ALTER TABLE `user_tapps_tictactoe`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`,`Gegner`),
+  ADD KEY `Gegner` (`Gegner`);
+
+ALTER TABLE `user_tombupot`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+ALTER TABLE `user_vehicles`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Unique` (`Besitzer`,`SlotID`);
+
+ALTER TABLE `user_warns`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Nickname` (`Nickname`);
+
+
+ALTER TABLE `admin_data_badwords`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_dev_access`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_user_bans`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_user_paroles`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_user_timebans`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_whitelist`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `admin_whitelist_multiaccounts`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `data_advertising`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `data_faq`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `data_faq_category`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `data_taxi_prices`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `faction_blacklist`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `faction_ranks`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `faction_userrights`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_ad`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_badword`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_biz`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_casino`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_chat`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_delstvo`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_faction_inventory`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_loosedriverlicense`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_playermoney`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_premium`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_serveradvertising`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `log_steuern`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_businesses`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_drivein`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_events_pickups`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_houses`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_houses_rooms`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_houses_wishes`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_restareas`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `objects_sprunk`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `object_prestiges`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_achievements`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_data`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_emails`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_gifts`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_grades`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_inventory`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_jobskills`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_licenses`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_offline_messages`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_premium`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_tapps`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_tapps_friendlist`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_tapps_friendlist_request`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_tapps_tictactoe`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_tombupot`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_vehicles`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `user_warns`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `admin_data_badwords`
+  ADD CONSTRAINT `beleidigungsystem_ibfk_1` FOREIGN KEY (`connectedTo`) REFERENCES `admin_data_badwords` (`Beleidigung`);
+
+ALTER TABLE `admin_dev_access`
+  ADD CONSTRAINT `admin_dev_access_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`);
+
+ALTER TABLE `admin_user_bans`
+  ADD CONSTRAINT `admin_user_bans_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `admin_user_paroles`
+  ADD CONSTRAINT `admin_user_paroles_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `admin_user_paroles_ibfk_2` FOREIGN KEY (`Adminname`) REFERENCES `user` (`Nickname`) ON DELETE SET NULL ON UPDATE SET NULL;
+
+ALTER TABLE `admin_user_timebans`
+  ADD CONSTRAINT `admin_user_timebans_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `admin_whitelist`
+  ADD CONSTRAINT `admin_whitelist_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `data_faq`
+  ADD CONSTRAINT `data_faq_ibfk_1` FOREIGN KEY (`katID`) REFERENCES `data_faq_category` (`ID`);
+
+ALTER TABLE `faction_blacklist`
+  ADD CONSTRAINT `faction_blacklist_ibfk_1` FOREIGN KEY (`Name`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `faction_userrights`
+  ADD CONSTRAINT `faction_userrights_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_casino`
+  ADD CONSTRAINT `log_casino_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_delstvo`
+  ADD CONSTRAINT `log_delstvo_user_Nickname_fk` FOREIGN KEY (`Von`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `log_delstvo_user_wer_Nickname_fk` FOREIGN KEY (`Wer`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_loosedriverlicense`
+  ADD CONSTRAINT `log_loosedriverlicense_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_playermoney`
+  ADD CONSTRAINT `log_playermoney_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_premium`
+  ADD CONSTRAINT `log_premium_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `log_steuern`
+  ADD CONSTRAINT `log_steuern_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `objects_events_pickups`
+  ADD CONSTRAINT `objects_events_pickups_ibfk_1` FOREIGN KEY (`gefundenVon`) REFERENCES `user` (`Nickname`);
+
+ALTER TABLE `objects_houses`
+  ADD CONSTRAINT `objects_houses_ibfk_1` FOREIGN KEY (`IRID`) REFERENCES `objects_houses_rooms` (`ID`);
+
+ALTER TABLE `objects_houses_wishes`
+  ADD CONSTRAINT `objects_houses_wishes_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`);
+
+ALTER TABLE `user_achievements`
+  ADD CONSTRAINT `user_achievements_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_data`
+  ADD CONSTRAINT `user_data_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_emails`
+  ADD CONSTRAINT `user_emails_ibfk_1` FOREIGN KEY (`Empfaenger`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_emails_ibfk_2` FOREIGN KEY (`Sender`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_gifts`
+  ADD CONSTRAINT `user_gifts_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_grades`
+  ADD CONSTRAINT `user_grades_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_inventory`
+  ADD CONSTRAINT `user_inventory_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_jobskills`
+  ADD CONSTRAINT `user_jobskills_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_licenses`
+  ADD CONSTRAINT `user_licenses_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_offline_messages`
+  ADD CONSTRAINT `user_offline_messages_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_premium`
+  ADD CONSTRAINT `user_premium_ibfk_1` FOREIGN KEY (`Name`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_tapps`
+  ADD CONSTRAINT `user_tapps_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_tapps_friendlist`
+  ADD CONSTRAINT `user_tapps_friendlist_ibfk_1` FOREIGN KEY (`Friendname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_tapps_friendlist_ibfk_2` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_tapps_friendlist_request`
+  ADD CONSTRAINT `user_tapps_friendlist_request_ibfk_1` FOREIGN KEY (`Fromname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_tapps_friendlist_request_ibfk_2` FOREIGN KEY (`Toname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_tapps_tictactoe`
+  ADD CONSTRAINT `user_tapps_tictactoe_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_tapps_tictactoe_ibfk_2` FOREIGN KEY (`Gegner`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_tombupot`
+  ADD CONSTRAINT `user_tombupot_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_vehicles`
+  ADD CONSTRAINT `user_vehicles_ibfk_1` FOREIGN KEY (`Besitzer`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `user_warns`
+  ADD CONSTRAINT `user_warns_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

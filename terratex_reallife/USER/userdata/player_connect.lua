@@ -158,7 +158,7 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             MySql.helper.insert("user_inventory", { Nickname = nickname });
             MySql.helper.insert("user_achievements", { Nickname = nickname });
             MySql.helper.insert("user_tapps", { Nickname = nickname });
-            MySql.helper.insert("faction_userights", { Nickname = nickname });
+            MySql.helper.insert("faction_userrights", { Nickname = nickname });
             MySql.helper.insert("user_premium", { Name = nickname });
 
             dbExec(MySql._connection, "UPDATE user SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
@@ -233,8 +233,8 @@ function LoginPlayerData(nickname, pw)
         if not (MySql.helper.existSync("user_tapps", { Nickname = getPlayerName(source) })) then
             MySql.helper.insertSync("user_tapps", { Nickname = nickname });
         end
-        if not (MySql.helper.existSync("faction_userights", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("faction_userights", { Nickname = nickname });
+        if not (MySql.helper.existSync("faction_userrights", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("faction_userrights", { Nickname = nickname });
         end
         if not (MySql.helper.existSync("user_licenses", { Nickname = getPlayerName(source) })) then
             MySql.helper.insertSync("user_licenses", { Nickname = nickname });
@@ -282,7 +282,7 @@ function LoginPlayerData(nickname, pw)
         local archievmentsData = tmp[1];
         tmp = MySql.helper.getSync("user_grades", "*", { Nickname = nickname });
         local zeugnisData = tmp[1];
-        tmp = MySql.helper.getSync("faction_userights", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("faction_userrights", "*", { Nickname = nickname });
         local rechteData = tmp[1];
 
         setPlayerName(source, playersData["Nickname"])

@@ -9,8 +9,8 @@ function save_data()
             local setTable = {}
 
             --rechte
-            setTable["faction_userights"] = {}
-            setTable["faction_userights"]["AllLeader"] = vioGetElementData(source, "rechte_AllLeader")
+            setTable["faction_userrights"] = {}
+            setTable["faction_userrights"]["AllLeader"] = vioGetElementData(source, "rechte_AllLeader")
 
             --Userdata
             setTable["user_data"] = {}

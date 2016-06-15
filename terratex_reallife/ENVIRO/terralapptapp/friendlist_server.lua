@@ -114,7 +114,7 @@ addEvent("sendAnfrageFriendlist", true)
 function sendAnfrageFriendlist_func(name)
     if (name) then
         if (name ~= "") then
-            if (MySql.helper.existSync("user_tapps_friendlist_request", {Nickname = name})) then
+            if (MySql.helper.existSync("user", {Nickname = name})) then
 
                 if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
                     showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))

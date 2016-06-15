@@ -126,8 +126,10 @@ function getTicTacToeData_func()
     local query="SELECT * FROM user_tapps_tictactoe WHERE Nickname = ? or Gegner = ? ORDER BY ID DESC";
     local runQuery = dbQuery(MySql._connection, query, getPlayerName(source), getPlayerName(source))
 	local result = dbPoll(runQuery, -1);
+
+    local gameTable = {};
 	for theKey, dsatz in ipairs(result) do
-		table.insert(gameTable,dsatz)
+		table.insert(gameTable, dsatz)
     end
     triggerClientEvent(source,"sendTTTDataToClient",source,gameTable)
 end

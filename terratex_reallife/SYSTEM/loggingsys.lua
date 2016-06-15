@@ -109,7 +109,7 @@ local schwereListe = {}
 function load_beleidigungslisten()
     local result = MySql.helper.getSync("admin_data_badwords", "*");
     for theKey, dsatz in ipairs(result) do
-        if (dsatz["Type"] == "0") then
+        if (tonumber(dsatz["Type"]) == 0) then
             table.insert(leichteListe, dsatz["Beleidigung"])
         else
             table.insert(schwereListe, dsatz["Beleidigung"])

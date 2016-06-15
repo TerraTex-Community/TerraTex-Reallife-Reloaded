@@ -27,7 +27,7 @@ function buySuperShopGUI(id)
         local playerbetrag=0
 
 
-		if(id==6 or id==7 or id==8 or id==9)then
+		if(id==5 or id==6 or id==7 or id==8)then
 			local faktor=1
 			if(isWetterEventID==1)then
 				faktor=3
@@ -61,29 +61,25 @@ function buySuperShopGUI(id)
 			showError(source,"Du hast erfolgreich einen Lottoschein gekauft!")
 			serversettings["lottojackpot"]=serversettings["lottojackpot"]+10.00
 		elseif(id==5)then
-			vioSetElementData(source,"rubbellos",vioGetElementData(source,"rubbellos")+1)
-			showError(source,"Du hast erfolgreich ein Rubbellos gekauft!")
-			serversettings["lottojackpot"]=serversettings["lottojackpot"]+0.10
-		elseif(id==6)then
 			vioSetElementData(source,"snack",vioGetElementData(source,"snack")+1)
 			showError(source,"Du hast erfolgreich ein Snack gekauft!")
-		elseif(id==7)then
+		elseif(id==6)then
 			vioSetElementData(source,"hamburger",vioGetElementData(source,"hamburger")+1)
 			showError(source,"Du hast erfolgreich ein Hamburger gekauft!")
-		elseif(id==8)then
+		elseif(id==7)then
 			vioSetElementData(source,"fertigessen",vioGetElementData(source,"fertigessen")+1)
 			showError(source,"Du hast erfolgreich ein Fertigessen gekauft!")
-		elseif(id==9)then
+		elseif(id==8)then
 			vioSetElementData(source,"schnellhilfe",vioGetElementData(source,"schnellhilfe")+1)
 			showError(source,"Du hast erfolgreich ein Schnellhilfe gekauft!")
-		elseif(id==10)then
+		elseif(id==9)then
 			vioSetElementData(source,"carfinder",vioGetElementData(source,"carfinder")+1)
 			showError(source,"Du hast erfolgreich ein CarFinder gekauft!")
-		elseif(id==11)then
+		elseif(id==10)then
 			vioSetElementData(source,"Hufeisenhelfer",vioGetElementData(source,"Hufeisenhelfer")+1)
 			showError(source,"Du hast erfolgreich ein Hufeisenhelfer gekauft!")
 		
-		elseif(id==12)then
+		elseif(id==11)then
 			if(vioGetElementData(source,"terralapptapp")>0)then
 				showError(source,"Du hast bereits einen TerraLappTapp!")
                 playerbetrag=0
@@ -91,7 +87,7 @@ function buySuperShopGUI(id)
 				vioSetElementData(source,"terralapptapp",1)
 				showError(source,"Du hast erfolgreich ein TerraLappTapp gekauft!")
 			end
-		elseif(id==13)then
+		elseif(id==12)then
 			if(vioGetElementData(source,"tachodig_addon")>0)then
 				showError(source,"Du hast bereits eine digitale Tachoerweiterung!")
                 playerbetrag=0
@@ -99,7 +95,7 @@ function buySuperShopGUI(id)
 				vioSetElementData(source,"tachodig_addon",1)
 				showError(source,"Du hast erfolgreich eine digitale Tachoerweiterung gekauft!")
 			end
-		elseif(id==14)then
+		elseif(id==13)then
 			if(vioGetElementData(source,"dice")<10)then
 				vioSetElementData(source,"dice",vioGetElementData(source,"dice")+1)
 				showError(source,"Du hast erfolgreich einen Würfel gekauft!")
@@ -107,10 +103,10 @@ function buySuperShopGUI(id)
                 playerbetrag=0
 				showError(source,"Du kannst höchstens 10 Würfel besitzen!")
 			end
-        elseif(id==15)then
+        elseif(id==14)then
             vioSetElementData(source,"Kondome",vioGetElementData(source,"Kondome")+5)
             showError(source,"Du hast erfolgreich eine 5er Packung Kondome gekauft!")
-        elseif(id==16)then
+        elseif(id==15)then
             vioSetElementData(source,"blutmesser",vioGetElementData(source,"blutmesser")+5)
             showError(source,"Du hast 5 Blutteststreifen gekauft.")
         end

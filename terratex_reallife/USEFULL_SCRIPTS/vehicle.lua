@@ -28,11 +28,3 @@ function isVehicleOnRoof(vehicle)
     end
     return false
 end
-
-
-
-
-
-
-
-

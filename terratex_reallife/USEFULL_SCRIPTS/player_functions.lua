@@ -93,7 +93,6 @@ end
 function getClientRandomPlayer()
     local player=getElementsByType("player")
     return player[math.random(1,table.getSize(player))]
-
 end
 
 function getPlayersByDataValue(dataTag, dataValue )

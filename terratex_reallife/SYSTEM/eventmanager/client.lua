@@ -2,12 +2,10 @@ addEvent("onPlayerEnterWater",true)
 addEvent("onPlayerLeaveWater",true)
 addEvent("onVehicleEnterWater",true)
 
-
 local preDefs={
 	["wasInWater"]=false,
 	["vehiclesInWater"]={}
 }
-
 
 function oneventmanager_func ()
 	--PedEnterWater
@@ -39,11 +37,3 @@ function oneventmanager_func ()
 		end	
 end
 addEventHandler ( "onClientRender", getRootElement(), oneventmanager_func )
-
-
-
-
-
-
-
-

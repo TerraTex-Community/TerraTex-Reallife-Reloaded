@@ -3,7 +3,6 @@ function kickMeBecauseWrongVersion_func(player)
     if source ~= client then return end
     kickPlayer(player, "You have an older Version, upgrade on www.mtasa.com!")
 end
-
 addEventHandler("kickMeBecauseWrongVersion", getRootElement(), kickMeBecauseWrongVersion_func)
 
 local isDevServerV = false
@@ -11,7 +10,6 @@ function isDevServer() return isDevServerV end
 
 serversettings = {}
 Tagesdurchnitte = {}
-
 
 function version_func(thePlayer)
     outputChatBox(string.format("Aktuelle Serverversion: %s", serversettings["Version"]), thePlayer)

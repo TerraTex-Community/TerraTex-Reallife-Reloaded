@@ -46,13 +46,3 @@ function enable_input_gui()
     toggleAllControls (true,true,true)
 end
 addEventHandler("onClientGUIBlur",getRootElement(),enable_input_gui)
-
-
-
-
-
-
-
-
-
-

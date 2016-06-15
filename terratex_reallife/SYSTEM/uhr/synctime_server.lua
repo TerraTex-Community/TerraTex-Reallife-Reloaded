@@ -12,11 +12,3 @@ function syncYourTimeDeliver()
     triggerClientEvent(getRootElement(),"syncYourTime",getRootElement(),time.hour,time.minute)
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),syncYourTimeDeliver)
-
-
-
-
-
-
-
-

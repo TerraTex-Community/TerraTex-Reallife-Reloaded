@@ -40,12 +40,3 @@ function closeAskGUI()
 	showCursor(false)
 end
 -- End of DKR QT to Lua code --
-
-
-
-
-
-
-
-
-

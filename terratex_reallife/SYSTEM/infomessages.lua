@@ -14,7 +14,6 @@ function messageA()
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),messageA)
 
-
 function messageB()
 	local players=getElementsByType("player")
 	for theKey,thePlayer in ipairs(players) do
@@ -47,14 +46,3 @@ function messageC()
 	end
 	setTimer(messageA,1800000,1)
 end
-
-
-
-
-
-
-
-
-
-
-

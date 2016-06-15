@@ -25,13 +25,3 @@ function dxDrawTextWithShadow( shadowaroundsize,shadowcolor, text,  left, top , 
 
     dxDrawText( text,  left, top , right, bottom, color,scale, font, alignX, alignY,clip, wordBreak, postGUI,colorCoded, subPixelPositioning,fRotation, fRotationCenterX, fRotationCenterY)
 end
-
-
-
-
-
-
-
-
-
-

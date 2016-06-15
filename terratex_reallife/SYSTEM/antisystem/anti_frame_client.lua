@@ -3,16 +3,11 @@ local minFrameRate=10
 local crashesToKick=10
 local showWarning=true
 
-
 --Vars
 local lastFramesPerSecond=0
 local actualFramesPerSecond=0
 local showFrames=false
 local frameCrashLastPerMinute=0
-
-
-
-
 
 function onFrameRecordStart()
 	setTimer(recordNewFrameRate,1000,0)

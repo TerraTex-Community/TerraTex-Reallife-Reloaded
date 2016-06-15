@@ -58,7 +58,6 @@
 			<script src="SYSTEM/banksys/banksys.lua" type="server" />
 			<script src="SYSTEM/banksys/banksys_client.lua" type="client" />
 		<!-- ANTISYSTEM-->
-			<script src="SYSTEM/antisystem/anti_admin_client.lua" type="client" /> 
 			<script src="SYSTEM/antisystem/anti_cheat_client.lua" type="client" /> 
 			<script src="SYSTEM/antisystem/anti_spam_server.lua" type="server" /> 
 			<script src="SYSTEM/antisystem/anti_ping_server.lua" type="server" /> 

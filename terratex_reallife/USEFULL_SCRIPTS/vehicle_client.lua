@@ -6,8 +6,6 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-
-
 addEvent("ejectFromVehicle",true)
 function ejectFromVehicle_func()
     if(isPedInVehicle(getLocalPlayer()))then
@@ -15,13 +13,3 @@ function ejectFromVehicle_func()
     end
 end
 addEventHandler("ejectFromVehicle",getRootElement(),ejectFromVehicle_func)
-
-
-
-
-
-
-
-
-
-

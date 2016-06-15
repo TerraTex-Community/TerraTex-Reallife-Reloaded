@@ -5,11 +5,3 @@ function loadAntiCheat_pre()
 	setWorldSpecialPropertyEnabled ( "extrajump",false)
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),loadAntiCheat_pre)
-
-
-
-
-
-
-
-

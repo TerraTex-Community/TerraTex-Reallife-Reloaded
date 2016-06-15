@@ -19,11 +19,3 @@ function onVehiclePreEnterWater_func()
 	end
 end
 addEventHandler("onVehiclePreEnterWater",getRootElement(),onVehiclePreEnterWater_func)
-
-
-
-
-
-
-
-

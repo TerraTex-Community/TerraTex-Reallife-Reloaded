@@ -11,13 +11,3 @@ function syncMyTime(hour,minute)
     setTime(hour,minute)
 end
 addEventHandler("syncYourTime",getRootElement(),syncMyTime)
-
-
-
-
-
-
-
-
-
-

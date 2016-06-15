@@ -5,11 +5,3 @@ function onKickUserFrameRate_func()
 	kickPlayer(source,"Deine Framerate ist derzeit zu instabil! (Zuviele Frameeinbrüche [<10 FPS] in einer Minute)")
 end
 addEventHandler("onKickUserFrameRate",getRootElement(),onKickUserFrameRate_func)
-
-
-
-
-
-
-
-

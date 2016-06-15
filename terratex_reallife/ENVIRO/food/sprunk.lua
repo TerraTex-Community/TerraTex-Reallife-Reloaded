@@ -2,7 +2,7 @@ sprunktable = {}
 
 function startTrinkCreate()
 
-    local result = MySql.helper.getSync("sprunk", "*");
+    local result = MySql.helper.getSync("objects_sprunk", "*");
     for theKey, dasatz in ipairs(result) do
 
         local colShape = createColSphere(dasatz["X"], dasatz["Y"], dasatz["Z"], 0.5)
@@ -19,7 +19,7 @@ function addSprunk_func(thePlayer, cmd, ...)
         local rx, ry, rz = getElementRotation(thePlayer)
         local kom = "" .. table.concat({ ... }, " ")
 
-        MySql.helper.insert("sprunk", {
+        MySql.helper.insert("objects_sprunk", {
             X = x,
             Y = y,
             Z = z,

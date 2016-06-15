@@ -19,7 +19,7 @@ function ostern_init()
     --vom 18.04.2014 - 21.04.2014
     if((timer.monthday>=5 and timer.monthday<=7) and (timer.month+1)==4 and (timer.year+1900)==2015)then
 
-        local query="SELECT * FROM ostereier WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
+        local query="SELECT * FROM objects_events_pickups WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
         local runQuery = dbQuery(MySql._connection, query);
         local result = dbPoll(runQuery, -1);
         for theKey, dsatz in ipairs(result) do
@@ -46,7 +46,7 @@ function respawnEier()
        end
    end
    eier={}
-   local query="SELECT * FROM ostereier WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
+   local query="SELECT * FROM objects_events_pickups WHERE State='0' AND event='ostern' ORDER BY RAND() LIMIT 0,"..maxEier
 
    local runQuery = dbQuery(MySql._connection, query);
    local result = dbPoll(runQuery, -1);
@@ -71,10 +71,10 @@ function eiHit(thePlayer)
         destroyElement(source)
         local pName=getPlayerName(thePlayer)
 
-        MySql.helper.update("ostereier", { State = 1 }, { ID = id});
-        MySql.helper.update("ostereier", { gefundenVon = pName }, { ID = id});
+        MySql.helper.update("objects_events_pickups", { State = 1 }, { ID = id});
+        MySql.helper.update("objects_events_pickups", { gefundenVon = pName }, { ID = id});
 
-        local anzGefunden = MySql.helper.getValueSync("ostereier", "count(*)", {gefundenVon = pName, event = "ostern"});
+        local anzGefunden = MySql.helper.getValueSync("objects_events_pickups", "count(*)", {gefundenVon = pName, event = "ostern"});
 
         outputChatBox("Osterhase: Glückwunsch, du hast jetzt schon "..anzGefunden.." Ostereier gefunden",thePlayer,math.random(1,255),math.random(1,255),math.random(1,255))
 
@@ -102,9 +102,9 @@ function addEi_func(thePlayer,cmd,comment,...)
         local dim=getElementDimension(thePlayer)
         local x,y,z=getElementPosition(thePlayer)
 
-        local insertQuery="INSERT INTO ostereier (x,y,z,inte,dim,comment) VALUES ('%s','%s','%s','%s','%s','%s')"
+        local insertQuery="INSERT INTO objects_events_pickups (x,y,z,inte,dim,comment) VALUES ('%s','%s','%s','%s','%s','%s')"
 
-        MySql.helper.insert("ostereier", {
+        MySql.helper.insert("objects_events_pickups", {
             x = x,
             y = y,
             z = z,

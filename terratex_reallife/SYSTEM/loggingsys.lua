@@ -5,7 +5,7 @@ function frakdepot_log(Fraktion, Typ, Betrag, Name, Grund)
     local time = getRealTime()
     local timestamp = time.timestamp
     if not Grund then
-        MySql.helper.insert("frakkasse_zahlungen", {
+        MySql.helper.insert("log_faction_inventory", {
             Fraktion = Fraktion,
             Typ = Typ,
             Betrag = Betrag,
@@ -14,7 +14,7 @@ function frakdepot_log(Fraktion, Typ, Betrag, Name, Grund)
         });
 
     else
-        MySql.helper.insert("frakkasse_zahlungen", {
+        MySql.helper.insert("log_faction_inventory", {
             Fraktion = Fraktion,
             Typ = Typ,
             Betrag = Betrag,
@@ -107,7 +107,7 @@ local leichteListe = {}
 local schwereListe = {}
 
 function load_beleidigungslisten()
-    local result = MySql.helper.getSync("beleidigungsystem", "*");
+    local result = MySql.helper.getSync("admin_data_badwords", "*");
     for theKey, dsatz in ipairs(result) do
         if (dsatz["Type"] == "0") then
             table.insert(leichteListe, dsatz["Beleidigung"])
@@ -181,7 +181,7 @@ function checkBeleidigung(thePlayer, Message)
         local IP = getPlayerIP(theBeBanned)
         local Serial = getPlayerSerial(theBeBanned)
 
-        MySql.helper.insert("timeban", {
+        MySql.helper.insert("admin_user_timebans", {
             Nickname = pname,
             Grund = reasons .. "(FÜR TEXT: " .. Message .. ")",
             Admin = "Anti-Beleidigungs-System",
@@ -192,16 +192,16 @@ function checkBeleidigung(thePlayer, Message)
         vioSetElementData(thePlayer, "tbans", vioGetElementData(thePlayer, "tbans") + 1)
         local pln = getPlayerName(thePlayer)
         if (vioGetElementData(thePlayer, "tbans") == 1) then
-            MySql.helper.update("userdata", { tban_reason1 = reasons }, { Nickname = pln });
+            MySql.helper.update("user_data", { tban_reason1 = reasons }, { Nickname = pln });
         end
 
         if (vioGetElementData(thePlayer, "tbans") > 1) then
-            local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
+            local tban_reason = MySql.helper.getValueSync("user_data", "tban_reason1", { Nickname = pln });
 
-            MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
+            MySql.helper.update("user_data", { tban_reason1 = "no_reason" }, { Nickname = pln });
             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
 
-            MySql.helper.insert("warns", {
+            MySql.helper.insert("admin_user_warns", {
                 Nickname = pln,
                 Admin = "Anti-Beleidigungs-System",
                 Grund = newreason
@@ -232,14 +232,14 @@ function bban_func(thePlayer, cmd, id)
                         vioSetElementData(theBeBanned, "tbans", vioGetElementData(theBeBanned, "tbans") + 1)
                         local pln = getPlayerName(theBeBanned)
                         if (vioGetElementData(thePlayer, "tbans") == 1) then
-                            MySql.helper.update("userdata", { tban_reason1 = reasons }, { Nickname = pln });
+                            MySql.helper.update("user_data", { tban_reason1 = reasons }, { Nickname = pln });
                         end
                         if (vioGetElementData(theBeBanned, "tbans") > 1) then
-                            local tban_reason = MySql.helper.getValueSync("userdata", "tban_reason1", { Nickname = pln });
-                            MySql.helper.update("userdata", { tban_reason1 = "no_reason" }, { Nickname = pln });
+                            local tban_reason = MySql.helper.getValueSync("user_data", "tban_reason1", { Nickname = pln });
+                            MySql.helper.update("user_data", { tban_reason1 = "no_reason" }, { Nickname = pln });
                             local newreason = "2 Timebans: " .. tban_reason .. " + " .. reasons
 
-                            MySql.helper.insert("warns", {
+                            MySql.helper.insert("admin_user_warns", {
                                 Nickname = pln,
                                 Admin = "Anti-Beleidigungs-System",
                                 Grund = newreason
@@ -248,7 +248,7 @@ function bban_func(thePlayer, cmd, id)
                             vioSetElementData(theBeBanned, "tbans", 0)
                         end
 
-                        MySql.helper.insert("timeban", {
+                        MySql.helper.insert("admin_user_timebans", {
                             Nickname = pname,
                             Grund = reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")",
                             Admin = "Anti-Beleidigungs-System",
@@ -267,7 +267,7 @@ function bban_func(thePlayer, cmd, id)
                         local pname = maybeBeleidigung[id][1]
                         checkAdditionalPunishment_offline(pname)
 
-                        MySql.helper.insert("timeban", {
+                        MySql.helper.insert("admin_user_timebans", {
                             Nickname = pname,
                             Grund = reasons .. " (FÜR TEXT: " .. maybeBeleidigung[id][2] .. ")",
                             Admin = "Anti-Beleidigungs-System",

@@ -133,8 +133,6 @@ addEventHandler("onClientResourceStart", getRootElement(),
 local lastGameData={}
 local lastOpenGame=0
 --[[
-    Database:
-        tapp_tictactoe
     Fields:
         ID
         Nickname

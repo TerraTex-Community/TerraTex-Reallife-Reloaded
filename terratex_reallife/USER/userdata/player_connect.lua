@@ -28,12 +28,12 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         testtag = pregReplace(testtag, "\\]", "")
         if (string.find(string.lower(playerNick), string.lower(testtag))) then
             --outputDebugString(theSonder)
-            if (MySql.helper.getValueSync("players", "Nickname", { Nickname = playerNick })) then
+            if (MySql.helper.getValueSync("user", "Nickname", { Nickname = playerNick })) then
             else
                 cancelEvent(true, "Das ClanTag " .. config["clantag"] .. " kann nur durch einen Admin vergeben werden!")
                 return true;
             end
-        elseif (MySql.helper.existSync("players", { Nickname = config["clantag"] .. playerNick })) then
+        elseif (MySql.helper.existSync("user", { Nickname = config["clantag"] .. playerNick })) then
             cancelEvent(true, "Ein Mitglied des " .. config["clantag"] .. "s trägt bereits diesen Namen!")
             return true;
         end
@@ -44,39 +44,39 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
 
-        if (MySql.helper.existSync("ban", { IP = playerIP })) then
+        if (MySql.helper.existSync("admin_user_bans", { IP = playerIP })) then
 
-            local reason = MySql.helper.getValueSync("ban", "Grund", { IP = playerIP });
+            local reason = MySql.helper.getValueSync("admin_user_bans", "Grund", { IP = playerIP });
 
-            local datum = MySql.helper.getValueSync("ban", "Bandatum", { IP = playerIP });
-            local admin = MySql.helper.getValueSync("ban", "Admin", { IP = playerIP });
+            local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { IP = playerIP });
+            local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { IP = playerIP });
             local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
             cancelEvent(true, banstring)
             return true;
         else
 
-            if (MySql.helper.existSync("ban", { Nickname = playerNick })) then
-                local reason = MySql.helper.getValueSync("ban", "Grund", { Nickname = playerNick });
-                local datum = MySql.helper.getValueSync("ban", "Bandatum", { Nickname = playerNick });
-                local admin = MySql.helper.getValueSync("ban", "Admin", { Nickname = playerNick });
+            if (MySql.helper.existSync("admin_user_bans", { Nickname = playerNick })) then
+                local reason = MySql.helper.getValueSync("admin_user_bans", "Grund", { Nickname = playerNick });
+                local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { Nickname = playerNick });
+                local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { Nickname = playerNick });
                 local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                 cancelEvent(true, banstring)
                 return true;
             else
-                if (MySql.helper.existSync("ban", { Serial = playerSerial })) then
-                    local reason = MySql.helper.getValueSync("ban", "Grund", { Serial = playerSerial });
-                    local datum = MySql.helper.getValueSync("ban", "Bandatum", { Serial = playerSerial });
-                    local admin = MySql.helper.getValueSync("ban", "Admin", { Serial = playerSerial });
+                if (MySql.helper.existSync("admin_user_bans", { Serial = playerSerial })) then
+                    local reason = MySql.helper.getValueSync("admin_user_bans", "Grund", { Serial = playerSerial });
+                    local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { Serial = playerSerial });
+                    local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { Serial = playerSerial });
                     local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
                     cancelEvent(true, banstring)
                     return true;
                 else
 
-                    if (MySql.helper.existSync("timeban", { Nickname = playerNick })) then
+                    if (MySql.helper.existSync("admin_user_timebans", { Nickname = playerNick })) then
 
-                        local reason = MySql.helper.getValueSync("timeban", "Grund", { Nickname = playerNick });
-                        local admin = MySql.helper.getValueSync("timeban", "Admin", { Nickname = playerNick });
-                        local rest = MySql.helper.getValueSync("timeban", "Minuten", { Nickname = playerNick });
+                        local reason = MySql.helper.getValueSync("admin_user_timebans", "Grund", { Nickname = playerNick });
+                        local admin = MySql.helper.getValueSync("admin_user_timebans", "Admin", { Nickname = playerNick });
+                        local rest = MySql.helper.getValueSync("admin_user_timebans", "Minuten", { Nickname = playerNick });
                         local timestring = rest .. " Minuten"
                         if (rest >= 120) then
                             rest = math.round(rest / 60, 0)
@@ -91,14 +91,14 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
         --MultiaccCheck
-        if not (MySql.helper.existSync("players", { Nickname = playerNick })) then
-            if (MySql.helper.existSync("players", { Serial = playerSerial })) then
-                if (MySql.helper.existSync("multiaccount_serial", { Serial = playerSerial })) then
+        if not (MySql.helper.existSync("user", { Nickname = playerNick })) then
+            if (MySql.helper.existSync("user", { Serial = playerSerial })) then
+                if (MySql.helper.existSync("admin_whitelist_multiaccounts", { Serial = playerSerial })) then
 
                     local multiSerialAccounts = {}
                     local id = 0
 
-                    local result = MySql.helper.getSync("multiaccount_serial", "*", { Serial = playerSerial });
+                    local result = MySql.helper.getSync("admin_whitelist_multiaccounts", "*", { Serial = playerSerial });
 
                     for theKey, dsatz in ipairs(result) do
                         id = dsatz["ID"]
@@ -111,7 +111,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
             end
         end
 
-        if (MySql.helper.getValueSync("players", "force_nickchange", { Nickname = playerNick }) == 1) then
+        if (MySql.helper.getValueSync("user", "force_nickchange", { Nickname = playerNick }) == 1) then
             cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage einen Nickchange auf " .. config["maindomain"] .. " um einen Account wieder freizuschalten.")
             return true;
         end
@@ -122,7 +122,7 @@ addEventHandler("onPlayerConnect", getRootElement(), playerConnect)
 addEvent("clientisreadyforlogin", true)
 function playerreadylogin()
     vioSetElementData(source, "logtries", 0)
-    if (MySql.helper.existSync("players", { Nickname = getPlayerName(source) })) then
+    if (MySql.helper.existSync("user", { Nickname = getPlayerName(source) })) then
         triggerClientEvent(source, "showLoginGui", source, source)
     else
         triggerClientEvent(source, "showRegisterGui", source, source)
@@ -134,9 +134,9 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
 
     local salt = randomstring(25)
 
-    if (werber ~= "" and MySql.helper.existSync("players", { Nickname = werber })) or werber == "" then
+    if (werber ~= "" and MySql.helper.existSync("user", { Nickname = werber })) or werber == "" then
 
-        if not (MySql.helper.existSync("players", { Nickname = nickname })) then
+        if not (MySql.helper.existSync("user", { Nickname = nickname })) then
 
             if (config["password_hash"] == "md5") then
                 pass = md5(salt .. pass)
@@ -148,33 +148,33 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
                 pass = hash("sha512", salt .. pass)
             end
 
-            local query = "INSERT INTO players (UUID,Nickname,Passwort,EMail,Geb_T,Geb_M,Geb_Y,werber,Salt,Serial,IP) VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            local query = "INSERT INTO user (UUID,Nickname,Passwort,EMail,Geb_T,Geb_M,Geb_Y,werber,Salt,Serial,IP) VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             dbExec(MySql._connection, query, nickname, pass, email, gebt, gebm, geby, werber, salt, getPlayerSerial(source), getPlayerIP(source));
 
-            MySql.helper.insert("userdata", { Nickname = nickname });
-            MySql.helper.insert("zeugnis", { Nickname = nickname });
-            MySql.helper.insert("lizensen", { Nickname = nickname });
-            MySql.helper.insert("jobskills", { Nickname = nickname });
-            MySql.helper.insert("inventar", { Nickname = nickname });
-            MySql.helper.insert("archievments", { Nickname = nickname });
-            MySql.helper.insert("terratapps", { Nickname = nickname });
-            MySql.helper.insert("rechte", { Nickname = nickname });
-            MySql.helper.insert("premium", { Name = nickname });
+            MySql.helper.insert("user_data", { Nickname = nickname });
+            MySql.helper.insert("user_grades", { Nickname = nickname });
+            MySql.helper.insert("user_licenses", { Nickname = nickname });
+            MySql.helper.insert("user_jobskills", { Nickname = nickname });
+            MySql.helper.insert("user_inventory", { Nickname = nickname });
+            MySql.helper.insert("user_achievements", { Nickname = nickname });
+            MySql.helper.insert("user_tapps", { Nickname = nickname });
+            MySql.helper.insert("faction_userrights", { Nickname = nickname });
+            MySql.helper.insert("user_premium", { Name = nickname });
 
-            dbExec(MySql._connection, "UPDATE players SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
+            dbExec(MySql._connection, "UPDATE user SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
 
             showCursor(source, false)
             triggerClientEvent(source, "hideRegisterGui", source)
             showError(source, "Du wurdest erfolgreich registriert! Logge dich nun ein!")
 
             vioSetElementData(source, "logtries", 0)
-            if (MySql.helper.existSync("players", { Nickname = getPlayerName(source) })) then
+            if (MySql.helper.existSync("user", { Nickname = getPlayerName(source) })) then
                 triggerClientEvent(source, "showLoginGui", source, source)
             else
                 triggerClientEvent(source, "showRegisterGui", source, source)
             end
             if (vioGetElementData(source, "deleteMultiAccErlaubnis")) then
-                MySql.helper.delete("multiaccount_serial", { ID = vioGetElementData(source, "deleteMultiAccErlaubnis") });
+                MySql.helper.delete("admin_whitelist_multiaccounts", { ID = vioGetElementData(source, "deleteMultiAccErlaubnis") });
             end
         else
             showError(source, "Ein ubekannter Fehler ist aufgetretten!")
@@ -193,8 +193,8 @@ function resetIsLogged(source)
 end
 
 function LoginPlayerData(nickname, pw)
-    local passdb = MySql.helper.getValueSync("players", "Passwort", { Nickname = nickname });
-    local saltdb = MySql.helper.getValueSync("players", "Salt", { Nickname = nickname });
+    local passdb = MySql.helper.getValueSync("user", "Passwort", { Nickname = nickname });
+    local saltdb = MySql.helper.getValueSync("user", "Salt", { Nickname = nickname });
 
     local pass;
     pw = saltdb .. pw
@@ -213,24 +213,34 @@ function LoginPlayerData(nickname, pw)
         setTimer(resetIsLogged, 5000, 1, source)
         triggerClientEvent(source, "bindclicksys_event", source)
 
-        if not (MySql.helper.existSync("userdata", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("userdata", { Nickname = nickname });
+        if not (MySql.helper.existSync("user_data", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_data", { Nickname = nickname });
         end
 
-        if not (MySql.helper.existSync("inventar", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("inventare", { Nickname = nickname });
+        if not (MySql.helper.existSync("user_jobskills", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_jobskills", { Nickname = nickname });
         end
-        if not (MySql.helper.existSync("archievments", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("archievments", { Nickname = nickname });
+
+        if not (MySql.helper.existSync("user_inventory", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_inventory", { Nickname = nickname });
         end
-        if not (MySql.helper.existSync("premium", { Name = getPlayerName(source) })) then
-            MySql.helper.insertSync("premium", { Name = nickname });
+        if not (MySql.helper.existSync("user_achievements", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_achievements", { Nickname = nickname });
         end
-        if not (MySql.helper.existSync("terratapps", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("terratapps", { Nickname = nickname });
+        if not (MySql.helper.existSync("user_premium", { Name = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_premium", { Name = nickname });
         end
-        if not (MySql.helper.existSync("rechte", { Nickname = getPlayerName(source) })) then
-            MySql.helper.insertSync("rechte", { Nickname = nickname });
+        if not (MySql.helper.existSync("user_tapps", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_tapps", { Nickname = nickname });
+        end
+        if not (MySql.helper.existSync("faction_userrights", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("faction_userrights", { Nickname = nickname });
+        end
+        if not (MySql.helper.existSync("user_licenses", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_licenses", { Nickname = nickname });
+        end
+        if not (MySql.helper.existSync("user_grades", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_grades", { Nickname = nickname });
         end
 
         setPedStat(source, 69, 500) --test
@@ -253,26 +263,26 @@ function LoginPlayerData(nickname, pw)
 
         local ip = getPlayerIP(source)
         local serial = getPlayerSerial(source)
-        MySql.helper.update("players", { Serial = serial }, { Nickname = nickname });
-        MySql.helper.update("players", { IP = ip }, { Nickname = nickname });
+        MySql.helper.update("user", { Serial = serial }, { Nickname = nickname });
+        MySql.helper.update("user", { IP = ip }, { Nickname = nickname });
 
-        dbExec(MySql._connection, "UPDATE players SET LastLogin=LastUpdate WHERE Nickname = ?", nickname);
+        dbExec(MySql._connection, "UPDATE user SET LastLogin=LastUpdate WHERE Nickname = ?", nickname);
 
-        local tmp = MySql.helper.getSync("players", "*", { Nickname = nickname });
+        local tmp = MySql.helper.getSync("user", "*", { Nickname = nickname });
         local playersData = tmp[1];
-        tmp = MySql.helper.getSync("userdata", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_data", "*", { Nickname = nickname });
         local userdataData = tmp[1];
-        tmp = MySql.helper.getSync("lizensen", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_licenses", "*", { Nickname = nickname });
         local lizensenData = tmp[1];
-        tmp = MySql.helper.getSync("inventar", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_inventory", "*", { Nickname = nickname });
         local inventarData = tmp[1];
-        tmp = MySql.helper.getSync("jobskills", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_jobskills", "*", { Nickname = nickname });
         local jobskillsData = tmp[1];
-        tmp = MySql.helper.getSync("archievments", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_achievements", "*", { Nickname = nickname });
         local archievmentsData = tmp[1];
-        tmp = MySql.helper.getSync("zeugnis", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("user_grades", "*", { Nickname = nickname });
         local zeugnisData = tmp[1];
-        tmp = MySql.helper.getSync("rechte", "*", { Nickname = nickname });
+        tmp = MySql.helper.getSync("faction_userrights", "*", { Nickname = nickname });
         local rechteData = tmp[1];
 
         setPlayerName(source, playersData["Nickname"])
@@ -332,7 +342,7 @@ function LoginPlayerData(nickname, pw)
 
         vioSetElementData(source, "verheiratet", tonumber(userdataData["verheiratet"]))
         if (vioGetElementData(source, "verheiratet") ~= 0) then
-            vioSetElementData(source, "verheiratetMitName", MySql.helper.getValueSync("players", "Nickname", { ID = vioGetElementData(source, "verheiratet") }))
+            vioSetElementData(source, "verheiratetMitName", MySql.helper.getValueSync("user", "Nickname", { ID = vioGetElementData(source, "verheiratet") }))
 
             if (vioGetElementData(source, "verheiratetMitName") == false) then
                 vioSetElementData(source, "verheiratet", 0)
@@ -345,7 +355,7 @@ function LoginPlayerData(nickname, pw)
             local g = 0
             while (g == 0) do
                 telenummer = math.random(100000, 999999)
-                if not (MySql.helper.existSync("userdata", { Telefonnummer = telenummer })) then
+                if not (MySql.helper.existSync("user_data", { Telefonnummer = telenummer })) then
                     g = telenummer
                 end
             end
@@ -481,7 +491,7 @@ function LoginPlayerData(nickname, pw)
 
         vioSetElementData(source, "last_fishes", 0)
 
-        local warns = MySql.helper.getCountSync("warns", { Nickname = nickname })
+        local warns = MySql.helper.getCountSync("admin_user_warns", { Nickname = nickname })
 
         vioSetElementData(source, "warns", warns)
         vioSetElementData(source, "telefontoggle", 0)
@@ -531,7 +541,7 @@ function LoginPlayerData(nickname, pw)
         setPlayerMoney(source, vioGetElementData(source, "money"))
 
         local time = getRealTime()
-        local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
+        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
 
         vioSetElementData(source, "premium", 0)
         if (premiumOutTime > 0) then
@@ -545,7 +555,7 @@ function LoginPlayerData(nickname, pw)
             outputChatBox("Du hast kein Premium? Kauf dir doch welches! Infos unter /premium!", source, 0, 255, 0)
         end
 
-        local onlineSchutzUntil = MySql.helper.getValueSync("terratapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
+        local onlineSchutzUntil = MySql.helper.getValueSync("user_tapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
         vioSetElementData(source, "onlineschutzuntil", 0)
         if (onlineSchutzUntil > 0) then
             local days = math.round(((onlineSchutzUntil / 60) / 60) / 24)
@@ -597,21 +607,21 @@ addEventHandler("loginPlayer", getRootElement(), LoginPlayerData)
 function loadTapps(thePlayer)
     local appTable = {}
     appTable["Tapp-Marketplace"] = 1
-    appTable["Friendlist"] = MySql.helper.getValueSync("terratapps", "Friendlist", { Nickname = getPlayerName(thePlayer) })
-    appTable["GPS"] = MySql.helper.getValueSync("terratapps", "GPS", { Nickname = getPlayerName(thePlayer) })
-    appTable["Stopuhr"] = MySql.helper.getValueSync("terratapps", "Stopuhr", { Nickname = getPlayerName(thePlayer) })
-    appTable["Blitzermelder"] = MySql.helper.getValueSync("terratapps", "Blitzermelder", { Nickname = getPlayerName(thePlayer) })
-    appTable["Kompass"] = MySql.helper.getValueSync("terratapps", "Kompass", { Nickname = getPlayerName(thePlayer) })
-    appTable["EMail"] = MySql.helper.getValueSync("terratapps", "EMail", { Nickname = getPlayerName(thePlayer) })
-    appTable["Notizblock"] = MySql.helper.getValueSync("terratapps", "Notizblock", { Nickname = getPlayerName(thePlayer) })
-    appTable["Colorpicker"] = MySql.helper.getValueSync("terratapps", "Colorpicker", { Nickname = getPlayerName(thePlayer) })
-    appTable["TicTacToe"] = MySql.helper.getValueSync("terratapps", "TicTacToe", { Nickname = getPlayerName(thePlayer) })
-    appTable["MineSweeper"] = MySql.helper.getValueSync("terratapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
-    appTable["OnlineBanking"] = MySql.helper.getValueSync("terratapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
-    appTable["OnlineSchutz"] = MySql.helper.getValueSync("terratapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
+    appTable["Friendlist"] = MySql.helper.getValueSync("user_tapps", "Friendlist", { Nickname = getPlayerName(thePlayer) })
+    appTable["GPS"] = MySql.helper.getValueSync("user_tapps", "GPS", { Nickname = getPlayerName(thePlayer) })
+    appTable["Stopuhr"] = MySql.helper.getValueSync("user_tapps", "Stopuhr", { Nickname = getPlayerName(thePlayer) })
+    appTable["Blitzermelder"] = MySql.helper.getValueSync("user_tapps", "Blitzermelder", { Nickname = getPlayerName(thePlayer) })
+    appTable["Kompass"] = MySql.helper.getValueSync("user_tapps", "Kompass", { Nickname = getPlayerName(thePlayer) })
+    appTable["EMail"] = MySql.helper.getValueSync("user_tapps", "EMail", { Nickname = getPlayerName(thePlayer) })
+    appTable["Notizblock"] = MySql.helper.getValueSync("user_tapps", "Notizblock", { Nickname = getPlayerName(thePlayer) })
+    appTable["Colorpicker"] = MySql.helper.getValueSync("user_tapps", "Colorpicker", { Nickname = getPlayerName(thePlayer) })
+    appTable["TicTacToe"] = MySql.helper.getValueSync("user_tapps", "TicTacToe", { Nickname = getPlayerName(thePlayer) })
+    appTable["MineSweeper"] = MySql.helper.getValueSync("user_tapps", "MineSweeper", { Nickname = getPlayerName(thePlayer) })
+    appTable["OnlineBanking"] = MySql.helper.getValueSync("user_tapps", "OnlineBanking", { Nickname = getPlayerName(thePlayer) })
+    appTable["OnlineSchutz"] = MySql.helper.getValueSync("user_tapps", "OnlineSchutz", { Nickname = getPlayerName(thePlayer) })
     vioSetElementData(thePlayer, "tappapps", appTable)
 
-    local mails = MySql.helper.getCountSync("emails", { neu = 1, Empfaenger = getPlayerName(thePlayer) })
+    local mails = MySql.helper.getCountSync("user_emails", { neu = 1, Empfaenger = getPlayerName(thePlayer) })
     if (mails) then
         if (tonumber(mails)) then
             if (tonumber(mails) > 0) then
@@ -633,7 +643,7 @@ end
 addEventHandler("onPlayerCommand", getRootElement(), dontcmd)
 
 function loadGutschriften(thePlayer)
-    local result = MySql.helper.getSync("gutschriften", "*", { Nickname = getPlayerName(thePlayer) });
+    local result = MySql.helper.getSync("user_gifts", "*", { Nickname = getPlayerName(thePlayer) });
 
     for theKey, dasatz in ipairs(result) do
         outputChatBox(dasatz["Grund"], thePlayer, 0, 255, 0)
@@ -653,25 +663,25 @@ function loadGutschriften(thePlayer)
             end
         end
 
-        MySql.helper.delete("gutschriften", { ID = dasatz["ID"] });
+        MySql.helper.delete("user_gifts", { ID = dasatz["ID"] });
     end
 
-    local result = MySql.helper.getSync("servermessage", "*", { Nickname = getPlayerName(thePlayer) });
+    local result = MySql.helper.getSync("user_offline_messages", "*", { Nickname = getPlayerName(thePlayer) });
 
     for theKey, dasatz in ipairs(result) do
         outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", dasatz["VonName"], dasatz["Message"], dasatz["Time"]), thePlayer)
-        MySql.helper.delete("servermessage", { ID = dasatz["ID"] });
+        MySql.helper.delete("user_offline_messages", { ID = dasatz["ID"] });
     end
 
-    MySql.helper.update("players", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });
-    MySql.helper.update("userdata", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });
+    MySql.helper.update("user", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });
+    MySql.helper.update("user_data", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });
 end
 
 function save_offline_message(playername, vonname, text)
     if (not playername or not vonname or not text or type(playername) ~= "string" or type(vonname) ~= "string" or type(text) ~= "string") then
         outputDebugString("ErrorHelp save_offline_message: " .. debug.traceback())
     end
-    MySql.helper.insert("servermessage", {
+    MySql.helper.insert("user_offline_messages", {
         Nickname = playername,
         VonName = vonname,
         Message = text

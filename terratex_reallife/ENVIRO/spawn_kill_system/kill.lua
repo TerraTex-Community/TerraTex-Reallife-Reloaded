@@ -97,7 +97,7 @@ function death_func(ammo, attacker, weapon, bodypart)
                 if (isonit) then
                     wasOnABlacklist = true;
 
-                    MySql.helper.delete("Blacklist", {
+                    MySql.helper.delete("faction_blacklist", {
                         Name = toPlayerName,
                         Fraktion = vioGetElementData(attacker, "fraktion")
                     });

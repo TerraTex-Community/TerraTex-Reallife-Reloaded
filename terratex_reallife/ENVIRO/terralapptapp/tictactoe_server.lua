@@ -1,6 +1,6 @@
 --[[
 Database:
-	tapp_tictactoe
+	user_tapps_tictactoe
 Fields: 
 	ID
 	Nickname
@@ -15,9 +15,9 @@ Fields:
 
 addEvent("TTTsetField",true)
 function TTTsetField_func(gameID,newState, newWinner, Fields, gegnerName,Winnername)
-    MySql.helper.update("tapp_tictactoe", { State = newState }, { ID = gameID});
-    MySql.helper.update("tapp_tictactoe", { Winner = newWinner }, { ID = gameID});
-    MySql.helper.update("tapp_tictactoe", { Spielstand = Fields }, { ID = gameID});
+    MySql.helper.update("user_tapps_tictactoe", { State = newState }, { ID = gameID});
+    MySql.helper.update("user_tapps_tictactoe", { Winner = newWinner }, { ID = gameID});
+    MySql.helper.update("user_tapps_tictactoe", { Spielstand = Fields }, { ID = gameID});
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 
 
@@ -45,7 +45,7 @@ addEventHandler("TTTsetField",getRootElement(),TTTsetField_func)
 
 addEvent("cancelTTTQuestion_Event",true)
 function cancelTTTQuestion_Event_func(gameID)
-    MySql.helper.delete("tapp_tictactoe", {ID = gameID});
+    MySql.helper.delete("user_tapps_tictactoe", {ID = gameID});
     showError(source,"Du hast die Anfrage ablehnt!")
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 
@@ -63,7 +63,7 @@ addEventHandler("cancelTTTQuestion_Event",getRootElement(),cancelTTTQuestion_Eve
 
 addEvent("acceptTTTQuestion_Event",true)
 function acceptTTTQuestion_Event_func(gameID,gegnerName)
-    MySql.helper.update("tapp_tictactoe", { State = math.random(1,2) }, { ID = gameID});
+    MySql.helper.update("user_tapps_tictactoe", { State = math.random(1,2) }, { ID = gameID});
     showError(source,"Du hast die Anfrage angenommen!")
     triggerClientEvent(source,"aktualizeTTT_Event",source)
 
@@ -89,7 +89,7 @@ function tictactoe_herausforderung_func(gegnerName)
         local playerName=getPlayerName(source)
         local gegnerName=getPlayerName(gegner)
 
-        local query = "SELECT count(*) as anzahl FROM tapp_tictactoe WHERE ";
+        local query = "SELECT count(*) as anzahl FROM user_tapps_tictactoe WHERE ";
         query = query .. "((Nickname = ? and Gegner = ? ) or (Nickname=? and Gegner=?)) and `Winner` = 0";
 
         local execQ = dbQuery(MySql._connection, query,playerName,gegnerName,gegnerName,playerName );
@@ -100,7 +100,7 @@ function tictactoe_herausforderung_func(gegnerName)
         else
             local appTable=vioGetElementData(gegner,"tappapps")
             if(appTable["TicTacToe"]==1)then
-                MySql.helper.insert("tapp_tictactoe", {
+                MySql.helper.insert("user_tapps_tictactoe", {
                     Nickname = playerName,
                     Gegner = gegnerName
                 });
@@ -123,7 +123,7 @@ addEventHandler("tictactoe_herausforderung",getRootElement(),tictactoe_herausfor
 addEvent("getTicTacToeData",true);
 function getTicTacToeData_func()
 
-    local query="SELECT * FROM tapp_tictactoe WHERE Nickname = ? or Gegner = ? ORDER BY ID DESC";
+    local query="SELECT * FROM user_tapps_tictactoe WHERE Nickname = ? or Gegner = ? ORDER BY ID DESC";
     local runQuery = dbQuery(MySql._connection, query, getPlayerName(source), getPlayerName(source))
 	local result = dbPoll(runQuery, -1);
 	for theKey, dsatz in ipairs(result) do

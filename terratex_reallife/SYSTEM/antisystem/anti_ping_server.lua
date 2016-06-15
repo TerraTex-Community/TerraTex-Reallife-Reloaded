@@ -6,7 +6,7 @@ local pingWhiteList = {}
 function init_anti_high_ping()
     setTimer(checkHighPing, 1000, 0)
 
-	local result = MySql.helper.getSync("whitelist", "*", {ANTIHIGHPING = 1});
+	local result = MySql.helper.getSync("admin_whitelist", "*", {ANTIHIGHPING = 1});
     for theKey, dsatz in ipairs(result) do
         pingWhiteList[string.lower(dsatz["Nickname"])] = true;
     end

@@ -1,14 +1,14 @@
 addEvent("getRequestAndFriendList", true)
 function sendgetRequestAndFriendList()
     local requestTable = {}
-    local result = MySql.helper.getSync("tlt_friendrequest", "*", {Toname = getPlayerName(source)});
+    local result = MySql.helper.getSync("user_tapps_friendlist_request", "*", {Toname = getPlayerName(source)});
 
     for theKey, dasatz in ipairs(result) do
         table.insert(requestTable, dasatz["Fromname"]);
     end
 
     local sendRequestTable = {}
-    result = MySql.helper.getSync("tlt_friendrequest", "*", {Fromname = getPlayerName(source)});
+    result = MySql.helper.getSync("user_tapps_friendlist_request", "*", {Fromname = getPlayerName(source)});
 
     for theKey, dasatz in ipairs(result) do
         table.insert(sendRequestTable, dasatz["Toname"]);
@@ -16,7 +16,7 @@ function sendgetRequestAndFriendList()
 
     local friendlistTable = {}
 
-    result = MySql.helper.getSync("tlt_friendlist", "*", {Nickname = getPlayerName(source)});
+    result = MySql.helper.getSync("user_tapps_friendlist", "*", {Nickname = getPlayerName(source)});
     for theKey, dasatz in ipairs(result) do
             table.insert(friendlistTable, dasatz["Friendname"])
     end
@@ -55,9 +55,9 @@ addEventHandler("onPlayerJoin", getRootElement(), onPlayerJoinForFriendlist)
 
 addEvent("ablehnenAnfrageFriendlist", true)
 function ablehnenAnfrageFriendlist_func(name)
-    if (MySql.helper.existSync("tlt_friendrequest", { Toname = getPlayerName(source), Fromname = name })) then
+    if (MySql.helper.existSync("user_tapps_friendlist_request", { Toname = getPlayerName(source), Fromname = name })) then
 
-        MySql.helper.delete("tlt_friendrequest", {
+        MySql.helper.delete("user_tapps_friendlist_request", {
             Toname = getPlayerName(source),
             Fromname = name
         });
@@ -78,21 +78,21 @@ addEventHandler("ablehnenAnfrageFriendlist", getRootElement(), ablehnenAnfrageFr
 
 addEvent("annehmenAnfrageFriendlist", true)
 function annehmenAnfrageFriendlist_func(name)
-    if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+    if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
 
-        MySql.helper.insert("tlt_friendlist", {
+        MySql.helper.insert("user_tapps_friendlist", {
             Nickname = getPlayerName(source),
             Friendname = name
         });
 
-        MySql.helper.insert("tlt_friendlist", {
+        MySql.helper.insert("user_tapps_friendlist", {
             Friendname = getPlayerName(source),
             Nickname = name
         });
 
         showError(source, name .. " und du seit jetzt Freunde!")
 
-        MySql.helper.delete("tlt_friendrequest", {
+        MySql.helper.delete("user_tapps_friendlist_request", {
             Toname = getPlayerName(source),
             Fromname = name
         });
@@ -114,19 +114,19 @@ addEvent("sendAnfrageFriendlist", true)
 function sendAnfrageFriendlist_func(name)
     if (name) then
         if (name ~= "") then
-            if (MySql.helper.existSync("tlt_friendrequest", {Nickname = name})) then
+            if (MySql.helper.existSync("user_tapps_friendlist_request", {Nickname = name})) then
 
-                if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+                if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
                     showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                 else
-                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
+                    if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                     else
 
-                        if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
+                        if (MySql.helper.existSync("user_tapps_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                             showError(source, "Ihr seit doch bereits Freunde!")
                         else
-                            MySql.helper.insert("tlt_friendrequest", {
+                            MySql.helper.insert("user_tapps_friendlist_request", {
                                 Fromname = getPlayerName(source),
                                 Toname = name
                             })
@@ -141,20 +141,20 @@ function sendAnfrageFriendlist_func(name)
                         end
                     end
                 end
-            elseif (MySql.helper.existSync("players", {Nickname = config["clantag"] .. name })) then
+            elseif (MySql.helper.existSync("user", {Nickname = config["clantag"] .. name })) then
 
                 name = config["clantag"] .. name
-                if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
+                if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
                     showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                 else
-                    if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+                    if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
                         showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                     else
 
-                        if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
+                        if (MySql.helper.existSync("user_tapps_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                             showError(source, "Ihr seit doch bereits Freunde!")
                         else
-                            MySql.helper.insert("tlt_friendrequest", {
+                            MySql.helper.insert("user_tapps_friendlist_request", {
                                 Fromname = getPlayerName(source),
                                 Toname = name
                             });
@@ -170,21 +170,21 @@ function sendAnfrageFriendlist_func(name)
                     end
                 end
             else
-                if (MySql.helper.getCountSync("players", { Nickname = { "LIKE", "%" .. name .. "%" } }) == 1) then
+                if (MySql.helper.getCountSync("user", { Nickname = { "LIKE", "%" .. name .. "%" } }) == 1) then
 
-                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = { "LIKE", name } });
+                    name = MySql.helper.getValueSync("user", "Nickname", { Nickname = { "LIKE", name } });
 
-                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
+                    if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                     else
-                        if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+                        if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
                             showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                         else
 
-                            if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
+                            if (MySql.helper.existSync("user_tapps_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                                 showError(source, "Ihr seit doch bereits Freunde!")
                             else
-                                MySql.helper.insert("tlt_friendrequest", {
+                                MySql.helper.insert("user_tapps_friendlist_request", {
                                     Fromname = getPlayerName(source),
                                     Toname = name
                                 });
@@ -200,20 +200,20 @@ function sendAnfrageFriendlist_func(name)
                         end
                     end
 
-                elseif (MySql.helper.getCountSync("players", { Nickname = { "LIKE", config["clantag"] .. "%" .. name .. "%" } }) == 1) then
+                elseif (MySql.helper.getCountSync("user", { Nickname = { "LIKE", config["clantag"] .. "%" .. name .. "%" } }) == 1) then
 
-                    name = MySql.helper.getValueSync("players", "Nickname", { Nickname = { "LIKE", (config["clantag"] .. "%" .. name .. "%") } });
-                    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
+                    name = MySql.helper.getValueSync("user", "Nickname", { Nickname = { "LIKE", (config["clantag"] .. "%" .. name .. "%") } });
+                    if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))
                     else
-                        if (MySql.helper.existSync("tlt_friendrequest", {Toname = getPlayerName(source), Fromname = name })) then
+                        if (MySql.helper.existSync("user_tapps_friendlist_request", {Toname = getPlayerName(source), Fromname = name })) then
                             showError(source, string.format("%s hat bereits eine Anfrage gestellt, du kannst sie im Tab 'gestelle Anfragen' annehmen!", name))
                         else
 
-                            if (MySql.helper.existSync("tlt_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
+                            if (MySql.helper.existSync("user_tapps_friendlist", {Nickname = getPlayerName(source), Friendname = name })) then
                                 showError(source, "Ihr seit doch bereits Freunde!")
                             else
-                                MySql.helper.insert("tlt_friendrequest", {
+                                MySql.helper.insert("user_tapps_friendlist_request", {
                                     Fromname = getPlayerName(source),
                                     Toname = name
                                 });
@@ -239,8 +239,8 @@ addEventHandler("sendAnfrageFriendlist", getRootElement(), sendAnfrageFriendlist
 
 addEvent("getAnfrageBackFriendlist", true)
 function getAnfrageBackFriendlist_func(name)
-    if (MySql.helper.existSync("tlt_friendrequest", {Fromname = getPlayerName(source), Toname = name })) then
-        MySql.helper.delete("tlt_friendrequest", {
+    if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
+        MySql.helper.delete("user_tapps_friendlist_request", {
             Fromname = getPlayerName(source),
             Toname = name
         })
@@ -300,7 +300,7 @@ end
 function aktualize_friendlist_element_data(thePlayer)
     local friendlistTable = {}
 
-    local result = MySql.helper.getSync("tlt_friendlist", "*", {Nickname = getPlayerName(thePlayer)});
+    local result = MySql.helper.getSync("user_tapps_friendlist", "*", {Nickname = getPlayerName(thePlayer)});
     for theKey, dasatz in ipairs(result) do
         table.insert(friendlistTable, dasatz["Friendname"])
     end
@@ -310,12 +310,12 @@ end
 addEvent("deleteFromFriendlist_Event", true)
 function deleteFromFriendlist_func(name)
 
-    MySql.helper.delete("tlt_friendlist", {
+    MySql.helper.delete("user_tapps_friendlist", {
         Nickname = getPlayerName(source),
         Friendname = name
     });
 
-    MySql.helper.delete("tlt_friendlist", {
+    MySql.helper.delete("user_tapps_friendlist", {
         Friendname = getPlayerName(source),
         Nickname = name
     });

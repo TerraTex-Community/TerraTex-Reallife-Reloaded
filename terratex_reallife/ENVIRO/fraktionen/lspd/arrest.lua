@@ -725,7 +725,7 @@ function su_func(theMaker, Command, anzahl, thePlayerName, ...)
                     if ((timestamp - 300) < logoutTable[string.lower(thePlayerName)][1]) then
                         if (reason) then
                             local wanteds = tonumber(anzahl)
-                            local wantedsold = MySql.helper.getValueSync("userdata", "Wanteds", { Nickname = thePlayerName });
+                            local wantedsold = MySql.helper.getValueSync("user_data", "Wanteds", { Nickname = thePlayerName });
 
                             if (logoutTable[string.lower(thePlayerName)][2]) then
                                 wanteds = wanteds + logoutTable[string.lower(thePlayerName)][2]
@@ -738,7 +738,7 @@ function su_func(theMaker, Command, anzahl, thePlayerName, ...)
                                     wanteds = 6
                                 end
 
-                                MySql.helper.update("userdata", { Wanteds = wanteds }, { Nickname = thePlayerName });
+                                MySql.helper.update("user_data", { Wanteds = wanteds }, { Nickname = thePlayerName });
                                 logoutTable[string.lower(thePlayerName)][2] = wanteds
                                 outputChatBoxForPolice(string.format("%s hat %s Wanted erhalten! Grund: %s", thePlayerName, anzahl, reason), 0, 0, 255)
                                 outputChatBoxForPolice(string.format("Er hat %s Wanteds! Reporter: %s", wanteds, getPlayerName(theMaker)), 0, 0, 255)

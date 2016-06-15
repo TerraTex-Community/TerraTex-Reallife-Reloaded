@@ -13,7 +13,7 @@ end
 function checkAdditionalPunishment_offline(playerName)
     local tryKickPlayer = false
 
-    local result = MySql.helper.getSync("bewaehrungsstrafen", "*", { Nickname = playerName });
+    local result = MySql.helper.getSync("admin_user_paroles", "*", { Nickname = playerName });
 
     for theKey, dasatz in ipairs(result) do
 
@@ -22,7 +22,7 @@ function checkAdditionalPunishment_offline(playerName)
             if (tonumber(dasatz["warn"]) > 0) then
                 for i = 0, tonumber(dasatz["warn"]), 1 do
 
-                    MySql.helper.insert("warns", {
+                    MySql.helper.insert("admin_user_warns", {
                         Admin = dasatz["Adminname"],
                         Grund = dasatz["Grund"],
                         Nickname = dasatz["Nickname"]
@@ -31,10 +31,10 @@ function checkAdditionalPunishment_offline(playerName)
                 end
                 save_offline_message(dasatz["Nickname"], "Bewährungssystem", "Durch dein Fehlverhalten wurde deine Bewährungsstrafe nun durchgeführt und du hast " .. dasatz["warn"] .. " Warns erhalten")
 
-                if (MySql.helper.getCountSync("warns", { Nickname = dasatz["Nickname"] }) > 2) then
-                    local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
+                if (MySql.helper.getCountSync("admin_user_warns", { Nickname = dasatz["Nickname"] }) > 2) then
+                    local serial = MySql.helper.getValueSync("user", "Serial", { Nickname = dasatz["Nickname"] });
 
-                    MySql.helper.insert("ban", {
+                    MySql.helper.insert("admin_user_bans", {
                         Nickname = dasatz["Nickname"],
                         Serial = serial,
                         IP = 0,
@@ -45,7 +45,7 @@ function checkAdditionalPunishment_offline(playerName)
                 end
             end
             if (tonumber(dasatz["tban"]) > 0) then
-                MySql.helper.insert("timeban", {
+                MySql.helper.insert("admin_user_timebans", {
                     Nickname = dasatz["Nickname"],
                     Grund = "Bewährungsstrafe: " .. dasatz["Grund"],
                     Admin = dasatz["Adminname"],
@@ -55,9 +55,9 @@ function checkAdditionalPunishment_offline(playerName)
                 tryKickPlayer = true
             end
             if (tonumber(dasatz["perma"]) > 0) then
-                local serial = MySql.helper.getValueSync("players", "Serial", { Nickname = dasatz["Nickname"] });
+                local serial = MySql.helper.getValueSync("user", "Serial", { Nickname = dasatz["Nickname"] });
 
-                MySql.helper.insert("ban", {
+                MySql.helper.insert("admin_user_bans", {
                     Nickname = dasatz["Nickname"],
                     Serial = serial,
                     IP = 0,
@@ -68,7 +68,7 @@ function checkAdditionalPunishment_offline(playerName)
             end
         end
 
-        MySql.helper.delete("bewaehrungsstrafen", {ID = dasatz["ID"]});
+        MySql.helper.delete("admin_user_paroles", {ID = dasatz["ID"]});
         if (tryKickPlayer) then
             if (getPlayerFromName(playerName)) then
                 setTimer(kickMeIfYouCan, 10000, 1, getPlayerFromName(playerName))

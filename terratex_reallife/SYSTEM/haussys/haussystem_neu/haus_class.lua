@@ -32,7 +32,7 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
     end
 
     --Besitzer auslesen
-    self.besitzer = MySql.helper.getValueSync("userdata", "Nickname", { newhkey = ID });
+    self.besitzer = MySql.helper.getValueSync("user_data", "Nickname", { newhkey = ID });
 
     --Erstellung des Pickups
     self.pickup = createPickup(hx, hy, hz, 3, 1273, 5000)
@@ -71,7 +71,7 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
 end
 
 function Haus:save()
-    MySql.helper.update("haussys_hdb", {
+    MySql.helper.update("objects_houses", {
         Miete = self.miete,
         Kasse = self.kasse,
         IRID = self.irid
@@ -102,7 +102,7 @@ end
 
 function Haus:destructor()
     destroyElement(self.pickup)
-    MySql.helper.delete("haussys_hdb", {ID = self.ID});
+    MySql.helper.delete("objects_houses", {ID = self.ID});
     self = nil
 end
 
@@ -167,9 +167,9 @@ end
 function Haus:setMiete(miete)
     self.miete = miete
 
-    local result = MySql.helper.getSync("userdata", "Nickname", {hkey = (-self.ID)});
+    local result = MySql.helper.getSync("user_data", "Nickname", {hkey = (-self.ID)});
     for theKey, theRow in ipairs(result) do
-        MySql.helper.insert("servermessage", {
+        MySql.helper.insert("user_offline_messages", {
             VonName = "Mietsystem",
             Message = "Die Miete deiner Wohnung wurde auf " .. miete .. " gesetzt!",
             Nickname = theRow["Nickname"]

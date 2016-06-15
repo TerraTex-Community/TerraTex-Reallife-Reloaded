@@ -174,20 +174,20 @@
                 local time = getRealTime()
                 local nickname = getPlayerName(thePlayer)
 
-                local premiumOutTime = MySql.helper.getValueSync("premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
-                local hasPremGutSchein = MySql.helper.getValueSync("premium", "PremiumGutScheine", { Name = nickname });
+                local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
+                local hasPremGutSchein = MySql.helper.getValueSync("user_premium", "PremiumGutScheine", { Name = nickname });
 
                 local thirty = 2592000
                 outputChatBox("Dir wurden 30 Tage Premium gutgeschrieben!", thePlayer, 0, 255, 0)
                 if (hasPremGutSchein > 0) then
                     thirty = 3196800
-                    MySql.helper.update("premium", { PremiumGutScheine = (hasPremGutSchein - 1) }, { Name = nickname });
+                    MySql.helper.update("user_premium", { PremiumGutScheine = (hasPremGutSchein - 1) }, { Name = nickname });
                     outputChatBox("Da du ein Premiumgutschein hast, wurde dir bei diesem Kauf 7 Tage mehr Premium gutgeschrieben!", thePlayer, 0, 255, 0)
                 end
                 if (premiumOutTime > 0) then
                     thirty = thirty + premiumOutTime
                 end
-                MySql.helper.update("premium", { PremiumUntil = (time.timestamp + thirty) }, { Name = nickname });
+                MySql.helper.update("user_premium", { PremiumUntil = (time.timestamp + thirty) }, { Name = nickname });
                 vioSetElementData(thePlayer, "premium", (time.timestamp + thirty))
                 outputChatBox(string.format("Du hast nun noch %s Tage Premium!", math.round((((thirty / 60) / 60) / 24))), thePlayer, 0, 255, 0)
                 changePlayerMoney(thePlayer, -50000, "sonstiges", "Premium")

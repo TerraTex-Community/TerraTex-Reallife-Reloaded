@@ -229,7 +229,7 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         triggerClientEvent(source, "showErrorText", source, source, "Das Fahrzeug wurde erfolgreich geloescht!")
         save_offline_message(vioGetElementData(vehicle, "besitzer"), getPlayerName(source), string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund))
 
-        MySql.helper.delete("vehicles", {ID = id});
+        MySql.helper.delete("user_vehicles", {ID = id});
         elementData[vehicle] = nil
         destroyElement(vehicle)
     end

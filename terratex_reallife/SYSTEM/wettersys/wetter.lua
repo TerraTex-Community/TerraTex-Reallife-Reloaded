@@ -23,9 +23,9 @@ weatherchangeTimer = false
 weatheraktualTimer = false
 
 function setWetterOnResourceStart()
-    setCloudsEnabled(true)
-    --regenleve
-    rainlevel = MySql.helper.getValueSync("serversettings", "Wert", { Name = "regenlevel" });
+	setCloudsEnabled ( true)
+	--regenleve
+	rainlevel=MySql.helper.getValueSync("data_settings", "Wert", { Name = "regenlevel" });
 
     changeWeather()
     local pickup = createPickup(1473.146484375, -1771.8291015625, 18.795755386353, 3, 1239, 5000)
@@ -381,5 +381,4 @@ function sendWetterEventToClient()
     triggerClientEvent(getRootElement(), "sendWetterEventToClient_Event", getRootElement(), isWetterEventID)
     setTimer(sendWetterEventToClient, 60000, 1)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), sendWetterEventToClient)

@@ -15,7 +15,7 @@ addEventHandler("buyFood_B", getRootElement(), buyFood_B_func)
 
 local fastfoodmarker = {}
 function fastfoodmarker_load()
-    local result = MySql.helper.getSync("drivein", "*");
+    local result = MySql.helper.getSync("objects_drivein", "*");
     for theKey, dasatz in ipairs(result) do
         local area = createMarker(dasatz["x"], dasatz["y"], dasatz["z"], "cylinder", 4.0, 0, 0, 150, 150, getRootElement())
         fastfoodmarker[area] = dasatz["ID"]
@@ -67,7 +67,7 @@ function createDriveInMarker(thePlayer, cmd, typ)
     if (isAdminLevel(thePlayer, 4)) then
         local x, y, z = getElementPosition(thePlayer)
 
-        local ID = MySql.helper.insertSync("drivein", {
+        local ID = MySql.helper.insertSync("objects_drivein", {
             x = x,
             y = y,
             z = (z-1),

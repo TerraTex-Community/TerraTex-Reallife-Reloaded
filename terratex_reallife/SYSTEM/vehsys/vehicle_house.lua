@@ -54,7 +54,7 @@ function stealTooExpensiveVehicles()
             if (player) then
                 hkey = vioGetElementData(player, "hkey")
             else
-                hkey = MySql.helper.getValueSync("userdata", "newhkey", { Nickname = besitzer });
+                hkey = MySql.helper.getValueSync("user_data", "newhkey", { Nickname = besitzer });
             end
             local maxWert = getMaxVehicleWert(hkey)
             if (buyWert > maxWert) then
@@ -75,7 +75,7 @@ function stealTooExpensiveVehicles()
                     local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, message)
                     save_log("abschlepp", logtext)
 
-                    MySql.helper.update("vehicles", {
+                    MySql.helper.update("user_vehicles", {
                         SpawnX = 0,
                         SpawnY = 0,
                         SpawnZ = 0,

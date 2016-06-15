@@ -74,15 +74,15 @@ end
 
 function saveMoneyLog_withNickname(thePlayer, Typ, Kategorie, Betrag, Grund, GrundAdd)
     local playerName = thePlayer
-    local playerUUID = MySql.helper.getValueSync("players", "UUID", { Nickname = thePlayer });
+    local playerUUID = MySql.helper.getValueSync("user", "UUID", { Nickname = thePlayer });
 
     local timer = getRealTime()
     local Stand = 0
     if (Typ == "Bank") then
-        Stand = MySql.helper.getValueSync("userdata", "Bank", { Nickname = thePlayer });
+        Stand = MySql.helper.getValueSync("user_data", "Bank", { Nickname = thePlayer });
 
     else
-        Stand = MySql.helper.getValueSync("userdata", "Geld", { Nickname = thePlayer });
+        Stand = MySql.helper.getValueSync("user_data", "Geld", { Nickname = thePlayer });
     end
 
     if not Grund then

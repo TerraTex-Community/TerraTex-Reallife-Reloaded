@@ -94,10 +94,10 @@ function reloadCarsDB_func(thePlayer, Command, toPlayerName)
                     changedCars = changedCars + 1
                     local ele = theVehicle[3]
                     local id = vioGetElementData(ele, "dbid")
-                    local newmodel = MySql.helper.getValueSync("vehicles", "Model", { ID = id });
+                    local newmodel = MySql.helper.getValueSync("user_vehicles", "Model", { ID = id });
 
                     setElementModel(ele, newmodel)
-                    local colorstr = MySql.helper.getValueSync("vehicles", "Colors", { ID = id });
+                    local colorstr = MySql.helper.getValueSync("user_vehicles", "Colors", { ID = id });
                     vioSetElementData(ele, "colors", colorstr)
                     local colors = {}
                     local counter = 0
@@ -113,13 +113,13 @@ function reloadCarsDB_func(thePlayer, Command, toPlayerName)
                         counter = counter + 1
                     end
                     setVehicleColor(theVehicle, tonumber(colors[0]), tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
-                    local tuning = getStringComponents(MySql.helper.getValueSync("vehicles", "Tuning", { ID = id }))
+                    local tuning = getStringComponents(MySql.helper.getValueSync("user_vehicles", "Tuning", { ID = id }))
                     for theKey, theTuning in ipairs(tuning) do
                         if (theTuning ~= 0) then
                             addVehicleUpgrade(theVehicle, theTuning)
                         end
                     end
-                    local no_handel = MySql.helper.getValueSync("vehicles", "no_handel", { ID = id });
+                    local no_handel = MySql.helper.getValueSync("user_vehicles", "no_handel", { ID = id });
 
                     vioSetElementData(thevehicle, "model", newmodel)
                     vioSetElementData(thevehicle, "colors", colorstr)
@@ -165,12 +165,14 @@ function park_func(thePlayer)
                         vioSetElementData(theVehicle, "colors", colors)
                         vioSetElementData(theVehicle, "abgeschleppt", 0)
 
-                        MySql.helper.update("vehicles", { SpawnX = spawnx }, { ID = vioGetElementData(theVehicle, "dbid")});
-                        MySql.helper.update("vehicles", { SpawnY = spawny }, { ID = vioGetElementData(theVehicle, "dbid")});
-                        MySql.helper.update("vehicles", { SpawnZ = spawnz }, { ID = vioGetElementData(theVehicle, "dbid")});
-                        MySql.helper.update("vehicles", { SpawnRX = spawnrx }, { ID = vioGetElementData(theVehicle, "dbid")});
-                        MySql.helper.update("vehicles", { SpawnRY = spawnry }, { ID = vioGetElementData(theVehicle, "dbid")});
-                        MySql.helper.update("vehicles", { SpawnRZ = spawnrz }, { ID = vioGetElementData(theVehicle, "dbid")});
+                        MySql.helper.update("user_vehicles", {
+                            SpawnX = spawnx,
+                            SpawnY = spawny,
+                            SpawnZ = spawnz,
+                            SpawnRX = spawnrx,
+                            SpawnRY = spawnry,
+                            SpawnRZ = spawnrz
+                        }, { ID = vioGetElementData(theVehicle, "dbid")});
 
 
                         showError(thePlayer, "Dein Fahrzeug wurde erfolgreich an dieser Position geparkt!")
@@ -327,7 +329,7 @@ function deletecar_func(thePlayer, command, SloteID)
                         end
                     end
 
-                    MySql.helper.delete("vehicles", {ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
+                    MySql.helper.delete("user_vehicles", {ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
 
                     carPrice = math.round((carPrice / 100) * 15, 0)
                     if (vioGetElementData(thePlayer, "premium") > 0) then
@@ -395,7 +397,7 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID)
                                         vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "besitzer", getPlayerName(newplayer))
                                         vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "slotid", firstfreeslot)
 
-                                        MySql.helper.update("vehicles", {
+                                        MySql.helper.update("user_vehicles", {
                                             SlotID = firstfreeslot,
                                             Besitzer = getPlayerName(newplayer)
                                         }, {

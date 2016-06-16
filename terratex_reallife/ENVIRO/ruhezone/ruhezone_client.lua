@@ -3,6 +3,7 @@ local isInRuheZone = false;
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
+    console.log("received new ruhezonen data");
     ruhezonen = ruhezonenneu;
     isInRuheZone = false;
 end

@@ -1,4 +1,4 @@
-ruhezonen = {}
+local ruhezonen = {}
 
 function createAndLoadRuheZonen()
     local result = MySql.helper.getSync("objects_restareas", "*");

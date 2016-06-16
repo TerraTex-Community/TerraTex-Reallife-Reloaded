@@ -5,6 +5,8 @@ CREATE TABLE `objects_teleport_markers` (
   `z` float NOT NULL,
   `interior` int(11) NOT NULL,
   `dimension` int(11) DEFAULT NULL COMMENT '"null = all dimensions"',
+  `markerType` varchar(255) DEFAULT 'corona',
+  `markerSize` decimal(10,1) DEFAULT '2.0',
   `toMarker` int(11) DEFAULT NULL,
   `toPosX` int(11) DEFAULT NULL,
   `toPosY` int(11) DEFAULT NULL,

@@ -5,6 +5,7 @@ lvpdraus = false
 casinomarker = false
 --table.insert(interiorMarker,{mark,portx,porty,portz,Interior,eigeneDIM,portDIM})
 function createInteriorMarker()
+
     --PDMarker drausen
     local mark = createMarker(1554.6064453125, -1675.6083984375, 16.1953125, "corona", 2.0)
     table.insert(interiorMarker, { mark, 246.566085, 110.7910156, 1002.193481, 10, 0, 0 })
@@ -12,6 +13,7 @@ function createInteriorMarker()
     mark = createMarker(246.5898895, 107.791107, 1002.19348, "corona", 2.0)
     table.insert(interiorMarker, { mark, 1549.9189453125, -1675.724609375, 15.179713249207, 0, 0 })
     setElementInterior(mark, 10)
+
     --casin drausen
     local mark = createMarker(2196.201171875, 1677.2685546875, 12.3671875, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2233.9443359375, 1706.697265625, 1010.0504150391, 1, 0, 0 })

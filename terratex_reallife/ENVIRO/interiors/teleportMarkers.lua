@@ -76,6 +76,14 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
             if (markerData.rzAfterTeleport) then
                 setElementRotation ( hitElement, 0, 0, markerData.rzAfterTeleport);
             end
+
+            -- For Ammonation run Script after teleport
+            if (markerData.specialKey) then
+                if (markerData.specialKey == "ammonation") then
+                    respawnAmmoBot_Server();
+                end
+            end
+
         end
     end
 end

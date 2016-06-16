@@ -23,18 +23,21 @@ function loadTeleportMarkers()
         vioSetElementData(marker, "additionalData", theMarkerData);
 
         teleportMarkers[marker.ID] = marker;
+        outputDebugString("Marker created");
         addEventHandler("onMarkerHit", marker, onTeleportMarkerHit);
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadTeleportMarkers)
 
 function onTeleportMarkerHit(hitElement, matchingDimension)
+    outputDebugString("Marker Hit");
     if matchingDimension then
         if (getElementType(hitElement) == "player") then
             local markerData = vioGetElementData(source, "additionalData");
 
             -- don't teleport if stop is set
             if (vioGetElementData(hitElement, "stopTeleportMarkersForTeleport")) then
+                showError(hitElement, "teleport disabled");
                 return;
             end
 
@@ -42,6 +45,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
             if (markerData.specialKey) then
                 if (markerData.specialKey == "onlypolice") then
                     if (not isBeamter(hitElement)) then
+                        showError(hitElement, "Du bist kein Beamter!");
                         return;
                     end
                 elseif (marker.specialKey == "ammonation") then
@@ -62,6 +66,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                 setElementDimension(hitElement, markerData.toDim);
             end
 
+            outputDebugString("Teleport to Marker: " .. tostring(markerData.toMarker))
             if (markerData.toMarker) then
                 -- Teleport to Marker
                 local toX, toY, toZ = getElementPosition(teleportMarkers[markerData.toMarker]);
@@ -85,6 +90,8 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
             end
 
         end
+    else
+        showError(hitElement, "wrong dimension");
     end
 end
 

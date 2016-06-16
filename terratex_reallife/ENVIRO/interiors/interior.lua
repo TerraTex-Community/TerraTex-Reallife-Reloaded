@@ -6,14 +6,6 @@ casinomarker = false
 --table.insert(interiorMarker,{mark,portx,porty,portz,Interior,eigeneDIM,portDIM})
 function createInteriorMarker()
 
-    --PDMarker drausen
-    local mark = createMarker(1554.6064453125, -1675.6083984375, 16.1953125, "corona", 2.0)
-    table.insert(interiorMarker, { mark, 246.566085, 110.7910156, 1002.193481, 10, 0, 0 })
-    --PDMarker drin
-    mark = createMarker(246.5898895, 107.791107, 1002.19348, "corona", 2.0)
-    table.insert(interiorMarker, { mark, 1549.9189453125, -1675.724609375, 15.179713249207, 0, 0 })
-    setElementInterior(mark, 10)
-
     --casin drausen
     local mark = createMarker(2196.201171875, 1677.2685546875, 12.3671875, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2233.9443359375, 1706.697265625, 1010.0504150391, 1, 0, 0 })
@@ -22,6 +14,7 @@ function createInteriorMarker()
     mark = createMarker(2233.671875, 1713.8076171875, 1012.2516479492, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2193.09765625, 1677.2080078125, 12.3671875, 0, 0 })
     setElementInterior(mark, 1)
+
     --StadthalleMarker drausen
     mark = createMarker(1480.8837890625, -1770.935546875, 18.795755386353, "corona", 2.0)
     table.insert(interiorMarker, { mark, 386.825317, 173.7809600, 1007.358520, 3, 0, 0 })
@@ -29,10 +22,12 @@ function createInteriorMarker()
     mark = createMarker(390.093566, 173.8429565, 1007.358520, "corona", 2.0)
     table.insert(interiorMarker, { mark, 1481.52734375, -1757.8447265625, 17.53125, 0, 0, 0 })
     setElementInterior(mark, 3)
+
     --grove drausen
     mark = createMarker(2495.396484375, -1690.548828125, 14.765625, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2495.9282, -1694.5155, 1014.39141, 3, 0, 0 })
     setElementInterior(mark, 0)
+
     --StadthalleMarker drin
     mark = createMarker(2495.98535, -1692.2666, 1014.39142, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2495.099609375, -1686.7861328125, 13.514009475708, 0, 0, 0 })
@@ -46,8 +41,8 @@ function createInteriorMarker()
     mark = createMarker(318.916015625, 1114.875, 1083.8828125, "corona", 2.0)
     table.insert(interiorMarker, { mark, 2168.5478515625, -1674.232421875, 15.083921432495, 0, 0, 0 })
     setElementInterior(mark, 5)
-    --polizeigarage
 
+    --polizeigarage
     mark = createMarker(1568.6015625, -1690.0556640625, 6.21875, "corona", 2.0)
     table.insert(interiorMarker, { mark, 226.0908203125, 114.693359375, 999.015625, 10, 0, 0 })
 
@@ -63,6 +58,7 @@ function createInteriorMarker()
     mark = createMarker(1368.4521484375, -1279.8427734375, 13.546875, "corona", 2.0)
     table.insert(interiorMarker, { mark, 313.486328125, -139.6767578125, 999.6015625, 7, 0, 0 })
     ammonationmarker = mark
+
     --ammoINNEN
     mark = createMarker(316.01171875, -143.65234375, 999.6015625, "corona", 2.0)
     table.insert(interiorMarker, { mark, 1365.47265625, -1279.580078125, 13.546875, 0, 0, 0 })

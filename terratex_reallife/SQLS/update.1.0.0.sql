@@ -21,3 +21,7 @@ CREATE TABLE `objects_teleport_markers` (
   KEY `objects_teleport_markers_specialKey_index` (`specialKey`),
   CONSTRAINT `objects_teleport_markers_objects_teleport_markers_ID_fk` FOREIGN KEY (`toMarker`) REFERENCES `objects_teleport_markers` (`ID`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `objects_teleport_markers` (`ID`, `x`, `y`, `z`, `interior`, `dimension`, `markerType`, `markerSize`, `toMarker`, `toPosX`, `toPosY`, `toPosZ`, `rzAfterTeleport`, `toInt`, `toDim`, `specialKey`, `description`) VALUES
+(1, 1554.61, -1675.61, 16.1953, 0, 0, 'corona', '2.0', 2, NULL, NULL, NULL, NULL, 10, 0, NULL, 'LSPD outside Main Entrance'),
+(2, 246.59, 107.791, 1002.19, 10, 0, 'corona', '2.0', 1, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LSPD Main Entrance');

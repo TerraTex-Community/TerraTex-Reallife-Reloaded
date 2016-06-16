@@ -50,7 +50,7 @@ function sellhotdog_func(thePlayer, cmd, mengeStr, preisStr, toPlayerNamePart)
                     local menge = tonumber(mengeStr)
                     local preis = tonumber(preisStr)
                     if (menge and preis) then
-                        if (menge < 0) then
+                        if (menge < 0 or preis < 0) then
                             return false
                         else
                             local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)

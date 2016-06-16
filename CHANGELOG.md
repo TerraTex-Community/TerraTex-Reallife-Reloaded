@@ -2,6 +2,7 @@
 ------
 * [FIXED] #19 Fixed Afk Bug of the job "Meeresreiniger"
 * [FIXED] #18 Hotdogsellers can now set a prices that is smaller or equal then the money of the receiver
+* [CHANGED] #17 Rename Commands of restareas to /setRZoneCorner and /delRZone
 
 ####15.06.2016
 ------

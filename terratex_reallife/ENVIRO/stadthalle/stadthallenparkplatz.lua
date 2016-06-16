@@ -3,7 +3,6 @@ createObject(10780,4493.41992188,-2098.87988281,1064.40002441,0.00000000,0.00000
 
 
 function createStadthallenParkplatzmarker()
-	outputDebugString("test")
 	local marker=createMarker(1500.9052734375,-1585.8505859375,13.046875,"cylinder",2)
 	addEventHandler("onMarkerHit",marker,setPlayerInStadthallenParkplatz)
 	marker=createMarker(4395.998046875,-2044.05078125,1061.3297119141,"cylinder",2)

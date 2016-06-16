@@ -19,7 +19,6 @@ end
 addCommandHandler("ram",ram_cmdfunc,false,false)
 
 function ram_open(hausid,thePlayer)
-    outputDebugString(hausid)
     local haus=haeuser[hausid]
     haus:setLock(false)
     showError(thePlayer,"Du hast das Schloss geknackt. Die Haustüre ist jetzt offen.")

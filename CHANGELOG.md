@@ -1,3 +1,13 @@
+####16.06.2016
+------
+* [FIXED] #19 Fixed Afk Bug of the job "Meeresreiniger"
+
+####15.06.2016
+------
+* [FIXED] some Issues related to the latest mysql changes
+* [REMOVED] Senseless Admincommands like /lollol and /lollol2
+* [GENERAL] Some restructuring and formating of some files
+
 ####14.06.2016
 ------
 * [GENERAL] Restructured all database tables

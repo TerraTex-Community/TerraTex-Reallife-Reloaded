@@ -88,6 +88,7 @@ addCommandHandler("addruhe", addRuheZone, false, false)
 function destroyRuheZone(thePlayer, cmd, ID)
     if (isAdminLevel(thePlayer, 3)) then
         if tonumber(ID) then
+            ID = tonumber(ID);
             if (ruhezonen[ID]) then
                 destroyElement(ruhezonen[ID])
                 ruhezonen[ID] = false

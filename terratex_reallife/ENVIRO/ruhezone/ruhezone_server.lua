@@ -35,6 +35,8 @@ function setRZoneCorner_func(thePlayer, cmd, corner)
         local posXString = "posX" .. corner;
         local posYString = "posY" .. corner;
 
+        outputChatBox("Position saved!", thePlayer);
+
         vioSetElementData(thePlayer, posXString, posX);
         vioSetElementData(thePlayer, posYString, posY);
     end

@@ -1,6 +1,7 @@
 ####16.06.2016
 ------
 * [ADDED] Sql Update 1.0.0 File
+* [FIXED] #17 Fixed Ruhezonen Bugs
 * [ADDED] #16 Table Creation for Teleportmarkers
 * [ADDED] #16 New Teleportmarkers Script
 * [FIXED] #19 Fixed Afk Bug of the job "Meeresreiniger"

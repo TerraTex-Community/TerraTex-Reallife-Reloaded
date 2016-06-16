@@ -76,6 +76,7 @@ function addRuheZone(thePlayer)
             local area = createRadarArea(posXA, posYA, sizeX, sizeY, 0, 200, 0, 150, getRootElement())
             ruhezonen[ID] = area
             triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
+
         else
             outputChatBox("Sie müssen erst 2 Punkte markieren!", thePlayer, 255, 0, 0)
         end

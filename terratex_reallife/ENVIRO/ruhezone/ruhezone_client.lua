@@ -1,23 +1,26 @@
-ruhezonen = {}
+local ruhezonen = {};
+local isInRuheZone = false;
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
-    ruhezonen = ruhezonenneu
+    ruhezonen = ruhezonenneu;
+    isInRuheZone = false;
 end
 addEventHandler("empfangeRuhezonenData", getRootElement(), empfangeRuhezonenData_func)
 
-isInRuheZone = false
 
 function checkRuheZonenEnter()
     local isNowRuheZone = false
     local idKey = 0
     local x, y, z = getElementPosition(getLocalPlayer())
+
     for theKey, theZone in pairs(ruhezonen) do
         if (isInsideRadarArea(theZone, x, y)) then
             isNowRuheZone = true
             idKey = theKey
         end
     end
+
     if (isInRuheZone ~= isNowRuheZone) then
         if (isNowRuheZone) then
             outputChatBox("Du hast eine Ruhezone betreten! Hier gelten besondere Regeln:", 255, 0, 0)

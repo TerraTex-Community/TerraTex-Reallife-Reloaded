@@ -3,7 +3,6 @@ local isInRuheZone = false;
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
-    debug.print(ruhezonenneu);
     ruhezonen = ruhezonenneu;
     isInRuheZone = false;
 end

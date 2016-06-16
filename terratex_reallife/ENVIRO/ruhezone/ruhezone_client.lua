@@ -5,6 +5,8 @@ addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
     ruhezonen = ruhezonenneu;
     isInRuheZone = false;
+
+    debug.print(ruhezonenneu);
 end
 addEventHandler("empfangeRuhezonenData", getRootElement(), empfangeRuhezonenData_func)
 

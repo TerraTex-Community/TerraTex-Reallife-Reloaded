@@ -76,7 +76,6 @@ function addRuheZone(thePlayer)
             local area = createRadarArea(posXA, posYA, sizeX, sizeY, 0, 200, 0, 150, getRootElement())
             ruhezonen[tonumber(ID)] = area
 
-            debug.print(ruhezonen);
             triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
 
         else

@@ -52,15 +52,15 @@ function addRuheZone(thePlayer)
                 posXA = vioGetElementData(thePlayer, "posX1")
                 posXB = vioGetElementData(thePlayer, "posX2")
             else
-                posXA = vioGetElementData(thePlayer, "posX1")
-                posXB = vioGetElementData(thePlayer, "posX2")
+                posXA = vioGetElementData(thePlayer, "posX2")
+                posXB = vioGetElementData(thePlayer, "posX1")
             end
             if (vioGetElementData(thePlayer, "posY1") < vioGetElementData(thePlayer, "posY2")) then
                 posYA = vioGetElementData(thePlayer, "posY1")
                 posYB = vioGetElementData(thePlayer, "posY2")
             else
-                posYA = vioGetElementData(thePlayer, "posY1")
-                posYB = vioGetElementData(thePlayer, "posY2")
+                posYA = vioGetElementData(thePlayer, "posY2")
+                posYB = vioGetElementData(thePlayer, "posY1")
             end
 
             local sizeX = posXB - posXA
@@ -91,6 +91,7 @@ function destroyRuheZone(thePlayer, cmd, ID)
         if tonumber(ID) then
             ID = tonumber(ID);
             if (ruhezonen[ID]) then
+                destroyElement(ruhezonen[ID]);
                 ruhezonen = table.removeKey(ruhezonen, ID)
                 triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
                 MySql.helper.delete("objects_restareas", { ID = ID });

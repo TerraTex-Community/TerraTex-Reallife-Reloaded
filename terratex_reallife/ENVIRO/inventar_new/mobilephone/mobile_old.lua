@@ -229,42 +229,12 @@ function onChatNotfall(message,messageType)
                 vioSetElementData(source,"notfallzeuge",message)
                 outputChatBox("Die Nachricht wurde an die Polizei weitergeleitet!",source,0,255,0)
 
-                local policemens=getPlayersInTeam ( team[1] )
-                for theKey,thePlayer in ipairs(policemens) do
-                    outputChatBox(string.format("Ein Notruf wurde abgesetzt von %s", getPlayerName(source)),thePlayer,0,255,0)
-                    outputChatBox(string.format("Was?: %s", vioGetElementData(source,"notfallreason")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wo?: %s", vioGetElementData(source,"notfallort")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wer?: %s", vioGetElementData(source,"notfalltater")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Zeugen?: %s", vioGetElementData(source,"notfallzeuge")),thePlayer,0,255,0)
-                end
+                local policemens = getPlayersInTeam ( team[1] )
+                policemens = table.merge(policemens, getPlayersInTeam ( team[5] ))
+                policemens = table.merge(policemens, getPlayersInTeam ( team[7] ))
+                policemens = table.merge(policemens, getPlayersInTeam ( team[9] ))
+                policemens = table.merge(policemens, getPlayersInTeam ( team[10] ))
 
-                local policemens=getPlayersInTeam ( team[5] )
-                for theKey,thePlayer in ipairs(policemens) do
-                    outputChatBox(string.format("Ein Notruf wurde abgesetzt von %s", getPlayerName(source)),thePlayer,0,255,0)
-                    outputChatBox(string.format("Was?: %s", vioGetElementData(source,"notfallreason")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wo?: %s", vioGetElementData(source,"notfallort")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wer?: %s", vioGetElementData(source,"notfalltater")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Zeugen?: %s", vioGetElementData(source,"notfallzeuge")),thePlayer,0,255,0)
-                end
-                local policemens=getPlayersInTeam ( team[7] )
-                for theKey,thePlayer in ipairs(policemens) do
-                    outputChatBox(string.format("Ein Notruf wurde abgesetzt von %s", getPlayerName(source)),thePlayer,0,255,0)
-                    outputChatBox(string.format("Was?: %s", vioGetElementData(source,"notfallreason")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wo?: %s", vioGetElementData(source,"notfallort")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wer?: %s", vioGetElementData(source,"notfalltater")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Zeugen?: %s", vioGetElementData(source,"notfallzeuge")),thePlayer,0,255,0)
-                end
-
-                local policemens=getPlayersInTeam ( team[9] )
-                for theKey,thePlayer in ipairs(policemens) do
-                    outputChatBox(string.format("Ein Notruf wurde abgesetzt von %s", getPlayerName(source)),thePlayer,0,255,0)
-                    outputChatBox(string.format("Was?: %s", vioGetElementData(source,"notfallreason")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wo?: %s", vioGetElementData(source,"notfallort")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Wer?: %s", vioGetElementData(source,"notfalltater")),thePlayer,0,255,0)
-                    outputChatBox(string.format("Zeugen?: %s", vioGetElementData(source,"notfallzeuge")),thePlayer,0,255,0)
-                end
-
-                local policemens=getPlayersInTeam ( team[10] )
                 for theKey,thePlayer in ipairs(policemens) do
                     outputChatBox(string.format("Ein Notruf wurde abgesetzt von %s", getPlayerName(source)),thePlayer,0,255,0)
                     outputChatBox(string.format("Was?: %s", vioGetElementData(source,"notfallreason")),thePlayer,0,255,0)
@@ -280,8 +250,6 @@ function onChatNotfall(message,messageType)
                 vioSetElementData(source,"notfallcallingpoint",false)
                 vioSetElementData(source,"notfallcalling",false)
             end
-
-
 
         end
     end
@@ -361,11 +329,4 @@ function checkHangUp(thePlayer)
 
     end
 end
-
-
-
-
-
-
-
 

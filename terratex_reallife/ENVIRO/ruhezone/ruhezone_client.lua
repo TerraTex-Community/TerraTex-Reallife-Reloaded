@@ -18,6 +18,7 @@ function checkRuheZonenEnter()
 
     for theKey, theZone in pairs(ruhezonen) do
         if (isInsideRadarArea(theZone, x, y)) then
+            outputDebugString("in Area");
             isNowRuheZone = true
             idKey = theKey
         end

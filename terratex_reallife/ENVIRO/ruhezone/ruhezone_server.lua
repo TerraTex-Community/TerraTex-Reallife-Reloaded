@@ -7,8 +7,6 @@ function createAndLoadRuheZonen()
         local area = createRadarArea(dasatz.leftX, dasatz.buttonY, dasatz.sizeX, dasatz.sizeY, 0, 200, 0, 150, getRootElement())
         ruhezonen[dasatz.ID] = area
     end
-
-    debug.print(ruhezonen);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createAndLoadRuheZonen)
 
@@ -93,8 +91,7 @@ function destroyRuheZone(thePlayer, cmd, ID)
         if tonumber(ID) then
             ID = tonumber(ID);
             if (ruhezonen[ID]) then
-                destroyElement(ruhezonen[ID])
-                ruhezonen[ID] = false
+                ruhezonen = table.removeKey(ruhezonen, ID)
                 triggerClientEvent(getRootElement(), "empfangeRuhezonenData", thePlayer, ruhezonen)
                 MySql.helper.delete("objects_restareas", { ID = ID });
                 outputChatBox("Ruhezone gelöscht", thePlayer, 255, 0, 0)

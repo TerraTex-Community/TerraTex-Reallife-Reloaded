@@ -14,7 +14,6 @@
             <script src="FIXES/int_dim_client.lua" type="client" />
             <script src="FIXES/outputChatBox_server.lua" type="server" />
             <script src="FIXES/warpPedIntoVehicle.lua" type="server" />
-            <script src="FIXES/isInsideRadarArea.lua" type="shared" />
 		<!-- MYSQL -->
 			<script src="ENGINE/mysql/mysql.lua" type="server" />
 		<!-- USEFUL -->

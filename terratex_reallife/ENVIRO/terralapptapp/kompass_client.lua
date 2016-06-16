@@ -198,8 +198,12 @@ function aktualizeKompass()
 	guiSetText(kompassgui_Label[26],math.round(EntfernungRESET/100,3).." km | "..math.round(EntfernungRESET,1).." C")
 
     if not speedDVC then speedDVC = 0 end
-	guiSetText(kompassgui_Label[25],math.round(speedDVC,2).." m/s | "..math.round(speedDVC*3.6,2).." km/h")
-	
+    if (speedDVC > 0) then
+	    guiSetText(kompassgui_Label[25],math.round(speedDVC,2).." m/s | "..math.round(speedDVC*3.6,2).." km/h")
+    else
+	    guiSetText(kompassgui_Label[25],"0 m/s | 0 km/h")
+    end
+
 	oldx,oldy,oldz=x,y,z
 	--save_new_km_v()
 	

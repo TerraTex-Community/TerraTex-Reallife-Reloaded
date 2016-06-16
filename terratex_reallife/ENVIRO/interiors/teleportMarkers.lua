@@ -17,20 +17,19 @@ function loadTeleportMarkers()
     local marker;
     for theKey, theMarkerData in ipairs(markersFromDatabase) do
         marker = createMarker(theMarkerData.x, theMarkerData.y, theMarkerData.z, theMarkerData.markerType, theMarkerData.markerSize);
-        setElementInterior(marker, marker.interior);
-        setElementDimension(marker, marker.dimension);
+        setElementInterior(marker, theMarkerData.interior);
+        setElementDimension(marker, theMarkerData.dimension);
 
         vioSetElementData(marker, "additionalData", theMarkerData);
 
-        teleportMarkers[marker.ID] = marker;
-        outputDebugString("Marker created");
+        teleportMarkers[theMarkerData.ID] = marker;
         addEventHandler("onMarkerHit", marker, onTeleportMarkerHit);
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadTeleportMarkers)
 
 function onTeleportMarkerHit(hitElement, matchingDimension)
-    outputDebugString("Marker Hit");
+
     if matchingDimension then
         if (getElementType(hitElement) == "player") then
             local markerData = vioGetElementData(source, "additionalData");
@@ -66,7 +65,6 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                 setElementDimension(hitElement, markerData.toDim);
             end
 
-            outputDebugString("Teleport to Marker: " .. tostring(markerData.toMarker))
             if (markerData.toMarker) then
                 -- Teleport to Marker
                 local toX, toY, toZ = getElementPosition(teleportMarkers[markerData.toMarker]);
@@ -88,10 +86,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                     respawnAmmoBot_Server();
                 end
             end
-
         end
-    else
-        showError(hitElement, "wrong dimension");
     end
 end
 

@@ -50,7 +50,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
 
             local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { IP = playerIP });
             local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { IP = playerIP });
-            local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
+            local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter forum.terratex.eu", datum, admin, reason)
             cancelEvent(true, banstring)
             return true;
         else
@@ -59,7 +59,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                 local reason = MySql.helper.getValueSync("admin_user_bans", "Grund", { Nickname = playerNick });
                 local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { Nickname = playerNick });
                 local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { Nickname = playerNick });
-                local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
+                local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter forum.terratex.eu", datum, admin, reason)
                 cancelEvent(true, banstring)
                 return true;
             else
@@ -67,7 +67,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                     local reason = MySql.helper.getValueSync("admin_user_bans", "Grund", { Serial = playerSerial });
                     local datum = MySql.helper.getValueSync("admin_user_bans", "Bandatum", { Serial = playerSerial });
                     local admin = MySql.helper.getValueSync("admin_user_bans", "Admin", { Serial = playerSerial });
-                    local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter cp.terratex.eu", datum, admin, reason)
+                    local banstring = string.format("Du wurdest am %s von Admin %s vom Server gebannt Grund%s weitere Info unter forum.terratex.eu", datum, admin, reason)
                     cancelEvent(true, banstring)
                     return true;
                 else

@@ -1,11 +1,14 @@
-local ruhezonen = {}
+ruhezonen = {}
 
 function createAndLoadRuheZonen()
+    ruhezonen = {};
     local result = MySql.helper.getSync("objects_restareas", "*");
     for theKey, dasatz in ipairs(result) do
-        local area = createRadarArea(tonumber(dasatz["leftX"]), tonumber(dasatz["buttonY"]), tonumber(dasatz["sizeX"]), tonumber(dasatz["sizeY"]), 0, 200, 0, 150, getRootElement())
-        ruhezonen[tonumber(dasatz["ID"])] = area
+        local area = createRadarArea(dasatz.leftX, dasatz.buttonY, dasatz.sizeX, dasatz.sizeY, 0, 200, 0, 150, getRootElement())
+        ruhezonen[dasatz.ID] = area
     end
+
+    debug.print(ruhezonen);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createAndLoadRuheZonen)
 

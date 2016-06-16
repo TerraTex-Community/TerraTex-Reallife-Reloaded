@@ -23,10 +23,10 @@ end
 
 function setRZoneCorner_func(thePlayer, cmd, corner)
     if not corner then
-        outputChatBox("Spezify Corner with 1 or 2 (/setrzonecorner 1|2)");
+        showError(thePlayer, "Spezify Corner with 1 or 2 (/setrzonecorner 1|2)");
     end
-    if corner ~= 1 and corner ~= 2 then
-        outputChatBox("Spezify Corner with 1 or 2 (/setrzonecorner 1|2)");
+    if corner ~= "1" and corner ~= "2" then
+        showError(thePlayer, "Spezify Corner with 1 or 2 (/setrzonecorner 1|2)");
     end
 
     if (isAdminLevel(thePlayer, 3)) then

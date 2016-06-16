@@ -17,8 +17,9 @@ function checkRuheZonenEnter()
     local x, y, z = getElementPosition(getLocalPlayer())
 
     for theKey, theZone in pairs(ruhezonen) do
+
+        outputDebugString(tostring(theKey));
         if (isInsideRadarArea(theZone, x, y)) then
-            outputDebugString("in Area");
             isNowRuheZone = true
             idKey = theKey
         end

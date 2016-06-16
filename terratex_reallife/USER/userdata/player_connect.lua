@@ -105,7 +105,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                     end
                     vioSetElementData(source, "deleteMultiAccErlaubnis", id)
                 else
-                    cancelEvent(true, string.format("Es wurden bereits Accounts von diesem PC, auf dem Server registriert. Infos über bereits registrierte Accounts auf: http://cp.terratex.eu/?page=multi&id=%s [Such ID: %s]", id, id))
+                    cancelEvent(true, "Es wurden bereits Accounts von diesem PC, auf dem Server registriert.")
                     return true;
                 end
             end

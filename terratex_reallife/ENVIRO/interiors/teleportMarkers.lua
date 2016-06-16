@@ -22,12 +22,64 @@ function loadTeleportMarkers()
 
         vioSetElementData(marker, "additionalData", theMarkerData);
 
-        table.insert(teleportMarkers, marker);
+        teleportMarkers[marker.ID] = marker;
         addEventHandler("onMarkerHit", marker, onTeleportMarkerHit);
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadTeleportMarkers)
 
 function onTeleportMarkerHit(hitElement, matchingDimension)
+    if matchingDimension then
+        if (getElementType(hitElement) == "player") then
+            local markerData = vioGetElementData(source, "additionalData");
 
+            -- don't teleport if stop is set
+            if (vioGetElementData(hitElement, "stopTeleportMarkersForTeleport")) then
+                return;
+            end
+
+            -- Special cases
+            if (markerData.specialKey) then
+                if (markerData.specialKey == "onlypolice") then
+                    if (not isBeamter(hitElement)) then
+                        return;
+                    end
+                elseif (marker.specialKey == "ammonation") then
+                    if (vioGetElementData(hitElement, "waffenLic") ~= 1) then
+                        showError(hitElement, "Aufseher: Sie besitzen keinen Waffenschein, daher sind sie hier unerwünscht! Bitte verpissen Sie sich!");
+                        return;
+                    end
+                elseif (marker.specialKey == "casino") then
+                    outputChatBox("Der Innenraum und sämtliche Spiele sind überwacht, Diebstahl und Bugusing lohnt sich nicht!", hitElement, 255, 0, 0);
+                end
+            end
+
+            if (markerData.toInt) then
+                setElementInterior(hitElement, markerData.toInt);
+            end
+
+            if (markerData.toDim) then
+                setElementDimension(hitElement, markerData.toDim);
+            end
+
+            if (markerData.toMarker) then
+                -- Teleport to Marker
+                local toX, toY, toZ = getElementPosition(teleportMarkers[markerData.toMarker]);
+                vioSetElementData(hitElement, "stopTeleportMarkersForTeleport", true);
+                setTimer(enableTeleportMarkersForPlayerAgain, 2000, 1, hitElement);
+                setElementPosition(hitElement, toX, toY, toZ);
+            else
+                -- Teleport to Position
+                setElementPosition(hitElement, markerData.toPosX, markerData.toPosY, markerData.toPosZ);
+            end
+
+            if (markerData.rzAfterTeleport) then
+                setElementRotation ( hitElement, 0, 0, markerData.rzAfterTeleport);
+            end
+        end
+    end
+end
+
+function enableTeleportMarkersForPlayerAgain(thePlayer)
+    vioSetElementData(thePlayer, "stopTeleportMarkersForTeleport", false);
 end

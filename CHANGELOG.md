@@ -2,6 +2,7 @@
 ------
 * [ADDED] Sql Update 1.0.0 File
 * [ADDED] #16 Table Creation for Teleportmarkers
+* [ADDED] #16 New Teleportmarkers Script
 * [FIXED] #19 Fixed Afk Bug of the job "Meeresreiniger"
 * [FIXED] #18 Hotdogsellers can now set a prices that is smaller or equal then the money of the receiver
 * [CHANGED] #17 Rename Commands of restareas to /setRZoneCorner and /delRZone

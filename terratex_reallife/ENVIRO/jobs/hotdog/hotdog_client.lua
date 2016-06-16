@@ -3,65 +3,55 @@
 -- Source: hotdog.ui --
 -- Date:  18/11/2012 - 14:45:26 --
 -------------------------------------
-local HotDogGUI=false
+local HotDogGUI = false
 
 function build_hotdogGUI()
-	local gui = {}
-	gui._placeHolders = {}
-	local screenWidth, screenHeight = guiGetScreenSize()
-	local windowWidth, windowHeight = 413, 146
-	local left = screenWidth/2 - windowWidth/2
-	local top = screenHeight/2 - windowHeight/2
-	gui["_root"] = guiCreateWindow(left, top, windowWidth, windowHeight, "Hotdogeinkauf", false)
-	guiWindowSetSizable(gui["_root"], false)
-	gui["label"] = guiCreateLabel(50, 35, 301, 21, "Wie viele Hotdogs möchtest du einkaufen?", false, gui["_root"])
-	guiLabelSetHorizontalAlign(gui["label"], "left", false)
-	guiLabelSetVerticalAlign(gui["label"], "center")
-	gui["pushButton"] = guiCreateButton(290, 105, 75, 23, "kaufen!", false, gui["_root"])
-	if on_hotdogpushButton_clicked then
-		addEventHandler("onClientGUIClick", gui["pushButton"], on_hotdogpushButton_clicked, false)
-	end
-	gui["pushButton_2"] = guiCreateButton(190, 105, 75, 23, "beenden", false, gui["_root"])
-	if on_hotdogpushButton_2_clicked then
-		addEventHandler("onClientGUIClick", gui["pushButton_2"], on_hotdogpushButton_2_clicked, false)
-	end
-	gui["lineEdit"] = guiCreateEdit(50, 65, 113, 20, "", false, gui["_root"])
-	guiEditSetMaxLength(gui["lineEdit"], 32767)
-	gui["label_2"] = guiCreateLabel(180, 55, 231, 31, "!!!ACHTUNG du kannst maximal 500 Hotdogs haben!", false, gui["_root"])
-	guiLabelSetHorizontalAlign(gui["label_2"], "left", true)
-	guiLabelSetVerticalAlign(gui["label_2"], "center")
-	return gui, windowWidth, windowHeight
+    local gui = {}
+    gui._placeHolders = {}
+    local screenWidth, screenHeight = guiGetScreenSize()
+    local windowWidth, windowHeight = 413, 146
+    local left = screenWidth / 2 - windowWidth / 2
+    local top = screenHeight / 2 - windowHeight / 2
+    gui["_root"] = guiCreateWindow(left, top, windowWidth, windowHeight, "Hotdogeinkauf", false)
+    guiWindowSetSizable(gui["_root"], false)
+    gui["label"] = guiCreateLabel(50, 35, 301, 21, "Wie viele Hotdogs möchtest du einkaufen?", false, gui["_root"])
+    guiLabelSetHorizontalAlign(gui["label"], "left", false)
+    guiLabelSetVerticalAlign(gui["label"], "center")
+    gui["pushButton"] = guiCreateButton(290, 105, 75, 23, "kaufen!", false, gui["_root"])
+    if on_hotdogpushButton_clicked then
+        addEventHandler("onClientGUIClick", gui["pushButton"], on_hotdogpushButton_clicked, false)
+    end
+    gui["pushButton_2"] = guiCreateButton(190, 105, 75, 23, "beenden", false, gui["_root"])
+    if on_hotdogpushButton_2_clicked then
+        addEventHandler("onClientGUIClick", gui["pushButton_2"], on_hotdogpushButton_2_clicked, false)
+    end
+    gui["lineEdit"] = guiCreateEdit(50, 65, 113, 20, "", false, gui["_root"])
+    guiEditSetMaxLength(gui["lineEdit"], 32767)
+    gui["label_2"] = guiCreateLabel(180, 55, 231, 31, "!!!ACHTUNG du kannst maximal 500 Hotdogs haben!", false, gui["_root"])
+    guiLabelSetHorizontalAlign(gui["label_2"], "left", true)
+    guiLabelSetVerticalAlign(gui["label_2"], "center")
+    return gui, windowWidth, windowHeight
 end
 
 function onResourceStartCreateHotdogGUI()
-	HotDogGUI=build_hotdogGUI()
-	guiSetVisible(HotDogGUI["_root"],false)
+    HotDogGUI = build_hotdogGUI()
+    guiSetVisible(HotDogGUI["_root"], false)
 end
-addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),onResourceStartCreateHotdogGUI)
+addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), onResourceStartCreateHotdogGUI)
 
-function on_hotdogpushButton_clicked()	--kaufen
-	local text=guiGetText(HotDogGUI["lineEdit"])
-	triggerServerEvent("buyHotDogs",getLocalPlayer(),text)	
+function on_hotdogpushButton_clicked()
+    local text = guiGetText(HotDogGUI["lineEdit"])
+    triggerServerEvent("buyHotDogs", getLocalPlayer(), text)
 end
 
-addEvent("showHotDogGUI",true)
+addEvent("showHotDogGUI", true)
 function showHotDogGUI_func()
-	guiSetVisible(HotDogGUI["_root"],true)
-	showCursor(true)
+    guiSetVisible(HotDogGUI["_root"], true)
+    showCursor(true)
 end
-addEventHandler("showHotDogGUI",getRootElement(),showHotDogGUI_func)
+addEventHandler("showHotDogGUI", getRootElement(), showHotDogGUI_func)
 
-
-function on_hotdogpushButton_2_clicked() --beenden
-	guiSetVisible(HotDogGUI["_root"],false)
-	showCursor(false)
+function on_hotdogpushButton_2_clicked()
+    guiSetVisible(HotDogGUI["_root"], false)
+    showCursor(false)
 end
-
-
-
-
-
-
-
-
-

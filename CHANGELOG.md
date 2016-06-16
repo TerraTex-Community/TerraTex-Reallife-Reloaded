@@ -1,6 +1,7 @@
 ####16.06.2016
 ------
 * [FIXED] #19 Fixed Afk Bug of the job "Meeresreiniger"
+* [FIXED] #18 Hotdogsellers can now set a prices that is smaller or equal then the money of the receiver
 
 ####15.06.2016
 ------

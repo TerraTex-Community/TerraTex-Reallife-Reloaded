@@ -1,5 +1,5 @@
-local ruhezonen = {};
-local isInRuheZone = false;
+ruhezonen = {};
+isInRuheZone = false;
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)

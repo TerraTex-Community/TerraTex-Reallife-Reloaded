@@ -1,5 +1,5 @@
-local ruhezonen = {};
-local isInRuheZone = false;
+ruhezonen = {};
+isInRuheZone = false;
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
@@ -15,6 +15,7 @@ function checkRuheZonenEnter()
     local x, y, z = getElementPosition(getLocalPlayer())
 
     for theKey, theZone in pairs(ruhezonen) do
+
         if (isInsideRadarArea(theZone, x, y)) then
             isNowRuheZone = true
             idKey = theKey

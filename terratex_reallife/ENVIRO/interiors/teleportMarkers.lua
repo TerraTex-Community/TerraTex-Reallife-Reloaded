@@ -17,12 +17,12 @@ function loadTeleportMarkers()
     local marker;
     for theKey, theMarkerData in ipairs(markersFromDatabase) do
         marker = createMarker(theMarkerData.x, theMarkerData.y, theMarkerData.z, theMarkerData.markerType, theMarkerData.markerSize);
-        setElementInterior(marker, marker.interior);
-        setElementDimension(marker, marker.dimension);
+        setElementInterior(marker, theMarkerData.interior);
+        setElementDimension(marker, theMarkerData.dimension);
 
         vioSetElementData(marker, "additionalData", theMarkerData);
 
-        teleportMarkers[marker.ID] = marker;
+        teleportMarkers[theMarkerData.ID] = marker;
         addEventHandler("onMarkerHit", marker, onTeleportMarkerHit);
     end
 
@@ -33,12 +33,14 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadTeleportMarkers)
 
 function onTeleportMarkerHit(hitElement, matchingDimension)
+
     if matchingDimension then
         if (getElementType(hitElement) == "player") then
             local markerData = vioGetElementData(source, "additionalData");
 
             -- don't teleport if stop is set
             if (vioGetElementData(hitElement, "stopTeleportMarkersForTeleport")) then
+                showError(hitElement, "teleport disabled");
                 return;
             end
 
@@ -50,6 +52,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
             if (markerData.specialKey) then
                 if (markerData.specialKey == "onlypolice") then
                     if (not isBeamter(hitElement)) then
+                        showError(hitElement, "Du bist kein Beamter!");
                         return;
                     end
                 elseif (marker.specialKey == "ammonation") then
@@ -91,7 +94,6 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                     respawnAmmoBot_Server();
                 end
             end
-
         end
     end
 end

@@ -19,7 +19,6 @@ end
 addCommandHandler("ram",ram_cmdfunc,false,false)
 
 function ram_open(hausid,thePlayer)
-    outputDebugString(hausid)
     local haus=haeuser[hausid]
     haus:setLock(false)
     showError(thePlayer,"Du hast das Schloss geknackt. Die Haustüre ist jetzt offen.")
@@ -176,7 +175,7 @@ function hkasse_cmdfunc(thePlayer, cmd, betrag)
     if(vioGetElementData(thePlayer,"hkey")>0)then
         local hID=vioGetElementData(thePlayer,"hkey")
         local haus=haeuser[hID]
-        if(haus:isPlayerInHouse(thePlayer) or haus:getPlayerDistance(thePlayer))then
+        if(haus:isPlayerInHouse(thePlayer) or haus:getPlayerDistance(thePlayer)<10)then
             if(betrag)then
                 if(tonumber(betrag))then
                     betrag=tonumber(betrag)

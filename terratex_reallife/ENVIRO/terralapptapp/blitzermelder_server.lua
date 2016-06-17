@@ -29,7 +29,6 @@ function newsClickedOnBlitzer(mouseButton, buttonState, clickedElement, worldPos
 						else						
 							local blitzerTable={x,y,z,(timezone.timestamp+7200)}
 							table.insert(blitzerGemeldetePosition,blitzerTable)
-							outputDebugString(tostring(table.getn(blitzerGemeldetePosition)))
 							outputChatBox("Der Blitzer wurde erfolgreich dem Blitzerwarnerssystem gemeldet!",source,0,255,0)
 						end
 				end

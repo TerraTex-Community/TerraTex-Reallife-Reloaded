@@ -149,7 +149,6 @@ function notinpizzaCarEnter(thePlayer, seat, jacked, door)
         end
     end
 end
-
 addEventHandler("onVehicleEnter", getRootElement(), notinpizzaCarEnter)
 
 function notinpizzaCarEnter(thePlayer, seat, jacked, door)
@@ -164,7 +163,6 @@ function notinpizzaCarEnter(thePlayer, seat, jacked, door)
         end
     end
 end
-
 addEventHandler("onVehicleExit", getRootElement(), notinpizzaCarEnter)
 
 function onPlayerDeadPizza()

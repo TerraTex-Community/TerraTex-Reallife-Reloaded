@@ -25,6 +25,10 @@ function loadTeleportMarkers()
         teleportMarkers[marker.ID] = marker;
         addEventHandler("onMarkerHit", marker, onTeleportMarkerHit);
     end
+
+    -- From old Script:
+    -- Create Parachute Pickup on Star Tower
+    createPickup(1526.919921875, -1346.65234375, 329.97796630859, 2, 46, 10000)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadTeleportMarkers)
 
@@ -35,6 +39,10 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
 
             -- don't teleport if stop is set
             if (vioGetElementData(hitElement, "stopTeleportMarkersForTeleport")) then
+                return;
+            end
+
+            if (isPedInVehicle(hitElement)) then
                 return;
             end
 

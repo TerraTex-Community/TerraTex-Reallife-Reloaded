@@ -214,7 +214,6 @@
 			<script src="ENVIRO/waffen/waffen_client.lua" type="client" />
 			<script src="ENVIRO/waffen/waffen.lua" type="server" />
 		<!-- Interiors -->
-			<script src="ENVIRO/interiors/interior.lua" type="server" />
 			<script src="ENVIRO/interiors/teleportMarkers.lua" type="server" />
 			<script src="ENVIRO/interiors/burgershots.lua" type="server" />
 			<script src="ENVIRO/interiors/24_7.lua" type="server" />

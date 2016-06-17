@@ -1,5 +1,10 @@
 ####16.06.2016
 ------
+* [ADDED] #16 Added all Teleport Markers to Database / SQL
+* [REMOVED] #16 Old Interior Script
+
+####16.06.2016
+------
 * [ADDED] Sql Update 1.0.0 File
 * [ADDED] #16 Table Creation for Teleportmarkers
 * [ADDED] #16 New Teleportmarkers Script

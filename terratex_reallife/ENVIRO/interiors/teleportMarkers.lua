@@ -93,6 +93,10 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                     respawnAmmoBot_Server();
                 end
             end
+
+            if (vioGetElementData(thePlayer, "teleportDebug")) then
+                outputChatBox("Used Teleport Marker: " .. markerData.description);
+            end
         end
     end
 end
@@ -100,3 +104,12 @@ end
 function enableTeleportMarkersForPlayerAgain(thePlayer)
     vioSetElementData(thePlayer, "stopTeleportMarkersForTeleport", false);
 end
+
+function enableTeleportDebug_func(thePlayer)
+    if (vioGetElementData(thePlayer, "teleportDebug")) then
+        vioSetElementData(thePlayer, "teleportDebug", false);
+    else
+        vioSetElementData(thePlayer, "teleportDebug", true);
+    end
+end
+addCommandHandler("enableTeleportDebug", enableTeleportDebug_func, false, false)

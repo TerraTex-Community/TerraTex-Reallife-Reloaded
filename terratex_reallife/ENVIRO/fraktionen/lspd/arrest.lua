@@ -95,7 +95,6 @@ function beamtenchat(thePlayer, command, ...)
         end
     end
 end
-
 addCommandHandler("b", beamtenchat, false, false)
 
 function outputChatBoxForPolice(message, c, d, e)

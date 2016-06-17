@@ -197,7 +197,7 @@ function buyprestige_func(thePlayer)
             local preis = prestigeObjects[id]["preis"]
             if (not (prestigeObjects[id]["besitzer"])) then
                 if (getPlayerBank(thePlayer) < preis) then
-                    outputChatBox("Du hast nicht genug Geld bei dir um dieses Prestigeobject zu kaufen!", thePlayer, 255, 0, 0)
+                    outputChatBox("Du hast nicht genug Geld deinem Konto um dieses Prestigeobject zu kaufen!", thePlayer, 255, 0, 0)
                 else
                     changePlayerBank(thePlayer, -preis, "sonstiges", "Prestigekauf")
                     vioSetElementData(thePlayer, "prestigeKey", id)

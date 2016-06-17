@@ -40,7 +40,6 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
 
             -- don't teleport if stop is set
             if (vioGetElementData(hitElement, "stopTeleportMarkersForTeleport")) then
-                showError(hitElement, "teleport disabled");
                 return;
             end
 

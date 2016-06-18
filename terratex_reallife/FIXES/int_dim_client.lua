@@ -21,6 +21,10 @@ end
 
 function setElementDimension(thePed,dim)
     if(thePed==getLocalPlayer())then
+        if (dim < -1) then
+            local stack = debug.traceback();
+            triggerServerEvent("debugClientError", getLocalPlayer(), "Error on setElementDimension", stack)
+        end
         triggerServerEvent("clientSetElementDimension",getLocalPlayer(),getLocalPlayer(),dim)
     else
         _setElementDimension(thePed,dim)

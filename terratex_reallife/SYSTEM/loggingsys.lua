@@ -350,3 +350,14 @@ function checkServerWerbung(thePlayer, Message)
         });
     end
 end
+
+
+addEvent("debugClientError", true);
+function debugClientError_func(errorMessage, stack)
+    outputDebugString("Error on Client: " .. errorMessage);
+    if (stack) then
+        outputDebugString("Stack: ");
+        outputDebugString(stack);
+    end
+end
+addEventHandler("debugClientError", getRootElement(), debugClientError_func)

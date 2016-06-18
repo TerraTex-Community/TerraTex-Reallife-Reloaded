@@ -124,12 +124,11 @@ CREATE TABLE `data_faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `data_faq` (`ID`, `Frage`, `Antwort`, `katID`) VALUES
-(1, 'Wie kann ich mein Passwort ändern?', 'Zum Passwort ändern einfach mit den Ingame-Login-Daten auf cp.tt-rl.de einloggen und unter Einstellungen das Passwort ändern.', 3),
-(2, 'Wie kann ich mich in einer Fraktion bewerben?', 'Um dich bei einer Fraktion bewerben zu können, musst du dich im Forum www.tt-rl.de anmelden. Dort kannst du in dem Bewerbungsforum der entsprechenden Fraktion ein Bewerbungsthread posten.', 4),
-(3, 'Warum ist mein Auto immer abgeschleppt, wenn ich es respawne?', 'Nach dem Kauf oder dem auslösen aus dem LSPD muss das Fahrzeug erst mit /park geparkt werden.', 5),
-(4, 'Ich habe mich in ein Haus eingemietet und komme nun nicht mehr raus.', 'Ein Haus ist standardmäßig abgeschlossen. Als Mieter kannst du es mit /hlock aufschließen und es mit /out verlassen.', 6),
-(5, 'Wie erreiche ich ein Supporter / Moderator?', 'Uns kannst du jederzeit über /report oder im Forum unter www.tt-rl.de erreichen.', 4),
-(6, 'Wieso erhalte ich mein Gehalt beim Jobben nicht?', 'Bei den Jobs gibt es verschiedene Arten, wann und wie die Vergütung bezahlt wird. Alle Bezahlungen mit der Bezeichnung ''Gehalt'' werden beim PayDay als sonstiges Gehalt ausgezahlt.', 4);
+(1, 'Wie kann ich mich in einer Fraktion bewerben?', 'Um dich bei einer Fraktion bewerben zu können, musst du dich im Forum forum.terratex.eu anmelden. Dort kannst du in dem Bewerbungsforum der entsprechenden Fraktion ein Bewerbungsthread posten.', 4),
+(2, 'Warum ist mein Auto immer abgeschleppt, wenn ich es respawne?', 'Nach dem Kauf oder dem auslösen aus dem LSPD muss das Fahrzeug erst mit /park geparkt werden.', 5),
+(3, 'Ich habe mich in ein Haus eingemietet und komme nun nicht mehr raus.', 'Ein Haus ist standardmäßig abgeschlossen. Als Mieter kannst du es mit /hlock aufschließen und es mit /out verlassen.', 6),
+(4, 'Wie erreiche ich ein Supporter / Moderator?', 'Uns kannst du jederzeit über /report oder im Forum unter https://forum.terratex.eu erreichen.', 4),
+(5, 'Wieso erhalte ich mein Gehalt beim Jobben nicht?', 'Bei den Jobs gibt es verschiedene Arten, wann und wie die Vergütung bezahlt wird. Alle Bezahlungen mit der Bezeichnung ''Gehalt'' werden beim PayDay als sonstiges Gehalt ausgezahlt.', 4);
 
 CREATE TABLE `data_faq_category` (
   `ID` int(11) NOT NULL,

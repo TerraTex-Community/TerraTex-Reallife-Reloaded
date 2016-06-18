@@ -527,7 +527,7 @@ function report_func(theMaker, command, text, ...)
             end
         end
         if (adminsOnline == 0) then
-            outputChatBox("Leider ist derzeit kein Mitglied des Supportteams online. Bei Problemen erreichst du uns im Forum http://www.tt-rl.de", theMaker)
+            outputChatBox("Leider ist derzeit kein Mitglied des Supportteams online. Bei Problemen erreichst du uns im Forum http://www.terratex.eu", theMaker)
         elseif (adminsAfk == adminsOnline) then
             outputChatBox("Derzeit sind alle TTeams abwesend. Dein Report wird möglicherweise erst verzögert bearbeitet.", theMaker)
         end

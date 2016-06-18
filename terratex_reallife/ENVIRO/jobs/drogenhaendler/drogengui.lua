@@ -35,10 +35,6 @@ addEventHandler("onClientResourceStart",resourceRoot,
 			guiLabelSetColor(DrogenDealerGUI_Label[6],255,255,255)
 			guiLabelSetVerticalAlign(DrogenDealerGUI_Label[6],"top")
 			guiLabelSetHorizontalAlign(DrogenDealerGUI_Label[6],"left",false)
-        DrogenDealerGUI_Label[7] = guiCreateLabel(33,227,297,81,"Drogenpflanzen Finden && Umwandeln erst ab einer spaeteren Version verfuegbar! Informationen unter tt-rl.de! Du kannst dort auch zu diesem Thema Vorschlaege abgeben!",false,DrogenDealerGUI_Window[1])
-			guiLabelSetColor(DrogenDealerGUI_Label[7],255,255,255)
-			guiLabelSetVerticalAlign(DrogenDealerGUI_Label[7],"top")
-			guiLabelSetHorizontalAlign(DrogenDealerGUI_Label[7],"left",true)
 			guiSetVisible(DrogenDealerGUI_Window[1] ,false)
 			
 			

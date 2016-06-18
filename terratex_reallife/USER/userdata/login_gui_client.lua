@@ -13,7 +13,7 @@ addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()
         guiEditSetMasked(Gui_login_edit, true)		
 		
         Gui_Login_Button = guiCreateButton(10, 133, 352, 30, "Login", false, Login_Gui)
-        local loginlabel=guiCreateLabel(10, 173, 352, 101, "Passwort vergessen?\nDann besuche http://cp.tt-rl.de und nutze die dort hinterlegte 'Passwort vergessen'-Funktion.\n\nNoch kein Nickname, aber dieses Fenster?\nDann wähle einen anderen Nickname, dieser ist bereits belegt.", false, Login_Gui)
+        local loginlabel=guiCreateLabel(10, 173, 352, 101, "\n\n\nNoch kein Nickname, aber dieses Fenster?\nDann wähle einen anderen Nickname, dieser ist bereits belegt.", false, Login_Gui)
         guiLabelSetHorizontalAlign(loginlabel, "left", true)
         guiCreateStaticImage(9, 26, 353, 61, "FILES/IMAGES/header.png", false, Login_Gui)    
 

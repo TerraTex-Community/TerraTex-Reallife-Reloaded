@@ -1,6 +1,7 @@
 function clicksysbind()
-    showCursor(not isCursorShowing())
-    outputDebugString("working click");
+    if not showCursor(not isCursorShowing()) then
+       showCursor(true);
+    end
 end
 
 function click_func()
@@ -9,7 +10,6 @@ end
 
 addEvent("bindclicksys_event", true)
 function rebind_func()
-    outputDebugString("binded");
     bindKey("ralt", "down", clicksysbind)
     bindKey("i", "down", openInventar)
 end

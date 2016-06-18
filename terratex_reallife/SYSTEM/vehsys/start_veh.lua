@@ -163,17 +163,14 @@ function setCarBinds()
     bindKey(source, "x", "down", startEngine_func, source)
     bindKey(source, "l", "down", startLight_func, source)
 end
-
 addEventHandler("onPlayerJoin", getRootElement(), setCarBinds)
 
 function rebind_func(thePlayer)
-    source = thePlayer
-    unbindKey(source, "x")
-    unbindKey(source, "l")
-    bindKey(source, "x", "down", startEngine_func, source)
-    bindKey(source, "l", "down", startLight_func, source)
+    unbindKey(thePlayer, "x")
+    unbindKey(thePlayer, "l")
+    bindKey(thePlayer, "x", "down", startEngine_func, thePlayer)
+    bindKey(thePlayer, "l", "down", startLight_func, thePlayer)
 end
-
 addCommandHandler("rebind", rebind_func, false, false)
 
 function prepare(thevehicle, frakid)

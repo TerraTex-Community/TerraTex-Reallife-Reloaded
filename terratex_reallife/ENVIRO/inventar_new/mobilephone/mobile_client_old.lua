@@ -35,11 +35,3 @@ function stopTeleKlingel_func()
     end
 end
 addEventHandler("stopTeleKlingel",getRootElement(),stopTeleKlingel_func)
-
-
-
-
-
-
-
-

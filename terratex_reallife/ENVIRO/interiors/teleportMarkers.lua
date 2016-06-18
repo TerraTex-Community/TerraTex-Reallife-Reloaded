@@ -94,7 +94,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                 end
             end
 
-            if (vioGetElementData(thePlayer, "teleportDebug")) then
+            if (vioGetElementData(hitElement, "teleportDebug")) then
                 outputChatBox("Used Teleport Marker: " .. markerData.description);
             end
         end

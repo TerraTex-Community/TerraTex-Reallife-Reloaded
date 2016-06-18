@@ -1,4 +1,8 @@
-####16.06.2016
+####18.06.2016
+------
+* [REMOVED] #26 Old RookieGuide (/snt) because it is too old and outdated
+
+####17.06.2016
 ------
 * [ADDED] #16 Added all Teleport Markers to Database / SQL
 * [REMOVED] #16 Old Interior Script

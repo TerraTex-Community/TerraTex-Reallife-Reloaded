@@ -129,8 +129,6 @@
 			<script src="USER/payday/updateplaytime.lua" type="server" />
 			<script src="USER/payday/updateplaytime_client.lua" type="client" />
 	<!-- HELPSYSTEM -->
-		<!-- tutorial -->
-			<script src="HELPSYSTEM/tutorial/noobtut_client.lua" type="client" />
 		<!-- F1 - GUI System -->
 			<script src="HELPSYSTEM/hilfeguis/main/gui.lua" type="client" />
 			<script src="HELPSYSTEM/hilfeguis/welcome/gui.lua" type="client" />
@@ -527,17 +525,7 @@
 			<file src="FILES/SOUNDS/tada.wav" /> <!-- POKAL -->
 			<file src="FILES/SOUNDS/bus/stop.wav" />
 			<file src="FILES/SOUNDS/eiswagen.wav" />
-    <!--Tutorial Sounds -->
-        <file src="FILES/SOUNDS/tutsounds/247.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/auto.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/einleitung.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/essen.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/fraktion.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/freizeit.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/infor.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/pd.mp3" />
-        <file src="FILES/SOUNDS/tutsounds/Ring1.wav" />
-        <file src="FILES/SOUNDS/tutsounds/stadthalle.mp3" />
+        	<file src="FILES/SOUNDS/Ring1.wav" />
 
 	<!-- IMAGEFILES / BILDER -->
 		<!-- BLIPS -->
@@ -569,21 +557,6 @@
 				<file src="FILES/IMAGES/lapptapp/obTAN.png"/>
 				<file src="FILES/IMAGES/lapptapp/obSchutzLogo.png"/>
 				<file src="FILES/IMAGES/lapptapp/obSchutzMain.png"/>
-		<!--Tutorial-->
-			<file src="FILES/IMAGES/tutorial/stadthalle_innen.png" />
-			<file src="FILES/IMAGES/tutorial/innendienst.png" />
-			<file src="FILES/IMAGES/tutorial/tanke.png" />
-			<file src="FILES/IMAGES/tutorial/automaten.png" />
-			<file src="FILES/IMAGES/tutorial/cb.png" />
-			<file src="FILES/IMAGES/tutorial/Pizza.png" />
-			<file src="FILES/IMAGES/tutorial/knast.png" />
-			<file src="FILES/IMAGES/tutorial/lvpd.png" />
-			<file src="FILES/IMAGES/tutorial/alka.png" />
-			<file src="FILES/IMAGES/tutorial/alhambra.png" />
-			<file src="FILES/IMAGES/tutorial/kirche.png" />
-			<file src="FILES/IMAGES/tutorial/taxi.png" />
-			<file src="FILES/IMAGES/tutorial/news.png" />
-			<file src="FILES/IMAGES/tutorial/mafia.png" />
 		<!-- HUD -->
 			<file src="FILES/IMAGES/tacho/needle.png" />
 			<file src="FILES/IMAGES/tacho/needle_blue.png" />

@@ -23,7 +23,7 @@ local telesound=false
 addEvent("playTeleKlingel",true)
 function playTeleKlingel_func()
     if(not(mutephone))then
-        telesound=playSound("/FILES/SOUNDS/tutsounds/Ring1.wav")
+        telesound=playSound("/FILES/SOUNDS/Ring1.wav")
     end
 end
 addEventHandler("playTeleKlingel",getRootElement(),playTeleKlingel_func)

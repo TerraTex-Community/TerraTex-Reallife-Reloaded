@@ -211,7 +211,6 @@ function payday(thePlayer)
         table.insert(PayDayTable, { "Fahrzeugversicherung", 0, (-zah) })
     end
 
-
     --Spielzeitbonus
     local Spielzeitbonus = math.round(vioGetElementData(thePlayer, "playtime") / 200)
     table.insert(PayDayTable, { "Spielzeitbonus", Spielzeitbonus, 0 })
@@ -225,8 +224,6 @@ function payday(thePlayer)
         table.insert(PayDayTable, { "Prestigebonus", pboni, 0 })
         Einnahmen = Einnahmen + pboni
     end
-
-
 
     --Geburstagsbonus
     local dates = getRealTime()

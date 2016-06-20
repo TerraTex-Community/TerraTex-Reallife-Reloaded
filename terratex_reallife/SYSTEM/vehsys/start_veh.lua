@@ -165,6 +165,12 @@ function setCarBinds()
 end
 addEventHandler("onPlayerJoin", getRootElement(), setCarBinds)
 
+function rebindOnResourceRestart()
+    for theKey, thePlayer in ipairs(getElementsByType("player")) do
+        rebind_func(thePlayer)
+    end
+end
+
 function rebind_func(thePlayer)
     unbindKey(thePlayer, "x")
     unbindKey(thePlayer, "l")

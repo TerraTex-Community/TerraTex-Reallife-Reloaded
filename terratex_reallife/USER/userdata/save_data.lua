@@ -79,6 +79,7 @@ function save_data()
             setTable["user_licenses"]["reiseLic"] = vioGetElementData(source, "reiseLic")
             setTable["user_licenses"]["angelLic"] = vioGetElementData(source, "angelLic")
             setTable["user_licenses"]["persoLic"] = vioGetElementData(source, "persoLic")
+            setTable["user_licenses"]["industrialFishingLic"] = vioGetElementData(source, "industrialFishingLic")
 
             --inventar
 

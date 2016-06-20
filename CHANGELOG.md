@@ -8,6 +8,7 @@
 * [FIXED] Next try to fix clicksystem
 * [CHANGED] /healme can now used by everyone who own a house with a room and is in this house
 * [CHANGED] Moved Admincommand /setcolor to the adminsection of the script (fun.lua)
+* [CHANGED] To fish on all boats it is required to own an advanced (idustrial) fishing license instead of premium
 
 Release 1.0.0
 ======

@@ -12,7 +12,6 @@ function enterVehicle(thePlayer, seat, jacked, door)
     local vehid = getElementModel(source)
     if (seat == 0) then
         if not (isNoLicensCar(vehid)) then
-
             if (isTruck(vehid)) then
                 if (vioGetElementData(thePlayer, "truckLic") < 1) then
                     showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Truckerlizens!")

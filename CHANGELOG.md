@@ -1,15 +1,17 @@
 ####20.06.2016
 ------
-* [ADDED] Basic Gold Table Creation
-* [REMOVED] /accept premium
-* [REMOVED] /buypremium
-* [REMOVED] /premium and Premium Info GUI
-* [REMOVED] Debug from Pizzajob
-* [REMOVED] removed Premium from Social stuff
+* [ADDED] #31 Basic Gold Table Creation
+* [REMOVED] #32 /spawnchange job
+* [REMOVED] #32 /accept premium
+* [REMOVED] #32 /buypremium
+* [REMOVED] #32 /premium and Premium Info GUI
+* [REMOVED] #32 Debug from Pizzajob
+* [REMOVED] #32 removed Premium from Social stuff
 * [FIXED] Next try to fix clicksystem
-* [CHANGED] /healme can now used by everyone who own a house with a room and is in this house
+* [CHANGED] #32 renamed /spawnchange premium to /spawnchange vehicle (can now be used without premium)
+* [CHANGED] #32 /healme can now used by everyone who own a house with a room and is in this house
 * [CHANGED] Moved Admincommand /setcolor to the adminsection of the script (fun.lua)
-* [CHANGED] To fish on all boats it is required to own an advanced (idustrial) fishing license instead of premium
+* [CHANGED] #32 To fish on all boats it is required to own an advanced (idustrial) fishing license instead of premium
 
 Release 1.0.0
 ======

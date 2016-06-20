@@ -13,7 +13,8 @@ function save_data()
             --Userdata
             setTable["user_data"] = {}
             setTable["user_data"]["Spawn"] = vioGetElementData(source, "spawnplace")
-            setTable["user_data"]["PremiumSpawn"] = vioGetElementData(source, "PremiumSpawn")
+            -- Todo: rename database column
+            setTable["user_data"]["PremiumSpawn"] = vioGetElementData(source, "VehicleSpawn")
             if (vioGetElementData(source, "skinid") ~= '') then
                 setTable["user_data"]["Skin"] = vioGetElementData(source, "skinid")
             end

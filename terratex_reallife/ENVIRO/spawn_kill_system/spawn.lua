@@ -117,46 +117,20 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         vioSetElementData(source, "spawnplace", 0)
                     end
                     elseif (spawn == 3) and not (spawnDiscconectPlayers[name]) then
-
                         local time = getRealTime()
                         local nickname = getPlayerName(source)
-                        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
-                        if (premiumOutTime > 0) then
-                            local slot = vioGetElementData(source, "PremiumSpawn")
-                            if isElement(vioGetElementData(source, "slot" .. slot)) then
-                                if isSpawnChangeVehicle[getElementModel(vioGetElementData(source, "slot" .. slot))] then
-                                    if getVehicleOccupant(vioGetElementData(source, "slot" .. slot)) then
-                                        outputChatBox("Das Fahrzeug in dem Sie Spawnen wollen, ist besetzt!", source, 0, 255, 0)
-                                        spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
-                                    else
-                                        local vx, vy, vz = getElementPosition(vioGetElementData(source, "slot" .. slot))
-                                        spawnPlayer(source, vx, vy, vz + 1, 355.60266113281, skinid, 0, 0, team[fraktion])
-                                        warpPedIntoVehicle(source, vioGetElementData(source, "slot" .. slot))
-                                        setElementFrozen(vioGetElementData(source, "slot" .. slot), false)
-                                    end
-                                else
+                        local slot = vioGetElementData(source, "VehicleSpawn")
+                        if isElement(vioGetElementData(source, "slot" .. slot)) then
+                            if isSpawnChangeVehicle[getElementModel(vioGetElementData(source, "slot" .. slot))] then
+                                if getVehicleOccupant(vioGetElementData(source, "slot" .. slot)) then
+                                    outputChatBox("Das Fahrzeug in dem Sie Spawnen wollen, ist besetzt!", source, 0, 255, 0)
                                     spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
-                                    vioSetElementData(source, "spawnplace", 0)
+                                else
+                                    local vx, vy, vz = getElementPosition(vioGetElementData(source, "slot" .. slot))
+                                    spawnPlayer(source, vx, vy, vz + 1, 355.60266113281, skinid, 0, 0, team[fraktion])
+                                    warpPedIntoVehicle(source, vioGetElementData(source, "slot" .. slot))
+                                    setElementFrozen(vioGetElementData(source, "slot" .. slot), false)
                                 end
-                            else
-                                spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
-                                vioSetElementData(source, "spawnplace", 0)
-                            end
-                        end
-                    elseif (spawn == 5) then
-                        local time = getRealTime()
-                        local nickname = getPlayerName(source)
-                        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
-                        if (premiumOutTime > 0) then
-                            if vioGetElementData(source, "job") > 0 then
-                                --outputChatBox(tostring(vioGetElementData(source,"job")))
-                                --outputChatBox(tostring(JobPickups[vioGetElementData(source,"job")]))
-                                local pickele = JobPickups[vioGetElementData(source, "job")][1]
-                                local int = getElementInterior(pickele)
-                                local dim = getElementDimension(pickele)
-                                local posx, posy, posz = getElementPosition(pickele)
-                                spawnPlayer(source, posx, posy, posz, 0, skinid, int, dim, team[fraktion])
-
                             else
                                 spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
                                 vioSetElementData(source, "spawnplace", 0)
@@ -166,8 +140,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                             vioSetElementData(source, "spawnplace", 0)
                         end
                     elseif (spawn == 4) then --- parkhaus
-                    spawnPlayer(source, 2262.560546875, 1382.1240234375, 10.8203125, 169.44744873047, skinid, 0, 0, team[fraktion])
-
+                        spawnPlayer(source, 2262.560546875, 1382.1240234375, 10.8203125, 169.44744873047, skinid, 0, 0, team[fraktion])
                     else
                         spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
                     end

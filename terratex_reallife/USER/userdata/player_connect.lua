@@ -160,6 +160,7 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             MySql.helper.insert("user_tapps", { Nickname = nickname });
             MySql.helper.insert("faction_userrights", { Nickname = nickname });
             MySql.helper.insert("user_premium", { Name = nickname });
+            MySql.helper.insert("user_gold", { Name = nickname });
 
             dbExec(MySql._connection, "UPDATE user SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
 
@@ -241,6 +242,9 @@ function LoginPlayerData(nickname, pw)
         end
         if not (MySql.helper.existSync("user_grades", { Nickname = getPlayerName(source) })) then
             MySql.helper.insertSync("user_grades", { Nickname = nickname });
+        end
+        if not (MySql.helper.existSync("user_gold", { Nickname = getPlayerName(source) })) then
+            MySql.helper.insertSync("user_gold", { Nickname = nickname });
         end
 
         setPedStat(source, 69, 500) --test

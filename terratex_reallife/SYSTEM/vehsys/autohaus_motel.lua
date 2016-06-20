@@ -1,4 +1,4 @@
-premiumVehicles = { [413] = true, [439] = true, [467] = true, [474] = true, [483] = true, [489] = true, [495] = true, [500] = true, [513] = true, [539] = true, [589] = true, [409] = true, [572] = true, [565] = true, [434] = true, [508] = true, [579] = true }
+
 
 autohausVehicles = {}
 autohaustimer = {}
@@ -40,7 +40,7 @@ function createBuyCars()
     vehicle = createVehicle(492, 2135.697265625, -1131.58203125, 25.462408065796, 359.736328125, 0.2911376953125, 83.534545898438)
     table.insert(autohausVehicles, { vehicle, "Greenwood", 1, 980.00 }) --E
     vehicle = createVehicle(467, 2135.77734375, -1134.0810546875, 25.43408203125, 359.76928710938, 0.274658203125, 83.688354492188)
-    table.insert(autohausVehicles, { vehicle, "Oceanic", 1, 1810.22 }) --E
+    table.insert(autohausVehicles, { vehicle, "Oceanic", 1, 18100.22 }) --E
     vehicle = createVehicle(517, 2135.701171875, -1136.6962890625, 25.503540039062, 359.72534179688, 356.59973144531, 83.754272460938)
     table.insert(autohausVehicles, { vehicle, "Majestic", 1, 1750.40 }) --E
     vehicle = createVehicle(518, 2135.662109375, -1139.1611328125, 25.103664398193, 359.61547851562, 353.44116210938, 84.446411132812)
@@ -82,7 +82,7 @@ function createBuyCars()
     vehicle = createVehicle(568, 437.7763671875, -1359.1865234375, 14.681805610657, 359.91760253906, 359.90661621094, 29.64111328125)
     table.insert(autohausVehicles, { vehicle, "Bandito", 2, 12300.00 })
     vehicle = createVehicle(434, 434.1513671875, -1361.658203125, 14.781834602356, 359.5166015625, 359.87915039062, 31.591186523438)
-    table.insert(autohausVehicles, { vehicle, "Hotknife", 2, 36620.00 })
+    table.insert(autohausVehicles, { vehicle, "Hotknife", 2, 366200.00 })
     vehicle = createVehicle(468, 429.4755859375, -1364.0087890625, 14.463199615479, 359.75830078125, 359.90661621094, 32.376708984375)
     table.insert(autohausVehicles, { vehicle, "Sanchez", 2, 2400.00 })
     vehicle = createVehicle(471, 430.5625, -1362.8876953125, 14.291126251221, 359.21447753906, 359.90661621094, 32.536010742188)
@@ -92,7 +92,7 @@ function createBuyCars()
 
     --Autohaus Nummer 3
     vehicle = createVehicle(409, 1697.5234375, 1316.3779296875, 10.63438129425, 359.50561523438, 0, 89.813232421875)
-    table.insert(autohausVehicles, { vehicle, "Stretch", 3, 81000 }) -- E
+    table.insert(autohausVehicles, { vehicle, "Stretch", 3, 810000 }) -- E
     vehicle = createVehicle(405, 1695.3935546875, 1297.8984375, 10.658576011658, 0, 0, 179.71435546875)
     table.insert(autohausVehicles, { vehicle, "Sentinel", 3, 75000.00 }) --E
     vehicle = createVehicle(418, 1676.5, 1306.1904296875, 10.879893302917, 0.0714111328125, 359.99450683594, 359.89562988281)
@@ -100,7 +100,7 @@ function createBuyCars()
     vehicle = createVehicle(426, 1682.6396484375, 1305.9814453125, 10.609205245972, 0.010986328125, 0, 358.84643554688)
     table.insert(autohausVehicles, { vehicle, "Premier", 3, 1500.00 }) --E
     vehicle = createVehicle(439, 1666.5107421875, 1297.2763671875, 10.715995788574, 0.054931640625, 0, 180.20874023438)
-    table.insert(autohausVehicles, { vehicle, "Stallion", 3, 13000.30 }) --E
+    table.insert(autohausVehicles, { vehicle, "Stallion", 3, 130000.30 }) --E
     vehicle = createVehicle(442, 1689.0146484375, 1298.111328125, 10.645729064941, 0.7965087890625, 0, 180.10986328125)
     table.insert(autohausVehicles, { vehicle, "Romero", 3, 10149.00 }) --E
     vehicle = createVehicle(516, 1688.916015625, 1305.9658203125, 10.654562950134, 359.98901367188, 0, 359.45617675781)
@@ -186,39 +186,39 @@ function createBuyCars()
 
     --Premium --autohaus 7
     vehicle = createVehicle(409, 2802.6000976563, -1540.9000244141, 10.699999809265, 0, 0, 180.75)
-    table.insert(autohausVehicles, { vehicle, "Stretch", 7, 81000.00 })
+    table.insert(autohausVehicles, { vehicle, "Stretch", 7, 810000.00 })
     vehicle = createVehicle(413, 2812.1999511719, -1540.5999755859, 11.10000038147, 0, 0, 180)
-    table.insert(autohausVehicles, { vehicle, "Pony", 7, 1600.00 })
+    table.insert(autohausVehicles, { vehicle, "Pony", 7, 16000.00 })
     vehicle = createVehicle(467, 2816.3999023438, -1540.4000244141, 10.60000038147, 0, 0, 180.75)
-    table.insert(autohausVehicles, { vehicle, "Oceanic", 7, 1810.22 })
+    table.insert(autohausVehicles, { vehicle, "Oceanic", 7, 18100.22 })
     vehicle = createVehicle(474, 2807.3999023438, -1540.6999511719, 10.800000190735, 0, 0, 179.25006103516)
-    table.insert(autohausVehicles, { vehicle, "Hermes", 7, 410.00 })
+    table.insert(autohausVehicles, { vehicle, "Hermes", 7, 4100.00 })
     vehicle = createVehicle(508, 2821.3999023438, -1548.9000244141, 11.39999961853, 0, 0, 92)
-    table.insert(autohausVehicles, { vehicle, "Journey", 7, 20200.00 })
+    table.insert(autohausVehicles, { vehicle, "Journey", 7, 202000.00 })
     vehicle = createVehicle(483, 2822, -1553.3000488281, 10.89999961853, 0, 0, 88.75)
-    table.insert(autohausVehicles, { vehicle, "Camper", 7, 1800.00 })
+    table.insert(autohausVehicles, { vehicle, "Camper", 7, 18000.00 })
     vehicle = createVehicle(489, 2797.3000488281, -1554.5, 11, 0, 0, 270)
-    table.insert(autohausVehicles, { vehicle, "Rancher", 7, 3000.00 })
+    table.insert(autohausVehicles, { vehicle, "Rancher", 7, 30000.00 })
     vehicle = createVehicle(495, 2797.1999511719, -1558.5999755859, 11.199999809265, 0, 0, 269.75)
-    table.insert(autohausVehicles, { vehicle, "Sandking", 7, 40500.00 })
+    table.insert(autohausVehicles, { vehicle, "Sandking", 7, 405000.00 })
     vehicle = createVehicle(500, 2797, -1549.6999511719, 11.10000038147, 0, 0, 267.5)
-    table.insert(autohausVehicles, { vehicle, "Mesa", 7, 2100.00 })
+    table.insert(autohausVehicles, { vehicle, "Mesa", 7, 21000.00 })
     vehicle = createVehicle(513, 2797.1000976563, -1542.6999511719, 11.5, 0, 0, 216)
-    table.insert(autohausVehicles, { vehicle, "Stuntplane", 5, 51000.00 })
+    table.insert(autohausVehicles, { vehicle, "Stuntplane", 5, 510000.00 })
     vehicle = createVehicle(539, 2821, -1543, 10.60000038147, 0, 0, 132)
-    table.insert(autohausVehicles, { vehicle, "Vortex", 7, 2520.00 })
+    table.insert(autohausVehicles, { vehicle, "Vortex", 7, 25200.00 })
     vehicle = createVehicle(589, 2796.6999511719, -1562.5, 10.60000038147, 0, 0, 270)
-    table.insert(autohausVehicles, { vehicle, "Club", 7, 1650.00 })
+    table.insert(autohausVehicles, { vehicle, "Club", 7, 16500.00 })
     vehicle = createVehicle(565, 2797, -1567.3000488281, 10.60000038147, 0, 0, 268.5)
-    table.insert(autohausVehicles, { vehicle, "Flash", 7, 1110.00 })
+    table.insert(autohausVehicles, { vehicle, "Flash", 7, 11100.00 })
     vehicle = createVehicle(572, 2821.8000488281, -1558, 10.60000038147, 0, 0, 89.75)
-    table.insert(autohausVehicles, { vehicle, "Mower", 7, 204.00 })
+    table.insert(autohausVehicles, { vehicle, "Mower", 7, 2040.00 })
     vehicle = createVehicle(434, 2821.3000488281, -1562.5, 11.10000038147, 0, 0, 92)
-    table.insert(autohausVehicles, { vehicle, "Hotknife", 7, 14620.00 })
+    table.insert(autohausVehicles, { vehicle, "Hotknife", 7, 146200.00 })
     vehicle = createVehicle(439, 2821.8000488281, -1566.3000488281, 10.89999961853, 0, 0, 89)
-    table.insert(autohausVehicles, { vehicle, "Stallion", 7, 13000.30 })
+    table.insert(autohausVehicles, { vehicle, "Stallion", 7, 130000.30 })
     vehicle = createVehicle(579, 2795.5927734375, -1571.4453125, 10.650381088257, 0.4888916015625, 0, 268.91784667969)
-    table.insert(autohausVehicles, { vehicle, "Huntley", 7, 11182.50 })
+    table.insert(autohausVehicles, { vehicle, "Huntley", 7, 111820.50 })
 
     for theKey, theKoords in ipairs(autohausspawns) do
         createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
@@ -284,18 +284,8 @@ function clickOnBuyVehicle(button, state, element)
         if (button == "left" and state == "down") then
             for theKey, thevehicle in ipairs(autohausVehicles) do
                 if (element == thevehicle[1]) then
-                    local modelid = getElementModel(element)
-                    if (premiumVehicles[modelid]) then
-                        if (vioGetElementData(source, "premium") > 0) then
-                            triggerClientEvent(source, "closeAutohausFahrzeugGuiagain", source)
-                            triggerClientEvent(source, "showAutohausGui_Event", source, getElementModel(thevehicle[1]), thevehicle[4], thevehicle[2], thevehicle[1])
-                        else
-                            showError(source, "Dieses Fahrzeug ist nur für Premiummitglieder! Informationen unter /premium oder im Forum!")
-                        end
-                    else
-                        triggerClientEvent(source, "closeAutohausFahrzeugGuiagain", source)
-                        triggerClientEvent(source, "showAutohausGui_Event", source, getElementModel(thevehicle[1]), thevehicle[4], thevehicle[2], thevehicle[1])
-                    end
+                    triggerClientEvent(source, "closeAutohausFahrzeugGuiagain", source)
+                    triggerClientEvent(source, "showAutohausGui_Event", source, getElementModel(thevehicle[1]), thevehicle[4], thevehicle[2], thevehicle[1])
                 end
             end
         end

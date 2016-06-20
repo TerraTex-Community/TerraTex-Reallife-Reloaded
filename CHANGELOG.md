@@ -1,6 +1,7 @@
 ####20.06.2016
 ------
 * [ADDED] #31 Basic Gold Table Creation
+* [REMOVED] #32 removed Premium exclusive Vehicles
 * [REMOVED] #32 /spawnchange job
 * [REMOVED] #32 /accept premium
 * [REMOVED] #32 /buypremium
@@ -12,6 +13,7 @@
 * [CHANGED] #32 /healme can now used by everyone who own a house with a room and is in this house
 * [CHANGED] Moved Admincommand /setcolor to the adminsection of the script (fun.lua)
 * [CHANGED] #32 To fish on all boats it is required to own an advanced (idustrial) fishing license instead of premium
+* [CHANGED] #32 All old Premium Vehicles are now normales Vehicles with the old price multiplied with 10
 
 Release 1.0.0
 ======

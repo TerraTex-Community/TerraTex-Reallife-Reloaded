@@ -53,18 +53,24 @@ function isLotteryTime()
         local result = dbPoll(query, -1);
         local dsatz = result[1];
 
-        outputChatBox(string.format(".... und es hat %s gewonnen!!!!", dsatz["Nickname"]))
-        local thePlayer = getPlayerFromName(dsatz["Nickname"])
-        if (thePlayer) then
-            changePlayerMoney(thePlayer, gewinn, "sonstiges", "Gewinn in der Tombupotlotterie")
-            outputChatBox("Dein Gewinn wurde dir auf die Hand gegeben!", thePlayer, 155, 155, 0)
+        if (dsatz) then
+            outputChatBox(string.format(".... und es hat %s gewonnen!!!!", dsatz["Nickname"]));
+
+            local thePlayer = getPlayerFromName(dsatz["Nickname"])
+            if (thePlayer) then
+                changePlayerMoney(thePlayer, gewinn, "sonstiges", "Gewinn in der Tombupotlotterie")
+                outputChatBox("Dein Gewinn wurde dir auf die Hand gegeben!", thePlayer, 155, 155, 0)
+            else
+                MySql.helper.insert("user_gifts", {
+                    Nickname = dsatz["Nickname"],
+                    Grund = "Du hast in der TombupotLottery gewonnen!",
+                    Geld = gewinn
+                });
+            end
         else
-            MySql.helper.insert("user_gifts", {
-                Nickname = dsatz["Nickname"],
-                Grund = "Du hast in der TombupotLottery gewonnen!",
-                Geld = gewinn
-            });
+            outputChatBox("...... und es hat keiner Teilgenommen!?");
         end
+
         dbExec(MySql._connection, "TRUNCATE TABLE user_tombupot");
 
         outputChatBox("Vergesst nicht an der nächsten Tombupotlottery teilzunehmen!")

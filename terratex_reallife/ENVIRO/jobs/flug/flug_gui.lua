@@ -247,11 +247,9 @@ addEventHandler("onClientRender", root,
 
                     if(hit)then
                         local realHeight=pz-nz
-
                         dxDrawText(string.format("über Boden: %s", math.round(realHeight,1)), screenW - 201 - 10, (screenH - 90) / 2 + 50, (screenW - 201 - 10) + 201, ( (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "left", "center", false, false, false, false, false)
-
                     else
-                        dxDrawText(string.format("über Boden: 0", math.round(realHeight,1)), screenW - 201 - 10, (screenH - 90) / 2 + 50, (screenW - 201 - 10) + 201, ( (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "left", "center", false, false, false, false, false)
+                        dxDrawText("über Boden: 0", screenW - 201 - 10, (screenH - 90) / 2 + 50, (screenW - 201 - 10) + 201, ( (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "left", "center", false, false, false, false, false)
                     end
                 end
 			end

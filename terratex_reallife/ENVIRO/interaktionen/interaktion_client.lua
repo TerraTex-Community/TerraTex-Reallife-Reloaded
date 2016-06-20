@@ -845,18 +845,6 @@ end
 addEvent("setZoneNameForGui",true)
 addEventHandler("setZoneNameForGui",getRootElement(),setZoneNameForGui_func)
 
-function math.round(number, decimals, method)
-    decimals = decimals or 0
-    local factor = 10 ^ decimals
-
-    if not number then
-        triggerServerEvent("debugClientError", getLocalPlayer(), "[Math.round] Number expected got nil", debug.traceback());
-        assert(false, "[Math.round] Number expected got nil");
-    end
-
-    if (method == "ceil" or method == "floor") then return math[method](number * factor) / factor
-    else return tonumber(("%."..decimals.."f"):format(number)) end
-end
 
 function changeJaNein_Interaktion(number)
     if(tonumber(number)==1)then
@@ -865,11 +853,3 @@ function changeJaNein_Interaktion(number)
         return "Nein"
     end
 end
-
-
-
-
-
-
-
-

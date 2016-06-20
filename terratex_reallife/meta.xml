@@ -168,7 +168,6 @@
             <script src="ENVIRO/inventar_new/mobilephone/mobile_client_old.lua" type="client" />
             <script src="ENVIRO/inventar_new/mobilephone/mobile_old.lua" type="server" />
 		<!-- Spielerliste -->
-			<script src="ENVIRO/spielerliste/spielerliste_client.lua" type="client" />			
 			<script src="ENVIRO/spielerliste/spielerliste_server.lua" type="server" />
 		<!-- Inventar @todo: neubau -->
 			<script src="ENVIRO/interaktionen/interaktion_client.lua" type="client" />

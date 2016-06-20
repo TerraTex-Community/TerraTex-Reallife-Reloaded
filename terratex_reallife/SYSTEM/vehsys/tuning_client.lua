@@ -345,7 +345,7 @@ function tuning_einbauen()
 			end		
 		end
 		if not(isinveh)then
-			if(getPlayerMoney(getLocalPlayer())<pricing+UpSlotPrice[slotnr])then
+			if(getPlayerMoney(getLocalPlayer()) < pricing+UpSlotPrice[slotnr])then
 				showError(getLocalPlayer(),string.format("Ihnen fehlen %s$ um das einzubauen!", UpSlotPrice[slotnr]))
 			else
 				addVehicleUpgrade(hitElement,upg)

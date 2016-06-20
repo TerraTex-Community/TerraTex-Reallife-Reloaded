@@ -1,3 +1,8 @@
+####20.06.2016
+------
+* [REMOVED] Duplicated math.round function on client
+* [FIXED] #28 Exception in flug_gui.lua
+
 ####18.06.2016
 ------
 * [REMOVED] #26 Old RookieGuide (/snt) because it is too old and outdated

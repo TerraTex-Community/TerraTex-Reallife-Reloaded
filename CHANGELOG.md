@@ -8,6 +8,8 @@
 * [REMOVED] #32 /premium and Premium Info GUI
 * [REMOVED] #32 Debug from Pizzajob
 * [REMOVED] #32 removed Premium from Social stuff
+* [REMOVED] #32 Removed Premium from Presents for Christmas
+* [REMOVED] #32 Removed Premium from Insurances
 * [FIXED] Next try to fix clicksystem
 * [CHANGED] #32 renamed /spawnchange premium to /spawnchange vehicle (can now be used without premium)
 * [CHANGED] #32 /healme can now used by everyone who own a house with a room and is in this house

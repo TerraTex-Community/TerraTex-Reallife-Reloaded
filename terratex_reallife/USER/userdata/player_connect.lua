@@ -554,11 +554,6 @@ function LoginPlayerData(nickname, pw)
             local days = math.round(((premiumOutTime / 60) / 60) / 24)
             vioSetElementData(source, "premium", premiumOutTime)
             outputChatBox(string.format("Du hast noch %s Tage Premium!", days), source, 0, 255, 0)
-            if (days < 7) then
-                outputChatBox("ACHTUNG! Dein Premiumstatus läuft bald aus! Verlängere jetzt dein Premium!", source, 0, 255, 0)
-            end
-        else
-            outputChatBox("Du hast kein Premium? Kauf dir doch welches! Infos unter /premium!", source, 0, 255, 0)
         end
 
         local onlineSchutzUntil = MySql.helper.getValueSync("user_tapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;

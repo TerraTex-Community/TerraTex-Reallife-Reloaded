@@ -184,7 +184,7 @@ function createBuyCars()
     vehicle = createVehicle(473, 816.70001220703, -2140.8999023438, 0, 0, 0, 152)
     table.insert(autohausVehicles, { vehicle, "Dinghy", 6, 10500.00 })
 
-    --Premium --autohaus 7
+    --autohaus 7
     vehicle = createVehicle(409, 2802.6000976563, -1540.9000244141, 10.699999809265, 0, 0, 180.75)
     table.insert(autohausVehicles, { vehicle, "Stretch", 7, 810000.00 })
     vehicle = createVehicle(413, 2812.1999511719, -1540.5999755859, 11.10000038147, 0, 0, 180)

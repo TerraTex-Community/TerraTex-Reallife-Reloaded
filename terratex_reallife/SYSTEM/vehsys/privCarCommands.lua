@@ -321,7 +321,7 @@ function deletecar_func(thePlayer, command, SloteID)
                             ocarPrice = carPrice
                         end
                     end
-                    local premPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.7
+
                     privCars[vioGetElementData(thePlayer, "slot" .. SlotID)] = nil
                     for theKey, theTable in ipairs(privVeh) do
                         if (theTable[3] == vioGetElementData(thePlayer, "slot" .. SlotID)) then
@@ -331,21 +331,14 @@ function deletecar_func(thePlayer, command, SloteID)
 
                     MySql.helper.delete("user_vehicles", { ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
 
-                    carPrice = math.round((carPrice / 100) * 15, 0)
-                    if (vioGetElementData(thePlayer, "premium") > 0) then
-                        if (premPrice == 0) then
-                            carPrice = math.round((ocarPrice / 100) * 50, 0)
-                            showError(thePlayer, "Premium: Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 50% des Kaufpreises erhalten!")
-                        else
-                            carPrice = premPrice
-                            showError(thePlayer, "Premium: Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 70% des Einkaufpreises erhalten!")
-                        end
-                    else
-                        if (premPrice ~= 0) then
-                            carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.15
-                        end
-                        showError(thePlayer, "Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 10% des Kaufpreises erhalten!")
+                    carPrice = math.round((carPrice / 100) * 25, 0)
+
+                    if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then
+                        carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.25
                     end
+
+                    showError(thePlayer, "Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 25% des Kaufpreises erhalten!")
+
                     changePlayerMoney(thePlayer, carPrice, "fahrzeug", "Fahrzeugverkauf")
                     destroyElement(vioGetElementData(thePlayer, "slot" .. SlotID))
                     vioSetElementData(thePlayer, "slot" .. SlotID, -1)
@@ -354,7 +347,6 @@ function deletecar_func(thePlayer, command, SloteID)
         end
     end
 end
-
 addCommandHandler("deletecar", deletecar_func, false, false)
 
 function sellcar_func(thePlayer, Command, newplayername, SloteID)
@@ -442,14 +434,5 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID)
         end
     end
 end
-
 addCommandHandler("sellcar", sellcar_func, false, false)
-
-
-
-
-
-
-
-
 

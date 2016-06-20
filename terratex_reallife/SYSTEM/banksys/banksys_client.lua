@@ -217,7 +217,7 @@ function()
 		
         VersicherungsGUI_Window[1] = guiCreateWindow(dx,dy,434,221,"Versicherung",false)
 		table.insert(allGuis,VersicherungsGUI_Window[1])
-        VersicherungsGUI_Label[1] = guiCreateLabel(16,38,188,102,"Autoversicherung\nEinmalige Kosten: 150k $\npro PayDay: 15.00$ pro Fahrzeug\nNutzen: bei Fahrzeugverlust bei Nichtpremium 25 Prozent und bei Premium 75 Prozent",false,VersicherungsGUI_Window[1])
+        VersicherungsGUI_Label[1] = guiCreateLabel(16,38,188,102,"Autoversicherung\nEinmalige Kosten: 150k $\npro PayDay: 15.00$ pro Fahrzeug\nNutzen: bei Fahrzeugverlust 25 Prozent",false,VersicherungsGUI_Window[1])
         guiLabelSetHorizontalAlign(VersicherungsGUI_Label[1],"left",true)
         VersicherungsGUI_Label[2] = guiCreateLabel(214,38,206,99,"Lebensversicherung\nEinmalige Kosten: 50k $\npro PayDay 10% mehr Sozialabgaben\nNutzen: \195\156bernimmt alle Wiederbelebungskosten",false,VersicherungsGUI_Window[1])
         guiLabelSetHorizontalAlign(VersicherungsGUI_Label[2],"left",true)

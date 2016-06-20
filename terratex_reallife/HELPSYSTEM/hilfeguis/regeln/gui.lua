@@ -334,10 +334,6 @@ local rules={
                 ["underpoints"]=false
             },
             {
-                ["text"]="Die Ausnutzung von Premiumvorteilen des nicht-eigenen Accounts sind verboten (Beispiel: Verschrottung eines Fahrzeuges durch einen Freund mit einem Premiumaccount).",
-                ["underpoints"]=false
-            },
-            {
                 ["text"]="Serverausfälle gehören zum Leben auf der Community dazu. Bei kleineren Abstürzen und Serverneustarts, wird kein Verlust ersetzt. (Ausnahme sind nur sehr teure Gegenstände bzw. sonstige Ausnahmefälle)",
                 ["underpoints"]=false
             },

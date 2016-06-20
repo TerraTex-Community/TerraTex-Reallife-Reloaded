@@ -191,26 +191,11 @@ function onvehicleexplode_exec(source)
 
                 local versicherung = vioGetElementData(besitzer, "versicherung")
                 outputChatBox(string.format("Ihr Fahrzeug im Slot %s wurde zerstört", vioGetElementData(source, "slotid")), besitzer, 255, 0, 0)
-                if (versicherung == 1 or vioGetElementData(besitzer, "premium") > 0) then
-                    local satz = 0
+
+                if (versicherung == 1) then
+                    local satz = 0.25
                     local wert = 0
-                    local mitPremium = false
-                    local mitVersicherung = false
-                    --Premium? setze Satz
-                    if (vioGetElementData(besitzer, "premium") > 0) then
-                        if (versicherung == 1) then
-                            satz = 0.75
-                            mitVersicherung = true
-                        else
-                            satz = 0.25
-                            mitVersicherung = false
-                        end
-                        mitPremium = true
-                    else
-                        satz = 0.25
-                        mitVersicherung = true
-                    end
-                    --WERT?
+
                     if (not (vioGetElementData(source, "kaufpreis")) == 0) then
                         local vehmod = getElementModel(source)
                         for theKey, theVehicle in ipairs(autohausVehicles) do
@@ -221,12 +206,9 @@ function onvehicleexplode_exec(source)
                     else
                         wert = vioGetElementData(source, "kaufpreis")
                     end
-                    --Ausgabe und Auszahlung
-                    if (mitPremium and mitVersicherung) then
-                        outputChatBox("Eine Versicherung hat ihnen 75% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
-                    else
-                        outputChatBox("Eine Versicherung hat ihnen 25% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
-                    end
+
+
+                    outputChatBox("Eine Versicherung hat ihnen 25% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
                     changePlayerMoney(besitzer, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
                 end
                 vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
@@ -251,28 +233,13 @@ function onvehicleexplode_exec(source)
                 end
                 save_offline_message(vioGetElementData(source, "besitzer"), "Fahrzeugsystem", "Ihr Fahrzeug im Slot " .. vioGetElementData(source, "slotid") .. " wurde zerstört")
                 local time = getRealTime()
-                local premium = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = vioGetElementData(source, "besitzer") }) - time.timestamp;
+
                 local versicherung = MySql.helper.getValueSync("user_data", "versicherung", { Nickname = vioGetElementData(source, "besitzer") });
 
-                if (versicherung == 1 or premium > 0) then
-                    local satz = 0
+                if (versicherung == 1) then
+                    local satz = 0.25
                     local wert = 0
-                    local mitPremium = false
-                    local mitVersicherung = false
-                    --Premium? setze Satz
-                    if (premium) then
-                        if (versicherung == 1) then
-                            satz = 0.75
-                            mitVersicherung = true
-                        else
-                            satz = 0.25
-                            mitVersicherung = false
-                        end
-                        mitPremium = true
-                    else
-                        satz = 0.25
-                        mitVersicherung = true
-                    end
+
                     --WERT?
                     if (not (vioGetElementData(source, "kaufpreis")) == 0) then
                         local vehmod = getElementModel(source)

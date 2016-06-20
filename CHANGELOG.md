@@ -4,6 +4,8 @@
 * [REMOVED] /accept premium
 * [REMOVED] /buypremium
 * [REMOVED] /premium and Premium Info GUI
+* [REMOVED] Debug from Pizzajob
+* [FIXED] Next try to fix clicksystem
 * [CHANGED] /healme can now used by everyone who own a house with a room and is in this house
 * [CHANGED] Moved Admincommand /setcolor to the adminsection of the script (fun.lua)
 

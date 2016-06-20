@@ -35,11 +35,6 @@ function respawnPizzaCars()
 end
 
 pizzaAbhole = { 2095.544921875, -1806.642578125, 13.145221710205 }
--- 164.6427154541	-1394.6400146484		47.807476043701
--- outputChatBox(tostring(getDistanceBetweenPoints3D(2095.544921875,-1806.642578125,13.145221710205, 164.6427154541, -1394.6400146484, 47.807476043701)), getRootElement(), 0, 0, 0, false)
--- vioSetElementData(thePlayer,"PizzaStation")
--- vioSetElementData(thePlayer,"PizzaBlip")
--- vioSetElementData(thePlayer,"PizzaMarker")
 
 function StartPizzaLieferant(thePlayer)
     if not (vioGetElementData(thePlayer, "PizzaStation")) then
@@ -115,7 +110,6 @@ function PizzaGetMarkerHit(thePlayer)
         local HID = 0
         while (hasNoCoords == 0) do
             HID = math.random(1, table.getMax(haeuser))
-            outputDebugString("Pizzaroller to " .. HID)
             if (haeuser[HID]) then
                 local haus = haeuser[HID]
                 if (haus:getBesitzer() and haus:getCity() == 0) then

@@ -10,6 +10,8 @@ end
 
 addEvent("bindclicksys_event", true)
 function rebind_func()
+    unbindKey ( "ralt", "down" )
+    unbindKey ( "i", "down" )
     bindKey("ralt", "down", clicksysbind)
     bindKey("i", "down", openInventar)
 end

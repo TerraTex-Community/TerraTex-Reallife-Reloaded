@@ -237,7 +237,6 @@
 		<!-- PREMIUMsystem -->
 			<script src="ENVIRO/premium/premium.lua" type="server" />
 			<script src="ENVIRO/premium/premium_color_change_client.lua" type="client" />
-			<script src="ENVIRO/premium/premium_info_client.lua" type="client" />
 		<!-- kirche-->
 			<script src="ENVIRO/kirche/kirche.lua" type="server"/>
 			<script src="ENVIRO/kirche/kirche_client.lua" type="client" />

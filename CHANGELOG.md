@@ -1,6 +1,11 @@
 ####20.06.2016
 ------
-
+* [ADDED] Basic Gold Table Creation
+* [REMOVED] /accept premium
+* [REMOVED] /buypremium
+* [REMOVED] /premium and Premium Info GUI
+* [CHANGED] /healme can now used by everyone who own a house with a room and is in this house
+* [CHANGED] Moved Admincommand /setcolor to the adminsection of the script (fun.lua)
 
 Release 1.0.0
 ======

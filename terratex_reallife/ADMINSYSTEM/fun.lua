@@ -93,3 +93,17 @@ function tune_perkm(thePlayer,cmd,kmh)
     end
 end
 addCommandHandler("tunekmh",tune_perkm,false,false)
+
+function setColor_func(thePlayer,cmd,colorA,colorB,colorC,colorA2,colorB2,colorC2)
+    if not colorA2 or not colorB2 or not colorC2 then
+        colorA2,colorB2,colorC2 = colorA,colorB,colorC
+    end
+
+
+    if(isAdminLevel(thePlayer,3))then
+        local vehicle=getPedOccupiedVehicle(thePlayer)
+        setVehicleHeadLightColor ( vehicle, colorA,colorB,colorC)
+        setVehicleColor ( vehicle, colorA,colorB,colorC,colorA2,colorB2,colorC2)
+    end
+end
+addCommandHandler("setcolor",setColor_func,false,false)

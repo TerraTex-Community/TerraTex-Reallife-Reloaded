@@ -109,17 +109,6 @@ function give_AdventsPresent(player, presentID)
         outputChatBox("Zum Advent hast du ein Fahrzeuggutschein als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
         outputChatBox("Diesen kannst du unter dem Weihnachtsbaum beim Icon einlösen!", player, 166, 0, 166)
         vioSetElementData(player, "geschenk", vioGetElementData(player, "geschenk") + 1)
-    elseif (text == "Premium") then
-        outputChatBox("Zum Advent hast du 30 Tage Premium geschenkt bekommen", player, 166, 0, 166)
-        local thirty = 2592000
-        local time = getRealTime()
-        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = getPlayerName(player) }) - time.timestamp;
-        if (premiumOutTime > 0) then
-            thirty = thirty + premiumOutTime
-        end
-        MySql.helper.update("user_premium", { PremiumUntil = (time.timestamp + thirty) }, { Name = getPlayerName(player) });
-        vioSetElementData(player, "premium", (time.timestamp + thirty))
-        outputChatBox(string.format("Du hast nun noch %s Tage Premium!", math.round((((thirty / 60) / 60) / 24))), player, 166, 0, 166)
     end
 end
 
@@ -160,9 +149,7 @@ adventPresets_big = {
     { 10000, "geld" },
     { 5000, "geld" },
     { 1, "fahrzeuggutschein" },
-    { 1, "fahrzeuggutschein" },
-    { 30, "Premium" },
-    { 15, "Premium" }
+    { 1, "fahrzeuggutschein" }
 }
 
 adventPresents_small = {

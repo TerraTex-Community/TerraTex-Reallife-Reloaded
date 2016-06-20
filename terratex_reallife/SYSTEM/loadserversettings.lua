@@ -203,34 +203,7 @@ function reduceSchutzGeld(timestate)
 
     setTimer(reduceSchutzGeld, 60000, 1)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), reduceSchutzGeld)
-
-function afk_timer()
-    for theKey, thePlayer in ipairs(getElementsByType("player")) do
-        if (vioGetElementData(thePlayer, "afk_status")) then
-            if not (vioGetElementData(thePlayer, "afk_status") == 1) then
-                vioSetElementData(thePlayer, "afk_timer", vioGetElementData(thePlayer, "afk_timer") + 1)
-                if (vioGetElementData(thePlayer, "afk_timer") >= 15 and not (isAdminLevel(thePlayer, 4))) then
-                    local playerTime = vioGetElementData(thePlayer, "playtime")
-                    if (math.round(playerTime / 60, 0, "floor") == math.round((playerTime - 20) / 60, 0, "floor")) then
-                        vioSetElementData(thePlayer, "playtime", playerTime - 20)
-                    else
-                        local newPlayerTime = (math.round(playerTime / 60, 0, "floor") * 60) + 1
-                        vioSetElementData(thePlayer, "playtime", newPlayerTime)
-                    end
-                    outputChatBox(string.format("Der Spieler %s wurde vom AFK-System nach 15 Minuten gekickt (kein /afk)!", getPlayerName(thePlayer)), getRootElement(), 255, 0, 0)
-                    kickPlayer(thePlayer, "Du warst AFK ohne /afk einzugeben!")
-                end
-            else
-                vioSetElementData(thePlayer, "afk_timer", 0)
-            end
-        end
-    end
-    setTimer(afk_timer, 60000, 1)
-end
-
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), afk_timer)
 
 function timebanreduce()
     local query = "UPDATE admin_user_timebans SET Minuten=Minuten-1;"

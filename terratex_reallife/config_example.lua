@@ -37,6 +37,11 @@ config["scriptername"]="[TTeam]Geramy92"
 -- NONE - No Restart at 3/4 o'clock (not recommend)
 config["dailyrestarttype"]="GMX"
 
+
+-- What should be done, if a user is afk but does not use /afk
+-- Options: "kick" - will kick the player or "afk" - will set player in afk mode automatically
+config["afk.punish"] = "kick"
+
 -- ################  FEATURE SETTINGS  #################
 -- Enable or Disable Standard of Living (Means you need a specific house value to buy expensive cars)
 config["feature.stardard_of_living"] = true

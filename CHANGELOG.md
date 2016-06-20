@@ -1,5 +1,6 @@
 ####20.06.2016
 ------
+* [ADDED] #5 Afk-config option afk.punish
 * [REMOVED] Duplicated math.round function on client
 * [FIXED] #28 Exception in flug_gui.lua
 * [FIXED] #30 Show a message instead of getting an exception

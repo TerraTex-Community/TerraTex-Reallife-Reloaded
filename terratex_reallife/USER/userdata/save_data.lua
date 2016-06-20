@@ -4,8 +4,6 @@ function save_data()
     if (nickname) then
         if (isPlayerLoggedIn(source)) then
 
-            outputDebugString("Start Saveing User Data [" .. nickname .. "]")
-
             local setTable = {}
 
             --rechte
@@ -19,6 +17,7 @@ function save_data()
             if (vioGetElementData(source, "skinid") ~= '') then
                 setTable["user_data"]["Skin"] = vioGetElementData(source, "skinid")
             end
+
             setTable["user_data"]["Fraktion"] = vioGetElementData(source, "fraktion")
             setTable["user_data"]["Fraktionsrang"] = vioGetElementData(source, "fraktionsrang")
             setTable["user_data"]["Tode"] = vioGetElementData(source, "tode")
@@ -209,14 +208,9 @@ function save_data()
             setTable["user_tapps"] = {}
             setTable["user_tapps"]["OnlineSchutzUntil"] = vioGetElementData(source, "onlineschutzuntil")
 
-
-            -- debug.print(setTable)
-
             for tablename, tableset in pairs(setTable) do
                 MySql.helper.update(tablename, tableset, { Nickname = getPlayerName(source) });
             end
-
-            outputDebugString("User Data [" .. nickname .. "] saved")
         end
     end
 end

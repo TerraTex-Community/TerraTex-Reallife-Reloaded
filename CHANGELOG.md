@@ -3,6 +3,7 @@
 * [REMOVED] Duplicated math.round function on client
 * [FIXED] #28 Exception in flug_gui.lua
 * [FIXED] #30 Show a message instead of getting an exception
+* [FIXED] #29 Fixed Exceptions in Meeresreiniger
 
 ####18.06.2016
 ------

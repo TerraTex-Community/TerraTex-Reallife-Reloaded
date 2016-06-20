@@ -29,29 +29,31 @@ end
 addCommandHandler("startboot", startboot_func, false, false)
 
 function stopboot_func(thePlayer)
+    if (vioGetElementData(source, "meeresBoot")) then
 
-    local x, y, z = getElementPosition(thePlayer)
-    local dis = getDistanceBetweenPoints3D(2499.8017578125, -2268.44140625, -0.16085433959961, x, y, z)
-    if (dis < 20) then
-        if (isPedInVehicle(thePlayer)) then
-            if (getElementModel(getPedOccupiedVehicle(thePlayer)) == 453) then
-                triggerClientEvent(thePlayer, "stopboot_event", thePlayer)
+        local x, y, z = getElementPosition(thePlayer)
+        local dis = getDistanceBetweenPoints3D(2499.8017578125, -2268.44140625, -0.16085433959961, x, y, z)
+        if (dis < 20) then
+            if (isPedInVehicle(thePlayer)) then
+                if (getElementModel(getPedOccupiedVehicle(thePlayer)) == 453) then
+                    triggerClientEvent(thePlayer, "stopboot_event", thePlayer)
+                end
             end
-        end
 
-        destroyElement(getPedOccupiedVehicle(thePlayer))
-        removePedFromVehicle(thePlayer)
-        vioSetElementData(thePlayer, "meeresBoot", false)
-        setTimer(setElementPosition, 1000, 1, thePlayer, 2500.166015625, -2259.4609375, 3)
-    else
-        showError(thePlayer, "Du kannst /stopboot nur am Hafen benutzen!!!!")
+            destroyElement(getPedOccupiedVehicle(thePlayer))
+            removePedFromVehicle(thePlayer)
+            vioSetElementData(thePlayer, "meeresBoot", false)
+            setTimer(setElementPosition, 1000, 1, thePlayer, 2500.166015625, -2259.4609375, 3)
+        else
+            showError(thePlayer, "Du kannst /stopboot nur am Hafen benutzen!!!!")
+        end
     end
     vioSetElementData(thePlayer, "hasClickedMeeresBoot", false)
 end
 addCommandHandler("stopboot", stopboot_func, false, false)
 
 function onPlayerWasted_boot()
-    if (vioGetElementData(source, "meeresBoot")) then
+    if (isElement(vioGetElementData(source, "meeresBoot"))) then
         destroyElement(vioGetElementData(source, "meeresBoot"))
         vioSetElementData(source, "meeresBoot", false)
     end

@@ -29,7 +29,7 @@ end
 addCommandHandler("startboot", startboot_func, false, false)
 
 function stopboot_func(thePlayer)
-    if (vioGetElementData(source, "meeresBoot")) then
+    if (vioGetElementData(thePlayer, "meeresBoot")) then
 
         local x, y, z = getElementPosition(thePlayer)
         local dis = getDistanceBetweenPoints3D(2499.8017578125, -2268.44140625, -0.16085433959961, x, y, z)

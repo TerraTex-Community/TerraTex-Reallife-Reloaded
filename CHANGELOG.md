@@ -2,6 +2,7 @@
 ------
 * [ADDED] Some basic files for Browser-Based-UI
 * [FIXED] Issue on User Creating with user_gold table
+* [FIXED] Some Exceptions on Meeresreiniger - again
 * [CHANGED] /pcolor is now usable by everyone (costs: vehicle color - 7500$ ; light colors - 2500$)
 
 ####20.06.2016

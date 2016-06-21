@@ -39,6 +39,6 @@ function buyNewGold(get, post)
 end
 
 function browserActualizeFields(browser)
-    executeBrowserJavascript ( browser, "$('#imBesitz').val(" .. getElementData(getLocalPlayer(), "gold") .. ");");
+    executeBrowserJavascript ( browser, "$('#imBesitz').val(" .. getElementData(getLocalPlayer(), "Gold") .. ");");
     executeBrowserJavascript ( browser, "$('#pricePerGold').val(" + config["gold.price"] + ");");
 end

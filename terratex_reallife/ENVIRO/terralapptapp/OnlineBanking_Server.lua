@@ -57,6 +57,12 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
     end
 end
 
+function obStartOfflineTransfer_func(empfaenger, grund, betrag)
+    OnlineBanking_Offline(source, empfaenger, grund, betrag)
+end
+addEvent("obStartOfflineTransfer", true);
+addEventHandler("obStartOfflineTransfer", getRootElement(), obStartOfflineTransfer_func)
+
 function OnlineBanking_UeberweisenServer(empfaenger, grund, betrag)
     --	if source ~= client then return end
     if (betrag <= 0) then return end
@@ -93,10 +99,12 @@ function OnlineBanking_UeberweisenServer(empfaenger, grund, betrag)
                     outputChatBox(string.format("%s hat Dir $%s überwiesen. Grund: %s", getPlayerName(source), betrag, grund), empfaengerVoll)
                     triggerClientEvent(source, "obUeberweisungClient", source, false)
                 else
-                    OnlineBanking_Offline(source, empfaenger, grund, betrag)
+                    triggerClientEvent(source, "obShallOfflineUeberweisung", source, empfaenger, grund, betrag)
+--                    OnlineBanking_Offline(source, empfaenger, grund, betrag)
                 end
             else
-                OnlineBanking_Offline(source, empfaenger, grund, betrag)
+                triggerClientEvent(source, "obShallOfflineUeberweisung", source, empfaenger, grund, betrag)
+--                OnlineBanking_Offline(source, empfaenger, grund, betrag)
             end
         else
             showError(source, "Du hast nicht genug Geld auf Deinem Konto.")

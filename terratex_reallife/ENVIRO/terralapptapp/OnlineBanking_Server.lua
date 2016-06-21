@@ -3,7 +3,7 @@ local osSchwundProzent = 25
 
 function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
     if (sender and empfaenger and grund and betrag) then
-        if ((((vioGetElementData(source, "premium") / 60) / 60) / 24) > 0) then
+        if (vioGetElementData(sender, "Gold") > 0) then
             if (getPlayerBank(sender) >= betrag) then
                 betrag = math.round(betrag, 2)
                 if (betrag > 0) then
@@ -30,6 +30,8 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                             local query = "UPDATE user_data SET Bank = Bank + ? WHERE Nickname = ?"
                             dbExec(MySql._connection, query, betrag, empf);
 
+                            vioSetElementData(sender, "Gold", vioGetElementData(sender, "Gold") - 1);
+
                             saveMoneyLog_withNickname(empf, "Bank", "spieler", betrag, string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
                             save_offline_message(empf, "SA Bank Systems", string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
                             triggerClientEvent(sender, "obUeberweisungClient", sender, false)
@@ -46,8 +48,8 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                 outputChatBox("Du hast nicht genügend Geld. Wende dich an DarkCitizen", sender, 0, 255, 0)
             end
         else
-            outputChatBox("Empfänger ist Offline. Du hast leider auch kein Premium.", sender, 0, 255, 0)
-            outputChatBox("Kauf Dir mit /premium Premium um an Offline Spieler zu überweisen.", sender, 0, 255, 0)
+            outputChatBox("Empfänger ist Offline. Du hast leider auch kein Gold.", sender, 0, 255, 0)
+            outputChatBox("Du benötigst für ein Gold pro Offlineüberweisung.", sender, 0, 255, 0)
         end
     else
         -- Wir haben keinen Empfänger, Grund oder Betrag
@@ -125,11 +127,4 @@ end
 
 addEvent("obGetTanCodeServer", true)
 addEventHandler("obGetTanCodeServer", getRootElement(), OnlineBanking_GetTanCodeServer)
-
-
-
-
-
-
-
 

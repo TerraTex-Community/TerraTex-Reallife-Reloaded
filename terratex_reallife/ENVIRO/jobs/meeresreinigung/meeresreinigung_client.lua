@@ -60,10 +60,14 @@ function startTimer_Meer()
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             else
+                meeresClean = -1000
+                meeresCleanLastTen = -1000
                 local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             end
         else
+            meeresClean = -1000
+            meeresCleanLastTen = -1000
             local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
             meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
         end

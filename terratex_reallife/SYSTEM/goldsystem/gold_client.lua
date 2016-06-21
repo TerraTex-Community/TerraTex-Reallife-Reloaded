@@ -29,6 +29,7 @@ function startGoldUI()
 
         addEventHandler ( "onClientBrowserDocumentReady" , guiGetBrowser(browser) ,
             function ( url )
+                showCursor(true)
                 browserActualizeFields(source)
                 goldBrowser = source;
             end

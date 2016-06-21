@@ -536,7 +536,7 @@
 		<file src="UI/styles/fonts/fontawesome-webfont.woff" />
 		<file src="UI/styles/fonts/fontawesome-webfont.woff2" />
 		<file src="UI/styles/js/bootstrap.min.js" />
-		<file src="UI/styles/js/jquery-3.0.0.min.js" />
+		<file src="UI/styles/js/jquery.min.js" />
 		<file src="UI/Gold.html" />
 
 	<!-- IMAGEFILES / BILDER -->

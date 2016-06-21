@@ -20,6 +20,7 @@ function startGoldUI()
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
+                toggleBrowserDevTools ( guiGetBrowser(browser), true )
                 loadBrowserURL(source, "http://mta/local/UI/Gold.html");
                 browserActualizeFields(source);
             end
@@ -29,16 +30,17 @@ end
 addCommandHandler("gold", startGoldUI, false, false)
 
 function buyNewGold(get, post)
-    if (get.amount) then
+    outputChatBox(tostring(get.amount))
+    --[[if (get.amount) then
         if (get.amount * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
 
         else
             showError(getLocalPlayer(), "Du hast nicht genug Geld um so viel Gold zu kaufen!");
         end
-    end
+    end]]
 end
 
 function browserActualizeFields(browser)
-    executeBrowserJavascript ( browser, "$('#imBesitz').val(" .. getElementData(getLocalPlayer(), "Gold") .. ");");
-    executeBrowserJavascript ( browser, "$('#pricePerGold').val(" + config["gold.price"] + ");");
+    executeBrowserJavascript ( browser, "$('#imBesitz').html(" .. getElementData(getLocalPlayer(), "Gold") .. ");");
+    executeBrowserJavascript ( browser, "$('#pricePerGold').val(" .. config["gold.price"] .. ");");
 end

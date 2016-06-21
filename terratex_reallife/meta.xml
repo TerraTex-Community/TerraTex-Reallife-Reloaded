@@ -63,6 +63,8 @@
 			<script src="SYSTEM/antisystem/anti_frame_client.lua" type="client" /> 
 			<script src="SYSTEM/antisystem/anti_frame_server.lua" type="server" /> 		
 		<!-- Vehiclesystem-->
+            <script src="SYSTEM/vehsys/vehicle_pcolor.lua" type="server" />
+            <script src="SYSTEM/vehsys/vehicle_pcolor_client.lua" type="client" />
             <script src="SYSTEM/vehsys/vehicle_house.lua" type="server" />
             <script src="SYSTEM/vehsys/tacho/tacho_client.lua" type="client" />
             <script src="SYSTEM/vehsys/landebahnen.lua" type="server" />
@@ -234,9 +236,6 @@
 		<!-- Blinker -->
 			<script src="ENVIRO/blinker/blinker_server.lua" type="server"/>
 			<script src="ENVIRO/blinker/blinker_client.lua" type="client"/>
-		<!-- PREMIUMsystem -->
-			<script src="ENVIRO/premium/premium.lua" type="server" />
-			<script src="ENVIRO/premium/premium_color_change_client.lua" type="client" />
 		<!-- kirche-->
 			<script src="ENVIRO/kirche/kirche.lua" type="server"/>
 			<script src="ENVIRO/kirche/kirche_client.lua" type="client" />

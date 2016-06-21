@@ -74,24 +74,15 @@ function loadPrivCars()
         setElementFrozen(thevehicle, true)
 
         vioSetElementData(thevehicle, "premColor", "-1")
-        local time = getRealTime()
-        if (tonumber(MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = dasatz["Besitzer"] }))) then
 
-            local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = dasatz["Besitzer"] }) - time.timestamp;
-            if (premiumOutTime > 0) then
-                local lights = getStringComponents(vioGetElementData(thevehicle, "Lichterfarbe"))
-                setVehicleHeadLightColor(thevehicle, tonumber(lights[1]), tonumber(lights[2]), tonumber(lights[3]))
-                vioSetElementData(thevehicle, "premColor", dasatz["premColors"])
-                if (vioGetElementData(thevehicle, "premColor") ~= "-1") then
-                    local premcolor = getStringComponents(vioGetElementData(thevehicle, "premColor"))
-                    setVehicleColor(thevehicle, tonumber(premcolor[1]), tonumber(premcolor[2]), tonumber(premcolor[3]), tonumber(premcolor[4]), tonumber(premcolor[5]), tonumber(premcolor[6]))
-                end
-            else
-                vioSetElementData(thevehicle, "Lichterfarbe", "255|255|255")
-            end
-        else
-            save_log("veh_dberror", tostring(dasatz["Besitzer"]) .. "\n")
+        local lights = getStringComponents(vioGetElementData(thevehicle, "Lichterfarbe"))
+        setVehicleHeadLightColor(thevehicle, tonumber(lights[1]), tonumber(lights[2]), tonumber(lights[3]))
+        vioSetElementData(thevehicle, "premColor", dasatz["premColors"])
+        if (vioGetElementData(thevehicle, "premColor") ~= "-1") then
+            local premcolor = getStringComponents(vioGetElementData(thevehicle, "premColor"))
+            setVehicleColor(thevehicle, tonumber(premcolor[1]), tonumber(premcolor[2]), tonumber(premcolor[3]), tonumber(premcolor[4]), tonumber(premcolor[5]), tonumber(premcolor[6]))
         end
+
         setVehiclePaintjob(thevehicle, tonumber(dasatz["paintjob"]))
         privCars[thevehicle] = true
         local vara = dasatz["Besitzer"]

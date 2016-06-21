@@ -1,6 +1,7 @@
 ####20.06.2016
 ------
 * [FIXED] Issue on User Creating with user_gold table
+* [CHANGED] /pcolor is now usable by everyone (costs: vehicle color - 7500$ ; light colors - 2500$)
 
 ####20.06.2016
 ------

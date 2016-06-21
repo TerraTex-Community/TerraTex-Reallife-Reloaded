@@ -27,7 +27,15 @@ end
 
 
 
+function timestamp_func(thePlayer)
+	local time=getRealTime()
+	outputChatBox(string.format("Es ist jetzt %s:%s Uhr und %s Sekunden", time.hour, time.minute, time.second),thePlayer,0,255,0)
+	outputChatBox(string.format("Heute ist der %s.%s.%s", time.monthday, (time.month+1), (1900+time.year)),thePlayer,0,255,0)
+	outputChatBox(string.format("Es sind somit schon %s Sekunden seit 1970 vergangen!", time.timestamp),thePlayer,0,255,0)
 
+end
+addCommandHandler("zeit",timestamp_func,false,false)
+addCommandHandler("time",timestamp_func,false,false)
 
 
 

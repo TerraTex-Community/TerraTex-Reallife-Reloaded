@@ -14,7 +14,7 @@ function startGoldUI()
         goldWindow = guiCreateWindow(0, 0, 700, 512, "Goldseller", false)
         setGuiCenter(goldWindow);
 
-        local browser = guiCreateBrowser(0, 0, 700, 512, false, false, false, goldWindow)
+        local browser = guiCreateBrowser(0, 0, 700, 512, true, false, false, goldWindow)
 
         setBrowserAjaxHandler ( guiGetBrowser(browser), "ajax_gold.html" , function(get, post)
             if (get.button and get.button == "true") then

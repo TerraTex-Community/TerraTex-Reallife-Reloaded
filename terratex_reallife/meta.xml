@@ -527,6 +527,7 @@
 		<file src="UI/styles/css/bootstrap.min.css" />
 		<file src="UI/styles/css/bootstrap.min.css.map" />
 		<file src="UI/styles/css/font-awesome.min.css" />
+		<file src="UI/styles/css/custom.css" />
 		<file src="UI/styles/fonts/FontAwesome.otf" />
 		<file src="UI/styles/fonts/fontawesome-webfont.eot" />
 		<file src="UI/styles/fonts/fontawesome-webfont.svg" />

@@ -36,7 +36,8 @@ trainDropItemList = {
     { 1, "blumen", 0.98 },
     { 1, "dildo", 0.75 },
     { 10, "Kondome", 1 },
-    {  1, "Gold", 0.15 }
+    {  1, "Gold", 0.15 },
+    { 10, "Gold", 0.05 },
 }
 trainSpawnItem = 1550
 trainSpawnItemWaitTime = 10000

@@ -13,6 +13,7 @@ function startGoldUI()
         goldWindow = false;
     else
         goldWindow = guiCreateWindow(0, 0, 700, 550, "Goldseller", false)
+        table.insert(allGuis, goldWindow);
         setGuiCenter(goldWindow);
 
         local browser = guiCreateBrowser(0, 0, 700, 550, true, false, false, goldWindow)
@@ -40,10 +41,10 @@ addCommandHandler("gold", startGoldUI, false, false)
 
 function buyNewGold(get, post)
     if (get) then
-        if (get.amount) then
-            if (get.amount * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
-                if (get.amount > 0) then
-                    triggerServerEvent("buyNewGold", getLocalPlayer(), get.amount);
+        if (get.amount and tonumber(get.amount)) then
+            if (tonumber(get.amount) * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
+                if (tonumber(get.amount) > 0) then
+                    triggerServerEvent("buyNewGold", getLocalPlayer(), tonumber(get.amount));
                 end
             else
                 showError(getLocalPlayer(), "Du hast nicht genug Geld um so viel Gold zu kaufen!");

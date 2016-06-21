@@ -12,7 +12,7 @@ function buyNewGold_func(amount)
             changePlayerMoney(source, -amount * config["gold.price"], "sonstiges", "Goldkauf");
 
             vioSetElementData(source, "Gold", vioGetElementData(source, "Gold") + amount);
-            showError(source, "Du hast erfolgreich " .. amount .. "Gold gekauft!");
+            showError(source, "Du hast erfolgreich " .. amount .. " Gold gekauft!");
 
             triggerClientEvent(source, "actualizeGoldAmount", source)
         end

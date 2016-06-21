@@ -23,17 +23,17 @@
             <span class="text-gold text-bold"><span id="imBesitz"></span> Gold im Besitz</span>
         </div>
         <div class="card-footer card-info">
-            <form class="form-inline">
+            <div class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">Gold</div>
-                        <input type="number" class="form-control text-xs-right" placeholder="Menge" id="buyGoldAmount">
+                        <input type="number" class="form-control text-xs-right" placeholder="Menge" step="1" max="10000000000000" min="0" id="buyGoldAmount">
                         <div class="input-group-addon">für <span id="buyprice">0.00</span>$</div>
                         <input type="hidden" value="0" id="pricePerGold" />
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success" id="buyNewGold">kaufen</button>
-            </form>
+            </div>
         </div>
     </div>
     <!--<div class="card-group">-->

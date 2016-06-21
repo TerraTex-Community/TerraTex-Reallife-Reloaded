@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 local goldWindow;
+local goldBrowser;
 function startGoldUI()
     if (goldWindow) then
         if isElement(goldWindow) then destroyElement(goldWindow) end
@@ -16,13 +17,20 @@ function startGoldUI()
 
         local browser = guiCreateBrowser(0, 0, 700, 550, true, false, false, goldWindow)
 
-        setBrowserAjaxHandler ( guiGetBrowser(browser), "ajax_gold_buy.html", buyNewGold)
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
-                toggleBrowserDevTools ( guiGetBrowser(browser), true )
+                setBrowserAjaxHandler ( source, "ajax_gold_buy.html", buyNewGold)
+                setDevelopmentMode ( true, true )
+                toggleBrowserDevTools ( source, true )
                 loadBrowserURL(source, "http://mta/local/UI/Gold.html");
-                browserActualizeFields(source);
+            end
+        )
+
+        addEventHandler ( "onClientBrowserDocumentReady" , guiGetBrowser(browser) ,
+            function ( url )
+                browserActualizeFields(source)
+                goldBrowser = source;
             end
         )
     end
@@ -30,17 +38,32 @@ end
 addCommandHandler("gold", startGoldUI, false, false)
 
 function buyNewGold(get, post)
-    outputChatBox(tostring(get.amount))
-    --[[if (get.amount) then
-        if (get.amount * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
-
-        else
-            showError(getLocalPlayer(), "Du hast nicht genug Geld um so viel Gold zu kaufen!");
+    if (get) then
+        if (get.amount) then
+            if (get.amount * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
+                if (get.amount > 0) then
+                    triggerServerEvent("buyNewGold", getLocalPlayer(), get.amount);
+                end
+            else
+                showError(getLocalPlayer(), "Du hast nicht genug Geld um so viel Gold zu kaufen!");
+            end
         end
-    end]]
+    end
 end
 
 function browserActualizeFields(browser)
-    executeBrowserJavascript ( browser, "$('#imBesitz').html(" .. getElementData(getLocalPlayer(), "Gold") .. ");");
-    executeBrowserJavascript ( browser, "$('#pricePerGold').val(" .. config["gold.price"] .. ");");
+    local js = "$(document).ready(function(){";
+    js = js .. "$('#imBesitz').html(" .. getElementData(getLocalPlayer(), "Gold") .. ");";
+    js = js .. "$('#pricePerGold').val(" .. config["gold.price"] .. "); });";
+
+    executeBrowserJavascript(browser, js);
 end
+
+
+function actualizeGoldAmount_func()
+    if (goldBrowser) then
+        browserActualizeFields(goldBrowser)
+    end
+end
+addEvent("actualizeGoldAmount", true)
+addEventHandler("actualizeGoldAmount", getRootElement(), actualizeGoldAmount_func)

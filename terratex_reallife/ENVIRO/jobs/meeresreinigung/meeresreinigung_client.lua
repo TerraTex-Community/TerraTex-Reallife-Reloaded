@@ -61,8 +61,8 @@ function startTimer_Meer()
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             else
-                meeresClean = meeresClean - 100000
-                meeresCleanLastTen = meeresCleanLastTen - 100000
+                meeresClean = meeresClean - 250000
+                meeresCleanLastTen = meeresCleanLastTen - 250000
                 local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
                 local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
@@ -70,8 +70,8 @@ function startTimer_Meer()
                 tmpShowMeter = tmpShowMeter + (dis / 2)
             end
         else
-            meeresClean = meeresClean - 100000
-            meeresCleanLastTen = meeresCleanLastTen - 100000
+            meeresClean = meeresClean - 250000
+            meeresCleanLastTen = meeresCleanLastTen - 250000
             local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
             local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
             meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew

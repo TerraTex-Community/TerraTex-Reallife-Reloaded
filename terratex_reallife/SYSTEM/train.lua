@@ -35,7 +35,8 @@ trainDropItemList = {
     { 30, "snack", 0.95 },
     { 1, "blumen", 0.98 },
     { 1, "dildo", 0.75 },
-    { 10, "Kondome", 1 }
+    { 10, "Kondome", 1 },
+    {  1, "Gold", 0.15 }
 }
 trainSpawnItem = 1550
 trainSpawnItemWaitTime = 10000
@@ -136,7 +137,7 @@ function resetTrainSpeed(theTrainID)
         if (getDistanceBetweenPoints3D(x, y, z, theTable[1], theTable[2], theTable[3]) < 30) then
             if not (theTable[4]) then
                 trainDropPoints[theKey][4] = true
-                if (math.random(1, 8) == 2) then
+                if (math.random(1, 6) == 2) then
                     trainDropPoints[theKey][4] = createPickup(theTable[1], theTable[2], theTable[3], 3, trainSpawnItem)
                     local hasItem = false
                     while (not (hasItem)) do
@@ -198,6 +199,9 @@ function pickupItemsByTrainDrop(player)
         elseif ("Kondome" == SettingTable[2]) then
             vioSetElementData(player, "Kondome", vioGetElementData(player, "Kondome") + 10)
             outputChatBox(string.format("Hier hat wohl ein Zug %s er Packung Kondome verloren...", SettingTable[1]), player, 0, 255, 0)
+        elseif ("Gold" == SettingTable[2]) then
+            vioSetElementData(player, "Gold", vioGetElementData(player, "Gold") + SettingTable[1])
+            outputChatBox(string.format("Hier hat wohl ein Zug %s Gold verloren...", SettingTable[1]), player, 0, 255, 0)
         end
         setTimer(resetItemSpawning, trainSpawnItemWaitTime, 1, SettingTable[3])
     end

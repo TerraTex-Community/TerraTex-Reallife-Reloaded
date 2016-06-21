@@ -288,6 +288,12 @@ function LoginPlayerData(nickname, pw)
         local zeugnisData = tmp[1];
         tmp = MySql.helper.getSync("faction_userrights", "*", { Nickname = nickname });
         local rechteData = tmp[1];
+        tmp = MySql.helper.getSync("user_gold", "*", { Nickname = nickname });
+        local goldData = tmp[1];
+
+        --- Gold Loading
+        vioSetElementData(source, "Gold", goldData.Gold);
+
 
         setPlayerName(source, playersData["Nickname"])
 

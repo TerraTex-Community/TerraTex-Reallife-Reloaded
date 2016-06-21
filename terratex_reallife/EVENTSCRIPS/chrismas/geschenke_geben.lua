@@ -103,12 +103,15 @@ function give_AdventsPresent(player, presentID)
         vioSetElementData(player, "adgutscheine", vioGetElementData(player, "adgutscheine") + 3)
         outputChatBox("Zum Advent hast du 3 AD-Gutscheine als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
     elseif (text == "geld") then
-        outputChatBox("Zum Advent hast du 10000$ als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
-        changePlayerMoney(player, 10000, "sonstiges", "Geschenk vom Server")
+        outputChatBox("Zum Advent hast du " .. adventPresets_big[presentID][1] .." als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
+        changePlayerMoney(player, adventPresets_big[presentID][1], "sonstiges", "Geschenk vom Server")
     elseif (text == "fahrzeuggutschein") then
         outputChatBox("Zum Advent hast du ein Fahrzeuggutschein als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
         outputChatBox("Diesen kannst du unter dem Weihnachtsbaum beim Icon einlösen!", player, 166, 0, 166)
         vioSetElementData(player, "geschenk", vioGetElementData(player, "geschenk") + 1)
+    elseif (text == "Gold") then
+        outputChatBox("Zum Advent hast du " .. adventPresets_big[presentID][1] .." Gold als Weihnachtsgeschenk geschenkt bekommen!", player, 166, 0, 166)
+        vioSetElementData(player, "Gold", vioGetElementData(player, "Gold") + adventPresets_big[presentID][1])
     end
 end
 
@@ -141,15 +144,21 @@ function give_nonAdventsPresent(player, presentID)
     elseif ("Kondome" == text) then
         vioSetElementData(player, "Kondome", vioGetElementData(player, "Kondome") + 10)
         outputChatBox("Der Adventskalender bescherte dir 10 Kondome!", player, 166, 0, 166)
+    elseif ("Gold" == text) then
+        vioSetElementData(player, "Gold", vioGetElementData(player, "Gold") + 1)
+        outputChatBox("Der Adventskalender bescherte dir ein Gold!", player, 166, 0, 166)
     end
 end
 
 adventPresets_big = {
     { 3, "adgutschein" },
-    { 10000, "geld" },
-    { 5000, "geld" },
+    { 30000, "geld" },
+    { 15000, "geld" },
     { 1, "fahrzeuggutschein" },
-    { 1, "fahrzeuggutschein" }
+    { 1, "fahrzeuggutschein" },
+    { 10, "Gold" },
+    { 25, "Gold" },
+    { 50, "Gold" },
 }
 
 adventPresents_small = {
@@ -158,6 +167,7 @@ adventPresents_small = {
     { 5, "carfinder" },
     { 2, "schnellhilfe" },
     { 1000, "geld" },
+    { 1, "Gold" },
     { 10, "benzin" },
     { 10, "fertigessen" },
     { 30, "snack" },

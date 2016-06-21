@@ -6,6 +6,7 @@ local meeresCleanLastTen = 0
 local isMeeresJobActiv = false
 local meeresX = 0
 local meeresY = 0
+local tmpShowMeter = 0
 local meeresZ = 0
 
 function startMeeresBoot_func()
@@ -60,16 +61,22 @@ function startTimer_Meer()
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             else
-                meeresClean = -1000
-                meeresCleanLastTen = -1000
+                meeresClean = meeresClean - 100000
+                meeresCleanLastTen = meeresCleanLastTen - 100000
                 local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+                local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
+
+                tmpShowMeter = tmpShowMeter + (dis / 2)
             end
         else
-            meeresClean = -1000
-            meeresCleanLastTen = -1000
+            meeresClean = meeresClean - 100000
+            meeresCleanLastTen = meeresCleanLastTen - 100000
             local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+            local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
             meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
+
+            tmpShowMeter = tmpShowMeter + (dis / 2)
         end
     elseif (isMeeresJobActiv and (tonumber(getElementData(getLocalPlayer(), "afk_status")) == 1)) then
         local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
@@ -87,7 +94,11 @@ function onMeeresreinigerHudRender()
     if (isMeeresJobActiv) then
         local screenW, screenH = guiGetScreenSize()
         dxDrawRectangle(screenW - 220 - 10, (screenH - 46) / 2, 220, 46, tocolor(0, 13, 71, 220), false)
-        dxDrawText(string.format("%s Meter", math.Tausend(math.round(meeresClean, 2))), screenW - 221 - 10, (screenH - 46) / 2, (screenW - 221 - 10) + 221, ((screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "center", "center", false, false, false, false, false)
+
+        local showMeter = meeresClean
+        if showMeter < 0 then showMeter = tmpShowMeter end
+        dxDrawText(string.format("%s Meter", math.Tausend(math.round(showMeter, 2))), screenW - 221 - 10, (screenH - 46) / 2, (screenW - 221 - 10) + 221, (
+        (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "center", "center", false, false, false, false, false)
     end
 end
 

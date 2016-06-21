@@ -79,7 +79,7 @@
             $.ajax("http://mta/local/ajax_gold_buy.html?amount=" + $("#buyGoldAmount").val())
         });
 
-        $(documment).on( "change", "#buyGoldAmount", function(){
+        $(document).on( "change", "#buyGoldAmount", function(){
             var val = $("#buyGoldAmount").val();
             if (parseInt(val) && parseInt(val) > 0) {
                 $("#buyprice").html(parseFloat(Math.round(parseInt(val) * parseFloat($("#pricePerGold").val()) * 100) / 100).toFixed(2));

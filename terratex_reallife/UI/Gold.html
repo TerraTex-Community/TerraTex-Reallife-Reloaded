@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="styles/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/css/font-awesome.min.css">
+    <script src="styles/js/jquery-3.0.0.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="alert alert-danger">Under construction.... only for testing.</div>
+    <div class="card-group">
+        <div class="card">
+            <h3 class="card-header">Booster ABC</h3>
+            <div class="card-block">
+                <h4 class="card-title">Kaufe Booster ABC</h4>
+                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
+                    dich teleportieren</p>
+                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="card-header">Booster ABC</h3>
+            <div class="card-block">
+                <h4 class="card-title">Kaufe Booster ABC</h4>
+                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
+                    dich teleportieren</p>
+                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3 class="card-header">Booster ABC</h3>
+            <div class="card-block">
+                <h4 class="card-title">Kaufe Booster ABC</h4>
+                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
+                    dich teleportieren</p>
+                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
+            </div>
+            <div class="card-footer text-muted">
+                Noch 5 Tage Aktiv
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $(".btn").click(function(){
+            $.ajax("http://mta/local/gold.html?button=true");
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 ####20.06.2016
 ------
+* [ADDED] Some basic files for Browser-Based-UI
 * [FIXED] Issue on User Creating with user_gold table
 * [CHANGED] /pcolor is now usable by everyone (costs: vehicle color - 7500$ ; light colors - 2500$)
 

@@ -6,6 +6,29 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+function setGuiCenter(element, setNewX, setNewY)
+    if (setNewX == nil) then
+        setNewX = true;
+    end
+
+    if (setNewY == nil) then
+        setNewY = true;
+    end
+
+    local screenW, screenH = guiGetScreenSize()
+    local windowW, windowH = guiGetSize(element, false)
+    local oldX, oldY = guiGetPosition(element, false)
+    local x, y = (screenW - windowW) /2,(screenH - windowH) /2
+    if (not setNewX) then
+        x = oldX
+    end
+
+    if (not setNewY) then
+        y = oldY
+    end
+
+    return guiSetPosition(element, x, y, false)
+end
 
 -- @Description: Gibt die neue Höhe eines Elements zurück, Abhängig vom Inhaltstext (Breite ist feststehend)
 function resizeHeight(element)

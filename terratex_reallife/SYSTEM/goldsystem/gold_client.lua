@@ -16,7 +16,7 @@ function startGoldUI()
 
         local browser = guiCreateBrowser(0, 0, 700, 512, false, false, false, goldWindow)
 
-        setBrowserAjaxHandler ( guiGetBrowser(browser), "gold.html" , function(get, post)
+        setBrowserAjaxHandler ( guiGetBrowser(browser), "ajax_gold.html" , function(get, post)
             if (get.button and get.button == "true") then
                 showError(getLocalPlayer(), "You Clicked on a buy button!");
             end
@@ -25,7 +25,7 @@ function startGoldUI()
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
                 outputChatBox("testloaded .... loading HTML of UI")
-                loadBrowserURL(source, "http://mta/local/UI/gold.html")
+                loadBrowserURL(source, "http://mta/local/UI/Gold.html")
             end
         )
     end

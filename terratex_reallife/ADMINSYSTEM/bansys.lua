@@ -219,7 +219,7 @@ function ban_func(thePlayer, command, theBeBanned, ...)
                     Grund = reasons,
                     Admin = aname
                 });
-                outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gebannt. Grund :" .. reason, getRootElement(), 255, 0, 0)
+                outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gebannt. Grund :" .. reasons, getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, thePlayer, reasons)
             else
                 outputChatBox("Der Spieler existiert nicht", thePlayer, 255, 0, 0)
@@ -327,7 +327,7 @@ function warn_func(thePlayer, command, theBeBanned, ...)
                 Grund = reasons
             });
 
-            outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " verwarnt. Grund :" .. reason, getRootElement(), 255, 0, 0)
+            outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " verwarnt. Grund :" .. reasons, getRootElement(), 255, 0, 0)
             vioSetElementData(banmeele, "warns", vioGetElementData(banmeele, "warns") + 1)
 
             local IP = getPlayerIP(banmeele)
@@ -371,7 +371,7 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
                 local pname = getPlayerName(banmeele)
                 local aname = getPlayerName(thePlayer)
 
-                outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gekickt. Grund :" .. reason, getRootElement(), 255, 0, 0)
+                outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " gekickt. Grund :" .. reasons, getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, thePlayer, reasons)
             else
                 outputChatBox("Der Spieler existiert nicht", thePlayer, 255, 0, 0)

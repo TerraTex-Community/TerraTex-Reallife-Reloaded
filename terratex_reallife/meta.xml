@@ -82,8 +82,6 @@
 			<script src="SYSTEM/vehsys/tuning.lua" type="server" />
 			<script src="SYSTEM/vehsys/boat_co_diver_client.lua" type="client"/>	
 			<script src="SYSTEM/vehsys/paynspray.lua" type="server" />
-			<script src="SYSTEM/vehsys/vehsys_damage_client.lua" type="client" />
-			<script src="SYSTEM/vehsys/vehsys_damage_server.lua" type="server" />
 		<!-- Haussystem -->
             <!--neu-->
                 <script src="SYSTEM/haussys/haussystem_neu/hwunsch.lua" type="server" />

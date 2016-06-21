@@ -59,7 +59,13 @@ function startTimer_Meer()
                 local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
+            else
+                local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+                meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             end
+        else
+            local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+            meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
         end
     elseif (isMeeresJobActiv and (tonumber(getElementData(getLocalPlayer(), "afk_status")) == 1)) then
         local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())

@@ -9,28 +9,6 @@ addCommandHandler("zeit",timestamp_func,false,false)
 addCommandHandler("time",timestamp_func,false,false)
 
 
-function healme_func(thePlayer)
-    if (isAdminLevel(thePlayer, 3)) then
-        setPedArmor(thePlayer, 100)
-        triggerClientEvent(thePlayer, "addFood", thePlayer, 1000)
-        return true
-    end
-	if(vioGetElementData(thePlayer,"hkey")~=0) then
-		local hkey=math.abs(vioGetElementData(thePlayer,"hkey"))
-		if(haeuser[hkey]:isPlayerInHouse(thePlayer))then
-			if not (isTimer(vioGetElementData(thePlayer,"hitTimer"))) then
-				triggerClientEvent(thePlayer,"addFood",thePlayer,300)
-			else
-				showError(thePlayer,"Du darfst in einen Kampf nicht heilen!")
-			end
-		else
-			showError(thePlayer,"Du bist nicht in deinen Haus/Wohnung!")
-		end
-	else
-		showError(thePlayer,"Du bist nicht in deinen Haus/Wohnung!")
-	end
-end
-addCommandHandler("healme",healme_func,false,false)
 
 
 function pColor_func(thePlayer)

@@ -160,7 +160,7 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             MySql.helper.insert("user_tapps", { Nickname = nickname });
             MySql.helper.insert("faction_userrights", { Nickname = nickname });
             MySql.helper.insert("user_premium", { Name = nickname });
-            MySql.helper.insert("user_gold", { Name = nickname });
+            MySql.helper.insert("user_gold", { Nickname = nickname });
 
             dbExec(MySql._connection, "UPDATE user SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
 

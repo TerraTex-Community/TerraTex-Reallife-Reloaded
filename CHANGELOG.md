@@ -1,5 +1,9 @@
 ####20.06.2016
 ------
+* [FIXED] Issue on User Creating with user_gold table
+
+####20.06.2016
+------
 * [ADDED] #31 Basic Gold Table Creation
 * [REMOVED] #32 removed Premium exclusive Vehicles
 * [REMOVED] #32 /spawnchange job

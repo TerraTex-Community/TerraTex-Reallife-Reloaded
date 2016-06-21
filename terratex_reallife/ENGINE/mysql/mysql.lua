@@ -18,7 +18,6 @@ MySql.init = function()
     local gMysqlConnectString = "host=" .. gMysqlHost .. ";charset=utf8;dbname=" .. gMysqlDatabase;
 
     MySql._connection = dbConnect("mysql", gMysqlConnectString, gMysqlUser, gMysqlPass);
-    -- @TODO: Is "SET NAMES 'utf8';" needed?
 
     if (not MySql._connection) then
         outputDebugString("MySQL-Error: Not possible to connect to database!", 1, 255, 0, 0);

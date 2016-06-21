@@ -524,6 +524,7 @@
 			<file src="FILES/SOUNDS/eiswagen.wav" />
         	<file src="FILES/SOUNDS/Ring1.wav" />
 	<!-- BROWSER FILES -->
+		<file src="UI/styles/images/gold-1013618_640.png" />
 		<file src="UI/styles/css/bootstrap.min.css" />
 		<file src="UI/styles/css/bootstrap.min.css.map" />
 		<file src="UI/styles/css/font-awesome.min.css" />

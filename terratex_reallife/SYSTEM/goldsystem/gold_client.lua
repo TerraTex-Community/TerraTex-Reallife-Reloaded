@@ -16,20 +16,29 @@ function startGoldUI()
 
         local browser = guiCreateBrowser(0, 0, 700, 550, true, false, false, goldWindow)
 
-        setBrowserAjaxHandler ( guiGetBrowser(browser), "ajax_gold.html" , function(get, post)
-            if (get.button and get.button == "true") then
-                showError(getLocalPlayer(), "You Clicked on a buy button!");
-            else
-                showError(getLocalPlayer(), "Ajax is working.... but not the Parameter.... god damned...")
-            end
-        end )
+        setBrowserAjaxHandler ( guiGetBrowser(browser), "ajax_gold_buy.html", buyNewGold)
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
-                outputChatBox("testloaded .... loading HTML of UI")
-                loadBrowserURL(source, "http://mta/local/UI/Gold.html")
+                loadBrowserURL(source, "http://mta/local/UI/Gold.html");
+                browserActualizeFields(source);
             end
         )
     end
 end
-addCommandHandler("testgold", startGoldUI, false, false)
+addCommandHandler("gold", startGoldUI, false, false)
+
+function buyNewGold(get, post)
+    if (get.amount) then
+        if (get.amount * config["gold.price"] <= getPlayerMoney(getLocalPlayer())) then
+
+        else
+            showError(getLocalPlayer(), "Du hast nicht genug Geld um so viel Gold zu kaufen!");
+        end
+    end
+end
+
+function browserActualizeFields(browser)
+    executeBrowserJavascript ( browser, "$('#imBesitz').val(" + getElementData(getLocalPlayer(), "gold") + ");");
+    executeBrowserJavascript ( browser, "$('#pricePerGold').val(" + config["gold.price"] + ");");
+end

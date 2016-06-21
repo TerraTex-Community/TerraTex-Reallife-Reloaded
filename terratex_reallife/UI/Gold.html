@@ -11,45 +11,79 @@
 <body>
 <div class="placer-holder-top"></div>
 <div class="container-fluid">
-    <div class="alert alert-danger">Under construction.... only for testing.</div>
-    <div class="card-group">
-        <div class="card">
-            <h3 class="card-header">Booster ABC</h3>
-            <div class="card-block">
-                <h4 class="card-title">Kaufe Booster ABC</h4>
-                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
-                    dich teleportieren</p>
-                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
-            </div>
+
+    <div class="card card-inverse card-info">
+        <div class="card-header card-info">
+            <h4 class="card-title text-gold">
+                Goldshop
+            </h4>
         </div>
-        <div class="card">
-            <h3 class="card-header">Booster ABC</h3>
-            <div class="card-block">
-                <h4 class="card-title">Kaufe Booster ABC</h4>
-                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
-                    dich teleportieren</p>
-                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
-            </div>
+        <div class="card-block">
+            <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            <span class="text-gold text-bold"><span id="imBesitz"></span> Gold im Besitz</span>
         </div>
-        <div class="card">
-            <h3 class="card-header">Booster ABC</h3>
-            <div class="card-block">
-                <h4 class="card-title">Kaufe Booster ABC</h4>
-                <p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin willst, sobald du es denkst wird er
-                    dich teleportieren</p>
-                <a href="#" class="btn btn-primary">Jetzt Kaufen!</a>
-            </div>
-            <div class="card-footer text-muted">
-                Noch 5 Tage Aktiv
-            </div>
+        <div class="card-footer card-info">
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">Gold</div>
+                        <input type="number" class="form-control text-xs-right" placeholder="Menge" id="buyGoldAmount">
+                        <div class="input-group-addon">für <span id="buyprice">0.00</span>$</div>
+                        <input type="hidden" value="0" id="pricePerGold" />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" id="buyNewGold">kaufen</button>
+            </form>
         </div>
     </div>
+    <!--<div class="card-group">-->
+        <!--<div class="card">-->
+            <!--<h3 class="card-header">Booster ABC</h3>-->
+            <!--<div class="card-block">-->
+                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
+                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
+                    <!--willst, sobald du es denkst wird er-->
+                    <!--dich teleportieren</p>-->
+                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card">-->
+            <!--<h3 class="card-header">Booster ABC</h3>-->
+            <!--<div class="card-block">-->
+                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
+                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
+                    <!--willst, sobald du es denkst wird er-->
+                    <!--dich teleportieren</p>-->
+                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="card">-->
+            <!--<h3 class="card-header">Booster ABC</h3>-->
+            <!--<div class="card-block">-->
+                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
+                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
+                    <!--willst, sobald du es denkst wird er-->
+                    <!--dich teleportieren</p>-->
+                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
+            <!--</div>-->
+            <!--<div class="card-footer text-muted">-->
+                <!--Noch 5 Tage Aktiv-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 <script>
-    $(document).ready(function(){
-        $(".btn").click(function(){
-            $.ajax("http://mta/local/ajax_gold.html?button=true");
+    $(document).ready(function () {
+        $("#buyNewGold").click(function () {
+            $.ajax("http://mta/local/ajax_gold_buy.html?amount=" + $("#buyGoldAmount").val())
+        });
+
+        $(documment).on( "change", "#buyGoldAmount", function(){
+            var val = $("#buyGoldAmount").val();
+            if (parseInt(val) && parseInt(val) > 0) {
+                $("#buyprice").html(parseFloat(Math.round(parseInt(val) * parseFloat($("#pricePerGold").val()) * 100) / 100).toFixed(2));
+            }
         });
     });
 </script>

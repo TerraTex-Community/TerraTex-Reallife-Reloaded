@@ -1,3 +1,9 @@
 .placer-holder-top {
     margin-bottom: 10px;
 }
+.text-gold {
+    color: #ffe800 !important;
+}
+.text-bold {
+    font-weight: bold
+}

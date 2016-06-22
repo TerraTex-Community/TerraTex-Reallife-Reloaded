@@ -53,23 +53,27 @@ function getBizNum(x, y, z)
 end
 
 function savebizzes_norm(timer)
-    outputDebugString("Started Biz Save")
-    for theKey, theBiz in ipairs(bizData) do
-        MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+    if not isDevServer() then
+        outputDebugString("Started Biz Save")
+        for theKey, theBiz in ipairs(bizData) do
+            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+        end
+        outputDebugString("Biz Saved")
+        setTimer(savebizzes_norm, 3600000, 1)
     end
-    outputDebugString("Biz Saved")
-    setTimer(savebizzes_norm, 3600000, 1)
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), savebizzes_norm)
 
 function savebizzes(timer)
-    outputDebugString("Started Biz Save")
+    if not isDevServer() then
+        outputDebugString("Started Biz Save")
 
-    for theKey, theBiz in ipairs(bizData) do
-        MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+        for theKey, theBiz in ipairs(bizData) do
+            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+        end
+        outputDebugString("Biz Saved")
     end
-    outputDebugString("Biz Saved")
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), savebizzes)

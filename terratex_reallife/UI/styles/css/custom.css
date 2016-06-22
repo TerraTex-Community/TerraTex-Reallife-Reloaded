@@ -1,9 +1,14 @@
 .placer-holder-top {
     margin-bottom: 10px;
+    height:10px;
 }
 .text-gold {
     color: #ffe800 !important;
 }
 .text-bold {
     font-weight: bold
+}
+
+.expiringTime {
+    line-height:38px;
 }

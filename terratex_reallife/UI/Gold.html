@@ -36,42 +36,54 @@
             </div>
         </div>
     </div>
-    <!--<div class="card-group">-->
-        <!--<div class="card">-->
-            <!--<h3 class="card-header">Booster ABC</h3>-->
-            <!--<div class="card-block">-->
-                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
-                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
-                    <!--willst, sobald du es denkst wird er-->
-                    <!--dich teleportieren</p>-->
-                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card">-->
-            <!--<h3 class="card-header">Booster ABC</h3>-->
-            <!--<div class="card-block">-->
-                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
-                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
-                    <!--willst, sobald du es denkst wird er-->
-                    <!--dich teleportieren</p>-->
-                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="card">-->
-            <!--<h3 class="card-header">Booster ABC</h3>-->
-            <!--<div class="card-block">-->
-                <!--<h4 class="card-title">Kaufe Booster ABC</h4>-->
-                <!--<p class="card-text">Der Booster ABC sorgt dafür, dass du nicht mehr laufen musst. Egal wo du hin-->
-                    <!--willst, sobald du es denkst wird er-->
-                    <!--dich teleportieren</p>-->
-                <!--<a href="#" class="btn btn-primary">Jetzt Kaufen!</a>-->
-            <!--</div>-->
-            <!--<div class="card-footer text-muted">-->
-                <!--Noch 5 Tage Aktiv-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="card-group">
+        <div class="card" id="foodBooster">
+            <h5 class="card-header">Food Booster</h5>
+            <div class="card-block">
+                Der "Food Booster" reduziert dein Hunger um 50% ganze 30 Tage lang. Das heißt du musst auch nur halb so oft essen. Eine schöne Sache oder?
+
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                10 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+            </div>
+        </div>
+
+        <div class="card" id="hufeisenBooster">
+            <h5 class="card-header">Hufeisen Booster</h5>
+            <div class="card-block">
+                25% mehr Hufeisen auf der Karte? So einfach? Kaufe jetzt den "Hufeisen Booster" und finde 30 Tage lang schneller Hufeisen!<br/><br/>
+
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                5 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+            </div>
+        </div>
+
+        <div class="card" id="fuelBooster">
+            <h5 class="card-header">Fuel Booster</h5>
+            <div class="card-block">
+                Das Tanken an der Tankstelle dauert dir zu lange? Dann spaare die nächsten 30 Tage mit dem "Fuel Booster" 75% der Zeit.<br/><br/>
+
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                10 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="placer-holder-top"></div>
 
 <script>
     $(document).ready(function () {
@@ -85,7 +97,23 @@
                 $("#buyprice").html(parseFloat(Math.round(parseInt(val) * parseFloat($("#pricePerGold").val()) * 100) / 100).toFixed(2));
             }
         });
+
+        $(document).on('click', '.sellButton', function(){
+            var id = $(this).parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_gold_item.html?item=" + id);
+        });
     });
+    function setBuyState(id, state) {
+        var obj = $("#" + id);
+        if (state) {
+            obj.find(".days").html(state);
+            obj.find(".sellButton").addClass("hidden-xs-up");
+            obj.find(".expiringTime").removeClass("hidden-xs-up");
+        } else {
+            obj.find(".sellButton").removeClass("hidden-xs-up");
+            obj.find(".expiringTime").addClass("hidden-xs-up");
+        }
+    }
 </script>
 </body>
 

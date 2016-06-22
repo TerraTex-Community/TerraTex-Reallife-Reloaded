@@ -1,4 +1,8 @@
-####20.06.2016
+####22.06.2016
+------
+* [FIXED] Do not save Biz on Dev Server
+
+####21.06.2016
 ------
 * [ADDED] Some basic files for Browser-Based-UI
 * [FIXED] Issue on User Creating with user_gold table

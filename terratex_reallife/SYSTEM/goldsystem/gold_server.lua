@@ -52,9 +52,13 @@ function buyGoldItem_func(itemId)
                 changePlayerGold(source, -price, "Item kauf: " .. itemId);
                 vioSetElementData(source, "Gold." .. itemId, result);
 
+                showError(source, "Du hast den Booster erfolgreich gekauft!");
+
                 triggerClientEvent(source, "actualizeGoldAmount", source)
             end
         end
+    else
+        outputChatBox("not in table for some reason")
     end
 end
 addEvent("buyGoldItem", true)

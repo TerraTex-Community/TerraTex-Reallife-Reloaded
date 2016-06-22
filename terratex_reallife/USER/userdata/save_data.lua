@@ -211,6 +211,7 @@ function save_data()
             setTable["user_tapps"]["OnlineSchutzUntil"] = vioGetElementData(source, "onlineschutzuntil")
 
             -- Gold
+            setTable["user_gold"] = {}
             setTable["user_gold"]["Gold"] = vioGetElementData(source, "Gold");
             setTable["user_gold"]["Gold.FoodBooster"] = vioGetElementData(source, "Gold.FoodBooster");
             setTable["user_gold"]["Gold.HufeisenBooster"] = vioGetElementData(source, "Gold.HufeisenBooster");

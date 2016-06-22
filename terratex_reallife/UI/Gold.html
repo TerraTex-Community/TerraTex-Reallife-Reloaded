@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="card-group">
-        <div class="card" id="Gold_FoodBooster">
+        <div class="card" id="FoodBooster">
             <h5 class="card-header">Food Booster</h5>
             <div class="card-block">
                 Der "Food Booster" reduziert dein Hunger um 50% ganze 30 Tage lang. Das heißt du musst auch nur halb so oft essen. Eine schöne Sache oder?
@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="card" id="Gold_HufeisenBooster">
+        <div class="card" id="HufeisenBooster">
             <h5 class="card-header">Hufeisen Booster</h5>
             <div class="card-block">
                 25% mehr Hufeisen auf der Karte? So einfach? Kaufe jetzt den "Hufeisen Booster" und finde 30 Tage lang schneller Hufeisen!<br/><br/>
@@ -67,7 +67,7 @@
             </div>
         </div>
 
-        <div class="card" id="Gold_FuelBooster">
+        <div class="card" id="FuelBooster">
             <h5 class="card-header">Fuel Booster</h5>
             <div class="card-block">
                 Das Tanken an der Tankstelle dauert dir zu lange? Dann spaare die nächsten 30 Tage mit dem "Fuel Booster" 75% der Zeit.<br/><br/>
@@ -88,7 +88,8 @@
 <script>
     $(document).ready(function () {
         $("#buyNewGold").click(function () {
-            $.ajax("http://mta/local/ajax_gold_buy.html?amount=" + $("#buyGoldAmount").val())
+            $.ajax("http://mta/local/ajax_gold_buy.html?amount=" + $("#buyGoldAmount").val());
+            return false;
         });
 
         $("#buyGoldAmount").bind('input', function() {
@@ -101,6 +102,7 @@
         $(document).on('click', '.sellButton', function(){
             var id = $(this).parent().parent().attr("id");
             $.ajax("http://mta/local/ajax_gold_item.html?item=" + id);
+            return false;
         });
     });
     function setBuyState(id, state, extend) {

@@ -23,6 +23,8 @@ function startGoldUI()
             function()
                 setBrowserAjaxHandler ( source, "ajax_gold_buy.html", buyNewGold)
                 setBrowserAjaxHandler ( source, "ajax_gold_item.html", buyGoldItem)
+--                setDevelopmentMode(true, true)
+--                toggleBrowserDevTools ( source, true )
                 loadBrowserURL(source, "http://mta/local/UI/Gold.html");
             end
         )
@@ -41,7 +43,7 @@ addCommandHandler("gold", startGoldUI, false, false)
 function buyGoldItem(get, post)
     if (get) then
         if (get.item) then
-            triggerServerEvent(getLocalPlayer(), "buyGoldItem", getLocalPlayer(), get.item);
+            triggerServerEvent("buyGoldItem", getLocalPlayer(), get.item);
         end
     end
 end
@@ -70,6 +72,7 @@ function browserActualizeFields(browser)
     js = js .. getItemJS("FoodBooster");
 
     js = js .. "});";
+    executeBrowserJavascript(browser, js)
 end
 
 function getItemJS(itemId)
@@ -81,15 +84,15 @@ function getItemJS(itemId)
         if (tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) >= timestamp) then
             local days = math.floor((tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) - timestamp) / 60 / 60 / 24)
             if (days > 0) then
-                js = "setBuyState('Gold_" .. itemId .. "', " .. days .. ");"
+                js = "setBuyState('" .. itemId .. "', " .. days .. ");"
             else
-                js = "setBuyState('Gold_" .. itemId .. "', false, true);"
+                js = "setBuyState('" .. itemId .. "', false, true);"
             end
         else
-            js = "setBuyState('Gold_" .. itemId .. "', false, false);"
+            js = "setBuyState('" .. itemId .. "', false, false);"
         end
     else
-        js = "setBuyState('Gold_" .. itemId .. "', false, false);"
+        js = "setBuyState('" .. itemId .. "', false, false);"
     end
 
     return js;

@@ -16,8 +16,8 @@ function inWunschSystemStart()
         }
         table.insert(hwunsche,wunsch)
 
-        outputDebugString("# "..zahler.." Houses loaded!")
     end
+    outputDebugString("# "..table.getSize(hwunsche).." House Wishes loaded!")
 
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),inWunschSystemStart)

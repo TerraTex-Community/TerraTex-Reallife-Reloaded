@@ -93,6 +93,8 @@ function getItemJS(itemId)
     else
         js = "setBuyState('Gold_'" .. itemId .. "', false, false);"
     end
+
+    return js;
 end
 
 function actualizeGoldAmount_func()

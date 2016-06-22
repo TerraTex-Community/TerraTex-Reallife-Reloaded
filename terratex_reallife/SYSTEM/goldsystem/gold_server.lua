@@ -51,6 +51,8 @@ function buyGoldItem_func(itemId)
             else
                 changePlayerGold(source, -price, "Item kauf: " .. itemId);
                 vioSetElementData(source, "Gold." .. itemId, result);
+
+                triggerClientEvent(source, "actualizeGoldAmount", source)
             end
         end
     end

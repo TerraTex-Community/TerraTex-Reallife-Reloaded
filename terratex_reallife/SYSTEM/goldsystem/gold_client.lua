@@ -23,8 +23,6 @@ function startGoldUI()
             function()
                 setBrowserAjaxHandler ( source, "ajax_gold_buy.html", buyNewGold)
                 setBrowserAjaxHandler ( source, "ajax_gold_item.html", buyGoldItem)
-                setDevelopmentMode ( true, true )
-                toggleBrowserDevTools ( source, true )
                 loadBrowserURL(source, "http://mta/local/UI/Gold.html");
             end
         )

@@ -63,13 +63,13 @@ end
 function browserActualizeFields(browser)
     local js = "$(document).ready(function(){";
     js = js .. "$('#imBesitz').html(" .. getElementData(getLocalPlayer(), "Gold") .. ");";
-    js = js .. "$('#pricePerGold').val(" .. config["gold.price"] .. "); });";
+    js = js .. "$('#pricePerGold').val(" .. config["gold.price"] .. ");";
 
     js = js .. getItemJS("FuelBooster");
     js = js .. getItemJS("HufeisenBooster");
     js = js .. getItemJS("FoodBooster");
 
-    executeBrowserJavascript(browser, js);
+    js = js .. "});";
 end
 
 function getItemJS(itemId)
@@ -81,15 +81,15 @@ function getItemJS(itemId)
         if (tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) >= timestamp) then
             local days = math.floor((tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) - timestamp) / 60 / 60 / 24)
             if (days > 0) then
-                js = "setBuyState('Gold_'" .. itemId .. "', " .. days .. ");"
+                js = "setBuyState('Gold_" .. itemId .. "', " .. days .. ");"
             else
-                js = "setBuyState('Gold_'" .. itemId .. "', false, true);"
+                js = "setBuyState('Gold_" .. itemId .. "', false, true);"
             end
         else
-            js = "setBuyState('Gold_'" .. itemId .. "', false, false);"
+            js = "setBuyState('Gold_" .. itemId .. "', false, false);"
         end
     else
-        js = "setBuyState('Gold_'" .. itemId .. "', false, false);"
+        js = "setBuyState('Gold_" .. itemId .. "', false, false);"
     end
 
     return js;

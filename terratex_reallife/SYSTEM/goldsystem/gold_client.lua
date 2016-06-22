@@ -67,9 +67,29 @@ function browserActualizeFields(browser)
     js = js .. "$('#imBesitz').html(" .. getElementData(getLocalPlayer(), "Gold") .. ");";
     js = js .. "$('#pricePerGold').val(" .. config["gold.price"] .. "); });";
 
+    js = js .. getItemJS("FuelBooster");
+    js = js .. getItemJS("HufeisenBooster");
+    js = js .. getItemJS("FoodBooster");
+
     executeBrowserJavascript(browser, js);
 end
 
+function getItemJS(itemId)
+    local js;
+    local realTime = getRealTime();
+    local timestamp = realTime.timestamp;
+
+    if tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) then
+        if (tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) >= timestamp) then
+            local days = math.floor((tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) - timestamp) / 60 / 60 / 24)
+            js = "setBuyState('Gold_'" .. itemId .. "', " .. days .. ");"
+        else
+            js = "setBuyState('Gold_'" .. itemId .. "', false);"
+        end
+    else
+        js = "setBuyState('Gold_'" .. itemId .. "', false);"
+    end
+end
 
 function actualizeGoldAmount_func()
     if (goldBrowser) then

@@ -293,6 +293,9 @@ function LoginPlayerData(nickname, pw)
 
         --- Gold Loading
         vioSetElementData(source, "Gold", goldData.Gold);
+        vioSetElementData(source, "Gold.FoodBooster", goldData.FoodBooster);
+        vioSetElementData(source, "Gold.HufeisenBooster", goldData.HufeisenBooster);
+        vioSetElementData(source, "Gold.FuelBooster", goldData.FuelBooster);
 
 
         setPlayerName(source, playersData["Nickname"])

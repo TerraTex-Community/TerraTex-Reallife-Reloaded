@@ -54,6 +54,7 @@
 		<!-- Goldsystem -->
 			<script src="SYSTEM/goldsystem/gold_client.lua" type="client"/>
 			<script src="SYSTEM/goldsystem/gold_server.lua" type="server"/>
+			<script src="SYSTEM/goldsystem/gold_change.lua" type="server"/>
 		<!-- Banksys -->
 			<script src="SYSTEM/banksys/bank_func_shared.lua" type="shared" />
 			<script src="SYSTEM/banksys/bank_func_server.lua" type="server" />

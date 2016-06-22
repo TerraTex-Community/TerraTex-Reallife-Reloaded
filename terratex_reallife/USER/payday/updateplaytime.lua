@@ -115,7 +115,7 @@ function payday(thePlayer)
 
 
     local jobgehalt = vioGetElementData(thePlayer, "addPayDayGehalt")
-    if (jobgehalt > 0 and canGetArbeitsGehalt) then
+    if (jobgehalt ~= 0 and canGetArbeitsGehalt) then
         vioSetElementData(thePlayer, "addPayDayGehalt", 0)
         Gehalt = Gehalt + jobgehalt
         Einnahmen = Einnahmen + jobgehalt

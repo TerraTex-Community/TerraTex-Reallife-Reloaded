@@ -103,13 +103,18 @@
             $.ajax("http://mta/local/ajax_gold_item.html?item=" + id);
         });
     });
-    function setBuyState(id, state) {
+    function setBuyState(id, state, extend) {
         var obj = $("#" + id);
         if (state) {
             obj.find(".days").html(state);
             obj.find(".sellButton").addClass("hidden-xs-up");
             obj.find(".expiringTime").removeClass("hidden-xs-up");
         } else {
+            if (extend) {
+                obj.find(".sellButton").html("Jetzt Verlängern!");
+            } else {
+                obj.find(".sellButton").html("Jetzt Kaufen!");
+            }
             obj.find(".sellButton").removeClass("hidden-xs-up");
             obj.find(".expiringTime").addClass("hidden-xs-up");
         }

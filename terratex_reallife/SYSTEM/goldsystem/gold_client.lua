@@ -43,7 +43,7 @@ addCommandHandler("gold", startGoldUI, false, false)
 function buyGoldItem(get, post)
     if (get) then
         if (get.item) then
-
+            triggerServerEvent(getLocalPlayer(), "buyGoldItem", getLocalPlayer(), get.item);
         end
     end
 end
@@ -82,12 +82,16 @@ function getItemJS(itemId)
     if tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) then
         if (tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) >= timestamp) then
             local days = math.floor((tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) - timestamp) / 60 / 60 / 24)
-            js = "setBuyState('Gold_'" .. itemId .. "', " .. days .. ");"
+            if (days > 0) then
+                js = "setBuyState('Gold_'" .. itemId .. "', " .. days .. ");"
+            else
+                js = "setBuyState('Gold_'" .. itemId .. "', false, true);"
+            end
         else
-            js = "setBuyState('Gold_'" .. itemId .. "', false);"
+            js = "setBuyState('Gold_'" .. itemId .. "', false, false);"
         end
     else
-        js = "setBuyState('Gold_'" .. itemId .. "', false);"
+        js = "setBuyState('Gold_'" .. itemId .. "', false, false);"
     end
 end
 

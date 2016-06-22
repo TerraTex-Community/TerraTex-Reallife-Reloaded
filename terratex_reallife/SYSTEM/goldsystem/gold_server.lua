@@ -10,8 +10,7 @@ function buyNewGold_func(amount)
     if (amount * config["gold.price"] <= getPlayerMoney(source)) then
         if (amount > 0) then
             changePlayerMoney(source, -amount * config["gold.price"], "sonstiges", "Goldkauf");
-
-            vioSetElementData(source, "Gold", vioGetElementData(source, "Gold") + amount);
+            changePlayerGold(source, amount, "Goldkauf");
             showError(source, "Du hast erfolgreich " .. amount .. " Gold gekauft!");
 
             triggerClientEvent(source, "actualizeGoldAmount", source)
@@ -22,3 +21,39 @@ function buyNewGold_func(amount)
 end
 addEvent("buyNewGold", true)
 addEventHandler("buyNewGold", getRootElement(), buyNewGold_func)
+
+local timedItems = {"FoodBooster", "FuelBooster", "HufeisenBooster"};
+local itemPrices = {
+    FoodBooster = 10,
+    FuelBooster = 10,
+    HufeisenBooster = 5
+};
+
+function buyGoldItem_func(itemId)
+    if (table.hasValue(timedItems, itemId)) then
+        local timestampOld = vioGetElementData(source, "Gold." .. itemId);
+        local time = getRealTime();
+        local timestamp = time.timestamp;
+
+        local result = timestampOld - timestamp;
+
+        if (result > 86400) then
+            showError(source, "Der Booster ist bereits aktiv und kann zur Zeit nicht verlängert werden.");
+        else
+            if (result < 0) then
+                result = 0
+            end
+            result = result + timestamp + (31 * 24 * 60 * 60);
+
+            local price = itemPrices[itemId];
+            if (vioGetElementData(source, "Gold") < price) then
+                showError(source, "Du hast nicht genug Gold um dieses Item zu kaufen!");
+            else
+                changePlayerGold(source, -price, "Item kauf: " .. itemId);
+                vioSetElementData(source, "Gold." .. itemId, result);
+            end
+        end
+    end
+end
+addEvent("buyGoldItem", true)
+addEventHandler("buyGoldItem", getRootElement(), buyGoldItem_func)

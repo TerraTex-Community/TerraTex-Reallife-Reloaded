@@ -1,5 +1,6 @@
 ####22.06.2016
 ------
+* [ADDED] Gold Items are now buyable
 * [FIXED] Do not save Biz on Dev Server
 
 ####21.06.2016

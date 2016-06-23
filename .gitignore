@@ -6,7 +6,8 @@ terratex_reallife.iml
 terratex-reallife.iml
 terratex.iml
 
-
+terratex_reallife/config.lua
+terratex_reallife/database_config.lua
 
 
 

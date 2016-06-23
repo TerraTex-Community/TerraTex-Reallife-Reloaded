@@ -5,9 +5,9 @@ function kickMeBecauseWrongVersion_func(player)
 end
 addEventHandler("kickMeBecauseWrongVersion", getRootElement(), kickMeBecauseWrongVersion_func)
 
-local isDevServerV = fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")
+local isDevServerV = false
 function isDevServer()
-
+    isDevServerV = fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")
     outputDebugString("DevServer: " .. tostring(isDevServerV))
     return isDevServerV
 end

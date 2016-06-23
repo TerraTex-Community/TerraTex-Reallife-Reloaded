@@ -1,6 +1,7 @@
 ####23.06.2016
 ------
 * [ADDED] #31 Functionallity of HufeisenBooster, FuelBooster and FoodBooster
+* [ADDED] #31 Closebutton to Gold Shop
 * [REMOVED] #32 removed Premium Tables from SQL Files
 
 ####22.06.2016

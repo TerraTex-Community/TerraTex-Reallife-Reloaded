@@ -23,8 +23,7 @@ function startGoldUI()
             function()
                 setBrowserAjaxHandler ( source, "ajax_gold_buy.html", buyNewGold)
                 setBrowserAjaxHandler ( source, "ajax_gold_item.html", buyGoldItem)
---                setDevelopmentMode(true, true)
---                toggleBrowserDevTools ( source, true )
+                setBrowserAjaxHandler ( source, "ajax_gold_close.html", closeGoldShop)
                 loadBrowserURL(source, "http://mta/local/UI/Gold.html");
             end
         )
@@ -39,6 +38,12 @@ function startGoldUI()
     end
 end
 addCommandHandler("gold", startGoldUI, false, false)
+
+function closeGoldShop()
+    if isElement(goldWindow) then destroyElement(goldWindow) end
+    goldWindow = false;
+    goldBrowser = false;
+end
 
 function buyGoldItem(get, post)
     if (get) then

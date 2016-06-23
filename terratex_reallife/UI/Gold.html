@@ -14,9 +14,12 @@
 
     <div class="card card-inverse card-info">
         <div class="card-header card-info">
-            <h4 class="card-title text-gold">
+            <h4 class="card-title text-gold" style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
                 Goldshop
             </h4>
+            <div style="float: right">
+                <button class="btn btn-danger" id="closeGoldMarket">Shop verlassen</button>
+            </div>
         </div>
         <div class="card-block">
             <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
@@ -103,6 +106,10 @@
             var id = $(this).parent().parent().attr("id");
             $.ajax("http://mta/local/ajax_gold_item.html?item=" + id);
             return false;
+        });
+
+        $("#closeGoldMarket").click(function(){
+            $.ajax("http://mta/local/ajax_gold_close.html");
         });
     });
     function setBuyState(id, state, extend) {

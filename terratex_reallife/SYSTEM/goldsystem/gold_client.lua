@@ -12,11 +12,11 @@ function startGoldUI()
         if isElement(goldWindow) then destroyElement(goldWindow) end
         goldWindow = false;
     else
-        goldWindow = guiCreateWindow(0, 0, 700, 550, "Goldseller", false)
+        goldWindow = guiCreateWindow(0, 0, 720, 550, "Goldseller", false)
         table.insert(allGuis, goldWindow);
         setGuiCenter(goldWindow);
 
-        local browser = guiCreateBrowser(0, 0, 700, 550, true, false, false, goldWindow)
+        local browser = guiCreateBrowser(0, 0, 720, 550, true, false, false, goldWindow)
 
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),

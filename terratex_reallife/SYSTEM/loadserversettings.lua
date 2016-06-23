@@ -5,8 +5,12 @@ function kickMeBecauseWrongVersion_func(player)
 end
 addEventHandler("kickMeBecauseWrongVersion", getRootElement(), kickMeBecauseWrongVersion_func)
 
-local isDevServerV = false
-function isDevServer() return isDevServerV end
+local isDevServerV = fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")
+function isDevServer()
+
+    outputDebugString("DevServer: " .. tostring(isDevServerV))
+    return isDevServerV
+end
 
 serversettings = {}
 Tagesdurchnitte = {}

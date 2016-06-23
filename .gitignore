@@ -7,3 +7,4 @@ terratex_reallife/config.lua
 terratex_reallife/database_config.lua
 
 *.iml
+devmode.dev

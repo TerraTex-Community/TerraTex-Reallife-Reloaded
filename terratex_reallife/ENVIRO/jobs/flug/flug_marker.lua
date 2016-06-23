@@ -38,10 +38,10 @@ function givePlayerflyersAuftrag_func(auftrag)
 			local vehicle=createVehicle(auftrag[3],1477.62890625,1699.0966796875,15.544939994812,1.7852783203125,0.10986328125,179.90661621094)
             setVehicleColor ( vehicle , math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255) )
 
-            vioSetElementData(vehicle,"hasTank",true)
-			fixThatFlugVehicle(vehicle)
 
-            vioSetElementData(vehicle,"tank",200)
+			fixThatFlugVehicle(vehicle)
+			vioSetElementData(vehicle,"hasTank",true)
+            vioSetElementData(vehicle,"tank",300)
 			setTimer(fixThatFlugVehicle,2000,1,vehicle)
 			setTimer(fixThatFlugVehicle,2500,1,vehicle)
 			setTimer(fixThatFlugVehicle,3000,1,vehicle)

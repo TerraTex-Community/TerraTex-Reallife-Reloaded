@@ -22,6 +22,8 @@ function onResourceCreateHotDogMarkerAndVehicles()
         addEventHandler("onVehicleStartEnter", theVehicle, donotEnterIfNotHotDog)
         vioSetElementData(theVehicle, "hotdogFuel", 0)
         vioSetElementData(theVehicle, "hasTank", true)
+        vioSetElementData(theVehicle,"hasTankFactor",0.5)
+        vioSetElementData(theVehicle,"tank",100)
         prepare(theVehicle, 0)
     end
     respawnHotDogCars()

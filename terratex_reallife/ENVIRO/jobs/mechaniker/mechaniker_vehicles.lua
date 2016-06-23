@@ -18,7 +18,9 @@ function createMechVehicles()
 		addEventHandler("onVehicleEnter",theVehicle,kick_from_mechaniker_car)
 		prepare(theVehicle,0)
 
-        vioSetElementData(theVehicle,"hasTank",true)
+		vioSetElementData(theVehicle, "hasTank", true)
+		vioSetElementData(theVehicle,"hasTankFactor",0.5)
+		vioSetElementData(theVehicle,"tank",100)
 	end
 	
 	setTimer(respawnMechiCars,300000,1)	

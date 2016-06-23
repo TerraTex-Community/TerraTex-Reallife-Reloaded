@@ -26,7 +26,9 @@ function respawnTrashCars()
 			setVehicleEngineState (theVehicle,false)				
 			respawnVehicle (theVehicle)
 
-            vioSetElementData(theVehicle,"tank",100)
+			vioSetElementData(theVehicle, "hasTank", true)
+			vioSetElementData(theVehicle, "hasTankFactor", 0.5)
+			vioSetElementData(theVehicle, "tank", 100)
 		end
 	end
 	setTimer(respawnTrashCars,300000,1)		

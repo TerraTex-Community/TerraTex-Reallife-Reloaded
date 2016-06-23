@@ -22,7 +22,9 @@ function createSweeperJob()
 		addEventHandler("onVehicleExit",theVehicle,exitSweeperJobCar)
 		addEventHandler("onVehicleStartExit",theVehicle,exitSweeperJobCar)
  		prepare(theVehicle,0)
-        vioSetElementData(theVehicle,"hasTank",true)
+
+		vioSetElementData(theVehicle, "hasTank", true)
+		vioSetElementData(theVehicle, "tank", 100)
 	end
 	respawnSweeperCars()
 end
@@ -34,7 +36,9 @@ function respawnSweeperCars()
 			setVehicleOverrideLights (theVehicle,1)
 			setVehicleEngineState (theVehicle,false)				
 			respawnVehicle (theVehicle)
-            vioSetElementData(theVehicle,"tank",100)
+
+			vioSetElementData(theVehicle, "hasTank", true)
+			vioSetElementData(theVehicle, "tank", 100)
 		end
 	end
 	setTimer(respawnSweeperCars,300000,1)		

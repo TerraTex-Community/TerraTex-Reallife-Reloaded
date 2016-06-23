@@ -61,7 +61,6 @@ function givePlayerTruckAuftrag_func(auftrag)
                 setVehicleColor ( trailer , math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255), math.random(0,255) )
 
                 attachTrailerToVehicle(vehicle, trailer)
-				--setElementSyncer ( trailer ,source)
 				addEventHandler("onTrailerDetach", trailer, reattachTrailer)
 			end
 			if(auftrag[1]>99999)then

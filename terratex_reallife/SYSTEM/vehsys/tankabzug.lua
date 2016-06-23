@@ -1,6 +1,4 @@
 function abzugTankAnzeige()
-
-
     for theVehicle, theKey in ipairs(getElementsByType("vehicle")) do
         if (vioGetElementData(theKey, "besitzer")) then
             setNewTankVehicle(theKey)
@@ -51,11 +49,16 @@ function setNewTankVehicle(theVehicle)
                 end
                 local vx, vy, vz = getElementVelocity(theVehicle)
                 local durchV = math.sqrt(vx * vx + vy * vy + vz * vz)
-                local tankminus = (entf) * (durchV * durchV * 0.003707 - 0.000666 * durchV + 0.0001537)
+--                local tankminus = (entf) * (durchV * durchV * 0.003707 - 0.000666 * durchV + 0.0001537)
+                local calcV = durchV * 180;
+                local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/100000 + 0.0002;
+
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")
                 elseif (getVehicleType(theVehicle) == "Plane") then
                     tankminus = tankminus / 4
+                elseif (getVehicleType(theVehicle) == "Boat") then
+                    tankminus = tankminus * 4
                 end
 
                 tankminus = tankminus * damageFactor;

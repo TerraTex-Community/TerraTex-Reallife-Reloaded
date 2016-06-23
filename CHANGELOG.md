@@ -2,6 +2,7 @@
 ------
 * [ADDED] #31 Functionallity of HufeisenBooster, FuelBooster and FoodBooster
 * [ADDED] #31 Closebutton to Gold Shop
+* [CHANGED] #35 New Fuel Calculation
 * [REMOVED] #32 removed Premium Tables from SQL Files
 * [CHANGED] #33 add a Fueltank to all Jobvehicles
 

@@ -449,13 +449,6 @@ CREATE TABLE `log_playermoney` (
   `DateStamp` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `log_premium` (
-  `ID` int(11) NOT NULL,
-  `Nickname` varchar(255) NOT NULL,
-  `Datum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `how` varchar(255) NOT NULL DEFAULT 'echtgeld'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `log_serveradvertising` (
   `ID` int(11) NOT NULL,
   `Nickname` varchar(255) NOT NULL,
@@ -5618,13 +5611,6 @@ CREATE TABLE `user_offline_messages` (
   `Nickname` varchar(255) NOT NULL DEFAULT 'none'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `user_premium` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `PremiumUntil` bigint(20) NOT NULL DEFAULT '0',
-  `PremiumGutScheine` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 CREATE TABLE `user_tapps` (
   `ID` int(11) NOT NULL,
   `Nickname` varchar(255) NOT NULL,
@@ -5806,10 +5792,6 @@ ALTER TABLE `log_playermoney`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `log_playermoney_user_Nickname_fk` (`Nickname`);
 
-ALTER TABLE `log_premium`
-  ADD PRIMARY KEY (`ID`),
-  ADD KEY `log_premium_user_Nickname_fk` (`Nickname`);
-
 ALTER TABLE `log_serveradvertising`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `log_serveradvertising_user_Nickname_fk` (`Nickname`);
@@ -5893,10 +5875,6 @@ ALTER TABLE `user_offline_messages`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `Nickname` (`Nickname`);
 
-ALTER TABLE `user_premium`
-  ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `Name` (`Name`);
-
 ALTER TABLE `user_tapps`
   ADD PRIMARY KEY (`ID`),
   ADD UNIQUE KEY `Nickname` (`Nickname`);
@@ -5975,8 +5953,6 @@ ALTER TABLE `log_loosedriverlicense`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `log_playermoney`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `log_premium`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `log_serveradvertising`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `log_steuern`
@@ -6018,8 +5994,6 @@ ALTER TABLE `user_jobskills`
 ALTER TABLE `user_licenses`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `user_offline_messages`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `user_premium`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `user_tapps`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
@@ -6077,9 +6051,6 @@ ALTER TABLE `log_loosedriverlicense`
 ALTER TABLE `log_playermoney`
   ADD CONSTRAINT `log_playermoney_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `log_premium`
-  ADD CONSTRAINT `log_premium_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 ALTER TABLE `log_steuern`
   ADD CONSTRAINT `log_steuern_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -6119,9 +6090,6 @@ ALTER TABLE `user_licenses`
 
 ALTER TABLE `user_offline_messages`
   ADD CONSTRAINT `user_offline_messages_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `user_premium`
-  ADD CONSTRAINT `user_premium_ibfk_1` FOREIGN KEY (`Name`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `user_tapps`
   ADD CONSTRAINT `user_tapps_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;

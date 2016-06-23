@@ -6,7 +6,6 @@ local meeresCleanLastTen = 0
 local isMeeresJobActiv = false
 local meeresX = 0
 local meeresY = 0
-local tmpShowMeter = 0
 local meeresZ = 0
 
 function startMeeresBoot_func()
@@ -19,7 +18,6 @@ function startMeeresBoot_func()
     outputChatBox("Fahr aufs Meer um es zu reinigen! Wenn du denkst du hast genug Dreck gesammelt, bring es zum Marker")
     isMeeresJobActiv = true
 end
-
 addEventHandler("startMeeresBoot", getRootElement(), startMeeresBoot_func)
 
 function hitMeeresmarker(thePlayer)
@@ -37,7 +35,6 @@ function stopboot_func()
     if (isElement(meeresMarker)) then destroyElement(meeresMarker) end
     isMeeresJobActiv = false
 end
-
 addEventHandler("stopboot_event", getRootElement(), stopboot_func)
 
 function PlayerDied_meer()
@@ -48,7 +45,6 @@ function PlayerDied_meer()
         isMeeresJobActiv = false
     end
 end
-
 addEventHandler("onClientPlayerWasted", getRootElement(), PlayerDied_meer)
 
 function startTimer_Meer()
@@ -61,22 +57,18 @@ function startTimer_Meer()
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             else
-                meeresClean = meeresClean - 250000
-                meeresCleanLastTen = meeresCleanLastTen - 250000
+                meeresClean = 0
+                meeresCleanLastTen = 0
                 local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
-                local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
 
-                tmpShowMeter = tmpShowMeter + (dis / 2)
             end
         else
-            meeresClean = meeresClean - 250000
-            meeresCleanLastTen = meeresCleanLastTen - 250000
+            meeresClean = 0
+            meeresCleanLastTen = 0
             local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
-            local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
             meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
 
-            tmpShowMeter = tmpShowMeter + (dis / 2)
         end
     elseif (isMeeresJobActiv and (tonumber(getElementData(getLocalPlayer(), "afk_status")) == 1)) then
         local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
@@ -87,7 +79,6 @@ end
 function startResourceBoot()
     startTimer_Meer()
 end
-
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), startResourceBoot)
 
 function onMeeresreinigerHudRender()
@@ -95,11 +86,8 @@ function onMeeresreinigerHudRender()
         local screenW, screenH = guiGetScreenSize()
         dxDrawRectangle(screenW - 220 - 10, (screenH - 46) / 2, 220, 46, tocolor(0, 13, 71, 220), false)
 
-        local showMeter = meeresClean
-        if showMeter < 0 then showMeter = tmpShowMeter end
-        dxDrawText(string.format("%s Meter", math.Tausend(math.round(showMeter, 2))), screenW - 221 - 10, (screenH - 46) / 2, (screenW - 221 - 10) + 221, (
+        dxDrawText(string.format("%s Meter", math.Tausend(math.round(meeresClean, 2))), screenW - 221 - 10, (screenH - 46) / 2, (screenW - 221 - 10) + 221, (
         (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "center", "center", false, false, false, false, false)
     end
 end
-
 addEventHandler("onClientRender", root, onMeeresreinigerHudRender)

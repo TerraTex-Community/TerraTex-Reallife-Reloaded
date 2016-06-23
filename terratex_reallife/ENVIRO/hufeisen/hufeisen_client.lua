@@ -19,8 +19,8 @@ function spawnHufeisen_func()
     pickuocolshapedata = {}
     local pickup = false
     if (isPlayerLoggedIn(getLocalPlayer())) then
-        if (tonumber(getElementData(getLocalPlayer(), "premium")) > 0) then
-            hufeisenOnMap = math.round(hufeisenOnMap * 1.25)
+        if (isGoldBoosterActive(getLocalPlayer(), "HufeisenBooster")) then
+            hufeisenOnMap = math.round(hufeisenOnMap * 1.50)
         end
         for n = 0, hufeisenOnMap, 1 do
             local x = math.random(0, 5600) - 2800

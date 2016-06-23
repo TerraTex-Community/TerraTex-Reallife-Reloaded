@@ -1,6 +1,11 @@
+####23.06.2016
+------
+* [ADDED] #31 Functionallity of HufeisenBooster, FuelBooster and FoodBooster
+* [REMOVED] #32 removed Premium Tables from SQL Files
+
 ####22.06.2016
 ------
-* [ADDED] Gold Items are now buyable
+* [ADDED] #31 Gold Items are now buyable
 * [FIXED] Do not save Biz on Dev Server
 
 ####21.06.2016

@@ -22,7 +22,6 @@ end
 addEvent("buyNewGold", true)
 addEventHandler("buyNewGold", getRootElement(), buyNewGold_func)
 
-local timedItems = {"FoodBooster", "FuelBooster", "HufeisenBooster"};
 local itemPrices = {
     FoodBooster = 10,
     FuelBooster = 10,
@@ -30,6 +29,8 @@ local itemPrices = {
 };
 
 function buyGoldItem_func(itemId)
+    local timedItems = getTimedGoldBooster();
+
     if (table.hasValue(timedItems, itemId)) then
         local timestampOld = vioGetElementData(source, "Gold." .. itemId);
         local time = getRealTime();

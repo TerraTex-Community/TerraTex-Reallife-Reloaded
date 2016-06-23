@@ -35,9 +35,6 @@ function krankheitsreduce_func()
 end
 addEventHandler("krankheitsreduce",getRootElement(),krankheitsreduce_func)
 
-
-
-
 --atomkatastrophe
 local janeinvllt=true
 function reduceFood()
@@ -45,7 +42,7 @@ function reduceFood()
 		if not(waittimer>0)then
 				if (tonumber(getElementData(getLocalPlayer(),"afk_status"))==0)then
 					local foodreduce=0
-					if(tonumber(getElementData(getLocalPlayer(),"premium"))>0)then
+					if(isGoldBoosterActive(getLocalPlayer(), "FoodBooster"))then
 						foodreduce=0.0225
 					else
 						foodreduce=0.045

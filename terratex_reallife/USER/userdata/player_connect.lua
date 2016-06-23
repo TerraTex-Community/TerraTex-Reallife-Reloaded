@@ -159,7 +159,6 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
             MySql.helper.insert("user_achievements", { Nickname = nickname });
             MySql.helper.insert("user_tapps", { Nickname = nickname });
             MySql.helper.insert("faction_userrights", { Nickname = nickname });
-            MySql.helper.insert("user_premium", { Name = nickname });
             MySql.helper.insert("user_gold", { Nickname = nickname });
 
             dbExec(MySql._connection, "UPDATE user SET RegDat=LastUpdate WHERE Nickname = ?", nickname);
@@ -227,9 +226,6 @@ function LoginPlayerData(nickname, pw)
         end
         if not (MySql.helper.existSync("user_achievements", { Nickname = getPlayerName(source) })) then
             MySql.helper.insertSync("user_achievements", { Nickname = nickname });
-        end
-        if not (MySql.helper.existSync("user_premium", { Name = getPlayerName(source) })) then
-            MySql.helper.insertSync("user_premium", { Name = nickname });
         end
         if not (MySql.helper.existSync("user_tapps", { Nickname = getPlayerName(source) })) then
             MySql.helper.insertSync("user_tapps", { Nickname = nickname });
@@ -556,15 +552,6 @@ function LoginPlayerData(nickname, pw)
         setPlayerMoney(source, vioGetElementData(source, "money"))
 
         local time = getRealTime()
-        local premiumOutTime = MySql.helper.getValueSync("user_premium", "PremiumUntil", { Name = nickname }) - time.timestamp;
-
-        vioSetElementData(source, "premium", 0)
-        if (premiumOutTime > 0) then
-            local days = math.round(((premiumOutTime / 60) / 60) / 24)
-            vioSetElementData(source, "premium", premiumOutTime)
-            outputChatBox(string.format("Du hast noch %s Tage Premium!", days), source, 0, 255, 0)
-        end
-
         local onlineSchutzUntil = MySql.helper.getValueSync("user_tapps", "OnlineSchutzUntil", { Nickname = nickname }) - time.timestamp;
         vioSetElementData(source, "onlineschutzuntil", 0)
         if (onlineSchutzUntil > 0) then

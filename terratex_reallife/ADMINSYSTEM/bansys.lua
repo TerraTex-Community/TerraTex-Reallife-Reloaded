@@ -3,6 +3,8 @@ function nickChangeHandler(oldNick, newNick)
 end
 addEventHandler("onPlayerChangeNick", getRootElement(), nickChangeHandler)
 
+-- Kommentar
+
 function outputAdminMessage(message, colorA, ColorB, ColorC)
     local players = getElementsByType("player")
     for theKey, thePlayer in ipairs(players) do

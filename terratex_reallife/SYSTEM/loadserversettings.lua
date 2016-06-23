@@ -8,7 +8,6 @@ addEventHandler("kickMeBecauseWrongVersion", getRootElement(), kickMeBecauseWron
 local isDevServerV = false
 function isDevServer()
     isDevServerV = fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")
-    outputDebugString("DevServer: " .. tostring(isDevServerV))
     return isDevServerV
 end
 

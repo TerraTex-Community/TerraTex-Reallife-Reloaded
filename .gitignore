@@ -1,26 +1,9 @@
 .idea/
-terratex_reallife.iml
 .settings/
 .buildpath
 .project
-terratex-reallife.iml
-terratex.iml
 
 terratex_reallife/config.lua
 terratex_reallife/database_config.lua
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*.iml

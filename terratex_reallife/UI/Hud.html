@@ -99,7 +99,7 @@
 
         function setClock(hour, minute) {
             $("#clock .hour").html(hour);
-            $("#clock .minute").html(minute < 0 ? ("0" + money) : money);
+            $("#clock .minute").html(minute < 0 ? ("0" + minute) : minute);
         }
         function setMoney(value) {
             anim.pauseResume();

@@ -59,6 +59,7 @@ end
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), createHud)
 
 function hud_render()
+    outputChatBox(tostring(isPlayerHudComponentVisible( "crosshair" )))
     if (showHud and not(isPlayerMapVisible ()) and not(isPedDead (getLocalPlayer()))) then
         local screenWidth, screenHeight = guiGetScreenSize();
         if (not isBrowserLoading ( browser )) then

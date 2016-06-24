@@ -25,7 +25,6 @@ local lastAmmoInClip = -1;
 local lastTotalAmmo = -1;
 
 function showHud_func(showHudBool)
-    outputChatBox("done");
     showHud = showHudBool;
 end
 addEvent("showHud", true)

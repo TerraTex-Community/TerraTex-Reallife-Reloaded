@@ -98,7 +98,7 @@ function hud_render()
                     newString = totalAmmo;
                 end
 
-                executeBrowserJavascript( browser, "setAmmoString(" .. newString .. ");");
+                executeBrowserJavascript( browser, "setAmmoString('" .. newString .. "');");
 
                 lastAmmoInClip = ammoInClip;
                 lastTotalAmmo = totalAmmo;

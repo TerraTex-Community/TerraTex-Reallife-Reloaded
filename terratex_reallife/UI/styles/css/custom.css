@@ -109,3 +109,13 @@
 #right_hud #statusIcons #wanteds {
     margin-right: 9.5px;
 }
+
+.blink {
+    animation: blink-animation 3s ease-in-out infinite;
+
+}
+@keyframes blink-animation {
+    0% {opacity: 0}
+    50% {opacity: 1}
+    100% {opacity: 0}
+}

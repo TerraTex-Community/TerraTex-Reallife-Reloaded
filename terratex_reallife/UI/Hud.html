@@ -83,6 +83,14 @@
         });
         function setStatus(id, percent) {
             $("#" + id + " div.status_front").height(60/100*percent + "px");
+
+            if (id !== "armor" || id !== "wanteds") {
+                if (percent < 15) {
+                    $("#" + id).toggleClass("blink", true);
+                } else {
+                    $("#" + id).toggleClass("blink", false);
+                }
+            }
         }
 
         function setWeapon(id) {

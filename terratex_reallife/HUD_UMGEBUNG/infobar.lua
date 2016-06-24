@@ -34,13 +34,3 @@ addEventHandler("onClientPreRender", root,
         end
     end
 )
-
-
-
-
-
-
-
-
-
-

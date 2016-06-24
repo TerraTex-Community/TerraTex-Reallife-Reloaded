@@ -111,7 +111,7 @@
 		
 	<!-- HUD SCRIPTS -->
 		<script src="HUD_UMGEBUNG/sprechblase_client.lua" type="client" />
-		<script src="HUD_UMGEBUNG/ego_mode.lua" type="client" />
+		<script src="HUD_UMGEBUNG/status_hud_client.lua" type="client" />
 		<script src="HUD_UMGEBUNG/geldanzeige_client.lua" type="client" />
 		<script src="HUD_UMGEBUNG/geldanzeige_server.lua" type="server" />
 		<script src="HUD_UMGEBUNG/radio_fix.lua" type="client" />

@@ -49,10 +49,3 @@ addEventHandler("onClientVehicleEnter", getRootElement(),
     end
 )
 
-
-
-
-
-
-
-

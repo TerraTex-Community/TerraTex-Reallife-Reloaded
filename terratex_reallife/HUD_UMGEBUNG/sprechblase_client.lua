@@ -59,11 +59,3 @@ function onClientRenderChatBoxActiv()
 end
 addEventHandler("onClientRender",getRootElement(),onClientRenderChatBoxActiv)
 
-
-
-
-
-
-
-
-

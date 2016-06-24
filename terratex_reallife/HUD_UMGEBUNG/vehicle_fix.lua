@@ -28,11 +28,3 @@ addEventHandler("onClientVehicleEnter", getRootElement(),
         end
     end
 )
-
-
-
-
-
-
-
-

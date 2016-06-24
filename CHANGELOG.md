@@ -1,6 +1,7 @@
 ####23.06.2016
 ------
 * [ADDED] #36 New Weapon Icons for new Hud
+* [REMOVED] EgoMode
 
 ####23.06.2016
 ------

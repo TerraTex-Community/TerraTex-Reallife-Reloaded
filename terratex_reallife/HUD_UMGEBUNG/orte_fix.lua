@@ -28,12 +28,3 @@ addEventHandler("onClientRender", getRootElement(),
     end
 )
 
-
-
-
-
-
-
-
-
-

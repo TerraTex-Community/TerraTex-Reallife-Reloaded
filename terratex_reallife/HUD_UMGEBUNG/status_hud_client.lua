@@ -42,6 +42,8 @@ function createHud()
     local screenWidth, screenHeight = guiGetScreenSize();
 
     browser = createBrowser(550, 700, true, true);
+    --setDevelopmentMode(true, true);
+    --toggleBrowserDevTools ( browser, true)
 
     addEventHandler("onClientBrowserCreated", browser,
         function()
@@ -80,9 +82,10 @@ function hud_render()
             end
 
             if (isElementInWater(getLocalPlayer()) ~= inWater or lastOxygenLevel ~= getPedOxygenLevel( getLocalPlayer() )) then
-                executeBrowserJavascript( browser, "setStatus('oxygen', " .. getPedOxygenLevel( getLocalPlayer() ) .. ");");
-                executeBrowserJavascript( browser, "setIconHidden(" .. tostring(isElementInWater(getLocalPlayer())) .. ");");
+                executeBrowserJavascript( browser, "setStatus('oxygen', " .. (getPedOxygenLevel( getLocalPlayer() ) / 10) .. ");");
+                executeBrowserJavascript( browser, "setIconHidden('oxygen', " .. tostring(not isElementInWater(getLocalPlayer())) .. ");");
                 lastOxygenLevel = getPedOxygenLevel ( getLocalPlayer() )
+                inWater = isElementInWater(getLocalPlayer())
             end
 
             if (getPedArmor(getLocalPlayer()) ~= lastArmor) then
@@ -97,7 +100,7 @@ function hud_render()
 
             if (tonumber(getElementData(getLocalPlayer(), "wanteds")) ~= lastWanted) then
                 local percent = tonumber(getElementData(getLocalPlayer(), "wanteds")) / 6 * 100;
-                executeBrowserJavascript( browser, "setStatus('health', " .. percent .. ");");
+                executeBrowserJavascript( browser, "setStatus('wanteds', " .. percent .. ");");
                 lastWanted = tonumber(getElementData(getLocalPlayer(), "wanteds"));
             end
 
@@ -106,7 +109,7 @@ function hud_render()
                 lastFood = getFood();
             end
         end
-        dxDrawImage(screenWidth - 600, 50, 550, 700, browser, 0, 0, 0, tocolor(255,255,255,255), true);
+        dxDrawImage(screenWidth - 550, 0, 550, 700, browser, 0, 0, 0, tocolor(255,255,255,255), true);
     end
 end
 

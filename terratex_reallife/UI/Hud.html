@@ -10,7 +10,7 @@
     <script src="styles/js/countUp.js" ></script>
     <script src="styles/js/countUp-jquery.js" ></script>
 </head>
-<body id="right_hud">
+<body id="right_hud" style="background-color: transparent">
 <div id="weapon_clock_money">
     <div id="weapon_container">
         <img src="styles/images/weaponIcons/weapon-0.png" id="weaponicon"/>
@@ -84,7 +84,7 @@
         function setStatus(id, percent) {
             $("#" + id + " div.status_front").height(60/100*percent + "px");
 
-            if (id !== "armor" || id !== "wanteds") {
+            if (id !== "armor" && id !== "wanteds") {
                 if (percent < 15) {
                     $("#" + id).toggleClass("blink", true);
                 } else {
@@ -99,7 +99,7 @@
 
         function setClock(hour, minute) {
             $("#clock .hour").html(hour);
-            $("#clock .minute").html(minute);
+            $("#clock .minute").html(minute < 0 ? ("0" + money) : money);
         }
         function setMoney(value) {
             anim.pauseResume();

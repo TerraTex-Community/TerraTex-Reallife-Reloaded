@@ -40,7 +40,8 @@ end
 addCommandHandler("gold", startGoldUI, false, false)
 
 function closeGoldShop()
-    if isElement(goldWindow) then destroyElement(goldWindow) end
+    if isElement(goldWindow) then destroyElement(goldWindow); end
+    showCursor(false);
     goldWindow = false;
     goldBrowser = false;
 end

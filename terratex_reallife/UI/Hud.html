@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/css/custom.css">
     <script src="styles/js/jquery.min.js"></script>
     <script src="styles/js/bootstrap.min.js"></script>
+    <script src="styles/js/countUp.js" ></script>
+    <script src="styles/js/countUp-jquery.js" ></script>
 </head>
 <body id="right_hud">
 <div id="weapon_clock_money">
@@ -18,10 +20,10 @@
             <span class="hour"></span>:<span class="minute"></span>
         </div>
         <div id="gold_container">
-            <span class="value"></span> <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            <span class="value" id="gold_container_value"></span> <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
         </div>
         <div id="money_container">
-            <span class="value text-success">0.00</span> <img src="styles/images/money.png" style="height: 30px"/>
+            <span class="value text-success" id="money_container_value">0.00</span> <img src="styles/images/money.png" style="height: 30px"/>
         </div>
     </div>
 
@@ -66,6 +68,19 @@
         </div>
     </div>
     <script>
+        var anim;
+        var lastEnd = 0;
+        $(document).ready(function(){
+            var easeOutCubic = function(t, b, c, d) {
+                var ts = (t /= d) * t;
+                var tc = ts * t;
+                return b + c * (1.77635683940025e-15 * tc * ts + 0.999999999999998 * tc + -3 * ts + 3 * t);
+            };
+            var options = {
+                easingFn: easeOutCubic
+            };
+            anim = new CountUp("money_container_value", 0, 0, 2, 5, options);
+        });
         function setStatus(id, percent) {
             $("#" + id + " div.status_front").height(60/100*percent + "px");
         }
@@ -78,9 +93,19 @@
             $("#clock .hour").html(hour);
             $("#clock .minute").html(minute);
         }
-        function setMoney(value, isNegativ) {
-            $("#money_container .value").html(value);
-            if (isNegativ) {
+        function setMoney(value) {
+            anim.pauseResume();
+//            anim.setStartVal(lastEnd);
+            var lastEnd = anim.getFrameVal();
+            console.log(lastEnd);
+            var calcValue = (lastEnd < value) ? (value - lastEnd) : (lastEnd - value);
+            var time = 19/9999600*calcValue + 6245/24999;
+
+            anim.setDuration(time);
+            anim.update(value);
+            lastEnd = value;
+
+            if (value < 0) {
                 $("#money_container .value").toggleClass("text-danger", true);
                 $("#money_container .value").toggleClass("text-success", false);
             } else {

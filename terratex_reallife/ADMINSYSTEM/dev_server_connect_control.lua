@@ -18,7 +18,7 @@ function onPlayerDevServerConnect(nickname)
             if (isDev == 0) then
                 local execQ = dbQuery(MySql._connection, "SELECT count(*) as anzahl FROM admin_dev_access WHERE Nickname = ? AND TIMEDIFF(fromTimestamp, NOW())<0 and (TIMEDIFF(toTimestamp, NOW())>0 or toTimestamp IS NULL)", nickname);
                 local result = dbPoll(execQ, -1);
-                if (tonumber(result[1]["anzahl"]) > 0) then
+                if not(tonumber(result[1]["anzahl"]) > 0) then
                     cancelEvent(true, "Der Developmentserver von " .. config["communityname"] .. " ist nur für Entwickler und ausgewähle Betatester gedacht!")
                 end
             end

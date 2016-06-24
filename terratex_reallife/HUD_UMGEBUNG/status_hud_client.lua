@@ -40,7 +40,7 @@ function createHud()
 
     local screenWidth, screenHeight = guiGetScreenSize();
 
-    local browser = createBrowser(550, 700, true, true);
+    browser = createBrowser(550, 700, true, true);
 
     addEventHandler("onClientBrowserCreated", browser,
         function()

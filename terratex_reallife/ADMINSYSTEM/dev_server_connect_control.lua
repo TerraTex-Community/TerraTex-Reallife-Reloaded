@@ -26,11 +26,7 @@ function onPlayerDevServerConnect(nickname)
             cancelEvent(true, "Der Developmentserver von " .. config["communityname"] .. " ist nur für Entwickler und ausgewähle Betatester gedacht!")
         end
 
-        local conditionTable = {};
-        conditionTable["TIMEDIFF(fromTimestamp, NOW())"] = { "<", 0 };
-        conditionTable["TIMEDIFF(toTimestamp, NOW())"] = { "<", 0 };
-
-        MySql.helper.delete("admin_dev_access", conditionTable)
+        dbExec(MySql._connection, "DELETE FROM admin_dev_access WHERE TIMEDIFF(fromTimestamp, NOW()) < 0 AND TIMEDIFF(toTimestamp, NOW()) < 0");
         if (deleteNullAfterDays > 0) then
             dbExec(MySql._connection, "DELETE FROM admin_dev_access WHERE DATEDIFF(DATE(fromTimestamp), DATE(NOW()))< ? and toTimestamp IS NULL", -deleteNullAfterDays);
         end

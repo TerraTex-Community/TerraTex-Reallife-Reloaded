@@ -14,6 +14,7 @@
 <div id="weapon_clock_money">
     <div id="weapon_container">
         <img src="styles/images/weaponIcons/weapon-0.png" id="weaponicon"/>
+        <div id="ammo"></div>
     </div>
     <div id="info_container">
         <div id="clock">
@@ -99,7 +100,7 @@
 
         function setClock(hour, minute) {
             $("#clock .hour").html(hour);
-            $("#clock .minute").html(minute < 0 ? ("0" + minute) : minute);
+            $("#clock .minute").html(minute < 10 ? ("0" + minute) : minute);
         }
         function setMoney(value) {
             anim.pauseResume();
@@ -125,6 +126,10 @@
         }
         function setGold(value) {
             $("#gold_container .value").html(value);
+        }
+
+        function setAmmoString(ammoString) {
+            $("#weapon_container #ammo").html(ammoString);
         }
     </script>
 </body>

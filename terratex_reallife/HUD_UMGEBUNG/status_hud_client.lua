@@ -21,6 +21,9 @@ local lastHealth = -1;
 local lastArmor = -1;
 local lastWanted = -1;
 
+local lastAmmoInClip = -1;
+local lastTotalAmmo = -1;
+
 function showHud_func(showHudBool)
     outputChatBox("done");
     showHud = showHudBool;
@@ -76,9 +79,29 @@ function hud_render()
                 lastGold = tonumber(getElementData(getLocalPlayer(), "Gold"));
             end
 
+
+            local weaponChanged = false;
             if (getPedWeapon ( getLocalPlayer() ) ~= lastWeapon) then
-                executeBrowserJavascript( browser, "setWeapon(" .. getPedWeapon ( getLocalPlayer() ) .. ")");
+                executeBrowserJavascript( browser, "setWeapon(" .. getPedWeapon ( getLocalPlayer() ) .. ");");
                 lastWeapon = getPedWeapon ( getLocalPlayer() );
+                weaponChanged = true;
+            end
+
+            local ammoInClip = getPedAmmoInClip ( getLocalPlayer() );
+            local totalAmmo = getPedTotalAmmo ( getLocalPlayer());
+
+            if (weaponChanged or ammoInClip~=lastAmmoInClip or totalAmmo~=lastTotalAmmo) then
+                local newString = ammoInClip .. "/"..totalAmmo;
+                if (getPedWeapon ( getLocalPlayer() ) < 16 or getPedWeapon ( getLocalPlayer()) == 12 or getPedWeapon ( getLocalPlayer()) > 43)then
+                    newString = "";
+                elseif (getWeaponProperty ( getPedWeapon (getLocalPlayer()), "pro", "maximum_clip_ammo" ) == 1) then
+                    newString = totalAmmo;
+                end
+
+                executeBrowserJavascript( browser, "setAmmoString(" .. newString .. ");");
+
+                lastAmmoInClip = ammoInClip;
+                lastTotalAmmo = totalAmmo;
             end
 
             if (isElementInWater(getLocalPlayer()) ~= inWater or lastOxygenLevel ~= getPedOxygenLevel( getLocalPlayer() )) then

@@ -952,8 +952,8 @@
 	<file src="UI/styles/images/armor_background.png" />
 	<file src="UI/styles/images/health.png" />
 	<file src="UI/styles/images/health_background.png" />
-	<file src="UI/styles/images/oxgen.png" />
-	<file src="UI/styles/images/oxgen_background.png" />
+	<file src="UI/styles/images/oxygen.png" />
+	<file src="UI/styles/images/oxygen_background.png" />
 	<file src="UI/styles/images/wanteds.png" />
 	<file src="UI/styles/images/wanteds_background.png" />
 	<file src="UI/styles/images/water.png" />

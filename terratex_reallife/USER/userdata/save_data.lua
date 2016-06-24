@@ -213,9 +213,9 @@ function save_data()
             -- Gold
             setTable["user_gold"] = {}
             setTable["user_gold"]["Gold"] = vioGetElementData(source, "Gold");
-            setTable["user_gold"]["Gold.FoodBooster"] = vioGetElementData(source, "Gold.FoodBooster");
-            setTable["user_gold"]["Gold.HufeisenBooster"] = vioGetElementData(source, "Gold.HufeisenBooster");
-            setTable["user_gold"]["Gold.FuelBooster"] = vioGetElementData(source, "Gold.FuelBooster");
+            setTable["user_gold"]["FoodBooster"] = vioGetElementData(source, "Gold.FoodBooster");
+            setTable["user_gold"]["HufeisenBooster"] = vioGetElementData(source, "Gold.HufeisenBooster");
+            setTable["user_gold"]["FuelBooster"] = vioGetElementData(source, "Gold.FuelBooster");
 
             for tablename, tableset in pairs(setTable) do
                 MySql.helper.update(tablename, tableset, { Nickname = getPlayerName(source) });

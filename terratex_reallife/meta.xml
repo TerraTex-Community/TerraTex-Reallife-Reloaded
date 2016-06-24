@@ -540,7 +540,10 @@
 		<file src="UI/styles/fonts/fontawesome-webfont.woff2" />
 		<file src="UI/styles/js/bootstrap.min.js" />
 		<file src="UI/styles/js/jquery.min.js" />
+		<file src="UI/styles/js/countUp.js" />
+		<file src="UI/styles/js/countUp-jquery.js" />
 		<file src="UI/Gold.html" />
+		<file src="UI/Hud.html" />
 
 	<!-- IMAGEFILES / BILDER -->
 		<!-- BLIPS -->
@@ -944,6 +947,19 @@
 	<file src="UI/styles/images/weaponIcons/weapon-44.png" />
 	<file src="UI/styles/images/weaponIcons/weapon-45.png" />
 	<file src="UI/styles/images/weaponIcons/weapon-46.png" />
+	<file src="UI/styles/images/money.png" />
+	<file src="UI/styles/images/armor.png" />
+	<file src="UI/styles/images/armor_background.png" />
+	<file src="UI/styles/images/health.png" />
+	<file src="UI/styles/images/health_background.png" />
+	<file src="UI/styles/images/oxgen.png" />
+	<file src="UI/styles/images/oxgen_background.png" />
+	<file src="UI/styles/images/wanteds.png" />
+	<file src="UI/styles/images/wanteds_background.png" />
+	<file src="UI/styles/images/water.png" />
+	<file src="UI/styles/images/water_background.png" />
+	<file src="UI/styles/images/food.png" />
+	<file src="UI/styles/images/food_background.png" />
 
 </meta>
 

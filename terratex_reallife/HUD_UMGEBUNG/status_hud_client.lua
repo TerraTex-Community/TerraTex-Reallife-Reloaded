@@ -22,6 +22,7 @@ local lastArmor = -1;
 local lastWanted = -1;
 
 function showHud_func(showHudBool)
+    outputChatBox("done");
     showHud = showHudBool;
 end
 addEvent("showHud", true)
@@ -44,7 +45,7 @@ function createHud()
 
     addEventHandler("onClientBrowserCreated", browser,
         function()
-            loadBrowserURL(browser, "http://mta/local/UI/Hud.html");
+            loadBrowserURL(source, "http://mta/local/UI/Hud.html");
             addEventHandler("onClientRender", root, hud_render)
         end
     )

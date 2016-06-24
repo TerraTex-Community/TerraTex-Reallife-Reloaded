@@ -48,22 +48,22 @@
                 <img src="styles/images/food.png" class="status_front"/>
             </div>
         </div>
-        <div id="water">
+        <div id="water" class="hidden-xs-up">
             <img src="styles/images/water_background.png"/>
-            <div class="status_front">
+            <div class="status_front ">
                 <img src="styles/images/water.png" class="status_front"/>
-            </div>
-        </div>
-        <div id="oxygen">
-            <img src="styles/images/oxygen_background.png"/>
-            <div class="status_front">
-                <img src="styles/images/oxygen.png" class="status_front"/>
             </div>
         </div>
         <div id="wanteds">
             <img src="styles/images/wanteds_background.png"/>
             <div class="status_front">
                 <img src="styles/images/wanteds.png" class="status_front"/>
+            </div>
+        </div>
+        <div id="oxygen">
+            <img src="styles/images/oxygen_background.png"/>
+            <div class="status_front">
+                <img src="styles/images/oxygen.png" class="status_front"/>
             </div>
         </div>
     </div>
@@ -95,9 +95,7 @@
         }
         function setMoney(value) {
             anim.pauseResume();
-//            anim.setStartVal(lastEnd);
             var lastEnd = anim.getFrameVal();
-            console.log(lastEnd);
             var calcValue = (lastEnd < value) ? (value - lastEnd) : (lastEnd - value);
             var time = 19/9999600*calcValue + 6245/24999;
 
@@ -114,6 +112,9 @@
             }
         }
 
+        function setIconHidden(id, status){
+            $("#" + id).toggleClass("hidden-xs-up", status);
+        }
         function setGold(value) {
             $("#gold_container .value").html(value);
         }

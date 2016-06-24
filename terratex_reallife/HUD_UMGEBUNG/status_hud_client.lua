@@ -44,7 +44,7 @@ function createHud()
 
     addEventHandler("onClientBrowserCreated", browser,
         function()
-            loadBrowserURL(webBrowser, "http://mta/local/UI/Hud.html");
+            loadBrowserURL(browser, "http://mta/local/UI/Hud.html");
             addEventHandler("onClientRender", root, hud_render)
         end
     )

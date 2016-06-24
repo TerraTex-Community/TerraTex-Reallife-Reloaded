@@ -91,7 +91,7 @@ function hud_render()
             local totalAmmo = getPedTotalAmmo ( getLocalPlayer());
 
             if (weaponChanged or ammoInClip~=lastAmmoInClip or totalAmmo~=lastTotalAmmo) then
-                local newString = ammoInClip .. "/"..totalAmmo;
+                local newString = ammoInClip .. "/"..(totalAmmo - ammoInClip);
                 if (getPedWeapon ( getLocalPlayer() ) < 16 or getPedWeapon ( getLocalPlayer()) == 12 or getPedWeapon ( getLocalPlayer()) > 43)then
                     newString = "";
                 elseif (getWeaponProperty ( getPedWeapon (getLocalPlayer()), "pro", "maximum_clip_ammo" ) == 1) then

@@ -1,5 +1,9 @@
 ####23.06.2016
 ------
+* [ADDED] #36 New Weapon Icons for new Hud
+
+####23.06.2016
+------
 * [ADDED] #31 Functionallity of HufeisenBooster, FuelBooster and FoodBooster
 * [ADDED] #31 Closebutton to Gold Shop
 * [CHANGED] #35 New Fuel Calculation

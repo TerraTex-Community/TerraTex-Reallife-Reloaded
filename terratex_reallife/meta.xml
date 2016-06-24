@@ -898,13 +898,52 @@
         <file src="FILES/MODS/icons8.txd" />
 
 
+	<!--- HUD ICONS -->
+	<file src="UI/styles/images/weaponIcons/jetpack.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-0.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-1.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-2.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-3.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-4.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-5.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-6.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-7.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-8.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-9.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-10.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-11.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-12.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-13.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-14.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-15.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-16.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-17.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-18.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-22.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-23.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-24.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-25.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-26.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-27.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-28.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-29.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-30.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-31.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-32.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-33.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-34.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-35.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-36.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-37.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-38.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-39.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-40.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-41.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-42.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-43.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-44.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-45.png" />
+	<file src="UI/styles/images/weaponIcons/weapon-46.png" />
 
 </meta>
-
-
-
-
-
-
-
 

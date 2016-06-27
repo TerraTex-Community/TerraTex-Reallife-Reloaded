@@ -51,8 +51,10 @@ function setNewTankVehicle(theVehicle)
                 local durchV = math.sqrt(vx * vx + vy * vy + vz * vz)
                 --                local tankminus = (entf) * (durchV * durchV * 0.003707 - 0.000666 * durchV + 0.0001537)
                 local calcV = durchV * 180;
-                outputChatBox("speed: " .. calcV)
                 local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/500 + 0.0002;
+                if (getVehicleOccupant(theVehicle)) then
+                    outputChatBox("speed: " .. calcV .. " - " .. tankminus, getVehicleOccupant(theVehicle))
+                end
 
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")

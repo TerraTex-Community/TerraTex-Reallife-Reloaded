@@ -1,0 +1,137 @@
+& {
+  padding: 20px;
+
+  & > div {
+    float: right;
+    width: 500px;
+  }
+}
+
+._currency_container {
+  font-size: 30px;
+  line-height: 1.3;
+  font-family: $font-family-custom;
+  text-shadow: $text-shadow;
+  text-align: right;
+
+  img {
+    height: 40px;
+    margin-top: -7px;
+  }
+}
+
+#weapon_container {
+  float: right;
+  position: relative;
+}
+
+#ammo {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  font-family: $font-family-custom;
+  font-size: 25px;
+  text-shadow: $text-shadow;
+  color: #96b1d1;
+}
+
+#clock {
+  font-size: 50px;
+  line-height: 1.3;
+  font-family: $font-family-custom;
+  color: #FFFFFF;
+  text-align: right;
+  text-shadow: $text-shadow;
+}
+
+#gold_container {
+  @extend ._currency_container;
+  color: #DAA520;
+}
+
+#money_container {
+  @extend ._currency_container;
+}
+
+#weaponicon {
+  height: 150px;
+}
+
+#statusIcons {
+  clear: both;
+  width: 110px;
+  margin: 10px;
+
+  & > div {
+    float: right;
+    position: relative;
+    margin-bottom: 5px;
+
+    & > img {
+      height: 60px;
+    }
+
+    & > div.status_front {
+      position: absolute;
+      bottom: 0;
+      overflow: hidden;
+      height: 60px;
+      width: 100%;
+
+      & > img {
+        position: absolute;
+        bottom: 0;
+        height: 60px;
+      }
+    }
+  }
+
+  #health {
+    margin-right: 15.5px;
+
+    img {
+      width: 69px;
+    }
+  }
+
+  #armor {
+    margin-right: 17px;
+
+    img {
+      width: 66px;
+    }
+  }
+
+  #food {
+    margin-right: 6.5px;
+
+    img {
+      width: 87px;
+    }
+  }
+
+  #water {
+    margin-right: 16px;
+
+    img {
+      width: 68px;
+    }
+  }
+
+  #oxygen {
+    margin-right: 18.5px;
+
+    img {
+      width: 63px;
+    }
+  }
+
+  #wanteds {
+    margin-right: 9.5px;
+
+    img {
+      width: 81px;
+    }
+  }
+}

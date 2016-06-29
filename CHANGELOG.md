@@ -1,3 +1,7 @@
+####29.06.2016
+------
+* [CODE-CHANGE] Changes CSS Files for Bootstrap and Custom to SCSS. SCSS Source Files are delivered additional to the generated CSS Files.
+
 ####23.06.2016
 ------
 * [ADDED] #36 New Weapon Icons for new Hud

@@ -1,0 +1,33 @@
+@import "variables";
+
+#right_hud {
+  @import "right_hud";
+}
+
+#gold-ui {
+  @import "gold_ui";
+}
+
+.placer-holder-top {
+  margin-bottom: 10px;
+  height:10px;
+}
+
+.text-gold {
+  color: #F0E68C !important;
+}
+
+.text-bold {
+  font-weight: bold
+}
+
+.blink {
+  animation: blink-animation 3s ease-in-out infinite;
+
+}
+
+@keyframes blink-animation {
+  0% {opacity: 0}
+  50% {opacity: 1}
+  100% {opacity: 0}
+}

@@ -2,9 +2,11 @@
 ------
 * [CODE-CHANGE] Changes CSS Files for Bootstrap and Custom to SCSS. SCSS Source Files are delivered additional to the generated CSS Files.
 
-####23.06.2016
+Release 1.1.0
+=============
+####24.06.2016
 ------
-* [ADDED] #36 New Weapon Icons for new Hud
+* [ADDED] #36 Implement complete new HUD (Weapon, Ammo, Clock, ...)
 * [REMOVED] EgoMode
 
 ####23.06.2016
@@ -47,7 +49,7 @@
 * [CHANGED] #32 All old Premium Vehicles are now normales Vehicles with the old price multiplied with 10
 
 Release 1.0.0
-======
+=============
 ####20.06.2016
 ------
 * [ADDED] #5 Afk-config option afk.punish

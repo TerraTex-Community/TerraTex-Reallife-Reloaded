@@ -52,16 +52,15 @@ function startTimer_Meer()
     if (isMeeresJobActiv and not (tonumber(getElementData(getLocalPlayer(), "afk_status")) == 1)) then
         if (isPedInVehicle(getLocalPlayer())) then
             if (getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 453) then
-                local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+                local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getPedOccupiedVehicle(getLocalPlayer()))
                 local dis = getDistanceBetweenPoints3D(meeresXNew, meeresYNew, meeresZNew, meeresX, meeresY, meeresZ)
                 meeresClean = meeresClean + (dis / 2)
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
             else
                 meeresClean = 0
                 meeresCleanLastTen = 0
-                local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getLocalPlayer())
+                local meeresXNew, meeresYNew, meeresZNew = getElementPosition(getPedOccupiedVehicle(getLocalPlayer()))
                 meeresX, meeresY, meeresZ = meeresXNew, meeresYNew, meeresZNew
-
             end
         else
             meeresClean = 0

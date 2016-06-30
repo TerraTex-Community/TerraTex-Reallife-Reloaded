@@ -1,3 +1,7 @@
+####30.06.2016
+--------------
+* [CHANGED] #40 New Fuel calculation
+
 ####29.06.2016
 ------
 * [CODE-CHANGE] Changes CSS Files for Bootstrap and Custom to SCSS. SCSS Source Files are delivered additional to the generated CSS Files.

@@ -29,36 +29,43 @@ function setNewTankVehicle(theVehicle)
                 end
             end
             if (getVehicleEngineState(theVehicle)) then
+
                 if not (vioGetElementData(theVehicle, "tank")) then
                     vioSetElementData(theVehicle, "tank", 50)
                 end
+
                 if not (vioGetElementData(theVehicle, "kmstand")) then
                     vioSetElementData(theVehicle, "kmstand", 0)
                 end
+
                 local ox, oy, oz = getElementPosition(theVehicle)
                 if (vioGetElementData(theVehicle, "oldTankX")) then
                     ox = vioGetElementData(theVehicle, "oldTankX")
                     oy = vioGetElementData(theVehicle, "oldTankY")
                     oz = vioGetElementData(theVehicle, "oldTankZ")
                 end
+
                 local nx, ny, nz = getElementPosition(theVehicle)
                 local entf = getDistanceBetweenPoints3D(ox, oy, oz, nx, ny, nz)
                 vioSetElementData(theVehicle, "kmstand", vioGetElementData(theVehicle, "kmstand") + entf / 100)
+
                 if (vioGetElementData(theVehicle, "kmstand") > 100000) then
                     giveVehicleKMPokal(theVehicle)
                 end
+
                 local vx, vy, vz = getElementVelocity(theVehicle)
                 local durchV = math.sqrt(vx * vx + vy * vy + vz * vz)
-                --                local tankminus = (entf) * (durchV * durchV * 0.003707 - 0.000666 * durchV + 0.0001537)
                 local calcV = durchV * 180;
-                local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/2000 + 0.002;
+
+                -- local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/2000 + 0.002;
+                local tankminus = (0 * 0000010958 * calcV * calcV + 0.018518519);
 
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")
                 elseif (getVehicleType(theVehicle) == "Plane") then
-                    tankminus = tankminus / 4
+                    tankminus = tankminus / 3
                 elseif (getVehicleType(theVehicle) == "Boat") then
-                    tankminus = tankminus * 4
+                    tankminus = tankminus * 3
                 end
 
                 tankminus = tankminus * damageFactor;

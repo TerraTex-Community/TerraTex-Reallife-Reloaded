@@ -15,9 +15,6 @@ function getFactionOverviewData_func()
     if (frakmun[fraktion]) then mats = math.Tausend(frakmun[fraktion]) end
     if (frakdrogen[fraktion]) then drugs = math.Tausend(frakdrogen[fraktion]) .. "g" end
 
-    local members = MySql.helper.getSync("user_data", { "Nickname" }, { Fraktion = fraktion });
-
-
     local fraktionsmember = getAllMemberNamesFromFaction(fraktion);
 
     local resultTable = {
@@ -37,6 +34,7 @@ addEventHandler("getFactionOverviewData", getRootElement(), getFactionOverviewDa
 
 function getAllMemberNamesFromFaction(fraktion)
     local onlinePlayers = getPlayersByDataValue("fraktion", fraktion )
+    local members = MySql.helper.getSync("user_data", { "Nickname" }, { Fraktion = fraktion });
     local fraktionsmember = {};
 
     for theKey, theList in ipairs(members) do

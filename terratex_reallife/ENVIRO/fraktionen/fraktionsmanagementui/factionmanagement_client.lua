@@ -18,7 +18,7 @@ function showLeaderManagementGUI()
             table.insert(allGuis, managementWindow);
             setGuiCenter(managementWindow);
 
-            local browser = guiCreateBrowser(0, 0, 720, 550, true, false, false, managementWindow);
+            local browser = guiCreateBrowser(10, 10, 800, 600, true, false, false, managementWindow);
 
 
             addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
@@ -44,6 +44,9 @@ function loadFManagementPage(get, post)
         if (get.id) then
             if (get.id == "overview") then
                 triggerServerEvent("getFactionOverviewData", getLocalPlayer());
+            elseif (get.id == "logout") then
+                if isElement(managementWindow) then destroyElement(managementWindow); end
+                managementWindow = false;
             end
         end
     end
@@ -53,7 +56,7 @@ function _renderFraktionsManagementOverviewPage(dataTable)
     local htmlFile = fileOpen("UI/Fraktionsmanagement/_Overview.html", true);
 
     if htmlFile then
-        local html
+        local html = "";
         while not fileIsEOF(htmlFile) do
             html = html .. fileRead(htmlFile, 500);
         end
@@ -63,14 +66,16 @@ function _renderFraktionsManagementOverviewPage(dataTable)
             html = string.gsub(html, "%%" .. theKey .. "%%", theContent)
         end
 
-        html = string.gsub(html, '"', '\"');
+        html = string.gsub(html, '"', '\\"');
+        html = string.gsub(html, '\n', '');
+        html = string.gsub(html, '\r', '');
 
         executeBrowserJavascript(managementBrowser, "setContent(\"" .. html .. "\");");
 
     else
-        outputConsole("Unable to open \"UI/Fraktionsmanagement/_Overview.html\"")
+        outputDebugString("Unable to open \"UI/Fraktionsmanagement/_Overview.html\"")
     end
 end
 
 addEvent("sendFactionOverviewData", true)
-addEventHandler("showLeaderManagementGUI", getRootElement(), _renderFraktionsManagementOverviewPage)
+addEventHandler("sendFactionOverviewData", getRootElement(), _renderFraktionsManagementOverviewPage)

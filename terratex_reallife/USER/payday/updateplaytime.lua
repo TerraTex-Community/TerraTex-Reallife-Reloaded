@@ -170,7 +170,7 @@ function payday(thePlayer)
 
     --Berechnung Fraktionssteuer
     if (vioGetElementData(thePlayer, "fraktion") > 0) then
-        fraksteuermenge = math.round(Gehalt / 100 * (fraksteuer[vioGetElementData(thePlayer, "fraktion")]))
+        local fraksteuermenge = math.round(Gehalt / 100 * (fraksteuer[vioGetElementData(thePlayer, "fraktion")]))
         table.insert(PayDayTable, { "Fraktionssteuer mit " .. fraksteuer[vioGetElementData(thePlayer, "fraktion")] .. " Prozent", 0, (-fraksteuermenge) })
         Ausgaben = Ausgaben + fraksteuermenge
         frakkasse[vioGetElementData(thePlayer, "fraktion")] = frakkasse[vioGetElementData(thePlayer, "fraktion")] + fraksteuermenge
@@ -186,7 +186,7 @@ function payday(thePlayer)
 
 
     --- Berechnung Fahrzeugsteuer
-    fahrzeugsteuer = 0
+    local fahrzeugsteuer = 0
     local freeslots = vioGetElementData(thePlayer, "maxslots")
     for zah = vioGetElementData(thePlayer, "maxslots"), 1, -1 do
         if tonumber(vioGetElementData(thePlayer, "slot" .. zah)) == -1 then

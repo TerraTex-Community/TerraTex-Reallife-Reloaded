@@ -1,3 +1,8 @@
+####04.07.2016
+--------------
+* [REMOVED] old Housemaps
+* [ADDED] #50 Overview in new Command /fmanage
+
 ####30.06.2016
 --------------
 * [CHANGED] #40 New Fuel calculation

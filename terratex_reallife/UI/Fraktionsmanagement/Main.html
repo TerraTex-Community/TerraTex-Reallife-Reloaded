@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../styles/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../styles/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../styles/css/custom/custom.css">
+    <script src="../styles/js/jquery.min.js"></script>
+    <script src="../styles/js/bootstrap.min.js"></script>
+</head>
+<body id="factionmanagement-ui">
+<div class="placer-holder-top"></div>
+<div class="container-fluid">
+    <div id="page-loading" class="alert alert-danger position-fixed-top"><i class="fa fa-spinner fa-spin"></i> Inhalt wird gelasen, bitte warten......</div>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#overview" data-page="overview" role="tab">Übersicht</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#members" data-page="members" role="tab">Mitgliederübersicht</a>
+        </li>
+    </ul>
+    <br/>
+
+    <div class="container-fluid">
+        <div id="content">
+
+        </div>
+    </div>
+
+</div>
+<div class="placer-holder-top"></div>
+
+<script>
+    $(document).ready(function () {
+        loadPage("overview");
+        $('a[data-toggle="tab"]').click(function (e) {
+            loadPage($(this).attr("data-page"));
+        });
+    });
+
+    function loadPage(id) {
+        toggleContentLoader(true);
+        $("#content").html("");
+        $.ajax("http://mta/local/ajax_faction_management_load_page.html?id=" + id);
+    }
+
+    function setContent(content) {
+        $("#content").html(content);
+        toggleContentLoader(false);
+    }
+
+    function toggleContentLoader(bool) {
+        $("#page-loading").toggleClass("hidden-xs-up", !bool);
+    }
+</script>
+</body>
+
+</html>

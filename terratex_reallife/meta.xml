@@ -254,6 +254,8 @@
 		<!--FRAKTION-->		
 			<script src="ENVIRO/fraktionen/fraktion.lua" type="server" />
 			<script src="ENVIRO/fraktionen/respawn_functions.lua" type="server" />
+			<script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_server.lua" type="server" />
+			<script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_client.lua" type="client" />
 			<script src="ENVIRO/fraktionen/leadercommands.lua" type="server" />
 			<!-- LSPD / Beamte allgemein -->
 				<script src="ENVIRO/fraktionen/lspd/alka.lua" type="server" />
@@ -457,11 +459,7 @@
         <script src="MAPS/mapscripts/vorplatzwasser.lua"  type="server"/>
     <!-- HAUSER -->
 				<map src="MAPS/hauser/iraumfix.map" />
-
-
 				<map src="MAPS/hauser/geramyshaus.map" />
-				<map src="MAPS/hauser/JosefHome.map"/>
-				<map src="MAPS/hauser/Markus_map.map"/>
 			<!-- Autohäuser -->
 				<map src="MAPS/autohauser/luxus_sport_autohaus.map"/>	
 				<map src="MAPS/autohauser/flugautohaus.map" />	
@@ -543,6 +541,8 @@
 		<file src="UI/styles/js/countUp-jquery.js" />
 		<file src="UI/Gold.html" />
 		<file src="UI/Hud.html" />
+		<file src="UI/Fraktionsmanagement/Main.html" />
+		<file src="UI/Fraktionsmanagement/_Overview.html" />
 
 	<!-- IMAGEFILES / BILDER -->
 		<!-- BLIPS -->

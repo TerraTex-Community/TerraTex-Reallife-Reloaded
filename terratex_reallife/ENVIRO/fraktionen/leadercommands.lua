@@ -68,7 +68,7 @@ end
 addCommandHandler("setfraktion",setFraktion,false,false)
 
 function invite_func(theMaker,Command,thePlayerName)
-	thePlayer=getPlayerFromIncompleteName(thePlayerName)
+	local thePlayer=getPlayerFromIncompleteName(thePlayerName)
 	if(vioGetElementData(theMaker,"fraktionsrang")==6 or vioGetElementData(theMaker,"rechte_AllLeader") == 1)then
 		if(thePlayer==false) or not(isPlayerLoggedIn(thePlayer)) then
 			outputChatBox("Dieser Spieler existiert nicht",theMaker,255,0,0)
@@ -90,34 +90,34 @@ end
 addCommandHandler("invite",invite_func,false,false)
 
 function uninvite_func(theMaker,Command,thePlayerName)
-	thePlayer=getPlayerFromIncompleteName(thePlayerName)
+	local thePlayer=getPlayerFromIncompleteName(thePlayerName)
 	if(vioGetElementData(theMaker,"fraktionsrang")==6 or vioGetElementData(theMaker,"rechte_AllLeader") == 1)then
 		if(thePlayer==false) or not(isPlayerLoggedIn(thePlayer)) then
 			outputChatBox("Dieser Spieler existiert nicht",theMaker,255,0,0)
 		else
-		if(vioGetElementData(thePlayer,"fraktion")==vioGetElementData(theMaker,"fraktion"))then
-			vioSetElementData(thePlayer,"spawnplace",0)
-			vioSetElementData(thePlayer,"fraktion",0)
-			vioSetElementData(thePlayer,"fraktionsrang",0)
-			vioSetElementData(thePlayer,"FrakSkin",0)			
-			vioSetElementData(thePlayer,"rechte_AllLeader",0) 
-			setElementModel(thePlayer,vioGetElementData(thePlayer,"skinid"))
-			takeAllWeapons ( thePlayer )
-			outputChatBox(string.format("Du wurdest von %s aus der Fraktion geschmissen!", getPlayerName(theMaker)),thePlayer,0,255,0)
-			outputChatBox(string.format("Du hast %s aus der Fraktion geschmissen!", getPlayerName(thePlayer)),theMaker,0,255,0)
-			setPlayerTeam (thePlayer,nil)
-		else
-		
-			outputChatBox("Dieser Spieler ist nicht in deiner Fraktion",theMaker,255,0,0)
-		
-		end	
+			if(vioGetElementData(thePlayer,"fraktion")==vioGetElementData(theMaker,"fraktion"))then
+				vioSetElementData(thePlayer,"spawnplace",0)
+				vioSetElementData(thePlayer,"fraktion",0)
+				vioSetElementData(thePlayer,"fraktionsrang",0)
+				vioSetElementData(thePlayer,"FrakSkin",0)
+				vioSetElementData(thePlayer,"rechte_AllLeader",0)
+				setElementModel(thePlayer,vioGetElementData(thePlayer,"skinid"))
+				takeAllWeapons ( thePlayer )
+				outputChatBox(string.format("Du wurdest von %s aus der Fraktion geschmissen!", getPlayerName(theMaker)),thePlayer,0,255,0)
+				outputChatBox(string.format("Du hast %s aus der Fraktion geschmissen!", getPlayerName(thePlayer)),theMaker,0,255,0)
+				setPlayerTeam (thePlayer,nil)
+			else
+
+				outputChatBox("Dieser Spieler ist nicht in deiner Fraktion",theMaker,255,0,0)
+
+			end
 		end
 	end
 end
 addCommandHandler("uninvite",uninvite_func,false,false)
 
 function giverank_func(theMaker,Command,thePlayerName,theRank)
-	thePlayer=getPlayerFromIncompleteName(thePlayerName)
+	local thePlayer=getPlayerFromIncompleteName(thePlayerName)
 	theRank=tonumber(theRank)
 	if(vioGetElementData(theMaker,"fraktionsrang")==6 or vioGetElementData(theMaker,"rechte_AllLeader") == 1) and theRank then
 		if(thePlayer==false) or not(isPlayerLoggedIn(thePlayer)) then
@@ -184,13 +184,4 @@ function takeLeaderRights(thePlayer,cmd,toPlayerPart)
 	end
 end
 addCommandHandler("takerechte",takeLeaderRights,false,false)
-
-
-
-
-
-
-
-
-
 

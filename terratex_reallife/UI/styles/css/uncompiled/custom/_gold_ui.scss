@@ -1,3 +1,11 @@
 .expiringTime {
-  line-height:38px;
+  line-height: 38px;
+}
+
+.card-group {
+  margin-bottom: 15px;
+
+  .card-block {
+    min-height: 240px;
+  }
 }

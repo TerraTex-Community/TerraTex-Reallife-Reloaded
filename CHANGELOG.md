@@ -1,5 +1,6 @@
 ####05.07.2016
 --------------
+* [ADDED] New Gold Item: SkillBooster
 * [ADDED] New Console Command: /listplayers
 * [ADDED] Helperfunction isConsole(element)
 * [FIXED] #51 Some Fixes for Pizzajob

@@ -25,7 +25,8 @@ addEventHandler("buyNewGold", getRootElement(), buyNewGold_func)
 local itemPrices = {
     FoodBooster = 10,
     FuelBooster = 10,
-    HufeisenBooster = 5
+    HufeisenBooster = 5,
+    SkillBooster = 50
 };
 
 function buyGoldItem_func(itemId)

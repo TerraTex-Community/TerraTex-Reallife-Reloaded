@@ -184,6 +184,11 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
 
         --Ehöhung der Skillpunkte nach Anzahl auftraege
         vioSetElementData(thePlayer, skillPointsString, skillPoints + auftraege)
+
+        if (isGoldBoosterActive(thePlayer, "SkillBooster")) then
+            vioSetElementData(thePlayer, skillPointsString, skillPoints + auftraege)
+        end
+
         if (skill < 5) then
             if (vioGetElementData(thePlayer, skillPointsString) >= jobSetupTable[jobID][2][skill + 1]) then
                 vioSetElementData(thePlayer, skillString, skill + 1)

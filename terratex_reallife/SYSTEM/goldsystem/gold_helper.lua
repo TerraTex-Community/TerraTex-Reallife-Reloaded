@@ -5,7 +5,7 @@
 -- Time: 11:48
 -- To change this template use File | Settings | File Templates.
 --
-local timedGoldBooster = {"FoodBooster", "FuelBooster", "HufeisenBooster"}
+local timedGoldBooster = {"FoodBooster", "FuelBooster", "HufeisenBooster", "SkillBooster"}
 function getTimedGoldBooster()
     return timedGoldBooster;
 end

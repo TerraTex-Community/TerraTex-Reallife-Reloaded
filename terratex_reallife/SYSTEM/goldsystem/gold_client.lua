@@ -76,6 +76,7 @@ function browserActualizeFields(browser)
     js = js .. getItemJS("FuelBooster");
     js = js .. getItemJS("HufeisenBooster");
     js = js .. getItemJS("FoodBooster");
+    js = js .. getItemJS("SkillBooster");
 
     js = js .. "});";
     executeBrowserJavascript(browser, js)

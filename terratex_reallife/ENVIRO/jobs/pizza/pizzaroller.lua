@@ -82,7 +82,12 @@ function PizzaSetMarkerHit(thePlayer)
         local px, py, pz = getElementPosition(thePlayer)
         local dis = getDistanceBetweenPoints3D(px, py, pz, pizzaAbhole[1], pizzaAbhole[2], pizzaAbhole[3])
 
+
+        outputDebugString("Pizzadebug: ");
+        outputDebugString(getPlayerName(thePlayer));
+        outputDebugString("Distance: " .. dis);
         local betragDirekt, betragPayDay = giveJobGehalt(thePlayer, 8, 1, dis)
+        outputDebugString("Gehalt: " .. tostring(betragDirekt) .. " ".. tostring(betragPayDay));
 
 
         outputChatBox(string.format("Du erhälst für diese Bestellung %s Gehalt und zusätzlich %s Trinkgeld.", toprice(betragPayDay), toprice(betragDirekt)), thePlayer, 50, 255, 30)

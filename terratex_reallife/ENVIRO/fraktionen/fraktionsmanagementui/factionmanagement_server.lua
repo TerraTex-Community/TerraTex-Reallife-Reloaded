@@ -34,25 +34,38 @@ addEventHandler("getFactionOverviewData", getRootElement(), getFactionOverviewDa
 
 function getAllMemberNamesFromFaction(fraktion)
     local onlinePlayers = getPlayersByDataValue("fraktion", fraktion )
-    local members = MySql.helper.getSync("user_data", { "Nickname" }, { Fraktion = fraktion });
-    local fraktionsmember = {};
+    --local members = MySql.helper.getSync("user_data", { "Nickname", "Fraktionsrang"  }, { Fraktion = fraktion });
+    local query = "SELECT user_data.Nickname, user_data.Fraktionsrang, user.LastLogin, user.AktiveDays FROM user_data LEFT JOIN user ON user_data.Nickname = user.Nickname WHERE user_data.Fraktion = ?";
+    local result = dbQuery(query, fraktion);
+    local members = dbPoll(result, -1);
+
+    local fraktionsMemberOnlyNames = {};
+    local fraktionsMember = {};
 
     for theKey, theList in ipairs(members) do
         if (getPlayerFromName(theList.Nickname)) then
             -- Is Player In Faction or has he left the faction?
             if (vioGetElementData(getPlayerFromName(theList.Nickname), "fraktion") == fraktion) then
-                table.insert(fraktionsmember, theList.Nickname);
+                table.insert(fraktionsMember, theList);
+                table.insert(fraktionsMemberOnlyNames, theList.Nickname);
             end
         else
-            table.insert(fraktionsmember, theList.Nickname);
+            table.insert(fraktionsMember, theList);
+            table.insert(fraktionsMemberOnlyNames, theList.Nickname);
         end
     end
 
     for theKey, thePlayer in ipairs(onlinePlayers) do
-        if (not table.hasValue(fraktionsmember, getPlayerName(thePlayer))) then
-            table.insert(fraktionsmember, getPlayerName(thePlayer));
+        if (not table.hasValue(fraktionsMemberOnlyNames, getPlayerName(thePlayer))) then
+            table.insert(fraktionsMember, {
+                Nickname = getPlayerName(thePlayer),
+                Fraktionsrang = vioGetElementData(thePlayer, "fraktionsrang"),
+                LastLogin = "ist gerade Online",
+                AktiveDays = 0
+            });
+            table.insert(fraktionsMemberOnlyNames, getPlayerName(thePlayer));
         end
     end
 
-    return fraktionsmember;
+    return fraktionsMemberOnlyNames, fraktionsMember;
 end

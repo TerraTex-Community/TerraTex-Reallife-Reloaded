@@ -63,8 +63,16 @@ end
 
 function PizzaSetMarkerHit(thePlayer)
     if (source == vioGetElementData(thePlayer, "PizzaMarker")) then
-        destroyElement(vioGetElementData(thePlayer, "PizzaBlip"))
-        destroyElement(vioGetElementData(thePlayer, "PizzaMarker"))
+        if (isElement(vioGetElementData(thePlayer, "PizzaBlip"))) then
+            destroyElement(vioGetElementData(thePlayer, "PizzaBlip"))
+        end
+        if (isElement(vioGetElementData(thePlayer, "PizzaMarker"))) then
+            destroyElement(vioGetElementData(thePlayer, "PizzaMarker"))
+        end
+
+        vioSetElementData(thePlayer, "PizzaMarker", false)
+        vioSetElementData(thePlayer, "PizzaBlip", false)
+
         local blip = createBlip(pizzaAbhole[1], pizzaAbhole[2], pizzaAbhole[3], 0, 2, 50, 255, 30, 255, 0, 99999.0, thePlayer)
         local marker = createMarker(pizzaAbhole[1], pizzaAbhole[2], pizzaAbhole[3], "checkpoint", 5, 50, 255, 30, 255, thePlayer)
         vioSetElementData(thePlayer, "PizzaBlip", blip)
@@ -104,9 +112,15 @@ end
 
 function PizzaGetMarkerHit(thePlayer)
     if (source == vioGetElementData(thePlayer, "PizzaMarker")) then
-        destroyElement(vioGetElementData(thePlayer, "PizzaBlip"))
-        destroyElement(vioGetElementData(thePlayer, "PizzaMarker"))
+        if (isElement(vioGetElementData(thePlayer, "PizzaBlip"))) then
+            destroyElement(vioGetElementData(thePlayer, "PizzaBlip"))
+        end
+        if (isElement(vioGetElementData(thePlayer, "PizzaMarker"))) then
+            destroyElement(vioGetElementData(thePlayer, "PizzaMarker"))
+        end
+
         vioSetElementData(thePlayer, "PizzaMarker", false)
+        vioSetElementData(thePlayer, "PizzaBlip", false)
         local hasNoCoords = 0
         local HID = 0
         while (hasNoCoords == 0) do

@@ -1,3 +1,7 @@
+####05.07.2016
+--------------
+* [FIXED] #51 Some Fixes for Pizzajob
+
 ####04.07.2016
 --------------
 * [REMOVED] old Housemaps

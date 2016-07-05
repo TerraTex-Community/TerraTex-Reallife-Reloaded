@@ -186,7 +186,7 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
         vioSetElementData(thePlayer, skillPointsString, skillPoints + auftraege)
 
         if (isGoldBoosterActive(thePlayer, "SkillBooster")) then
-            vioSetElementData(thePlayer, skillPointsString, skillPoints + auftraege)
+            vioSetElementData(thePlayer, skillPointsString, skillPoints + (auftraege * 2))
         end
 
         if (skill < 5) then

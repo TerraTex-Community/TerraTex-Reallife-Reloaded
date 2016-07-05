@@ -26,7 +26,7 @@ local itemPrices = {
     FoodBooster = 10,
     FuelBooster = 10,
     HufeisenBooster = 5,
-    SkillBooster = 50
+    SkillBooster = 20
 };
 
 function buyGoldItem_func(itemId)

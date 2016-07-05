@@ -36,7 +36,6 @@ function showLeaderManagementGUI()
         end
     end
 end
-
 addCommandHandler("fmanage", showLeaderManagementGUI, false, false)
 
 function loadFManagementPage(get, post)

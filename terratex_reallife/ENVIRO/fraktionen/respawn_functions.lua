@@ -64,9 +64,8 @@ addCommandHandler("frakrespawn", frakrespawn_cmd,false,false)
 
 
 function respawnNoobCars(thePlayer,command,vehiclestring,frak)
-    local console=getElementsByType("console")
     if(vehiclestring=="mechaniker")then
-        if(isAdminLevel(thePlayer,1)) or (console[1]==thePlayer) then
+        if(isAdminLevel(thePlayer,1)) or (isConsole(thePlayer)) then
 
             for key, theVehicle in pairs(mechVehicles) do
                 if not(isAnyOneInVehicle(theVehicle))then

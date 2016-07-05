@@ -144,6 +144,7 @@
 			<script src="HELPSYSTEM/hilfeguis/faq/gui.lua" type="client" />
 			<script src="HELPSYSTEM/hilfeguis/faq/server.lua" type="server" />
 	<!-- ADMINSYSTEM -->
+		<script src="ADMINSYSTEM/console.lua" type="server" />
 		<script src="ADMINSYSTEM/isadmin.lua" type="shared" />
 		<script src="ADMINSYSTEM/punishchecker.lua" type="server" />
 		<script src="ADMINSYSTEM/support_mode.lua" type="server" />

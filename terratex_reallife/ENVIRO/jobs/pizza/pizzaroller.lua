@@ -16,6 +16,7 @@ function createPizzaVehicles()
         vioSetElementData(theVehicle, "hasTank", true)
         vioSetElementData(theVehicle, "tank", 100)
     end
+
     local console = getElementsByType("console")
     vioSetElementData(console[1], "adminlvl", 4)
     setTimer(respawnPizzaCars, 300000, 1)

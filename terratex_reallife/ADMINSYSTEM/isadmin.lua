@@ -16,8 +16,7 @@
 -- ]]
 
 function isAdminLevel(thePlayer, lvl)
-    local console=getElementsByType("console")
-    if(thePlayer==console[1])then
+    if(isConsole(thePlayer))then
         return true
     end
 

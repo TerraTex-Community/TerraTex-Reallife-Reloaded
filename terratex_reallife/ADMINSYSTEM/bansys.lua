@@ -171,8 +171,7 @@ end
 addCommandHandler("gotomark", gotomark_func, false, false)
 
 function save_all_user(thePlayer)
-    local consolenelement = getElementsByType("console")
-    if (thePlayer == consolenelement[1] or isAdminLevel(thePlayer, 4)) then
+    if (isConsole(thePlayer) or isAdminLevel(thePlayer, 4)) then
         for theKey, thePlayers in ipairs(getElementsByType("player")) do
             triggerEvent("SaveMyData", thePlayers)
         end
@@ -183,8 +182,8 @@ addCommandHandler("sau", save_all_user, false, false)
 function ban_func(thePlayer, command, theBeBanned, ...)
 
     local reasons = table.concat({ ... }, "  ")
-    local consolenelement = getElementsByType("console")
-    if (thePlayer == consolenelement[1]) then
+
+    if (isConsole(thePlayer)) then
         local banmeele = getPlayerFromIncompleteName(theBeBanned)
         if not (banmeele == false) then
             local pname = getPlayerName(banmeele)
@@ -230,8 +229,8 @@ end
 addCommandHandler("rban", ban_func, false, false)
 
 function tban_func(theAdmin, command, toPlayerName, zeit, reason, ...)
-    local console = getElementsByType("console")
-    if (isAdminLevel(theAdmin, 0)) or theAdmin == console[1] then
+
+    if (isAdminLevel(theAdmin, 0)) or isConsole(theAdmin) then
         if (toPlayerName and zeit and reason) then
             local toPlayer = getPlayerFromIncompleteName(toPlayerName)
             if (toPlayer) then
@@ -352,8 +351,7 @@ addCommandHandler("warn", warn_func, false, false)
 function rkick_func(thePlayer, command, theBeBanned, ...)
 
     local reasons = table.concat({ ... }, "  ")
-    local consolenelement = getElementsByType("console")
-    if (thePlayer == consolenelement[1]) then
+    if (isConsole(thePlayer)) then
 
         local banmeele = getPlayerFromIncompleteName(theBeBanned)
         if not (banmeele == false) then
@@ -611,8 +609,8 @@ function gmx_func(theMaker, cmd, zeitinminuten, grund, ...)
     end
     local second = zeitinminuten * 60 * 1000
     outputDebugString("GMX Started by Console in " .. zeitinminuten .. " Minuten! Grund: " .. grund)
-    local consolenelement = getElementsByType("console")
-    if (isAdminLevel(theMaker, 3)) or (consolenelement[1] == theMaker) then
+
+    if (isAdminLevel(theMaker, 3)) or (isConsole(theMaker)) then
         if (isTimer(gmxtimer)) then
             killTimer(gmxtimer)
         end
@@ -646,8 +644,8 @@ function shutdown_func(theMaker, cmd, zeitinminuten, grund, ...)
     end
     local second = zeitinminuten * 60 * 1000
     outputDebugString("Shutdown Started by Console in " .. zeitinminuten .. " Minuten! Grund: " .. grund)
-    local consolenelement = getElementsByType("console")
-    if (isAdminLevel(theMaker, 3)) or (consolenelement[1] == theMaker) then
+
+    if (isAdminLevel(theMaker, 3)) or (isConsole(theMaker)) then
         if (isTimer(gmxtimer)) then
             killTimer(gmxtimer)
         end

@@ -60,7 +60,7 @@ function getAllMemberNamesFromFaction(fraktion)
     local onlinePlayers = getPlayersByDataValue("fraktion", fraktion )
     --local members = MySql.helper.getSync("user_data", { "Nickname", "Fraktionsrang"  }, { Fraktion = fraktion });
     local query = "SELECT user_data.Nickname, user_data.Fraktionsrang, user.LastLogin, user.AktiveDays FROM user_data LEFT JOIN user ON user_data.Nickname = user.Nickname WHERE user_data.Fraktion = ?";
-    local result = dbQuery(query, fraktion);
+    local result = dbQuery(MySql._connection, query, fraktion);
     local members = dbPoll(result, -1);
 
     local fraktionsMemberOnlyNames = {};

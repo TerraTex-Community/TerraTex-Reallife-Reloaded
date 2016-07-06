@@ -19,11 +19,3 @@ function consoleListPlayers(thePlayer)
     end
 end
 addCommandHandler("listplayers", consoleListPlayers, false, false)
-
-function isConsole(element)
-    if (getElementType ( element) == "console") then
-        return true;
-    else
-        return false;
-    end
-end

@@ -31,8 +31,6 @@ function showLeaderManagementGUI()
             addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
                 function(url)
                     showCursor(true)
-                    setDevelopmentMode(true, true)
-                    toggleBrowserDevTools ( source, true)
                     browserActualizeFields(source)
                     managementBrowser = source;
                 end);

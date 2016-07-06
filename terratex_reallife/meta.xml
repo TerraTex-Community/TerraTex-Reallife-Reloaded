@@ -546,6 +546,7 @@
 		<file src="UI/Fraktionsmanagement/_Overview.html" />
 		<file src="UI/Fraktionsmanagement/_Member.html" />
 		<file src="UI/Fraktionsmanagement/__Member_Row.html" />
+		<file src="UI/Fraktionsmanagement/factionmanagement.js" />
 
 	<!-- IMAGEFILES / BILDER -->
 		<!-- BLIPS -->

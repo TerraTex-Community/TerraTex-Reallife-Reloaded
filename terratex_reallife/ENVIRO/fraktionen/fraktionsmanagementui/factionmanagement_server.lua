@@ -31,6 +31,30 @@ function getFactionOverviewData_func()
 end
 addEventHandler("getFactionOverviewData", getRootElement(), getFactionOverviewData_func)
 
+addEvent("getFactionMemberData", true);
+function getFactionMemberData_func(returnEvent)
+    if not returnEvent then returnEvent = "sendFactionMamberData" end
+
+    local fraktion = vioGetElementData(source, "fraktion");
+    local fraktionsmember = getAllMemberNamesFromFaction(fraktion);
+
+    local memberByRanks = {};
+    local rankId = 1
+    for rankId = 1, 6, 1 do
+        local tmpTable = {
+            rankName = fraktionsrange[fraktions][rankId],
+            members = {}
+        };
+        table.insert(memberByRanks, tmpTable);
+    end
+
+    for theKey, theMember in ipairs(fraktionsmember) do
+        table.insert(memberByRanks[theMember.Fraktionsrang].members, theMember);
+    end
+
+    triggerClientEvent(source, returnEvent, source, memberByRanks);
+end
+addEventHandler("getFactionMemberData", getRootElement(), getFactionMemberData_func)
 
 function getAllMemberNamesFromFaction(fraktion)
     local onlinePlayers = getPlayersByDataValue("fraktion", fraktion )

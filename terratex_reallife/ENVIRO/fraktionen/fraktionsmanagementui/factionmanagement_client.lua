@@ -154,11 +154,11 @@ function executeFactionManagementFunction(get)
         if (get.func) then
             if (get.func == "kick") then
                 if (get.nickname) then
-                    triggerServerEvent("factionManagementKickMember", source, get.nickname )
+                    triggerServerEvent("factionManagementKickMember", getLocalPlayer(), get.nickname )
                 end
             elseif(get.func == "giverank") then
                 if (get.nickname and get.rank) then
-                    triggerServerEvent("factionManagementGiveRankMember", source, get.nickname, get.rank )
+                    triggerServerEvent("factionManagementGiveRankMember", getLocalPlayer(), get.nickname, get.rank )
                 end
             end
         end

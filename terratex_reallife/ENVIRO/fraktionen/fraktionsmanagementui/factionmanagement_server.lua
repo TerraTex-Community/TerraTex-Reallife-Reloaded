@@ -42,7 +42,7 @@ function getFactionMemberData_func(returnEvent)
     local rankId = 1
     for rankId = 1, 6, 1 do
         local tmpTable = {
-            rankName = fraktionsrange[fraktions][rankId],
+            rankName = fraktionsrange[fraktion][rankId],
             members = {}
         };
         table.insert(memberByRanks, tmpTable);

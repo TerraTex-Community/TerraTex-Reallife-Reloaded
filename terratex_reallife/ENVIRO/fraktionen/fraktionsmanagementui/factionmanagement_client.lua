@@ -166,13 +166,23 @@ function executeFactionManagementFunction(get)
 end
 
 function factionManagementMemberKick_func(nickname)
-    executeBrowserJavascript(managementBrowser, "$(\"tr[data-nickname='" .. nickname .. "']\").remove();");
+    if (getPlayerName(getLocalPlayer()) == nickname ) then
+        if isElement(managementWindow) then destroyElement(managementWindow); end
+        managementWindow = false;
+    else
+        executeBrowserJavascript(managementBrowser, "$(\"tr[data-nickname='" .. nickname .. "']\").remove();");
+    end
 end
 addEvent("factionManagementMemberKick", true);
 addEventHandler("factionManagementMemberKick", getRootElement(), factionManagementMemberKick_func)
 
-function factionManagementMemberGiveRank_func()
-    triggerServerEvent("getFactionMemberData", getLocalPlayer());
+function factionManagementMemberGiveRank_func(nickname, rank)
+    if (getPlayerName(getLocalPlayer()) == nickname and rank ~= 6) then
+        if isElement(managementWindow) then destroyElement(managementWindow); end
+        managementWindow = false;
+    else
+        triggerServerEvent("getFactionMemberData", getLocalPlayer());
+    end
 end
 addEvent("factionManagementMemberGiveRank", true);
 addEventHandler("factionManagementMemberGiveRank", getRootElement(), factionManagementMemberGiveRank_func)

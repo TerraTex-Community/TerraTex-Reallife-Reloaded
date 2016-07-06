@@ -130,7 +130,7 @@ function factionManagementGiveRankMember_func(nickname, rank)
             outputChatBox("Du wurdest von " .. getPlayerName(source) .. " auf Rang ".. rank .." gesetzt.");
             showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
 
-            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname);
+            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname, rank);
         end
     else
 
@@ -147,7 +147,7 @@ function factionManagementGiveRankMember_func(nickname, rank)
 
             save_offline_message(nickname, getPlayerName(source), "Du wurdest auf Rang ".. rank .." gesetzt.");
             showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
-            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname);
+            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname, rank);
         end
     end
 end

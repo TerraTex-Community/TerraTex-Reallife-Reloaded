@@ -87,3 +87,69 @@ function getAllMemberNamesFromFaction(fraktion)
 
     return fraktionsMemberOnlyNames, fraktionsMember;
 end
+
+function factionManagementKickMember_func(nickname)
+    if (getPlayerFromName(nickname)) then
+        local player = getPlayerFromName(nickname);
+        if (vioGetElementData(player, "fraktion") == vioGetElementData(source, "fraktion")) then
+            vioSetElementData(player, "fraktion", 0)
+            vioSetElementData(player, "fraktionsrang", 0)
+
+            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " aus der Fraktion geworfen.");
+            showError(source, "Du hast " .. nickname .. " aus der Fraktion geworfen!");
+
+            triggerClientEvent(source, "factionManagementMemberKick", source, nickname);
+        end
+    else
+        local exist = MySql.helper.existSync("user_data", {
+            Fraktion = vioGetElementData(source, "fraktion"),
+            Nickname = nickname
+        });
+
+        if (exist) then
+            MySql.helper.update("user_data", {Fraktionsrang = 0, Fraktion = 0}, {
+                Fraktion = vioGetElementData(source, "fraktion"),
+                Nickname = nickname
+            });
+
+            save_offline_message(nickname, getPlayerName(source), "Du wurdest aus deiner Fraktion entfernt.");
+            showError(source, "Du hast " .. nickname .. " aus der Fraktion geworfen!");
+            triggerClientEvent(source, "factionManagementMemberKick", source, nickname);
+        end
+    end
+end
+addEvent("factionManagementKickMember", true);
+addEventHandler("factionManagementKickMember", getRootElement(), factionManagementKickMember_func)
+
+function factionManagementGiveRankMember_func(nickname, rank)
+    if (getPlayerFromName(nickname)) then
+        local player = getPlayerFromName(nickname);
+        if (vioGetElementData(player, "fraktion") == vioGetElementData(source, "fraktion")) then
+            vioSetElementData(player, "fraktionsrang", rank)
+
+            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " auf Rang ".. rank .." gesetzt.");
+            showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
+
+            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname);
+        end
+    else
+
+        local exist = MySql.helper.existSync("user_data", {
+            Fraktion = vioGetElementData(source, "fraktion"),
+            Nickname = nickname
+        });
+
+        if (exist) then
+            MySql.helper.update("user_data", {Fraktionsrang = rank}, {
+                Fraktion = vioGetElementData(source, "fraktion"),
+                Nickname = nickname
+            });
+
+            save_offline_message(nickname, getPlayerName(source), "Du wurdest auf Rang ".. rank .." gesetzt.");
+            showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
+            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname);
+        end
+    end
+end
+addEvent("factionManagementGiveRankMember", true);
+addEventHandler("factionManagementGiveRankMember", getRootElement(), factionManagementGiveRankMember_func)

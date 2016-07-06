@@ -24,6 +24,7 @@ function showLeaderManagementGUI()
             addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
                 function()
                     setBrowserAjaxHandler(source, "ajax_faction_management_load_page.html", loadFManagementPage);
+                    setBrowserAjaxHandler(source, "ajax_faction_management_execute_member_function.html", executeFactionManagementFunction);
                     loadBrowserURL(source, "http://mta/local/UI/Fraktionsmanagement/Main.html");
                 end);
 
@@ -79,7 +80,6 @@ function _renderFraktionsManagementOverviewPage(dataTable)
         outputDebugString("Unable to open \"UI/Fraktionsmanagement/_Overview.html\"")
     end
 end
-
 addEvent("sendFactionOverviewData", true);
 addEventHandler("sendFactionOverviewData", getRootElement(), _renderFraktionsManagementOverviewPage);
 
@@ -150,3 +150,31 @@ function _renderFraktionsManagementMemberPage(data)
 end
 addEvent("sendFactionMemberData", true);
 addEventHandler("sendFactionMemberData", getRootElement(), _renderFraktionsManagementMemberPage)
+
+function executeFactionManagementFunction(get)
+    if (get) then
+        if (get.func) then
+            if (get.func == "kick") then
+                if (get.nickname) then
+                    triggerServerEvent("factionManagementKickMember", source, get.nickname )
+                end
+            elseif(get.func == "giverank") then
+                if (get.nickname and get.rank) then
+                    triggerServerEvent("factionManagementGiveRankMember", source, get.nickname, get.rank )
+                end
+            end
+        end
+    end
+end
+
+function factionManagementMemberKick_func(nickname)
+    executeBrowserJavascript(managementBrowser, "$(\"tr[data-nickname='" .. nickname .. "']\").remove();");
+end
+addEvent("factionManagementMemberKick", true);
+addEventHandler("factionManagementMemberKick", getRootElement(), factionManagementMemberKick_func)
+
+function factionManagementMemberGiveRank_func()
+    triggerServerEvent("getFactionMemberData", getLocalPlayer());
+end
+addEvent("factionManagementMemberGiveRank", true);
+addEventHandler("factionManagementMemberGiveRank", getRootElement(), factionManagementMemberGiveRank_func)

@@ -47,8 +47,10 @@ allGuis={}
 function isAnyGuiVisible()
     local anyvis=false
     for theKey,theGui in ipairs(allGuis) do
-        if(guiGetVisible(theGui)==true)then
-            anyvis=true
+        if (isElement(theGui)) then
+            if(guiGetVisible(theGui)==true)then
+                anyvis=true
+            end
         end
     end
     return anyvis

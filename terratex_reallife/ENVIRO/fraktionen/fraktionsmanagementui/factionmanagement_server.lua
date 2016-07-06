@@ -33,7 +33,7 @@ addEventHandler("getFactionOverviewData", getRootElement(), getFactionOverviewDa
 
 addEvent("getFactionMemberData", true);
 function getFactionMemberData_func(returnEvent)
-    if not returnEvent then returnEvent = "sendFactionMamberData" end
+    if not returnEvent then returnEvent = "sendFactionMemberData" end
 
     local fraktion = vioGetElementData(source, "fraktion");
     local fraktionsmember = getAllMemberNamesFromFaction(fraktion);

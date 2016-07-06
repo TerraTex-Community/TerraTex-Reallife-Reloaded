@@ -43,6 +43,8 @@ function loadFManagementPage(get, post)
         if (get.id) then
             if (get.id == "overview") then
                 triggerServerEvent("getFactionOverviewData", getLocalPlayer());
+            elseif (get.id == "members") then
+                triggerServerEvent("getFactionMemberData", getLocalPlayer());
             elseif (get.id == "logout") then
                 if isElement(managementWindow) then destroyElement(managementWindow); end
                 managementWindow = false;
@@ -76,5 +78,73 @@ function _renderFraktionsManagementOverviewPage(dataTable)
     end
 end
 
-addEvent("sendFactionOverviewData", true)
-addEventHandler("sendFactionOverviewData", getRootElement(), _renderFraktionsManagementOverviewPage)
+addEvent("sendFactionOverviewData", true);
+addEventHandler("sendFactionOverviewData", getRootElement(), _renderFraktionsManagementOverviewPage);
+
+function _renderFraktionsManagementMemberPage(data)
+    local htmlFile = fileOpen("UI/Fraktionsmanagement/_Member.html", true);
+    local htmlRowFile = fileOpen("UI/Fraktionsmanagement/__Member_Row.html", true);
+
+    if htmlFile and htmlRowFile then
+        local html = "";
+        local htmlRank = "";
+        while not fileIsEOF(htmlFile) do
+            htmlRank = htmlRank .. fileRead(htmlFile, 500);
+        end
+        fileClose(htmlFile)
+
+        local htmlRow = "";
+        while not fileIsEOF(htmlRowFile) do
+            htmlRow = htmlRow .. fileRead(htmlRowFile, 500);
+        end
+        fileClose(htmlRowFile)
+
+        local rankId = 6;
+        for rankId = 6, 1, -1 do
+            local rankData = data[rankId];
+
+            local rankRowHtml = "";
+            for theKey, thePlayer in ipairs(rankData.members) do
+                local newRow = htmlRow;
+
+
+                newRow = string.gsub(newRow, "%%nickname%%", thePlayer.Nickname);
+
+                if (thePlayer.AktiveDays < 0) then
+                    newRow = string.gsub(newRow, "%%lastLogin%%", "im Urlaubsmodus");
+                elseif (thePlayer.AktiveDays > 0) then
+                    newRow = string.gsub(newRow, "%%lastLogin%%", "vor " .. thePlayer.AktiveDays .. " Tagen - " .. thePlayer.LastLogin .. " Online");
+                elseif (thePlayer.LastLogin == "ist gerade Online") then
+                    newRow = string.gsub(newRow, "%%lastLogin%%", "ist gerade Online");
+                else
+                    newRow = string.gsub(newRow, "%%lastLogin%%", "zuletzt Heute Online");
+                end
+
+                rankRowHtml = rankRowHtml .. newRow;
+            end
+
+            local newRank = htmlRank;
+            newRank = string.gsub(newRank, "%%id%%", rankId);
+            newRank = string.gsub(newRank, "%%rank%%", rankData.rankName);
+            newRank = string.gsub(newRank, "%%rows%%", rankRowHtml);
+
+            html = html .. newRank
+        end
+
+        html = string.gsub(html, "%%rang1name%%", data[1].rankName);
+        html = string.gsub(html, "%%rang2name%%", data[2].rankName);
+        html = string.gsub(html, "%%rang3name%%", data[3].rankName);
+        html = string.gsub(html, "%%rang4name%%", data[4].rankName);
+        html = string.gsub(html, "%%rang5name%%", data[5].rankName);
+        html = string.gsub(html, "%%rang6name%%", data[6].rankName);
+
+        html = string.gsub(html, '"', '\\"');
+        html = string.gsub(html, '\n', '');
+        html = string.gsub(html, '\r', '');
+
+        executeBrowserJavascript(managementBrowser, "setContent(\"" .. html .. "\");");
+
+    end
+end
+addEvent("sendFactionMemberData", true);
+adddEventHandler("sendFactionMemberData", getRootElement(), _renderFraktionsManagementMemberPage)

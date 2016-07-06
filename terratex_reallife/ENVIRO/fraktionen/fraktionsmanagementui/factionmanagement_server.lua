@@ -36,7 +36,7 @@ function getFactionMemberData_func(returnEvent)
     if not returnEvent then returnEvent = "sendFactionMemberData" end
 
     local fraktion = vioGetElementData(source, "fraktion");
-    local fraktionsmember = getAllMemberNamesFromFaction(fraktion);
+    local names, fraktionsmember = getAllMemberNamesFromFaction(fraktion);
 
     local memberByRanks = {};
     local rankId = 1
@@ -67,13 +67,7 @@ function getAllMemberNamesFromFaction(fraktion)
     local fraktionsMember = {};
 
     for theKey, theList in ipairs(members) do
-        if (getPlayerFromName(theList.Nickname)) then
-            -- Is Player In Faction or has he left the faction?
-            if (vioGetElementData(getPlayerFromName(theList.Nickname), "fraktion") == fraktion) then
-                table.insert(fraktionsMember, theList);
-                table.insert(fraktionsMemberOnlyNames, theList.Nickname);
-            end
-        else
+        if (not getPlayerFromName(theList.Nickname)) then
             table.insert(fraktionsMember, theList);
             table.insert(fraktionsMemberOnlyNames, theList.Nickname);
         end

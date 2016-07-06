@@ -30,6 +30,8 @@ function showLeaderManagementGUI()
             addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
                 function(url)
                     showCursor(true)
+                    setDevelopmentMode(true, true)
+                    toggleBrowserDevTools ( source, true)
                     browserActualizeFields(source)
                     managementBrowser = source;
                 end);
@@ -147,4 +149,4 @@ function _renderFraktionsManagementMemberPage(data)
     end
 end
 addEvent("sendFactionMemberData", true);
-adddEventHandler("sendFactionMemberData", getRootElement(), _renderFraktionsManagementMemberPage)
+addEventHandler("sendFactionMemberData", getRootElement(), _renderFraktionsManagementMemberPage)

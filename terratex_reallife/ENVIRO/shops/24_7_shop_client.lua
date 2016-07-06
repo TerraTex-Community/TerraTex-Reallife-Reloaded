@@ -38,7 +38,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "3", false, false )		
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[2], "Benzinkanister", false, false )		
-        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "89.75", false, false )
+        guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[3], "589.75", false, false )
 		
 		row = guiGridListAddRow ( SuperShop_Grid[1] )
         guiGridListSetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1], "4", false, false )		

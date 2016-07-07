@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/css/custom/custom.css">
     <script src="styles/js/jquery.min.js"></script>
     <script src="styles/js/bootstrap.min.js"></script>
-    <script src="styles/js/moment.js"></script>
+    <script src="styles/js/jqueryUI.js"></script>
 </head>
 <body id="Register">
 <img class="card-img-top" src="../FILES/IMAGES/Server_Header.png" data-src="../FILES/IMAGES/Server_Header.png"/>
@@ -38,7 +38,7 @@
             </fieldset>
             <fieldset class="form-group">
                 <label for="birthday">Geburtstag</label>
-                <input type="date" data-date="" data-date-format="DD.MM.YYYY" class="form-control" id="birthday" placeholder="Geburtstag" required>
+                <input type="text" data-type="date" class="form-control" id="birthday" placeholder="Geburtstag" required />
                 <small class="text-muted">
                     Diese Angabe wird für statistische Zwecke genutzt. Außerdem gibt es zum Geburtstag Ingamegeschenke.
                     Es findet KEINE Einschränkung der
@@ -72,14 +72,11 @@
 </div>
 
 <script>
-    $("input[type='date']").on("change", function() {
-        this.setAttribute(
-                "data-date",
-                moment(this.value, "YYYY-MM-DD")
-                        .format( this.getAttribute("data-date-format") )
-        )
-    }).trigger("change");
-
+    $(document).ready(function(){
+        $( "input[data-type='date']" ).datepicker({
+            dateFormat: "dd.mm.yy"
+        });
+    });
     function submitForm() {
         $.ajax("http://mta/local/ajax_register_register.html", {
             data: {

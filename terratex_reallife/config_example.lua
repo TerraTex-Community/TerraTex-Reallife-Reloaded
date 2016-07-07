@@ -4,7 +4,7 @@ config={}
 config["owner"]="[TTeam]Geramy92"
 
 --Supportemail
-config["supportmail"]="server@terratex.eu"
+config["supportmail"]="support@terratex.eu"
 
 -- array with all domains which should not found in Anti-Advertise-Functions
 config["domains"]={"terratex.eu"}

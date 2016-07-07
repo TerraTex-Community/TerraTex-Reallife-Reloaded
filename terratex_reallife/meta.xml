@@ -121,7 +121,9 @@
 
 	<!-- USER -->
 		<!-- userdata -->
-			<script src="USER/userdata/login_gui_client.lua" type="client" />
+			<script src="USER/userdata/login_client.lua" type="client" />
+			<script src="USER/userdata/login_background_client.lua" type="client" />
+
 			<script src="USER/userdata/player_connect.lua" type="server" />
 			<script src="USER/userdata/player_connect_client.lua" type="client" />
 			<script src="USER/userdata/register_gui_client.lua" type="client" />
@@ -542,6 +544,7 @@
 		<file src="UI/styles/js/countUp-jquery.js" />
 		<file src="UI/Gold.html" />
 		<file src="UI/Hud.html" />
+		<file src="UI/Login.html" />
 		<file src="UI/Fraktionsmanagement/Main.html" />
 		<file src="UI/Fraktionsmanagement/_Overview.html" />
 		<file src="UI/Fraktionsmanagement/_Member.html" />
@@ -555,6 +558,7 @@
 		<!-- GUIS -->
 			<file src="FILES/IMAGES/radar.jpg" />
 			<file src="FILES/IMAGES/ziel.png" />
+			<file src="FILES/IMAGES/Server_Header.png" />
 			<file src="FILES/IMAGES/register.png" />
 			<file src="FILES/IMAGES/registerbutton.png" />
 			<file src="FILES/IMAGES/header.png" />

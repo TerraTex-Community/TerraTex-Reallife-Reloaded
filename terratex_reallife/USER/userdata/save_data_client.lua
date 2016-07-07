@@ -1,5 +1,3 @@
-
-
 local saveTimer=false
 function start_mydata()
 	
@@ -17,11 +15,4 @@ function reset_start_Timer()
 	end
 end
 addEventHandler("onClientResourceStop",getResourceRootElement(getThisResource()),reset_start_Timer)
-
-
-
-
-
-
-
 

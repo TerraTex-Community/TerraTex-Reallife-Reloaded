@@ -47,7 +47,7 @@ function createStadthallenGui()
 
     rows = guiGridListAddRow(Stadthalle_Grid[1])
     guiGridListSetItemText(Stadthalle_Grid[1], rows, 1, "Fluglizens", false, false)
-    guiGridListSetItemText(Stadthalle_Grid[1], rows, 2, "20000", false, true)
+    guiGridListSetItemText(Stadthalle_Grid[1], rows, 2, "200000", false, true)
 
     rows = guiGridListAddRow(Stadthalle_Grid[1])
     guiGridListSetItemText(Stadthalle_Grid[1], rows, 1, "Motorradfuehrerschein", false, false)

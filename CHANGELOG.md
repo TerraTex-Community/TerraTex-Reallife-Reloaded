@@ -1,3 +1,13 @@
+####07.07.2016
+--------------
+* [CHANGED] New Login UI
+
+####06.07.2016
+--------------
+* [ADDED] Factionmanagement UI and command /fmanage
+* [FIXED] A Bug related to isConsole changes
+* [FIXED] Some Issues with the pizza job
+
 ####05.07.2016
 --------------
 * [ADDED] New Gold Item: SkillBooster

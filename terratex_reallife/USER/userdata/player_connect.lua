@@ -130,7 +130,7 @@ function playerreadylogin()
 end
 addEventHandler("clientisreadyforlogin", getRootElement(), playerreadylogin)
 
-function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
+function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber, gender)
 
     local salt = randomstring(25)
 
@@ -148,8 +148,8 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber)
                 pass = hash("sha512", salt .. pass)
             end
 
-            local query = "INSERT INTO user (UUID,Nickname,Passwort,EMail,Geb_T,Geb_M,Geb_Y,werber,Salt,Serial,IP) VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            dbExec(MySql._connection, query, nickname, pass, email, gebt, gebm, geby, werber, salt, getPlayerSerial(source), getPlayerIP(source));
+            local query = "INSERT INTO user (UUID,Nickname,Passwort,EMail,Geb_T,Geb_M,Geb_Y,werber,Salt,Serial,IP,Gender) VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            dbExec(MySql._connection, query, nickname, pass, email, gebt, gebm, geby, werber, salt, getPlayerSerial(source), getPlayerIP(source), gender);
 
             MySql.helper.insert("user_data", { Nickname = nickname });
             MySql.helper.insert("user_grades", { Nickname = nickname });

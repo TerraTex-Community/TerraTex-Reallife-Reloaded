@@ -126,7 +126,7 @@
 
 			<script src="USER/userdata/player_connect.lua" type="server" />
 			<script src="USER/userdata/player_connect_client.lua" type="client" />
-			<script src="USER/userdata/register_gui_client.lua" type="client" />
+			<script src="USER/userdata/register_client.lua" type="client" />
 			<script src="USER/userdata/save_data.lua" type="server" />
 			<script src="USER/userdata/save_data_client.lua" type="client" />
 			<script src="USER/userdata/disconnect.lua" type="server" />

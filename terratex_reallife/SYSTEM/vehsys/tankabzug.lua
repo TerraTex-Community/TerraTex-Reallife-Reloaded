@@ -58,7 +58,7 @@ function setNewTankVehicle(theVehicle)
                 local calcV = durchV * 180;
 
                 -- local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/2000 + 0.002;
-                local tankminus = (0 * 0000010958 * calcV * calcV + 0.018518519);
+                local tankminus = (0.0000010958 * calcV * calcV + 0.018518519);
 
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")

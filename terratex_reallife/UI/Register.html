@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="styles/css/bootstrap/bootstrap.css">
@@ -7,65 +7,79 @@
     <link rel="stylesheet" href="styles/css/custom/custom.css">
     <script src="styles/js/jquery.min.js"></script>
     <script src="styles/js/bootstrap.min.js"></script>
+    <script src="styles/js/moment.js"></script>
 </head>
 <body id="Register">
+<img class="card-img-top" src="../FILES/IMAGES/Server_Header.png" data-src="../FILES/IMAGES/Server_Header.png"/>
 <div class="container-fluid">
-    <div class="card">
-        <img class="card-img-top" src="../FILES/IMAGES/Server_Header.png" data-src="../FILES/IMAGES/Server_Header.png"/>
-        <div class="card-block">
-            <form action="#" method="get" onsubmit="submitForm()">
-                <fieldset class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="passwordwdh">Password Wiederholung (zur Bestätigung)</label>
-                    <input type="password" class="form-control" id="passwordwdh" placeholder="Password Wiederholung (zur Bestätigung)" required>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="gender">Geschlecht</label>
-                    <select id="gender"  class="form-control" >
-                        <option value="anonym" selected>Keine Angabe</option>
-                        <option value="girl">weiblich</option>
-                        <option value="boy">männlich</option>
-                        <option value="trans">transgender</option>
-                    </select>
-                    <small class="text-muted">
-                        Diese Angabe wird nur für statistische Zwecke genutzt. Sie wird anonym abgespeichert und nicht für Ingamefunktionen genutzt.
-                    </small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="birthday">Geburtstag</label>
-                    <input type="date" class="form-control" id="birthday" placeholder="Geburtstag" required>
-                    <small class="text-muted">
-                        Diese Angabe wird für statistische Zwecke genutzt. Außerdem gibt es zum Geburtstag Ingamegeschenke. Es findet KEINE Einschränkung der
-                        Features (im Sinne von Jugendschutz) statt. Es wird daher empfohlen/gebeten das reale Geburtsdatum anzugeben.
-                    </small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="email">E-Mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="E-Mail" required>
-                    <small class="text-muted">
-                        Die E-Mail wird ausschließlich für Supportzwecke gespeichert. Wir werden dich nie unter dieser Adresse kontaktieren. Allerdings wirst
-                        du bei Supportanfrage deine Antwort auf diese erhalten bzw. diese Angeben müssen um deinen Account zu verifizieren (z.B. wenn du dein
-                        Passwort vergessen hast. <strong>Gebe daher deine richtige E-Mail an unter der du immer Erreichbar bist.</strong>
-                    </small>
-                </fieldset>
-                <fieldset class="form-group">
-                    <label for="recruiter">Du wurdest geworben von</label>
-                    <input type="text" class="form-control" id="recruiter" placeholder="Du wurdest geworben von">
-                    <small class="text-muted">
-                        Wenn dich niemand angeworben hat, lasse das Feld einfach leer.
-                    </small>
-                </fieldset>
+    <div class="card-block">
+        <form action="#" method="get" onsubmit="submitForm()">
+            <fieldset class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="passwordwdh">Password Wiederholung (zur Bestätigung)</label>
+                <input type="password" class="form-control" id="passwordwdh"
+                       placeholder="Password Wiederholung (zur Bestätigung)" required>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="gender">Geschlecht</label>
+                <select id="gender" class="form-control">
+                    <option value="anonym" selected>Keine Angabe</option>
+                    <option value="girl">weiblich</option>
+                    <option value="boy">männlich</option>
+                    <option value="trans">transgender</option>
+                </select>
+                <small class="text-muted">
+                    Diese Angabe wird nur für statistische Zwecke genutzt. Sie wird anonym abgespeichert und nicht für
+                    Ingamefunktionen genutzt.
+                </small>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="birthday">Geburtstag</label>
+                <input type="date" data-date="" data-date-format="DD.MM.YYYY" class="form-control" id="birthday" placeholder="Geburtstag" required>
+                <small class="text-muted">
+                    Diese Angabe wird für statistische Zwecke genutzt. Außerdem gibt es zum Geburtstag Ingamegeschenke.
+                    Es findet KEINE Einschränkung der
+                    Features (im Sinne von Jugendschutz) statt. Es wird daher empfohlen/gebeten das reale Geburtsdatum
+                    anzugeben.
+                </small>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="email" class="form-control" id="email" placeholder="E-Mail" required>
+                <small class="text-muted">
+                    Die E-Mail wird ausschließlich für Supportzwecke gespeichert. Wir werden dich nie unter dieser
+                    Adresse kontaktieren. Allerdings wirst
+                    du bei Supportanfrage deine Antwort auf diese erhalten bzw. diese Angeben müssen um deinen Account
+                    zu verifizieren (z.B. wenn du dein
+                    Passwort vergessen hast. <strong>Gebe daher deine richtige E-Mail an unter der du immer Erreichbar
+                    bist.</strong>
+                </small>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="recruiter">Du wurdest geworben von</label>
+                <input type="text" class="form-control" id="recruiter" placeholder="Du wurdest geworben von">
+                <small class="text-muted">
+                    Wenn dich niemand angeworben hat, lasse das Feld einfach leer.
+                </small>
+            </fieldset>
 
-                <button type="submit" class="btn btn-primary">Registrieren!</button>
-            </form>
-        </div>
+            <button type="submit" class="btn btn-primary">Registrieren!</button>
+        </form>
     </div>
 </div>
 
 <script>
+    $("input[type='date']").on("change", function() {
+        this.setAttribute(
+                "data-date",
+                moment(this.value, "YYYY-MM-DD")
+                        .format( this.getAttribute("data-date-format") )
+        )
+    }).trigger("change");
+
     function submitForm() {
         $.ajax("http://mta/local/ajax_register_register.html", {
             data: {

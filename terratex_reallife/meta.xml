@@ -540,11 +540,13 @@
 		<file src="UI/styles/fonts/fontawesome-webfont.woff2" />
 		<file src="UI/styles/js/bootstrap.min.js" />
 		<file src="UI/styles/js/jquery.min.js" />
+		<file src="UI/styles/js/moment.js" />
 		<file src="UI/styles/js/countUp.js" />
 		<file src="UI/styles/js/countUp-jquery.js" />
 		<file src="UI/Gold.html" />
 		<file src="UI/Hud.html" />
 		<file src="UI/Login.html" />
+		<file src="UI/Register.html" />
 		<file src="UI/Fraktionsmanagement/Main.html" />
 		<file src="UI/Fraktionsmanagement/_Overview.html" />
 		<file src="UI/Fraktionsmanagement/_Member.html" />

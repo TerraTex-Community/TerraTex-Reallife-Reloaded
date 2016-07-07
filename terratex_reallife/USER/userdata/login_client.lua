@@ -16,11 +16,11 @@ function startLoginUI()
         loginWindow = false;
     end
 
-    loginWindow = guiCreateWindow(0, 0, 525, 500, "Login", false)
+    loginWindow = guiCreateWindow(0, 0, 525, 475, "Login", false)
     table.insert(allGuis, loginWindow);
     setGuiCenter(loginWindow);
 
-    local browser = guiCreateBrowser(0, 15, 525, 500, true, false, false, loginWindow)
+    local browser = guiCreateBrowser(0, 15, 525, 475, true, false, false, loginWindow)
 
 
     addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),

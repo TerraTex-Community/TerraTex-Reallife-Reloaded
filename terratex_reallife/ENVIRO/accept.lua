@@ -227,10 +227,9 @@
                                 setVehicleEngineState(theVehicle, false)
                                 vioSetElementData(theVehicle, "motor", false)
                                 vioSetElementData(theVehicle, "motornum", 0)
-                                changePlayerMoney(toPlayer, vioGetElementData(toPlayer, "mechaPrice") - 50, "job", "Mechaniker", "Reparatur")
+                                changePlayerMoney(toPlayer, vioGetElementData(thePlayer, "mechaPrice") - 50, "job", "Mechaniker", "Reparatur")
                                 vioSetElementData(toPlayer, "mechaPrice", false)
                                 vioSetElementData(toPlayer, "mechaPlayer", false)
-                                --fixVehicle ( theVehicle )
                             else
                                 showError(thePlayer, "Ein Fahrzeug kann nur im Stand repariert werden!")
                             end
@@ -320,6 +319,7 @@
         showError(thePlayer, "Du kannst nur folgende Sachen Aktzeptieren: ticket, drogen, live")
     end
 end
+
 addCommandHandler("accept", accept_ticket_func, false, false)
 
 

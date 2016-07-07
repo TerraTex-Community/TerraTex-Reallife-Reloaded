@@ -1,6 +1,9 @@
 ####07.07.2016
 --------------
 * [CHANGED] New Login UI
+* [FIXED] #60 Fixed a Bug with the bus job
+* [FIXED] #60 Wrong Points Calculation in Weapon test of the N.A.M.E.
+* [FIXED] #60 An Issue with the mechanic command
 
 ####06.07.2016
 --------------

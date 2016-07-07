@@ -11,33 +11,45 @@
 <body id="Login">
 <img class="card-img-top" src="../FILES/IMAGES/Server_Header.png" data-src="../FILES/IMAGES/Server_Header.png"/>
 <div class="container-fluid">
-        <div class="card-block">
-            <form action="#" method="get" onsubmit="submitForm()">
-                <fieldset class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
-                    <small class="text-muted">
-                        Hinweise: <br/>
-                        <ul>
-                            <li>Solltest du noch keinen Account haben, aber dieses Fenster anstatt eines Registrationsfensters erhalten, so ist der Nickname
-                                bereits vergeben.
-                            </li>
-                            <li>Solltest du dein Passwort vergessen haben, melde dich mit der bei der Registration hinterlegten Email, sowie deines
-                                Nicknamens unter <strong id="supportmail">support@terratex.eu</strong>
-                            </li>
-                        </ul>
-                    </small>
-                </fieldset>
-                <button type="submit" class="btn btn-primary">Einloggen!</button>
-            </form>
-        </div>
+    <div class="card-block">
+        <form action="#" method="get" onsubmit="submitForm()">
+            <fieldset class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password" required>
+                <small class="text-muted">
+                    Hinweise: <br/>
+                    <ul>
+                        <li>Solltest du noch keinen Account haben, aber dieses Fenster anstatt eines
+                            Registrationsfensters erhalten, so ist der Nickname
+                            bereits vergeben.
+                        </li>
+                        <li>Solltest du dein Passwort vergessen haben, melde dich mit der bei der Registration
+                            hinterlegten Email, sowie deines
+                            Nicknamens unter <strong id="supportmail">support@terratex.eu</strong>
+                        </li>
+                    </ul>
+                </small>
+            </fieldset>
+            <button type="button" class="btn btn-primary">Einloggen!</button>
+        </form>
+    </div>
 </div>
 <script>
-    function submitForm() {
-        $.ajax("http://mta/local/ajax_login_login.html?password=" + $("#password").val());
-        $("#password").val("");
-        return false;
-    }
+    $(document).ready(function () {
+        $("button").click(function () {
+            $.ajax("http://mta/local/ajax_login_login.html?password=" + $("#password").val());
+            $("#password").val("");
+        });
+
+        $('#password').keypress(function (e) {
+            var key = e.which;
+            if(key == 13)  // the enter key code
+            {
+                $.ajax("http://mta/local/ajax_login_login.html?password=" + $("#password").val());
+                $("#password").val("");
+            }
+        });
+    });
 </script>
 
 

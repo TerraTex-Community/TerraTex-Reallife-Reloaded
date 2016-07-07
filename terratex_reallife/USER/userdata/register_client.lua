@@ -55,11 +55,12 @@ function reloadRegisterGUI()
 end
 
 function register(get, post)
+    get = post;
     if get then
-        -- @todo: save gender
-        if (get.password and get.passwordwdh and get.gender and get.birthday and get.email and get.recruiter) then
-            -- Format: yyyy - mm - dd
-            local birthdayParts = getStringComponentsDelimited(get.birthday);
+        if (get.password and get.passwordwdh and get.gender and get.birthday and get.email) then
+            if(not get.recruiter) then get.recruiter = "" end
+
+            local birthdayParts = string.explode(get.birthday, "-");
 
             if (not (hasClickedRegisterGui)) then
                 if (not (utf_check(get.password)) or not (utf_check(get.email)) or not (utf_check(get.recruiter))) then
@@ -69,14 +70,14 @@ function register(get, post)
                     if (get.passwordwdh == "") then get.passwordwdh = "z" end
 
                     if (get.password == get.passwordwdh) then
-                        if not (get.email == "") then
-                            if (birthdayParts[3]) then
-                                if ((tonumber(birthdayParts[3]) < 32) and (tonumber(birthdayParts[3]) > 0)) then
+                        if string.len(get.email) > 0 then
+                            if (table.getSize(birthdayParts) == 3) then
+                                if ((tonumber(birthdayParts[1]) < 32) and (tonumber(birthdayParts[1]) > 0)) then
                                     if ((tonumber(birthdayParts[2]) < 13) and (tonumber(birthdayParts[2]) > 0)) then
-                                        if ((tonumber(birthdayParts[1]) < 2016) and (tonumber(birthdayParts[1]) > 1900)) then
-                                            if (get.recruiter == "") then get.recruiter = "none" end
+                                        if ((tonumber(birthdayParts[3]) < 2016) and (tonumber(birthdayParts[3]) > 1900)) then
+                                            if (get.recruiter == "") then get.recruiter = "" end
                                             triggerServerEvent("registerPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), get.password, get.email,
-                                                birthdayParts[3], birthdayParts[2], birthdayParts[1], get.recruiter, get.gender)
+                                                birthdayParts[1], birthdayParts[2], birthdayParts[3], get.recruiter, get.gender)
                                         else
                                             showError(getLocalPlayer(), "Du hast kein korrektes Geburstdatum eingegeben(3)!")
                                         end
@@ -99,6 +100,8 @@ function register(get, post)
                 hasClickedRegisterGui = true
                 setTimer(reloadRegisterGUI, 1000, 1)
             end
+        else
+            showError(getLocalPlayer(), "Einige Felder sind nicht correct ausgefüllt!")
         end
     end
 end

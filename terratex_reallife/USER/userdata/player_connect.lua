@@ -133,8 +133,7 @@ addEventHandler("clientisreadyforlogin", getRootElement(), playerreadylogin)
 function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber, gender)
 
     local salt = randomstring(25)
-
-    if (werber ~= "" and MySql.helper.existSync("user", { Nickname = werber })) or werber == "" then
+    if not werber or (werber ~= "" and MySql.helper.existSync("user", { Nickname = werber })) or werber == "" then
 
         if not (MySql.helper.existSync("user", { Nickname = nickname })) then
 

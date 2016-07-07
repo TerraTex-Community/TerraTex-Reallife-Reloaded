@@ -31,7 +31,7 @@ function setNewTankVehicle(theVehicle)
             if (getVehicleEngineState(theVehicle)) then
 
                 if not (vioGetElementData(theVehicle, "tank")) then
-                    vioSetElementData(theVehicle, "tank", 50)
+                    vioSetElementData(theVehicle, "tank", 100)
                 end
 
                 if not (vioGetElementData(theVehicle, "kmstand")) then
@@ -53,12 +53,12 @@ function setNewTankVehicle(theVehicle)
                     giveVehicleKMPokal(theVehicle)
                 end
 
-                local vx, vy, vz = getElementVelocity(theVehicle)
-                local durchV = math.sqrt(vx * vx + vy * vy + vz * vz)
+                local speedx, speedy, speedz = getElementVelocity(theVehicle)
+                local durchV = (speedx^2 + speedy^2 + speedz^2)^(0.5)
                 local calcV = durchV * 180;
 
                 -- local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/2000 + 0.002;
-                local tankminus = (0.0000010958 * calcV * calcV + 0.018518519);
+                local tankminus = (0.0000010958 * calcV^2 + 0.018518519);
 
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")
@@ -74,7 +74,7 @@ function setNewTankVehicle(theVehicle)
                 vioSetElementData(theVehicle, "oldTankX", nx)
                 vioSetElementData(theVehicle, "oldTankY", ny)
                 vioSetElementData(theVehicle, "oldTankZ", nz)
-                if (vioGetElementData(theVehicle, "tank") <= 0) then
+                if (vioGetElementData(theVehicle, "tank") <= 1) then
                     vioSetElementData(theVehicle, "tank", 0)
                     vioSetElementData(theVehicle, "motornum", 0)
                     vioSetElementData(theVehicle, "motor", false)

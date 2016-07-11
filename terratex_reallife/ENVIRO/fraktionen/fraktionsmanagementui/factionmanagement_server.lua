@@ -92,8 +92,13 @@ function factionManagementKickMember_func(nickname)
     if (getPlayerFromName(nickname)) then
         local player = getPlayerFromName(nickname);
         if (vioGetElementData(player, "fraktion") == vioGetElementData(source, "fraktion")) then
-            vioSetElementData(player, "fraktion", 0)
-            vioSetElementData(player, "fraktionsrang", 0)
+            vioSetElementData(player, "fraktion", 0);
+            vioSetElementData(player, "fraktionsrang", 0);
+            vioSetElementData(player,"rechte_AllLeader",0);
+            setPlayerTeam (player,nil);
+            vioSetElementData(thePlayer,"FrakSkin",0);
+            setElementModel(thePlayer,vioGetElementData(player,"skinid"));
+            takeAllWeapons ( player );
 
             outputChatBox("Du wurdest von " .. getPlayerName(source) .. " aus der Fraktion geworfen.", player, 255, 0, 0);
             showError(source, "Du hast " .. nickname .. " aus der Fraktion geworfen!");
@@ -107,14 +112,18 @@ function factionManagementKickMember_func(nickname)
         });
 
         if (exist) then
-            MySql.helper.update("user_data", {Fraktionsrang = 0, Fraktion = 0}, {
+            MySql.helper.update("user_data", {Fraktionsrang = 0, Fraktion = 0, FrakSkin = 0 }, {
                 Fraktion = vioGetElementData(source, "fraktion"),
+                Nickname = nickname
+            });
+
+            MySql.helper.update("faction_userrights", {AllLeader = 0 }, {
                 Nickname = nickname
             });
 
             save_offline_message(nickname, getPlayerName(source), "Du wurdest aus deiner Fraktion entfernt.");
             showError(source, "Du hast " .. nickname .. " aus der Fraktion geworfen!");
-            triggerClientEvent(source, "factionManagementMemberKick", source, nickname);
+            setTimer(triggerClientEvent, 1000, 1, source, "factionManagementMemberKick", source, nickname);
         end
     end
 end
@@ -125,7 +134,7 @@ function factionManagementGiveRankMember_func(nickname, rank)
     if (getPlayerFromName(nickname)) then
         local player = getPlayerFromName(nickname);
         if (vioGetElementData(player, "fraktion") == vioGetElementData(source, "fraktion")) then
-            vioSetElementData(player, "fraktionsrang", rank)
+            vioSetElementData(player, "fraktionsrang", tonumber(rank))
 
             outputChatBox("Du wurdest von " .. getPlayerName(source) .. " auf Rang ".. rank .." gesetzt.", player, 255, 0, 0);
             showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
@@ -147,7 +156,7 @@ function factionManagementGiveRankMember_func(nickname, rank)
 
             save_offline_message(nickname, getPlayerName(source), "Du wurdest auf Rang ".. rank .." gesetzt.");
             showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
-            triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname, rank);
+            setTimer(triggerClientEvent, 1000, 1, source, "factionManagementMemberGiveRank", source, nickname, rank);
         end
     end
 end

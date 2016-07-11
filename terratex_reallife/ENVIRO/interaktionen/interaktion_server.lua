@@ -40,9 +40,6 @@ function give_func(thePlayer,Command,toPlayerName,wasstring,menge)
 						if(besdro<mengen)then
 							showError(thePlayer,"Du hast nicht soviel Drogen!")
 						else
-							if (vioGetElementData(toPlayer,"drogen")+mengen)>500 then
-								mengen= 500-vioGetElementData(toPlayer,"drogen")
-							end
 							vioSetElementData(thePlayer,"drogen",besdro-mengen)
 							vioSetElementData(toPlayer,"drogen",vioGetElementData(toPlayer,"drogen")+mengen)
 							showError(thePlayer,string.format("Du hast %s %s Gramm Drogen gegeben!", getPlayerName(toPlayer), mengen))

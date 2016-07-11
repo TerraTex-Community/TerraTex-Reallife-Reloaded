@@ -84,6 +84,14 @@ function accept_sex(thePlayer)
                         if (usedKondom or math.random(1, 2) ~= 2) then
                             triggerClientEvent(thePlayer, "stopFoodTimerForSeconds", thePlayer, 300)
                             triggerClientEvent(toPlayer, "stopFoodTimerForSeconds", toPlayer, 300)
+                            local hp = getElementHealth(thePlayer)
+                            if hp > 50 then hp = 100 else hp = hp +50 end
+                            setElementHealth(thePlayer, hp )
+
+                            hp = getElementHealth(toPlayer)
+                            if hp > 50 then hp = 100 else hp = hp +50 end
+                            setElementHealth(toPlayer, hp )
+
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", thePlayer, 0, 255, 0)
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", toPlayer, 0, 255, 0)
                         else
@@ -131,6 +139,15 @@ function accept_sex(thePlayer)
                         if (usedKondom or math.random(1, 4) ~= 2) then
                             triggerClientEvent(thePlayer, "stopFoodTimerForSeconds", thePlayer, 300)
                             triggerClientEvent(toPlayer, "stopFoodTimerForSeconds", toPlayer, 300)
+
+                            local hp = getElementHealth(thePlayer)
+                            if hp > 50 then hp = 100 else hp = hp +50 end
+                            setElementHealth(thePlayer, hp )
+
+                            hp = getElementHealth(toPlayer)
+                            if hp > 50 then hp = 100 else hp = hp +50 end
+                            setElementHealth(toPlayer, hp )
+
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", thePlayer, 0, 255, 0)
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", toPlayer, 0, 255, 0)
                         else

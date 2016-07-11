@@ -1,5 +1,6 @@
 ####11.07.2016
 --------------
+* [CHANGED] #63 Loan and needed Skillpoints of sea cleaner
 * [FIXED] #61 You can't fill more fuel in vehicle as the capacity of vehicles anymore.
 * [FIXED] #62 Informations about changes on Players that are online were send to everyone
 * [CODE-ADD] Added Handler Function addAcceptEvent(acceptName, function)

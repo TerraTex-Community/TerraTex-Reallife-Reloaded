@@ -109,11 +109,11 @@ function accept_sex(thePlayer)
                             setPedAnimation(toPlayer, "sex", "sex_1_cum_p", 1, true, false)
                             vioSetElementData(toPlayer, "anim", 1)
                             bindKey(toPlayer, "space", "down", stopanima)
-                            showtext(toPlayer)
+                            showanimtext(toPlayer)
 
                             vioSetElementData(thePlayer, "anim", 1)
                             bindKey(thePlayer, "space", "down", stopanima)
-                            showtext(thePlayer)
+                            showanimtext(thePlayer)
                         end
                     else
                         showError(thePlayer, "Ihr beide seit nicht beeinander!")

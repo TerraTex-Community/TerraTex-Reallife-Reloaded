@@ -1,5 +1,6 @@
 ####11.07.2016
 --------------
+* [FIXED] #61 You can't fill more fuel in vehicle as the capacity of vehicles anymore.
 * [FIXED] #62 Informations about changes on Players that are online were send to everyone
 * [CODE-ADD] Added Handler Function addAcceptEvent(acceptName, function)
 * [CODE-CHANGE] Complete rework of /accept with new Handler function and separation in different functions

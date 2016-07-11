@@ -1,4 +1,5 @@
 -- vioGetElementData(thePlayer,"lastHouse")
+local childNames = {"Tennille","Gabrielle","Deidra","Billye","Marisol","Dina","Les","Shakira","Alene","Virginia","Tiffiny","Mechelle","Karla","Kanesha","Lorena","Libbie","Kenton","Emmaline","Shayla","Lala","Berniece","Devin","Della","Samatha","Inez","Karrie","Regenia","Ricardo","Maritza","Markita","Neda","Johna","Hermelinda","Cristine","Kristyn","Maranda","Simonne","Katlyn","Aracelis","Ruthann","Aliza","Desire","Michael","Louisa","Isaiah","Julie","Phoebe","Adaline","Jeff","Forest","Una","Exie","Kimiko","Marlys","Dell","Oralee","Trisha","Kamala","Yun","Camille","Linda","Luvenia","Fidelia","Kathy","Cortney","Tuyet","Demetrice","Bunny","Cyril","Bethany","Kylee","Leo","Ella","Sau","Sherika","Graham","Hazel","Sanda","Tianna","Vito","Kathaleen","Elouise","Lili","Allegra","Pierre","Elli","Jeanie","Celena","Tamela","Karyn","Marybeth","Hee","Rosie","Cleora","Aron","Galen","Billi","Dacia","Eva","Carolin","Lanie","Garland","Lucy","Priscila","Monserrate","Marsha","Rhoda","Walton","Zulma","Aubrey","Sulema","Bessie","Merry","Jae","Vincent","Kyoko","Brain","Rosetta","Arnette","Drusilla","Machelle","Doria","Rosann","Yung","Georgann","Haley","Tonda","Bo","Graciela","Keely","Yajaira","My","Tam","Rosaline","Mariko","Adella","Jacquelyn","Aurelio","Heath","Kellye","Sofia","Sheryll","Melany","Lou","Shantell","Nakisha","Clementina","Pearly","Keira","Rana","Hilma","Corrin","Magdalene","Many","Guillermina","Lorita","Maira","Nelida","Suzanna","Gia","Natalie","Laurette","Luci","Vance","Lavelle","Jamey","Ariane","Larraine","Nathanael","Amberly","Elijah","Yuko","Jenette","Lilli","Francoise","Odelia","Dick","Alisia","Rachell","Loralee","Roland","Odessa","Coleen","Penni","Ida","Roman","Jared","Leroy","Klara","Marilou","Chante","Madalyn","Ute","Titus","Van","Jessenia","Deb","Lorri","Eunice","Evie","Loise","Gaylene","Oliva","Johnette","Fredia","Tobie","Sandie","Sol","Melida","Harvey","Arielle","Emma","Kendra","Lorrine","Liliana","Jolie","Edda","Eleonor","Ngoc","Wes","Ariana","Dante","Shelley","Antonette","Pasquale","Emmett","Keven","Julieta","Hertha","Bertram","Marcy","Darla","Jesusa","Numbers","Malik","Kasie","Arline","Kellee","Debbra","Joselyn","Katie","Maurice","Willis","Marylyn","Adriane","Mabelle","Dulcie","Lorenzo","Lewis","Nery"}
 
 function sex_func(thePlayer, cmd, toPlayerName)
     if (toPlayerName) then
@@ -84,13 +85,10 @@ function accept_sex(thePlayer)
                         if (usedKondom or math.random(1, 2) ~= 2) then
                             triggerClientEvent(thePlayer, "stopFoodTimerForSeconds", thePlayer, 300)
                             triggerClientEvent(toPlayer, "stopFoodTimerForSeconds", toPlayer, 300)
-                            local hp = getElementHealth(thePlayer)
-                            if hp > 50 then hp = 100 else hp = hp +50 end
-                            setElementHealth(thePlayer, hp )
 
-                            hp = getElementHealth(toPlayer)
-                            if hp > 50 then hp = 100 else hp = hp +50 end
-                            setElementHealth(toPlayer, hp )
+                            triggerClientEvent(thePlayer, "addFood", thePlayer, 25)
+                            triggerClientEvent(toPlayer, "addFood", toPlayer, 25)
+
 
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", thePlayer, 0, 255, 0)
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", toPlayer, 0, 255, 0)
@@ -146,11 +144,18 @@ function accept_sex(thePlayer)
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", thePlayer, 0, 255, 0)
                             outputChatBox("Ihr hattet gerade Sex und seid so gut drauf, dass ihr nun 5 Minuten nichts essen müsst!", toPlayer, 0, 255, 0)
                         else
-                            local kosten = math.random(400, 1500)
-                            changePlayerMoney(thePlayer, -kosten, "sonstiges", "Kindergeld (Sex)")
-                            changePlayerMoney(toPlayer, -kosten, "sonstiges", "Kindergeld (Sex)")
-                            outputChatBox(string.format("Ihr habt ein Kind gezeugt! Die Kosten haben sich auf %s für jeden von euch belaufen!", toprice(kosten)), thePlayer)
-                            outputChatBox(string.format("Ihr habt ein Kind gezeugt! Die Kosten haben sich auf %s für jeden von euch belaufen!", toprice(kosten)), toPlayer)
+                            local childs = vioGetElementData(thePlayer, "children")
+                            local child = {name = childNames[math.random(1, table.getSize(childNames))], years = math.random(18,30)};
+                            table.insert(childs, child)
+                            vioSetElementData(thePlayer, "children", childs)
+
+                            childs = vioGetElementData(toPlayer, "children")
+                            table.insert(childs, child)
+                            vioSetElementData(toPlayer, "children", childs)
+
+                            local message = "Ihr habt ein Kind gezeugt. Ihr/Sein Name ist ".. child ..". Es wird die nächsten " .. child.years .." Jahre auf eurer Tasche liegen!";
+                            outputChatBox(message, thePlayer)
+                            outputChatBox(message, toPlayer)
                         end
                         if not (arePlayersInSameVehicle(thePlayer, toPlayer)) then
                             local x, y, z = getElementPosition(toPlayer)

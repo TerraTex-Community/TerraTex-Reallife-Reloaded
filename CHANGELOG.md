@@ -1,7 +1,9 @@
 ####11.07.2016
 --------------
+* [ADDED] #67 If a married couple gets a child it will have a real name and will costs money some paydays (random years => one year = one PayDay)
 * [ADDED] #67 #66 Add some food to sex effect
 * [CHANGED] #63 Loan and needed Skillpoints of sea cleaner
+* [REMOVED] #67 You don't get unrealistic one second childs anymore.
 * [FIXED] #61 You can't fill more fuel in vehicle as the capacity of vehicles anymore.
 * [FIXED] #62 Informations about changes on Players that are online were send to everyone
 * [CODE-ADD] Added Handler Function addAcceptEvent(acceptName, function)

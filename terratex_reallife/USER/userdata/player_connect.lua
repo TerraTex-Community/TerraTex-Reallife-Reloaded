@@ -349,6 +349,7 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "ingamespenden", tonumber(userdataData["ingamespenden"]))
         vioSetElementData(source, "tut", tonumber(userdataData["tutorial_gui"]))
         vioSetElementData(source, "mussAlka", tonumber(userdataData["mussAlka"]))
+        vioSetElementData(source, "children", fromJSON( userdataData["children"]))
 
         vioSetElementData(source, "verheiratet", tonumber(userdataData["verheiratet"]))
         if (vioGetElementData(source, "verheiratet") ~= 0) then

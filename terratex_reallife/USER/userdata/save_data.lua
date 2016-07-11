@@ -58,6 +58,7 @@ function save_data()
             setTable["user_data"]["ingamespenden"] = vioGetElementData(source, "ingamespenden")
             setTable["user_data"]["alkaknast"] = vioGetElementData(source, "alkaknast")
             setTable["user_data"]["mussAlka"] = vioGetElementData(source, "mussAlka")
+            setTable["user_data"]["children"] = toJSON(vioGetElementData(source, "children"))
 
             --lizensen
 

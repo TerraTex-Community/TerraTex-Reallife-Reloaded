@@ -98,6 +98,21 @@ function payday(thePlayer)
     local Ausgaben = 0
     local PayDayTable = {}
 
+    --- Kosten Kinder
+    local childs = vioGetElementData(thePlayer, "children");
+    local newChilds = {};
+    for theKey, theChild in ipairs(childs) do
+        local cost = math.random(500, 5000);
+        table.insert(PayDayTable, { "Kosten für " .. theChild.name, 0, (-cost) });
+        Ausgaben = Ausgaben + cost
+        theChild.years = theChild.years - 1;
+        if (theChild.years > 0) then
+            table.insert(newChilds, theChild);
+        else
+            outputChatBox("Dein Kind " .. theChild.name .. " steht endlich auf eigenen Beinen!");
+        end
+    end
+
     --- GEHALTS BERECHNUNG ---
 
     local Gehalt = 0

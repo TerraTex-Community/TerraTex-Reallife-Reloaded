@@ -45,7 +45,6 @@ function disableRegisterGui()
     showCursor(false);
     toggleAllControls(true, true, true);
 end
-
 addEvent("hideRegisterGui", true)
 addEventHandler("hideRegisterGui", getRootElement(), disableRegisterGui)
 

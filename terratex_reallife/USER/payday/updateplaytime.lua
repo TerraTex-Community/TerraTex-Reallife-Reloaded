@@ -53,9 +53,6 @@ function checkTimeErfolge(thePlayer, PlayTime)
     end
 end
 
-
-
-
 function controlWeber(thePlayer)
     if math.round(vioGetElementData(thePlayer, "playtime") / 60) == 25 then
         local werber = MySql.helper.getValueSync("user", "werber", { Nickname = getPlayerName(thePlayer) });
@@ -104,7 +101,7 @@ function payday(thePlayer)
     for theKey, theChild in ipairs(childs) do
         local cost = math.random(500, 5000);
         table.insert(PayDayTable, { "Kosten für " .. theChild.name, 0, (-cost) });
-        Ausgaben = Ausgaben + cost
+        Ausgaben = Ausgaben + cost;
         theChild.years = theChild.years - 1;
         if (theChild.years > 0) then
             table.insert(newChilds, theChild);
@@ -278,6 +275,7 @@ function payday(thePlayer)
 
     --gesantrechnung
     local Gesamt = Einnahmen - Ausgaben
+
     --Miete
     local miete = 0
     local isinrent = 0
@@ -311,16 +309,15 @@ function payday(thePlayer)
                 table.insert(PayDayTable, { "Miete", 0, (-rentcost) })
                 isinrent = 10000
             end
+
             if (isinrent > 0) then
-                --Kosten der Mieter: 50$+preis/1000 aber nicht mehr als 300$
+                --- Kosten der Mieter: 50$+preis/1000 aber nicht mehr als 300$
                 local abzug = 50 + (haus:getPreis() / 1000);
 
                 if (abzug < 501) then
                     haus:changeKasse(-math.round(abzug, 2))
-                    outputDebugString(" House: " .. hnum .. " : " .. math.round(abzug, 2))
                 else
                     haus:changeKasse(-500)
-                    outputDebugString(" House: " .. hnum .. " : 500")
                 end
 
                 if (haus:getKasse() < 0) then

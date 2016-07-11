@@ -197,7 +197,7 @@ function isPlayerInAnyHouse(thePlayer)
     if(dim>0)then
         if(haeuser[dim])then
             local haus=haeuser[dim]
-            if(haus.isPlayerInHouse(thePlayer,100))then
+            if(haus:isPlayerInHouse(thePlayer,100))then
                 return true
             end
         end

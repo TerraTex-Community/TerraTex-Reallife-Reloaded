@@ -7,7 +7,7 @@ function sex_func(thePlayer, cmd, toPlayerName)
         if (toPlayer) then
             if (thePlayer ~= toPlayer) then
                 if (vioGetElementData(thePlayer, "job") == 16) then
-                    if (vioGetElementData(thePlayer, "lastHouse") or arePlayersInSameVehicle(thePlayer, toPlayer)) then
+                    if (isPlayerInAnyHouse(thePlayer) or arePlayersInSameVehicle(thePlayer, toPlayer)) then
                         local p1x, p1y, p1z = getElementPosition(thePlayer)
                         local p2x, p2y, p2z = getElementPosition(toPlayer)
                         if (getDistanceBetweenPoints3D(p1x, p1y, p1z, p2x, p2y, p2z) < 5) then
@@ -21,7 +21,7 @@ function sex_func(thePlayer, cmd, toPlayerName)
                         showError(thePlayer, "Sie müssen in einen Fahrzeug sein oder in einem Haus um Sex zu haben!")
                     end
                 elseif (vioGetElementData(toPlayer, "DBID") == vioGetElementData(thePlayer, "verheiratet")) then
-                    if (vioGetElementData(thePlayer, "lastHouse") or arePlayersInSameVehicle(thePlayer, toPlayer)) then
+                    if (isPlayerInAnyHouse(thePlayer) or arePlayersInSameVehicle(thePlayer, toPlayer)) then
                         local p1x, p1y, p1z = getElementPosition(thePlayer)
                         local p2x, p2y, p2z = getElementPosition(toPlayer)
                         if (getDistanceBetweenPoints3D(p1x, p1y, p1z, p2x, p2y, p2z) < 5) then

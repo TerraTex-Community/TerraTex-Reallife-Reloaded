@@ -3,7 +3,7 @@
 -- options:
 -- requestedDataValues = List of Strings from vioGetElementData if one is not set it will be result in a error message to the user
 function registerAcceptHandler(acceptName, func, options)
-    asset(not acceptHandler[acceptName], "Accept Handler " .. acceptName .. " already registered.");
+    assert(not acceptHandler[acceptName], "Accept Handler " .. acceptName .. " already registered.");
     acceptHandler[acceptName] = {
         func = func,
         options = options

@@ -57,6 +57,9 @@ function acceptRace(thePlayer)
 
     end
 end
+registerAcceptHandler("race", acceptRace, {
+    requestedDataValues = {"Racer", "RacePrice", "RaceTarget"}
+});
 
 function showRaceStartInfo(Racer, Gegner, rest)
     if(rest > 5)then

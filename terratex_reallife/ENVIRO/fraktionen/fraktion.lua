@@ -654,3 +654,19 @@ function schutzgeld_func(thePlayer, command, toplayername, betrag)
     end
 end
 addCommandHandler("schutzgeld", schutzgeld_func, false, false)
+
+function accept_schutz(thePlayer)
+    local frak = vioGetElementData(thePlayer, "schutzfrak")
+    for theKey, thePlayers in ipairs(getPlayersInTeam(team[frak])) do
+        outputChatBox(string.format("%s hat Schutzgeld gezahlt!", getPlayerName(thePlayer)), thePlayers, 255, 0, 0)
+    end
+    outputChatBox(string.format("Du hast Schutzgeld an die %s gezahlt!", fraktionbezeichner[frak]), thePlayer, 255, 0, 0)
+    changePlayerMoney(thePlayer, -vioGetElementData(thePlayer, "schutzzahlung"), "sonstiges", "Schutzgeldzahlung")
+    frakkasse[frak] = frakkasse[frak] + vioGetElementData(thePlayer, "schutzzahlung")
+    frakschutz[frak][getPlayerName(thePlayer)] = true
+    vioSetElementData(thePlayer, "schutzzahlung", false)
+    vioSetElementData(thePlayer, "schutzfrak", false)
+end
+registerAcceptHandler("schutz", accept_schutz, {
+    requestedDataValues = {"schutzfrak", "schutzzahlung"}
+});

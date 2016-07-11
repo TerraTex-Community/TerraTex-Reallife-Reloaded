@@ -67,8 +67,22 @@ function onStellenClick(mouseButton, buttonState, clickedElement)
         end
     end
 end
-
 addEventHandler("onPlayerClick", getRootElement(), onStellenClick)
+
+function accept_stellen(thePlayer)
+    if (vioGetElementData(thePlayer, "canStellen")) then
+        local x, y, z = getElementPosition(thePlayer)
+        if (getDistanceBetweenPoints3D(x, y, z, 238.961914062, 112.734375, 1003.21875) < 10 or getDistancBetweenPoints3D(x, y, z, 233.044921875, 166.4814453125, 1003.0234375)) then
+            vioSetElementData(thePlayer, "stellenInfos", vioGetElementData(thePlayer, "wanteds"))
+            setTimer(StellenNow, 180000, 1, thePlayer)
+            outputChatBox("Bitte warte hier 3 Minuten bis deine Anfrage bearbeitet wurde!", thePlayer, 255, 0, 0)
+            vioSetElementData(thePlayer, "canStellen", false)
+        end
+    end
+end
+registerAcceptHandler("stellen", accept_stellen, {
+    requestedDataValues = {"canStellen"}
+});
 
 function beamtenchat(thePlayer, command, ...)
     local reason = table.concat({ ... }, " ")
@@ -932,6 +946,28 @@ function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
     end
 end
 addCommandHandler("ticket", ticket_func, false, false)
+
+function accept_ticket(thePlayer)
+    if (vioGetElementData(thePlayer, "ticket") > 0) then
+        local sx, sy, sz = getElementPosition(thePlayer)
+        local tx, ty, tz = getElementPosition(vioGetElementData(thePlayer, "ticketgive"))
+        local dis = getDistanceBetweenPoints3D(sx, sy, sz, tx, ty, tz)
+        if (dis > 10) then
+            showError(thePlayer, "Sie sind vom Polizisten zuweit entfernt!")
+        else
+            changePlayerMoney(thePlayer, -vioGetElementData(thePlayer, "ticket"), "sonstiges", "Ticket bezahlt")
+            outputChatBox("Du hast das Ticket erfolgreich bezahlt", thePlayer, 255, 0, 0)
+            outputChatBox(string.format("%s hat das Ticket bezahlt!", getPlayerName(thePlayer)), vioGetElementData(thePlayer, "ticketgive"), 255, 0, 0)
+            vioSetElementData(thePlayer, "ticketgive", nil)
+            vioSetElementData(thePlayer, "ticket", nil)
+        end
+    else
+        showError(thePlayer, "Dir wurde kein Ticket angeboten!")
+    end
+end
+registerAcceptHandler("ticket", accept_ticket, {
+    requestedDataValues = {"ticket", "ticketgive"}
+});
 
 function sos_func(thePlayer)
     if (isBeamter(thePlayer)) then

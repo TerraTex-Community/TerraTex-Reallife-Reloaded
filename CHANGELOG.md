@@ -1,3 +1,8 @@
+####11.07.2016
+--------------
+* [CODE-ADD] Added Handler Function addAcceptEvent(acceptName, function)
+* [CODE-CHANGE] Complete rework of /accept with new Handler function and separation in different functions
+
 ####07.07.2016
 --------------
 * [CHANGED] New Login UI

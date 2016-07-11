@@ -155,6 +155,52 @@ function buyHotDogs_func(menge)
 end
 addEventHandler("buyHotDogs", getRootElement(), buyHotDogs_func)
 
+function accept_hotdog(thePlayer)
+    local hotDogSeller = vioGetElementData(thePlayer, "hotDogSeller")
+    local hotDogSellerPrice = vioGetElementData(thePlayer, "hotDogSellerPrice")
+    local hotDogSellerMenge = vioGetElementData(thePlayer, "hotDogSellerMenge")
+
+    if (getPlayerName(hotDogSeller)) then
+        if (getPlayerMoney(thePlayer) >= hotDogSellerPrice) then
+            if (isPedInVehicle(hotDogSeller)) then
+                local theVehicle = getPedOccupiedVehicle(hotDogSeller)
+                if (getPedOccupiedVehicleSeat(hotDogSeller) == 0 and (getElementModel(theVehicle) == 588)) then
+                    local x, y, z = getElementPosition(thePlayer)
+                    local px, py, pz = getElementPosition(hotDogSeller)
+                    if (getDistanceBetweenPoints3D(x, y, z, px, py, pz) < 20) then
+                        if (hotDogSellerMenge <= vioGetElementData(theVehicle, "hotdogFuel")) then
+                            vioSetElementData(theVehicle, "hotdogFuel", vioGetElementData(theVehicle, "hotdogFuel") - hotDogSellerMenge)
+                            changePlayerMoney(thePlayer, -hotDogSellerPrice, "sonstiges", "Hotdogkauf")
+                            changePlayerMoney(hotDogSeller, hotDogSellerPrice, "job", "Hotdog", "Verkauf")
+                            outputChatBox(string.format("Der Spieler %s hat deine Hotdogs gekauft!", getPlayerName(thePlayer)), hotDogSeller, 0, 155, 0)
+                            outputChatBox("Du hast die Hotdogs gekauft und gegessen!", thePlayer, 0, 155, 0)
+                            triggerClientEvent(thePlayer, "addFood", thePlayer, 25 * hotDogSellerMenge)
+                        else
+                            showError(thePlayer, "Der Verkäufer ist nicht in der Lage dir die Hotdogs zu verkaufen! (keine Ausreichende Menge)")
+                        end
+                    else
+                        showError(thePlayer, "Der Verkäufer ist nicht in deiner Nähe!")
+                    end
+                else
+                    showError(thePlayer, "Der Verkäufer ist nicht in der Lage dir die Hotdogs zu verkaufen! (nicht mehr im Hotdogwagen)")
+                end
+            else
+                showError(thePlayer, "Der Verkäufer ist nicht in der Lage dir die Hotdogs zu verkaufen! (nicht mehr im Hotdogwagen)")
+            end
+        else
+            showError(thePlayer, "Du hast nicht genug Geld!")
+        end
+    else
+        showError(thePlayer, "Dir wurden keine Hotdogs angeboten!")
+    end
+    vioSetElementData(toPlayer, "hotDogSeller", false)
+    vioSetElementData(toPlayer, "hotDogSellerPrice", false)
+    vioSetElementData(toPlayer, "hotDogSellerMenge", false)
+end
+registerAcceptHandler("hotdog", accept_hotdog, {
+    requestedDataValues = {"hotDogSeller", "hotDogSellerPrice", "hotDogSellerMenge"}
+});
+
 function respawnHotDogCars()
     for key, theVehicle in pairs(hotdogCars) do
         if not (isAnyOneInVehicle(theVehicle)) then

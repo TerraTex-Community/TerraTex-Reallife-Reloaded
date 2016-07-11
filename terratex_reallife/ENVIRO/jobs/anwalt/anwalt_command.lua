@@ -64,9 +64,22 @@ end
 addCommandHandler("free",anwalt_free_func)
 
 
-
-
-
-
-
+function accept_anwalt(thePlayer)
+    if (isBeamter(thePlayer)) then
+        local anwalt = vioGetElementData(thePlayer, "anwaltWhoRequested")
+        local verbrecher = vioGetElementData(thePlayer, "thePlayerWhoWillBeOutOfKnast")
+        if (anwalt and verbrecher) then
+            vioSetElementData(anwalt, "AnwaltCanGetOut", verbrecher)
+            outputChatBox("Du hast dem Anwalt erlaubt den Verbrecher herauszuholen", thePlayer, 255, 0, 0)
+            outputChatBox("Dir wurde erlaubt, den Verbrecher herauszuholen. Dies kannst du mit /free tun.", anwalt, 255, 0, 0)
+            vioSetElementData(cop, "anwaltWhoRequested", false)
+            vioSetElementData(cop, "thePlayerWhoWillBeOutOfKnast", false)
+        else
+            outputChatBox("Du wurdest um keine Erlaubnis gebeten", thePlayer, 255, 0, 0)
+        end
+    end
+end
+registerAcceptHandler("anwalt", accept_anwalt, {
+    requestedDataValues = {"anwaltWhoRequested", "thePlayerWhoWillBeOutOfKnast"}
+});
 

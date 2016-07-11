@@ -95,7 +95,7 @@ function factionManagementKickMember_func(nickname)
             vioSetElementData(player, "fraktion", 0)
             vioSetElementData(player, "fraktionsrang", 0)
 
-            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " aus der Fraktion geworfen.");
+            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " aus der Fraktion geworfen.", player, 255, 0, 0);
             showError(source, "Du hast " .. nickname .. " aus der Fraktion geworfen!");
 
             triggerClientEvent(source, "factionManagementMemberKick", source, nickname);
@@ -127,7 +127,7 @@ function factionManagementGiveRankMember_func(nickname, rank)
         if (vioGetElementData(player, "fraktion") == vioGetElementData(source, "fraktion")) then
             vioSetElementData(player, "fraktionsrang", rank)
 
-            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " auf Rang ".. rank .." gesetzt.");
+            outputChatBox("Du wurdest von " .. getPlayerName(source) .. " auf Rang ".. rank .." gesetzt.", player, 255, 0, 0);
             showError(source, "Du hast " .. nickname .. " auf Rang ".. rank .." gesetzt.");
 
             triggerClientEvent(source, "factionManagementMemberGiveRank", source, nickname, rank);

@@ -192,7 +192,7 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
         if (skill < 5) then
             if (vioGetElementData(thePlayer, skillPointsString) >= jobSetupTable[jobID][2][skill + 1]) then
                 vioSetElementData(thePlayer, skillString, skill + 1)
-                vioSetElementData(thePlayer, skillPointsString, skillPoints - jobSetupTable[jobID][2][skill])
+                vioSetElementData(thePlayer, skillPointsString, skillPoints - jobSetupTable[jobID][2][skill + 1])
                 outputChatBox(string.format("Du hast beim %s das nächste Skilllevel erreicht. Du erhälst jetzt mehr Gehalt!", jobSetupTable[jobID][8]), thePlayer, 255, 0, 0)
             end
         end

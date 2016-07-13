@@ -146,17 +146,22 @@
 			<script src="HELPSYSTEM/hilfeguis/faq/gui.lua" type="client" />
 			<script src="HELPSYSTEM/hilfeguis/faq/server.lua" type="server" />
 	<!-- ADMINSYSTEM -->
+		<script src="ADMINSYSTEM/dev/development_func.lua" type="server" />
+		<script src="ADMINSYSTEM/dev/dev_server_connect_control.lua" type="server" />
+
+		<script src="ADMINSYSTEM/systems/isadmin.lua" type="server" />
+		<script src="ADMINSYSTEM/systems/punishchecker.lua" type="server" />
+
+		<script src="ADMINSYSTEM/chat.lua" type="server" />
 		<script src="ADMINSYSTEM/console.lua" type="server" />
-		<script src="ADMINSYSTEM/isadmin.lua" type="shared" />
-		<script src="ADMINSYSTEM/punishchecker.lua" type="server" />
-		<script src="ADMINSYSTEM/support_mode.lua" type="server" />
-		<script src="ADMINSYSTEM/bansys.lua" type="server" />
-		<script src="ADMINSYSTEM/waffen.lua" type="server" />
-		<script src="ADMINSYSTEM/spec.lua" type="server" />
 		<script src="ADMINSYSTEM/fun.lua" type="server" />
 		<script src="ADMINSYSTEM/fun_client.lua" type="client" />
-		<script src="ADMINSYSTEM/development_func.lua" type="server" />		
-		<script src="ADMINSYSTEM/dev_server_connect_control.lua" type="server" />
+		<script src="ADMINSYSTEM/general.lua" type="server" />
+		<script src="ADMINSYSTEM/moderating.lua" type="server" />
+		<script src="ADMINSYSTEM/servermanagement.lua" type="server" />
+		<script src="ADMINSYSTEM/spec.lua" type="server" />
+		<script src="ADMINSYSTEM/teleports.lua" type="server" />
+		<script src="ADMINSYSTEM/waffen.lua" type="server" />
 
 	<!-- Enviroment -->
 		<script src="ENVIRO/chat.lua" type="server" />		

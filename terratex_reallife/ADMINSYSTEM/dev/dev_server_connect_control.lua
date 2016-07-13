@@ -33,12 +33,3 @@ function onPlayerDevServerConnect(nickname)
     end
 end
 addEventHandler("onPlayerConnect", getRootElement(), onPlayerDevServerConnect)
-
-
-
-
-
-
-
-
-

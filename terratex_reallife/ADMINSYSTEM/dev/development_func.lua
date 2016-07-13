@@ -191,13 +191,19 @@ function dim_func(thePlayer, cmd, int)
 end
 addCommandHandler("dim", dim_func, false, false)
 
+function save_all_user(thePlayer)
+    if (isConsole(thePlayer) or isAdminLevel(thePlayer, 4)) then
+        for theKey, thePlayers in ipairs(getElementsByType("player")) do
+            triggerEvent("SaveMyData", thePlayers)
+        end
+    end
+end
+addCommandHandler("sau", save_all_user, false, false)
 
+function int_func(thePlayer, command, int)
+    if (isAdminLevel(thePlayer, 1)) then
+        setElementInterior(thePlayer, tonumber(int))
+    end
+end
 
-
-
-
-
-
-
-
-
+addCommandHandler("int", int_func, false, false)

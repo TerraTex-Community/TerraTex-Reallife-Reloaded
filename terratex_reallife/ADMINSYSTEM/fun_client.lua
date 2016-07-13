@@ -55,17 +55,3 @@ function devMode()
 	end
 end
 addCommandHandler( "devmode", devMode, false, false)
-
-
-
-
-
-
-
-
-
-
-
-
-
-

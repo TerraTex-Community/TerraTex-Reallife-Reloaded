@@ -1,5 +1,9 @@
 ####11.07.2016
 --------------
+* [CODE-CHANGE] #15 Split bansys.lua in multiple files
+
+####11.07.2016
+--------------
 * [ADDED] #67 If a married couple get a child it will have a real name and will cost money on paydays (random years => one year = one PayDay)
 * [ADDED] #67 #66 Add some food to sex effect
 * [CHANGED] #63 Loan and needed Skillpoints of sea cleaner

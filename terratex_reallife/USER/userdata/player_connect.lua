@@ -1,5 +1,8 @@
 local sonderzeichen = { " ", "ä", "ü", "ö", ",", "#", "'", "+", "*", "~", ":", ";", "=", "}", "?", "\\", "{", "&", "/", "§", "\"", "!", "°", "@", "|", "`", "´" }
-
+function nickChangeHandler(oldNick, newNick)
+    cancelEvent()
+end
+addEventHandler("onPlayerChangeNick", getRootElement(), nickChangeHandler)
 -- error bei . ^ und $
 privVeh = {}
 

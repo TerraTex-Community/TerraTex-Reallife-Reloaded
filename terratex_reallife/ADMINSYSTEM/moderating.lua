@@ -52,7 +52,11 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
             local pname = getPlayerName(banmeele)
 
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
+            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
             kickPlayer(banmeele, reasons)
+
+        else
+            outputDebugString("Error: Der Spieler existiert nicht!")
         end
 
     else
@@ -94,7 +98,11 @@ function ban_func(thePlayer, command, theBeBanned, ...)
                 Admin = "Console"
             });
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons, getRootElement(), 255, 0, 0)
+            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons, getRootElement(), 255, 0, 0)
             kickPlayer(banmeele, reasons)
+
+        else
+            outputDebugString("Error: Der Spieler existiert nicht!")
         end
     else
         if (isAdminLevel(thePlayer, 1)) then

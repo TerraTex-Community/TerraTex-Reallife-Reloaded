@@ -1,5 +1,6 @@
-####11.07.2016
+####13.07.2016
 --------------
+* [FIXED] #73 Bug with old Drug and Mats GUI
 * [CODE-CHANGE] #15 Split bansys.lua in multiple files
 
 ####11.07.2016

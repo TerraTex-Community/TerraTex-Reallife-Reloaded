@@ -61,6 +61,8 @@ function closeDrogenDealerGUI()
 	guiSetVisible(DrogenDealerGUI_Window[1] ,false)
 	showCursor(false)
 end
+addEvent("closeDrogenJobGui",true)
+addEventHandler("closeDrogenJobGui",getRootElement(),closeDrogenDealerGUI)
 
 function showDrogenDealerGui(aktualprice)
 	guiSetText(DrogenDealerGUI_Label[3],aktualprice)
@@ -69,14 +71,3 @@ function showDrogenDealerGui(aktualprice)
 end
 addEvent("openDrogenJobGui",true)
 addEventHandler("openDrogenJobGui",getRootElement(),showDrogenDealerGui)
-
-
-
-
-
-
-
-
-
-
-

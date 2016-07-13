@@ -22,6 +22,13 @@ end
 addEventHandler("onPlayerClick", getRootElement(), cklickOnDrogenHouse)
 
 function wantBuyDrogenDealer_drogen_func(menge)
+    local dis = getDistanceBetweenPoints3D (getElementPosition(source), getElementPosition(drogenJobHausElement));
+    if (dis > 10) then
+        triggerClientEvent(source, "closeDrogenJobGui", source);
+        return;
+    end
+
+
     local price = menge * serversettings["drogenpreis"]
     if (getPlayerMoney(source) < price) then
         showError(source, "Du hast nicht genügend Geld dabei!")
@@ -33,7 +40,7 @@ function wantBuyDrogenDealer_drogen_func(menge)
         for theKey, thePlayer in ipairs(getPlayersInTeam(team[2])) do
             outputChatBox("Hauptdrogenkurier: Jemand hat Drogen gekauft!", thePlayer, 255, 0, 0)
         end
-        serversettings["drogenpreis"] = serversettings["drogenpreis"] + (0.002 * menge)
+        serversettings["drogenpreis"] = serversettings["drogenpreis"] + (0.01 * menge)
         showError(source, "Du hast erfolgreich die Drogen gekauft!")
     end
 end

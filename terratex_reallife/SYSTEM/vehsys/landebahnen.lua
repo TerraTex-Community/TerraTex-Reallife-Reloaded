@@ -24,10 +24,10 @@ local blips = {
 }
 
 local names = {
-    lv = "Las Ventruas",
-    sf = "San Fierro",
-    ls = "Los Santos",
-    old = "Old Airport"
+    ["lv"] = "Las Ventruas",
+    ["sf"] = "San Fierro",
+    ["ls"] = "Los Santos",
+    ["old"] = "Old Airport"
 }
 
 local markerList = {
@@ -222,7 +222,7 @@ function flugMarkerHit(thePlayer)
                 local x, y, z = getElementPosition(theVehicle)
                 if (z < 400) then
                     if (not vioGetElementData(thePlayer, "isInLanding")) then
-                        sendFlugChatMessage("Flugkontrolle", "Der Pilot " .. getPlayerName(source) .. " befindet sich im Anflugskorridor auf " .. names[vioGetElementData(source, "landebahn")] )
+                        sendFlugChatMessage("Flugkontrolle", "Der Pilot " .. getPlayerName(thePlayer) .. " befindet sich im Anflugskorridor auf " .. names[vioGetElementData(source, "landebahn")] )
                         setTimer(isPlayerStillInLanding, 2000, 1, thePlayer)
                     end
                     vioGetElementData(thePlayer, "isInLanding", vioGetElementData(source, "landebahn"))

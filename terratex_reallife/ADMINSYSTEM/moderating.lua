@@ -52,7 +52,7 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
             local pname = getPlayerName(banmeele)
 
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
-            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
+            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gekickt. Grund " .. reasons)
             kickPlayer(banmeele, reasons)
 
         else
@@ -98,7 +98,7 @@ function ban_func(thePlayer, command, theBeBanned, ...)
                 Admin = "Console"
             });
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons, getRootElement(), 255, 0, 0)
-            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons, getRootElement(), 255, 0, 0)
+            outputDebugString("Der Spieler " .. pname .. " wurde von der Console gebannt. Grund: " .. reasons)
             kickPlayer(banmeele, reasons)
 
         else

@@ -103,7 +103,7 @@ function hitflyerserEndMarker(theHitElement)
                         if (vioGetElementData(driver, "heliLic") == 1) and (vioGetElementData(driver, "planeLic") == 1) then
                             local thePlayer = driver
 
-                            local message = "Der Pilot " .. getPlayerName(driver) .. " (" .. getVehicleName(source);
+                            local message = "Der Pilot " .. getPlayerName(driver) .. " (" .. getVehicleName(theHitElement);
                             message = message .. ") hat sein Ziel Las Venturas erreicht.";
                             sendFlugChatMessage("Flugkontrolle", message)
 

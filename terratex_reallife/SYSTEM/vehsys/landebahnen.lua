@@ -244,10 +244,10 @@ function isPlayerStillInLanding(thePlayer)
         end
 
         if not isInMarker then
-            vioGetElementData(thePlayer, "isInLanding", false)
+            vioSetElementData(thePlayer, "isInLanding", false)
         end
     else
-        vioGetElementData(thePlayer, "isInLanding", false)
+        vioSetElementData(thePlayer, "isInLanding", false)
     end
 end
 

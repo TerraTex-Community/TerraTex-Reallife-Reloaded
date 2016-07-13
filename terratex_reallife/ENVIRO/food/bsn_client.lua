@@ -39,6 +39,7 @@ function showBMenuInfo()
         local x, y, z = getElementPosition(getLocalPlayer())
         if (30 < getDistanceBetweenPoints3D(x, y, z, getElementPosition(bMenuObject))) then
             bMenuShowing = false;
+            bmenuclose_func();
         end
 
         local scx, scy = guiGetScreenSize()

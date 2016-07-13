@@ -42,7 +42,8 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), re
 addEvent("buyWaffenDealer_Event", true)
 function buyWaffenDealer_func(anzahl)
 
-    local dis = getDistanceBetweenPoints3D(getElementPosition(source), getElementPosition(wdealerPed));
+    local x,y,z = getElementPosition(source)
+    local dis = getDistanceBetweenPoints3D (x,y,z, getElementPosition(wdealerPed));
     if (dis > 10) then
         triggerClientEvent(source, "closeWeaponGui", source);
         return;

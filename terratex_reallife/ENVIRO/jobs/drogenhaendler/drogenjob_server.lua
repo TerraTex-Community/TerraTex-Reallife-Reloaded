@@ -22,7 +22,8 @@ end
 addEventHandler("onPlayerClick", getRootElement(), cklickOnDrogenHouse)
 
 function wantBuyDrogenDealer_drogen_func(menge)
-    local dis = getDistanceBetweenPoints3D (getElementPosition(source), getElementPosition(drogenJobHausElement));
+    local x,y,z = getElementPosition(source)
+    local dis = getDistanceBetweenPoints3D (x,y,z, getElementPosition(drogenJobHausElement));
     if (dis > 10) then
         triggerClientEvent(source, "closeDrogenJobGui", source);
         return;

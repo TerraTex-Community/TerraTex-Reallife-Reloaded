@@ -61,8 +61,6 @@ function unfreezeDriveIn(player, vehicle)
     outputChatBox("Du hast aufgegessen!", player, 255, 0, 0)
 end
 
-
-
 function createDriveInMarker(thePlayer, cmd, typ)
     if (isAdminLevel(thePlayer, 4)) then
         local x, y, z = getElementPosition(thePlayer)
@@ -82,11 +80,4 @@ function createDriveInMarker(thePlayer, cmd, typ)
 end
 
 addCommandHandler("adddrivein", createDriveInMarker, false, false)
-
-
-
-
-
-
-
 

@@ -1,5 +1,6 @@
 ####13.07.2016
 --------------
+* [ADDED] #75 In /fc are now messages send by "Flugkontrolle" for landing and starting planes / helicopters
 * [FIXED] #73 Bug with old Drug and Mats GUI
 * [CODE-CHANGE] #15 Split bansys.lua in multiple files
 

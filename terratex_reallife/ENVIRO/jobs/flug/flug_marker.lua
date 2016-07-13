@@ -78,7 +78,6 @@ function givePlayerflyersAuftrag_func(auftrag)
             local message = "Der Pilot " .. getPlayerName(source) .."(" .. getVehicleName(vehicle) ..")";
             message = message .. " startet einen Flug von Las Venturas nach " .. tagetName;
             sendFlugChatMessage("Flugkontrolle", message)
-            sendFlugChatMessage("Flugkontrolle", "Flugzeug: " .. getVehicleName(vehicle));
         else
             outputChatBox("Du kannst die Sicherheiten nicht bezahlen!", source, 255, 0, 0)
         end

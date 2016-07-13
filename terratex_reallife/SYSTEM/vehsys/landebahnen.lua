@@ -222,7 +222,7 @@ function flugMarkerHit(thePlayer)
                 local x, y, z = getElementPosition(theVehicle)
                 if (z < 400) then
                     if (not vioGetElementData(thePlayer, "isInLanding")) then
-                        sendFlugChatMessage("Flugkontrolle", "Der Pilot " .. getPlayerName() .. " befindet sich im Anflugskorridor auf " .. names[vioGetElementData(source, "landebahn")] )
+                        sendFlugChatMessage("Flugkontrolle", "Der Pilot " .. getPlayerName(source) .. " befindet sich im Anflugskorridor auf " .. names[vioGetElementData(source, "landebahn")] )
                         setTimer(isPlayerStillInLanding, 2000, 1, thePlayer)
                     end
                     vioGetElementData(thePlayer, "isInLanding", vioGetElementData(source, "landebahn"))

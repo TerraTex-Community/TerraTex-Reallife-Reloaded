@@ -149,7 +149,7 @@
 		<script src="ADMINSYSTEM/dev/development_func.lua" type="server" />
 		<script src="ADMINSYSTEM/dev/dev_server_connect_control.lua" type="server" />
 
-		<script src="ADMINSYSTEM/systems/isadmin.lua" type="server" />
+		<script src="ADMINSYSTEM/systems/isadmin.lua" type="shared" />
 		<script src="ADMINSYSTEM/systems/punishchecker.lua" type="server" />
 
 		<script src="ADMINSYSTEM/chat.lua" type="server" />

@@ -46,7 +46,7 @@ function showCMenuInfo()
         dxDrawText("           Links-Zurück", 3, scy / 2, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText("           Rechts-Weiter", 3, scy / 2 + 15, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText(string.format("Art: %s", cMenu[showCMenu][1]), 3, scy / 2 + 30, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
-        local preis = bMenu[showCMenu][3]
+        local preis = cMenu[showCMenu][3]
         if (isWetterEventID == 1) then
             preis = preis * 3
         elseif (isWetterEventID == 2) then

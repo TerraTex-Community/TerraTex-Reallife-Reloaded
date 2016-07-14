@@ -40,6 +40,9 @@ function Haus:constructor(ID, hx, hy, hz, irid, preis, miete, kasse, city, qm, s
 
     --Löschung nicht Handelbarer Häuser
     if not (self.besitzer) then
+        self.irid = 0;
+        MySql.helper.update("objects_houses", {IRID = 0}, {ID = self.ID});
+
         if (self.city == 3) then
             self.besitzer = 'Nicht verkäuflich'
             save_log("hauscanbedeleted", tostring(self.ID))

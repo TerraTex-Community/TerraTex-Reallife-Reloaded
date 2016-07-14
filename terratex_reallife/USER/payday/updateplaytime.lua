@@ -311,7 +311,7 @@ function payday(thePlayer)
             end
 
             if (isinrent > 0) then
-                --- Kosten der Mieter: 50$+preis/1000 aber nicht mehr als 300$
+                --- Kosten der Mieter: 50$+preis/1000 aber nicht mehr als 500$
                 local abzug = 50 + (haus:getPreis() / 1000);
 
                 if (abzug < 501) then

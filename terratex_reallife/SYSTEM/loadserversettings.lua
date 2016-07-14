@@ -66,12 +66,6 @@ function loadSettingsFromDB()
         if (timestamp - (22 * 60 * 60) > lastDailyReset) then
             MySql.helper.update("data_settings", {Wert = timestamp}, {Name = 'DailyReset'});
             dbExec(MySql._connection, "UPDATE user_vehicles SET fahrzeugalter=fahrzeugalter+1");
-            MySql.helper.delete("user_vehicles", {
-                SpawnX = 0,
-                SpawnY = 0,
-                SpawnZ = 0,
-                fahrzeugalter = {">", 3}
-            });
 
             dbExec(MySql._connection, "UPDATE user SET AktiveDays=AktiveDays+1");
             dbExec(MySql._connection, "UPDATE user_data SET AktiveDays=AktiveDays+1");

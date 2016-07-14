@@ -11,7 +11,7 @@ function sex_func(thePlayer, cmd, toPlayerName)
                         local p1x, p1y, p1z = getElementPosition(thePlayer)
                         local p2x, p2y, p2z = getElementPosition(toPlayer)
                         if (getDistanceBetweenPoints3D(p1x, p1y, p1z, p2x, p2y, p2z) < 5) then
-                            setElementData(toPlayer, "sexAngebotVon", thePlayer)
+                            vioSetElementData(toPlayer, "sexAngebotVon", thePlayer)
                             outputChatBox(string.format("Die Nutte %s hat dir Sex angeboten! (annehmen mit '/accept sex')", getPlayerName(thePlayer)), toPlayer)
                             outputChatBox(string.format("Du hast dem Spieler %s Sex angeboten!", getPlayerName(toPlayer)), thePlayer)
                         else
@@ -25,7 +25,7 @@ function sex_func(thePlayer, cmd, toPlayerName)
                         local p1x, p1y, p1z = getElementPosition(thePlayer)
                         local p2x, p2y, p2z = getElementPosition(toPlayer)
                         if (getDistanceBetweenPoints3D(p1x, p1y, p1z, p2x, p2y, p2z) < 5) then
-                            setElementData(toPlayer, "sexAngebotVon", thePlayer)
+                            vioSetElementData(toPlayer, "sexAngebotVon", thePlayer)
                             outputChatBox(string.format("Dein Ehepartner %s hat dir Sex angeboten! (annehmen mit '/accept sex')", getPlayerName(thePlayer)), toPlayer)
                             outputChatBox(string.format("Du hast deinem Ehepartner %s Sex angeboten!", getPlayerName(toPlayer)), thePlayer)
                         else

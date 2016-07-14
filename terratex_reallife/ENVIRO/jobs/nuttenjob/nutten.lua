@@ -73,7 +73,7 @@ function accept_sex(thePlayer)
                     local p1x, p1y, p1z = getElementPosition(thePlayer)
                     local p2x, p2y, p2z = getElementPosition(toPlayer)
                     if (getDistanceBetweenPoints3D(p1x, p1y, p1z, p2x, p2y, p2z) < 5) then
-                        setElementData(thePlayer, "sexAngebotVon", false)
+                        vioSetElementData(thePlayer, "sexAngebotVon", false)
                         local usedKondom = false
                         if (vioGetElementData(thePlayer, "Kondome") > 0) then
                             vioSetElementData(thePlayer, "Kondome", vioGetElementData(thePlayer, "Kondome") - 1)

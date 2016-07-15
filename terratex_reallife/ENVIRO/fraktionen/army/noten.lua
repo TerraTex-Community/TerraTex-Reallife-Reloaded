@@ -189,32 +189,56 @@ addCommandHandler("dtest", dTest_Army, false, false)
  ped= -2437.572265625 -1911.4130859375 304.90051269531,323.736328125 -- i carspawner
 ]]
 
-function mount_spawner(thePlayer)
-    if (vioGetElementData(thePlayer, "fraktion") == 7 and vioGetElementData(thePlayer, "fraktionsrang") > 2) or (isBeamter(thePlayer) and vioGetElementData(thePlayer, "fraktionsrang") > 4) then
-        local hasPortedCar = false
-        for key, theVehicle in pairs(frakselfcars[7]) do
-            if not (isAnyOneInVehicle(theVehicle)) and not (hasPortedCar) and getElementModel(theVehicle) == 470 then
-                hasPortedCar = true
-                setVehicleOverrideLights(theVehicle, 1)
-                setVehicleEngineState(theVehicle, false)
-                respawnVehicle(theVehicle)
-                setElementPosition(theVehicle, -2437.35546875, -1914.439453125, 304.85797119141)
-                setElementRotation(theVehicle, 3.1805419921875, 1.0272216796875, 270.6591796875)
-                if (vioGetElementData(theVehicle, "frakid") ~= 0) then
-                    if (frakkasse[vioGetElementData(theVehicle, "frakid")] >= (100 - vioGetElementData(theVehicle, "tank")) * 6) then
-                        frakkasse[vioGetElementData(theVehicle, "frakid")] = frakkasse[vioGetElementData(theVehicle, "frakid")] - (100 - vioGetElementData(theVehicle, "tank")) * 6
-                        changeBizKasse(7, (100 - vioGetElementData(theVehicle, "tank")) * 6, "Bezinkauf")
-                        vioSetElementData(theVehicle, "tank", 100)
-                    end
-                else
-                    vioSetElementData(theVehicle, "tank", 100)
-                end
-            end
-        end
+
+function name_spawner(thePlayer, cmd, place)
+    if (not place) then
+		place = 0
+	end
+	if (vioGetElementData(thePlayer, "fraktion") == 7 and vioGetElementData(thePlayer, "fraktionsrang") > 2) or (isBeamter(thePlayer) and vioGetElementData(thePlayer, "fraktionsrang") > 4) then
+		local toTeleport = {}
+		local n
+		if(tonumber(place) == 0 ) then
+			n = 0
+		else
+			n = 3
+		end
+		for i = 0, n do
+			if(i == 0 and n == 3) then
+				toTeleport = {5, 427, -277, -2179, 30, 112}--[[Enforcer]]
+			elseif(i == 1 and n == 3) then
+				toTeleport = {5, 601, -274, -2185, 29, 112}--[[S.W.A.T]]
+			elseif(i == 2 and n == 3) then
+				toTeleport = {5, 415, -272, -2190, 29, 112}--[[Cheeter]]
+			elseif(i ==3 and n == 3) then
+				toTeleport = {1, 599, -271, -2194, 29, 112}--[[Police Ranger]]
+			else
+				toTeleport = {1, 596, -2311, -1649, 484, 206}--[[LSPD]]
+			end
+			local hasPortedCar = false
+			for key, theVehicle in pairs(frakselfcars[toTeleport[1]]) do
+				if not (isAnyOneInVehicle(theVehicle)) and not (hasPortedCar) and getElementModel(theVehicle) == toTeleport[2] then
+					hasPortedCar = true
+					setVehicleOverrideLights(theVehicle, 1)
+					setVehicleEngineState(theVehicle, false)
+					respawnVehicle(theVehicle)
+					setElementPosition(theVehicle, toTeleport[3], toTeleport[4], toTeleport[5])
+					setElementRotation(theVehicle, 0, 0, toTeleport[6])
+					if (vioGetElementData(theVehicle, "frakid") ~= 0) then
+						if (frakkasse[vioGetElementData(theVehicle, "frakid")] >= (100 - vioGetElementData(theVehicle, "tank")) * 6) then
+							frakkasse[vioGetElementData(theVehicle, "frakid")] = frakkasse[vioGetElementData(theVehicle, "frakid")] - (100 - vioGetElementData(theVehicle, "tank")) * 6
+							changeBizKasse(7, (100 - vioGetElementData(theVehicle, "tank")) * 6, "Bezinkauf")
+							vioSetElementData(theVehicle, "tank", 100)
+						end
+					else
+						vioSetElementData(theVehicle, "tank", 100)
+					end
+				end
+			end
+		end
     end
 end
 
-addCommandHandler("gnv", mount_spawner, false, false)
+addCommandHandler("gnv", name_spawner, false, false)
 
 createPickup(179.89999389648, 2002.599975585, -23.700000762939, 3, 1239, 5000)
 createPickup(192.39999389648, 1931.5, 17.5, 3, 1239, 5000)

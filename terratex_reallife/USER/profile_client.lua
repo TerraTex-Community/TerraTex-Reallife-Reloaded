@@ -21,14 +21,11 @@ function startProfileUI()
     setGuiCenter(profileWindow);
 
     local browser = guiCreateBrowser(0, 15, 525, 475, true, false, false, profileWindow);
-    showCursor(true);
-
 
     addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
         function()
             setBrowserAjaxHandler(source, "ajax_profile_close.html", close_profile)
             loadBrowserURL(source, "http://mta/local/UI/Profile.html");
-            triggerServerEvent("getProfileData", source);
         end)
 
     addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
@@ -36,6 +33,7 @@ function startProfileUI()
             showCursor(true, true);
             toggleAllControls(false, true, true);
             profileBrowser = source;
+            triggerServerEvent("getProfileData", getLocalPlayer());
         end)
 end
 addCommandHandler("profile", startProfileUI, false, false);
@@ -47,7 +45,8 @@ function close_profile()
 end
 
 function sendProfileData_func(data)
-    executeBrowserJavascript(profileBrowser, "setProfileData('" .. data.email.. "','" .. data.birthday .. "',"..tostring(data.vacation) .. ");");
+    local datastring = "setProfileData('" .. data.email.. "','" .. data.birthday .. "',"..tostring(data.vacation) .. ");";
+    executeBrowserJavascript(profileBrowser, datastring );
 end
 addEvent("sendProfileData", true);
 addEventHandler("sendProfileData", getRootElement(), sendProfileData_func);

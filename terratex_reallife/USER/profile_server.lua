@@ -19,9 +19,6 @@ function getProfileData_func()
         local endPart = string.sub(email, start);
         local startPart = string.sub(email, 0, start - 1);
         local middle = string.sub(email, 4, start - 1);
-        print(endPart);
-        print(startPart);
-        print(middle);
 
         middle = string.gsub(middle, ".", "*");
 

@@ -72,11 +72,11 @@
         $("#email").val(email);
         $("#birthday").val(birthday);
         if (vacationDays) {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
+            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
             $("#vacation_disabled u").html(vacationDays);
             $(".vacationmode").attr("disabled", "disabled");
         } else {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
+            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
             $(".vacationmode").attr("disabled", false);
         }
     }

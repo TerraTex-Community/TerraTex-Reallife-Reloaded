@@ -47,7 +47,8 @@ function profileChangePassword_func(oldPassword, newPassword)
     local data = MySql.helper.getSync("user", {"Passwort", "Salt"}, {Nickname = playerName});
     data = data[1];
 
-    local pw = saltdb .. oldPassword
+
+    local pw = data.Salt .. oldPassword
     if (config["password_hash"] == "md5") then
         pw = md5(pw)
     elseif (config["password_hash"] == "osha256") then
@@ -59,15 +60,15 @@ function profileChangePassword_func(oldPassword, newPassword)
     end
 
     if (pw == data.Passwort) then
-        local newpw = saltdb .. newPassword
+        local newpw = data.Salt .. newPassword
         if (config["password_hash"] == "md5") then
-            newpw = md5(pw)
+            newpw = md5(newpw)
         elseif (config["password_hash"] == "osha256") then
-            newpw = sha256(pw)
+            newpw = sha256(newpw)
         elseif (config["password_hash"] == "sha256") then
-            newpw = hash("sha256", pw)
+            newpw = hash("sha256", newpw)
         else
-            newpw = hash("sha512", pw)
+            newpw = hash("sha512", newpw)
         end
 
         MySql.helper.update("user", {Passwort = newpw}, {Nickname = playerName});
@@ -79,3 +80,4 @@ function profileChangePassword_func(oldPassword, newPassword)
 end
 addEvent("profileChangePassword", true);
 addEventHandler("profileChangePassword", getRootElement(), profileChangePassword_func);
+

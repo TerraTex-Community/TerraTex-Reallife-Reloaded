@@ -10,6 +10,8 @@
 </head>
 <body id="Profile">
 <div class="container-fluid">
+
+    <button type="button" class="btn btn-danger closeBtn btn-fullwidth">schließen</button>
     <div class="card-block">
         <fieldset class="form-group">
             <label for="oldpassword">Altes Password</label>
@@ -53,9 +55,11 @@
                 </ul>
             </label>
             <br/>
-            <button type="button" id="vacationmode" class="btn btn-primary vacationmode">Urlaubsmodus aktivieren!</button>
+            <button type="button" id="vacationmode" class="btn btn-primary vacationmode" disabled>Urlaubsmodus aktivieren!</button>
+            <span id="vacation_disabled" class="hidden-xs-up"> Kann noch <u>30</u> Tage nicht aktiviert werden.</span>
         </fieldset>
     </div>
+    <button type="button" class="btn btn-danger closeBtn btn-fullwidth">schließen</button>
 
 </div>
 <script>

@@ -41,3 +41,41 @@ function getProfileData_func()
 end
 addEvent("getProfileData", true);
 addEventHandler("getProfileData", getRootElement(), getProfileData_func);
+
+function profileChangePassword_func(oldPassword, newPassword)
+    local playerName = getPlayerName(source);
+    local data = MySql.helper.getSync("user", {"Passwort", "Salt"}, {Nickname = playerName});
+    data = data[1];
+
+    local pw = saltdb .. oldPassword
+    if (config["password_hash"] == "md5") then
+        pw = md5(pw)
+    elseif (config["password_hash"] == "osha256") then
+        pw = sha256(pw)
+    elseif (config["password_hash"] == "sha256") then
+        pw = hash("sha256", pw)
+    else
+        pw = hash("sha512", pw)
+    end
+
+    if (pw == data.Passwort) then
+        local newpw = saltdb .. newPassword
+        if (config["password_hash"] == "md5") then
+            newpw = md5(pw)
+        elseif (config["password_hash"] == "osha256") then
+            newpw = sha256(pw)
+        elseif (config["password_hash"] == "sha256") then
+            newpw = hash("sha256", pw)
+        else
+            newpw = hash("sha512", pw)
+        end
+
+        MySql.helper.update("user", {Passwort = newpw}, {Nickname = playerName});
+        showError(source, "Das Passwort wurde erfolgreich geändert!");
+        triggerClientEvent(source, "cleanPasswordFields", source);
+    else
+        showError(source, "Das Passwort ist falsch.");
+    end
+end
+addEvent("profileChangePassword", true);
+addEventHandler("profileChangePassword", getRootElement(), profileChangePassword_func);

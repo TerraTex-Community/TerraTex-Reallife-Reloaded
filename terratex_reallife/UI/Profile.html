@@ -64,6 +64,16 @@
 </div>
 <script>
     $(document).ready(function () {
+        $(".profile").click(function () {
+            $.ajax("http://mta/local/ajax_profile_passwordchange.html", {
+                data: {
+                    "oldPassword": $("#oldpassword").val(),
+                    "newPassword": $("#newpassword").val(),
+                    "newPasswordWdh": $("#newpasswordwdh").val()
+                }
+            })
+        });
+
         $(".closeBtn").click(function () {
             $.ajax("http://mta/local/ajax_profile_close.html");
         });

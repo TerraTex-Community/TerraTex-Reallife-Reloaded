@@ -25,6 +25,7 @@ function startProfileUI()
     addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
         function()
             setBrowserAjaxHandler(source, "ajax_profile_close.html", close_profile)
+            setBrowserAjaxHandler(source, "ajax_profile_passwordchange.html", change_password)
             loadBrowserURL(source, "http://mta/local/UI/Profile.html");
         end)
 
@@ -37,6 +38,32 @@ function startProfileUI()
         end)
 end
 addCommandHandler("profile", startProfileUI, false, false);
+
+function change_password(get, post)
+    if (get) then
+        if (get.oldPassword and get.newPassword and get.newPasswordWdh) then
+            if (get.oldPassword ~= "" and get.newPassword ~= "" and get.newPasswordWdh ~= "") then
+                if (get.newPassword == get.newPasswordWdh)then
+                    triggerServerEvent("profileChangePassword", getLocalPlayer(), get.oldPassword, get.newPassword);
+                else
+                    showError(getLocalPlayer(), "Die neuen Passwörter stimmen nicht überein!");
+                end
+            else
+                showError(getLocalPlayer(), "Du hast die Felder nicht vollständig ausgefüllt!");
+            end
+        else
+            showError(getLocalPlayer(), "Du hast die Felder nicht vollständig ausgefüllt!");
+        end
+    end
+end
+
+function cleanPasswordFields_func()
+    executeBrowserJavascript(profileBrowser, "$('#oldpassword').val('');" );
+    executeBrowserJavascript(profileBrowser, "$('#newpassword').val('');" );
+    executeBrowserJavascript(profileBrowser, "$('#newpasswordwdh').val('');" );
+end
+addEvent("cleanPasswordFields", true);
+addEventHandler("cleanPasswordFields", getRootElement(), cleanPasswordFields_func);
 
 function close_profile()
     showCursor(false);

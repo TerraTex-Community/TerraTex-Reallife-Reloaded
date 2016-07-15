@@ -191,7 +191,6 @@ addCommandHandler("dtest", dTest_Army, false, false)
 
 
 function name_spawner(thePlayer, cmd, place)
-	outputChatBox("gnv", thePlayer)
     if (not place) then
 		place = 0
 	end
@@ -224,7 +223,6 @@ function name_spawner(thePlayer, cmd, place)
 					respawnVehicle(theVehicle)
 					setElementPosition(theVehicle, toTeleport[3], toTeleport[4], toTeleport[5])
 					setElementRotation(theVehicle, 0, 0, toTeleport[6])
-					outputChatBox("do", thePlayer)
 					if (vioGetElementData(theVehicle, "frakid") ~= 0) then
 						if (frakkasse[vioGetElementData(theVehicle, "frakid")] >= (100 - vioGetElementData(theVehicle, "tank")) * 6) then
 							frakkasse[vioGetElementData(theVehicle, "frakid")] = frakkasse[vioGetElementData(theVehicle, "frakid")] - (100 - vioGetElementData(theVehicle, "tank")) * 6

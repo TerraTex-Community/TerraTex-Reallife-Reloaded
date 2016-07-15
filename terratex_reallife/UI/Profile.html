@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="styles/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="styles/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/css/custom/custom.css">
+    <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
+</head>
+<body id="Profile">
+<div class="container-fluid">
+    <div class="card-block">
+        <fieldset class="form-group">
+            <label for="oldpassword">Altes Password</label>
+            <input type="password" class="form-control" id="oldpassword" placeholder="Password" required>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="newpassword">Neues Password</label>
+            <input type="password" class="form-control" id="newpassword" placeholder="Password" required>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="newpasswordwdh">Neues Password Wiederholung (zur Bestätigung)</label>
+            <input type="password" class="form-control" id="newpasswordwdh"
+                   placeholder="Password Wiederholung (zur Bestätigung)" required>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" class="form-control disabled" id="email" disabled>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="birthday">Geburtstag</label>
+            <input type="text" class="form-control disabled" id="birthday" disabled>
+        </fieldset>
+
+        <button type="button" class="btn btn-primary profile">Änderungen speichern!</button>
+
+    </div><br/>
+
+    <div class="card-header">
+        <h5>Urlaubsmodus</h5>
+    </div>
+    <div class="card-block">
+
+        <fieldset class="form-group">
+            <label for="vacationmode">
+                <b>Hinwiese</b>: <br/>
+                <ul>
+                    <li>Der Urlaubsmodus ist 30 Tage aktiv.</li>
+                    <li>Der Urlaubsmodus kann nach seinem Ende 30 Tage nicht aktiviert werden.</li>
+                    <li>Nach Aktivieren des Urlaubsmodus wirst du automatisch gekickt.</li>
+                    <li>Der Urlaubsmodus wird automatisch beendet, sobald du wieder connectest.</li>
+                </ul>
+            </label>
+            <br/>
+            <button type="button" id="vacationmode" class="btn btn-primary vacationmode">Urlaubsmodus aktivieren!</button>
+        </fieldset>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+
+        });
+    });
+</script>
+
+
+</body>
+</html>

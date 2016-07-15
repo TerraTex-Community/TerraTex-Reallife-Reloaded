@@ -26,6 +26,7 @@ function startProfileUI()
         function()
             setBrowserAjaxHandler(source, "ajax_profile_close.html", close_profile)
             setBrowserAjaxHandler(source, "ajax_profile_passwordchange.html", change_password)
+            setBrowserAjaxHandler(source, "ajax_profile_set_vacation.html", urlaubsModus)
             loadBrowserURL(source, "http://mta/local/UI/Profile.html");
         end)
 
@@ -77,5 +78,9 @@ function sendProfileData_func(data)
 end
 addEvent("sendProfileData", true);
 addEventHandler("sendProfileData", getRootElement(), sendProfileData_func);
+
+function urlaubsModus()
+    triggerServerEvent("setVacationMode", getLocalPlayer())
+end
 
 

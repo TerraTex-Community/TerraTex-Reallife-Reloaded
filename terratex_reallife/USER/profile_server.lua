@@ -32,7 +32,7 @@ function getProfileData_func()
 
     local time = getRealTime();
     if (time.timestamp < userdata.Urlaub_Until) then
-        polishedData.vacation = (time.timestamp - userdata.Urlaub_Until) / 60 / 60 / 24;
+        polishedData.vacation = math.round((userdata.Urlaub_Until - time.timestamp) / 60 / 60 / 24);
     else
         polishedData.vacation = false;
     end
@@ -46,7 +46,6 @@ function profileChangePassword_func(oldPassword, newPassword)
     local playerName = getPlayerName(source);
     local data = MySql.helper.getSync("user", {"Passwort", "Salt"}, {Nickname = playerName});
     data = data[1];
-
 
     local pw = data.Salt .. oldPassword
     if (config["password_hash"] == "md5") then
@@ -81,3 +80,16 @@ end
 addEvent("profileChangePassword", true);
 addEventHandler("profileChangePassword", getRootElement(), profileChangePassword_func);
 
+function setVacationMode_func()
+    local time = getRealTime();
+    local playerName = getPlayerName(source);
+    kickPlayer ( source, "Dein Urlaubsmodus ist nun 30 Tage aktiv oder bis zu deinem nächsten Connect." );
+
+    MySql.helper.update("user", {
+        Urlaub_Until = (time.timestamp + 60 * 60 * 24 * 60),
+        AktiveDays = "-30"
+    }, {Nickname = playerName});
+
+end
+addEvent("setVacationMode", true);
+addEventHandler("setVacationMode", getRootElement(), setVacationMode_func);

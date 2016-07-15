@@ -74,6 +74,10 @@
             })
         });
 
+        $("#vacationmode").click(function(){
+            $.ajax("http://mta/local/ajax_profile_set_vacation.html");
+        });
+
         $(".closeBtn").click(function () {
             $.ajax("http://mta/local/ajax_profile_close.html");
         });

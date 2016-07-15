@@ -267,6 +267,12 @@ function LoginPlayerData(nickname, pw)
         local serial = getPlayerSerial(source)
         MySql.helper.update("user", { Serial = serial }, { Nickname = nickname });
         MySql.helper.update("user", { IP = ip }, { Nickname = nickname });
+        local time = getRealTime();
+
+        MySql.helper.update("user", { Urlaub_Until = (time.timestamp + (60*60*24*30)) }, {
+            Nickname = nickname,
+            Urlaub_Until = {">", (time.timestamp + (60*60*24*30))}
+        });
 
         dbExec(MySql._connection, "UPDATE user SET LastLogin=LastUpdate WHERE Nickname = ?", nickname);
 

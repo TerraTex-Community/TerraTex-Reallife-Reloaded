@@ -64,10 +64,22 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("button").click(function () {
-
+        $(".closeBtn").click(function () {
+            $.ajax("http://mta/local/ajax_profile_close.html");
         });
     });
+    function setProfileData(email, birthday, vacationDays) {
+        $("#email").val(email);
+        $("#birthday").val(birthday);
+        if (vacationDays) {
+            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
+            $("#vacation_disabled u").html(vacationDays);
+            $(".vacationmode").attr("disabled", "disabled");
+        } else {
+            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
+            $(".vacationmode").attr("disabled", false);
+        }
+    }
 </script>
 
 

@@ -121,7 +121,8 @@
 
     <!-- USER -->
     <!-- userdata -->
-    <script src="USER/userdata/profile_client.lua" type="client"/>
+    <script src="USER/profile_client.lua" type="client"/>
+    <script src="USER/profile_server.lua" type="server"/>
 
     <script src="USER/userdata/login_client.lua" type="client"/>
     <script src="USER/userdata/login_background_client.lua" type="client"/>

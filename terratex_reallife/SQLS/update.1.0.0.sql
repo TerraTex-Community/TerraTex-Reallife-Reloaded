@@ -80,7 +80,7 @@ INSERT INTO `objects_teleport_markers` (`ID`, `x`, `y`, `z`, `interior`, `dimens
 (53, 2339.85, 2458.2, 14.9688, 0, 0, 'corona', '2.0', 54, NULL, NULL, NULL, NULL, 3, 0, NULL, 'LVPD E2 Outside'),
 (54, 288.849, 166.921, 1007.17, 3, 0, 'corona', '2.0', 53, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LVPD E2 Inside'),
 (55, 2268, 2449.29, 3.53125, 0, 0, 'corona', '2.0', 56, NULL, NULL, NULL, NULL, 3, 0, NULL, 'LVPD Garage to Knast'),
-(56, 196.204, 168.799, 1003.02, 3, 0, 'corona', '2.0', 55, NULL, NULL, NULL, 0, 0, NULL, 'onlypolice', 'LVPD Knast to Garage'),
+(56, 196.204, 168.799, 1003.02, 3, 0, 'corona', '2.0', 55, NULL, NULL, NULL, NULL, 0, 0, 'onlypolice', 'LVPD Knast to Garage'),
 (57, 2252.5, 2452.4, 39.1546, 0, 0, 'corona', '2.0', 58, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LVPD Garage to Roof'),
 (58, 2297.12, 2468.81, 10.8203, 0, 0, 'corona', '2.0', 57, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LVPD Roof to Garage');
 SET FOREIGN_KEY_CHECKS=1;

@@ -240,11 +240,12 @@ function isPlayerStillInLanding(thePlayer)
         for theKey, theMarker in ipairs (marks) do
             if (isElementWithinMarker ( getPedOccupiedVehicle(thePlayer), theMarker )) then
                 isInMarker = true;
-                setTimer(isPlayerStillInLanding, 2000, 1, thePlayer)
             end
         end
 
-        if not isInMarker then
+        if isInMarker then
+            setTimer(isPlayerStillInLanding, 2000, 1, thePlayer)
+        else
             vioSetElementData(thePlayer, "isInLanding", false)
         end
     else

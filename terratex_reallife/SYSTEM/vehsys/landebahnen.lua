@@ -240,6 +240,7 @@ function isPlayerStillInLanding(thePlayer)
         for theKey, theMarker in ipairs (marks) do
             if (isElementWithinMarker ( getPedOccupiedVehicle(thePlayer), theMarker )) then
                 isInMarker = true;
+                setTimer(isPlayerStillInLanding, 2000, 1, thePlayer)
             end
         end
 

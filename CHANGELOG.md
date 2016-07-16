@@ -1,3 +1,14 @@
+####15.07.2016 / 16.07.2016
+--------------
+* [CHANGED] some Jobprices
+* [CHANGED] Fuel Calculation
+* [FIXED] some Bugs related to tests of the name
+* [FIXED] number formating in /gold
+* [ADDED] /profile
+* [FIXED] rooms are resetet on restarts if there is no owner
+* [FIXED] Bugs in Vehiclesystem
+* [FIXED] some update SQLs
+
 ####13.07.2016
 --------------
 * [ADDED] #75 In /fc are now messages send by "Flugkontrolle" for landing and starting planes / helicopters

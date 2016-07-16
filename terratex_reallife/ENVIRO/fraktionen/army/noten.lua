@@ -517,7 +517,7 @@ function stopWTest()
         percent = math.round(killpoints / 2400 * 100)
     end
 
-    outputChatBox(string.format("Erreichte Punktzahl: %s / 2400 in Prozent: %s", math.round(killpoints, 1), percent, isTestingGuy))
+    outputChatBox(string.format("Erreichte Punktzahl: %s / 2400 in Prozent: %s", math.round(killpoints, 1), percent), isTestingGuy)
     outputChatBox(string.format("%ss Erreichte Punktzahl: %s / 2400 in Prozent: %s", getPlayerName(isTestingGuy), killpoints, percent), isTesterGuy)
     isRunningAnTest = false
     testIsRunIn = 10

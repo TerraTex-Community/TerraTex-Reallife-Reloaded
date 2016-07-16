@@ -122,7 +122,7 @@
         $("#buyGoldAmount").bind('input', function() {
             var val = $("#buyGoldAmount").val();
             if (parseInt(val) && parseInt(val) > 0) {
-                $("#buyprice").html(parseFloat(Math.round(parseInt(val) * parseFloat($("#pricePerGold").val()) * 100) / 100).toFixed(2));
+                $("#buyprice").html(parseFloat(Math.round(parseInt(val) * parseFloat($("#pricePerGold").val()) * 100) / 100).toLocaleString('en-US', {minimumFractionDigits: 2}));
             }
         });
 

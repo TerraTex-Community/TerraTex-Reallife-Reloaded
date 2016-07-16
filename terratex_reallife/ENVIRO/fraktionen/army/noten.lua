@@ -514,7 +514,7 @@ function stopWTest()
     elseif (math.round(killpoints / 2400 * 100, 1) > 100) then
         percent = 100
     else
-        percent = math.round(killpoints / 2300 * 100)
+        percent = math.round(killpoints / 2400 * 100)
     end
 
     outputChatBox(string.format("Erreichte Punktzahl: %s / 2400 in Prozent: %s", math.round(killpoints, 1), percent, isTestingGuy))
@@ -607,9 +607,7 @@ function onPedDamageCustom_func(attacker, weapon, bodypart, loss)
         end
     end
 end
-
 addEventHandler("onPedDamageCustom", getRootElement(), onPedDamageCustom_func)
-
 
 function goInTestRegion(player)
     local x, y, z = getElementPosition(player)
@@ -628,11 +626,4 @@ function goInTestRegion(player)
 end
 
 addCommandHandler("nOut", goInTestRegion, false, false)
-
-
-
-
-
-
-
 

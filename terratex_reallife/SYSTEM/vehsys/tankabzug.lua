@@ -57,8 +57,7 @@ function setNewTankVehicle(theVehicle)
                 local durchV = (speedx^2 + speedy^2 + speedz^2)^(0.5)
                 local calcV = durchV * 180;
 
-                -- local tankminus = (0.0000283956*calcV*calcV*calcV - 0.0000973513*calcV*calcV + 0.0000783812*calcV)/2000 + 0.002;
-                local tankminus = (0.0000010958 * calcV^2 + 0.018518519);
+                local tankminus = (0.0000035221 * calcV^2 + 0.023809524);
 
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")

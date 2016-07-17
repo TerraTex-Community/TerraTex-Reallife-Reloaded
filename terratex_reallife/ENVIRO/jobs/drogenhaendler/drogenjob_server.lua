@@ -41,7 +41,7 @@ function wantBuyDrogenDealer_drogen_func(menge)
         for theKey, thePlayer in ipairs(getPlayersInTeam(team[2])) do
             outputChatBox("Hauptdrogenkurier: Jemand hat Drogen gekauft!", thePlayer, 255, 0, 0)
         end
-        serversettings["drogenpreis"] = serversettings["drogenpreis"] + (0.01 * menge)
+        serversettings["drogenpreis"] = serversettings["drogenpreis"] + (0.02 * menge)
         showError(source, "Du hast erfolgreich die Drogen gekauft!")
     end
 end
@@ -49,8 +49,10 @@ addEvent("wantBuyDrogenDealer_drogen", true)
 addEventHandler("wantBuyDrogenDealer_drogen", getRootElement(), wantBuyDrogenDealer_drogen_func)
 
 function reduceDrogenPreis(timeshift)
-    if (serversettings["drogenpreis"] > 1) then
+    if (serversettings["drogenpreis"] > 20) then
         serversettings["drogenpreis"] = serversettings["drogenpreis"] - 0.02
+    else
+        serversettings["drogenpreis"] = 20
     end
     setTimer(reduceDrogenPreis, 1800000, 1)
 end

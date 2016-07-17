@@ -28,9 +28,12 @@ end
 addEventHandler("onPlayerClick", getRootElement(), clickonwdealer)
 
 function reduceWeaponPreis(timeshift)
-    if (serversettings["matspreis"] > 1) then
+    if (serversettings["matspreis"] > 0.5) then
         serversettings["matspreis"] = serversettings["matspreis"] - 0.15
+    else
+        serversettings["matspreis"] = 0.5
     end
+
     if (serversettings["matspreis"] > 5) then
         serversettings["matspreis"] = 5
     end

@@ -323,7 +323,7 @@ function frakdrogen_func(thePlayer, Command, money)
                                 frakdepot_log(frak, 2, mon, getPlayerName(thePlayer))
                             end
                         else
-                            if (vioGetElementData(thePlayer, "fraktionsrang") > 3) then
+                            if (vioGetElementData(thePlayer, "fraktionsrang") > 2) then
                                 mon = -mon
                                 if (frakdrogen[frak] < mon) then
                                     showError(thePlayer, "Soviel Drogen sind nicht in dem Fraktionsdrogendepot!")
@@ -333,7 +333,7 @@ function frakdrogen_func(thePlayer, Command, money)
                                     vioSetElementData(thePlayer, "drogen", vioGetElementData(thePlayer, "drogen") + mon)
                                 end
                             else
-                                showError(thePlayer, "Du benoetigst mindestens Rang 4 um Drogen zu entnehmen!")
+                                showError(thePlayer, "Du benoetigst mindestens Rang 3 um Drogen zu entnehmen!")
                             end
                         end
                     end

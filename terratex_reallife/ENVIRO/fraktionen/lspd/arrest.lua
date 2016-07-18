@@ -33,7 +33,7 @@ function StellenNow(thePlayer)
                 setElementModel(thePlayer, 62)
                 changePlayerMoney(thePlayer, -(2.00 * wanted * wanted), "sonstiges", "Knast mit Stellen beim Bot")
                 if (Kaution == 0) then Kaution = "keine" else Kaution = toprice(Kaution) end
-                outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", (wanted * 5), Kaution), thePlayer)
+                outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", (wanted * 7), Kaution), thePlayer)
                 outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)))
                 local rnd = math.floor(math.random(1, 4))
                 if rnd == 1 then

@@ -28,8 +28,8 @@ function StellenNow(thePlayer)
                     Kaution = wanted * 25000
                 end
 
-                vioSetElementData(thePlayer, "knastzeit", wanted * 7)
-                vioSetElementData(thePlayer, "lastknastzeit", wanted * 7)
+                vioSetElementData(thePlayer, "knastzeit", wanted * 5)
+                vioSetElementData(thePlayer, "lastknastzeit", wanted * 5)
                 setElementModel(thePlayer, 62)
                 changePlayerMoney(thePlayer, -(2.00 * wanted * wanted), "sonstiges", "Knast mit Stellen beim Bot")
                 if (Kaution == 0) then Kaution = "keine" else Kaution = toprice(Kaution) end

@@ -98,11 +98,77 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
 		setElementHealth(source,health)
 		setPedArmor(source,armor)
 	end
-
-
 end
 addEvent("onCustomPlayerDamage",true)
-addEventHandler("onCustomPlayerDamage",getRootElement(),onPlayerDamage_func)
+addEventHandler("onCustomPlayerDamage",getRootElement(),onPlayerDamage_func, true, "high+6")
+
+
+function onPlayerDamageControl_func(attacker, attackerweapon, bodypart, loss)
+	if not vioGetElementData(source, "healthControl") then
+		vioSetElementData(source, "healthControl", getElementHealth(source))
+		vioSetElementData(source, "armorControl", getPedArmor(source))
+	end
+
+	if(vioGetElementData(source,"smode"))then
+		return false
+	end
+
+	if(vioGetElementData(source,"flys_spawner_damage"))then
+		loss=0
+	end
+	--* 3: Torso
+	--* 4: Ass
+	--* 5: Left Arm
+	--* 6: Right Arm
+	--7: Left Leg
+	--* 8: Right leg
+	--* 9: Head
+	local schaden={1,1,2.5,2.5,1,1,1,1,4}
+	local weaponDamage={
+		[22]=2.5,
+		[23]=1.25,
+		[24]=1.25,
+		[25]=1.25,
+		[26]=1.25,
+		[27]=1.25,
+		[29]=1.25,
+		[30]=1.25,
+		[31]=1.25,
+		[33]=1.85,
+		[34]=5}
+	local weaponNowDamage=1
+
+	local newloss=schaden[bodypart]*loss*weaponNowDamage
+	local health=vioGetElementData(source, "healthControl")
+	local oldhealth=health
+	local armor=vioGetElementData(source, "armorControl")
+	if(armor)then
+		armor=armor-newloss
+	else
+		armor=-newloss
+	end
+	if(armor<0)then
+		health=health+armor
+	end
+
+	if(health<1)then
+		outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.")
+	else
+		vioSetElementData(source, "healthControl",health)
+		vioSetElementData(source, "armorControl", armor)
+	end
+
+	setTimer(checkHealthArmorCheat, 2000, 1, source)
+end
+addEvent("onCustomPlayerDamageControl",true)
+addEventHandler("onCustomPlayerDamageControl",getRootElement(),onPlayerDamageControl_func, true, "high+6")
+
+function checkHealthArmorCheat(asd)
+	if (getElementHealth(asd) > vioGetElementData(asd, "healthControl")) then
+		outputChatBox("cheat detected by ".. getPlayerName(asd));
+	end
+end
+
 
 function resetHitTimer(player)
 	if(isElement(player))then

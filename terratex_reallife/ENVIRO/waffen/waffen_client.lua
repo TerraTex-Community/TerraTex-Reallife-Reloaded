@@ -77,6 +77,10 @@ function hitbox_client ( attacker, weapon, bodypart, loss )
 				triggerServerEvent("onCustomPlayerDamage",source,attacker, weapon, bodypart, loss)
 
 			end
+		elseif (getLocalPlayer() == attacker) then
+
+			triggerServerEvent("onCustomPlayerDamageControl",source,attacker, weapon, bodypart, loss)
+
 		end
 	else
 		if not(isHusting) and not(isTimer(checkHustenTimer)) then		
@@ -109,24 +113,6 @@ function checkHusten_again_spc()
 end
 
 
-
-function killByVehicle(hitElement,force, bodypart, collisionX, collisionY, collisionZ, velocityX, velocityY, velocityZ)
-	if(hitElement)then
-		if(getElementType(hitElement)=="player")then
-			local driver=getVehicleOccupant(source)
-			if(driver)then
-				if(hitElement==getLocalPlayer())then
-					if(adminhardcore)then
-						if(math.sqrt(velocityX*velocityX+velocityY*velocityY+velocityZ*velocityZ)>(1/180*20))then
-							triggerServerEvent("onCustomPlayerDamage",driver,hitElement, 34, 3, 1000)	
-						end
-					end			
-				end		
-			end
-		end	
-	end
-end
-addEventHandler("onClientVehicleCollision",getRootElement(),killByVehicle)
 
 
 

@@ -35,6 +35,8 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
         loss=0
     end
 
+
+
     --* 3: Torso
     --* 4: Ass
     --* 5: Left Arm
@@ -132,29 +134,33 @@ function onPlayerDamageControl_func(attacker, attackerweapon, bodypart, loss)
         armor = 0
     end
 
-    if(health<1)then
-        for theKey, thePlayer in ipairs(getElementsByType("player")) do
-            if (isAdminLevel(thePlayer, 4)) then
-                if (not isPedDead(source))then
-                    outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.", thePlayer, 255, 255, 0)
-                end
-            end
-        end
+    if(health < 1)then
+        setTimer(checkPlayerDeath, 500 , 1, source)
     else
         vioSetElementData(source, "healthControl",health)
         vioSetElementData(source, "armorControl", armor)
     end
 
-    setTimer(checkHealthArmorCheat, 2000, 1, source)
+    --    setTimer(checkHealthArmorCheat, 2000, 1, source)
 end
 addEvent("onCustomPlayerDamageControl",true)
 addEventHandler("onCustomPlayerDamageControl",getRootElement(),onPlayerDamageControl_func, true, "high+6")
 
-function checkHealthArmorCheat(asd)
-    if (getElementHealth(asd) > vioGetElementData(asd, "healthControl")) then
-        --		outputChatBox("cheat detected by ".. getPlayerName(asd));
+function checkPlayerDeath(source)
+    if not isPedDead(source) and getElementHealth(source) > 1 then
+        for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            if (isAdminLevel(thePlayer, 4)) then
+                outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.", thePlayer, 255, 255, 0)
+            end
+        end
     end
 end
+
+--function checkHealthArmorCheat(asd)
+--    if (getElementHealth(asd) > vioGetElementData(asd, "healthControl")) then
+--        --		outputChatBox("cheat detected by ".. getPlayerName(asd));
+--    end
+--end
 
 
 function resetHitTimer(player)

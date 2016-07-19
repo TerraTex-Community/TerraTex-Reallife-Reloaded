@@ -13,7 +13,7 @@ function setPedArmor(element, health)
     if (getElementType(element) == "player") then
         local oldHealth = getElementHealth(element);
         if (oldHealth < health) then
-            vioSetElementData(source, "armorControl",health)
+            vioSetElementData(element, "armorControl",health)
         end
         _setPedArmor(element, health);
     else
@@ -25,7 +25,7 @@ function setElementHealth(element, health)
     if (getElementType(element) == "player") then
         local oldHealth = getElementHealth(element);
         if (oldHealth < health) then
-            vioSetElementData(source, "healthControl",health)
+            vioSetElementData(element, "healthControl",health)
         end
         _setElementHealth(element, health);
     else

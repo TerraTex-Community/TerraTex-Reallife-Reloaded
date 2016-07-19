@@ -152,7 +152,11 @@ function onPlayerDamageControl_func(attacker, attackerweapon, bodypart, loss)
 	end
 
 	if(health<1)then
-		outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.")
+        for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            if (isAdminLevel(thePlayer, 4)) then
+                outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.", thePlayer, 255, 255, 0)
+            end
+        end
 	else
 		vioSetElementData(source, "healthControl",health)
 		vioSetElementData(source, "armorControl", armor)

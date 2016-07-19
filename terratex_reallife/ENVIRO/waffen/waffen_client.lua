@@ -71,16 +71,12 @@ local checkHustenTimer=false
 function hitbox_client ( attacker, weapon, bodypart, loss )
 	cancelEvent()  
 	if not(weapon==41 or weapon==17)then
-		if(source==getLocalPlayer())then
+		if(source == getLocalPlayer())then
 			if not( not(attacker) and isElementFrozen(getLocalPlayer())) then
-
 				triggerServerEvent("onCustomPlayerDamage",source,attacker, weapon, bodypart, loss)
-
 			end
 		elseif (getLocalPlayer() == attacker) then
-
 			triggerServerEvent("onCustomPlayerDamageControl",source,attacker, weapon, bodypart, loss)
-
 		end
 	else
 		if not(isHusting) and not(isTimer(checkHustenTimer)) then		
@@ -92,7 +88,7 @@ function hitbox_client ( attacker, weapon, bodypart, loss )
 		
 	end
 end 
-addEventHandler ( "onClientPlayerDamage", getLocalPlayer(), hitbox_client )
+addEventHandler ( "onClientPlayerDamage", getRootElement(), hitbox_client )
 
 local spruehtimer=0
 

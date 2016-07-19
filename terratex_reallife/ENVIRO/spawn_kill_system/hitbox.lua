@@ -169,7 +169,7 @@ addEventHandler("onCustomPlayerDamageControl",getRootElement(),onPlayerDamageCon
 
 function checkHealthArmorCheat(asd)
 	if (getElementHealth(asd) > vioGetElementData(asd, "healthControl")) then
-		outputChatBox("cheat detected by ".. getPlayerName(asd));
+--		outputChatBox("cheat detected by ".. getPlayerName(asd));
 	end
 end
 

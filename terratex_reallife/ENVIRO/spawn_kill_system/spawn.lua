@@ -149,6 +149,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                     spawnPlayer(source, 1307.62890625, -874.5673828125, 39.578125, 302.96084594727, skinid, 0, 0, team[fraktion]) -- flutspawn
                 end
             end
+            setElementHealth(source, 100)
             local frakid = vioGetElementData(source, "fraktion")
             local fraktionsrang = vioGetElementData(source, "fraktionsrang")
             if (firstspawn) then

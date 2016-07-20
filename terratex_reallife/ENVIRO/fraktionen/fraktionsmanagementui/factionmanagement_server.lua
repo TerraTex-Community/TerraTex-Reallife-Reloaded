@@ -96,8 +96,8 @@ function factionManagementKickMember_func(nickname)
             vioSetElementData(player, "fraktionsrang", 0);
             vioSetElementData(player,"rechte_AllLeader",0);
             setPlayerTeam (player,nil);
-            vioSetElementData(thePlayer,"FrakSkin",0);
-            setElementModel(thePlayer,vioGetElementData(player,"skinid"));
+            vioSetElementData(player,"FrakSkin",0);
+            setElementModel(player, vioGetElementData(player,"skinid"));
             takeAllWeapons ( player );
 
             outputChatBox("Du wurdest von " .. getPlayerName(source) .. " aus der Fraktion geworfen.", player, 255, 0, 0);

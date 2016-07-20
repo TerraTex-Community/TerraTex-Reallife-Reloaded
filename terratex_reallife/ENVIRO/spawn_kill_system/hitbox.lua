@@ -23,70 +23,54 @@ addEventHandler("onResourceStart",getRootElement(),setWeaponStats_balanced)
 function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
     if(vioGetElementData(source,"smode"))then
         if(isElement(attacker))then
-           if(attacker~=source)then
-              outputChatBox("Dieser Admin ist im Supportmodus und kann kein Schaden erhalten!",attacker,255,0,0)
-           end
+            if(attacker~=source)then
+                outputChatBox("Dieser Admin ist im Supportmodus und kann kein Schaden erhalten!",attacker,255,0,0)
+            end
         end
         return false
     end
 
-	if(attacker)then
-		if(vioGetElementData(attacker,"spezWeapon"))then
-			loss=loss*100
-		end
-	end
+    triggerClientEvent(source,"StopHealingTimer",source)
+    if(vioGetElementData(source,"flys_spawner_damage"))then
+        loss=0
+    end
 
 
-	triggerClientEvent(source,"StopHealingTimer",source)
-	if(vioGetElementData(source,"flys_spawner_damage"))then
-		loss=0
-	end
+
     --* 3: Torso
     --* 4: Ass
     --* 5: Left Arm
-	--* 6: Right Arm
+    --* 6: Right Arm
     --7: Left Leg
     --* 8: Right leg
     --* 9: Head
-	local schaden={1,1,2.5,2.5,1,1,1,1,4}
-	local weaponDamage={
-	[22]=2.5,
-	[23]=1.25,
-	[24]=1.25,
-	[25]=1.25,
-	[26]=1.25,
-	[27]=1.25,
-	[29]=1.25,
-	[30]=1.25,
-	[31]=1.25,
-	[33]=1.85,
-	[34]=5}
-	local weaponNowDamage=1
-	if(attackerweapon)then
-		if(weaponDamage[attackerweapon])then
-			weaponNowDamage=weaponDamage[attackerweapon]
+    local schaden={1,1,1,1,1,1,1,1,4}
 
-			if(vioGetElementData(source,"isCopSwat"))then
-				--loss=loss/3
-			end
+    local weaponNowDamage=1
 
-		end
-	end
+    if(attackerweapon)then
+        if(attackerweapon == 34)then
+            weaponNowDamage = 5
+        end
+    end
 
-	local newloss=schaden[bodypart]*loss*weaponNowDamage
-	local health=getElementHealth(source)
-	local oldhealth=health
-	local armor=getPedArmor(source)
-	if(armor)then
-		armor=armor-newloss
-	else
-		armor=-newloss
-	end
-	if(armor<0)then
-		health=health+armor
-	end
-	if(health<1)then
-		killPed(source,attacker, attackerweapon, bodypart,false)
+    local newloss=schaden[bodypart]*loss*weaponNowDamage
+    local health=getElementHealth(source)
+    local oldhealth=health
+    local armor=getPedArmor(source)
+
+    if (armor > 0) then
+        armor = armor - newloss
+    else
+        armor = -newloss
+    end
+
+    if(armor <= 0)then
+        health = health + armor
+        armor = 0
+    end
+    if(health < 1)then
+        killPed(source,attacker, attackerweapon, bodypart,false)
     else
         if(isElement(attacker))then
             local hitTimer=setTimer(resetHitTimer,30000,1,source)
@@ -95,29 +79,104 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
             end
             vioSetElementData(source,"hitTimer",hitTimer)
         end
-		setElementHealth(source,health)
-		setPedArmor(source,armor)
-	end
-
-
+        setElementHealth(source,health)
+        setPedArmor(source,armor)
+    end
 end
 addEvent("onCustomPlayerDamage",true)
-addEventHandler("onCustomPlayerDamage",getRootElement(),onPlayerDamage_func)
+addEventHandler("onCustomPlayerDamage",getRootElement(),onPlayerDamage_func, true, "high+6")
+
+
+function onPlayerDamageControl_func(attacker, attackerweapon, bodypart, loss)
+    if not vioGetElementData(source, "healthControl") then
+        vioSetElementData(source, "healthControl", getElementHealth(source))
+        vioSetElementData(source, "armorControl", getPedArmor(source))
+    end
+
+    if(vioGetElementData(source,"smode"))then
+        return false
+    end
+
+    if(vioGetElementData(source,"flys_spawner_damage"))then
+        loss=0
+    end
+
+    --* 3: Torso
+    --* 4: Ass
+    --* 5: Left Arm
+    --* 6: Right Arm
+    --7: Left Leg
+    --* 8: Right leg
+    --* 9: Head
+    local schaden={1,1,1,1,1,1,1,1,4}
+
+    local weaponNowDamage=1
+
+    if(attackerweapon)then
+        if(attackerweapon == 34)then
+            weaponNowDamage = 5
+        end
+    end
+
+    local newloss=schaden[bodypart]*loss*weaponNowDamage
+    local health=getElementHealth(source)
+    local oldhealth=health
+    local armor=getPedArmor(source)
+
+    if (armor > 0) then
+        armor = armor - newloss
+    else
+        armor = -newloss
+    end
+
+    if(armor <= 0)then
+        health = health + armor
+        armor = 0
+    end
+
+    if(health < 1)then
+        setTimer(checkPlayerDeath, 500 , 1, source)
+    else
+        vioSetElementData(source, "healthControl",health)
+        vioSetElementData(source, "armorControl", armor)
+    end
+
+    --    setTimer(checkHealthArmorCheat, 2000, 1, source)
+end
+addEvent("onCustomPlayerDamageControl",true)
+addEventHandler("onCustomPlayerDamageControl",getRootElement(),onPlayerDamageControl_func, true, "high+6")
+
+function checkPlayerDeath(source)
+    if not isPedDead(source) and getElementHealth(source) > 1 then
+        for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            if (isAdminLevel(thePlayer, 4)) then
+                outputChatBox(getPlayerName(source) .. " sollte jetzt tod sein.", thePlayer, 255, 255, 0)
+            end
+        end
+    end
+end
+
+--function checkHealthArmorCheat(asd)
+--    if (getElementHealth(asd) > vioGetElementData(asd, "healthControl")) then
+--        --		outputChatBox("cheat detected by ".. getPlayerName(asd));
+--    end
+--end
+
 
 function resetHitTimer(player)
-	if(isElement(player))then
-		vioSetElementData(player,"hitTimer",false)
-	end
+    if(isElement(player))then
+        vioSetElementData(player,"hitTimer",false)
+    end
 end
 
 
 function onPlayerStealthKill_func(targetPlayer)
-	--outputChatBox(tostring(vioGetElementData(source,"inArena")))
-	if not(vioGetElementData(source,"job")==7) and not(vioGetElementData(source,"fraktion")==8) then
-		if(not(vioGetElementData(source,"inArena")==1))then
-			cancelEvent()
-		end
-	end
+    --outputChatBox(tostring(vioGetElementData(source,"inArena")))
+    if not(vioGetElementData(source,"job")==7) and not(vioGetElementData(source,"fraktion")==8) then
+        if(not(vioGetElementData(source,"inArena")==1))then
+            cancelEvent()
+        end
+    end
 end
 addEventHandler("onPlayerStealthKill",getRootElement(),onPlayerStealthKill_func)
 
@@ -126,25 +185,25 @@ local addSPCSeconds=0
 local dummy=0
 
 function setPedChocking_server()
-	if(isTimer(restTimer))then
-		local a,b,c=getTimerDetails ( restTimer )
-		addSPCSeconds=a
-		killTimer(restTimer)
-		
-		-- outputChatBox("rest: "..addSPCSeconds)
-	else
-		addSPCSeconds=0
-	end
-	setPedChoking(source,true)	
-	-- outputChatBox("started")
+    if(isTimer(restTimer))then
+        local a,b,c=getTimerDetails ( restTimer )
+        addSPCSeconds=a
+        killTimer(restTimer)
+
+        -- outputChatBox("rest: "..addSPCSeconds)
+    else
+        addSPCSeconds=0
+    end
+    setPedChoking(source,true)
+    -- outputChatBox("started")
 end
 addEvent("spc_start_event",true)
 addEventHandler("spc_start_event",getRootElement(),setPedChocking_server)
 
 function setPedChockingStop_server(spruehtimer)
-	spruehtimer=spruehtimer+addSPCSeconds
-	-- outputChatBox(spruehtimer)
-	restTimer=setTimer(setPedChoking,spruehtimer,1,source,false)
+    spruehtimer=spruehtimer+addSPCSeconds
+    -- outputChatBox(spruehtimer)
+    restTimer=setTimer(setPedChoking,spruehtimer,1,source,false)
 end
 addEvent("spc_stop_event",true)
 addEventHandler("spc_stop_event",getRootElement(),setPedChockingStop_server)

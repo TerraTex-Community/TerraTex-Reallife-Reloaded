@@ -28,12 +28,12 @@ flys_typ_2_fahrzeuge={592,511,553,577,519}--flugzeuge
 
 --{minSicher,maxSicher,minGewinn,maxGewinn,Fahrzeugtyp(1,2, beides=3),Ziele(1,2, beides=3)}
 flys_auftragstypen_skilllevel = {
-	[0] = { 250, 1500, 100, 250, 1, 1},
-	{500, 4000, 480, 672, 1, 1},
-	{1000, 5000, 1200, 1680, 1, 3},
-	{4000, 8000, 2000, 2800, 3, 2},
-	{10000, 20000, 2500, 3500, 2, 2},
-	{25000, 50000, 5000, 7000, 2, 2}
+	[0] = { 250, 1500, 100, 250, 1, 1},	-- ~ 3,6k pro Stunde ohne Steuer
+	{500, 4000, 480, 672, 1, 1},      	-- ~ 12k pro Stunde ohne Steuer
+	{1000, 5000, 1200, 1680, 1, 3},   	-- ~ 30k pro Stunde ohne Steuer
+	{4000, 8000, 2000, 2800, 3, 2},   	-- ~ 50k pro Stunde ohne Steuer
+	{10000, 20000, 2500, 4500, 2, 2}, 	-- ~ 73k pro Stunde ohne Steuer
+	{25000, 50000, 5000, 9000, 2, 2}  	-- ~ 147k pro Stunde ohne Steuer
 	}
 	
 flys_last_auftrage = {}

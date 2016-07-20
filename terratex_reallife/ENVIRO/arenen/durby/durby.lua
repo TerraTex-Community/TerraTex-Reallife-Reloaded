@@ -38,6 +38,7 @@ function durby_spawn_Player(thePlayer)
     local dbVeh = createVehicle(504, durby_spawns[clearspawn][1], durby_spawns[clearspawn][2], durby_spawns[clearspawn][3], durby_spawns[clearspawn][4], durby_spawns[clearspawn][5], durby_spawns[clearspawn][6], "Kaputt")
     setElementInterior(dbVeh, 15)
     spawnPlayer(thePlayer, durby_spawns[clearspawn][1], durby_spawns[clearspawn][2], (durby_spawns[clearspawn][3] + 1), durby_spawns[clearspawn][6], vioGetElementData(thePlayer, "skinid"), 15, 0, team[vioGetElementData(thePlayer, "fraktion")])
+    setElementHealth(thePlayer, 100)
     warpPedIntoVehicle(thePlayer, dbVeh)
     if (prepareDurbyStartUp) then
         setElementFrozen(dbVeh, true)
@@ -84,6 +85,7 @@ function onPlayerDurbyWasted()
                 outputChatBox("Du hast leider verloren!", source, 0, 255, 0)
                 spawnPlayer(source, 2745.8544921875, -1837.2998046875, 10.328806877136, 154.12683105469, vioGetElementData(source, "skinid"), 0, 0, team[vioGetElementData(source, "fraktion")])
                 setTimer(checkDurbyWinner, 5000, 1)
+                setElementHealth(source, 100)
             end
         else
             durby_spawn_Player(source)
@@ -111,6 +113,7 @@ function checkDurbyWinner()
         vioSetElementData(bestplayer, "inArena", 0)
         killPed(bestplayer)
         spawnPlayer(bestplayer, 2745.8544921875, -1837.2998046875, 10.328806877136, 154.12683105469, vioGetElementData(bestplayer, "skinid"), 0, 0, team[vioGetElementData(bestplayer, "fraktion")])
+        setElementHealth(bestplayer, 100)
         vioSetElementData(bestplayer, "inArena", false)
     end
     therewasawinner = false

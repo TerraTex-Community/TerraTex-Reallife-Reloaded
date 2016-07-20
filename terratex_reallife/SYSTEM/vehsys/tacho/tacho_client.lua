@@ -131,8 +131,8 @@ function enterVehicle()
                                 setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
                             end
                         end
-
-                        if (speedertype == 2) then
+                        local veh = getPedOccupiedVehicle(getLocalPlayer());
+                        if (speedertype == 2 and getVehicleEngineState (veh) and tonumber(getElementData(veh, "tank")) > 10 ) then
                             --wasBremseSet=true
                             if not ((messpeed + 4 * (1 / 180)) < maxspeed) then
                                 if (getKeyState("num_add")) then

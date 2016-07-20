@@ -64,6 +64,20 @@
 </div>
 <script>
     $(document).ready(function () {
+        $(".profile").click(function () {
+            $.ajax("http://mta/local/ajax_profile_passwordchange.html", {
+                data: {
+                    "oldPassword": $("#oldpassword").val(),
+                    "newPassword": $("#newpassword").val(),
+                    "newPasswordWdh": $("#newpasswordwdh").val()
+                }
+            })
+        });
+
+        $("#vacationmode").click(function(){
+            $.ajax("http://mta/local/ajax_profile_set_vacation.html");
+        });
+
         $(".closeBtn").click(function () {
             $.ajax("http://mta/local/ajax_profile_close.html");
         });
@@ -72,11 +86,11 @@
         $("#email").val(email);
         $("#birthday").val(birthday);
         if (vacationDays) {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
+            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
             $("#vacation_disabled u").html(vacationDays);
             $(".vacationmode").attr("disabled", "disabled");
         } else {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
+            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
             $(".vacationmode").attr("disabled", false);
         }
     }

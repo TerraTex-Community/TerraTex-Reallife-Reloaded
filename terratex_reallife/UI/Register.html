@@ -24,12 +24,26 @@
         </fieldset>
         <fieldset class="form-group">
             <label for="gender">Geschlecht</label>
-            <select id="gender" class="form-control">
-                <option value="anonym" selected>Keine Angabe</option>
-                <option value="girl">weiblich</option>
-                <option value="boy">männlich</option>
-                <option value="trans">transgender</option>
-            </select>
+            <!--<select id="gender" class="form-control">-->
+                <!--<option value="anonym" selected>Keine Angabe</option>-->
+                <!--<option value="girl">weiblich</option>-->
+                <!--<option value="boy">männlich</option>-->
+                <!--<option value="trans">transgender</option>-->
+            <!--</select>-->
+
+            <div class="dropdown" id="gender_dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="gender" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" data-value="anonym">
+                    Keine Angabe
+                </button>
+                <div class="dropdown-menu" aria-labelledby="gender">
+                    <a class="dropdown-item" data-value="anonym" href="#">keine Angabe</a>
+                    <a class="dropdown-item" data-value="girl" href="#">weiblich</a>
+                    <a class="dropdown-item" data-value="boy" href="#">männlich</a>
+                    <a class="dropdown-item" data-value="trans" href="#">transgender</a>
+                </div>
+            </div>
+
             <small class="text-muted">
                 Diese Angabe wird nur für statistische Zwecke genutzt. Sie wird anonym abgespeichert und nicht für
                 Ingamefunktionen genutzt.
@@ -75,6 +89,14 @@
             dateFormat: "dd.mm.yy"
         });
 
+        $("#gender_dropdown .dropdown-item").click(function(){
+            var html = $(this).html();
+            var value = $(this).attr("data-value");
+
+            $("#gender").html(html);
+            $("#gender").attr("data-value", value);
+        });
+
         $(".register").click(function(){
             $.ajax({
                 url: "http://mta/local/ajax_register_register.html",
@@ -82,7 +104,7 @@
                 data: {
                     password: $("#password").val(),
                     passwordwdh: $("#passwordwdh").val(),
-                    gender: $("#gender").val(),
+                    gender: $("#gender").attr("data-value"),
                     birthday: $("#birthday").val().split('.').join('-'),
                     email: $("#email").val(),
                     recruiter: $("#recruiter").val()

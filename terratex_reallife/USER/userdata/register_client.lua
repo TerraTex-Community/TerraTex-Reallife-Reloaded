@@ -70,6 +70,7 @@ function register(get, post)
 
                     if (get.password == get.passwordwdh) then
                         if string.len(get.email) > 0 then
+                            get.email = string.gsub(get.email, "%%40", "@");
                             if (table.getSize(birthdayParts) == 3) then
                                 if ((tonumber(birthdayParts[1]) < 32) and (tonumber(birthdayParts[1]) > 0)) then
                                     if ((tonumber(birthdayParts[2]) < 13) and (tonumber(birthdayParts[2]) > 0)) then

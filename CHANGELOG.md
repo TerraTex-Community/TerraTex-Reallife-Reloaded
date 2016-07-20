@@ -1,3 +1,12 @@
+####20.07.2016
+--------------
+* [CHANGED] New Vehicles for Pink Panthers
+* [CHANGED] New Prices for weapons, materials and drugs
+* [FIXED] Police Bot Issues
+* [FIXED] SMS Bug if reciever is calling someone
+* [FIXED] removed some code that is related to issues to the /ad system
+* [FIXED] selectbox issues in registration form
+
 ####15.07.2016 / 16.07.2016
 --------------
 * [CHANGED] some Jobprices

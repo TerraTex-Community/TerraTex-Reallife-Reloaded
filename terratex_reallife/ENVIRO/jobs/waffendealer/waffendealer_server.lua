@@ -28,14 +28,14 @@ end
 addEventHandler("onPlayerClick", getRootElement(), clickonwdealer)
 
 function reduceWeaponPreis(timeshift)
-    if (serversettings["matspreis"] > 0.5) then
-        serversettings["matspreis"] = serversettings["matspreis"] - 0.15
+    if (serversettings["matspreis"] > 3) then
+        serversettings["matspreis"] = serversettings["matspreis"] - 0.125
     else
-        serversettings["matspreis"] = 0.5
+        serversettings["matspreis"] = 3
     end
 
-    if (serversettings["matspreis"] > 5) then
-        serversettings["matspreis"] = 5
+    if (serversettings["matspreis"] > 16) then
+        serversettings["matspreis"] = 16
     end
     setTimer(reduceWeaponPreis, 1800000, 1)
 end
@@ -61,7 +61,7 @@ function buyWaffenDealer_func(anzahl)
         vioSetElementData(source, "mats", vioGetElementData(source, "mats") + anzahl)
         frakkasse[6] = frakkasse[6] + price / 2
         frakkasse[11] = frakkasse[11] + price / 2
-        serversettings["matspreis"] = math.round(serversettings["matspreis"] + anzahl * 0.023, 2)
+        serversettings["matspreis"] = math.round(serversettings["matspreis"] + anzahl * 0.2, 2)
         showError(source, string.format("Du hast %s Materialien gekauft! Waffen verkaufen mit /sellweapon Name ID Munianzahl!", anzahl))
         for theKey, thePlayer in ipairs(getPlayersInTeam(team[6])) do
             outputChatBox("Hauptwaffenkurier: Jemand hat Waffenmaterialien gekauft!", thePlayer, 255, 0, 0)

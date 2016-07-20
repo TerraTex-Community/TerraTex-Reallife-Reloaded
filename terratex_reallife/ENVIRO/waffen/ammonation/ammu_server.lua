@@ -74,9 +74,9 @@ end
 addEventHandler("ammoBuyWeste_Event",getRootElement(),ammoBuyWeste_server_func)
 
 
-local ammoWeaponID=   {  2,   4,   5,   8,   22,   23,   24,   25,    29,    30,    31,     33}
-local ammoWeaponPrice={ 15,  30,  30, 225,  450,  750, 1050, 1500,  4500, 12000, 15000,  30000}
-local ammoMuniPrice=  { -1,  -1,  -1,  -1,   15,   15,   30,   45,    15,   120,   150,    600} 
+local ammoWeaponID=   {  2,   4,   5,   8,    22,    23,    24,   25,     29,    30,    31,      33}
+local ammoWeaponPrice={ 15,  30,  30, 225,  4500,  5500, 10000, 7500,  11000, 45000, 75000,  150000}
+local ammoMuniPrice=  { -1,  -1,  -1,  -1,    30,    30,    45,   25,     30,   150,   250,     750}
 
 addEvent("ammoBuyWeapon_Event",true)
 function ammoBuyWeapon_Event_func(ID)

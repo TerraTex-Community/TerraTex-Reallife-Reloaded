@@ -31,6 +31,14 @@ addEventHandler("onClientResourceStart",resourceRoot,
 			guiLabelSetColor(DrogenDealerGUI_Label[5],255,255,255)
 			guiLabelSetVerticalAlign(DrogenDealerGUI_Label[5],"top")
 			guiLabelSetHorizontalAlign(DrogenDealerGUI_Label[5],"left",false)
+
+
+		DrogenDealerGUI_Label[7] = guiCreateLabel(12,200,344,90,"Effekte pro Gramm:\n>Heilt 20 HP\n>4 Minuten kein Essen mehr",false,DrogenDealerGUI_Window[1])
+		guiLabelSetColor(DrogenDealerGUI_Label[7],255,255,255)
+		guiLabelSetVerticalAlign(DrogenDealerGUI_Label[7],"top")
+		guiLabelSetHorizontalAlign(DrogenDealerGUI_Label[7],"left",false)
+
+
         DrogenDealerGUI_Label[6] = guiCreateLabel(12,318,344,28,"_______________________________________________________________________",false,DrogenDealerGUI_Window[1])
 			guiLabelSetColor(DrogenDealerGUI_Label[6],255,255,255)
 			guiLabelSetVerticalAlign(DrogenDealerGUI_Label[6],"top")

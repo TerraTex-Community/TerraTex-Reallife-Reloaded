@@ -6,6 +6,7 @@
 * [FIXED] SMS Bug if reciever is calling someone
 * [FIXED] removed some code that is related to issues to the /ad system
 * [FIXED] selectbox issues in registration form
+* [ADDED] Added Tables for new Crime System
 
 ####15.07.2016 / 16.07.2016
 --------------

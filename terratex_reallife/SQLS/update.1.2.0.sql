@@ -16,7 +16,8 @@ CREATE TABLE data_crimes_list
     ID INT PRIMARY KEY,
     CategorieID INT,
     Name VARCHAR(255),
-    percentage INT DEFAULT 5,
+    Percentage INT DEFAULT 5,
+    MinPercentage INT DEFAULT Null,
     CONSTRAINT data_crimes_list_data_crimes_categories_ID_fk FOREIGN KEY (CategorieID) REFERENCES data_crimes_categories (ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

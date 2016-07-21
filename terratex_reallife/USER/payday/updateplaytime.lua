@@ -454,6 +454,17 @@ function payday(thePlayer)
             triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "TerraFriend", "Werbe mindestens 5 User, die über 25 Spielstunden erreichen!")
         end
     end
+
+    local updateCrimesQuery = "";
+    updateCrimesQuery = updateCrimesQuery .. "UPDATE user_crimes SET user_crimes.CrimePercentage = user_crimes.CrimePercentage -2 WHERE ID IN (";
+    updateCrimesQuery = updateCrimesQuery .. "    SELECT uc.ID FROM (SELECT * FROM user_crimes WHERE Nickname = ? ) AS uc";
+    updateCrimesQuery = updateCrimesQuery .. "          LEFT JOIN data_crimes_list ON uc.CrimeID = data_crimes_list.ID";
+    updateCrimesQuery = updateCrimesQuery .. "          WHERE (uc.CrimePercentage - 2) >= data_crimes_list.MinPercentage";
+    updateCrimesQuery = updateCrimesQuery .. ");";
+
+    dbExec(MySql._connection, updateCrimesQuery, getPlayerName(thePlayer));
+
+    vioSetElementData(thePlayer, "crimeLevel", getCrimePercentage(thePlayer));
 end
 
 function payday_cmd_func(thePlayer)

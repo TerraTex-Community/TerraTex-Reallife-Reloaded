@@ -270,6 +270,7 @@
     <script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_client.lua" type="client"/>
     <script src="ENVIRO/fraktionen/leadercommands.lua" type="server"/>
     <!-- LSPD / Beamte allgemein -->
+    <script src="ENVIRO/fraktionen/lspd/crimeSystem.lua" type="server" />
     <script src="ENVIRO/fraktionen/lspd/alka.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/lspdcars.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/arrest.lua" type="server"/>

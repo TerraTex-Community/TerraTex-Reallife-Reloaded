@@ -24,6 +24,7 @@ function getCrimePercentage(thePlayer)
     end
 end
 
+-- @todo: optional: Who gives that?
 function addNewCrime(thePlayer, crimeId, additionalComment)
     local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
 

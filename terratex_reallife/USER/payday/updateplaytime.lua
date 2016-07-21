@@ -106,7 +106,7 @@ function payday(thePlayer)
         if (theChild.years > 0) then
             table.insert(newChilds, theChild);
         else
-            outputChatBox("Dein Kind " .. theChild.name .. " steht endlich auf eigenen Beinen!");
+            outputChatBox("Dein Kind " .. theChild.name .. " steht endlich auf eigenen Beinen!", thePlayer);
         end
     end
 

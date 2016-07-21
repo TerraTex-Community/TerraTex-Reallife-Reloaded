@@ -290,9 +290,9 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                 end
 
                 if (wanted == 3) then
-                    addNewCrime(thePlayer, 1000)
+                    addNewCrime(toPlayer, 1000)
                 else
-                    addNewCrime(thePlayer, 1001)
+                    addNewCrime(toPlayer, 1001)
                 end
 
                 vioSetElementData(toPlayer, "wanteds", vioGetElementData(toPlayer, "wanteds") + wanted)

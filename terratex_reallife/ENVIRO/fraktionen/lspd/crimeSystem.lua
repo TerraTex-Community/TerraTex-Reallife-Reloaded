@@ -35,7 +35,7 @@ function addNewCrime(thePlayer, crimeId, additionalComment)
     if (exist) then
         if not additionalComment then additionalComment = "" end
 
-        local percentage = MySql.helper.getValueSync("data_crimes_list", "CrimePercentage", {ID = crimeId});
+        local percentage = MySql.helper.getValueSync("data_crimes_list", "Percentage", {ID = crimeId});
 
         MySql.helper.insert("user_crimes", {
             Nickname = getPlayerName(thePlayer),

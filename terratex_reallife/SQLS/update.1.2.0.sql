@@ -33,3 +33,14 @@ CREATE TABLE log_kills
     WeaponID INT DEFAULT 0,
     Timestamp TIMESTAMP DEFAULT current_timestamp
 );
+
+CREATE TABLE user_crimes
+(
+    ID INT PRIMARY KEY,
+    Nickname VARCHAR(255),
+    CrimeID INT,
+    CrimePercentage INT,
+    AdditionalReason TEXT,
+    Timestamp TIMESTAMP DEFAULT current_timestamp,
+    CONSTRAINT user_crimes_user_Nickname_fk FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CASCADE
+);

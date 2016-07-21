@@ -341,7 +341,7 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "stvo", tonumber(userdataData["Stvo"]))
         vioSetElementData(source, "wanteds", tonumber(userdataData["Wanteds"]))
 
-        vioSetElementData(thePlayer, "crimeLevel", getCrimePercentage(thePlayer));
+        vioSetElementData(source, "crimeLevel", getCrimePercentage(source));
 
         vioSetElementData(source, "kaution", tonumber(userdataData["Kaution"]))
         vioSetElementData(source, "maxslots", tonumber(userdataData["VehSlots"]))

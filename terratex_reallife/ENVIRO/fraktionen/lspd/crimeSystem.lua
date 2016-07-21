@@ -14,10 +14,14 @@ function getCrimePercentage(thePlayer)
 
     if (result and result[1]) then
         local crimeLevel = tonumber(result[1].CrimeLevel);
-        if (crimeLevel > 100) then
-            return 100;
+        if (crimeLevel) then
+            if (crimeLevel > 100) then
+                return 100;
+            else
+                return crimeLevel;
+            end
         else
-            return crimeLevel;
+            return 0;
         end
     else
         return 0;

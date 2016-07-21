@@ -24,17 +24,17 @@ CREATE TABLE `data_crimes_list` (
 
 ALTER TABLE log_chat ENGINE=MyISAM;
 
-CREATE TABLE log_kills
-(
-    ID INT PRIMARY KEY,
-    Attacker VARCHAR(255),
-    Target VARCHAR(255),
-    AttackerFaction INT,
-    TargetFaction INT,
-    BlacklistOrWantedkill INT DEFAULT 0,
-    WeaponID INT DEFAULT 0,
-    Timestamp TIMESTAMP DEFAULT current_timestamp
-);
+CREATE TABLE `log_kills` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Attacker` varchar(255) DEFAULT NULL,
+  `Target` varchar(255) DEFAULT NULL,
+  `AttackerFaction` int(11) DEFAULT NULL,
+  `TargetFaction` int(11) DEFAULT NULL,
+  `BlacklistOrWantedkill` int(11) DEFAULT '0',
+  `WeaponID` int(11) DEFAULT '0',
+  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1
 
 CREATE TABLE `user_crimes` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,

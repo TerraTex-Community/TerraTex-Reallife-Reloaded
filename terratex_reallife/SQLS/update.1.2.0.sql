@@ -19,3 +19,17 @@ CREATE TABLE data_crimes_list
     percentage INT DEFAULT 5,
     CONSTRAINT data_crimes_list_data_crimes_categories_ID_fk FOREIGN KEY (CategorieID) REFERENCES data_crimes_categories (ID) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+ALTER TABLE log_chat ENGINE=MyISAM;
+
+CREATE TABLE log_kills
+(
+    ID INT PRIMARY KEY,
+    Attacker VARCHAR(255),
+    Target VARCHAR(255),
+    AttackerFaction INT,
+    TargetFaction INT,
+    BlacklistOrWantedkill INT DEFAULT 0,
+    WeaponID INT DEFAULT 0,
+    Timestamp TIMESTAMP DEFAULT current_timestamp
+);

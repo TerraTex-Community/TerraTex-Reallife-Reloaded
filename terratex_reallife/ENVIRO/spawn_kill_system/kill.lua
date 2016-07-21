@@ -56,6 +56,10 @@ addEventHandler("onPlayerQuit", getRootElement(), onDiscoDeleteIcons)
 
 function death_func(ammo, attacker, weapon, bodypart)
     if not (vioGetElementData(source, "inArena")) then
+        -- Vars for Logging
+        local wasBlacklistOrWantedKill = false
+
+
 
         local x, y, z = getElementPosition(source)
         local int = getElementInterior(source)
@@ -104,6 +108,7 @@ function death_func(ammo, attacker, weapon, bodypart)
 
                     table.remove(blacklist[vioGetElementData(attacker, "fraktion")], isonitkey);
 
+                    wasBlacklistOrWantedKill = true;
                     for theKey, thePlayers in ipairs(getPlayersInTeam(team[vioGetElementData(attacker, "fraktion")])) do
                         outputChatBox(string.format("Der Spieler %s wurde von %s von der Blacklist getötet!", toPlayerName, getPlayerName(attacker)), thePlayers, 0, 0, 255)
                     end
@@ -112,6 +117,7 @@ function death_func(ammo, attacker, weapon, bodypart)
             end
 
             if (vioGetElementData(source, "kopfgeld") > 0) and (vioGetElementData(attacker, "job") == 7 or (vioGetElementData(attacker, "fraktion") == 8)) then
+                wasBlacklistOrWantedKill = true;
                 changePlayerMoney(attacker, vioGetElementData(source, "kopfgeld"), "job", "Kopfgeld Auszahlung")
                 local koppgeld = vioGetElementData(source, "kopfgeld")
                 vioSetElementData(source, "kopfgeld", 0)
@@ -162,6 +168,8 @@ function death_func(ammo, attacker, weapon, bodypart)
             end
 
             if (isBeamter(attacker)) and (vioGetElementData(source, "wanteds") > 0) then
+                wasBlacklistOrWantedKill = true;
+
                 vioSetElementData(source, "alkaknast", getNearestKnastID(source))
 
                 changePlayerMoney(source, ((((vioGetElementData(source, "wanteds") * 100) * vioGetElementData(source, "wanteds"))) * -1), "sonstiges", "Knast durch Tod")
@@ -186,6 +194,22 @@ function death_func(ammo, attacker, weapon, bodypart)
         vioSetElementData(source, "tode", (vioGetElementData(source, "tode") + 1))
         vioSetElementData(source, "todezeit", deathtime)
         loadKrankenhaus(source)
+
+
+        -- logging
+        if (attacker and attacker ~= source) then
+            if wasBlacklistOrWantedKill then wasBlacklistOrWantedKill = 1 else wasBlacklistOrWantedKill = 0 end
+
+            MySql.helper.insert("log_kills", {
+                Attacker = getPlayerName(attacker),
+                Target = getPlayerName(source),
+                AttackerFaction = vioGetElementData(attacker, "fraktion"),
+                TargetFaction = vioGetElementData(source, "fraktion"),
+                BlacklistOrWantedkill = wasBlacklistOrWantedKill,
+                WeaponID = weapon
+            });
+
+        end
     end
 end
 addEventHandler("onPlayerWasted", getRootElement(), death_func)

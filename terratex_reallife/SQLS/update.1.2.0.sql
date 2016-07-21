@@ -47,3 +47,7 @@ CREATE TABLE `user_crimes` (
   KEY `user_crimes_user_Nickname_fk` (`Nickname`),
   CONSTRAINT `user_crimes_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+INSERT INTO `data_crimes_categories` (`ID`, `CategorieName`, `Order`) VALUES(1000, 'Admincrimes', 1000);
+INSERT INTO `data_crimes_list` (`ID`, `CategorieID`, `Name`, `Percentage`, `MinPercentage`) VALUES(1000, 1000, 'SDM', 50, 50);
+INSERT INTO `data_crimes_list` (`ID`, `CategorieID`, `Name`, `Percentage`, `MinPercentage`) VALUES(1001, 1000, 'SDM - Extrem', 100, 100);

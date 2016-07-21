@@ -24,3 +24,25 @@ function getCrimePercentage(thePlayer)
     end
 end
 
+function addNewCrime(thePlayer, crimeId, additionalComment)
+    local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
+
+    if (exist) then
+        if not additionalComment then additionalComment = "" end
+
+        local percentage = MySql.helper.getValueSync("data_crimes_list", "CrimePercentage", {ID = crimeId});
+
+        MySql.helper.insert("user_crimes", {
+            Nickname = getPlayerName(thePlayer),
+            CrimeID = crimeId,
+            CrimePercentage = percentage,
+            AdditionalReason = additionalComment
+        });
+
+        vioSetElementData(thePlayer, "crimeLevel", getCrimePercentage(thePlayer));
+    else
+        return false;
+    end
+end
+
+-- @todo: addCustomCrime

@@ -109,6 +109,7 @@ function payday(thePlayer)
             outputChatBox("Dein Kind " .. theChild.name .. " steht endlich auf eigenen Beinen!", thePlayer);
         end
     end
+    vioSetElementData(thePlayer, "children", newChilds);
 
     --- GEHALTS BERECHNUNG ---
 

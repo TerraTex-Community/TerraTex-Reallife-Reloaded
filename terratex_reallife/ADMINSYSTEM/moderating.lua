@@ -288,7 +288,13 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                         end
                     end
                 end
-                setPlayerWantedLevel(toPlayer, 6)
+
+                if (wanted == 3) then
+                    addNewCrime(thePlayer, 1000)
+                else
+                    addNewCrime(thePlayer, 1001)
+                end
+
                 vioSetElementData(toPlayer, "wanteds", vioGetElementData(toPlayer, "wanteds") + wanted)
                 outputChatBox("Du hast vom Admin " .. getPlayerName(thePlayer) .. " " .. wanted .. " Wanteds und einen Alkabefehl erhalten, aufgrund deines erhöhten Deathmatches", toPlayer, 255, 0, 0)
                 outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " " .. wanted .. " Wanteds und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches", thePlayer, 255, 0, 0)

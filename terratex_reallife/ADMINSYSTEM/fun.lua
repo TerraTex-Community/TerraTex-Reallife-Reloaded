@@ -123,7 +123,7 @@ end
 addCommandHandler("sky", skydive_func, false, false)
 
 function slap_func(theMaker,Command,thePlayerName)
-    if(isAdminLevel(theMaker,1))then
+    if(isAdminLevel(theMaker,3))then
         local thePlayer=getPlayerFromIncompleteName(thePlayerName)
         if(thePlayer)then
             local px,py,pz=getElementPosition(thePlayer)
@@ -139,7 +139,7 @@ end
 addCommandHandler("slap",slap_func,false,false)
 
 addCommandHandler("explode", function (thePlayer, cmd, toPlayerPart)
-    if(isAdminLevel(thePlayer,2))then
+    if(isAdminLevel(thePlayer,3))then
         if(toPlayerPart)then
             local toPlayer=getPlayerFromIncompleteName(toPlayerPart)
             if(toPlayer)then

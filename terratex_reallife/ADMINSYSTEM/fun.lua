@@ -161,17 +161,3 @@ addCommandHandler("explode", function (thePlayer, cmd, toPlayerPart)
         end
     end
 end)
-
-local flycar=false
-function FlyCar()
-    if(isAdminLevel(getLocalPlayer(),3))then
-        if not flycar then
-            setWorldSpecialPropertyEnabled ( "aircars", true)
-            flycar=true
-        else
-            setWorldSpecialPropertyEnabled ( "aircars", false)
-            flycar=false
-        end
-    end
-end
-addCommandHandler("flycar",FlyCar)

@@ -122,3 +122,56 @@ function skydive_func(thePlayer, cmd, toPlayerNamePart)
 end
 addCommandHandler("sky", skydive_func, false, false)
 
+function slap_func(theMaker,Command,thePlayerName)
+    if(isAdminLevel(theMaker,3))then
+        local thePlayer=getPlayerFromIncompleteName(thePlayerName)
+        if(thePlayer)then
+            local px,py,pz=getElementPosition(thePlayer)
+            setElementPosition(thePlayer,px,py,pz+1)
+            setPedOnFire(thePlayer,true)
+            local aname=getPlayerName(theMaker)
+        else
+            outputChatBox("Falscher Spielername",theMaker,255,0,0)
+        end
+    end
+
+end
+addCommandHandler("slap",slap_func,false,false)
+
+addCommandHandler("explode", function (thePlayer, cmd, toPlayerPart)
+    if(isAdminLevel(thePlayer,3))then
+        if(toPlayerPart)then
+            local toPlayer=getPlayerFromIncompleteName(toPlayerPart)
+            if(toPlayer)then
+                local x,y,z=getElementPosition(toPlayer)
+                createExplosion ( x, y, z, 0 ,thePlayer )
+                createExplosion ( x+0.5, y, z, 0 ,thePlayer )
+                createExplosion ( x, y+0.5, z, 0 ,thePlayer )
+                createExplosion ( x+0.5, y+0.5, z, 0 ,thePlayer )
+                createExplosion ( x-0.5, y, z, 0 ,thePlayer )
+                createExplosion ( x, y-0.5, z, 0 ,thePlayer )
+                createExplosion ( x-0.5, y-0.5, z, 0 ,thePlayer )
+                createExplosion ( x-0.5, y+0.5, z, 0 ,thePlayer )
+                createExplosion ( x+0.5, y-0.5, z, 0 ,thePlayer )
+            else
+                showError(thePlayer,"Dieser Spieler existiert nicht.")
+            end
+        else
+            showError(thePlayer,"Dieser Spieler existiert nicht.")
+        end
+    end
+end)
+
+local flycar=false
+function FlyCar()
+    if(isAdminLevel(getLocalPlayer(),3))then
+        if not flycar then
+            setWorldSpecialPropertyEnabled ( "aircars", true)
+            flycar=true
+        else
+            setWorldSpecialPropertyEnabled ( "aircars", false)
+            flycar=false
+        end
+    end
+end
+addCommandHandler("flycar",FlyCar)

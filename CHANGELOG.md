@@ -1,5 +1,6 @@
 ####26.07.2016
 --------------
+* [CHANGED] #100 ChatBoxSpam bans now for 2h instead of permanent
 * [CHANGED] #99 Added value to offline bank transfer message
 * [FIXED] Fixed Connection between user and user_gold table
 * [FIXED] #106 Deleting a car as admin caused some issues.

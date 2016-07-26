@@ -17,15 +17,14 @@ function antiflut(command)
         if (isTimer(antifluttimer)) then
             if (anti_flut_Data[source] > 50) then
                 local pname = getPlayerName(source)
-                local IP = getPlayerIP(source)
                 local Serial = getPlayerSerial(source)
 
-                MySql.helper.insert("admin_user_bans", {
+                MySql.helper.insert("admin_user_timebans", {
                     Nickname = pname,
                     Serial = Serial,
-                    IP = IP,
                     Grund = "ChatBoxSpam",
-                    Admin = "Anti-Flood-System"
+                    Admin = "Anti-Flood-System",
+                    Minuten = 120
                 });
 
                 outputChatBox(string.format("Der Spieler %s wurde vom Anti-Flood-System gebannt. Grund: %s", pname, "ChatBoxSpam"), getRootElement(), 255, 0, 0)
@@ -70,13 +69,13 @@ function test_onconsole(command)
                 local IP = getPlayerIP(source)
                 local Serial = getPlayerSerial(source)
 
-                MySql.helper.insert("admin_user_bans", {
+                MySql.helper.insert("admin_user_timebans", {
                     Nickname = pname,
                     Serial = Serial,
-                    IP = IP,
                     Grund = "ChatBoxSpam",
-                    Admin = "Anti-Flood-System"
-                })
+                    Admin = "Anti-Flood-System",
+                    Minuten = 120
+                });
                 outputChatBox(string.format("Der Spieler %s wurde vom Anti-Flood-System gebannt. Grund: %s", pname, "ChatBoxSpam"), getRootElement(), 255, 0, 0)
                 kickPlayer(source, "ChatBoxSpam")
             end

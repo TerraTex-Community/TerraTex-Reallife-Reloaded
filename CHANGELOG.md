@@ -1,6 +1,7 @@
 ####26.07.2016
 --------------
 * [FIXED] Fixed Connection between user and user_gold table
+* [REMOVED] #107 remove old achievments
 
 ####20.07.2016
 --------------

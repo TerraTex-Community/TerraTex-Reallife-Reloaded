@@ -90,16 +90,8 @@ addEventHandler("onClientResourceStart",resourceRoot,
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[13], 1, "13", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[13], 2, "3er Lotto", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[13]]="3er Lotto"..":\n".."Gewinne mit einen 3er im Lotto"
-		
-		Pokal_disc_GUI_Rows[14]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
-			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[14], 1, "14", false, false )
-			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[14], 2, "Rubbellosglueck", false, false )
-			Pokal_disc_disc[Pokal_disc_GUI_Rows[14]]="Rubbellosglueck"..":\n".."Gewinne einmal im Rubbellosspiel"
-		
-		Pokal_disc_GUI_Rows[15]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
-			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[15], 1, "15", false, false )
-			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[15], 2, "10er Los", false, false )
-			Pokal_disc_disc[Pokal_disc_GUI_Rows[15]]="10er Los"..":\n".."Gewinne mit drei Zehnen auf dem Rubbellos"
+
+
 		
 		Pokal_disc_GUI_Rows[16]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[16], 1, "16", false, false )
@@ -267,8 +259,6 @@ function showPokalDiscGui()
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[11], 3, get_Ja_Nein_Pokal("Lotto1"), false, false )
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[12], 3, get_Ja_Nein_Pokal("Lotto2"), false, false )
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[13], 3, get_Ja_Nein_Pokal("Lotto3"), false, false )
-	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[14], 3, get_Ja_Nein_Pokal("Rubbellosgluck"), false, false )
-	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[15], 3, get_Ja_Nein_Pokal("10erLos"), false, false )
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[16], 3, get_Ja_Nein_Pokal("Benzin_leer"), false, false )
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[17], 3, get_Ja_Nein_Pokal("Mein_erstes_Geld"), false, false )
 	guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[18], 3, get_Ja_Nein_Pokal("MyOwnHome"), false, false )

@@ -1,3 +1,7 @@
+####26.07.2016
+--------------
+* [FIXED] Fixed Connection between user and user_gold table
+
 ####20.07.2016
 --------------
 * [CHANGED] New Vehicles for Pink Panthers

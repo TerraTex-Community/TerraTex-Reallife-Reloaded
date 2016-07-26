@@ -55,3 +55,6 @@ INSERT INTO `data_crimes_list` (`ID`, `CategorieID`, `Name`, `Percentage`, `MinP
 ALTER TABLE user_gold
 ADD CONSTRAINT user_gold_user_Nickname_fk
 FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE user_achievements DROP Erfolg_Rubbellosgluck;
+ALTER TABLE user_achievements DROP Erfolg_10erLos;

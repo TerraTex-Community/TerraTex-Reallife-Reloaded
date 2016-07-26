@@ -33,7 +33,7 @@ function OnlineBanking_Offline(sender, empfaenger, grund, betrag)
                             vioSetElementData(sender, "Gold", vioGetElementData(sender, "Gold") - 1);
 
                             saveMoneyLog_withNickname(empf, "Bank", "spieler", betrag, string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
-                            save_offline_message(empf, "SA Bank Systems", string.format("Überweisung von %s Grund: %s", getPlayerName(sender), grund))
+                            save_offline_message(empf, "SA Bank Systems", string.format("Erhaltene Überweisung: %s von %s Grund: %s", ueberweiser, getPlayerName(sender), grund))
                             triggerClientEvent(sender, "obUeberweisungClient", sender, false)
                         else
                             outputChatBox("Empfänger kann nicht gefunden werden.", sender, 0, 255, 0)

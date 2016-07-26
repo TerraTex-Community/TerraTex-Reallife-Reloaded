@@ -1,6 +1,7 @@
 ####26.07.2016
 --------------
 * [FIXED] Fixed Connection between user and user_gold table
+* [FIXED] #106 Deleting a car as admin caused some issues.
 * [REMOVED] #107 remove old achievments
 
 ####20.07.2016

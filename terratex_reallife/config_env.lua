@@ -19,4 +19,4 @@ config["feature.stardard_of_living"]=${FEATURE_SOL}
 config["feature.limiter.pizza"]=${FEATURE_LIMIT_PIZZA}
 config["feature.limiter.faggio"]=${FEATURE_LIMIT_FAGGIO}
 config["feature.limiter.quad"]=${FEATURE_LIMIT_QUAD}
-config["feature.limiter.muntruck"]=$FEATURE_LIMIT_MUNTRUCK}
+config["feature.limiter.muntruck"]=${FEATURE_LIMIT_MUNTRUCK}

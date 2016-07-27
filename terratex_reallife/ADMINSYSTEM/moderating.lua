@@ -290,9 +290,9 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                 end
 
                 if (wanted == 3) then
-                    CrimeSystem.addNewCrime(toPlayer, 1000)
+                    CrimeSystem.addNewCrime(toPlayer, 1000, {user = thePlayer, "Adminsystem"}, "SDM - Deathmatch")
                 else
-                    CrimeSystem.addNewCrime(toPlayer, 1001)
+                    CrimeSystem.addNewCrime(toPlayer, 1001, {user = thePlayer, "Adminsystem"}, "SDM - Deathmatch")
                 end
 
                 outputChatBox("Du hast vom Admin " .. getPlayerName(thePlayer) .. " einen neuen Verbrecherstatus und einen Alkabefehl erhalten, aufgrund deines erhöhten Deathmatches", toPlayer, 255, 0, 0)
@@ -314,9 +314,11 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                             vioSetElementData(toPlayer, "alkaknast", 1)
                             outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
                             outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " in das Alkataz gebuchtet!", thePlayer, 255, 0, 0)
-                            local x, y, z = getKnastKoordinaten(toPlayer, 1)
+
+                            local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawn(1);
+
                             setElementPosition(toPlayer, x, y, z)
-                            setElementInterior(toPlayer, 2)
+                            setElementInterior(toPlayer, int)
                             setElementModel(toPlayer, 62)
                             vioSetElementData(toPlayer, "mussAlka", 0)
                             CrimeSystem.clear(toPlayer);

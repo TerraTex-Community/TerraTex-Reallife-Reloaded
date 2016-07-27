@@ -170,7 +170,7 @@ function death_func(ammo, attacker, weapon, bodypart)
             if (isBeamter(attacker)) and (vioGetElementData(source, "wanteds") > 0) then
                 wasBlacklistOrWantedKill = true;
 
-                vioSetElementData(source, "alkaknast", getNearestKnastID(source))
+                vioSetElementData(source, "alkaknast", CrimeSystem.Jail.getJailIdInArea(source))
 
                 changePlayerMoney(source, ((((vioGetElementData(source, "wanteds") * 100) * vioGetElementData(source, "wanteds"))) * -1), "sonstiges", "Knast durch Tod")
                 vioSetElementData(source, "knastzeit", vioGetElementData(source, "knastzeit") + (vioGetElementData(source, "wanteds") * 7))

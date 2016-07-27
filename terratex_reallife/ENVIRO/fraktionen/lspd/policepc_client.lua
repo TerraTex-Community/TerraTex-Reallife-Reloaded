@@ -204,7 +204,7 @@ function PolicePC_setWanted()
         local WantedGrund=guiGetText(PolizeiPC.memo[1])
 
         if(WantedAnz~="" and WantedGrund~="")then
-            triggerServerEvent("executeServerCommandHandler",getLocalPlayer(),"su",WantedAnz.." "..username.." "..WantedGrund)
+            -- @todo: replace
 
         else
             showError(getLocalPlayer(), "Bitte Grund und Anzahl eingeben!")

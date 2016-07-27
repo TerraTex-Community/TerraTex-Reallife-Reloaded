@@ -63,7 +63,7 @@ end
 
 function CrimeSystem.getNewJailTime(thePlayer)
     local percentage = CrimeSystem.getCrimePercentage(thePlayer);
-    return Math.round((percentage * 36)/60);
+    return Math.round(percentage * CrimeSystem._jailtimePerPercentage);
 end
 
 function CrimeSystem.clear(thePlayer)

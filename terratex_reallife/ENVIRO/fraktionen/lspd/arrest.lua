@@ -9,9 +9,10 @@ function onStellBotSpawn()
     isStellBoit[bot] = true
     setElementInterior(bot, 3)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)
 
+
+-- @todo: refactor with crimelevel system
 function StellenNow(thePlayer)
     if (vioGetElementData(thePlayer, "stellenInfos") == vioGetElementData(thePlayer, "wanteds")) then
         local x, y, z = getElementPosition(thePlayer)
@@ -149,6 +150,8 @@ function isBeamter(thePlayer)
     end
 end
 
+
+--@todo: refactor with new crimeLevel
 function antiofflineflucht_func(quitType, reason, responsibleElement)
     if (isPlayerLoggedIn(source)) then
         if not (vioGetElementData(source, "cuffed")) then
@@ -393,105 +396,6 @@ function getMessageGovComponents(theString)
     end
 end
 
-function arrest_func(theMaker, theCommand, thePlayerName, Money, Time, Kaution)
-    if (isBeamter(theMaker)) then
-        local thePlayer = getPlayerFromIncompleteName(thePlayerName)
-        if thePlayer then
-            local mx, my, mz = getElementPosition(theMaker)
-            local Px, Py, Pz = getElementPosition(thePlayer)
-            local distance = getDistanceBetweenPoints3D(mx, my, mz, Px, Py, Pz)
-            local distokn = getDistanceBetweenPoints3D(mx, my, mz, 215.61360168457, 110.61786651611, 998.66485595703)
-
-            local distanceb = getDistanceBetweenPoints3D(mx, my, mz, Px, Py, Pz)
-            local distoknb = getDistanceBetweenPoints3D(mx, my, mz, 198.0234375, 161.9658203125, 1003.0299682617)
-
-            if (distance < 10) and (distokn < 20) then
-                if (Money) and (Time) and (Kaution) then
-                    if (vioGetElementData(thePlayer, "wanteds") > 0) then
-                        if (tonumber(Money) > 0 and tonumber(Money) < 100000 and tonumber(Kaution) < 100000) then
-                            vioSetElementData(thePlayer, "wanteds", 0)
-                            setPlayerWantedLevel(thePlayer, 0)
-                            vioSetElementData(thePlayer, "kaution", tonumber(Kaution))
-                            vioSetElementData(thePlayer, "knastzeit", tonumber(Time))
-                            vioSetElementData(thePlayer, "lastknastzeit", tonumber(Time))
-                            setElementModel(thePlayer, 62)
-                            changePlayerMoney(thePlayer, -tonumber(Money), "sonstiges", "Knast")
-                            if (Kaution == 0) then Kaution = "keine" end
-                            outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", Time, Kaution), thePlayer)
-                            outputChatBoxForPolice(string.format("%s hat %s eingesperrt!", getPlayerName(theMaker), getPlayerName(thePlayer)))
-                            if (vioGetElementData(thePlayer, "mussAlka") == 1) then
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)))
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)))
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)), 255, 0, 0)
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)), 255, 0, 0)
-                            end
-                            vioSetElementData(thePlayer, "alkaknast", 0)
-                            local rnd = math.floor(math.random(1, 4))
-                            if rnd == 1 then
-                                setElementPosition(thePlayer, 215.61360168457, 110.61786651611, 998.66485595703)
-                            elseif rnd == 2 then
-                                setElementPosition(thePlayer, 219.60717773438, 110.39416503906, 998.66485595703)
-                            elseif rnd == 3 then
-                                setElementPosition(thePlayer, 223.60034179688, 110.17053222656, 998.66485595703)
-                            else
-                                setElementPosition(thePlayer, 227.34938049316, 110.19967651367, 998.66485595703)
-                            end
-                        else
-                            showError(theMaker, "Sie Überschreiten zulässige Eingabegrößen!!")
-                        end
-                    else
-                        showError(theMaker, "Dieser Spieler hat keine Wanteds!")
-                    end
-                else
-                    showError(theMaker, "Usage: /arrest Name Preis Time Kaution!")
-                end
-            elseif (distanceb < 20) and (distoknb < 30) then
-                if (Money) and (Time) and (Kaution) then
-                    if (vioGetElementData(thePlayer, "wanteds") > 0) then
-                        if (tonumber(Money) > 0 and tonumber(Money) < 100000 and tonumber(Kaution) < 100000) then
-                            vioSetElementData(thePlayer, "wanteds", 0)
-                            setPlayerWantedLevel(thePlayer, 0)
-                            vioSetElementData(thePlayer, "kaution", tonumber(Kaution))
-                            vioSetElementData(thePlayer, "knastzeit", tonumber(Time))
-                            vioSetElementData(thePlayer, "lastknastzeit", tonumber(Time))
-                            setElementModel(thePlayer, 62)
-                            changePlayerMoney(thePlayer, -tonumber(Money), "sonstiges", "Knast")
-                            if (Kaution == 0) then Kaution = "keine" end
-                            outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", Time, Kaution), thePlayer)
-                            outputChatBoxForPolice(string.format("%s hat %s eingesperrt!", getPlayerName(theMaker), getPlayerName(thePlayer)))
-                            if (vioGetElementData(thePlayer, "mussAlka") == 1) then
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)))
-                                outputChatBoxForPolice(string.format("%s muss nun ins Alka überführt werden (Administrativer Auftrag)!", getPlayerName(thePlayer)), 255, 0, 0)
-                            end
-                            vioSetElementData(thePlayer, "alkaknast", 2)
-                            local rnd = math.floor(math.random(1, 3))
-                            if rnd == 1 then
-                                setElementPosition(thePlayer, 198.0234375, 161.9658203125, 1003.0299682617)
-                            elseif rnd == 2 then
-                                setElementPosition(thePlayer, 197.8955078125, 175.126953125, 1003.023437)
-                            else
-                                setElementPosition(thePlayer, 193.51953125, 174.9072265625, 1003.0234375)
-                            end
-                        else
-                            showError(theMaker, "Sie Überschreiten zulässige Eingabegrößen!!")
-                        end
-                    else
-                        showError(theMaker, "Dieser Spieler hat keine Wanteds!")
-                    end
-                else
-                    showError(theMaker, "Usage: /arrest Name Preis Time Kaution!")
-                end
-            else
-                showError(theMaker, "Du bist nicht beim Knast oder Der Spieler ist nicht in deiner Nähe!")
-            end
-        else
-            showError(theMaker, "Dieser Spieler Existiert nicht!")
-        end
-    end
-end
-
-addCommandHandler("arrest", arrest_func, false, false)
---
 function m_func(thePlayer, Command, ...)
     local reason = table.concat({ ... }, " ")
     if (reason) then
@@ -690,91 +594,7 @@ function onPlayerSaveLogoutTime()
     local timestamp = timer.timestamp
     logoutTable[nickname] = { timestamp, vioGetElementData(source, "wanteds") }
 end
-
 addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
-
-function su_func(theMaker, Command, anzahl, thePlayerName, ...)
-    if (not thePlayerName) then return 0 end
-
-    local reason = table.concat({ ... }, " ")
-    if not (tonumber(anzahl)) then
-        reason = thePlayerName .. reason
-        thePlayerName = anzahl
-        anzahl = 1
-    else
-        anzahl = tonumber(anzahl)
-    end
-    if (anzahl < 1) then
-        anzahl = 1
-    end
-
-    if (isBeamter(theMaker)) then
-        if (thePlayerName) then
-            local thePlayer = getPlayerFromIncompleteName(thePlayerName)
-            if (thePlayer) then
-                if (reason) then
-                    if (vioGetElementData(thePlayer, "wanteds") <= 6) then
-                        vioSetElementData(thePlayer, "wanteds", vioGetElementData(thePlayer, "wanteds") + anzahl)
-                        if (vioGetElementData(thePlayer, "wanteds") > 6) then
-                            vioSetElementData(thePlayer, "wanteds", 6)
-                        end
-                        setPlayerWantedLevel(thePlayer, vioGetElementData(thePlayer, "wanteds"))
-                        outputChatBox(string.format("Du hast %s Wanted von %s erhalten! Grund: %s", anzahl, getPlayerName(theMaker), reason), thePlayer, 0, 0, 255)
-                        outputChatBox(string.format("Du hast jetzt %s Wanteds", vioGetElementData(thePlayer, "wanteds")), thePlayer, 0, 0, 255)
-
-                        outputChatBoxForPolice(string.format("%s hat %s Wanted erhalten! Grund: %s", getPlayerName(thePlayer), anzahl, reason), 0, 0, 255)
-                        outputChatBoxForPolice(string.format("Er hat %s Wanteds! Reporter: %s", vioGetElementData(thePlayer, "wanteds"), getPlayerName(theMaker)), 0, 0, 255)
-                    else
-                        showError(theMaker, "Dieser Spieler hat bereits 6 oder mehr Wanteds!")
-                    end
-                else
-                    showError(theMaker, "Du hast keinen Grund angegeben!")
-                end
-            else
-
-                if (logoutTable[string.lower(thePlayerName)]) then
-                    local timer = getRealTime()
-                    local timestamp = timer.timestamp
-                    if ((timestamp - 300) < logoutTable[string.lower(thePlayerName)][1]) then
-                        if (reason) then
-                            local wanteds = tonumber(anzahl)
-                            local wantedsold = MySql.helper.getValueSync("user_data", "Wanteds", { Nickname = thePlayerName });
-
-                            if (logoutTable[string.lower(thePlayerName)][2]) then
-                                wanteds = wanteds + logoutTable[string.lower(thePlayerName)][2]
-                                wantedsold = logoutTable[string.lower(thePlayerName)][2]
-                            else
-                                wanteds = wantedsold + wanteds
-                            end
-                            if (wantedsold <= 6) then
-                                if (wanteds > 6) then
-                                    wanteds = 6
-                                end
-
-                                MySql.helper.update("user_data", { Wanteds = wanteds }, { Nickname = thePlayerName });
-                                logoutTable[string.lower(thePlayerName)][2] = wanteds
-                                outputChatBoxForPolice(string.format("%s hat %s Wanted erhalten! Grund: %s", thePlayerName, anzahl, reason), 0, 0, 255)
-                                outputChatBoxForPolice(string.format("Er hat %s Wanteds! Reporter: %s", wanteds, getPlayerName(theMaker)), 0, 0, 255)
-                                save_offline_message(thePlayerName, "Polizeicomputer", string.format("Du hast %s Wanted von %s erhalten! Grund: %s", anzahl, getPlayerName(theMaker), reason))
-
-                            else
-                                showError(theMaker, "Dieser Spieler hat bereits 6 oder mehr Wanteds!")
-                            end
-                        else
-                            showError(theMaker, "Du hast keinen Grund angegeben!")
-                        end
-                    else
-                        showError(theMaker, "Der Spieler existiert nicht\n oder ist mehr als 5 Minuten Offline!")
-                    end
-                else
-                    showError(theMaker, "Der Spieler existiert nicht\n oder ist mehr als 5 Minuten Offline!")
-                end
-            end
-        end
-    end
-end
-
-addCommandHandler("su", su_func, false, false)
 
 function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
 
@@ -865,35 +685,6 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
 end
 addCommandHandler("stvo", stvo_func, false, false)
 
-function wanteds_func(thePlayer)
-
-    if (isBeamter(thePlayer)) then
-        local count = 0
-        outputChatBox("Wantedliste:", thePlayer, 255, 255, 0)
-        local wastring = ""
-        for theKey, player in ipairs(getElementsByType("player")) do
-            if (isPlayerLoggedIn(player)) then
-                if (vioGetElementData(player, "wanteds") > 0) then
-                    if (vioGetElementData(player, "mussAlka") == 1) then
-                        wastring = string.format("%s %s: %s (muss Alka);", wastring, getPlayerName(player), vioGetElementData(player, "wanteds"))
-                    else
-                        wastring = string.format("%s %s: %s;", wastring, getPlayerName(player), vioGetElementData(player, "wanteds"))
-                    end
-                    count = count + 1
-                    if (count == 4) then
-                        count = 0
-                        outputChatBox(wastring, thePlayer, 255, 255, 0)
-                        wastring = ""
-                    end
-                end
-            end
-        end
-        if (count > 0) then
-            outputChatBox(wastring, thePlayer, 255, 255, 0)
-        end
-    end
-end
-addCommandHandler("wanteds", wanteds_func, false, false)
 
 function clear_func(theMaker, Command, thePlayerName, ...)
     if (isBeamter(theMaker)) then

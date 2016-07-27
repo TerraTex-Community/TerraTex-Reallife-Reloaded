@@ -295,10 +295,9 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                     addNewCrime(toPlayer, 1001)
                 end
 
-                vioSetElementData(toPlayer, "wanteds", vioGetElementData(toPlayer, "wanteds") + wanted)
-                outputChatBox("Du hast vom Admin " .. getPlayerName(thePlayer) .. " " .. wanted .. " Wanteds und einen Alkabefehl erhalten, aufgrund deines erhöhten Deathmatches", toPlayer, 255, 0, 0)
-                outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " " .. wanted .. " Wanteds und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches", thePlayer, 255, 0, 0)
-                outputChatBoxForPolice("Der Admin " .. getPlayerName(thePlayer) .. " hat " .. getPlayerName(toPlayer) .. " " .. wanted .. " Wanteds und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches")
+                outputChatBox("Du hast vom Admin " .. getPlayerName(thePlayer) .. " einen neuen Verbrecherstatus und einen Alkabefehl erhalten, aufgrund deines erhöhten Deathmatches", toPlayer, 255, 0, 0)
+                outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " einen neuen Verbrecherstatus und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches", thePlayer, 255, 0, 0)
+                outputChatBoxForPolice("Der Admin " .. getPlayerName(thePlayer) .. " hat " .. getPlayerName(toPlayer) .. " einen neuen Verbrecherstatus und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches")
 
                 if (direkt) then
                     if (tonumber(direkt)) then
@@ -309,6 +308,8 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                             setElementInterior(toPlayer, 0)
                             setElementDimension(toPlayer, 0)
                             vioSetElementData(toPlayer, "kaution", 0)
+
+                            -- @todo change wanteds to percentage with time
                             vioSetElementData(toPlayer, "knastzeit", vioGetElementData(toPlayer, "wanteds") * 10 + 60)
                             vioSetElementData(toPlayer, "lastknastzeit", vioGetElementData(toPlayer, "wanteds") * 10 + 60)
                             vioSetElementData(toPlayer, "alkaknast", 1)

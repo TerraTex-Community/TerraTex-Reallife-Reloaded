@@ -43,9 +43,13 @@ CREATE TABLE `user_crimes` (
   `CrimePercentage` int(11) DEFAULT NULL,
   `AdditionalReason` text,
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ReporterDisplay` varchar(255) DEFAULT NULL,
+  `ReporterUser` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `user_crimes_user_Nickname_fk` (`Nickname`),
-  CONSTRAINT `user_crimes_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `user_crimes_user_Nickname_fk_2` (`ReporterUser`),
+  CONSTRAINT `user_crimes_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `user_crimes_user_Nickname_fk_2` FOREIGN KEY (`ReporterUser`) REFERENCES `user` (`Nickname`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 INSERT INTO `data_crimes_categories` (`ID`, `CategorieName`, `Order`) VALUES(1000, 'Admincrimes', 1000);

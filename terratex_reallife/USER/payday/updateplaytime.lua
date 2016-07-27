@@ -465,7 +465,7 @@ function payday(thePlayer)
 
     dbExec(MySql._connection, updateCrimesQuery, getPlayerName(thePlayer));
 
-    vioSetElementData(thePlayer, "crimeLevel", getCrimePercentage(thePlayer));
+    vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
 end
 
 function payday_cmd_func(thePlayer)

@@ -5,8 +5,9 @@
 -- Time: 16:16
 -- To change this template use File | Settings | File Templates.
 --
+CrimeSystem = {};
 
-function getCrimePercentage(thePlayer)
+function CrimeSystem.getCrimePercentage(thePlayer)
     local query = "SELECT sum(CrimePercentage) as CrimeLevel FROM user_crimes WHERE Nickname = ?";
     local executedQuery = dbQuery(MySql._connection, query, getPlayerName(thePlayer));
 
@@ -28,26 +29,44 @@ function getCrimePercentage(thePlayer)
     end
 end
 
--- @todo: optional: Who gives that?
-function addNewCrime(thePlayer, crimeId, additionalComment)
+--- whoGives can be: userelement or string or table {display = , user = }
+function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment)
     local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
 
     if (exist) then
         if not additionalComment then additionalComment = "" end
 
         local percentage = MySql.helper.getValueSync("data_crimes_list", "Percentage", {ID = crimeId});
-
-        MySql.helper.insert("user_crimes", {
+        local columnData = {
             Nickname = getPlayerName(thePlayer),
             CrimeID = crimeId,
             CrimePercentage = percentage,
             AdditionalReason = additionalComment
-        });
+        };
 
-        vioSetElementData(thePlayer, "crimeLevel", getCrimePercentage(thePlayer));
+        if type(whoGives)== "table" then
+            columnData.ReporterUser = getPlayerName(whoGives.user);
+            columnData.ReporterDisplay = whoGives.display
+        elseif type(whoGives)~= "userdata" then
+            columnData.ReporterUser = getPlayerName(whoGives);
+        else
+            columnData.ReporterDisplay = whoGives
+        end
+
+        MySql.helper.insert("user_crimes", columnData);
+
+        vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
     else
         return false;
     end
 end
 
--- @todo: addCustomCrime
+function CrimeSystem.getNewJailTime(thePlayer)
+    local percentage = CrimeSystem.getCrimePercentage(thePlayer);
+    return Math.round((percentage * 36)/60);
+end
+
+function CrimeSystem.clear(thePlayer)
+    MySql.helper.delete("user_crimes", {Nickname = getPlayerName(thePlayer)});
+    vioSetElementData(thePlayer, "crimeLevel", 0)
+end

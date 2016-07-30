@@ -58,3 +58,8 @@ FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CA
 
 ALTER TABLE user_achievements DROP Erfolg_Rubbellosgluck;
 ALTER TABLE user_achievements DROP Erfolg_10erLos;
+
+ALTER TABLE objects_houses_wishes DROP FOREIGN KEY objects_houses_wishes_ibfk_1;
+ALTER TABLE objects_houses_wishes
+ADD CONSTRAINT objects_houses_wishes_ibfk_1
+FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CASCADE;

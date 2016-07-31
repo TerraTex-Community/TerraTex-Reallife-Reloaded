@@ -10,12 +10,12 @@
 addEventHandler("onClientResourceStart",resourceRoot,
     function()
 
-        marklerGUI_Window[1] = guiCreateWindow(0.3744,0.2889,0.2919,0.5233,"Haus- und Buisnessmakler",true)
-        marklerGUI_Label[1] = guiCreateLabel(0.0364,0.0786,0.9229,0.0955,"Klicke auf die ID des Hauses oder des Buisness und klicke auf finden!\nDie Nutzung des Maklers kostet 5000$",true,marklerGUI_Window[1])
-        marklerGUI_Button[1] = guiCreateButton(0.6381,0.1274,0.3383,0.0594,"Beenden!",true,marklerGUI_Window[1])
+        marklerGUI_Window[1] = guiCreateWindow(0.3744,0.2889,0.2919,0.5233,"Haus- und Businessmakler",true)
+        marklerGUI_Label[1] = guiCreateLabel(0.0364,0.0786,0.9229,0.0955,"Klicke auf die ID des Hauses oder des Business und klicke auf finden!\nDie Nutzung des Maklers kostet 5000$",true,marklerGUI_Window[1])
+        marklerGUI_Button[1] = guiCreateButton(0.6381,0.1274,0.3383,0.0594,"Beenden",true,marklerGUI_Window[1])
         marklerGUI_TabPanel[1] = guiCreateTabPanel(0.0278,0.2059,0.9465,0.7643,true,marklerGUI_Window[1])
         marklerGUI_Tab[1] = guiCreateTab("Haus",marklerGUI_TabPanel[1])
-        marklerGUI_Button[2] = guiCreateButton(0.7172,0.0268,0.2579,0.0863,"Haus finden!",true,marklerGUI_Tab[1])
+        marklerGUI_Button[2] = guiCreateButton(0.7172,0.0268,0.2579,0.0863,"Haus finden",true,marklerGUI_Tab[1])
         marklerGUI_Grid[1] = guiCreateGridList(0.0339,0.1399,0.9321,0.8095,true,marklerGUI_Tab[1])
         guiGridListSetSelectionMode(marklerGUI_Grid[1],0)
 
@@ -26,8 +26,8 @@ addEventHandler("onClientResourceStart",resourceRoot,
         marklerGUI_Column[3]=guiGridListAddColumn(marklerGUI_Grid[1],"Beschreibung",0.4)
 
         guiGridListAddColumn(marklerGUI_Grid[1],"Preis",0.2)
-        marklerGUI_Tab[2] = guiCreateTab("Buissness",marklerGUI_TabPanel[1])
-        marklerGUI_Button[3] = guiCreateButton(0.6674,0.0357,0.2964,0.1042,"Buisness finden!",true,marklerGUI_Tab[2])
+        marklerGUI_Tab[2] = guiCreateTab("Business",marklerGUI_TabPanel[1])
+        marklerGUI_Button[3] = guiCreateButton(0.6674,0.0357,0.2964,0.1042,"Business finden!",true,marklerGUI_Tab[2])
         marklerGUI_Grid[2] = guiCreateGridList(0.043,0.1726,0.9253,0.7857,true,marklerGUI_Tab[2])
         guiGridListSetSelectionMode(marklerGUI_Grid[2],0)
 
@@ -74,7 +74,7 @@ function press_find_biz_button()
 		toggleAllControls(true)
 		
 	else
-		showError(getLocalPlayer(),"Du hast kein Buissness ausgewaehlt!")
+		showError(getLocalPlayer(),"Du hast kein Business ausgewaehlt!")
 	end
 
 

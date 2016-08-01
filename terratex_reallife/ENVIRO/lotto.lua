@@ -9,6 +9,10 @@
 
 function lottoziehung_func(timer)
 
+    if isDevServer() then
+        return;
+    end
+
     local curtime=getRealTime()
     if(curtime["hour"]==19 and curtime["minute"]==10)then
         local winners=0
@@ -167,13 +171,3 @@ function lottoziehung_func(timer)
     setTimer(lottoziehung_func,60000,1)
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),lottoziehung_func)
-
-
-
-
-
-
-
-
-
-

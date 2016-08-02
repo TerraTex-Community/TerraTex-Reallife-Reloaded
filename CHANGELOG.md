@@ -1,3 +1,7 @@
+####30.07.2016
+--------------
+* [FIXED] Wrong Foreigner Key in object_house_wish
+
 ####26.07.2016
 --------------
 * [CHANGED] #100 ChatBoxSpam bans now for 2h instead of permanent

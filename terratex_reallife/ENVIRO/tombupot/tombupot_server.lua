@@ -41,6 +41,10 @@ end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)
 
 function isLotteryTime()
+    if isDevServer() then
+        return;
+    end
+
     local time = getRealTime()
     if (time.hour == winTimeHour and time.minute == winTimeMinute) then
         outputChatBox("Und die TombupotLotteryZiehung beginnt....")
@@ -79,13 +83,4 @@ function isLotteryTime()
         setTimer(isLotteryTime, 60000, 1)
     end
 end
-
-
-
-
-
-
-
-
-
 

@@ -211,7 +211,6 @@ function executeSettingsGUI()
 	handleOnClientSwitchDetail(client_settings["newDetails"])
 
     triggerEvent( "switchCarPaintReflectLite", getRootElement(), client_settings["LackShadder"]  )
-    --@todo: lackglänzeneffekt
 	
 	if(client_settings["RadioStreamer"])then
 		setTimer(startAutoPlayingRadioStreamer,5000,1)

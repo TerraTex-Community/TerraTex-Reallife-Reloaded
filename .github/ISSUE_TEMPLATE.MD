@@ -1,9 +1,11 @@
 What type of report is this?
 ----------------------------
-- (x) Bug / Error Report
-- ( ) Feature Request / Enhancement
-- ( ) Refactoring / Removerequest
-- ( ) Question
+set the x for the correct type
+
+- [x] Bug / Error Report
+- [ ] Feature Request / Enhancement
+- [ ] Refactoring / Removerequest
+- [ ] Question
 
 Are there other Issues that are related to this request? (If you know one)
 --------------------------------------------------------------------------

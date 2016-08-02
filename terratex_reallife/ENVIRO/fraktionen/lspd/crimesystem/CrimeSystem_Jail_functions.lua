@@ -37,7 +37,6 @@ function CrimeSystem.Jail.getJailIdInArea(thePlayer)
     end
 end
 
--- @todo refactor
 function knastTimer()
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
         if (isPlayerLoggedIn(thePlayer)) then
@@ -46,14 +45,12 @@ function knastTimer()
                 toggleControl(thePlayer, "fire", false)
                 triggerClientEvent(thePlayer, "addFood", thePlayer, 2.8)
                 if (vioGetElementData(thePlayer, "knastzeit") == 0) then
-                    setElementInterior(thePlayer, 0)
-                    if (vioGetElementData(thePlayer, "alkaknast") == 2) then
-                        setElementPosition(thePlayer, 2290.5244140625, 2422.5546875, 10.8203125)
-                    elseif (vioGetElementData(thePlayer, "alkaknast") == 1) then
-                        setElementPosition(thePlayer, 2866.173828125, 42.822265625, 19.252059936523)
-                    else
-                        setElementPosition(thePlayer, 1543.9755859375, -1676.669921875, 13.557506561279)
-                    end
+
+                    local pos = CrimeSystem._deArrestPositions[CrimeSystem._jailIdToText[vioGetElementData(thePlayer, "alkaknast")]];
+
+                    setElementInterior(pos[1], pos[2], pos[3], pos[4]);
+                    setElementPosition(pos[2], pos[3], pos[4]);
+
                     vioSetElementData(thePlayer, "kaution", 0)
                     vioSetElementData(thePlayer, "alkaknast", 0)
                     vioSetElementData(thePlayer, "knastzeit", 0)

@@ -61,11 +61,6 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
     end
 end
 
-function CrimeSystem.getNewJailTime(thePlayer)
-    local percentage = CrimeSystem.getCrimePercentage(thePlayer);
-    return Math.round(percentage * CrimeSystem._jailtimePerPercentage);
-end
-
 function CrimeSystem.clear(thePlayer)
     MySql.helper.delete("user_crimes", {Nickname = getPlayerName(thePlayer)});
     vioSetElementData(thePlayer, "crimeLevel", 0)

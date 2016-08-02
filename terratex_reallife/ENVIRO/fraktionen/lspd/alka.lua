@@ -59,7 +59,7 @@ function setAlka_func(thePlayer, cmd, toPlayerNamePart, zeit)
                         outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s in das Alkataz gebuchtet!", getPlayerName(toPlayer)), thePlayer, 255, 0, 0)
 
-                        local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawn(1);
+                        local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnById(1);
 
                         setElementPosition(toPlayer, x, y, z)
                         setElementInterior(toPlayer, int)

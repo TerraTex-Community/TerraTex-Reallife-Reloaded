@@ -15,9 +15,15 @@ CrimeSystem.Jail = {};
 --vioSetElementData(thePlayer,"alkaknast",0)
 --
 
-function CrimeSystem.Jail.getRandomJailSpawn(jailId)
+function CrimeSystem.Jail.getRandomJailSpawnById(jailId)
     local jailTextId = CrimeSystem._jailIdToText(jailId);
     local spawnTable = CrimeSystem._jails[jailTextId];
+
+    return spawnTable[math.random(1, table.getSize(spawnTable))];
+end
+
+function CrimeSystem.Jail.getRandomJailSpawnByJailName(jailId)
+    local spawnTable = CrimeSystem._jails[jailId];
 
     return spawnTable[math.random(1, table.getSize(spawnTable))];
 end
@@ -64,5 +70,30 @@ function knastTimer()
     end
     setTimer(knastTimer, 60000, 1)
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), knastTimer)
+
+function CrimeSystem.getNewJailTime(thePlayer, gestellt)
+    if not gestellt then
+        local percentage = CrimeSystem.getCrimePercentage(thePlayer);
+        return Math.round(percentage * CrimeSystem._jailtimePerPercentage);
+    else
+        local percentage = CrimeSystem.getCrimePercentage(thePlayer);
+        return Math.round(percentage * CrimeSystem._jailtimePerPercentageGestellt);
+    end
+end
+
+function CrimeSystem.getBail(thePlayer, bot)
+    if not bot then
+        local percentage = CrimeSystem.getCrimePercentage(thePlayer);
+        if (vioGetElementData(thePlayer, "playtime") < 1500) then
+            percentage = percentage / 2;
+        end
+        return Math.round(percentage * CrimeSystem._bailPerPercentage);
+    else
+        local percentage = CrimeSystem.getCrimePercentage(thePlayer);
+        if (vioGetElementData(thePlayer, "playtime") < 1500) then
+            percentage = percentage / 2;
+        end
+        return Math.round(percentage * CrimeSystem._bailPerPercentageBot);
+    end
+end

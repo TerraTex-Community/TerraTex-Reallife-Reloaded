@@ -11,42 +11,30 @@ function onStellBotSpawn()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)
 
-
--- @todo: refactor with crimelevel system
 function StellenNow(thePlayer)
     if (vioGetElementData(thePlayer, "stellenInfos") == vioGetElementData(thePlayer, "wanteds")) then
         local x, y, z = getElementPosition(thePlayer)
         if (getDistanceBetweenPoints3D(x, y, z, 238.961914062, 112.734375, 1003.21875) < 5 or getDistanceBetweenPoints3D(x, y, z, 233.044921875, 166.4814453125, 1003.0234375) < 5) then
             if not (isPedDead(thePlayer)) then
 
-                local wanted = vioGetElementData(thePlayer, "wanteds")
-                vioSetElementData(thePlayer, "wanteds", 0)
-                setPlayerWantedLevel(thePlayer, 0)
-                vioSetElementData(thePlayer, "kaution", wanted * wanted * 30 * wanted)
-                Kaution = wanted * wanted * 30 * wanted
-                if (vioGetElementData(thePlayer, "playtime") > 1500) then
-                    vioSetElementData(thePlayer, "kaution", wanted * 25000)
-                    Kaution = wanted * 25000
-                end
 
-                vioSetElementData(thePlayer, "knastzeit", wanted * 5)
-                vioSetElementData(thePlayer, "lastknastzeit", wanted * 5)
-                setElementModel(thePlayer, 62)
-                changePlayerMoney(thePlayer, -(2.00 * wanted * wanted), "sonstiges", "Knast mit Stellen beim Bot")
-                if (Kaution == 0) then Kaution = "keine" else Kaution = toprice(Kaution) end
-                outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", (wanted * 5), Kaution), thePlayer)
-                outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)))
-                local rnd = math.floor(math.random(1, 4))
-                if rnd == 1 then
-                    setElementPosition(thePlayer, 215.61360168457, 110.61786651611, 998.66485595703)
-                elseif rnd == 2 then
-                    setElementPosition(thePlayer, 219.60717773438, 110.39416503906, 998.66485595703)
-                elseif rnd == 3 then
-                    setElementPosition(thePlayer, 223.60034179688, 110.17053222656, 998.66485595703)
-                else
-                    setElementPosition(thePlayer, 227.34938049316, 110.19967651367, 998.66485595703)
-                end
+                local Kaution = CrimeSystem.getBail(thePlayer, true);
+                vioSetElementData(thePlayer, "kaution", Kaution);
 
+                local time = CrimeSystem.getNewJailTime(thePlayer, true);
+                vioSetElementData(thePlayer, "knastzeit", time);
+                vioSetElementData(thePlayer, "lastknastzeit", time);
+                setElementModel(thePlayer, 62);
+
+                if (Kaution == 0) then Kaution = "keine"; else Kaution = toprice(Kaution); end
+
+                outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", time, Kaution), thePlayer);
+                outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)));
+
+                local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
+                setElementPosition(thePlayer, x,y,z);
+
+                CrimeSystem.clear(thePlayer);
             else
                 outputChatBox("Stellen Abgebrochen: Du bist Tod", thePlayer, 255, 0, 0)
             end
@@ -150,8 +138,6 @@ function isBeamter(thePlayer)
     end
 end
 
-
---@todo: refactor with new crimeLevel
 function antiofflineflucht_func(quitType, reason, responsibleElement)
     if (isPlayerLoggedIn(source)) then
         if not (vioGetElementData(source, "cuffed")) then
@@ -159,9 +145,6 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
         end
         if not (vioGetElementData(source, "schutzzahlung")) then
             vioSetElementData(source, "schutzzahlung", 0)
-        end
-        if not (vioGetElementData(source, "wanteds")) then
-            vioSetElementData(source, "wanteds", 0)
         end
         if (quitType == "Quit") then
             local x, y, z = getElementPosition(source)
@@ -186,11 +169,11 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
             if ((vioGetElementData(source, "cuffed") == 1) or (gangInNear > 0 and vioGetElementData(source, "schutzzahlung") > 0) or (policeInNear > 0 and vioGetElementData(source, "wanteds") > 0)) then
                 if (policeInNear > 0) then
                     if (vioGetElementData(source, "wanteds") > 0) then
-                        vioSetElementData(source, "knastzeit", vioGetElementData(source, "wanteds") * 10 + 20)
-                        vioSetElementData(source, "lastknastzeit", vioGetElementData(source, "wanteds") * 10 + 20)
+                        vioSetElementData(source, "knastzeit", CrimeSystem.getNewJailTime(source) + 20)
+                        vioSetElementData(source, "lastknastzeit", CrimeSystem.getNewJailTime(source) + 20)
                         vioSetElementData(source, "alkaknast", 1)
-                        changePlayerMoney(source, -vioGetElementData(source, "wanteds") * 500, "sonstiges", "Knast mit Offlineflucht")
-                        vioSetElementData(source, "wanteds", 0)
+
+                        CrimeSystem.clear(source)
                         save_offline_message(getPlayerName(source), "Anti-Offlineflucht-System", "Da du absichtlich Offlineflucht begangen hast, wurdest du automatisch eingeknastet (+20 Min Strafe)!")
                     end
                 end
@@ -203,7 +186,6 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
         end
     end
 end
-
 addEventHandler("onPlayerQuit", getRootElement(), antiofflineflucht_func)
 
 function setPlayerCuffedInVar(thePlayer)

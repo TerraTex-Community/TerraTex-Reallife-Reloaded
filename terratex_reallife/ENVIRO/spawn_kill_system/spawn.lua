@@ -50,7 +50,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
 
         if (vioGetElementData(source, "todezeit") == 0) then
             if (vioGetElementData(source, "knastzeit") > 0) then
-                local int, x ,y ,z = CrimeSystem.Jail.getRandomJailSpawn(vioGetElementData(source, "alkaknast"));
+                local int, x ,y ,z = CrimeSystem.Jail.getRandomJailSpawnById(vioGetElementData(source, "alkaknast"));
                 spawnPlayer(source, x, y, z, 183.71893310547, 62, int, 0, team[fraktion])
                 setElementFrozen(source, true)
                 setTimer(setElementFrozen, 3000, 1, source, false)

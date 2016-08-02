@@ -315,7 +315,7 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                             outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
                             outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " in das Alkataz gebuchtet!", thePlayer, 255, 0, 0)
 
-                            local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawn(1);
+                            local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnById(1);
 
                             setElementPosition(toPlayer, x, y, z)
                             setElementInterior(toPlayer, int)

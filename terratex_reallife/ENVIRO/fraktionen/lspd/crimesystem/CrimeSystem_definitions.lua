@@ -8,6 +8,10 @@
 
 -- jailtime per percentage in minutes
 CrimeSystem._jailtimePerPercentage = 0.6;
+CrimeSystem._jailtimePerPercentageGestellt = 0.4;
+
+CrimeSystem._bailPerPercentage = 1000;
+CrimeSystem._bailPerPercentageBot = 2500;
 
 -- arrest points
 -- int x,y,z

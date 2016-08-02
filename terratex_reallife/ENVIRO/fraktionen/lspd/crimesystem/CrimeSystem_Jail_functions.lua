@@ -8,13 +8,6 @@
 
 CrimeSystem.Jail = {};
 
--- @todo: deArrest Function
--- setPedSkin(thePlayer,vioGetElementData(thePlayer,"skinid"))
---vioSetElementData(thePlayer,"kaution",0)
---vioSetElementData(thePlayer,"knastzeit",0)
---vioSetElementData(thePlayer,"alkaknast",0)
---
-
 function CrimeSystem.Jail.getRandomJailSpawnById(jailId)
     local jailTextId = CrimeSystem._jailIdToText(jailId);
     local spawnTable = CrimeSystem._jails[jailTextId];
@@ -46,16 +39,11 @@ function knastTimer()
                 triggerClientEvent(thePlayer, "addFood", thePlayer, 2.8)
                 if (vioGetElementData(thePlayer, "knastzeit") == 0) then
 
-                    local pos = CrimeSystem._deArrestPositions[CrimeSystem._jailIdToText[vioGetElementData(thePlayer, "alkaknast")]];
-
-                    setElementInterior(pos[1], pos[2], pos[3], pos[4]);
-                    setElementPosition(pos[2], pos[3], pos[4]);
-
-                    vioSetElementData(thePlayer, "kaution", 0)
-                    vioSetElementData(thePlayer, "alkaknast", 0)
-                    vioSetElementData(thePlayer, "knastzeit", 0)
                     toggleControl(thePlayer, "enter_exit", true)
                     toggleControl(thePlayer, "fire", true)
+
+                    CrimeSystem.Jail.unArrest(thePlayer)
+
                     if (vioGetElementData(thePlayer, "fraktion") > 0) then
                         setPedSkin(thePlayer, vioGetElementData(thePlayer, "FrakSkin"))
                     else
@@ -68,6 +56,17 @@ function knastTimer()
     setTimer(knastTimer, 60000, 1)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), knastTimer)
+
+function CrimeSystem.Jail.unArrest(thePlayer)
+    local pos = CrimeSystem._deArrestPositions[CrimeSystem._jailIdToText[vioGetElementData(thePlayer, "alkaknast")]];
+
+    setElementInterior(pos[1], pos[2], pos[3], pos[4]);
+    setElementPosition(pos[2], pos[3], pos[4]);
+
+    vioSetElementData(thePlayer, "kaution", 0)
+    vioSetElementData(thePlayer, "alkaknast", 0)
+    vioSetElementData(thePlayer, "knastzeit", 0)
+end
 
 function CrimeSystem.getNewJailTime(thePlayer, gestellt)
     if not gestellt then

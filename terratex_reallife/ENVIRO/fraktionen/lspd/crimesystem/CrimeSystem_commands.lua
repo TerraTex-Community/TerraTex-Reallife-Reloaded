@@ -22,3 +22,10 @@
 
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
+
+-- @todo: deArrest
+-- setPedSkin(thePlayer,vioGetElementData(thePlayer,"skinid"))
+--vioSetElementData(thePlayer,"kaution",0)
+--vioSetElementData(thePlayer,"knastzeit",0)
+--vioSetElementData(thePlayer,"alkaknast",0)
+--

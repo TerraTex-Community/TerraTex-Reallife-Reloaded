@@ -76,8 +76,6 @@ function loadPrivCars()
         setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
 
         local position = fromJSON(dasatz["lastPosition"]);
-        debug.print(dasatz["lastPosition"]);
-        debug.print(position);
 
         if position then
             if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
@@ -85,7 +83,7 @@ function loadPrivCars()
             end
 
             if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
-                setElementPosition(thevehicle, position[4], position[5], position[6])
+                setElementRotation(thevehicle, position[4], position[5], position[6])
             end
         end
 
@@ -149,8 +147,8 @@ function save_priv_carsB()
                     Tank = vioGetElementData(thetable[3], "tank"),
                     kmstand = vioGetElementData(thetable[3], "kmstand"),
                     lastPosition = toJSON(position),
-                    lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
-                    lastHealth = getElementHealth(theVehicle)
+                    lastDamageStates = toJSON(getVehicleDamageParts(thetable[3])),
+                    lastHealth = getElementHealth(thetable[3])
                 }, { ID = vioGetElementData(thetable[3], "dbid") });
             end
         end

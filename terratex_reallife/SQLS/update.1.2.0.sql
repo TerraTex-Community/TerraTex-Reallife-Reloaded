@@ -63,3 +63,6 @@ ALTER TABLE objects_houses_wishes DROP FOREIGN KEY objects_houses_wishes_ibfk_1;
 ALTER TABLE objects_houses_wishes
 ADD CONSTRAINT objects_houses_wishes_ibfk_1
 FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE user_vehicles ADD lastHealth INT DEFAULT 1000 NULL;
+ALTER TABLE user_vehicles ADD lastPosition VARCHAR(255) DEFAULT '{0,0,0}' NULL;

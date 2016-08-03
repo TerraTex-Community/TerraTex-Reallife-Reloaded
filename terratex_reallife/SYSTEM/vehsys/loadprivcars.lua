@@ -73,7 +73,7 @@ function loadPrivCars()
         vioSetElementData(thevehicle, "kmstand", dasatz["kmstand"])
 
         setElementHealth(thevehicle, dasatz["lastHealth"]);
-        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
+        setVehicleDamageParts(thevehicle, fromJson(dasatz["lastDamageStates"]));
 
         local position = fromJson(dasatz["lastPosition"]);
 

@@ -85,59 +85,6 @@ function killCarFinderBlip(theBlip)
     destroyElement(theBlip)
 end
 
-function reloadCarsDB_func(thePlayer, Command, toPlayerName)
-    if (isAdminLevel(thePlayer, 3)) then
-        if (toPlayerName) then
-            local changedCars = 0
-            for theKey, theVehicle in ipairs(privVeh) do
-                if (theVehicle[1] == toPlayerName) then
-                    changedCars = changedCars + 1
-                    local ele = theVehicle[3]
-                    local id = vioGetElementData(ele, "dbid")
-                    local newmodel = MySql.helper.getValueSync("user_vehicles", "Model", { ID = id });
-
-                    setElementModel(ele, newmodel)
-                    local colorstr = MySql.helper.getValueSync("user_vehicles", "Colors", { ID = id });
-                    vioSetElementData(ele, "colors", colorstr)
-                    local colors = {}
-                    local counter = 0
-                    local countlast;
-                    for color = 0, 3, 1 do
-                        countlast = counter
-                        if (color < 3) then
-                            counter = string.find(colorstr, "|", countlast)
-                            colors[color] = string.sub(colorstr, countlast, counter - 1)
-                        else
-                            colors[color] = string.sub(colorstr, countlast)
-                        end
-                        counter = counter + 1
-                    end
-                    setVehicleColor(theVehicle, tonumber(colors[0]), tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
-                    local tuning = getStringComponents(MySql.helper.getValueSync("user_vehicles", "Tuning", { ID = id }))
-                    for theKey, theTuning in ipairs(tuning) do
-                        if (theTuning ~= 0) then
-                            addVehicleUpgrade(theVehicle, theTuning)
-                        end
-                    end
-                    local no_handel = MySql.helper.getValueSync("user_vehicles", "no_handel", { ID = id });
-
-                    vioSetElementData(thevehicle, "model", newmodel)
-                    vioSetElementData(thevehicle, "colors", colorstr)
-                    vioSetElementData(thevehicle, "tuning", tuning)
-                    vioSetElementData(thevehicle, "no_handel", tonumber(no_handel))
-                end
-            end
-            showError(thePlayer, string.format("Es wurden %s Fahrzeuge geaendert!", changedCars))
-        else
-            showError(thePlayer, "Nutzung: /reloadCarsDB [SpielerName]")
-        end
-    else
-        showError(thePlayer, "Du bist kein Admin!")
-    end
-end
-
-addCommandHandler("reloadCarsDB", reloadCarsDB_func, false, false)
-
 local noparkingcolA = createColRectangle(1696.6806640625, -1871.541015625, 114.667, 32.6465)
 local noparkingcolB = createColRectangle(1511.7666015625, -1727.755859375, 36, 129)
 

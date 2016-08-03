@@ -175,7 +175,7 @@ end
 addCommandHandler("lock", lock_func, false, false)
 
 function towveh_func(thePlayer, command, SloteID)
-    local price = 500
+    local price = 5000
     if (vioGetElementData(thePlayer, "playtime") < 51 * 60) then
         price = price / 10
     end

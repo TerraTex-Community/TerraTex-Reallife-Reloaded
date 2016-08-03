@@ -77,12 +77,14 @@ function loadPrivCars()
 
         local position = fromJSON(dasatz["lastPosition"]);
 
-        if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
-            setElementPosition(thevehicle, position[1], position[2], position[3])
-        end
+        if position then
+            if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
+                setElementPosition(thevehicle, position[1], position[2], position[3])
+            end
 
-        if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
-            setElementPosition(thevehicle, position[4], position[5], position[6])
+            if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
+                setElementPosition(thevehicle, position[4], position[5], position[6])
+            end
         end
 
         setElementFrozen(thevehicle, true)

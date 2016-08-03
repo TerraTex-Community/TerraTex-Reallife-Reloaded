@@ -76,6 +76,7 @@ function loadPrivCars()
         setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
 
         local position = fromJSON(dasatz["lastPosition"]);
+        debug.print(dasatz["lastPosition"]);
         debug.print(position);
 
         if position then

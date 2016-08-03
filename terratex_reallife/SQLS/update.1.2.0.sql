@@ -9,7 +9,7 @@ CREATE TABLE `data_crimes_categories` (
   `CategorieName` varchar(255) DEFAULT NULL,
   `Order` int(11) DEFAULT '50',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `data_crimes_list` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -20,7 +20,7 @@ CREATE TABLE `data_crimes_list` (
   PRIMARY KEY (`ID`),
   KEY `data_crimes_list_data_crimes_categories_ID_fk` (`CategorieID`),
   CONSTRAINT `data_crimes_list_data_crimes_categories_ID_fk` FOREIGN KEY (`CategorieID`) REFERENCES `data_crimes_categories` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE log_chat ENGINE=MyISAM;
 
@@ -34,7 +34,7 @@ CREATE TABLE `log_kills` (
   `WeaponID` int(11) DEFAULT '0',
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `user_crimes` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,7 +46,7 @@ CREATE TABLE `user_crimes` (
   PRIMARY KEY (`ID`),
   KEY `user_crimes_user_Nickname_fk` (`Nickname`),
   CONSTRAINT `user_crimes_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `data_crimes_categories` (`ID`, `CategorieName`, `Order`) VALUES(1000, 'Admincrimes', 1000);
 INSERT INTO `data_crimes_list` (`ID`, `CategorieID`, `Name`, `Percentage`, `MinPercentage`) VALUES(1000, 1000, 'SDM', 50, 50);
@@ -65,5 +65,5 @@ ADD CONSTRAINT objects_houses_wishes_ibfk_1
 FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE user_vehicles ADD lastHealth FLOAT DEFAULT 1000 NULL;
-ALTER TABLE user_vehicles ADD lastPosition VARCHAR(255) DEFAULT '[{0,0,0,0,0,0}]' NULL;
-ALTER TABLE user_vehicles ADD lastDamageStates VARCHAR(512) DEFAULT '[{}]' NULL;
+ALTER TABLE user_vehicles ADD lastPosition VARCHAR(255) DEFAULT '[[0,0,0,0,0,0,0,0]]' NULL;
+ALTER TABLE user_vehicles ADD lastDamageStates VARCHAR(512) DEFAULT '[[]]' NULL;

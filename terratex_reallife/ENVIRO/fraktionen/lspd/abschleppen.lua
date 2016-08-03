@@ -28,7 +28,10 @@ function abschleppNullSystem()
             SpawnRX = 0,
             SpawnRY = 0,
             SpawnRZ = 0,
-            abgeschleppt = 1
+            abgeschleppt = 1,
+            lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+            lastPosition = '[{0,0,0,0,0,0}]',
+            lastHealth = getElementHealth(theVehicle)
         }, { ID = vioGetElementData(theVehicle, "dbid") });
 
         for theKey, theTable in ipairs(privVeh) do
@@ -76,7 +79,10 @@ function abgeschleppt_police_click(theVehicle, grund)
                     SpawnRX = 0,
                     SpawnRY = 0,
                     SpawnRZ = 0,
-                    abgeschleppt = 1
+                    abgeschleppt = 1,
+                    lastPosition = '[{0,0,0,0,0,0}]',
+                    lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+                    lastHealth = getElementHealth(theVehicle)
                 }, { ID = vioGetElementData(theVehicle, "dbid") });
 
                 for theKey, theTable in ipairs(privVeh) do
@@ -160,6 +166,9 @@ function getcar_func(thePlayer, cmd, IDs)
                         else
                             thevehicle = createVehicle(dasatz["Model"], 1945.5, -2316.3, 16.7, 0, 0, 184, dasatz["Besitzer"])
                         end
+
+                        setElementHealth(thevehicle, dasatz["lastHealth"]);
+                        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
 
                         vioSetElementData(thePlayer, "slot" .. id, thevehicle)
                         vioSetElementData(thevehicle, "abgeschleppt", 0)

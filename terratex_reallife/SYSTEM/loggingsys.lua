@@ -390,3 +390,13 @@ function log_anonym(who, factionFrom, type, message)
         message = message
     });
 end
+
+function log_car_delete(Owner, SlotId, VehicleModel, Reason, DeletedBy)
+    MySql.helper.insert("log_car_deletes", {
+        Owner = Owner,
+        SlotId = SlotId,
+        VehicleModel = VehicleModel,
+        Reason = Reason,
+        DeletedBy = DeletedBy
+    });
+end

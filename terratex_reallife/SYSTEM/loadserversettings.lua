@@ -94,7 +94,7 @@ function loadSettingsFromDB()
             if (result) then
                 for theKey, theRow in ipairs(result) do
                     MySql.helper.delete("user_vehicles", {Besitzer = theRow["Nickname"]});
-                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge gelöscht.")
+                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge gelöscht.");
                     changeaccounts = changeaccounts + 1
                 end
             end

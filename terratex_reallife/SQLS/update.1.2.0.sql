@@ -98,3 +98,16 @@ CREATE TABLE `log_anonym` (
   `factionFrom` int(11) DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `log_car_deletes` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Owner` varchar(255) DEFAULT NULL,
+  `SlotId` int(11) DEFAULT NULL,
+  `VehicleModel` int(11) DEFAULT NULL,
+  `Reason` text,
+  `DeletedBy` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `log_car_deletes_user_Nickname_fk` (`Owner`),
+  CONSTRAINT `log_car_deletes_user_Nickname_fk` FOREIGN KEY (`Owner`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -197,6 +197,7 @@ function onvehicleexplode_exec(source)
             if (dis < 50) then
 
                 MySql.helper.delete("user_vehicles", {ID = vioGetElementData(source, "dbid")});
+
                 local besitzer = getPlayerFromName(vioGetElementData(source, "besitzer"))
 
                 for theKey, theTable in ipairs(privVeh) do
@@ -227,6 +228,9 @@ function onvehicleexplode_exec(source)
                     outputChatBox("Eine Versicherung hat ihnen 25% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
                     changePlayerMoney(besitzer, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
                 end
+
+                log_car_delete(vioGetElementData(source, "besitzer"), vioGetElementData(source, "slotid"), getElementModel(source), "crash", "system");
+
                 vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
                 destroyElement(source)
                 privCars[source] = nil
@@ -274,6 +278,8 @@ function onvehicleexplode_exec(source)
                         Geld = (wert * satz)
                     });
                 end
+
+                log_car_delete(vioGetElementData(source, "besitzer"), vioGetElementData(source, "slotid"), getElementModel(source), "crash", "system");
                 destroyElement(source)
                 privCars[source] = nil
             else

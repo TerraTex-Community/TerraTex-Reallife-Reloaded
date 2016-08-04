@@ -278,6 +278,15 @@ function deletecar_func(thePlayer, command, SloteID)
 
                     MySql.helper.delete("user_vehicles", { ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
 
+                    local vehicle = vioGetElementData(thePlayer, "slot" .. SlotID);
+                    log_car_delete(
+                        vioGetElementData(vehicle, "besitzer"),
+                        vioGetElementData(vehicle, "slotid"),
+                        getElementModel(vehicle),
+                        "sold by user",
+                        vioGetElementData(vehicle, "besitzer")
+                    );
+
                     carPrice = math.round((carPrice / 100) * 25, 0)
 
                     if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then

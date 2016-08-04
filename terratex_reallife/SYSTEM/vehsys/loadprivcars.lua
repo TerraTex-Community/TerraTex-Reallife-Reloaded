@@ -48,9 +48,7 @@ function loadPrivCars()
 
             MySql.helper.update("user_vehicles", {abgeschleppt = 1}, {ID = dasatz["ID"]});
 
-            local times = getRealTime()
-            local logtext = "[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. name .. ": " .. message
-            save_log("abschlepp", logtext)
+            log_tow_police(dasatz["SlotID"], nameofCar, name);
         end
         vioSetElementData(thevehicle, "besitzer", dasatz["Besitzer"])
         vioSetElementData(thevehicle, "model", dasatz["Model"])

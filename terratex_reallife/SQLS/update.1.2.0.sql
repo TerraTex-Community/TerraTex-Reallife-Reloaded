@@ -79,3 +79,12 @@ CREATE TABLE `log_lotto` (
   `winnerPrice` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `log_tow_police` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TimeStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Owner` varchar(255) DEFAULT NULL,
+  `Officer` varchar(255) DEFAULT NULL,
+  `CarSlot` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

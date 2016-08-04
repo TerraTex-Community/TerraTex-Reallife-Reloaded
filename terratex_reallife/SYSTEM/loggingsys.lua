@@ -363,7 +363,7 @@ end
 addEventHandler("debugClientError", getRootElement(), debugClientError_func)
 
 
-function save_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winnerPrice)
+function log_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winnerPrice)
     MySql.helper.insert("log_lotto", {
         CorrectNumbers = CorrectNumbers,
         Winnerlist = Winnerlist,
@@ -371,5 +371,13 @@ function save_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winne
         Number2 = Number2,
         Number3 = Number3,
         winnerPrice = winnerPrice
+    });
+end
+
+function log_tow_police(slotId, owner, officer)
+    MySql.helper.insert("log_tow_police", {
+        Owner = owner,
+        Officer = officer,
+        CarSlot = slotId
     });
 end

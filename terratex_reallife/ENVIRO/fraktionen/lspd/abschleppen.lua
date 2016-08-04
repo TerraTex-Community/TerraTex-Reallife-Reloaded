@@ -29,7 +29,7 @@ function abschleppNullSystem()
             SpawnRY = 0,
             SpawnRZ = 0,
             abgeschleppt = 1,
-            lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+            lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
             lastPosition = '[{0,0,0,0,0,0}]',
             lastHealth = getElementHealth(theVehicle)
         }, { ID = vioGetElementData(theVehicle, "dbid") });
@@ -81,7 +81,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                     SpawnRZ = 0,
                     abgeschleppt = 1,
                     lastPosition = '[{0,0,0,0,0,0}]',
-                    lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+                    lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
                     lastHealth = getElementHealth(theVehicle)
                 }, { ID = vioGetElementData(theVehicle, "dbid") });
 

@@ -83,7 +83,7 @@ function stealTooExpensiveVehicles()
                         SpawnRY = 0,
                         SpawnRZ = 0,
                         abgeschleppt = 1,
-                        lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+                        lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
                         lastHealth = getElementHealth(theVehicle)
                     }, {ID = vioGetElementData(theVehicle, "dbid")});
 

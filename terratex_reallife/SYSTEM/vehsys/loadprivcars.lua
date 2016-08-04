@@ -73,16 +73,18 @@ function loadPrivCars()
         vioSetElementData(thevehicle, "kmstand", dasatz["kmstand"])
 
         setElementHealth(thevehicle, dasatz["lastHealth"]);
-        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
+        setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
 
-        local position = fromJson(dasatz["lastPosition"]);
+        local position = fromJSON(dasatz["lastPosition"]);
 
-        if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
-            setElementPosition(thevehicle, position[1], position[2], position[3])
-        end
+        if position then
+            if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
+                setElementPosition(thevehicle, position[1], position[2], position[3])
+            end
 
-        if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
-            setElementPosition(thevehicle, position[4], position[5], position[6])
+            if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
+                setElementRotation(thevehicle, position[4], position[5], position[6])
+            end
         end
 
         setElementFrozen(thevehicle, true)
@@ -144,9 +146,9 @@ function save_priv_carsB()
                 MySql.helper.update("user_vehicles", {
                     Tank = vioGetElementData(thetable[3], "tank"),
                     kmstand = vioGetElementData(thetable[3], "kmstand"),
-                    lastPosition = toJson(position),
-                    lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
-                    lastHealth = getElementHealth(theVehicle)
+                    lastPosition = toJSON(position),
+                    lastDamageStates = toJSON(getVehicleDamageParts(thetable[3])),
+                    lastHealth = getElementHealth(thetable[3])
                 }, { ID = vioGetElementData(thetable[3], "dbid") });
             end
         end
@@ -169,7 +171,7 @@ function save_car(veh)
         kmstand = vioGetElementData(veh, "kmstand"),
         Lichterfarbe = vioGetElementData(veh, "Lichterfarbe"),
         premColors = vioGetElementData(veh, "premColor"),
-        lastDamageStates = toJson(getVehicleDamageParts(theVehicle)),
+        lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
         lastHealth = getElementHealth(theVehicle)
     }, {ID = vioGetElementData(veh, "dbid")});
 

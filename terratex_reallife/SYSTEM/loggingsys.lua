@@ -381,3 +381,12 @@ function log_tow_police(slotId, owner, officer)
         CarSlot = slotId
     });
 end
+
+function log_anonym(who, factionFrom, type, message)
+    MySql.helper.insert("log_anonym", {
+        who = who,
+        factionFrom = factionFrom,
+        type = type,
+        message = message
+    });
+end

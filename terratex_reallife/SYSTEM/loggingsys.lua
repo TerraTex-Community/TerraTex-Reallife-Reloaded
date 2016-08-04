@@ -361,3 +361,15 @@ function debugClientError_func(errorMessage, stack)
     end
 end
 addEventHandler("debugClientError", getRootElement(), debugClientError_func)
+
+
+function save_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winnerPrice)
+    MySql.helper.insert("log_lotto", {
+        CorrectNumbers = CorrectNumbers,
+        Winnerlist = Winnerlist,
+        Number1 = Number1,
+        Number2 = Number2,
+        Number3 = Number3,
+        winnerPrice = winnerPrice
+    });
+end

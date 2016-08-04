@@ -67,3 +67,15 @@ FOREIGN KEY (Nickname) REFERENCES user (Nickname) ON DELETE CASCADE ON UPDATE CA
 ALTER TABLE user_vehicles ADD lastHealth FLOAT DEFAULT 1000 NULL;
 ALTER TABLE user_vehicles ADD lastPosition VARCHAR(255) DEFAULT '[{0,0,0,0,0,0}]' NULL;
 ALTER TABLE user_vehicles ADD lastDamageStates VARCHAR(512) DEFAULT '[{}]' NULL;
+
+CREATE TABLE `log_lotto` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Number1` int(11) DEFAULT NULL,
+  `Number2` int(11) DEFAULT NULL,
+  `Number3` int(11) DEFAULT NULL,
+  `CorrectNumbers` int(11) DEFAULT 0,
+  `Winnerlist` text,
+  `winnerPrice` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

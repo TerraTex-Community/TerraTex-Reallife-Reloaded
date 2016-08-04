@@ -73,7 +73,6 @@ function swat_func(thePlayer)
 			end
 		else
 			showError(thePlayer,"Du bist weder beim Innendienst noch beim Dutypunkt!")
-			--outputChatBox("Du bist weder beim Innendienst noch beim Dutypunkt!",thePlayer,255,0,0)
 		end
 	end
 end

@@ -68,12 +68,7 @@ function stealTooExpensiveVehicles()
                     end
                     save_car(theVehicle)
 
-                    local nameofCar = besitzer
-                    local message = string.format("Fahrzeugslot %s | Besitzer %s | Abschlepper Diebstahl wegen zuviel Wert", vioGetElementData(theVehicle, "slotid"), nameofCar)
-
-                    local times = getRealTime()
-                    local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, message)
-                    save_log("abschlepp", logtext)
+                    log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, "Diebstahl wegen zuviel Wert");
 
                     MySql.helper.update("user_vehicles", {
                         SpawnX = 0,
@@ -82,7 +77,9 @@ function stealTooExpensiveVehicles()
                         SpawnRX = 0,
                         SpawnRY = 0,
                         SpawnRZ = 0,
-                        abgeschleppt = 1
+                        abgeschleppt = 1,
+                        lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
+                        lastHealth = getElementHealth(theVehicle)
                     }, {ID = vioGetElementData(theVehicle, "dbid")});
 
                     for theKey, theTable in ipairs(privVeh) do

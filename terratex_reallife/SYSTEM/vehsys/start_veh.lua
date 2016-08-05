@@ -249,6 +249,15 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         end
 
         MySql.helper.delete("user_vehicles", {ID = id});
+
+        log_car_delete(
+            vioGetElementData(vehicle, "besitzer"),
+            vioGetElementData(vehicle, "slotid"),
+            getElementModel(vehicle),
+            "deleted by admin: " .. grund,
+            getPlayerName(source)
+        );
+
         elementData[vehicle] = nil
         destroyElement(vehicle)
     end

@@ -13,13 +13,8 @@ function abschleppNullSystem()
             save_offline_message(vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem", string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")))
         end
         save_car(theVehicle)
-        --	local name=getPlayerName(source)
-        local nameofCar = vioGetElementData(theVehicle, "besitzer")
-        local message = string.format("Fahrzeugslot %s | Besitzer %s | Abschlepper Abschleppsystem-Nullspawn", vioGetElementData(theVehicle, "slotid"), nameofCar)
 
-        local times = getRealTime()
-        local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, message)
-        save_log("abschlepp", logtext)
+        log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, "Abschleppsystem-Nullspawn");
 
         MySql.helper.update("user_vehicles", {
             SpawnX = 0,
@@ -28,7 +23,10 @@ function abschleppNullSystem()
             SpawnRX = 0,
             SpawnRY = 0,
             SpawnRZ = 0,
-            abgeschleppt = 1
+            abgeschleppt = 1,
+            lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
+            lastPosition = '[{0,0,0,0,0,0}]',
+            lastHealth = getElementHealth(theVehicle)
         }, { ID = vioGetElementData(theVehicle, "dbid") });
 
         for theKey, theTable in ipairs(privVeh) do
@@ -61,13 +59,8 @@ function abgeschleppt_police_click(theVehicle, grund)
                     save_offline_message(vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem", string.format("Dein Fahrzeug im Slot %s wurde von %s abgeschleppt, weil: %s", vioGetElementData(theVehicle, "slotid"), getPlayerName(source), grund))
                 end
                 save_car(theVehicle)
-                local name = getPlayerName(source)
-                local nameofCar = vioGetElementData(theVehicle, "besitzer")
-                local message = string.format("Fahrzeugslot %s | Besitzer %s | Abschlepper %s", vioGetElementData(theVehicle, "slotid"), nameofCar, name)
 
-                local times = getRealTime()
-                local logtext = string.format("[%s.%s.%s - %s:%s:%s] %s: %s", times.monthday, (times.month + 1), (times.year + 1900), times.hour, times.minute, times.second, name, message)
-                save_log("abschlepp", logtext)
+                log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, name);
 
                 MySql.helper.update("user_vehicles", {
                     SpawnX = 0,
@@ -76,7 +69,10 @@ function abgeschleppt_police_click(theVehicle, grund)
                     SpawnRX = 0,
                     SpawnRY = 0,
                     SpawnRZ = 0,
-                    abgeschleppt = 1
+                    abgeschleppt = 1,
+                    lastPosition = '[{0,0,0,0,0,0}]',
+                    lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
+                    lastHealth = getElementHealth(theVehicle)
                 }, { ID = vioGetElementData(theVehicle, "dbid") });
 
                 for theKey, theTable in ipairs(privVeh) do
@@ -160,6 +156,9 @@ function getcar_func(thePlayer, cmd, IDs)
                         else
                             thevehicle = createVehicle(dasatz["Model"], 1945.5, -2316.3, 16.7, 0, 0, 184, dasatz["Besitzer"])
                         end
+
+                        setElementHealth(thevehicle, dasatz["lastHealth"]);
+                        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
 
                         vioSetElementData(thePlayer, "slot" .. id, thevehicle)
                         vioSetElementData(thevehicle, "abgeschleppt", 0)

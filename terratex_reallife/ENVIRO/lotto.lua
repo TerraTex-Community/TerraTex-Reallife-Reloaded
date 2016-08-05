@@ -64,7 +64,7 @@ function lottoziehung_func(timer)
                 end
             end
             outputChatBox(winnerstring)
-            save_log("lotto", "Winner(3er):" .. winnerstring .. " Nummern: " .. lottozahlA .. " " .. lottozahlB .. " " .. lottozahlC)
+            log_lotto(3, winnerstring, lottozahlA, lottozahlB, lottozahlC, gewinn);
             local newjackpot = math.random(3000, 7500)
             outputChatBox("Der neue Jackpot startet bei " .. newjackpot .. "$")
             serversettings["lottojackpot"] = newjackpot
@@ -104,7 +104,7 @@ function lottoziehung_func(timer)
                     end
                 end
                 outputChatBox(winnerstring)
-                save_log("lotto", "Winner(2er):" .. winnerstring .. " Nummern: " .. lottozahlA .. " " .. lottozahlB .. " " .. lottozahlC)
+                log_lotto(2, winnerstring, lottozahlA, lottozahlB, lottozahlC, gewinn);
 
                 local newjackpot = math.random(1500, 5000) + serversettings["lottojackpot"] / 2
                 outputChatBox(string.format("Der Jackpot liegt jetzt bei %s$", newjackpot))
@@ -146,7 +146,7 @@ function lottoziehung_func(timer)
                         end
                     end
                     outputChatBox(winnerstring)
-                    save_log("lotto", "Winner(1er):" .. winnerstring .. " Nummern: " .. lottozahlA .. " " .. lottozahlB .. " " .. lottozahlC)
+                    log_lotto(1, winnerstring, lottozahlA, lottozahlB, lottozahlC, gewinn);
 
                     local newjackpot = math.round(math.random(1500, 5000) + (serversettings["lottojackpot"] - serversettings["lottojackpot"] / 10), 0)
                     outputChatBox(string.format("Der Jackpot liegt jetzt bei %s$", newjackpot))

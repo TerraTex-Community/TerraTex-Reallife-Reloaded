@@ -48,9 +48,7 @@ function loadPrivCars()
 
             MySql.helper.update("user_vehicles", {abgeschleppt = 1}, {ID = dasatz["ID"]});
 
-            local times = getRealTime()
-            local logtext = "[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. name .. ": " .. message
-            save_log("abschlepp", logtext)
+            log_tow_police(dasatz["SlotID"], nameofCar, name);
         end
         vioSetElementData(thevehicle, "besitzer", dasatz["Besitzer"])
         vioSetElementData(thevehicle, "model", dasatz["Model"])
@@ -71,6 +69,22 @@ function loadPrivCars()
         vioSetElementData(thevehicle, "Lichterfarbe", dasatz["Lichterfarbe"])
         vioSetElementData(thevehicle, "no_handel", tonumber(dasatz["no_handel"]))
         vioSetElementData(thevehicle, "kmstand", dasatz["kmstand"])
+
+        setElementHealth(thevehicle, dasatz["lastHealth"]);
+        setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
+
+        local position = fromJSON(dasatz["lastPosition"]);
+
+        if position then
+            if position[1] and position[2] and position[3] and ( position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0 ) then
+                setElementPosition(thevehicle, position[1], position[2], position[3])
+            end
+
+            if position[4] and position[5] and position[6] and ( position[4] ~= 0 or position[5] ~= 0 or position[6] ~= 0 ) then
+                setElementRotation(thevehicle, position[4], position[5], position[6])
+            end
+        end
+
         setElementFrozen(thevehicle, true)
 
         vioSetElementData(thevehicle, "premColor", "-1")
@@ -123,8 +137,17 @@ function save_priv_carsB()
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
         for theKey, thetable in ipairs(privVeh) do
             if (isElement(thetable[3])) then
-                MySql.helper.update("user_vehicles", { Tank = vioGetElementData(thetable[3], "tank") }, { ID = vioGetElementData(thetable[3], "dbid") });
-                MySql.helper.update("user_vehicles", { kmstand = vioGetElementData(thetable[3], "kmstand") }, { ID = vioGetElementData(thetable[3], "dbid") });
+                local x,y,z = getElementPosition(thetable[3])
+                local rx,ry,rz = getElementRotation(thetable[3])
+                local position = {x,y,z,rx,ry,rz};
+
+                MySql.helper.update("user_vehicles", {
+                    Tank = vioGetElementData(thetable[3], "tank"),
+                    kmstand = vioGetElementData(thetable[3], "kmstand"),
+                    lastPosition = toJSON(position),
+                    lastDamageStates = toJSON(getVehicleDamageParts(thetable[3])),
+                    lastHealth = getElementHealth(thetable[3])
+                }, { ID = vioGetElementData(thetable[3], "dbid") });
             end
         end
     end
@@ -145,7 +168,9 @@ function save_car(veh)
         Tank = vioGetElementData(veh, "tank"),
         kmstand = vioGetElementData(veh, "kmstand"),
         Lichterfarbe = vioGetElementData(veh, "Lichterfarbe"),
-        premColors = vioGetElementData(veh, "premColor")
+        premColors = vioGetElementData(veh, "premColor"),
+        lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
+        lastHealth = getElementHealth(theVehicle)
     }, {ID = vioGetElementData(veh, "dbid")});
 
 end
@@ -172,6 +197,7 @@ function onvehicleexplode_exec(source)
             if (dis < 50) then
 
                 MySql.helper.delete("user_vehicles", {ID = vioGetElementData(source, "dbid")});
+
                 local besitzer = getPlayerFromName(vioGetElementData(source, "besitzer"))
 
                 for theKey, theTable in ipairs(privVeh) do
@@ -202,6 +228,9 @@ function onvehicleexplode_exec(source)
                     outputChatBox("Eine Versicherung hat ihnen 25% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
                     changePlayerMoney(besitzer, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
                 end
+
+                log_car_delete(vioGetElementData(source, "besitzer"), vioGetElementData(source, "slotid"), getElementModel(source), "crash", "system");
+
                 vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
                 destroyElement(source)
                 privCars[source] = nil
@@ -249,6 +278,8 @@ function onvehicleexplode_exec(source)
                         Geld = (wert * satz)
                     });
                 end
+
+                log_car_delete(vioGetElementData(source, "besitzer"), vioGetElementData(source, "slotid"), getElementModel(source), "crash", "system");
                 destroyElement(source)
                 privCars[source] = nil
             else

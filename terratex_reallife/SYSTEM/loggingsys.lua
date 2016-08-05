@@ -361,3 +361,42 @@ function debugClientError_func(errorMessage, stack)
     end
 end
 addEventHandler("debugClientError", getRootElement(), debugClientError_func)
+
+
+function log_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winnerPrice)
+    MySql.helper.insert("log_lotto", {
+        CorrectNumbers = CorrectNumbers,
+        Winnerlist = Winnerlist,
+        Number1 = Number1,
+        Number2 = Number2,
+        Number3 = Number3,
+        winnerPrice = winnerPrice
+    });
+end
+
+function log_tow_police(slotId, owner, officer)
+    MySql.helper.insert("log_tow_police", {
+        Owner = owner,
+        Officer = officer,
+        CarSlot = slotId
+    });
+end
+
+function log_anonym(who, factionFrom, type, message)
+    MySql.helper.insert("log_anonym", {
+        who = who,
+        factionFrom = factionFrom,
+        type = type,
+        message = message
+    });
+end
+
+function log_car_delete(Owner, SlotId, VehicleModel, Reason, DeletedBy)
+    MySql.helper.insert("log_car_deletes", {
+        Owner = Owner,
+        SlotId = SlotId,
+        VehicleModel = VehicleModel,
+        Reason = Reason,
+        DeletedBy = DeletedBy
+    });
+end

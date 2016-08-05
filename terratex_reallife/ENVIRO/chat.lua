@@ -6,10 +6,12 @@ function send_anonym_message(thePlayer, cmd, an, text, ...)
                     outputChatBox(string.format("NewsService SMS von einer Anonymen Person: %s %s", text, table.concat({ ... }, " ")), theNewsReporter, 0, 255, 0)
                 end
                 outputChatBox("Deine Anonyme Nachricht wurde gesendet!", thePlayer)
-                save_log("anonym", getPlayerName(thePlayer) .. ": " .. text .. " " .. table.concat({ ... }, " ") .. "\n")
+
+                log_anonym(getPlayerName(thePlayer), vioGetElementData(thePlayer, "fraktion"), "news", text .. " " .. table.concat({ ... }, " "));
             elseif (string.lower(an) == "cops") then
                 outputChatBoxForPolice(string.format("Ein Anonymer Tipp: %s %s", text, table.concat({ ... }, " ")))
-                save_log("anonym", getPlayerName(thePlayer) .. ": " .. text .. " " .. table.concat({ ... }, " ") .. "\n")
+
+                log_anonym(getPlayerName(thePlayer), vioGetElementData(thePlayer, "fraktion"), "police", text .. " " .. table.concat({ ... }, " "));
                 outputChatBox("Deine Anonyme Nachricht wurde gesendet!", thePlayer)
             else
                 outputChatBox("Nutzung: /anonym [NEWS/COPS] [Text]", thePlayer)

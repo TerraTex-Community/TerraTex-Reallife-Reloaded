@@ -14,7 +14,7 @@ function abschleppNullSystem()
         end
         save_car(theVehicle)
 
-        log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, "Abschleppsystem-Nullspawn");
+        log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem-Nullspawn");
 
         MySql.helper.update("user_vehicles", {
             SpawnX = 0,

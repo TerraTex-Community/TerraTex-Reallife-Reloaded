@@ -18,6 +18,34 @@
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
 
+function cmdBail(thePlayer)
+    if (vioGetElementData(thePlayer, "knastzeit") > 0) then
+        if (vioGetElementData(thePlayer, "kaution") > 0) then
+            local kaution = vioGetElementData(thePlayer, "kaution");
+
+            local jailtime = vioGetElementData(toPlayer, "knastzeit");
+            local totalJailtime = vioGetElementData(toPlayer, "lastknastzeit");
+
+            local factor = Math.round(jailtime * totalJailtime);
+            if factor < 0.1 then factor = 0.1; end
+            kaution = kaution * factor;
+
+            if (kaution <= changePlayerMoney(thePlayer)) then
+                changePlayerMoney(thePlayer, -kaution, "sonstiges", "Kaution");
+                CrimeSystem.Jail.unArrest(thePlayer);
+            elseif (kaution <= getPlayerBank(thePlayer)) then
+                changePlayerBank(thePlayer, -kaution, "sonstiges", "Kaution");
+                CrimeSystem.Jail.unArrest(thePlayer);
+            else
+                showError(thePlayer, "Du konntest die Kaution (" .. toprice(kaution) .. ") weder Bar noch durch deine Bank bezahlen!");
+            end
+        else
+            showError(thePlayer, "Du kannst nicht auf Kaution vom Knast entlassen werden!");
+        end
+    end
+end
+addCommandHandler("bail", cmdBail, false, false);
+
 function cmdJailTime(thePlayer, cmd, toPlayerName)
     if ((isBeamter(thePlayer) or isAdminLevel(thePlayer, 1)) and toPlayerName) then
         local toPlayer = getPlayerFromIncompleteName(toPlayerName);

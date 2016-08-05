@@ -353,7 +353,7 @@ function payday(thePlayer)
     };
 
     --Gesamt-jobgehalt
-    changePlayerBank(thePlayer, (Gesamt - jobgehalt), "sonstiges", "PayDay", false, toJSON(addDataTable));
+    changePlayerBank(thePlayer, (Gesamt - jobgehalt), "sonstiges", "PayDay", false, toJSON(addDataTable,true,"none"));
 
     vioSetElementData(thePlayer, "bank", vioGetElementData(thePlayer, "bank") + jobgehalt)
 

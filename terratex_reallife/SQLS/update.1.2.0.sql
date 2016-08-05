@@ -111,3 +111,5 @@ CREATE TABLE `log_car_deletes` (
   KEY `log_car_deletes_user_Nickname_fk` (`Owner`),
   CONSTRAINT `log_car_deletes_user_Nickname_fk` FOREIGN KEY (`Owner`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE log_playermoney ADD AdditionalData TEXT DEFAULT null NULL;

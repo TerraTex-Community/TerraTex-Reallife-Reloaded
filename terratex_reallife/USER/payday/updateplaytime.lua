@@ -344,8 +344,17 @@ function payday(thePlayer)
     outputChatBox("|______________|PayDay|______________|", thePlayer, 0, 255, 0)
     outputChatBox("Genauere Infos über den Payday mit /payday", thePlayer, 0, 255, 0)
 
+
+    local addDataTable = {
+        completeSalary = Gesamt,
+        jobPayDayMoney = jobgehalt,
+        transferedToBank = (Gesamt - jobgehalt),
+        paydayData = PayDayTable
+    };
+
     --Gesamt-jobgehalt
-    changePlayerBank(thePlayer, (Gesamt - jobgehalt), "sonstiges", "PayDay")
+    changePlayerBank(thePlayer, (Gesamt - jobgehalt), "sonstiges", "PayDay", false, toJSON(addDataTable));
+
     vioSetElementData(thePlayer, "bank", vioGetElementData(thePlayer, "bank") + jobgehalt)
 
     vioSetElementData(thePlayer, "lastPayDayberechnung", PayDayTable)

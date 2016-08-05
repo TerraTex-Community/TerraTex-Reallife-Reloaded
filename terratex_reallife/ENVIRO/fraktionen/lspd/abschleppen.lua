@@ -60,7 +60,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                 end
                 save_car(theVehicle)
 
-                log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, name, grund);
+                log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), getPlayerName(source), grund);
 
                 MySql.helper.update("user_vehicles", {
                     SpawnX = 0,

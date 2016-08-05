@@ -28,6 +28,7 @@ function update_play_time_func()
         end
     end
 end
+
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), update_play_time_func)
 
 function checkTimeErfolge(thePlayer, PlayTime)
@@ -57,7 +58,7 @@ function controlWeber(thePlayer)
     if math.round(vioGetElementData(thePlayer, "playtime") / 60) == 25 then
         local werber = MySql.helper.getValueSync("user", "werber", { Nickname = getPlayerName(thePlayer) });
 
-        if (MySql.helper.existSync("user", {Nickname = werber })) then
+        if (MySql.helper.existSync("user", { Nickname = werber })) then
 
             if (getPlayerName(thePlayer) ~= werber) then
                 MySql.helper.insert("user_gifts", {
@@ -69,7 +70,7 @@ function controlWeber(thePlayer)
                 local maxwerb = MySql.helper.getValueSync("user_data", "werbernum", { Nickname = werber });
 
                 if (maxwerb == 5) then
-                    MySql.helper.update("user_data", {werbernum = 0}, {Nickname = werber});
+                    MySql.helper.update("user_data", { werbernum = 0 }, { Nickname = werber });
 
                     MySql.helper.insert("user_gifts", {
                         Nickname = werber,
@@ -77,7 +78,6 @@ function controlWeber(thePlayer)
                         VehSlots = 2,
                         Grund = "Es haben 5 von dir Geworbene Spieler 25 Spielstunden erreicht!"
                     });
-
                 end
             end
         end
@@ -141,7 +141,7 @@ function payday(thePlayer)
         if not bonus then
             bonus = 0;
         end
-        
+
         Einnahmen = Einnahmen + bonus
 
         if (bonus > 0) then
@@ -484,4 +484,5 @@ function payday_cmd_func(thePlayer)
         outputChatBox("Du hattest seit deinem letzten Login keinen PayDay", thePlayer, 255, 0, 0)
     end
 end
+
 addCommandHandler("payday", payday_cmd_func, false, false)

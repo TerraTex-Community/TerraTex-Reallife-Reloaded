@@ -86,8 +86,9 @@ CREATE TABLE `log_tow_police` (
   `Owner` varchar(255) DEFAULT NULL,
   `Officer` varchar(255) DEFAULT NULL,
   `CarSlot` int(11) DEFAULT NULL,
+  `Reason` text,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `log_anonym` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,

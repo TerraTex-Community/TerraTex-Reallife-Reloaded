@@ -346,6 +346,8 @@ function payday(thePlayer)
 
 
     local addDataTable = {
+        income = Einnahmen,
+        outgoings = Ausgaben,
         completeSalary = Gesamt,
         jobPayDayMoney = jobgehalt,
         transferedToBank = (Gesamt - jobgehalt),

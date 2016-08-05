@@ -277,7 +277,6 @@
     <script src="ENVIRO/fraktionen/lspd/alka.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/lspdcars.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/arrest.lua" type="server"/>
-    <script src="ENVIRO/fraktionen/lspd/knast.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/innendienst.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/tor.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/rearm.lua" type="server"/>

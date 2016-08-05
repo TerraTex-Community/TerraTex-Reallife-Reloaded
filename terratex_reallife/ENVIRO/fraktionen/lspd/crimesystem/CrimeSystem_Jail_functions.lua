@@ -38,17 +38,7 @@ function knastTimer()
                 toggleControl(thePlayer, "fire", false)
                 triggerClientEvent(thePlayer, "addFood", thePlayer, 2.8)
                 if (vioGetElementData(thePlayer, "knastzeit") == 0) then
-
-                    toggleControl(thePlayer, "enter_exit", true)
-                    toggleControl(thePlayer, "fire", true)
-
                     CrimeSystem.Jail.unArrest(thePlayer)
-
-                    if (vioGetElementData(thePlayer, "fraktion") > 0) then
-                        setPedSkin(thePlayer, vioGetElementData(thePlayer, "FrakSkin"))
-                    else
-                        setPedSkin(thePlayer, vioGetElementData(thePlayer, "skinid"))
-                    end
                 end
             end
         end
@@ -62,6 +52,15 @@ function CrimeSystem.Jail.unArrest(thePlayer)
 
     setElementInterior(pos[1], pos[2], pos[3], pos[4]);
     setElementPosition(pos[2], pos[3], pos[4]);
+
+    if (vioGetElementData(thePlayer, "fraktion") > 0) then
+        setPedSkin(thePlayer, vioGetElementData(thePlayer, "FrakSkin"))
+    else
+        setPedSkin(thePlayer, vioGetElementData(thePlayer, "skinid"))
+    end
+
+    toggleControl(thePlayer, "enter_exit", true)
+    toggleControl(thePlayer, "fire", true)
 
     vioSetElementData(thePlayer, "kaution", 0)
     vioSetElementData(thePlayer, "alkaknast", 0)

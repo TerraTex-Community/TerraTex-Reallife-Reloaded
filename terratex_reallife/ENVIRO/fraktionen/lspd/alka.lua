@@ -41,20 +41,16 @@ function Alka_setsechsWanted(hitPlayer)
     end
 end
 
-
--- @todo: refactor with crimelevel system / remove and add to /arrest
-function setAlka_func(thePlayer, cmd, toPlayerNamePart, zeit)
+function setAlka_func(thePlayer, cmd, toPlayerNamePart)
     if (toPlayerNamePart) and (zeit) then
         if (isBeamter(thePlayer)) then
             local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)
             if (toPlayer) then
-                if (vioGetElementData(toPlayer, "wanteds") > 0) then
+                if (vioGetElementData(toPlayer, "oldJailTime") > 0) then
                     if (isElementWithinColShape(toPlayer, Alka_recSetShape) and isElementWithinColShape(thePlayer, Alka_recSetShape)) then
-                        vioSetElementData(toPlayer, "wanteds", 0)
-                        setPlayerWantedLevel(toPlayer, 0)
                         vioSetElementData(toPlayer, "kaution", 0)
-                        vioSetElementData(toPlayer, "knastzeit", tonumber(zeit))
-                        vioSetElementData(toPlayer, "lastknastzeit", tonumber(zeit))
+                        vioSetElementData(toPlayer, "knastzeit", vioGetElementData(toPlayer, "oldJailTime") + 60)
+                        vioSetElementData(toPlayer, "lastknastzeit", vioGetElementData(toPlayer, "oldJailTime") + 60)
                         vioSetElementData(toPlayer, "alkaknast", 1)
                         outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s in das Alkataz gebuchtet!", getPlayerName(toPlayer)), thePlayer, 255, 0, 0)
@@ -69,7 +65,7 @@ function setAlka_func(thePlayer, cmd, toPlayerNamePart, zeit)
                         outputChatBox("Einer von beiden ist nicht beim Alkataz", thePlayer, 255, 0, 0)
                     end
                 else
-                    outputChatBox("Dieser Spieler hat keine Wanteds", thePlayer, 255, 0, 0)
+                    outputChatBox("Dieser Spieler saß in keinem Knast", thePlayer, 255, 0, 0)
                 end
             else
                 outputChatBox("Dieser Spieler exisitiert nicht", thePlayer, 255, 0, 0)
@@ -79,16 +75,5 @@ function setAlka_func(thePlayer, cmd, toPlayerNamePart, zeit)
         outputChatBox("Nutzung: /setalka Name Zeit", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("setAlka", setAlka_func, false, false)
-
-
-
-
-
-
-
-
-
-
 

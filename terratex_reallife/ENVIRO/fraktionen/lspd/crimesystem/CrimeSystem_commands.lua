@@ -23,9 +23,32 @@
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
 
--- @todo: deArrest
--- setPedSkin(thePlayer,vioGetElementData(thePlayer,"skinid"))
---vioSetElementData(thePlayer,"kaution",0)
---vioSetElementData(thePlayer,"knastzeit",0)
---vioSetElementData(thePlayer,"alkaknast",0)
---
+function cmdDearrest(thePlayer, cmd, toPlayerName)
+    if (isBeamter(thePlayer) and vioGetElementData(thePlayer, "fraktionsrang") > 1) then
+        if (toPlayerName) then
+            local toPlayer = getPlayerFromIncompleteName(toPlayerName);
+            if (toPlayer) then
+                if (vioGetElementData(toPlayer, "knastzeit") > 0) then
+                    if (getElementsDistance(toPlayer, thePlayer) < 25) then
+                        showError(thePlayer, "Der Spieler wird in wenigen Minuten aus seiner Zelle entlassen.");
+                        showError(toPlayer, "Du wirst in wenigen Minuten aus deiner Zelle entlassen.");
+                        setTimer(timerUnArrest, math.random(30000,150000), 1, toPlayer);
+                    else
+                        showError(thePlayer, "Du musst bei der Zelle des Spielers sein, um ihn zu entlassen.");
+                    end
+                else
+                    showError(thePlayer, "Dieser Spieler sitzt nicht im Knast!");
+                end
+            else
+                showError(thePlayer, "Dieser Spieler existiert nicht!");
+            end
+        else
+            showError(thePlayer, "Usage: /dearrest [playername]");
+        end
+    end
+end
+
+function timerUnArrest(thePlayer)
+    vioSetElementData(thePlayer, "oldJailTime", vioGetElementData(thePlayer, "knastzeit"));
+    CrimeSystem.Jail.unArrest(thePlayer);
+end

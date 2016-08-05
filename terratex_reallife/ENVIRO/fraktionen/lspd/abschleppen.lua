@@ -158,7 +158,7 @@ function getcar_func(thePlayer, cmd, IDs)
                         end
 
                         setElementHealth(thevehicle, dasatz["lastHealth"]);
-                        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
+                        setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
 
                         vioSetElementData(thePlayer, "slot" .. id, thevehicle)
                         vioSetElementData(thevehicle, "abgeschleppt", 0)

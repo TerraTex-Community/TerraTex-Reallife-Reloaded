@@ -56,6 +56,10 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                     end
                 elseif (marker.specialKey == "ammonation") then
                     if (vioGetElementData(hitElement, "waffenLic") ~= 1) then
+                        if (vioGetElementData(hitElement, "playtime") < 1500) then
+                            showError(hitElement, "Aufseher: Kinder haben hier nichts zu suchen!");
+                            return;
+                        end
                         showError(hitElement, "Aufseher: Sie besitzen keinen Waffenschein, daher sind sie hier unerwünscht! Bitte verpissen Sie sich!");
                         return;
                     end

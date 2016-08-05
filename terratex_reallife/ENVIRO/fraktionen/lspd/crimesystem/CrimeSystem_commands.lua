@@ -13,15 +13,28 @@
 -- costs
 -- setElementModel(thePlayer, 62)
 
--- @todo checkjailtime for admin / beamte
--- "Der Spieler %s muss noch %s von %s Minuten im %s sitzen!"
-
--- @todo: jailtime
-
 -- @todo: bail
 
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
+
+function cmdJailTime(thePlayer, cmd, toPlayerName)
+    if ((isBeamter(thePlayer) or isAdminLevel(thePlayer, 1)) and toPlayerName) then
+        local toPlayer = getPlayerFromIncompleteName(toPlayerName);
+        if (toPlayer) then
+            local jailtime = vioGetElementData(toPlayer, "knastzeit");
+            local totalJailtime = vioGetElementData(toPlayer, "lastknastzeit");
+            outputChatBox("Der Spieler " .. getPlayerName(toPlayer) .. " muss noch " .. jailtime .."/" .. totalJailtime .. " Minuten im Knast sitzen.", thePlayer);
+        else
+            showError(thePlayer, "Dieser Spieler Existiert nicht!");
+        end
+    else
+        local jailtime = vioGetElementData(thePlayer, "knastzeit");
+        local totalJailtime = vioGetElementData(thePlayer, "lastknastzeit");
+        outputChatBox("Du musst noch " .. jailtime .."/" .. totalJailtime .. " Minuten im Knast sitzen.", thePlayer);
+    end
+end
+addCommandHandler("jailtime", cmdJailTime, false, false);
 
 function cmdDearrest(thePlayer, cmd, toPlayerName)
     if (isBeamter(thePlayer) and vioGetElementData(thePlayer, "fraktionsrang") > 1) then
@@ -47,6 +60,7 @@ function cmdDearrest(thePlayer, cmd, toPlayerName)
         end
     end
 end
+addCommandHandler("dearrest", cmdDearrest, false, false);
 
 function timerUnArrest(thePlayer)
     vioSetElementData(thePlayer, "oldJailTime", vioGetElementData(thePlayer, "knastzeit"));

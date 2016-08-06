@@ -139,7 +139,7 @@ end
 
 
 function enter_durby_arena(thePlayer)
-    outputChatBox("Du hast die DurbyArena betretten! Du kannst Sie jederzeit mit /arenaquit verlassen!", thePlayer, 0, 255, 0)
+    outputChatBox("Du hast die DurbyArena betreten! Du kannst Sie jederzeit mit /arenaquit verlassen!", thePlayer, 0, 255, 0)
     if (durbyTimer) then
         local rest = getDurbyGameRestTime()
         outputChatBox(string.format("Das Spiel wird in %s Minuten starten mache dich bereit!", rest), thePlayer, 0, 255, 0)

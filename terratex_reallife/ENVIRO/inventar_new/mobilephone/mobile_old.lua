@@ -142,7 +142,7 @@ function call_func(thePlayer, Command, telenummer)
             numberexist = true
         elseif (telenummer == 222222) then
             outputChatBox("Die Mechaniker wurden informiert bleibe wo du bist!", thePlayer, 255, 255, 0)
-            local mechaBlip = createBlipAttachedTo(thePlayer, 0, 4, 88,191,162)
+            local mechaBlip = createBlipAttachedTo(thePlayer, 0, 2, 88,191,162)
             setElementVisibleTo(mechaBlip, getRootElement(), false)
             for theKey, thePerson in ipairs(getElementsByType("player")) do
                 if (vioGetElementData(thePerson, "job")) then

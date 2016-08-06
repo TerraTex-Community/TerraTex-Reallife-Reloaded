@@ -129,6 +129,7 @@ function call_func(thePlayer, Command, telenummer)
                 if (canGetTaxi) then
                     for theKey, thePerson in ipairs(getPlayersInTeam(team[4])) do
                         outputChatBox(string.format("Der Spieler %s (%s) hat ein Taxi gerufen! (Annehmen mit /taxiget %s", getPlayerName(thePlayer), getElementZoneName(thePlayer, true), getPlayerName(thePlayer)), thePerson, 0, 255, 0)
+                        showError(thePerson, string.format("Der Spieler %s (%s) hat ein Taxi gerufen! (Annehmen mit /taxiget %s", getPlayerName(thePlayer), getElementZoneName(thePlayer, true), getPlayerName(thePlayer)))
                     end
                     vioSetElementData(thePlayer, "wantTaxi", timer.timestamp)
                     vioSetElementData(thePlayer, "hasTaxiDriver", false)

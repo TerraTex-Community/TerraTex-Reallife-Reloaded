@@ -122,7 +122,7 @@ local armyTorStatusOB=false
   function enterArmyShape(hitElement,dim)
 	if(getElementType(hitElement)=="player")then
 		if(vioGetElementData(hitElement,"fraktion")~=7 and getElementInterior(hitElement)==0)then
-			outputChatBox("Sie haben eine Sperrzone betretten! Verlassen sie die Zone wieder oder sie erhalten 6 Wanteds!",hitElement,255,0,0)
+			outputChatBox("Sie haben eine Sperrzone betreten! Verlassen sie die Zone wieder oder sie erhalten 6 Wanteds!",hitElement,255,0,0)
 			outputChatBox("Sie werden ohne weitere vorwarnung abgeschossen!",hitElement,255,0,0)
 			for theKey,thePlayer in ipairs(getPlayersInTeam(team[7]))do
 				

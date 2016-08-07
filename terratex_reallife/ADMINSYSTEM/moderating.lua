@@ -289,6 +289,20 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                     end
                 end
 
+                if (direkt) then
+                    if (tonumber(direkt)) then
+                        if (tonumber(direkt) == 1) then
+                            direkt = true;
+                        else
+                            direkt = false;
+                        end
+                    else
+                        direkt = false;
+                    end
+                else
+                    direkt = false;
+                end
+
                 if (wanted == 3) then
                     CrimeSystem.addNewCrime(toPlayer, 1000, {user = thePlayer, "Adminsystem"}, "SDM - Deathmatch")
                 else
@@ -300,32 +314,30 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
                 outputChatBoxForPolice("Der Admin " .. getPlayerName(thePlayer) .. " hat " .. getPlayerName(toPlayer) .. " einen neuen Verbrecherstatus und einen Alkabefehl gegeben, aufgrund seines erhöhten Deathmatches")
 
                 if (direkt) then
-                    if (tonumber(direkt)) then
-                        if (tonumber(direkt) == 1) then
-                            if (isPedInVehicle(toPlayer)) then
-                                removePedFromVehicle(toPlayer)
-                            end
-                            setElementInterior(toPlayer, 0)
-                            setElementDimension(toPlayer, 0)
-                            vioSetElementData(toPlayer, "kaution", 0)
-
-                            vioSetElementData(toPlayer, "knastzeit", CrimeSystem.getNewJailTime(toPlayer))
-                            vioSetElementData(toPlayer, "lastknastzeit", CrimeSystem.getNewJailTime(toPlayer))
-                            vioSetElementData(toPlayer, "alkaknast", 1)
-                            outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
-                            outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " in das Alkataz gebuchtet!", thePlayer, 255, 0, 0)
-
-                            local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnById(1);
-
-                            setElementInterior(toPlayer, int, x, y, z)
-                            setElementPosition(toPlayer, x, y, z)
-                            setElementModel(toPlayer, 62)
-                            vioSetElementData(toPlayer, "mussAlka", 0)
-                            CrimeSystem.clear(toPlayer);
-                            outputChatBoxForPolice(getPlayerName(toPlayer) .. " wurde von einem Mitglied der Moderation/Administration direkt ins Alkatraz eingeknastet!")
-                        end
+                    if (isPedInVehicle(toPlayer)) then
+                        removePedFromVehicle(toPlayer)
                     end
+
+                    setElementInterior(toPlayer, 0);
+                    setElementDimension(toPlayer, 0);
+                    vioSetElementData(toPlayer, "kaution", 0);
+
+                    vioSetElementData(toPlayer, "knastzeit", CrimeSystem.getNewJailTime(toPlayer) + 60)
+                    vioSetElementData(toPlayer, "lastknastzeit", CrimeSystem.getNewJailTime(toPlayer) + 60)
+                    vioSetElementData(toPlayer, "alkaknast", 1)
+                    outputChatBox("Du wurdest nun in das Alkatraz eingebuchtet!", toPlayer, 255, 0, 0)
+                    outputChatBox("Du hast " .. getPlayerName(toPlayer) .. " in das Alkataz gebuchtet!", thePlayer, 255, 0, 0)
+
+                    local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnById(1);
+
+                    setElementInterior(toPlayer, int, x, y, z)
+                    setElementPosition(toPlayer, x, y, z)
+                    setElementModel(toPlayer, 62)
+                    vioSetElementData(toPlayer, "mussAlka", 0)
+                    CrimeSystem.clear(toPlayer);
+                    outputChatBoxForPolice(getPlayerName(toPlayer) .. " wurde von einem Mitglied der Moderation/Administration direkt ins Alkatraz eingeknastet!")
                 end
+
             else
                 showError(thePlayer, "Spieler ist nicht existent")
             end
@@ -414,6 +426,4 @@ function tcheck_func(thePlayer, cmd, toPlayer)
         end
     end
 end
-
 addCommandHandler("tcheck", tcheck_func, false, false)
-

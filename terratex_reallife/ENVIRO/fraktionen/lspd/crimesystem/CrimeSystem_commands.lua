@@ -6,15 +6,34 @@
 -- To change this template use File | Settings | File Templates.
 --
 
--- @todo arrest
--- elementdata alkaknast = 0 (ls) || 2 (lv)
--- mussAlka info
--- kaution
--- costs
--- setElementModel(thePlayer, 62)
-
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
+
+function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
+    if (isBeamter(thePlayer)) then
+        local additionalDescription;
+        if {...} then
+            additionalDescription = table.concat({...}, " ");
+        end
+
+        local toPlayer = getPlayerFromIncompleteName(toPlayerName);
+
+        if (toPlayer) then
+            if (CrimeSystem.addNewCrime(toPlayer, tonumber(crimeCode), thePlayer, additionalDescription)) then
+                local crime = CrimeSystem.getCrimeName(tonumber(crimeCode));
+                outputChatBoxForPolice(getPlayerName(thePlayer) .. " hat das Verbrechen " .. crime .. " zu " .. getPlayerName(toPlayer) .. "s Akte hinzugefügt.");
+                if (additionalDescription) then
+                    outputChatBoxForPolice("Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription);
+                end
+            else
+                showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
+            end
+        else
+            showError(thePlayer, "Dieser Spieler existiert nicht!");
+        end
+    end
+end
+addCommandHandler("su", cmdSu, false, false);
 
 function cmdArrest(thePlayer, cmd, toPlayerName, voluntary)
     if (isBeamter(thePlayer)) then
@@ -51,6 +70,10 @@ function cmdArrest(thePlayer, cmd, toPlayerName, voluntary)
                     local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName(jail);
                     vioSetElementData(toPlayer, "alkaknast", CrimeSystem._jailTextToId[jail]);
                     setElementPosition(toPlayer, x,y,z);
+
+                    if (vioGetElementData(toPlayer, "mussAlka") == 1) then
+                        outputChatBoxForPolice(string.format("Der Spieler %s muss in das Alkatraz gebracht werden!", getPlayerName(toPlayer)));
+                    end
 
                     CrimeSystem.clear(toPlayer);
                 else

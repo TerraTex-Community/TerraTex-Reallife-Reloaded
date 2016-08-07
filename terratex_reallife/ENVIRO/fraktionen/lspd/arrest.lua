@@ -29,6 +29,10 @@ function StellenNow(thePlayer)
                 outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", time, Kaution), thePlayer);
                 outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)));
 
+                if (vioGetElementData(thePlayer, "mussAlka") == 1) then
+                    outputChatBoxForPolice(string.format("Der Spieler %s muss in das Alkatraz gebracht werden!", getPlayerName(thePlayer)));
+                end
+
                 vioSetElementData(thePlayer, "alkaknast", 0);
                 local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
                 setElementPosition(thePlayer, x,y,z);

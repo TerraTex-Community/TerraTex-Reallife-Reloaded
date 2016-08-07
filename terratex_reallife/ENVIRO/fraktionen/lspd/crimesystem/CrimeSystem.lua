@@ -65,3 +65,13 @@ function CrimeSystem.clear(thePlayer)
     MySql.helper.delete("user_crimes", {Nickname = getPlayerName(thePlayer)});
     vioSetElementData(thePlayer, "crimeLevel", 0)
 end
+
+function CrimeSystem.getCrimeName(crimeId)
+    local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
+
+    if (exist) then
+        local name = MySql.helper.getSync("data_crimes_list", {"Name"}, {ID = crimeId});
+
+        return name;
+    end
+end

@@ -120,10 +120,10 @@ function hud_render()
                 lastHealth = getElementHealth(getLocalPlayer());
             end
 
-            if (tonumber(getElementData(getLocalPlayer(), "wanteds")) ~= lastWanted) then
-                local percent = tonumber(getElementData(getLocalPlayer(), "wanteds")) / 6 * 100;
+            if (tonumber(getElementData(getLocalPlayer(), "crimeLevel")) ~= lastWanted) then
+                local percent = tonumber(getElementData(getLocalPlayer(), "crimeLevel"));
                 executeBrowserJavascript( browser, "setStatus('wanteds', " .. percent .. ");");
-                lastWanted = tonumber(getElementData(getLocalPlayer(), "wanteds"));
+                lastWanted = tonumber(getElementData(getLocalPlayer(), "crimeLevel"));
             end
 
             if (getFood() ~= lastFood) then

@@ -51,8 +51,8 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), kn
 function CrimeSystem.Jail.unArrest(thePlayer)
     local pos = CrimeSystem._deArrestPositions[CrimeSystem._jailIdToText[vioGetElementData(thePlayer, "alkaknast")]];
 
-    setElementInterior(pos[1], pos[2], pos[3], pos[4]);
-    setElementPosition(pos[2], pos[3], pos[4]);
+    setElementInterior(thePlayer, pos[1], pos[2], pos[3], pos[4]);
+    setElementPosition(thePlayer, pos[2], pos[3], pos[4]);
 
     if (vioGetElementData(thePlayer, "fraktion") > 0) then
         setPedSkin(thePlayer, vioGetElementData(thePlayer, "FrakSkin"))

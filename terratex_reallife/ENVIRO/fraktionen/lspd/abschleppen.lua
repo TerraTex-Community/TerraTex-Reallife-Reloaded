@@ -14,7 +14,7 @@ function abschleppNullSystem()
         end
         save_car(theVehicle)
 
-        log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, "Abschleppsystem-Nullspawn");
+        log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem-Nullspawn");
 
         MySql.helper.update("user_vehicles", {
             SpawnX = 0,
@@ -60,7 +60,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                 end
                 save_car(theVehicle)
 
-                log_tow_police(vioGetElementData(theVehicle, "slotid"), nameofCar, name);
+                log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), getPlayerName(source), grund);
 
                 MySql.helper.update("user_vehicles", {
                     SpawnX = 0,
@@ -158,7 +158,7 @@ function getcar_func(thePlayer, cmd, IDs)
                         end
 
                         setElementHealth(thevehicle, dasatz["lastHealth"]);
-                        setVehicleDamageParts(thevehicle, fromJsom(dasatz["lastDamageStates"]));
+                        setVehicleDamageParts(thevehicle, fromJSON(dasatz["lastDamageStates"]));
 
                         vioSetElementData(thePlayer, "slot" .. id, thevehicle)
                         vioSetElementData(thevehicle, "abgeschleppt", 0)

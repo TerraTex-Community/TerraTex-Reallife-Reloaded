@@ -77,6 +77,7 @@ function death_func(ammo, attacker, weapon, bodypart)
         for theKey, thePerson in ipairs(getPlayersInTeam(team[10])) do
             if (vioGetElementData(thePerson, "isShowingMedicDeathBlip")) then
                 setElementVisibleTo(mechaBlip, thePerson, true)
+                showError(thePerson, "Jemand ist gestorben!")
             end
         end
         vioSetElementData(source, "isDeathPlayerBlip", mechaBlip)

@@ -12,7 +12,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
         ArenaGUI_Window[1] = guiCreateWindow(sx,sy,658,498,"Arenen",false)
 		table.insert(allGuis,ArenaGUI_Window[1])
         ArenaGUI_Button[1] = guiCreateButton(0.6945,0.0643,0.2568,0.0683,"Beenden",true,ArenaGUI_Window[1])
-        ArenaGUI_Button[2] = guiCreateButton(0.69,0.1446,0.2629,0.0743,"Betretten",true,ArenaGUI_Window[1])
+        ArenaGUI_Button[2] = guiCreateButton(0.69,0.1446,0.2629,0.0743,"Betreten",true,ArenaGUI_Window[1])
         ArenaGUI_Label[1] = guiCreateLabel(0.0289,0.0542,0.6155,0.1647,"Willkommen bei den LS-Arenen!\nDer Eintritt für jede Arena kostet 50$!",true,ArenaGUI_Window[1])
         ArenaGUI_Grid[1] = guiCreateGridList(0.0274,0.245,0.9438,0.7269,true,ArenaGUI_Window[1])
         guiGridListSetSelectionMode(ArenaGUI_Grid[1],0)

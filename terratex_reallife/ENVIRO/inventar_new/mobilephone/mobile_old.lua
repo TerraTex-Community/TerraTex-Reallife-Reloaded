@@ -129,6 +129,7 @@ function call_func(thePlayer, Command, telenummer)
                 if (canGetTaxi) then
                     for theKey, thePerson in ipairs(getPlayersInTeam(team[4])) do
                         outputChatBox(string.format("Der Spieler %s (%s) hat ein Taxi gerufen! (Annehmen mit /taxiget %s", getPlayerName(thePlayer), getElementZoneName(thePlayer, true), getPlayerName(thePlayer)), thePerson, 0, 255, 0)
+                        showError(thePerson, string.format("Der Spieler %s (%s) hat ein Taxi gerufen! (Annehmen mit /taxiget %s", getPlayerName(thePlayer), getElementZoneName(thePlayer, true), getPlayerName(thePlayer)))
                     end
                     vioSetElementData(thePlayer, "wantTaxi", timer.timestamp)
                     vioSetElementData(thePlayer, "hasTaxiDriver", false)
@@ -142,13 +143,13 @@ function call_func(thePlayer, Command, telenummer)
             numberexist = true
         elseif (telenummer == 222222) then
             outputChatBox("Die Mechaniker wurden informiert bleibe wo du bist!", thePlayer, 255, 255, 0)
-            local mechaBlip = createBlipAttachedTo(thePlayer)
+            local mechaBlip = createBlipAttachedTo(thePlayer, 0, 2, 88,191,162)
             setElementVisibleTo(mechaBlip, getRootElement(), false)
             for theKey, thePerson in ipairs(getElementsByType("player")) do
                 if (vioGetElementData(thePerson, "job")) then
                     if (vioGetElementData(thePerson, "job") == 5) then
                         setElementVisibleTo(mechaBlip, thePerson, true)
-                        outputChatBox(string.format("Der Spieler %s hat einen Mechaniker gerufen! Fahre schnell und hilf! (Rote Markierung)", getPlayerName(thePlayer)), thePerson, 0, 255, 0)
+                        outputChatBox(string.format("Der Spieler %s hat einen Mechaniker gerufen! Fahre schnell und hilf! (Blaue Markierung)", getPlayerName(thePlayer)), thePerson, 0, 255, 0)
                     end
                 end
             end

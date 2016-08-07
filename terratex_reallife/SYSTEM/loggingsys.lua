@@ -374,11 +374,12 @@ function log_lotto(CorrectNumbers, Winnerlist, Number1, Number2, Number3, winner
     });
 end
 
-function log_tow_police(slotId, owner, officer)
+function log_tow_police(slotId, owner, officer, reason)
     MySql.helper.insert("log_tow_police", {
         Owner = owner,
         Officer = officer,
-        CarSlot = slotId
+        CarSlot = slotId,
+        Reason = reason
     });
 end
 

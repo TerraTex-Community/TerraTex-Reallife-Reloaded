@@ -183,7 +183,7 @@ function lkw_new_auftrage()
 					zieltyp=2
 				else
 					if(math.random(1,2)==1)then
-						ziel=math.random(1,11)
+						ziel=math.random(1,19)
 						zieltyp=1
 					else
 						ziel=math.random(1,18)
@@ -234,11 +234,4 @@ function showLKWJob_func()
 	end
 end
 addEventHandler("openLKWJobGui",getRootElement(),showLKWJob_func)
-
-
-
-
-
-
-
 

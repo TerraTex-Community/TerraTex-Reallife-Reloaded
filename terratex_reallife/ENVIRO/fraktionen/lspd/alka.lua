@@ -14,9 +14,9 @@ function Alka_SendWarning(hitPlayer)
                     ja = false
                 end
             end
-            if (ja) then
-                outputChatBox("Sie haben ein Sperrgebiet betretten! Sie haben genau 5 Sekunden es zu verlassen!", hitPlayer, 255, 0, 0)
-                outputChatBox("Sie werden ohne weitere Warnung abgeschossen!", hitPlayer, 255, 0, 0)
+            if(ja)then
+                outputChatBox("Sie haben ein Sperrgebiet betreten! Sie haben genau 5 Sekunden es zu verlassen!",hitPlayer,255,0,0)
+                outputChatBox("Sie werden ohne weitere Warnung abgeschossen!",hitPlayer,255,0,0)
                 setTimer(Alka_setsechsWanted, 5000, 1, hitPlayer)
             end
         end

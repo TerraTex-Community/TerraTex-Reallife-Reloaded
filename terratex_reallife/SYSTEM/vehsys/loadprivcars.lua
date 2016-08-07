@@ -169,8 +169,8 @@ function save_car(veh)
         kmstand = vioGetElementData(veh, "kmstand"),
         Lichterfarbe = vioGetElementData(veh, "Lichterfarbe"),
         premColors = vioGetElementData(veh, "premColor"),
-        lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
-        lastHealth = getElementHealth(theVehicle)
+        lastDamageStates = toJSON(getVehicleDamageParts(veh)),
+        lastHealth = getElementHealth(veh)
     }, {ID = vioGetElementData(veh, "dbid")});
 
 end

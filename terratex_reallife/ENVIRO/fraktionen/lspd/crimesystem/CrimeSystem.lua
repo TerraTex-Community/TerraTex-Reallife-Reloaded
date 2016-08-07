@@ -47,15 +47,15 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
         if type(whoGives)== "table" then
             columnData.ReporterUser = getPlayerName(whoGives.user);
             columnData.ReporterDisplay = whoGives.display
-        elseif type(whoGives)~= "userdata" then
+        elseif type(whoGives) == "userdata" then
             columnData.ReporterUser = getPlayerName(whoGives);
         else
             columnData.ReporterDisplay = whoGives
         end
 
-        MySql.helper.insert("user_crimes", columnData);
-
         vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
+
+        return MySql.helper.insert("user_crimes", columnData);
     else
         return false;
     end

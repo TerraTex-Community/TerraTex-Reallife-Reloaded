@@ -180,12 +180,12 @@ MySql.helper.insert = function(tableName, insertValues, callback, callbackParams
 
     if (callback) then
         if (callbackParams) then
-            dbQuery(callback, callbackParams, MySql._connection, query, unpack(params));
+            return dbQuery(callback, callbackParams, MySql._connection, query, unpack(params));
         else
-            dbQuery(callback, MySql._connection, query, unpack(params));
+            return dbQuery(callback, MySql._connection, query, unpack(params));
         end
     else
-        dbExec(MySql._connection, query, unpack(params));
+        return dbExec(MySql._connection, query, unpack(params));
     end
 end
 

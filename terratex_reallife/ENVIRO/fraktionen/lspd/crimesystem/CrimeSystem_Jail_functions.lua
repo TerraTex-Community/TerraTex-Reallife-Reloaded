@@ -70,10 +70,10 @@ end
 function CrimeSystem.getNewJailTime(thePlayer, gestellt)
     if not gestellt then
         local percentage = CrimeSystem.getCrimePercentage(thePlayer);
-        return Math.round(percentage * CrimeSystem._jailtimePerPercentage);
+        return math.round(percentage * CrimeSystem._jailtimePerPercentage);
     else
         local percentage = CrimeSystem.getCrimePercentage(thePlayer);
-        return Math.round(percentage * CrimeSystem._jailtimePerPercentageGestellt);
+        return math.round(percentage * CrimeSystem._jailtimePerPercentageGestellt);
     end
 end
 
@@ -83,13 +83,13 @@ function CrimeSystem.getBail(thePlayer, bot)
         if (vioGetElementData(thePlayer, "playtime") < 1500) then
             percentage = percentage / 2;
         end
-        return Math.round(percentage * CrimeSystem._bailPerPercentage);
+        return math.round(percentage * CrimeSystem._bailPerPercentage);
     else
         local percentage = CrimeSystem.getCrimePercentage(thePlayer);
         if (vioGetElementData(thePlayer, "playtime") < 1500) then
             percentage = percentage / 2;
         end
-        return Math.round(percentage * CrimeSystem._bailPerPercentageBot);
+        return math.round(percentage * CrimeSystem._bailPerPercentageBot);
     end
 end
 

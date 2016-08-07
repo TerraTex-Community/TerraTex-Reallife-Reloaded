@@ -70,7 +70,7 @@ function CrimeSystem.getCrimeName(crimeId)
     local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
 
     if (exist) then
-        local name = MySql.helper.getSync("data_crimes_list", {"Name"}, {ID = crimeId});
+        local name = MySql.helper.getValueSync("data_crimes_list", "Name", {ID = crimeId});
 
         return name;
     end

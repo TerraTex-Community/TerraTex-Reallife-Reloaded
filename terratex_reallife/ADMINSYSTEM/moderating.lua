@@ -317,8 +317,8 @@ function setplayersdm(thePlayer, cmd, toPlayerPart, staerke, direkt)
 
                             local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnById(1);
 
+                            setElementInterior(toPlayer, int, x, y, z)
                             setElementPosition(toPlayer, x, y, z)
-                            setElementInterior(toPlayer, int)
                             setElementModel(toPlayer, 62)
                             vioSetElementData(toPlayer, "mussAlka", 0)
                             CrimeSystem.clear(toPlayer);

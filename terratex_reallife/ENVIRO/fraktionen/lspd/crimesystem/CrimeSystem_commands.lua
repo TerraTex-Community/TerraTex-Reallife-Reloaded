@@ -11,9 +11,9 @@
 
 function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
     if (isBeamter(thePlayer)) then
-        local additionalDescription;
-        if {...} then
-            additionalDescription = table.concat({...}, " ");
+        local additionalDescription = table.concat({...}, " ");
+        if (additionalDescription == "") then
+            additionalDescription = false;
         end
 
         local toPlayer = getPlayerFromIncompleteName(toPlayerName);

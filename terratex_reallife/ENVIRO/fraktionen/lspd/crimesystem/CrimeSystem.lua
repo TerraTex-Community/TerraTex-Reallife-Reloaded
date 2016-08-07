@@ -53,9 +53,10 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
             columnData.ReporterDisplay = whoGives
         end
 
+        local addCrime = MySql.helper.insertSync("user_crimes", columnData);
         vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
 
-        return MySql.helper.insert("user_crimes", columnData);
+        return addCrime;
     else
         return false;
     end

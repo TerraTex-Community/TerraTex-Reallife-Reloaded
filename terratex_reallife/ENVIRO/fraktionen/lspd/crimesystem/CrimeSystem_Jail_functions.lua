@@ -9,7 +9,7 @@
 CrimeSystem.Jail = {};
 
 function CrimeSystem.Jail.getRandomJailSpawnById(jailId)
-    local jailTextId = CrimeSystem._jailIdToText(jailId);
+    local jailTextId = CrimeSystem._jailIdToText[jailId];
     local spawnTable = CrimeSystem._jails[jailTextId];
 
     return spawnTable[math.random(1, table.getSize(spawnTable))];

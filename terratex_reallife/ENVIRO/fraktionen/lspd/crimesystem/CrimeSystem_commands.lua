@@ -104,18 +104,18 @@ function cmdBail(thePlayer)
         if (vioGetElementData(thePlayer, "kaution") > 0) then
             local kaution = vioGetElementData(thePlayer, "kaution");
 
-            local jailtime = vioGetElementData(toPlayer, "knastzeit");
-            local totalJailtime = vioGetElementData(toPlayer, "lastknastzeit");
+            local jailtime = vioGetElementData(thePlayer, "knastzeit");
+            local totalJailtime = vioGetElementData(thePlayer, "lastknastzeit");
 
-            local factor = math.round(jailtime * totalJailtime);
+            local factor = math.round(jailtime / totalJailtime);
             if factor < 0.1 then factor = 0.1; end
             kaution = kaution * factor;
 
-            if (kaution <= changePlayerMoney(thePlayer)) then
-                changePlayerMoney(thePlayer, -kaution, "sonstiges", "Kaution");
+            if (kaution <= getPlayerMoney(thePlayer)) then
+                changePlayerMoney(thePlayer, (-kaution), "sonstiges", "Kaution");
                 CrimeSystem.Jail.unArrest(thePlayer);
             elseif (kaution <= getPlayerBank(thePlayer)) then
-                changePlayerBank(thePlayer, -kaution, "sonstiges", "Kaution");
+                changePlayerBank(thePlayer, (-kaution), "sonstiges", "Kaution");
                 CrimeSystem.Jail.unArrest(thePlayer);
             else
                 showError(thePlayer, "Du konntest die Kaution (" .. toprice(kaution) .. ") weder Bar noch durch deine Bank bezahlen!");
@@ -154,7 +154,7 @@ function cmdDearrest(thePlayer, cmd, toPlayerName)
                     if (getElementsDistance(toPlayer, thePlayer) < 25) then
                         showError(thePlayer, "Der Spieler wird in wenigen Minuten aus seiner Zelle entlassen.");
                         showError(toPlayer, "Du wirst in wenigen Minuten aus deiner Zelle entlassen.");
-                        setTimer(timerUnArrest, math.random(30000,150000), 1, toPlayer);
+                        setTimer(timerUnArrest, math.random(1000,150000), 1, toPlayer);
                     else
                         showError(thePlayer, "Du musst bei der Zelle des Spielers sein, um ihn zu entlassen.");
                     end

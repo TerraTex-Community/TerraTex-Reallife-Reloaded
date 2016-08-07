@@ -92,3 +92,12 @@ function CrimeSystem.getBail(thePlayer, bot)
         return Math.round(percentage * CrimeSystem._bailPerPercentageBot);
     end
 end
+
+function CrimeSystem.isNearJailPoint(thePlayer)
+    for theJail, thePosition in pairs(CrimeSystem._arrestPoints) do
+        if (getElementsDistanceToPoint(thePlayer, thePosition[1], thePosition[2], thePosition[3]) < 30) then
+            return theJail;
+        end
+    end
+    return false;
+end

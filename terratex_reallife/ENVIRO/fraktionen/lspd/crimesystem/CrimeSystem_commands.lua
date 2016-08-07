@@ -13,10 +13,58 @@
 -- costs
 -- setElementModel(thePlayer, 62)
 
--- @todo: bail
-
 -- @todo: suspects (old /wanteds - maybe fallback)
 -- Alkamessage
+
+function cmdArrest(thePlayer, cmd, toPlayerName, voluntary)
+    if (isBeamter(thePlayer)) then
+        local jail = CrimeSystem.isNearJailPoint(thePlayer);
+        if (jail) then
+            local toPlayer = getPlayerFromIncompleteName(toPlayerName);
+            if (toPlayer) then
+                if (getElementsDistance(toPlayer, thePlayer) < 20) then
+                    if (tonumber(voluntary) == 0) then
+                        voluntary = false;
+                    end
+
+                    local kaution = 0;
+                    local jailTime = 0;
+
+                    if (voluntary) then
+                        kaution = CrimeSystem.getBail(toPlayer, false);
+                        jailTime = CrimeSystem.getNewJailTime(toPlayer, true);
+                    else
+                        jailTime = CrimeSystem.getNewJailTime(toPlayer, false);
+                    end
+
+                    vioSetElementData(toPlayer, "knastzeit", jailTime);
+                    vioSetElementData(toPlayer, "lastknastzeit", jailTime);
+                    vioSetElementData(toPlayer, "kaution", kaution);
+
+                    setElementModel(toPlayer, 62);
+
+                    if (kaution == 0) then kaution = "keine"; else kaution = toprice(kaution); end
+
+                    outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", jailTime, kaution), toPlayer);
+                    outputChatBoxForPolice(string.format(getPlayerName(thePlayer) .. " hat %s eingesperrt!", getPlayerName(toPlayer)));
+
+                    local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName(jail);
+                    vioSetElementData(toPlayer, "alkaknast", CrimeSystem._jailTextToId[jail]);
+                    setElementPosition(toPlayer, x,y,z);
+
+                    CrimeSystem.clear(toPlayer);
+                else
+                    showError(thePlayer, "Der Spieler ist nicht in deiner Nähe!");
+                end
+            else
+                showError(thePlayer, "Der Spieler existiert nicht");
+            end
+        else
+            showError(thePlayer, "Du bist in der Nähe eines Knastes!");
+        end
+    end
+end
+addCommandHandler("arrest", cmdArrest, false, false);
 
 function cmdBail(thePlayer)
     if (vioGetElementData(thePlayer, "knastzeit") > 0) then

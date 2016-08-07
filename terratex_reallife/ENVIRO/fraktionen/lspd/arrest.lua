@@ -16,8 +16,6 @@ function StellenNow(thePlayer)
         local x, y, z = getElementPosition(thePlayer)
         if (getDistanceBetweenPoints3D(x, y, z, 238.961914062, 112.734375, 1003.21875) < 5 or getDistanceBetweenPoints3D(x, y, z, 233.044921875, 166.4814453125, 1003.0234375) < 5) then
             if not (isPedDead(thePlayer)) then
-
-
                 local Kaution = CrimeSystem.getBail(thePlayer, true);
                 vioSetElementData(thePlayer, "kaution", Kaution);
 
@@ -31,6 +29,7 @@ function StellenNow(thePlayer)
                 outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", time, Kaution), thePlayer);
                 outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)));
 
+                vioSetElementData(thePlayer, "alkaknast", 0);
                 local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
                 setElementPosition(thePlayer, x,y,z);
 

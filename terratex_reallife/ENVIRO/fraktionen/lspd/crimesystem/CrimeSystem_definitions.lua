@@ -26,6 +26,12 @@ CrimeSystem._jailIdToText = {
     [2] = "lv"
 };
 
+CrimeSystem._jailTextToId = {
+    ls = 0,
+    alka = 1,
+    lv = 2
+};
+
 CrimeSystem._jailNames = {
     ls = "LSPD Knast",
     alka = "Alkatraz",

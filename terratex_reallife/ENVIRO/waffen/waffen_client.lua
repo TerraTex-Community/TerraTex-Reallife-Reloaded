@@ -2,7 +2,6 @@
 waffenmessage=0
 function controlWeaponsAndWeaponLicense()
 	if(isPlayerLoggedIn(getLocalPlayer()))then
-	triggerServerEvent("setPlayerWantedLevel_Event",getLocalPlayer(),getLocalPlayer(),tonumber(getElementData(getLocalPlayer(),"wanteds")))
 	if(tonumber(getElementData(getLocalPlayer(),"waffenLic"))<1 or (tonumber(getElementData(getLocalPlayer(),"playtime"))/60<25)) then
 		local weaponCount=0
 		for n=1,12,1 do

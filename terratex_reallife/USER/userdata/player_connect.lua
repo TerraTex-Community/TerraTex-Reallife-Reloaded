@@ -339,7 +339,6 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "lastknastzeit", tonumber(userdataData["lastKnastzeit"]))
         vioSetElementData(source, "alkaknast", tonumber(userdataData["alkaknast"]))
         vioSetElementData(source, "stvo", tonumber(userdataData["Stvo"]))
-        vioSetElementData(source, "wanteds", tonumber(userdataData["Wanteds"]))
 
         vioSetElementData(source, "crimeLevel", CrimeSystem.getCrimePercentage(source));
 
@@ -537,7 +536,6 @@ function LoginPlayerData(nickname, pw)
         if (vioGetElementData(source, "fraktion") > 0) then
             setPlayerTeam(source, team[vioGetElementData(source, "fraktion")])
         end
-        setPlayerWantedLevel(source, vioGetElementData(source, "wanteds"))
 
         triggerClientEvent(source, "hideLoginGui", source)
 

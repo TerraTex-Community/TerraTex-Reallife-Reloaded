@@ -11,6 +11,7 @@ function onStellBotSpawn()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)
 
+--@todo: change wanteds to percentage on check
 function StellenNow(thePlayer)
     if (vioGetElementData(thePlayer, "stellenInfos") == vioGetElementData(thePlayer, "wanteds")) then
         local x, y, z = getElementPosition(thePlayer)
@@ -169,6 +170,8 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
                     end
                 end
             end
+
+            --@todo: change wanteds to crime
             if ((vioGetElementData(source, "cuffed") == 1) or (gangInNear > 0 and vioGetElementData(source, "schutzzahlung") > 0) or (policeInNear > 0 and vioGetElementData(source, "wanteds") > 0)) then
                 if (policeInNear > 0) then
                     if (vioGetElementData(source, "wanteds") > 0) then
@@ -669,33 +672,6 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
     end
 end
 addCommandHandler("stvo", stvo_func, false, false)
-
-
-function clear_func(theMaker, Command, thePlayerName, ...)
-    if (isBeamter(theMaker)) then
-        local reason = table.concat({ ... }, " ")
-        if (reason) then
-            local thePlayer = getPlayerFromIncompleteName(thePlayerName)
-            if (thePlayer) then
-                vioSetElementData(thePlayer, "wanteds", 0)
-                setPlayerWantedLevel(thePlayer, 0)
-                outputChatBox(string.format("Deine Akte wurde von %s geloescht!", getPlayerName(theMaker)), thePlayer, 255, 255, 0)
-                for theKey, player in ipairs(getElementsByType("player")) do
-                    if (isBeamter(player)) then
-                        outputChatBox(string.format("%s hat %s's Akte geloescht! Grund: %s", getPlayerName(theMaker), getPlayerName(thePlayer), reason), player, 255, 255, 0)
-                    end
-                end
-
-
-            else
-                showError(theMaker, "Der Spieler existiert nicht!")
-            end
-        else
-            showError(theMaker, "Du hast keinen Grund angegeben!")
-        end
-    end
-end
-addCommandHandler("clear", clear_func, false, false)
 
 function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
     if (isBeamter(theMaker)) then

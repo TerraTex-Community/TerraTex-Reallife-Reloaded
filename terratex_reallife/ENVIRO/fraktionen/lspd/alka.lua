@@ -32,8 +32,8 @@ function Alka_setsechsWanted(hitPlayer)
     if (getElementInterior(hitPlayer) == 0 and getElementDimension(hitPlayer) == 0) then
         local x, y, z = getElementPosition(hitPlayer)
         if (isInsideRadarArea(Alka_recHitShape, x, y)) then
-            vioSetElementData(hitPlayer, "wanteds", 6)
-            setPlayerWantedLevel(hitPlayer, 6)
+            --@todo: give wanteds for entry army base
+
             if (isPedInVehicle(hitPlayer)) then
                 triggerClientEvent(getRootElement(), "shootAlka", hitPlayer)
             end

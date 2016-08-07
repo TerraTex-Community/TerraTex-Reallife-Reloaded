@@ -131,36 +131,12 @@ function death_func(ammo, attacker, weapon, bodypart)
                 vioSetElementData(source, "isDeathPlayer", false)
             else
                 if vioGetElementData(source, "fraktion") == 0 and not (isBeamter(attacker)) and not (attacker == source) and not (wasOnABlacklist) and getElementType(attacker) == "player" then
-                    local giveWanted = 1
+                    local killInRuhe = false
                     if (isInRuheZone(attacker)) then
-                        giveWanted = 3
+                        killInRuhe = true
                     end
 
-                    if not (vioGetElementData(attacker, "wanteds")) then
-                        vioSetElementData(attacker, "wanteds", giveWanted)
-                    end
-                    vioSetElementData(attacker, "wanteds", vioGetElementData(attacker, "wanteds") + giveWanted)
-                    if (vioGetElementData(attacker, "wanteds") > 6) then
-                        vioSetElementData(attacker, "wanteds", 6)
-                    end
-
-                    outputChatBox("Du hast einen Wanted erhalten! Grund: ZiviMord", attacker, 0, 0, 255)
-                    outputChatBox(string.format("Du hast jetzt %s Wanteds", vioGetElementData(attacker, "wanteds")), attacker, 0, 0, 255)
-                    if not (vioGetElementData(attacker, "wanteds")) then
-                        vioSetElementData(attacker, "wanteds", giveWanted)
-                        setPlayerWantedLevel(attacker, giveWanted)
-                    elseif (tonumber(vioGetElementData(attacker, "wanteds")) < giveWanted) then
-                        vioSetElementData(attacker, "wanteds", giveWanted)
-                        setPlayerWantedLevel(attacker, giveWanted)
-                    elseif (tonumber(vioGetElementData(attacker, "wanteds")) > 6) then
-                        vioSetElementData(attacker, "wanteds", 6)
-                        setPlayerWantedLevel(attacker, 6)
-                    else
-                        setPlayerWantedLevel(attacker, tonumber(vioGetElementData(attacker, "wanteds")))
-                    end
-
-                    outputChatBoxForPolice(string.format("%s hat %s Wanted/s erhalten! Grund: Zivimord", getPlayerName(attacker), giveWanted), 0, 0, 255)
-                    outputChatBoxForPolice(string.format("Er hat %s Wanteds! Reporter: Serversystem", vioGetElementData(attacker, "wanteds")), 0, 0, 255)
+                    --@todo: add civil mord
                 end
             end
 

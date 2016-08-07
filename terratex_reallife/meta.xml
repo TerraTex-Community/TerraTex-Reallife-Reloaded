@@ -8,7 +8,6 @@
     <script src="config.lua" type="shared"/>
     <script src="database_config.lua" type="server"/>
     <!-- FIXXES -->
-    <script src="FIXES/setPlayerWantedLevel.lua" type="server"/>
     <script src="FIXES/setElementFrozen.lua" type="shared"/>
     <script src="FIXES/int_dim_server.lua" type="server"/>
     <script src="FIXES/int_dim_client.lua" type="client"/>

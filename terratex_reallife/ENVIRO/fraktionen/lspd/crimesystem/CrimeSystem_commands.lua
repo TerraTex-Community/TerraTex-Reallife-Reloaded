@@ -97,7 +97,7 @@ function cmdBail(thePlayer)
             local jailtime = vioGetElementData(toPlayer, "knastzeit");
             local totalJailtime = vioGetElementData(toPlayer, "lastknastzeit");
 
-            local factor = Math.round(jailtime * totalJailtime);
+            local factor = math.round(jailtime * totalJailtime);
             if factor < 0.1 then factor = 0.1; end
             kaution = kaution * factor;
 

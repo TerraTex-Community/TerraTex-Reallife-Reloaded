@@ -118,3 +118,5 @@ CREATE TABLE `log_car_deletes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE log_playermoney ADD AdditionalData TEXT DEFAULT null NULL;
+
+ALTER TABLE data_crimes_categories ADD hidden INT DEFAULT 0 NULL;

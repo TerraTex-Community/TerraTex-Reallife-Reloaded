@@ -11,14 +11,15 @@ CrimeSystem.Jail = {};
 function CrimeSystem.Jail.getRandomJailSpawnById(jailId)
     local jailTextId = CrimeSystem._jailIdToText[jailId];
     local spawnTable = CrimeSystem._jails[jailTextId];
-
-    return spawnTable[math.random(1, table.getSize(spawnTable))];
+    local pos = spawnTable[math.random(1, table.getSize(spawnTable))]
+    return pos[1], pos[2], pos[3], pos[4];
 end
 
 function CrimeSystem.Jail.getRandomJailSpawnByJailName(jailId)
     local spawnTable = CrimeSystem._jails[jailId];
 
-    return spawnTable[math.random(1, table.getSize(spawnTable))];
+    local pos = spawnTable[math.random(1, table.getSize(spawnTable))]
+    return pos[1], pos[2], pos[3], pos[4];
 end
 
 function CrimeSystem.Jail.getJailIdInArea(thePlayer)

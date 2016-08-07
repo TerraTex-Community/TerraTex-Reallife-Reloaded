@@ -52,8 +52,6 @@ function onClientLoadWerbung_func(data, ID, animation)
         werbetafel[id][4] = true
     end
 
-    debug.print(werbetafel);
-
     local filename = werbetafel[id][2]
     local fh = fileExists(filename) and fileOpen(filename) or fileCreate(filename)
     fileWrite(fh, data)

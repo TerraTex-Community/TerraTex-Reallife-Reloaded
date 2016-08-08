@@ -57,6 +57,15 @@ end
 addCommandHandler("suspect", cmdSuspect, false, false);
 addCommandHandler("wanteds", cmdSuspect, false, false);
 
+local logoutTable = {}
+function onPlayerSaveLogoutTime()
+    local nickname = string.lower(getPlayerName(source))
+    local timer = getRealTime()
+    local timestamp = timer.timestamp
+    logoutTable[nickname] = { timestamp }
+end
+addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
+
 function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
     if (isBeamter(thePlayer)) then
         local additionalDescription = table.concat({...}, " ");
@@ -77,6 +86,7 @@ function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
                 showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
             end
         else
+            -- @todo: /su offline check
             showError(thePlayer, "Dieser Spieler existiert nicht!");
         end
     end

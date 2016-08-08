@@ -11,9 +11,8 @@ function onStellBotSpawn()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)
 
---@todo: change wanteds to percentage on check
 function StellenNow(thePlayer)
-    if (vioGetElementData(thePlayer, "stellenInfos") == vioGetElementData(thePlayer, "wanteds")) then
+    if (vioGetElementData(thePlayer, "stellenInfos") == CrimeSystem.getCrimePercentage(thePlayer)) then
         local x, y, z = getElementPosition(thePlayer)
         if (getDistanceBetweenPoints3D(x, y, z, 238.961914062, 112.734375, 1003.21875) < 5 or getDistanceBetweenPoints3D(x, y, z, 233.044921875, 166.4814453125, 1003.0234375) < 5) then
             if not (isPedDead(thePlayer)) then
@@ -46,14 +45,14 @@ function StellenNow(thePlayer)
             outputChatBox("Stellen Abgebrochen: Vom Stellpunkt entfernt", thePlayer, 255, 0, 0)
         end
     else
-        outputChatBox("Stellen Abgebrochen: Wantedanzahl hat sich geändert", thePlayer, 255, 0, 0)
+        outputChatBox("Stellen Abgebrochen: Ihr Kriminalitätsstatus hat sich geändert", thePlayer, 255, 0, 0)
     end
 end
 
 function onStellenClick(mouseButton, buttonState, clickedElement)
     if (buttonState == "up") then
         if (isStellBoit[clickedElement]) then
-            if (vioGetElementData(source, "wanteds") > 0 and not (vioGetElementData(toPlayer, "mussAlka") == 1)) then
+            if (CrimeSystem.getCrimePercentage(source) > 0 and not (vioGetElementData(toPlayer, "mussAlka") == 1)) then
                 outputChatBox("Willst du dich stellen? Dann gebe '/accept stellen' ein", source, 255, 0, 0)
                 vioSetElementData(source, "canStellen", true)
             end
@@ -66,7 +65,7 @@ function accept_stellen(thePlayer)
     if (vioGetElementData(thePlayer, "canStellen")) then
         local x, y, z = getElementPosition(thePlayer)
         if (getDistanceBetweenPoints3D(x, y, z, 238.961914062, 112.734375, 1003.21875) < 10 or getDistancBetweenPoints3D(x, y, z, 233.044921875, 166.4814453125, 1003.0234375)) then
-            vioSetElementData(thePlayer, "stellenInfos", vioGetElementData(thePlayer, "wanteds"))
+            vioSetElementData(thePlayer, "stellenInfos", CrimeSystem.getCrimePercentage(thePlayer))
             setTimer(StellenNow, 180000, 1, thePlayer)
             outputChatBox("Bitte warte hier 3 Minuten bis deine Anfrage bearbeitet wurde!", thePlayer, 255, 0, 0)
             vioSetElementData(thePlayer, "canStellen", false)
@@ -171,10 +170,9 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
                 end
             end
 
-            --@todo: change wanteds to crime
-            if ((vioGetElementData(source, "cuffed") == 1) or (gangInNear > 0 and vioGetElementData(source, "schutzzahlung") > 0) or (policeInNear > 0 and vioGetElementData(source, "wanteds") > 0)) then
+            if ((vioGetElementData(source, "cuffed") == 1) or (gangInNear > 0 and vioGetElementData(source, "schutzzahlung") > 0) or (policeInNear > 0 and percentage > 0)) then
                 if (policeInNear > 0) then
-                    if (vioGetElementData(source, "wanteds") > 0) then
+                    if (percentage > 0) then
                         vioSetElementData(source, "knastzeit", CrimeSystem.getNewJailTime(source) + 20)
                         vioSetElementData(source, "lastknastzeit", CrimeSystem.getNewJailTime(source) + 20)
                         vioSetElementData(source, "alkaknast", 1)
@@ -574,15 +572,6 @@ function donotexistoutofcar(exitingPlayer)
 end
 
 addEventHandler("onVehicleStartExit", getRootElement(), donotexistoutofcar)
-
-local logoutTable = {}
-function onPlayerSaveLogoutTime()
-    local nickname = string.lower(getPlayerName(source))
-    local timer = getRealTime()
-    local timestamp = timer.timestamp
-    logoutTable[nickname] = { timestamp, vioGetElementData(source, "wanteds") }
-end
-addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
 
 function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
 

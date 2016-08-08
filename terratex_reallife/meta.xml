@@ -519,6 +519,7 @@
     <map src="MAPS/umgebung/MC-Prestige2.map"/>
     <map src="MAPS/umgebung/Kino-Interior.map"/>
     <map src="MAPS/umgebung/Alcatraz.map"/>
+    <map src="MAPS/umgebung/flugjob_helipad.map"/>
     <!-- Innenräume -->
     <map src="MAPS/innenraume/TompuPotLottery.map"/>
     <map src="MAPS/innenraume/TT-bank-innen.map"/>

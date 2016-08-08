@@ -85,8 +85,6 @@ function setAnimation(thePlayer,cmd)
             setTimer(killPissObj,60000,1,obj)
         elseif(cmd=="vomit")then
             setTimer(createvomit,4100,1,thePlayer)
-        elseif(cmd=="smoke" or cmd=="smokef" or cmd=="smokem")then
-            triggerClientEvent(getRootElement(),"addZigarre",thePlayer,cmd)
         end
 
     else

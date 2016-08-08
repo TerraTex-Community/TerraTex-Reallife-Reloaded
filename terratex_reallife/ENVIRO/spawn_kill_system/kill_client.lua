@@ -89,7 +89,7 @@ addEvent("syncDeathPickupToGround",true)
 function syncDeathPickupToGround_func()
     if(getElementInterior(source)==0)then
         local x,y,z=getElementPosition(source)
-        if(isElementInWater ( getLocalPlayer() ))then --@fixme: Abfrage liefert falsche Werte
+        if(isElementInWater ( getLocalPlayer() ))then
             triggerServerEvent("setDeathBlipPos",source,x,y,0.5)
         else
 

@@ -131,12 +131,14 @@ function death_func(ammo, attacker, weapon, bodypart)
                 vioSetElementData(source, "isDeathPlayer", false)
             else
                 if vioGetElementData(source, "fraktion") == 0 and not (isBeamter(attacker)) and not (attacker == source) and not (wasOnABlacklist) and getElementType(attacker) == "player" then
-                    local killInRuhe = false
+                    local crimeId = 1100;
                     if (isInRuheZone(attacker)) then
-                        killInRuhe = true
+                        crimeId = 1101;
                     end
 
-                    --@todo: add civil mord
+                    CrimeSystem.addNewCrime(attacker, crimeId, "System");
+
+                    outputChatBoxForPolice(getPlayerName .. " hat eine neue Straftat begangen");
                 end
             end
 

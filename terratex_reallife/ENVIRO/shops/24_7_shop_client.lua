@@ -166,7 +166,7 @@ SuperShop_Description={
 	"Mobiles Tappgerät - erweitert sich durch Tapps", -- TerraLappTapp
 	"digitale Tachoerweiterung - erweitert das Tacho um eine digitale Anzeige der Geschwindigkeit", -- digitale Tachoerweiterung
 	"Lässt dich mit /würfel einen Würfel würfeln", -- Würfel
-	"Schützt vor Geschlechtskrankheiten" -- Kondome
+	"Schützt vor Geschlechtskrankheiten", -- Kondome
 	"Lassen dich dein Blut auf Drogen und Alkohol testen" -- Blutstreifentest
 }
 

@@ -64,6 +64,8 @@ end
 function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment)
     local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
 
+    -- todo: stop cops using hidden codes
+
     if (exist) then
         if not additionalComment then additionalComment = "" end
 

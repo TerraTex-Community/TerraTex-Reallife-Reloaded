@@ -146,17 +146,16 @@ function death_func(ammo, attacker, weapon, bodypart)
                 setPedHeadless(source, true)
             end
 
-            if (isBeamter(attacker)) and (vioGetElementData(source, "wanteds") > 0) then
+            if (isBeamter(attacker)) and (CrimeSystem.getCrimePercentage(source) > 0) then
                 wasBlacklistOrWantedKill = true;
 
                 vioSetElementData(source, "alkaknast", CrimeSystem.Jail.getJailIdInArea(source))
 
-                changePlayerMoney(source, ((((vioGetElementData(source, "wanteds") * 100) * vioGetElementData(source, "wanteds"))) * -1), "sonstiges", "Knast durch Tod")
-                vioSetElementData(source, "knastzeit", vioGetElementData(source, "knastzeit") + (vioGetElementData(source, "wanteds") * 7))
-                vioSetElementData(source, "lastknastzeit", vioGetElementData(source, "knastzeit"))
+                vioSetElementData(source, "knastzeit", CrimeSystem.getNewJailTime(source, false));
+                vioSetElementData(source, "lastknastzeit", CrimeSystem.getNewJailTime(source, false));
 
-                showError(source, string.format("Du bist nun im Knast fuer %s Minuten! \nDu musstest zusaetzlich %s $ zahlen!", vioGetElementData(source, "knastzeit"), (vioGetElementData(source, "wanteds") * 250)))
-                vioSetElementData(source, "wanteds", 0)
+                showError(source, string.format("Du bist nun im Knast fuer %s Minuten!", vioGetElementData(source, "knastzeit")))
+                CrimeSystem.clear(source)
                 vioSetElementData(source, "kaution", 0)
                 outputChatBox(string.format("Du hast %s erfolgreich hinter Gitter gebracht!", getPlayerName(source)), attacker, 0, 0, 255)
                 outputChatBoxForPolice(string.format("%s wurde von %s hinter Gitter gebracht.", getPlayerName(source), getPlayerName(attacker)), 0, 0, 255)

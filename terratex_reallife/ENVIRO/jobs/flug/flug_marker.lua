@@ -172,8 +172,13 @@ function hitflyerserMarker(theHitElement)
                     if (isElement(vioGetElementData(driver, "flys_marker"))) then
                         destroyElement(vioGetElementData(driver, "flys_marker"))
                     end
-                    local marker = createMarker(1389.046875, 1701.9697265625, 10.8203125, "cylinder", 4, 88, 191, 162, 255, driver)
-                    local blip = createBlip(1389.046875, 1701.9697265625, 10.8203125, 0, 4, 88, 191, 162, 255, 0, 999999.0, driver)
+                    if (getVehicleType(theHitElement) == "Helicopter") then
+                        local marker = createMarker(1391.3000488281, 1814.4000244141, 10.8203125, "cylinder", 4, 88, 191, 162, 255, driver)
+                        local blip = createBlip(1391.3000488281, 1814.4000244141, 10.8203125, 0, 4, 88, 191, 162, 255, 0, 999999.0, driver)
+                    else
+                        local marker = createMarker(1389.046875, 1701.9697265625, 10.8203125, "cylinder", 4, 88, 191, 162, 255, driver)
+                        local blip = createBlip(1389.046875, 1701.9697265625, 10.8203125, 0, 4, 88, 191, 162, 255, 0, 999999.0, driver)
+                    end
                     vioSetElementData(driver, "flys_marker", marker)
                     vioSetElementData(driver, "flys_blip", blip)
                     addEventHandler("onMarkerHit", marker, hitflyerserEndMarker)

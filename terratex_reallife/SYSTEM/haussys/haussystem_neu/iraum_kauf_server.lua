@@ -21,12 +21,15 @@ function hitMoebelMarker(thePlayer)
                     local haus = haeuser[hID]
                     local validIR = {}
                     for theKey, theIR in pairs(iraeume) do
-                        if (theIR:getStockwerke() <= haus:getStockwerke()) then --Innenraum darf nicht mehr Stockwerke haben als das Haus
-                        if (theIR:getQM() <= haus:getQM()) then --IR darf nicht mehr QM haben als Haus
-                        if (theIR:getWert() <= haus:getWert()) then --IR darf nicht mehr Wert haben als Haus
-                        table.insert(validIR, theIR)
-                        end
-                        end
+                        --Innenraum darf nicht mehr Stockwerke haben als das Haus
+                        if (theIR:getStockwerke() <= haus:getStockwerke()) then
+                            --IR darf nicht mehr QM haben als Haus
+                            if (theIR:getQM() <= haus:getQM()) then
+                                -- IR darf nicht mehr Wert haben als Haus
+                                if (theIR:getWert() <= haus:getWert()) then
+                                    table.insert(validIR, theIR)
+                                end
+                            end
                         end
                     end
                     triggerClientEvent(thePlayer, "recieveValidIraum", thePlayer, validIR, haus:getIRaum())

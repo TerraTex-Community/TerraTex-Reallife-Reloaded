@@ -89,3 +89,12 @@ CrimeSystem._deArrestPositions = {
     alka = { 0, 2290.5244140625, 2422.5546875, 10.8203125 },
     lv = { 0, 1543.9755859375, -1676.669921875, 13.557506561279 }
 }
+
+CrimeSystem._criminalStates = {
+    {minPercentage = 0, name = "Kavaliersdelikt"},
+    {minPercentage = 15, name = "Kleinkrimineller"},
+    {minPercentage = 30, name = "Krimineller"},
+    {minPercentage = 50, name = "Schwerkrimineller"},
+    {minPercentage = 75, name = "Extremstkrimineller"},
+    {minPercentage = 95, name = "Staatsfeind"}
+}

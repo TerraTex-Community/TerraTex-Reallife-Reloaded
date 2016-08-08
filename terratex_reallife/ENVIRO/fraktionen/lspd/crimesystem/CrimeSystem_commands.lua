@@ -6,8 +6,17 @@
 -- To change this template use File | Settings | File Templates.
 --
 
--- @todo: suspects (old /wanteds - maybe fallback)
--- Alkamessage
+function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
+    if (not crimeStateOrPlayNamePart) then
+
+    elseif (tonumber(crimeStateOrPlayNamePart)) then
+
+    else
+
+    end
+end
+addCommandHandler("suspect", cmdSuspect, false, false);
+addCommandHandler("wanteds", cmdSuspect, false, false);
 
 function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
     if (isBeamter(thePlayer)) then

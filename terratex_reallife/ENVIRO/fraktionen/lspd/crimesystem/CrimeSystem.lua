@@ -29,6 +29,36 @@ function CrimeSystem.getCrimePercentage(thePlayer)
     end
 end
 
+function CrimeSystem.getSuspects()
+    local playersTotal = getElementsByType("player");
+    local playerNamesLoggedIn = {};
+
+    for theKey, thePlayer in ipairs(playersTotal) do
+        if (vioGetElementData(thePlayer, "loggedin")) then
+            table.insert(playerNamesLoggedIn, getPlayerName(thePlayer));
+        end
+    end
+
+    local query = "SELECT sum(CrimePercentage) as CrimeLevel, Nickname FROM user_crimes WHERE Nickname IN (";
+
+    local y = 0;
+    for y, table.getSize(playerNamesLoggedIn),1 do
+        if (y > 0) then
+            query = query .. ",";
+        end
+
+        query = query .. "??";
+    end
+
+    query = query .. ") GROUP BY Nickname";
+
+    local executedQuery = dbQuery(MySql._connection, query, unpack(playerNamesLoggedIn));
+
+    local result = dbPoll(executedQuery, -1);
+
+    return result;
+end
+
 --- whoGives can be: userelement or string or table {display = , user = }
 function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment)
     local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});

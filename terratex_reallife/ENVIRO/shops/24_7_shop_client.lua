@@ -152,14 +152,30 @@ faktor=1
 end
 addEventHandler("showSuperGUI_Event",getRootElement(),showSuperShopGUI)
 
-SuperShop_Discription={"Beschreibung:\nBlumen fuer deine Liebste!","Beschreibung:\n50 Fotos und dann ab in die Tonne damit","Beschreibung:\n25 Prozent Benzin um bis zur naechsten Tankstelle zu kommen!","Beschreibung:\n3 aus 100\nBei 3 Richtigen gibt es den Jackpot! Die Ziehungen werden jeden Tag 19 Uhr durchgeführt! Der Jackpot ist 75% des Preises der gekauften Lottoscheine!\n Nutzung: /lotto [1-100] [1-100] [1-100]! Pro Ziehung ist nur 1 Schein moeglich abzugeben! Mit /jackpot kann der aktuelle Jackpot abgefragt werden!","Beschreibung:\\nBei Rubbellosen rubbelst du 3 Felder mit den Zahlen 1-10 frei! Bei 3 gleichen gleichen wird eine Zahl mit 1000 multipliziert! Bei 3 aufeinander Folgenden Zahlen wird der Preis direkt so abgelesen (Ausnahme: 8-9-10 = 8-9-0)!","kleines Essen","Fuellt den Essensbalken um die Haelfte","Fuellt den Essensbalken komplett","Volles Essen mit Heilung und 20 Minuten kein Essen mehr","Mit diesen Geraet kannst du mit dem Command /carfind [SlotID] dein Auto finden!","Spielt einen kleinen Ton ab wenn man in den 70 Meterradius eines Hufeisens eindringt! ACHTUNG: zu jedem Payday verschwindet ein Hufeisenhelfer","Mobiles Tappgerät - erweitert sich durch Tapps","digitale Tachoerweiterung - erweitert das Tacho um eine digitale Anzeige der Geschwindigkeit","Schützt vor Geschlechtskrankheiten"}
+SuperShop_Description={
+	"Blumen fuer deine Liebste!", -- Blumen
+	"50 Fotos und dann ab in die Tonne damit", -- Einwegfotoapperat
+	"25 Prozent Benzin um bis zur naechsten Tankstelle zu kommen!", -- Benzinkanister
+	"3 aus 100\nBei 3 Richtigen gibt es den Jackpot! Die Ziehungen werden jeden Tag 19 Uhr durchgeführt! Der Jackpot ist 75% des Preises der gekauften Lottoscheine!\n Nutzung: /lotto [1-100] [1-100] [1-100]! Pro Ziehung ist nur 1 Schein moeglich abzugeben! Mit /jackpot kann der aktuelle Jackpot abgefragt werden!", -- Lottoschein
+	"kleines Essen", -- Snack
+	"Fuellt den Essensbalken um ein Viertel", -- Hamburger
+	"Fuellt den Essensbalken um die Haelfte", -- Fertigessen
+	"Volles Essen mit Heilung und 20 Minuten kein Essen mehr", -- Schnellhilfe
+	"Mit diesen Geraet kannst du mit dem Command /carfind [SlotID] dein Auto finden!", -- Carfinder
+	"Spielt einen kleinen Ton ab wenn man in den 70 Meterradius eines Hufeisens eindringt! ACHTUNG: zu jedem Payday verschwindet ein Hufeisenhelfer", -- Hufeisenhelfer
+	"Mobiles Tappgerät - erweitert sich durch Tapps", -- TerraLappTapp
+	"digitale Tachoerweiterung - erweitert das Tacho um eine digitale Anzeige der Geschwindigkeit", -- digitale Tachoerweiterung
+	"Lässt dich mit /würfel einen Würfel würfeln", -- Würfel
+	"Schützt vor Geschlechtskrankheiten", -- Kondome
+	"Lassen dich dein Blut auf Drogen und Alkohol testen" -- Blutstreifentest
+}
 
 function clickOnSuperShopGui()
 	if(guiGetVisible(SuperShop_Window[1]))then
 		local row,colum=guiGridListGetSelectedItem ( SuperShop_Grid[1])
 		if(row ~= -1)then
 			local id=guiGridListGetItemText ( SuperShop_Grid[1], row, SuperShop_Colum[1])
-			guiSetText(SuperShop_Label[1],SuperShop_Discription[tonumber(id)])		
+			guiSetText(SuperShop_Label[1],"Beschreibung:\n" .. SuperShop_Description[tonumber(id)])		
 		else
 			guiSetText(SuperShop_Label[1],"Beschreibung:")
 		end

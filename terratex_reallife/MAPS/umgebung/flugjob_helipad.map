@@ -1,0 +1,4 @@
+<map edf:definitions="editor_main">
+    <object id="object (hospital01_lvs) (1)" breakable="true" interior="0" alpha="255" model="8079" doublesided="false" scale="1" dimension="0" posX="1385" posY="1814" posZ="-3.4" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (helipad01) (1)" breakable="true" interior="0" alpha="255" model="3934" doublesided="false" scale="1" dimension="0" posX="1391.3" posY="1814.3" posZ="9.9" rotX="0" rotY="0" rotZ="0"></object>
+</map>

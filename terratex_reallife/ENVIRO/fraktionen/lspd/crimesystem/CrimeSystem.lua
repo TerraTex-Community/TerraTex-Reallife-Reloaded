@@ -42,7 +42,8 @@ function CrimeSystem.getSuspects()
     local query = "SELECT sum(CrimePercentage) as CrimeLevel, Nickname FROM user_crimes WHERE Nickname IN (";
 
     local y = 0;
-    for y, table.getSize(playerNamesLoggedIn),1 do
+    local size = table.getSize(playerNamesLoggedIn);
+    for y = 0, size, 1 do
         if (y > 0) then
             query = query .. ",";
         end

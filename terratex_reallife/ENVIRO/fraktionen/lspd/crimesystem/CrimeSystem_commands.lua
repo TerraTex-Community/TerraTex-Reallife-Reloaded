@@ -7,12 +7,51 @@
 --
 
 function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
+
+    local criminals = CrimeSystem.getSuspects();
+    local orderedCriminals = table.copy(CrimeSystem._criminalStates);
+
+    for theKey, theCriminal in ipairs(criminals) do
+        local lastState = 1;
+        for theKey, theState in ipairs(orderedCriminals) do
+            if (theState.minPercentage <= theCriminal.CrimeLevel) then
+                lastState = theKey;
+            end
+        end
+
+        if not orderedCriminals[lastState].criminals then orderedCriminals[lastState].criminals = {}; end
+
+        table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname);
+    end
+
     if (not crimeStateOrPlayNamePart) then
-
+        for theKey, theState in ipairs(orderedCriminals) do
+            outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "));
+        end
     elseif (tonumber(crimeStateOrPlayNamePart)) then
-
+        if (orderedCriminals[tonumber(crimeStateOrPlayNamePart)]) then
+            local theState = orderedCriminals[tonumber(crimeStateOrPlayNamePart)];
+            outputChatBox("Stufe " .. crimeStateOrPlayNamePart .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
+        else
+            showError(thePlayer, "Dieser Kriminalitätsstatus existiert nicht.")
+        end
     else
+        local toPlayer = getPlayerFromIncompleteName(crimeStateOrPlayNamePart);
+        if (toPlayer) then
+            local percentage = CrimeSystem.getCrimePercentage(toPlayer);
 
+            local lastState = 1;
+            for theKey, theState in ipairs(orderedCriminals) do
+                if (theState.minPercentage <= percentage) then
+                    lastState = theKey;
+                end
+            end
+
+            outputChatBox("Der Spieler hat den Kriminalitätsstatus: Stufe " .. lastState .. " - " .. orderedCriminals[lastState].name, thePlayer);
+
+        else
+            showError(thePlayer, "Dieser Spieler existiert nicht!");
+        end
     end
 end
 addCommandHandler("suspect", cmdSuspect, false, false);

@@ -26,13 +26,13 @@ end
 addEvent("onColShapeHit_alka", true)
 addEventHandler("onColShapeHit_alka", Alka_recHitShape, Alka_SendWarning)
 
-
--- @todo: refactor with crimelevel system
 function Alka_setsechsWanted(hitPlayer)
     if (getElementInterior(hitPlayer) == 0 and getElementDimension(hitPlayer) == 0) then
         local x, y, z = getElementPosition(hitPlayer)
         if (isInsideRadarArea(Alka_recHitShape, x, y)) then
-            --@todo: give wanteds for entry army base
+            if (CrimeSystem.getCrimePercentage(hitPlayer) < 70) then
+                CrimeSystem.addNewCrime(hitPlayer, 904, "System");
+            end
 
             if (isPedInVehicle(hitPlayer)) then
                 triggerClientEvent(getRootElement(), "shootAlka", hitPlayer)

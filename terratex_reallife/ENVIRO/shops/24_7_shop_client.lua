@@ -158,8 +158,8 @@ SuperShop_Description={
 	"25 Prozent Benzin um bis zur naechsten Tankstelle zu kommen!", -- Benzinkanister
 	"3 aus 100\nBei 3 Richtigen gibt es den Jackpot! Die Ziehungen werden jeden Tag 19 Uhr durchgeführt! Der Jackpot ist 75% des Preises der gekauften Lottoscheine!\n Nutzung: /lotto [1-100] [1-100] [1-100]! Pro Ziehung ist nur 1 Schein moeglich abzugeben! Mit /jackpot kann der aktuelle Jackpot abgefragt werden!", -- Lottoschein
 	"kleines Essen", -- Snack
-	"Fuellt den Essensbalken um die Haelfte", -- Hamburger
-	"Fuellt den Essensbalken komplett", -- Fertigessen
+	"Fuellt den Essensbalken um ein Viertel", -- Hamburger
+	"Fuellt den Essensbalken um die Haelfte", -- Fertigessen
 	"Volles Essen mit Heilung und 20 Minuten kein Essen mehr", -- Schnellhilfe
 	"Mit diesen Geraet kannst du mit dem Command /carfind [SlotID] dein Auto finden!", -- Carfinder
 	"Spielt einen kleinen Ton ab wenn man in den 70 Meterradius eines Hufeisens eindringt! ACHTUNG: zu jedem Payday verschwindet ein Hufeisenhelfer", -- Hufeisenhelfer

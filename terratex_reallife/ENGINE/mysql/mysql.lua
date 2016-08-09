@@ -21,7 +21,7 @@ MySql.init = function()
 
     if (not MySql._connection) then
         outputDebugString("MySQL-Error: Not possible to connect to database!", 1, 255, 0, 0);
-        outputDebugString("Please edit config.lua and set a correct database configuration.", 1, 255, 0, 0);
+        outputDebugString("Please edit database_config.lua and set a correct database configuration.", 1, 255, 0, 0);
         stopResource(getThisResource());
     end
 end

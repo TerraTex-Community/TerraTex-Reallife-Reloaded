@@ -15,7 +15,7 @@ function showLastDriver_func(vehicle)
                                 and vioGetElementData(source, "fraktionsrang") > 4)
                 )
     ) then
-        outputChatBox(string.format("Letzter Fahrer: %s", getElementData(vehicle, "last_driver")), 255, 0, 0)
+        outputChatBox(string.format("Letzter Fahrer: %s", getElementData(vehicle, "last_driver")), source ,255, 0, 0)
     end
 end
 

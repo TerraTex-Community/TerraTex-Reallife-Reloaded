@@ -426,6 +426,7 @@ function closeInterGuis_func()
     toggleAllControls(true)
     lastclicked = false
     showCursor(false)
+    toggleDriveby("Toggle Driveby", true);
 end
 
 function openInventar()

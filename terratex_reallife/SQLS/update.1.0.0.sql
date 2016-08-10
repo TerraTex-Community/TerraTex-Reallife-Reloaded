@@ -23,8 +23,10 @@ CREATE TABLE `objects_teleport_markers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+TRUNCATE TABLE objects_teleport_markers;
 SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO `objects_teleport_markers` (`ID`, `x`, `y`, `z`, `interior`, `dimension`, `markerType`, `markerSize`, `toMarker`, `toPosX`, `toPosY`, `toPosZ`, `rzAfterTeleport`, `toInt`, `toDim`, `specialKey`, `description`) VALUES
+SET GLOBAL FOREIGN_KEY_CHECKS=0;
+INSERT INTO objects_teleport_markers (ID, `x`, `y`, z, interior, `dimension`, markerType, markerSize, toMarker, toPosX, toPosY, toPosZ, rzAfterTeleport, toInt, toDim, specialKey, description) VALUES
 (1, 1554.61, -1675.61, 16.1953, 0, 0, 'corona', '2.0', 2, NULL, NULL, NULL, NULL, 10, 0, NULL, 'LSPD outside'),
 (2, 246.59, 107.791, 1002.19, 10, 0, 'corona', '2.0', 1, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LSPD Main Entrance'),
 (3, 1368.45, -1279.84, 13.5469, 0, 0, 'corona', '2.0', 4, NULL, NULL, NULL, NULL, 7, 0, 'ammonation', 'Ammonation LS Outside'),
@@ -84,3 +86,4 @@ INSERT INTO `objects_teleport_markers` (`ID`, `x`, `y`, `z`, `interior`, `dimens
 (57, 2252.5, 2452.4, 39.1546, 0, 0, 'corona', '2.0', 58, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LVPD Garage to Roof'),
 (58, 2297.12, 2468.81, 10.8203, 0, 0, 'corona', '2.0', 57, NULL, NULL, NULL, NULL, 0, 0, NULL, 'LVPD Roof to Garage');
 SET FOREIGN_KEY_CHECKS=1;
+SET GLOBAL FOREIGN_KEY_CHECKS=1;

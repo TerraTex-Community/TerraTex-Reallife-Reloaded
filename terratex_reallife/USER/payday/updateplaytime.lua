@@ -25,7 +25,7 @@ function update_play_time_func()
                 local timestring = tostring(math.round(vioGetElementData(thePlayer, "playtime") / 60, 0, "floor")) .. "|" .. minuten
                 vioSetElementData(thePlayer, "playTime_formated", timestring)
 
-                if (vioGetElementData(thePlayer, "jailtime") > 0) then
+                if (vioGetElementData(thePlayer, "knastzeit") > 0) then
                     vioSetElementData(thePlayer, "inJail", "x");
                 else
                     vioSetElementData(thePlayer, "inJail", "");

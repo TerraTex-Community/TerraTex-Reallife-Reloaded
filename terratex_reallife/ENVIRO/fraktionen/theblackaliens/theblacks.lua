@@ -21,7 +21,7 @@ function createBlackAliens()
  table.insert(frakselfcars[8],vehicle)
 
 	for key, theVehicle in pairs(frakselfcars[8]) do
-		prepare(theVehicle,6)
+		prepare(theVehicle,8)
 		setVehicleColor (theVehicle,0,0,0,0)
 		vioSetElementData(theVehicle,"tank",100)
 		table.insert(frakcars,theVehicle)

@@ -79,6 +79,7 @@
     <script src="SYSTEM/vehsys/loadprivcars.lua" type="server"/>
     <script src="SYSTEM/vehsys/privCarCommands.lua" type="server"/>
     <script src="SYSTEM/vehsys/fahrzeug_gui.lua" type="client"/>
+    <script src="SYSTEM/vehsys/fahrzeug_gui_server.lua" type="server"/>
     <script src="SYSTEM/vehsys/tankabzug.lua" type="server"/>
     <script src="SYSTEM/vehsys/tankstelle.lua" type="server"/>
     <script src="SYSTEM/vehsys/tuning_client.lua" type="client"/>

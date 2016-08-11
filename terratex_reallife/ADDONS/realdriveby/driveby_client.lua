@@ -58,7 +58,7 @@ addEventHandler("doSendDriveBySettings",localPlayer,
 )
 
 --This function handles the driveby toggling key.
-function toggleDriveby()
+function toggleDriveby(cmd, forceUnToggle)
 	--If he's not in a vehicle dont bother
 	if tonumber(getElementData(localPlayer,"cuffed"))==1 then 
 	
@@ -80,7 +80,7 @@ function toggleDriveby()
 	if settings.blockedVehicles[vehicleID] then return end
 	--Has he got a weapon equiped?
 	local equipedWeapon = getPedWeaponSlot( localPlayer )
-	if equipedWeapon == 0 then
+	if equipedWeapon == 0 and not forceUnToggle then
 		--Decide whether he is a driver or passenger
 		if ( driver ) then weaponsTable = settings.driver
 		else weaponsTable = settings.passenger end

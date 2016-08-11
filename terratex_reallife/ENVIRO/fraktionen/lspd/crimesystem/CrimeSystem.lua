@@ -62,11 +62,21 @@ end
 
 --- whoGives can be: userelement or string or table {display = , user = }
 function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment)
-    local exist = MySql.helper.existSync("data_crimes_list", {ID = crimeId});
 
-    -- todo: stop cops using hidden codes
+    local query = "SELECT dcl.Percentage FROM data_crimes_list AS dcl ";
+    query = query .. "LEFT JOIN data_crimes_categories as dcc ON dcl.CategorieID = dcc.ID ";
+    query = query .. "WHERE dcl.ID = ? ";
+    if (isElement(thePlayer)) then
+        if (not isAdminLevel(thePlayer, 0) and isBeamter(thePlayer)) then
+            query = query .. "AND dcc.hidden = 0";
+        end
+    end
 
-    if (exist) then
+    local handler = dbQuery(MySql._connection, query, crimeId);
+    local result, countRows = dbPoll(handler, -1);
+
+    if (countRows > 0 or table.getSize(result) > 0) then
+
         if not additionalComment then additionalComment = "" end
 
         local percentage = MySql.helper.getValueSync("data_crimes_list", "Percentage", {ID = crimeId});

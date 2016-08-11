@@ -59,10 +59,10 @@ addCommandHandler("wanteds", cmdSuspect, false, false);
 
 local logoutTable = {}
 function onPlayerSaveLogoutTime()
-    local nickname = string.lower(getPlayerName(source))
-    local timer = getRealTime()
-    local timestamp = timer.timestamp
-    logoutTable[nickname] = { timestamp }
+    local nickname = string.lower(getPlayerName(source));
+    local timer = getRealTime();
+    local timestamp = timer.timestamp;
+    logoutTable[nickname] = timestamp;
 end
 addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
 
@@ -86,8 +86,26 @@ function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
                 showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
             end
         else
-            -- @todo: /su offline check
-            showError(thePlayer, "Dieser Spieler existiert nicht!");
+            if (logoutTable[string.lower(toPlayerName)]) then
+                local timer = getRealTime()
+                local timestamp = timer.timestamp
+
+                if (timestamp - logoutTable[string.lower(toPlayerName)] < 301) then
+                    if (CrimeSystem.addNewCrime(toPlayerName, tonumber(crimeCode), thePlayer, additionalDescription)) then
+                        local crime = CrimeSystem.getCrimeName(tonumber(crimeCode));
+                        outputChatBoxForPolice(getPlayerName(thePlayer) .. " hat das Verbrechen " .. crime .. " zu " .. getPlayerName(toPlayer) .. "s Akte hinzugefügt.");
+                        if (additionalDescription) then
+                            outputChatBoxForPolice("Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription);
+                        end
+                    else
+                        showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
+                    end
+                else
+                    showError(thePlayer, "Dieser Spieler existiert nicht oder is offline!");
+                end
+            else
+                showError(thePlayer, "Dieser Spieler existiert nicht oder is offline!");
+            end
         end
     end
 end

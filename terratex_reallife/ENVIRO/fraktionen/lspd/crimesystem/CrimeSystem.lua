@@ -66,8 +66,8 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
     local query = "SELECT dcl.Percentage FROM data_crimes_list AS dcl ";
     query = query .. "LEFT JOIN data_crimes_categories as dcc ON dcl.CategorieID = dcc.ID ";
     query = query .. "WHERE dcl.ID = ? ";
-    if (isElement(thePlayer)) then
-        if (not isAdminLevel(thePlayer, 0) and isBeamter(thePlayer)) then
+    if (isElement(whoGives)) then
+        if (not isAdminLevel(whoGives, 0) and isBeamter(whoGives)) then
             query = query .. "AND dcc.hidden = 0";
         end
     end
@@ -80,6 +80,12 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
         if not additionalComment then additionalComment = "" end
 
         local percentage = MySql.helper.getValueSync("data_crimes_list", "Percentage", {ID = crimeId});
+
+        local pName = thePlayer;
+        if (isElement(thePlayer)) then
+            pName = getPlayerName(thePlayer);
+        end
+
         local columnData = {
             Nickname = getPlayerName(thePlayer),
             CrimeID = crimeId,
@@ -97,7 +103,10 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
         end
 
         local addCrime = MySql.helper.insertSync("user_crimes", columnData);
-        vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
+
+        if (isElement(thePlayer)) then
+            vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
+        end
 
         return addCrime;
     else

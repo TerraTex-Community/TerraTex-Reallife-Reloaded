@@ -82,6 +82,11 @@ function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
                 if (additionalDescription) then
                     outputChatBoxForPolice("Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription);
                 end
+
+                outputChatBox(getPlayerName(thePlayer) .. " hat das Verbrechen " .. crime .. " zu deiner Akte hinzugefügt.", toPlayer, 0,0,255);
+                if (additionalDescription) then
+                    outputChatBox("Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription, toPlayer, 0,0,255);
+                end
             else
                 showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
             end
@@ -97,6 +102,9 @@ function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
                         if (additionalDescription) then
                             outputChatBoxForPolice("Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription);
                         end
+
+                        save_offline_message(toPlayerName, "CrimeSystem", getPlayerName(thePlayer) .. " hat das Verbrechen " .. crime .. " zu deiner Akte hinzugefügt.");
+                        save_offline_message(toPlayerName, "CrimeSystem", "Er hat eine zusätzliche Notiz angefügt: " .. additionalDescription);
                     else
                         showError(thePlayer, "Dieser Verbrechenscode existiert nicht!");
                     end

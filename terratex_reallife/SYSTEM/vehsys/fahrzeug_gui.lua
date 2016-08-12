@@ -1,4 +1,5 @@
 local lastclicked = false
+local lastclicked_for_abschleppTruck = false
 addEventHandler("onClientResourceStart", resourceRoot,
     function()
         FahrzeufUE_Window = {}
@@ -47,15 +48,17 @@ addEventHandler("onClientResourceStart", resourceRoot,
         addEventHandler("onClientGUIClick", FahrzeufUE_Button[5], abschleppenFahrzeugGUI, false)
         addEventHandler("onClientGUIClick", FahrzeufUE_Button[6], deleteFahrzeugGUI, false)
         addEventHandler("onClientGUIClick", FahrzeufUE_Button[7], sellFahrzeugGUI, false)
+        addEventHandler("onClientGUIClick", FahrzeufUE_Button[8], closeFahrzeugGUI, false, "high")
         addEventHandler(
             "onClientGUIClick",
             FahrzeufUE_Button[8] ,
             function()
-                abschleppTruck_Aufladen_GUI(lastclicked)
+                abschleppTruck_Aufladen_GUI(lastclicked_for_abschleppTruck)
             end,
-            false
+            false,
+            "normal"
         )
-        addEventHandler("onClientGUIClick", FahrzeufUE_Button[9], abschleppTruck_Abladen_GUI, false)
+        addEventHandler("onClientGUIMouseUp", FahrzeufUE_Button[9], abschleppTruck_Abladen_GUI, false)
     end)
 
 function sellFahrzeugGUI()
@@ -127,17 +130,23 @@ function towvehFahrzeugGUI()
 end
 
 function closeFahrzeugGUI()
+    showCursor(false)
+    closeFahrzeugGUI_Reset()
+end
+
+function closeFahrzeugGUI_Reset()
     guiSetVisible(FahrzeufUE_Button[2], false)
     guiSetVisible(FahrzeufUE_Button[3], false)
     guiSetVisible(FahrzeufUE_Button[4], false)
     guiSetVisible(FahrzeufUE_Button[5], false)
     guiSetVisible(FahrzeufUE_Button[6], false)
     guiSetVisible(FahrzeufUE_Button[7], false)
-    guiSetVisible(FahrzeufUE_Window[1], false)
-    guiSetVisible(FahrzeufUE_Button[8],false)
-    guiSetVisible(FahrzeufUE_Button[9],false)
+    guiSetVisible(FahrzeufUE_Button[8], false)
+    guiSetVisible(FahrzeufUE_Button[9], false)
+    setTimer(function()
+        guiSetVisible(FahrzeufUE_Window[1], false)
+    end, 100, 1)
     lastclicked = false
-    showCursor(false)
 end
 
 --BEARBEITEN
@@ -161,6 +170,7 @@ function playerClickOnVehicleGUI(button, state, absoluteX, absoluteY, worldX, wo
                     guiSetVisible(FahrzeufUE_Button[7], false)
                     guiSetVisible(FahrzeufUE_Window[1], true)
                     lastclicked = clickedWorld
+                    lastclicked_for_abschleppTruck = clickedWorld
                     if (getElementData(clickedWorld, "besitzer")) then
                         guiSetText(FahrzeufUE_Label[4], string.format("Besitzer: %s", getElementData(clickedWorld, "besitzer")))
                         if (getPlayerFromName(getElementData(clickedWorld, "besitzer"))) then

@@ -27,7 +27,6 @@ function abschleppTruck_Aufladen(theVehicle, z)
             local bx, by, bz = getElementPosition(theVehicle)
             local distance = getDistanceBetweenPoints3D(ax, ay, az, bx, by, bz);
             if (distance and distance < 8.0) then
-                setElementCollisionsEnabled(theVehicle, false)
                 attachElements(theVehicle, getPedOccupiedVehicle(source), 0, -1.5, z/2+0.05)
                 setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", theVehicle)
                 if (isElementFrozen(theVehicle)) then
@@ -35,7 +34,7 @@ function abschleppTruck_Aufladen(theVehicle, z)
                 else
                     setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", nil)
                 end
-                setElementFrozen(theVehicle, true)
+                setElementFrozen(theVehicle, false)
                 triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, theVehicle)
             end
         else

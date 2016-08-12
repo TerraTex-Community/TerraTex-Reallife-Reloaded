@@ -1,4 +1,4 @@
-policePC={}
+local policePC={}
 function onPolicePCCreate()
 	policePC[1]=createObject(2190,234.10,167.399,1003,0,0,272)
 	setElementInterior(policePC[1],3)

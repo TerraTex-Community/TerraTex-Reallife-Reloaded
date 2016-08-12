@@ -60,7 +60,7 @@ abschleppTruck_Abladen_GUI = function()
             end
         end
         addEventHandler("onClientPlayerVehicleExit", getRootElement(), abschleppTruck_Abladen_EndPreview)
-    end, 200, 1);
+    end, 300, 1);
 end
 
 function abschleppTruck_Abladen_Preview()

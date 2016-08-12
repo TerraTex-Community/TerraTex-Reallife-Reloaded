@@ -339,31 +339,35 @@ end
 addCommandHandler("jackpot",jackpot_func)
 
 
-function pass_cmd(thePlayer,cmd,showplayer)
-	local imBesitz={"nicht im Besitz","im Besitz"}
-	if(showplayer)then
-		local toPlayer=getPlayerFromIncompleteName(showplayer)
-		if(toPlayer)then
-			local x,y,z=getElementPosition(thePlayer)
-			local px,py,pz=getElementPosition(toPlayer)
-			local dis=getDistanceBetweenPoints3D(x,y,z,px,py,pz)
-			if(dis<10)then
-				outputChatBox(string.format("Du hast %s erfolgreich deine Pässe gezeigt!", getPlayerName(toPlayer)),thePlayer,255,0,0)
-				outputChatBox(string.format("Pässe von %s: ", getPlayerName(thePlayer)),toPlayer,255,0,0)
-				outputChatBox(string.format("Personalausweis: %s", imBesitz[(vioGetElementData(thePlayer,"persoLic")+1)]),toPlayer,255,0,0)
-				outputChatBox(string.format("Reisepass: %s", imBesitz[(vioGetElementData(thePlayer,"reiseLic")+1)]),toPlayer,255,0,0)
-					
-			else
-				outputChatBox("Der Spieler ist nicht in deiner Nähe!",thePlayer,255,0,0)
-			end	
-		else
-			outputChatBox("Der Spieler existiert nicht!",thePlayer,255,0,0)
-		end	
-	else
-		outputChatBox("Nutzung: /pass [name]",thePlayer,255,0,0)
-	end
+function pass_cmd(thePlayer, cmd, showplayer)
+    local imBesitz = { "nicht im Besitz", "im Besitz" }
+    if (showplayer) then
+        local toPlayer = getPlayerFromIncompleteName(showplayer)
+        if (toPlayer) then
+            local x, y, z = getElementPosition(thePlayer)
+            local px, py, pz = getElementPosition(toPlayer)
+            local dis = getDistanceBetweenPoints3D(x, y, z, px, py, pz)
+            if (dis < 10) then
+                outputChatBox(string.format("Du hast %s erfolgreich deine Pässe gezeigt!", getPlayerName(toPlayer)), thePlayer, 255, 0, 0)
+                outputChatBox(string.format("Pässe von %s: ", getPlayerName(thePlayer)), toPlayer, 255, 0, 0)
+                outputChatBox(string.format("Personalausweis: %s", imBesitz[(vioGetElementData(thePlayer, "persoLic") + 1)]), toPlayer, 255, 0, 0)
+                outputChatBox(string.format("Reisepass: %s", imBesitz[(vioGetElementData(thePlayer, "reiseLic") + 1)]), toPlayer, 255, 0, 0)
+				outputChatBox(string.format("Führerschein: %s", imBesitz[(vioGetElementData(thePlayer, "autoLic") + 1)]), toPlayer, 255, 0, 0)
+				outputChatBox(string.format("Motorradführerschein: %s", imBesitz[(vioGetElementData(thePlayer, "bikeLic") + 1)]), toPlayer, 255, 0, 0)
+
+            else
+                outputChatBox("Der Spieler ist nicht in deiner Nähe!", thePlayer, 255, 0, 0)
+            end
+        else
+            outputChatBox("Der Spieler existiert nicht!", thePlayer, 255, 0, 0)
+        end
+    else
+        outputChatBox("Nutzung: /pass [name]", thePlayer, 255, 0, 0)
+    end
 end
-addCommandHandler("pass",pass_cmd,false,false)
+
+addCommandHandler("pass", pass_cmd, false, false)
+
 
 
 

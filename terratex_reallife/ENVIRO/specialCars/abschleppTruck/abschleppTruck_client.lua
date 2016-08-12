@@ -25,19 +25,17 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
             showError(getLocalPlayer(), "Dieses Fahrzeug kann nicht aufgeladen werden")
         end
     end
-    closeFahrzeugGUI()
 end
 
 local abschleppTruckPreview = nil
 abschleppTruck_Abladen_GUI = function()
-    closeFahrzeugGUI()
+    closeFahrzeugGUI_Reset()
     setTimer(function()
         local truck = getPedOccupiedVehicle(getLocalPlayer())
         if (isElement(truck) and getElementData(truck, "isAbschleppTruck")) then
             local attached = getElementData(truck, "abschleppTruck_AttachedVehicle")
             if (isElement(attached)) then
                 if ((getElementData(attached,"besitzer") and getElementData(attached,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
-                    showCursor(true)
                     local variant1, variant2 = getVehicleVariant(attached)
                     abschleppTruckPreview = createVehicle(getElementModel(attached), 0,0,0, 0,0,0, "", variant1, variant2)
                     setVehicleColor(abschleppTruckPreview, 255,255,255, 255,255,255, 255,255,255, 255,255,255)
@@ -57,11 +55,12 @@ abschleppTruck_Abladen_GUI = function()
                     addEventHandler("onClientClick", getRootElement(), abschleppTruck_Abladen_Click)
                 else
                     showError(getLocalPlayer(), "Dieses Fahrzeug kann nicht abgeladen werden")
+                    showCursor(false)
                 end
             end
         end
-    end, 50, 1)
-    addEventHandler("onClientPlayerVehicleExit", getRootElement(), abschleppTruck_Abladen_EndPreview)
+        addEventHandler("onClientPlayerVehicleExit", getRootElement(), abschleppTruck_Abladen_EndPreview)
+    end, 200, 1);
 end
 
 function abschleppTruck_Abladen_Preview()

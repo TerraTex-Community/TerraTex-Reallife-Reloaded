@@ -12,40 +12,37 @@ function enterVehicle(thePlayer, seat, jacked, door)
     local vehid = getElementModel(source)
     if (seat == 0) then
         if not (isNoLicensCar(vehid)) then
-
             if (isTruck(vehid)) then
                 if (vioGetElementData(thePlayer, "truckLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Truckerlizens!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Truckerlizenz!")
                     cancelEvent()
                 end
             elseif (isPlane(vehid)) then
                 if (vioGetElementData(thePlayer, "planeLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Fluglizens!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Fluglizenz!")
                     cancelEvent()
                 end
             elseif (isCar(vehid)) then
                 if (vioGetElementData(thePlayer, "autoLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Fuehrerschein!")
-                    cancelEvent()
+                    showError(thePlayer, "Du besitzt keinen Führerschein. Pass auf, dass du nicht erwischt wirst!")
                 end
             elseif (isBike(vehid)) then
                 if (vioGetElementData(thePlayer, "bikeLic") < 1) and vehid ~= 448 then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Motoradfuehrerschein!")
-                    cancelEvent()
+					showError(thePlayer, "Du besitzt keinen Motorradführerschein. Pass auf, dass du nicht erwischt wirst!")
                 end
             elseif (isHeli(vehid)) then
                 if (vioGetElementData(thePlayer, "heliLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Helicopterlizens!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Helicopterlizenz!")
                     cancelEvent()
                 end
             elseif (isBoat(vehid)) then
                 if (vioGetElementData(thePlayer, "boatLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Bootslizens!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Bootslizenz!")
                     cancelEvent()
                 end
             elseif (isQuad(vehid)) then
                 if (vioGetElementData(thePlayer, "quadLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Quadlizense!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Quadlizenz!")
                     cancelEvent()
                 end
             else

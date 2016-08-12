@@ -5,13 +5,30 @@
 -- Time: 11:40
 -- To change this template use File | Settings | File Templates.
 --
-
+local policePCData = {
+    vehicles = {},
+    blitzer = {}
+};
 local policePCWindow;
 local policePCBrowser;
+local policePCTimer = {
+    refreshPoliceVehicles = false,
+}
+
+local function killAllPolicePcTimer()
+    for theKey, theTimer in pairs(policePCTimer) do
+        if (theTimer and isTimer(theTimer )) then
+            killTimer ( theTimer );
+            policePCTimer[theKey] = false;
+        end
+    end
+end
+
 function startpolicePCUI()
     if (policePCWindow) then
         if isElement(policePCWindow) then destroyElement(policePCWindow) end
         policePCWindow = false;
+        killAllPolicePcTimer();
     else
         policePCWindow = guiCreateWindow(0, 0, 640, 500, "PoliceComputer TerraPoliceOS 2016", false)
         table.insert(allGuis, policePCWindow);
@@ -33,6 +50,9 @@ function startpolicePCUI()
                 policePCBrowser = source;
             end
         )
+
+        killAllPolicePcTimer();
+        policePCTimer.refreshPoliceVehicles = setTimer(refreshPoliceVehicles, 1000, 0);
     end
 end
 
@@ -41,6 +61,10 @@ function onShowPolicePC_func()
     startpolicePCUI();
 end
 addEventHandler("onShowPolicePC", getRootElement(), onShowPolicePC_func);
+
+function setPolicePcData(type, values)
+    policePCData[type] = values;
+end
 
 function loadPolicePCPage(get, post)
     if (get) then
@@ -54,6 +78,10 @@ function loadPolicePCPage(get, post)
         end
     end
 end
+
+
+
+
 --
 --function _renderFraktionsManagementOverviewPage(dataTable)
 --    local htmlFile = fileOpen("UI/Fraktionsmanagement/_Overview.html", true);

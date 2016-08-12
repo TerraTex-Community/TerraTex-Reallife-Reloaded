@@ -32,3 +32,30 @@ function getElementsDistance2DToPoint(elementA,x,y,z)
     local dis=getDistanceBetweenPoints2D(x,y,x2,y2)
     return dis
 end
+
+function hasElementData(element, dataEntry, values, transformToNumberic)
+    if transformToNumberic ~= true then
+        transformToNumberic = false;
+    end
+
+    local elementData = getElementData(element, dataEntry);
+    if transformToNumberic then
+       elementData = tonumber(elementData);
+    end
+
+    if (type(values) ~= "table") then
+        values = {values};
+    end
+
+    for theKey, theValue in ipairs(values) do
+        if transformToNumberic then
+            theValue = tonumber(theValue);
+        end
+
+        if (elementData == theValue) then
+            return true;
+        end
+    end
+
+    return false;
+end

@@ -9,6 +9,7 @@
     <script src="database_config.lua" type="server"/>
     <!-- FIXXES -->
     <script src="FIXES/setElementFrozen.lua" type="shared"/>
+    <script src="FIXES/createVehicle.lua" type="server"/>
     <script src="FIXES/int_dim_server.lua" type="server"/>
     <script src="FIXES/int_dim_client.lua" type="client"/>
     <script src="FIXES/outputChatBox_server.lua" type="server"/>
@@ -277,6 +278,7 @@
     <script src="ENVIRO/fraktionen/lspd/alka.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/lspdcars.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/arrest.lua" type="server"/>
+    <script src="ENVIRO/fraktionen/lspd/cops_helper_functions.lua" type="shared"/>
     <script src="ENVIRO/fraktionen/lspd/innendienst.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/tor.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/rearm.lua" type="server"/>

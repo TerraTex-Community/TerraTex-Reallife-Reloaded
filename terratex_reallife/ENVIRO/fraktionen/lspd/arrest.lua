@@ -133,14 +133,6 @@ function outputChatBoxForPolice(message, c, d, e)
     end
 end
 
-function isBeamter(thePlayer)
-    if (vioGetElementData(thePlayer, "fraktion") == 1) or (vioGetElementData(thePlayer, "fraktion") == 5) or (vioGetElementData(thePlayer, "fraktion") == 7) or (vioGetElementData(thePlayer, "fraktion") == 9) then
-        return true
-    else
-        return false
-    end
-end
-
 function antiofflineflucht_func(quitType, reason, responsibleElement)
     if (isPlayerLoggedIn(source)) then
         if not (vioGetElementData(source, "cuffed")) then

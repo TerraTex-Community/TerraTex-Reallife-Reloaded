@@ -119,7 +119,7 @@ function hitTruckerEndMarker(theHitElement)
 								end
 							end
 							local thePlayer=driver
-							outputChatBox("Gut du das Fahrzeug abgegeben!!",driver,88,191,162)
+							outputChatBox("Gut du hast das Fahrzeug abgegeben!!",driver,88,191,162)
 							if(isElement(vioGetElementData(thePlayer,"lkw_blip")))then
 								destroyElement(vioGetElementData(thePlayer,"lkw_blip"))
 							end

@@ -37,8 +37,7 @@ abschleppTruck_Abladen_GUI = function()
             if (isElement(attached)) then
                 if ((getElementData(attached,"besitzer") and getElementData(attached,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
                     local variant1, variant2 = getVehicleVariant(attached)
-                    abschleppTruckPreview = createVehicle(getElementModel(attached), 0,0,0, 0,0,0, "", variant1, variant2)
-                    setVehicleColor(abschleppTruckPreview, 255,255,255, 255,255,255, 255,255,255, 255,255,255)
+                    abschleppTruckPreview = createVehicle(getElementModel(attached), 0,0,0, 0,0,0, getVehiclePlateText(attached), variant1, variant2)
                     setVehiclePaintjob(abschleppTruckPreview, getVehiclePaintjob(attached))
                     setVehicleEngineState(abschleppTruckPreview, getVehicleEngineState(attached))
                     for light = 0, 3, 1 do
@@ -77,6 +76,7 @@ function abschleppTruck_Abladen_Preview()
                     if (distance and distance < 8.0) then
                         local zd = getElementDistanceFromCentreOfMassToBaseOfModel(abschleppTruckPreview)
                         setElementPosition(abschleppTruckPreview, x, y, z + zd)
+                        setVehicleColor(abschleppTruckPreview, 255,255,255, 255,255,255, 255,255,255, 255,255,255)
                         local rx, ry, rz = getElementRotation(truck)
                         setElementRotation(abschleppTruckPreview, rx, ry, rz)
                         setElementAlpha(abschleppTruckPreview, 128)

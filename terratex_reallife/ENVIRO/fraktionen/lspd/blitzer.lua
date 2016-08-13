@@ -29,7 +29,8 @@ function createBlitzer_func(thePlayer,cmd,blitzerid)
 						if(isZuNah)then
 							outputChatBox("Ein anderer Blitzer is bereits in der Nähe aufgebaut! Infos unter /sblitzer",thePlayer,255,0,0)
 						else
-							local obj=createObject(1250,px,py,pz-0.5)
+							local rx,ry,rz = getElementRotation(thePlayer,"default")
+							local obj=createObject(1250,px,py,pz-0.5,0.0,0.0,rz-180.0)
 							setElementPosition(thePlayer,px,py,pz+0.5)
 							blitzer[blitzerids]=obj
 							local marker=createMarker ( px,py,pz-0.5, "cylinder", 30, 0,0,0,0 , getRootElement())

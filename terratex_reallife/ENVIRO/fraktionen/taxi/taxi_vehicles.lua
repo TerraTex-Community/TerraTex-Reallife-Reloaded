@@ -134,7 +134,19 @@ function setGrundTarif_func(thePlayer,Command,preis)
 end
 addCommandHandler("setgrundtarif",setGrundTarif_func,false,false)
 
-
+function taxicarNotEnter(thePlayer, seat, jacked, door)
+	if (seat == 0) then
+		for theKey, theVehicle in pairs(frakselfcars[4]) do
+			if (source == theVehicle) then
+				if not(vioGetElementData(thePlayer, "fraktion") == 4) then
+                    			showError(thePlayer, "Du kannst das nicht benutzen. Du bist kein Taxifahrer!")
+					cancelEvent()
+				end
+			end
+		end
+	end 
+end
+addEventHandler ( "onVehicleStartEnter", getRootElement(), taxicarNotEnter )
 
 function getTaxiTimeZone()
 	local timer=getRealTime()

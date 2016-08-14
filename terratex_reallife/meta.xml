@@ -181,6 +181,10 @@
     <script src="ENVIRO/radio_streamer.lua" type="client"/>
     <script src="ENVIRO/heli.lua" type="server"/>
     <script src="ENVIRO/accept.lua" type="server"/>
+    
+    <!-- Spezielle Autos -->
+    <script src="ENVIRO/specialcars/abschleppTruck/abschleppTruck_server.lua" type="server"/>
+    <script src="ENVIRO/specialcars/abschleppTruck/abschleppTruck_client.lua" type="client"/>
 
     <!-- telefon -->
     <script src="ENVIRO/inventar_new/mobilephone/mobile_client_old.lua" type="client"/>
@@ -985,4 +989,3 @@
     <file src="UI/styles/images/food_background.png"/>
 
 </meta>
-

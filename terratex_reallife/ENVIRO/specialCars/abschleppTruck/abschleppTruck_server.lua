@@ -21,24 +21,33 @@ addEvent("abschleppTruck_Aufladen", true)
 function abschleppTruck_Aufladen(theVehicle, z)
     local abschleppTruck = getPedOccupiedVehicle(source)
     if (isPedInVehicle(source) and getElementData(abschleppTruck, "isAbschleppTruck")) then
-        local vehicleType = getVehicleType(theVehicle)
-        if (getElementData(theVehicle,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(abschleppTruck, "AbschleppTruck_PoliceTruck") or getElementData(theVehicle,"besitzer") == getPlayerName(source))) then
-            local ax, ay, az    = getElementPosition(abschleppTruck)
-            local bx, by, bz = getElementPosition(theVehicle)
-            local distance = getDistanceBetweenPoints3D(ax, ay, az, bx, by, bz);
-            if (distance and distance < 8.0) then
-                attachElements(theVehicle, getPedOccupiedVehicle(source), 0, -1.5, z/2+0.05)
-                setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", theVehicle)
-                if (isElementFrozen(theVehicle)) then
-                    setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", true)
-                else
-                    setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", nil)
+        local driverCounter = 0
+        for seat, player in pairs(getVehicleOccupants(theVehicle)) do
+            driverCounter = driverCount + 1
+        end
+        if (driverCounter == 0) then
+            local vehicleType = getVehicleType(theVehicle)
+            if (getElementData(theVehicle,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(abschleppTruck, "AbschleppTruck_PoliceTruck") or getElementData(theVehicle,"besitzer") == getPlayerName(source))) then
+                local ax, ay, az    = getElementPosition(abschleppTruck)
+                local bx, by, bz = getElementPosition(theVehicle)
+                local distance = getDistanceBetweenPoints3D(ax, ay, az, bx, by, bz);
+                if (distance and distance < 8.0) then
+                    attachElements(theVehicle, getPedOccupiedVehicle(source), 0, -1.5, z/2+0.05)
+                    setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", theVehicle)
+                    if (isElementFrozen(theVehicle)) then
+                        setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", true)
+                    else
+                        setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", nil)
+                    end
+                    setElementFrozen(theVehicle, false)
+                    triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, theVehicle)
                 end
-                setElementFrozen(theVehicle, false)
-                triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, theVehicle)
+            else
+                showError(source, "Dieses Fahrzeug kann nicht aufgeladen werden")
+                triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, nil)
             end
         else
-            showError(source, "Dieses Fahrzeug kann nicht aufgeladen werden")
+            showError(source, "In dem aufzuladenen Fahrzeug befindet sich ein Spieler!")
             triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, nil)
         end
     end

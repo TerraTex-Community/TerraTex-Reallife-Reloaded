@@ -1,28 +1,36 @@
 abschleppTruck_Aufladen_GUI = function(lastclicked)
     local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (isElement(truck) and getElementData(truck, "isAbschleppTruck") and not getElementData(truck, "abschleppTruck_AttachedVehicle")) then
-        if ((getElementData(lastclicked,"besitzer") and getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
-            local speedx, speedy, speedz = getElementVelocity(truck)
-            local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
-            local kmh = actualspeed * 180
-            if (kmh <= 2.0) then
-                local testVeh = createVehicle(getElementModel(lastclicked), 0, 0, 0)
-                local x0, y0, z0, x1, y1, z1 = getElementBoundingBox(testVeh)
-                destroyElement(testVeh)
-                local laenge = y1-y0
-                if (laenge <= 7.92) then
-                    local z = getElementDistanceFromCentreOfMassToBaseOfModel(lastclicked)
-                    setElementData(truck, "abschleppTruck_AttachedVehicle", lastclicked)
-                    triggerServerEvent("abschleppTruck_Aufladen",getLocalPlayer(), lastclicked, z)
-                    setElementCollisionsEnabled(lastclicked, false)
+        local driverCounter = 0
+        for seat, player in pairs(getVehicleOccupants(lastclicked)) do
+            driverCounter = driverCounter + 1
+        end
+        if (driverCounter == 0) then
+            if ((getElementData(lastclicked,"besitzer") and getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
+                local speedx, speedy, speedz = getElementVelocity(truck)
+                local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
+                local kmh = actualspeed * 180
+                if (kmh <= 2.0) then
+                    local testVeh = createVehicle(getElementModel(lastclicked), 0, 0, 0)
+                    local x0, y0, z0, x1, y1, z1 = getElementBoundingBox(testVeh)
+                    destroyElement(testVeh)
+                    local laenge = y1-y0
+                    if (laenge <= 7.92) then
+                        local z = getElementDistanceFromCentreOfMassToBaseOfModel(lastclicked)
+                        setElementData(truck, "abschleppTruck_AttachedVehicle", lastclicked)
+                        triggerServerEvent("abschleppTruck_Aufladen",getLocalPlayer(), lastclicked, z)
+                        setElementCollisionsEnabled(lastclicked, false)
+                    else
+                        showError(getLocalPlayer(), "Das Fahrzeug ist zu lang!")
+                    end
                 else
-                    showError(getLocalPlayer(), "Das Fahrzeug ist zu lang!")
+                    showError(getLocalPlayer(), "Du bist zu schnell zum Aufladen!")
                 end
             else
-                showError(getLocalPlayer(), "Du bist zu schnell zum Aufladen!")
+                showError(getLocalPlayer(), "Dieses Fahrzeug kann nicht aufgeladen werden")
             end
         else
-            showError(getLocalPlayer(), "Dieses Fahrzeug kann nicht aufgeladen werden")
+            showError(getLocalPlayer(), "In dem aufzuladenen Fahrzeug befindet sich ein Spieler!")
         end
     end
 end
@@ -167,3 +175,12 @@ function abschleppTruck_Abladen_Click()
         end
     end
 end
+
+function abschleppTruckAttachedNoEnter(player, seat, jacked)
+    local attachedTo = getElementAttachedTo(source)
+    if (attachedTo and getElementData(attachedTo, "abschleppTruck_AttachedVehicle") == source and getElementData(attachedTo, "isAbschleppTruck")) then
+        cancelEvent()
+        showError(player, "Du kannst in das aufgeladene Fahrzeug nicht einsteigen!")
+    end
+end
+addEventHandler("onClientVehicleStartEnter", getRootElement(), abschleppTruckAttachedNoEnter)

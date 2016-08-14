@@ -59,23 +59,9 @@ addEventHandler("onClientVehicleExit", getRootElement(), onVehicleExitInRuheZone
 function player_ruhe_waffen_switch(asd, currentWeaponSlot)
     if (isInRuheZone) then
         if tonumber(getElementData(getLocalPlayer(), "fraktion")) == 0 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 3 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 10 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 4 then
-
-            if (asd > currentWeaponSlot) then
-                while (not (currentWeaponSlot == 11 or currentWeaponSlot == 9 or currentWeaponSlot == 0)) do
-                    currentWeaponSlot = currentWeaponSlot - 1
-                    if (currentWeaponSlot == -1) then
-                        currentWeaponSlot = 11
-                    end
-                end
-            else
-                while (not (currentWeaponSlot == 11 or currentWeaponSlot == 9 or currentWeaponSlot == 0)) do
-                    currentWeaponSlot = currentWeaponSlot + 1
-                    if (currentWeaponSlot == 12) then
-                        currentWeaponSlot = 0
-                    end
-                end
-            end
-            setPedWeaponSlot(getLocalPlayer(), currentWeaponSlot)
+           if(currentWeaponSlot ~= 11 and currentWeaponSlot ~= 9 and currentWeaponSlot ~= 0) then
+		cancelEvent()
+	   end
         end
     end
 end

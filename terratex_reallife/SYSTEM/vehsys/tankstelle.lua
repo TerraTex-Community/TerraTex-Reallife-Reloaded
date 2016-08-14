@@ -121,12 +121,14 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
     if (isElement(hitElement)) then
         vioSetElementData(hitElement, "isInTankProcedur", false)
         vioSetElementData(hitElement, "tank", 100)
-        if (vioGetElementData(marker, "repairMarker") and getElementHealth(hitElement) < 950) then
-            preis = preis + 1000
-            outputChatBox("Das Fahrzeug wurde repariert!", driver, 255, 0, 0)
-            fixVehicle(hitElement)
-        else
-            outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0)
+        if (vioGetElementData(marker, "repairMarker") then
+            if (getElementHealth(hitElement) < 950) then
+                preis = preis + 1000
+                outputChatBox("Das Fahrzeug wurde repariert!", driver, 255, 0, 0)
+                fixVehicle(hitElement)
+            else
+                outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0)
+            end
         end
         changePlayerMoney(driver, -preis, "fahrzeug", "Tanken")
         changeBizKasse(7, preis, "Tank")

@@ -60,8 +60,8 @@ function player_ruhe_waffen_switch(asd, currentWeaponSlot)
     if (isInRuheZone) then
         if tonumber(getElementData(getLocalPlayer(), "fraktion")) == 0 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 3 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 10 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 4 then
            if(currentWeaponSlot ~= 11 and currentWeaponSlot ~= 9 and currentWeaponSlot ~= 0) then
-				cancelEvent()
-			end
+		cancelEvent()
+	   end
         end
     end
 end

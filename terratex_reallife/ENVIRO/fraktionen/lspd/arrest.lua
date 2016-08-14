@@ -219,7 +219,7 @@ function frisk_func(thePlayer, Command, vonPlayerName)
                 local dis = getDistanceBetweenPoints3D(xv, yv, zv, xt, yt, zt)
                 if (dis < 10) then
                     local foundsomething = 0
-                    outputChatBox(string.format("%s hat sie durchsucht!", getPlayerName(thePlayer)), vonPlayer, 0, 255, 255)
+                    outputChatBox(string.format("%s hat Sie durchsucht!", getPlayerName(thePlayer)), vonPlayer, 0, 255, 255)
                     outputChatBox(string.format("Du hast %s durchsucht. Du hast gefunden:", getPlayerName(vonPlayer)), thePlayer, 0, 255, 255)
                     if (vioGetElementData(vonPlayer, "drogen") > 0) then
                         outputChatBox(string.format("%s Gramm Drogen", vioGetElementData(vonPlayer, "drogen")), thePlayer, 0, 255, 255)
@@ -274,7 +274,7 @@ function take_func(thePlayer, Command, wasstring, vonPlayerName)
                         vioSetElementData(vonPlayer, "autoLic", -5)
                         vioSetElementData(vonPlayer, "bikeLic", -5)
                         vioSetElementData(vonPlayer, "truckLic", -5)
-                        outputChatBox(string.format("Ihnen wurden die Fahrzeuglizensen (Motorrad- und Autofuehrerschein) von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
+                        outputChatBox(string.format("Ihnen wurden die Fahrzeuglizensen (Motorrad- und Autoführerschein) von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s erfolgreich die Fahrzeug Lizensen (Motorrad- und Autoführerschein) abgenommen!", getPlayerName(vonPlayer)), thePlayer, 255, 0, 0)
                     elseif (wasstring == "FlugLizensen") then
                         vioSetElementData(vonPlayer, "planeLic", -5)
@@ -295,7 +295,7 @@ function take_func(thePlayer, Command, wasstring, vonPlayerName)
                         outputChatBox(string.format("Ihnen wurden die Waffen von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s erfolgreich die Waffen abgenommen!", getPlayerName(vonPlayer)), thePlayer, 255, 0, 0)
                     else
-                        showError(thePlayer, "Man kann nur folgende Dinge Abnehmen: illegals, weapons")
+                        showError(thePlayer, "Man kann nur folgende Dinge abnehmen: illegals, weapons")
                     end
                 end
             else
@@ -437,7 +437,7 @@ function arrest_func(theMaker, theCommand, thePlayerName, Money, Time, Kaution)
                                 setElementPosition(thePlayer, 227.34938049316, 110.19967651367, 998.66485595703)
                             end
                         else
-                            showError(theMaker, "Sie Überschreiten zulässige Eingabegrößen!!")
+                            showError(theMaker, "Sie überschreiten zulässige Eingabegrößen!!")
                         end
                     else
                         showError(theMaker, "Dieser Spieler hat keine Wanteds!")
@@ -473,7 +473,7 @@ function arrest_func(theMaker, theCommand, thePlayerName, Money, Time, Kaution)
                                 setElementPosition(thePlayer, 193.51953125, 174.9072265625, 1003.0234375)
                             end
                         else
-                            showError(theMaker, "Sie Überschreiten zulässige Eingabegrößen!!")
+                            showError(theMaker, "Sie überschreiten zulässige Eingabegrößen!!")
                         end
                     else
                         showError(theMaker, "Dieser Spieler hat keine Wanteds!")
@@ -482,10 +482,10 @@ function arrest_func(theMaker, theCommand, thePlayerName, Money, Time, Kaution)
                     showError(theMaker, "Usage: /arrest Name Preis Time Kaution!")
                 end
             else
-                showError(theMaker, "Du bist nicht beim Knast oder Der Spieler ist nicht in deiner Nähe!")
+                showError(theMaker, "Du bist nicht beim Knast oder der Spieler ist nicht in deiner Nähe!")
             end
         else
-            showError(theMaker, "Dieser Spieler Existiert nicht!")
+            showError(theMaker, "Dieser Spieler existiert nicht!")
         end
     end
 end
@@ -664,7 +664,7 @@ function cuff_func(theMaker, Command, thePlayerName)
                     showError(theMaker, "Einer von euch ist nicht in einen Fahrzeug! Daher wurden alle Fesseln unschaedlich gemacht!")
                 end
             else
-                showError(theMaker, "Du kannst dich nicht selbst fesseln oder entfesseln! bzw. Du bist gefesselt und kannst dich nicht bewegen!")
+                showError(theMaker, "Du kannst dich nicht selbst fesseln oder entfesseln!")
             end
         else
             showError(theMaker, "Der Spieler existiert nicht!")
@@ -840,7 +840,7 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                             vioSetElementData(thePlayer, "autoLic", -5)
                             vioSetElementData(thePlayer, "bikeLic", -5)
                             vioSetElementData(thePlayer, "truckLic", -5)
-                            outputChatBox("Du hast somit gerade deinen Fuehrerschein verloren", thePlayer, 0, 0, 255)
+                            outputChatBox("Du hast somit gerade deinen Führerschein verloren", thePlayer, 0, 0, 255)
                             vioSetElementData(thePlayer, "stvo", 0)
                         end
 
@@ -849,7 +849,7 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                             outputChatBoxForPolice(string.format("Er hat %s StVO-Punkte! Reporter: %s", vioGetElementData(thePlayer, "stvo"), getPlayerName(theMaker)))
 
                         else
-                            outputChatBoxForPolice(string.format("Er hat somit gerade seinen Fuehrerschein verloren!  Reporter: %s", getPlayerName(theMaker)))
+                            outputChatBoxForPolice(string.format("Er hat somit gerade seinen Führerschein verloren!  Reporter: %s", getPlayerName(theMaker)))
                         end
 
                         vioSetElementData(thePlayer, "stvoFreePayDays", 0)
@@ -903,10 +903,10 @@ function clear_func(theMaker, Command, thePlayerName, ...)
             if (thePlayer) then
                 vioSetElementData(thePlayer, "wanteds", 0)
                 setPlayerWantedLevel(thePlayer, 0)
-                outputChatBox(string.format("Deine Akte wurde von %s geloescht!", getPlayerName(theMaker)), thePlayer, 255, 255, 0)
+                outputChatBox(string.format("Deine Akte wurde von %s gelöscht!", getPlayerName(theMaker)), thePlayer, 255, 255, 0)
                 for theKey, player in ipairs(getElementsByType("player")) do
                     if (isBeamter(player)) then
-                        outputChatBox(string.format("%s hat %s's Akte geloescht! Grund: %s", getPlayerName(theMaker), getPlayerName(thePlayer), reason), player, 255, 255, 0)
+                        outputChatBox(string.format("%s hat %s's Akte gelöscht! Grund: %s", getPlayerName(theMaker), getPlayerName(thePlayer), reason), player, 255, 255, 0)
                     end
                 end
 
@@ -939,7 +939,7 @@ function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
                         outputChatBox(string.format("Du hast %s ein %s-Strafzettel gegeben!", getPlayerName(thePlayer), toprice(thePrice)), theMaker, 255, 5, 0)
                     end
                 else
-                    showError(theMaker, "Einige eingaben sind Fehlerhaft! Usage: /ticket Name Preis Grund")
+                    showError(theMaker, "Einige Eingaben sind Fehlerhaft! Usage: /ticket Name Preis Grund")
                 end
             end
         end

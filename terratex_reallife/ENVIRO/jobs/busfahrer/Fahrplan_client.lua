@@ -33,6 +33,7 @@ addEventHandler("onClientResourceStart", getRootElement(),
 local aktualizeTimer=false
 local routenListe={}
 local haltestellenListe={}
+local routenFarben={}
 local aktuelleHaltestellenID=0
 
 function aktualizeTimer_func()
@@ -150,6 +151,7 @@ function createTab( TabNamenListe )
             end
         end
         if(isInTabNamenListe)then
+            local routenNameOriginal = routenName
             routenName=string.UpperFirst(routenName)
 
             local newTab = guiCreateTab(routenName, fahrplanGUI.tabpanel[1])
@@ -165,26 +167,22 @@ function createTab( TabNamenListe )
                 guiGridListSetItemText ( fahrplanGUI.gridlist[newTab] , row, 1, theHaltestelle , false, false )
                 guiGridListSetItemText ( fahrplanGUI.gridlist[newTab] , row, 2, haltestellenListe[theHaltestelle][5] , false, false )
             end
+            
+            local stationsNameHintergund = guiCreateLabel(10, 10, 515, 359, routenName, false, newTab)
+            guiLabelSetColor(stationsNameHintergund, unpack(routenFarben[routenNameOriginal]))
+            guiSetFont(stationsNameHintergund, guiCreateFont("FILES/FONTS/taho.ttf", 40))
+            guiBringToFront(fahrplanGUI.gridlist[newTab])
+            guiLabelSetVerticalAlign(stationsNameHintergund,"bottom")
+            guiLabelSetHorizontalAlign(stationsNameHintergund,"right")
         end
     end
 end
 
 addEvent("sendHData",true)
-function prepareFahrplanAnzeige(FUNCroutenListe, FUNChaltestellenListe)
+function prepareFahrplanAnzeige(FUNCroutenListe, FUNChaltestellenListe, FUNCroutenFarben)
     routenListe=FUNCroutenListe
     haltestellenListe=FUNChaltestellenListe
+    routenFarben = FUNCroutenFarben
     --createTab(FUNCroutenListe, haltestellenListe)
 end
 addEventHandler("sendHData",getRootElement(),prepareFahrplanAnzeige)
-
-
-
-
-
-
-
-
-
-
-
-

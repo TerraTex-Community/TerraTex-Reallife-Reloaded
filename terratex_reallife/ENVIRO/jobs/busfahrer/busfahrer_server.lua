@@ -179,10 +179,10 @@ function startbus_cmd(thePlayer, cmd, routenname)
                                     vioSetElementData(thePlayer, "hasStartedABus", true)
                                     setTimer(resetPlayerHasSpawnedABus, 10000, 1, thePlayer)
                                     local busveh = createVehicle(431, 1256.0751953125, -1806.45703125, 13.516704559326, 359.43420410156, 0, 216.49658203125)
-                                    local r,g,b    = unpack(routenFarben[routenname])
-                                    local r2 = r+55
-                                    local g2 = g+55
-                                    local b2 = b+55
+                                    local r,g,b  = unpack(routenFarben[routenname])
+                                    local r2     = r+55
+                                    local g2     = g+55
+                                    local b2     = b+55
                                     if (r > 200) then
                                         r2 = 255
                                     end

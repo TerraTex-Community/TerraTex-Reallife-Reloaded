@@ -242,7 +242,7 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         end
 
         if (getPlayerFromName(besitzer)) then
-            vioSetElementData(besitzer, "slot" .. SlotID, -1)
+            vioSetElementData(besitzer, "slot" .. vioGetElementData(vehicle, "slotid"), -1)
             outputChatBox(string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund), besitzer)
         else
             save_offline_message(vioGetElementData(vehicle, "besitzer"), getPlayerName(source), string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund))

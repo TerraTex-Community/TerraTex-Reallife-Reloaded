@@ -159,7 +159,7 @@ function resetPlayerHasSpawnedABus(thePlayer)
     end
 end
 
-local routennamen  = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true}
+local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true}
 function startbus_cmd(thePlayer, cmd, routenname)
     if (vioGetElementData(thePlayer, "job") == 4) then
         if (vioGetElementData(thePlayer, "truckLic") > 0) then

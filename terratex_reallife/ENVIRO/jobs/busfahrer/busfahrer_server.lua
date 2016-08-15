@@ -159,7 +159,7 @@ function resetPlayerHasSpawnedABus(thePlayer)
     end
 end
 
-local routennamen = { ["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true }
+local routennamen  = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true}
 function startbus_cmd(thePlayer, cmd, routenname)
     if (vioGetElementData(thePlayer, "job") == 4) then
         if (vioGetElementData(thePlayer, "truckLic") > 0) then
@@ -179,6 +179,20 @@ function startbus_cmd(thePlayer, cmd, routenname)
                                     vioSetElementData(thePlayer, "hasStartedABus", true)
                                     setTimer(resetPlayerHasSpawnedABus, 10000, 1, thePlayer)
                                     local busveh = createVehicle(431, 1256.0751953125, -1806.45703125, 13.516704559326, 359.43420410156, 0, 216.49658203125)
+                                    local r,g,b    = unpack(routenFarben[routenname])
+                                    local r2 = r+55
+                                    local g2 = g+55
+                                    local b2 = b+55
+                                    if (r > 200) then
+                                        r2 = 255
+                                    end
+                                    if (g > 200) then
+                                        g2 = 255
+                                    end
+                                    if (b > 200) then
+                                        b2 = 255
+                                    end
+                                    setVehicleColor(busveh, r2,g2,b2, r,g,b)
                                     vioSetElementData(busveh, "hasTank", true)
                                     vioSetElementData(busveh, "hasTankFactor", 0.5)
                                     vioSetElementData(busveh, "route", string.lower(routenname))
@@ -215,11 +229,3 @@ function startbus_cmd(thePlayer, cmd, routenname)
 end
 
 addCommandHandler("busstart", startbus_cmd, false, false)
-
-
-
-
-
-
-
-

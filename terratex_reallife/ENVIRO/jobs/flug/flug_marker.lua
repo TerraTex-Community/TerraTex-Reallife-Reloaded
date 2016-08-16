@@ -34,8 +34,8 @@ function givePlayerflyersAuftrag_func(auftrag)
         if (getPlayerMoney(source) >= auftrag[1]) then
             vioSetElementData(source, "flys_auftrag", true)
             vioSetElementData(source, "flys_sicher", auftrag[1])
-            changePlayerMoney(source, -auftrag[1], "job", "Flugjob", "Sicherheiten")
-            outputChatBox(string.format("Dir wurden %s als Sicherheit abgezogen! Du erhälst Sie nach der Rückgabe des Flugzeugs zurück!", toprice(auftrag[1])), source, 255, 0, 0)
+            changePlayerMoney(source, -auftrag[1], "job", "Flugjob", "Kaution")
+            outputChatBox(string.format("Dir wurden %s als Kaution abgezogen! Du erhälst sie nach der Rückgabe des Flugzeugs / Helikopters zurück!", toprice(auftrag[1])), source, 255, 0, 0)
             vioSetElementData(source, "flys_gewinn", auftrag[2])
             local vehicle = createVehicle(auftrag[3], 1477.62890625, 1699.0966796875, 15.544939994812, 1.7852783203125, 0.10986328125, 179.90661621094)
             setVehicleColor(vehicle, math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255), math.random(0, 255))
@@ -79,10 +79,10 @@ function givePlayerflyersAuftrag_func(auftrag)
             message = message .. " startet einen Flug von Las Venturas nach " .. tagetName;
             sendFlugChatMessage("Flugkontrolle", message)
         else
-            outputChatBox("Du kannst die Sicherheiten nicht bezahlen!", source, 255, 0, 0)
+            outputChatBox("Du kannst die Kaution nicht bezahlen!", source, 255, 0, 0)
         end
     else
-        outputChatBox("Dir fehlt der Flug- und Helicopterschein!", source, 255, 0, 0)
+        outputChatBox("Dir fehlt der Flug- und Helikopterschein!", source, 255, 0, 0)
     end
 end
 
@@ -246,7 +246,7 @@ function enterflyerserVehicle(thePlayer, seat)
                 outputChatBox("Schön das du wieder an Board bist!", thePlayer, 88, 191, 162)
             else
                 cancelEvent()
-                outputChatBox("Dies ist ein Job Vehicle und kann nur von der Person gefahren, die den Auftrag angenommen hat!", thePlayer, 255, 0, 0)
+                outputChatBox("Dies ist ein Job Fahrzeug und kann nur von der Person gefahren, die den Auftrag angenommen hat!", thePlayer, 255, 0, 0)
             end
         end
     end
@@ -277,4 +277,3 @@ function hitAuftragsFlugMarker(hitElement)
         end
     end
 end
-

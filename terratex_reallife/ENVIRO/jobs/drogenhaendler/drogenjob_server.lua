@@ -98,14 +98,14 @@ function accept_drugs(thePlayer)
             showError(thePlayer, "Der DrogenDealer hat nicht mehr so viele Drogen!")
         else
             if (getPlayerMoney(thePlayer) < vioGetElementData(thePlayer, "DrugTradePrice")) then
-                showError(thePlayer, "Du hast genuegend Geld!")
+                showError(thePlayer, "Du hast genügend Geld!")
             else
                 vioSetElementData(thePlayer, "drogen", vioGetElementData(thePlayer, "drogen") + vioGetElementData(thePlayer, "DrugTradeMenge"))
                 vioSetElementData(drugDealer, "drogen", vioGetElementData(drugDealer, "drogen") - vioGetElementData(thePlayer, "DrugTradeMenge"))
                 changePlayerMoney(thePlayer, -vioGetElementData(thePlayer, "DrugTradePrice"), "sonstiges", "Drogenkauf")
                 changePlayerMoney(drugDealer, vioGetElementData(thePlayer, "DrugTradePrice"), "job", "Drogendealer", "Verkauf")
-                outputChatBox("Du hast die Drogen erfolgreich angenohmen", thePlayer, 0, 250, 150)
-                outputChatBox(string.format("%s hat die Drogen angenohmen!", getPlayerName(thePlayer)), drugDealer, 0, 250, 150)
+                outputChatBox("Du hast die Drogen erfolgreich angenommen", thePlayer, 0, 250, 150)
+                outputChatBox(string.format("%s hat die Drogen angenommen!", getPlayerName(thePlayer)), drugDealer, 0, 250, 150)
             end
         end
         vioSetElementData(thePlayer, "DrugTradeFrom", false)
@@ -116,6 +116,3 @@ end
 registerAcceptHandler("drogen", accept_drugs, {
     requestedDataValues = {"DrugTradePrice", "DrugTradeFrom", "DrugTradeMenge"}
 });
-
-
-

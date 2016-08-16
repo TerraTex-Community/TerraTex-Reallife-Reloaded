@@ -24,10 +24,10 @@ local blips = {
 }
 
 local names = {
-    ["lv"] = "Las Ventruas",
+    ["lv"] = "Las Venturas",
     ["sf"] = "San Fierro",
     ["ls"] = "Los Santos",
-    ["old"] = "Old Airport"
+    ["old"] = "Alter Flughafen"
 }
 
 local markerList = {
@@ -200,7 +200,7 @@ function resetAirport(theAirport)
         setBlipColor(theBlip, 0, 255, 0, 150);
     end
 
-    sendFlugChatMessage("Flugkontrolle", "Der Anlugskorridor auf " .. names[theAirport] .. " ist wieder frei.");
+    sendFlugChatMessage("Flugkontrolle", "Der Anflugskorridor auf " .. names[theAirport] .. " ist wieder frei.");
 end
 
 function setAirportHit(theAirport)
@@ -285,4 +285,3 @@ function setAirportBlipsUnvisible(thePlayer)
         end
     end
 end
-

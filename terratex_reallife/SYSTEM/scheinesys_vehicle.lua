@@ -24,17 +24,17 @@ function enterVehicle(thePlayer, seat, jacked, door)
                 end
             elseif (isCar(vehid)) then
                 if (vioGetElementData(thePlayer, "autoLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Fuehrerschein!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Führerschein!")
                     cancelEvent()
                 end
             elseif (isBike(vehid)) then
                 if (vioGetElementData(thePlayer, "bikeLic") < 1) and vehid ~= 448 then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Motoradfuehrerschein!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Motoradführerschein!")
                     cancelEvent()
                 end
             elseif (isHeli(vehid)) then
                 if (vioGetElementData(thePlayer, "heliLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Helicopterlizens!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keine Helikopterlizens!")
                     cancelEvent()
                 end
             elseif (isBoat(vehid)) then
@@ -49,13 +49,13 @@ function enterVehicle(thePlayer, seat, jacked, door)
                 end
             else
                 if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialfuehrerschein!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialführerschein!")
                     cancelEvent()
                 end
             end
             if (isSpezVehicle(vehid)) then
                 if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
-                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialfuehrerschein!")
+                    showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialführerschein!")
                     cancelEvent()
                 end
             end

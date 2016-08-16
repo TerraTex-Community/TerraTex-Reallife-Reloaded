@@ -157,7 +157,7 @@ function use_func(thePlayer, Command, wasString)
             if not (isTimer(vioGetElementData(thePlayer, "hitTimer"))) then
                 vioSetElementData(thePlayer, "snack", vioGetElementData(thePlayer, "snack") - 1)
                 triggerClientEvent(thePlayer, "addFood", thePlayer, 10)
-                showError(thePlayer, "Du hast einen Snack gegessen!")
+                showError(thePlayer, "Du hast einen Snack gegessen!",false)
             else
                 showError(thePlayer, "Du darfst in einen Kampf nichts essen!")
             end
@@ -168,7 +168,7 @@ function use_func(thePlayer, Command, wasString)
         if (vioGetElementData(thePlayer, "hamburger") > 0) then
             if not (isTimer(vioGetElementData(thePlayer, "hitTimer"))) then
                 vioSetElementData(thePlayer, "hamburger", vioGetElementData(thePlayer, "hamburger") - 1)
-                triggerClientEvent(thePlayer, "addFood", thePlayer, 20)
+                triggerClientEvent(thePlayer, "addFood", thePlayer, 20,false)
                 showError(thePlayer, "Du hast einen Hamburger gegessen!")
             else
                 showError(thePlayer, "Du darfst in einen Kampf nichts essen!")
@@ -181,7 +181,7 @@ function use_func(thePlayer, Command, wasString)
             if (vioGetElementData(thePlayer, "fertigessen") > 0) then
                 if not (isTimer(vioGetElementData(thePlayer, "hitTimer"))) then
                     vioSetElementData(thePlayer, "fertigessen", vioGetElementData(thePlayer, "fertigessen") - 1)
-                    triggerClientEvent(thePlayer, "addFood", thePlayer, 50)
+                    triggerClientEvent(thePlayer, "addFood", thePlayer, 50,false)
                     showError(thePlayer, "Du hast einen Fertigessen gegessen!")
                 else
                     showError(thePlayer, "Du darfst in einen Kampf nichts essen!")
@@ -194,7 +194,7 @@ function use_func(thePlayer, Command, wasString)
         if (vioGetElementData(thePlayer, "schnellhilfe") > 0) then
             if not (isTimer(vioGetElementData(thePlayer, "hitTimer"))) then
                 vioSetElementData(thePlayer, "schnellhilfe", vioGetElementData(thePlayer, "schnellhilfe") - 1)
-                triggerClientEvent(thePlayer, "addFood", thePlayer, 150)
+                triggerClientEvent(thePlayer, "addFood", thePlayer, 150,false)
                 triggerClientEvent(thePlayer, "stopFoodTimerForSeconds_Event", thePlayer, 1200)
                 showError(thePlayer, "Du hast eine Schnellhilfe gegessen!")
             else
@@ -378,11 +378,3 @@ function pass_cmd(thePlayer, cmd, showplayer)
 end
 
 addCommandHandler("pass", pass_cmd, false, false)
-
-
-
-
-
-
-
-

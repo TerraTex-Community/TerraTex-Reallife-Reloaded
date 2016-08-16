@@ -49,7 +49,7 @@ function setNextStation(hitElement)
 end
 
 function start_bus_job(thePlayer, busveh)
-    outputChatBox("Willkommen an Board, fahre die Stationen ab! Du bekommst extraboni wenn Personen mitfahren!", thePlayer, 0, 255, 0)
+    outputChatBox("Willkommen an Board, fahre die Stationen ab! Du bekommst extra Boni wenn Personen mitfahren!", thePlayer, 0, 255, 0)
 end
 
 function busstop_func(thePlayer)

@@ -11,7 +11,7 @@ function createSuperShopMarkers()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createSuperShopMarkers)
 
-SuperShopWaren = {2.99, 24.89, 589.75, 15, 1.95, 4.85, 9.99, 49.75, 485.75, 10000, 10000, 2.50, 2.50, 145.29};
+SuperShopWaren = {2.99, 24.89, 589.75, 15, 1.95, 4.85, 9.99, 49.75, 53.45, 485.75, 10000, 10000, 2.50, 2.50, 145.29};
 addEvent("buySuperShopGUI_Event",true)
 function buySuperShopGUI(id)
 	--outputChatBox(tostring(id))

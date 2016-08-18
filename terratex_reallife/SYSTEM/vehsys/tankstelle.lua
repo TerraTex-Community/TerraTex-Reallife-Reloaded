@@ -136,7 +136,7 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
         if (getPlayerMoney(driver) < preis) then
             changePlayerMoney(driver, -preis, "fahrzeug", "Tanken");
             zahlMittel = 1;
-        elseif (getPlayerBank(driver)) then
+        elseif (getPlayerBank(driver) < preis) then
             changePlayerBank(driver, -(preis * 1.05), "fahrzeug", "Tanken");
             zahlMittel = 2;
         end
@@ -144,7 +144,7 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
         if (zahlMittel == 1) then
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
         elseif (zahlMittel == 2) then
-            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde mittels Bankomat bezahlt. Dafür fallen 5% Bearbeitungsgebühren an.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5% Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
         end
         setElementFrozen(hitElement, false)
     end

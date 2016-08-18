@@ -155,7 +155,7 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
         elseif (getPlayerBank(driver) > preis) then
             changePlayerBank(driver, ((preis * 1.05) * -1), "fahrzeug", "Tanken");
-            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5% Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt! Der Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5 Prozent Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
         else
             errorbox("Es gibt einen Fehler.\nSag einem Admin Tanken zeile 150!!!");
         end

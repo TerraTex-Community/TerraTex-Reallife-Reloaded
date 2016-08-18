@@ -89,14 +89,22 @@ function TankenMarkerHit(hitElement)
     if (getElementType(hitElement) == "vehicle") then
         if (vioGetElementData(hitElement, "tank") and getVehicleOccupant(hitElement)) then
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"])
+            local zahlMethode = "Bar";
             local kannTanken = false;
             if (getPlayerMoney(getVehicleOccupant(hitElement)) < price) then
-                outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                zahlMethode = "Bar";
                 kannTanken = true;
             else
                 if (getPlayerBank(getVehicleOccupant(hitElement)) < price) then
-                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                    zahlMethode = "Bank";
                     kannTanken = true;
+                end
+            end
+            if (kannTanken == false) then
+                if (zahlMethode == "Bar") then
+                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                elseif (zahlMethode == "Bank") then
+                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
                 end
             end
             if (kannTanken) then

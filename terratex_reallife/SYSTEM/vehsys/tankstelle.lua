@@ -98,6 +98,7 @@ function TankenMarkerHit(hitElement)
                     outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
                     kannTanken = true;
                 end
+            end
             if (kannTanken) then
                 local freezetime = math.round((100 - vioGetElementData(hitElement, "tank")) * 600)
                 if (isGoldBoosterActive(getVehicleOccupant(hitElement), "FuelBooster")) then

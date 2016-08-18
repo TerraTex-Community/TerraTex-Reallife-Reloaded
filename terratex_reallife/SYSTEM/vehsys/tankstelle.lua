@@ -98,13 +98,17 @@ function TankenMarkerHit(hitElement)
                 if (getPlayerBank(getVehicleOccupant(hitElement)) < price) then
                     zahlMethode = "Bank";
                     kannTanken = true;
+                else
+                    zahlMethode = "Hartz4";
                 end
             end
             if (kannTanken == false) then
                 if (zahlMethode == "Bar") then
-                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
                 elseif (zahlMethode == "Bank") then
-                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                elseif (zahlMethode == "Hartz4") then
+                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
                 end
             end
             if (kannTanken) then
@@ -112,14 +116,12 @@ function TankenMarkerHit(hitElement)
                 if (isGoldBoosterActive(getVehicleOccupant(hitElement), "FuelBooster")) then
                     freezetime = math.round(((100 - vioGetElementData(hitElement, "tank")) * 600) / 4)
                 end
-
                 outputChatBox("Bitte warte... Das Fahrzeug wird aufgetankt!", getVehicleOccupant(hitElement), 255, 0, 0)
                 setElementFrozen(hitElement, true)
                 vioSetElementData(hitElement, "isInTankProcedur", true)
                 vioSetElementData(hitElement, "motor", false)
                 setVehicleEngineState(hitElement, false)
                 vioSetElementData(hitElement, "motornum", 0)
-
                 if (vioGetElementData(source, "repairMarker")) then
                     freezetime = freezetime + 5000
                 end

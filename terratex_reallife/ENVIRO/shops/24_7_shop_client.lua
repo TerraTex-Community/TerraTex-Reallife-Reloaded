@@ -113,7 +113,7 @@ function buy_SuperShop_Gui()
 	end
 end
 
---local oldValues = {[5] = 1.95, [6] = 4.85, [7] = 9.99, [8] = 49.75};
+local oldValues = {[6] = 1.95, [7] = 4.85, [8] = 9.99, [9] = 49.75};
 
 function closeSuperShopGUI()
 	guiSetVisible(SuperShop_Window[1], false);
@@ -136,10 +136,10 @@ function showSuperShopGUI()
 	elseif (isWetterEventID == 6)then
 		faktor = 0.9;
 	end
---guiGridListSetItemText(SuperShop_Grid[1], 5, SuperShop_Colum[3], (oldValues[5] * faktor), false, false);
---guiGridListSetItemText(SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[6] * faktor), false, false);
---guiGridListSetItemText(SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[7] * faktor), false, false);
---guiGridListSetItemText(SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[8] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[5] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[6] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[7] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 9, SuperShop_Colum[3], (oldValues[8] * faktor), false, false);
 guiSetVisible(SuperShop_Window[1], true);
 showCursor(true);
 end

@@ -90,7 +90,9 @@ function TankenMarkerHit(hitElement)
         if (vioGetElementData(hitElement, "tank") and getVehicleOccupant(hitElement)) then
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"])
             if (getPlayerMoney(getVehicleOccupant(hitElement)) < price) then
-                outputChatBox(string.format("Du hast leider nicht genug Geld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+            elseif (getPlayerBank(getVehicleOccupant(hitElement)) < price) then
+                outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
             else
                 local freezetime = math.round((100 - vioGetElementData(hitElement, "tank")) * 600)
                 if (isGoldBoosterActive(getVehicleOccupant(hitElement), "FuelBooster")) then
@@ -130,9 +132,20 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
                 outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0)
             end
         end
-        changePlayerMoney(driver, -preis, "fahrzeug", "Tanken")
+        local zahlMittel = 1;
+        if (getPlayerMoney(driver) < preis) then
+            changePlayerMoney(driver, -preis, "fahrzeug", "Tanken");
+            zahlMittel = 1;
+        elseif (getPlayerBank(driver)) then
+            changePlayerBank(driver, -(preis * 1.05), "fahrzeug", "Tanken");
+            zahlMittel = 2;
+        end
         changeBizKasse(7, preis, "Tank")
-        outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0)
+        if (zahlMittel == 1) then
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0)
+        elseif (zahlMittel == 2) then
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde mittels Bankomat bezahlt. Dafür fallen 5% Bearbeitungsgebühren an.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0)
+        end
         setElementFrozen(hitElement, false)
     end
 

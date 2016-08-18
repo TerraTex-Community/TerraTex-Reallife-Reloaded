@@ -6,7 +6,6 @@ SuperShop_Colum = {};
 
 addEventHandler("onClientResourceStart",resourceRoot,
     function()
-
         SuperShop_Window[1] = guiCreateWindow(0.3494,0.25,0.3894,0.4467, "Shop", true);
 		table.insert(allGuis, SuperShop_Window[1]);
         SuperShop_Button[1] = guiCreateButton(0.0144, 0.0721, 0.9679, 0.092, "Beenden", true, SuperShop_Window[1]);
@@ -136,10 +135,10 @@ function showSuperShopGUI()
 	elseif (isWetterEventID == 6)then
 		faktor = 0.9;
 	end
-guiGridListSetItemText(SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[5] * faktor), false, false);
-guiGridListSetItemText(SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[6] * faktor), false, false);
-guiGridListSetItemText(SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[7] * faktor), false, false);
-guiGridListSetItemText(SuperShop_Grid[1], 9, SuperShop_Colum[3], (oldValues[8] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 6, SuperShop_Colum[3], (oldValues[6] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 7, SuperShop_Colum[3], (oldValues[7] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 8, SuperShop_Colum[3], (oldValues[8] * faktor), false, false);
+guiGridListSetItemText(SuperShop_Grid[1], 9, SuperShop_Colum[3], (oldValues[9] * faktor), false, false);
 guiSetVisible(SuperShop_Window[1], true);
 showCursor(true);
 end

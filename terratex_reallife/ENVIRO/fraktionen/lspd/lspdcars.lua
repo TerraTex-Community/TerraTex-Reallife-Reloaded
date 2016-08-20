@@ -16,7 +16,6 @@ function createpoliceVehicles()
      setAbschleppTruckAsPoliceTruck(vehicle)
      setVehiclePlateText(vehicle, "SAPD")
 	table.insert(policeVehicles,vehicle)
-	table.insert(policeVehicles,vehicle)
 	table.insert(frakselfcars[1],vehicle)
 	 vehicle=  createVehicle(601,1538.2841796875,-1646.732421875,5.6493811607361,0.010986328125,0,180.72509765625,"SAPD")    --  SAPD Spez 
 	table.insert(policeVehicles,vehicle)

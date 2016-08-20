@@ -77,6 +77,7 @@ routenListe["all"]={1,2,3,4,5,6,7,8,15,16,17,18,19,20,21,22,23,24,25,26,27,9,10,
 routenListe["job"]={1,2,3,4,56,5,6,57,58,8,22,23,25,26,59,60,61,12}
 routenListe["rookie"]={1,2,3,4,5,6,7,8,9,10,11,12,13,14 }
 
+routenFarben={all = {150,0,0}, rookie = {0,150,0}, job = {0,0,150}, fraktion = {150,150,0}, sehenswert = {150,0,150}}
 --[[Abfrage Befehle für die Haltestellen]]
 function getHaltestellenKoordinaten(hID)
     return haltestellenTable[hID][1],haltestellenTable[hID][2],haltestellenTable[hID][3]
@@ -185,14 +186,6 @@ end
 
 addEvent("giveMeHList",true)
 function giveMeHList_func()
-    triggerClientEvent(source,"sendHData",source,routenListe, haltestellenTable)
+    triggerClientEvent(source,"sendHData",source,routenListe, haltestellenTable, routenFarben)
 end
 addEventHandler("giveMeHList",getRootElement(),giveMeHList_func)
-
-
-
-
-
-
-
-

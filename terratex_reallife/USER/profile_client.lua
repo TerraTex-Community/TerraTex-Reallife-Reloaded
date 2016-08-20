@@ -33,7 +33,7 @@ function startProfileUI()
     addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
         function(url)
             showCursor(true, true);
-            toggleAllControls(false, true, true);
+--            toggleAllControls(false, true, true);
             profileBrowser = source;
             triggerServerEvent("getProfileData", getLocalPlayer());
         end)

@@ -78,23 +78,26 @@ function showAttackPickupInfo(thePlayer)
 end
 
 function giveLadenResources()
-	for theKey=1,8,1 do
-		MySql.helper.update("faction_shops", { toFraktion = attackerLadenInfos[theKey][1] }, { ID = theKey });
-		if(attackerLadenInfos[theKey][2]>0)then
-			attackerLadenInfos[theKey][2]=attackerLadenInfos[theKey][2]-1
+
+	if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
+		for theKey=1,8,1 do
+			MySql.helper.update("faction_shops", { toFraktion = attackerLadenInfos[theKey][1] }, { ID = theKey });
+			if(attackerLadenInfos[theKey][2]>0)then
+				attackerLadenInfos[theKey][2]=attackerLadenInfos[theKey][2]-1
+			end
+			if(attackerLadenInfos[theKey][3]==1)then
+				frakmun[attackerLadenInfos[theKey][1]]=frakmun[attackerLadenInfos[theKey][1]]+100
+				frakdepot_log(attackerLadenInfos[theKey][1],3,100,"Waffenladen")
+				frakkasse[attackerLadenInfos[theKey][1]]=frakkasse[attackerLadenInfos[theKey][1]]+100
+				frakdepot_log(attackerLadenInfos[theKey][1],1,100,"Waffenladen")
+			else
+				frakdrogen[attackerLadenInfos[theKey][1]]=frakdrogen[attackerLadenInfos[theKey][1]]+10
+				frakdepot_log(attackerLadenInfos[theKey][1],2,10,"Drogenladen")
+				frakkasse[attackerLadenInfos[theKey][1]]=frakkasse[attackerLadenInfos[theKey][1]]+100
+				frakdepot_log(attackerLadenInfos[theKey][1],1,100,"Drogenladen")
+			end
+			--outputDebugString(tostring(theKey))
 		end
-		if(attackerLadenInfos[theKey][3]==1)then
-			frakmun[attackerLadenInfos[theKey][1]]=frakmun[attackerLadenInfos[theKey][1]]+100
-			frakdepot_log(attackerLadenInfos[theKey][1],3,100,"Waffenladen")
-			frakkasse[attackerLadenInfos[theKey][1]]=frakkasse[attackerLadenInfos[theKey][1]]+100
-			frakdepot_log(attackerLadenInfos[theKey][1],1,100,"Waffenladen")	
-		else
-			frakdrogen[attackerLadenInfos[theKey][1]]=frakdrogen[attackerLadenInfos[theKey][1]]+10
-			frakdepot_log(attackerLadenInfos[theKey][1],2,10,"Drogenladen")
-			frakkasse[attackerLadenInfos[theKey][1]]=frakkasse[attackerLadenInfos[theKey][1]]+100	
-			frakdepot_log(attackerLadenInfos[theKey][1],1,100,"Drogenladen")			
-		end			
-		--outputDebugString(tostring(theKey))
 	end
 	setTimer(giveLadenResources,3600000,1)
 end

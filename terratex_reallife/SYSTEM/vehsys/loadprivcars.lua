@@ -172,7 +172,6 @@ function save_car(veh)
         lastDamageStates = toJSON(getVehicleDamageParts(veh)),
         lastHealth = getElementHealth(veh)
     }, {ID = vioGetElementData(veh, "dbid")});
-
 end
 
 function onvehicleexplode_func()

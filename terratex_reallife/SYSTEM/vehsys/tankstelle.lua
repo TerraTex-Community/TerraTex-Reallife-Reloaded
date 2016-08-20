@@ -102,15 +102,7 @@ function TankenMarkerHit(hitElement)
                     zahlMethode = "Hartz4";
                 end
             end
-            if (kannTanken == false) then
-                if (zahlMethode == "Bar") then
-                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
-                elseif (zahlMethode == "Bank") then
-                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
-                elseif (zahlMethode == "Hartz4") then
-                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
-                end
-            end
+
             if (kannTanken) then
                 local freezetime = math.round((100 - vioGetElementData(hitElement, "tank")) * 600)
                 if (isGoldBoosterActive(getVehicleOccupant(hitElement), "FuelBooster")) then
@@ -131,7 +123,13 @@ function TankenMarkerHit(hitElement)
                     setTimer(setTankFulTanke, freezetime, 1, price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")))
                 end
             else
-                outputChatBox(string.format("Du besitzt leider nicht genug Geld zum Tanken!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+                if (zahlMethode == "Bar") then
+                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                elseif (zahlMethode == "Bank") then
+                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                elseif (zahlMethode == "Hartz4") then
+                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                end
             end
         end
     end

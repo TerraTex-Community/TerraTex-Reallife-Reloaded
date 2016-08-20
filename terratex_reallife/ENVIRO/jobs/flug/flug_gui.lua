@@ -35,7 +35,7 @@ flys_auftragstypen_skilllevel = {
 	{10000, 20000, 2500, 4500, 2, 2}, 	-- ~ 73k pro Stunde ohne Steuer
 	{25000, 50000, 5000, 9000, 2, 2}  	-- ~ 147k pro Stunde ohne Steuer
 	}
-	
+
 flys_last_auftrage = {}
 flys_has_no_auftrage = true
 can_see_flugy_gui = false
@@ -56,7 +56,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
 		table.insert(allGuis,GUIflysJob_Window[1] )
         GUIflysJob_Button[1] = guiCreateButton(0.0258,0.0855,0.3173,0.0665,"Auftrag annehmen!",true,GUIflysJob_Window[1])
         GUIflysJob_Button[2] = guiCreateButton(0.5683,0.0903,0.2768,0.0618,"Beenden!",true,GUIflysJob_Window[1])
-        GUIflysJob_Label[1] = guiCreateLabel(0.0295,0.1995,0.9446,0.1116,"Die Anzahl der Aufträge ist abhängig von deinen Skilllevel, dass du mit /skill fly ansehen kannst! Wähle einen Auftrag! Die Kaution muss beim Fahrtantritt abgegeben werden und wird bei erfolgreicher Beendigung des Jobs zurückgezahlt!",true,GUIflysJob_Window[1])
+        GUIflysJob_Label[1] = guiCreateLabel(0.0295,0.1995,0.9446,0.1116,"Die Anzahl der Aufträge ist abhängig von deinen Skilllevel, dass du mit /skill ansehen kannst! Wähle einen Auftrag! Die Kaution muss beim Fahrtantritt abgegeben werden und wird bei erfolgreicher Beendigung des Jobs zurückgezahlt!",true,GUIflysJob_Window[1])
         guiLabelSetHorizontalAlign(GUIflysJob_Label[1],"left",true)
         GUIflysJob_Grid[1] = guiCreateGridList(0.0314,0.323,0.9428,0.6366,true,GUIflysJob_Window[1])
         guiGridListSetSelectionMode(GUIflysJob_Grid[1],0)
@@ -76,7 +76,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
 function closeflugyerGui()
 	guiSetVisible(GUIflysJob_Window[1],false)
 	showCursor(false)
-	guiGridListClear ( GUIflysJob_Grid[1]) 
+	guiGridListClear ( GUIflysJob_Grid[1])
 end
 
 function getflugyerGui()
@@ -94,7 +94,7 @@ function getflugyerGui()
                 FlybehindyTimer=setTimer(can_see_flugy_gui_delete,300000,1)
                 closeflugyerGui()
             else
-                outputChatBox("Du kannst die Sicherheiten nicht bezahlen!",255,0,0)
+                outputChatBox("Du kannst die Kaution nicht bezahlen!",255,0,0)
             end
         end
     end
@@ -103,7 +103,7 @@ end
 addEvent("cancelFlyBehindyTimer",true)
 function cancelFlyBehindyTimer()
 	if(isTimer(FlybehindyTimer))then
-		killTimer(FlybehindyTimer)		
+		killTimer(FlybehindyTimer)
 	end
 	can_see_flugy_gui=true
 end
@@ -183,8 +183,8 @@ function showflysJob_func()
 	if(can_see_flugy_gui)then
 		guiSetVisible(GUIflysJob_Window[1],true)
 		showCursor(true)
-		guiGridListClear ( GUIflysJob_Grid[1]) 
-		if(flys_has_no_auftrage)then		
+		guiGridListClear ( GUIflysJob_Grid[1])
+		if(flys_has_no_auftrage)then
 			flys_new_auftrage()
 			flys_has_no_auftrage=false
 		end
@@ -193,7 +193,7 @@ function showflysJob_func()
 				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[1], tostring(theKey), false, true )
 				local zielstring=" "
 				--outputChatBox(tostring(theTable[6]))
-					if(theTable[7]==1)then					
+					if(theTable[7]==1)then
 						zielstring=fly_typ_1_punkte[theTable[6]][1]
 					else
 						zielstring=fly_typ_2_punkte[theTable[6]][1]
@@ -201,8 +201,8 @@ function showflysJob_func()
 				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[2],zielstring, false, true )
 				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[3],toprice(theTable[1]), false, true )
 				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[4],toprice(theTable[2]), false, true )
-				local vehiclestring=getVehicleNameFromModel(theTable[3])		
-				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[5],vehiclestring, false, true )	
+				local vehiclestring=getVehicleNameFromModel(theTable[3])
+				guiGridListSetItemText ( GUIflysJob_Grid[1], row, GUIflysJob_Colum[5],vehiclestring, false, true )
 		end
 	else
 		outputChatBox("Du kannst nur alle 5 Minuten einen Flug starten!",255,0,0)
@@ -224,13 +224,13 @@ addEventHandler("onClientRender", root,
 			local veh=getPedOccupiedVehicle ( getLocalPlayer())
 			if(veh)then
 				if(isPlane(getElementModel(veh)))then
-					local screenW, screenH = guiGetScreenSize()    
+					local screenW, screenH = guiGetScreenSize()
 					local px,py,pz=getElementPosition(getLocalPlayer())
 					local textstring=""
 					if isElement(veh)then
 						px,py,pz=getElementPosition ( veh )
 						textstring=math.round(pz,1)
-					end		
+					end
 					dxDrawRectangle(screenW - 220 - 10, (screenH - 90) / 2, 220, 90, tocolor(0, 13, 71, 220), false)
 					dxDrawText(string.format("Höhe: %s", textstring), screenW - 201 - 10, (screenH - 90) / 2 -5, (screenW - 201 - 10) + 201, ( (screenH - 46) / 2) + 46, tocolor(255, 255, 255, 255), 1.00, "pricedown", "left", "center", false, false, false, false, false)
 
@@ -256,12 +256,3 @@ addEventHandler("onClientRender", root,
 		end
 	end
 )
-
-
-
-
-
-
-
-
-

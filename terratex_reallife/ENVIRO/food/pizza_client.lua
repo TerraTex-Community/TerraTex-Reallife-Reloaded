@@ -95,7 +95,7 @@ end
 function pMenubuy_func()
     if (pMenuShowing) then
         if (pMenu[showPMenu][3] < getPlayerMoney(getLocalPlayer()) + 1) then
-            triggerEvent("addFood", getLocalPlayer(), pMenu[showPMenu][4])
+            triggerEvent("addFood", getLocalPlayer(), pMenu[showPMenu][4],false)
             triggerServerEvent("buyFood_B", getLocalPlayer(), pMenu[showPMenu][3], "pizza")
             showError(getLocalPlayer(), "Du hast dieses Menu erfolgreich gekauft!")
         else

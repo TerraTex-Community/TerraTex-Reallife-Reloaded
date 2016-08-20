@@ -19,7 +19,7 @@ function find_func(thePlayer, Command, toPlayerName)
                 end
                 if not(vioGetElementData(thePlayer, "hasFind")) then
 					if (vioGetElementData(toPlayer, "telefontoggle") == 0) then
-						outputChatBox("Es wurde eine exakte Handyortung vorgenommen (rote Markierung)!", thePlayer, 255, 0, 0)
+						outputChatBox("Es wurde eine exakte Handy Ortung vorgenommen (rote Markierung)!", thePlayer, 255, 0, 0)
 						local theBlip = createBlipAttachedTo(toPlayer, 0, 2, 0, 191, 255, 255, 0, 99999.0, thePlayer)
 						setTimer(delete_find_func, 10000, 1, theBlip)
 					else
@@ -58,11 +58,3 @@ end
 function delete_find_func(theBlip)
 	destroyElement(theBlip)
 end
-
-
-
-
-
-
-
-

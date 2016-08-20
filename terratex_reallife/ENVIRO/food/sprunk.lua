@@ -48,7 +48,7 @@ function enter_trink_key(thePlayer)
                     setPedAnimation(thePlayer, "VENDING", "VEND_Use", -1, false, true, false, false)
                     triggerClientEvent(thePlayer, "playSound", thePlayer, "FILES/SOUNDS/sprunk.ogg")
                     setTimer(trink_ani_sprunk, 3000, 1, thePlayer)
-                    triggerClientEvent(thePlayer, "addFood", thePlayer, 35)
+                    triggerClientEvent(thePlayer, "addFood", thePlayer, 35,false)
                     changePlayerMoney(thePlayer, -1, "sonstige", "Sprunkautomat")
                     changeBizKasse(4, 2, "Dosenkauf")
                 end

@@ -39,7 +39,7 @@ function hitDriveInMarker(hitElement)
                 elseif (vioGetElementData(source, "typ") == "huhn") then
                     changeBizKasse(3, 15, "Essenskauf")
                 end
-                triggerClientEvent(hitElement, "addFood", hitElement, 500)
+                triggerClientEvent(hitElement, "addFood", hitElement, 500, false)
                 outputChatBox("Du benötigst 10s um zu essen!", hitElement, 255, 0, 0)
                 local vehicle = getPedOccupiedVehicle(hitElement)
                 setElementFrozen(hitElement, true)
@@ -80,4 +80,3 @@ function createDriveInMarker(thePlayer, cmd, typ)
 end
 
 addCommandHandler("adddrivein", createDriveInMarker, false, false)
-

@@ -91,11 +91,11 @@ function TankenMarkerHit(hitElement)
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"])
             local zahlMethode = "Bar";
             local kannTanken = false;
-            if (getPlayerMoney(getVehicleOccupant(hitElement)) < price) then
+            if (getPlayerMoney(getVehicleOccupant(hitElement)) >= price) then
                 zahlMethode = "Bar";
                 kannTanken = true;
             else
-                if (getPlayerBank(getVehicleOccupant(hitElement)) < price) then
+                if (getPlayerBank(getVehicleOccupant(hitElement)) >= price) then
                     zahlMethode = "Bank";
                     kannTanken = true;
                 else
@@ -148,10 +148,10 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
                 outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0);
             end
         end
-        if (getPlayerMoney(driver) > preis) then
+        if (getPlayerMoney(driver) >= preis) then
             changePlayerMoney(driver, -preis, "fahrzeug", "Tanken");
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
-        elseif (getPlayerBank(driver) > preis) then
+        elseif (getPlayerBank(driver) >= preis) then
             changePlayerBank(driver, ((preis * 1.05) * -1), "fahrzeug", "Tanken");
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt! Der Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5 Prozent Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
         else

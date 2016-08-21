@@ -3,18 +3,22 @@ function startEngine_func(playerSource)
     -- Check if the player is in any vehicle and if he is the driver
     if theVehicle and getVehicleController(theVehicle) == playerSource and not (vioGetElementData(theVehicle, "isInTankProcedur")) and not (vioGetElementData(theVehicle, "isInRepairProcedur")) then
         local state = getVehicleEngineState(theVehicle)
-        if ((tostring(getVehicleType(theVehicle)) == "Plane") and getElementID(theVehicle) ~= "539") then -- Wenn das Fahrzeug ein Flugzeug ist und keine Vortex
-        if (vioGetElementData(theVehicle, "motor")) then -- Motor ausschalten
-        if (StartMotorPlane(playerSource, theVehicle, false)) then
-            return false
+        -- Wenn das Fahrzeug ein Flugzeug ist und keine Vortex
+        if ((tostring(getVehicleType(theVehicle)) == "Plane") and getElementID(theVehicle) ~= "539") then
+            if (vioGetElementData(theVehicle, "motor")) then -- Motor ausschalten
+            if (StartMotorPlane(playerSource, theVehicle, false)) then
+                return false
+            end
+
+            else
+                -- Motor einschalten
+                if (StartMotorPlane(playerSource, theVehicle, true)) then
+                    return false
+                end
+            end
         end
-        else -- Motor einschalten
-        if (StartMotorPlane(playerSource, theVehicle, true)) then
-            return false
-        end
-        end
-        end
-        setVehicleEngineState(theVehicle, not state) -- Vor dem die Flugzeuge abfangen und extra behandeln
+        -- Vor dem die Flugzeuge abfangen und extra behandeln
+        setVehicleEngineState(theVehicle, not state)
         vioSetElementData(theVehicle, "motor", not state)
         if (vioGetElementData(theVehicle, "motor")) then
             vioSetElementData(theVehicle, "motornum", 1)
@@ -38,47 +42,51 @@ end
 
 addEvent("shutdownMotor", true)
 
-motorAnTimer = {} -- Timer der Flugzeuge die auf einen Motor start/stop warten
+-- Timer der Flugzeuge die auf einen Motor start/stop warten
+motorAnTimer = {}
 function StartMotorPlane(thePlayer, theVehicle, start)
-    if (thePlayer) then -- Wir haben einen Spieler
-    if (theVehicle) then -- Wir haben ein Flugzeug
-    local state = getVehicleEngineState(theVehicle)
-    if (not isVehicleOnGround(theVehicle)) then -- Wenn das Flugzeug NICHT am Boden ist
-    local myTimer = motorAnTimer[getPlayerName(thePlayer)]
-    if (isTimer(myTimer)) then
-        local rest = select(1, getTimerDetails(myTimer))
-        if (state) then
-            showError(thePlayer, "Die Motoren werden bereits gestopt.\n Das stopen dauert noch ca. " .. (rest / 1000) .. " Sekunden.")
-        else
-            showError(thePlayer, "Die Motoren werden bereits gestartet.\n Das starten dauert noch ca. " .. (rest / 1000) .. " Sekunden.")
-        end
-        return true
-    else
-        local newTimer
-        if (state) then
-            newTimer = setTimer(StartMotorPlaneTimerElapsed, math.random(1, 10) * 1000, 1, thePlayer, theVehicle, start)
-        else
-            newTimer = setTimer(StartMotorPlaneTimerElapsed, math.random(5, 10) * 1000, 1, thePlayer, theVehicle, start)
-        end
-        motorAnTimer[getPlayerName(thePlayer)] = newTimer
-        if (state) then
-            showError(thePlayer, "Die Motoren werden nun gestopt.\n Das wird ca. " .. (select(1, getTimerDetails(newTimer)) / 1000) .. " Sekunden dauern.")
-        else
-            showError(thePlayer, "Die Motoren werden nun gestartet.\n Das wird ca. " .. (select(1, getTimerDetails(newTimer)) / 1000) .. " Sekunden dauern.")
-        end
-        return true
-    end
-    else
-        local myTimer = motorAnTimer[getPlayerName(thePlayer)]
-        if (myTimer) then
-            if (isTimer(myTimer)) then
-                killTimer(motorAnTimer[getPlayerName(thePlayer)])
+    -- Wir haben einen Spieler
+    if (thePlayer) then
+        -- Wir haben ein Flugzeug
+        if (theVehicle) then
+            local state = getVehicleEngineState(theVehicle)
+            -- Wenn das Flugzeug NICHT am Boden ist
+            if (not isVehicleOnGround(theVehicle)) then
+                local myTimer = motorAnTimer[getPlayerName(thePlayer)]
+                if (isTimer(myTimer)) then
+                    local rest = select(1, getTimerDetails(myTimer))
+                    if (state) then
+                        showError(thePlayer, "Die Motoren werden bereits gestopt.\n Das stopen dauert noch ca. " .. (rest / 1000) .. " Sekunden.")
+                    else
+                        showError(thePlayer, "Die Motoren werden bereits gestartet.\n Das starten dauert noch ca. " .. (rest / 1000) .. " Sekunden.")
+                    end
+                    return true
+                else
+                    local newTimer
+                    if (state) then
+                        newTimer = setTimer(StartMotorPlaneTimerElapsed, math.random(1, 10) * 1000, 1, thePlayer, theVehicle, start)
+                    else
+                        newTimer = setTimer(StartMotorPlaneTimerElapsed, math.random(5, 10) * 1000, 1, thePlayer, theVehicle, start)
+                    end
+                    motorAnTimer[getPlayerName(thePlayer)] = newTimer
+                    if (state) then
+                        showError(thePlayer, "Die Motoren werden nun gestopt.\n Das wird ca. " .. (select(1, getTimerDetails(newTimer)) / 1000) .. " Sekunden dauern.")
+                    else
+                        showError(thePlayer, "Die Motoren werden nun gestartet.\n Das wird ca. " .. (select(1, getTimerDetails(newTimer)) / 1000) .. " Sekunden dauern.")
+                    end
+                    return true
+                end
+            else
+                local myTimer = motorAnTimer[getPlayerName(thePlayer)]
+                if (myTimer) then
+                    if (isTimer(myTimer)) then
+                        killTimer(motorAnTimer[getPlayerName(thePlayer)])
+                    end
+                end
             end
+        else
+            outputDebugString("Error: (start_Veh.lua) Kein Flugzeug übergeben")
         end
-    end
-    else
-        outputDebugString("Error: (start_Veh.lua) Kein Flugzeug übergeben")
-    end
     else
         outputDebugString("Error: (start_Veh.lua) Kein Spieler übergeben")
     end
@@ -127,17 +135,21 @@ function startLight_func(playerSource)
     local theVehicle = getPedOccupiedVehicle(playerSource)
     if theVehicle and getVehicleController(theVehicle) == playerSource then
         -- Check if the player is in any vehicle and if he is the driver
-        if (getVehicleOverrideLights(theVehicle) ~= 2) then -- if the current state isnt 'force on'
-        switchLight(theVehicle, 2) -- force the li
+        -- if the current state isnt 'force on'
+        if (getVehicleOverrideLights(theVehicle) ~= 2) then
+            -- force the li
+            switchLight(theVehicle, 2)
         else
-            switchLight(theVehicle, 1) -- force the lights on
+            -- force the lights on
+            switchLight(theVehicle, 1)
         end
     end
 end
 
 
 function switchLight(theVehicle, state)
-    setVehicleOverrideLights(theVehicle, state) -- force the lights on
+    -- force the lights on
+    setVehicleOverrideLights(theVehicle, state)
     vioSetElementData(theVehicle, "lightstate", state)
     if (getVehicleTowedByVehicle(theVehicle)) then
         switchLight(getVehicleTowedByVehicle(theVehicle), state)
@@ -145,8 +157,10 @@ function switchLight(theVehicle, state)
 end
 
 function motor_light_off()
-    if (getVehicleOverrideLights(source) == 0) then -- if the current state isnt 'force on'
-    setVehicleOverrideLights(source, 1) -- force the lights on
+    -- if the current state isnt 'force on'
+    if (getVehicleOverrideLights(source) == 0) then
+        -- force the lights on
+        setVehicleOverrideLights(source, 1)
     end
     if (vioGetElementData(source, "motor") == false) then
         setVehicleEngineState(source, false)
@@ -163,6 +177,7 @@ function setCarBinds()
     bindKey(source, "x", "down", startEngine_func, source)
     bindKey(source, "l", "down", startLight_func, source)
 end
+
 addEventHandler("onPlayerJoin", getRootElement(), setCarBinds)
 
 function rebindOnResourceRestart()
@@ -177,6 +192,7 @@ function rebind_func(thePlayer)
     bindKey(thePlayer, "x", "down", startEngine_func, thePlayer)
     bindKey(thePlayer, "l", "down", startLight_func, thePlayer)
 end
+
 addCommandHandler("rebind", rebind_func, false, false)
 
 function prepare(thevehicle, frakid)
@@ -232,7 +248,7 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         local besitzer = vioGetElementData(vehicle, "besitzer");
         triggerClientEvent(source, "showErrorText", source, source, "Das Fahrzeug wurde erfolgreich geloescht!");
 
-        local slot = vioGetElementData(vehicle,"slotid");
+        local slot = vioGetElementData(vehicle, "slotid");
 
         privCars[vehicle] = false
         for theKey, theTable in ipairs(privVeh) do
@@ -249,20 +265,19 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
             save_offline_message(vioGetElementData(vehicle, "besitzer"), getPlayerName(source), string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund));
         end
 
-        MySql.helper.delete("user_vehicles", {ID = id});
+        MySql.helper.delete("user_vehicles", { ID = id });
 
-        log_car_delete(
-            vioGetElementData(vehicle, "besitzer"),
+        log_car_delete(vioGetElementData(vehicle, "besitzer"),
             vioGetElementData(vehicle, "slotid"),
             getElementModel(vehicle),
             "deleted by admin: " .. grund,
-            getPlayerName(source)
-        );
+            getPlayerName(source));
 
         elementData[vehicle] = nil;
         destroyElement(vehicle);
     end
 end
+
 addEvent("deleteVehicleByAdmin", true)
 addEventHandler("deleteVehicleByAdmin", getRootElement(), deletetheVehiclebyadmin_func)
 
@@ -295,11 +310,3 @@ function checkNewWaterKill(vehicle, timerCounter)
         end
     end
 end
-
-
-
-
-
-
-
-

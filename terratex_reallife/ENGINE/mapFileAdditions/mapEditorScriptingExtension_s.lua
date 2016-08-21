@@ -40,8 +40,6 @@ function onMapReload()
 end
 
 function onMapResourceStartOrStop()
-
-    setOcclusionsEnabled(false)
     for _, object in ipairs(getElementsByType("removeWorldObject", source)) do
         local model = getElementData(object, "model")
         local lodModel = getElementData(object, "lodModel")

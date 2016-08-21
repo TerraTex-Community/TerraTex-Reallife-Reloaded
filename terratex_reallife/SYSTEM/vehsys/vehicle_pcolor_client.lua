@@ -108,14 +108,19 @@ function GUIPremiumColor_buyColor()
     local G_2 = 2.55 * guiScrollBarGetScrollPosition(GUIPremiumColor_Scrollbar[8])
     local B_2 = 2.55 * guiScrollBarGetScrollPosition(GUIPremiumColor_Scrollbar[9])
     local premColorString = R .. "|" .. G .. "|" .. B .. "|" .. R_2 .. "|" .. G_2 .. "|" .. B_2
+    triggerServerEvent("setPremiumVehicleColor", getLocalPlayer(), premColorString)
+end
+
+addEvent("pColor_Preview_setColorBefore", true)
+function Preview_setColorBefore(R, G, B, R_2, G_2, B_2)
     colorBeforePreview_Color1_R = R
     colorBeforePreview_Color1_G = G
     colorBeforePreview_Color1_B = B
     colorBeforePreview_Color2_R = R_2
     colorBeforePreview_Color2_G = G_2
     colorBeforePreview_Color2_B = B_2
-    triggerServerEvent("setPremiumVehicleColor", getLocalPlayer(), premColorString)
 end
+addEventHandler("pColor_Preview_setColorBefore", getRootElement(), Preview_setColorBefore)
 
 local actualCar1_R = 0
 local actualCar1_G = 0
@@ -158,11 +163,16 @@ function GUIPremiumColor_buyLights()
     local B = 2.55 * guiScrollBarGetScrollPosition(GUIPremiumColor_Scrollbar[3])
 
     local newcolorstring = R .. "|" .. G .. "|" .. B
+    triggerServerEvent("setPremiumVehicleLightColor", getLocalPlayer(), newcolorstring)
+end
+
+addEvent("pColor_setLightBefore", true)
+function Preview_setLightBefore(R, G, B)
     colorBeforePreview_Light_R = R
     colorBeforePreview_Light_G = G
     colorBeforePreview_Light_B = B
-    triggerServerEvent("setPremiumVehicleLightColor", getLocalPlayer(), newcolorstring)
 end
+addEventHandler("pColor_Preview_setLightBefore", getRootElement(), Preview_setLightBefore)
 
 function onClientVehicleStartExit_onGUIPremiumColor(thePlayer)
     if (thePlayer == getLocalPlayer) then

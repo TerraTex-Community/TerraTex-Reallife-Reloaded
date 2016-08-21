@@ -228,24 +228,25 @@ addEventHandler("respawnVehicleByAdmin", getRootElement(), respawntheVehiclebyad
 
 function deletetheVehiclebyadmin_func(vehicle, grund)
     if (isAdminLevel(source, 1)) then
-        local id = vioGetElementData(vehicle, "dbid")
+        local id = vioGetElementData(vehicle, "dbid");
         local besitzer = vioGetElementData(vehicle, "besitzer");
-        triggerClientEvent(source, "showErrorText", source, source, "Das Fahrzeug wurde erfolgreich geloescht!")
+        triggerClientEvent(source, "showErrorText", source, source, "Das Fahrzeug wurde erfolgreich geloescht!");
 
-        local slot = vioGetElementData(vehicle,"slotid")
+        local slot = vioGetElementData(vehicle,"slotid");
 
         privCars[vehicle] = false
         for theKey, theTable in ipairs(privVeh) do
             if (theTable[3] == vehicle) then
-                table.remove(privVeh, theKey)
+                table.remove(privVeh, theKey);
             end
         end
 
         if (getPlayerFromName(besitzer)) then
-            vioSetElementData(besitzer, "slot" .. vioGetElementData(vehicle, "slotid"), -1)
-            outputChatBox(string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund), besitzer)
+            local besitzerEle = getPlayerFromName(besitzer);
+            vioSetElementData(besitzerEle, "slot" .. vioGetElementData(vehicle, "slotid"), -1);
+            outputChatBox(string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund), besitzerEle);
         else
-            save_offline_message(vioGetElementData(vehicle, "besitzer"), getPlayerName(source), string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund))
+            save_offline_message(vioGetElementData(vehicle, "besitzer"), getPlayerName(source), string.format("Dein Fahrzeug in Slot %s wurde gelöscht, weil: %s", vioGetElementData(vehicle, "slotid"), grund));
         end
 
         MySql.helper.delete("user_vehicles", {ID = id});
@@ -258,8 +259,8 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
             getPlayerName(source)
         );
 
-        elementData[vehicle] = nil
-        destroyElement(vehicle)
+        elementData[vehicle] = nil;
+        destroyElement(vehicle);
     end
 end
 addEvent("deleteVehicleByAdmin", true)

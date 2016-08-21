@@ -7,7 +7,7 @@ local atomrest={-1579.1865234375,93.80078125,3.5506792068481}
 function startAtomTimer()
 	setTimer(controlOnAtom,60000,1)
     createBoxes(serversettings["atommuell"])
-    createRestrictedArea()
+    --createRestrictedArea()
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),startAtomTimer)
 
@@ -276,43 +276,44 @@ function endAtomKatastrophe()
 	lastWTimer=setTimer(changeWeather,10000,1)
 end
 
-local restrictedArea, warningRestrictedArea
-function createRestrictedArea()
-    local x1 = 2576.825493
-    local y1 = -2751.00708
-    local x2 = 2809.03759
-    local y2 = -2609.23193
-    local abstandWarning = 47
-    restrictedArea = createColRectangle(x1, y1, x2-x1, y2-y1)
-    warningRestrictedArea = createColRectangle(x1-abstandWarning, y1-abstandWarning, x2-x1+abstandWarning*2, y2-y1+abstandWarning*2)
-    addEventHandler("onColShapeHit", restrictedArea, hitArea)
-    addEventHandler("onColShapeHit", warningRestrictedArea, hitWarningArea)
-    createRadarArea(x1, y1, x2-x1, y2-y1, 255, 0, 0, 175)
-end
-
-function hitArea(thePlayer)
-    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer) and not getElementData(thePlayer, "noAKWAreaWanteds")) then
-        if (not vioGetElementData(thePlayer, "wanteds")) then
-            vioSetElementData(thePlayer, "wanteds", 0)
-        end
-        vioSetElementData(thePlayer, "wanteds", vioGetElementData(thePlayer, "wanteds") + 3)
-        if (vioGetElementData(thePlayer, "wanteds") > 6) then
-            vioSetElementData(thePlayer, "wanteds", 6)
-        end
-        setPlayerWantedLevel(thePlayer, vioGetElementData(thePlayer, "wanteds"))
-        outputChatBox("Da du das Atomkraftwerk betreten hast, hast du 3 Wanteds erhalten", thePlayer, 255, 0, 0)
-        setElementData(thePlayer, "noAKWAreaWanteds", true)
-        setTimer(function()
-            if (isElement(thePlayer)) then
-                setElementData(thePlayer, "noAKWAreaWanteds", nil)
-            end
-        end, 15*60*1000, 1)
-        outputChatBoxForPolice("Eine unbekannte Person hat das Atomkraftwerk betreten!")
-    end
-end
-
-function hitWarningArea(thePlayer)
-    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer)) then
-        outputChatBox("ACHTUNG!!! Sie nähern sich dem Atomkraftwerk! Ein Betreten wird mit 3 Wanteds bestraft!", thePlayer, 255, 0, 0)
-    end
-end
+--local restrictedArea, warningRestrictedArea
+--function createRestrictedArea()
+--    local x1 = 2576.825493
+--    local y1 = -2751.00708
+--    local x2 = 2809.03759
+--    local y2 = -2609.23193
+--    local abstandWarning = 47
+--    restrictedArea = createColRectangle(x1, y1, x2-x1, y2-y1)
+--    warningRestrictedArea = createColRectangle(x1-abstandWarning, y1-abstandWarning, x2-x1+abstandWarning*2, y2-y1+abstandWarning*2)
+--    addEventHandler("onColShapeHit", restrictedArea, hitArea)
+--    addEventHandler("onColShapeHit", warningRestrictedArea, hitWarningArea)
+--    createRadarArea(x1, y1, x2-x1, y2-y1, 255, 0, 0, 175)
+--end
+--
+--function hitArea(thePlayer)
+--    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer) and not getElementData(thePlayer, "noAKWAreaWanteds")) then
+--        if (not vioGetElementData(thePlayer, "wanteds")) then
+--            vioSetElementData(thePlayer, "wanteds", 0)
+--        end
+--        vioSetElementData(thePlayer, "wanteds", vioGetElementData(thePlayer, "wanteds") + 3)
+--        if (vioGetElementData(thePlayer, "wanteds") > 6) then
+--            vioSetElementData(thePlayer, "wanteds", 6)
+--        end
+--        setPlayerWantedLevel(thePlayer, vioGetElementData(thePlayer, "wanteds"))
+--        outputChatBox("Da du das Atomkraftwerk betreten hast, hast du 3 Wanteds erhalten", thePlayer, 255, 0, 0)
+--        setElementData(thePlayer, "noAKWAreaWanteds", true)
+--        setTimer(function()
+--            if (isElement(thePlayer)) then
+--                setElementData(thePlayer, "noAKWAreaWanteds", nil)
+--            end
+--        end, 15*60*1000, 1)
+--        outputChatBoxForPolice("Eine unbekannte Person hat das Atomkraftwerk betreten!")
+--    end
+--end
+--
+--function hitWarningArea(thePlayer)
+--    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer)) then
+--        outputChatBox("ACHTUNG!!! Sie nähern sich dem Atomkraftwerk! Ein Betreten wird mit 3 Wanteds bestraft!", thePlayer, 255, 0, 0)
+--    end
+--end
+--

@@ -262,7 +262,6 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         destroyElement(vehicle)
     end
 end
-
 addEvent("deleteVehicleByAdmin", true)
 addEventHandler("deleteVehicleByAdmin", getRootElement(), deletetheVehiclebyadmin_func)
 

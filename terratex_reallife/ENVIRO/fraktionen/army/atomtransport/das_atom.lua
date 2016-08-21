@@ -1,16 +1,18 @@
 -- Atomtransportmeldung Global
-local atomPickUp=createPickup ( 2639.5932617188,-2683.5114746094,13.807812690735, 3,1239)
+local atomPickUp=createPickup ( 2704.5,-2677.85,14.3, 3,1239, 10000)
 atomkatastrophe=false
-local atomtruckSpawn={2635.5654296875,-2688.8818359375,14.091137886047,359.70886230469,0.7635498046875,27.976684570313}
+local atomtruckSpawn={2705.1,-2682.84,14.21,0,0,270}
 local atombeamtenziel={2523.9482421875,2820.625,11.256578445435}
 local atomrest={-1579.1865234375,93.80078125,3.5506792068481}
 function startAtomTimer()
 	setTimer(controlOnAtom,60000,1)
+    createBoxes(serversettings["atommuell"])
+    createRestrictedArea()
 end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),startAtomTimer)
 
 function enteratomtransportpickup(thePlayer)
-	if(source==atomPickUp)then
+	if(source==atomPickUp and isBeamter(thePlayer))then
 		outputChatBox(string.format("Atomlager: %s von 100 Einheiten!", serversettings["atommuell"]),thePlayer,255,0,0)
 		if(serversettings["atommuell"]>50)then
 			outputChatBox("ACHTUNG!!! DIE MASSE NÄHERT SICH DEM KRITISCHEN PUNKT!",thePlayer,255,0,0)
@@ -20,34 +22,34 @@ function enteratomtransportpickup(thePlayer)
 end
 addEventHandler("onPickupHit",getRootElement(),enteratomtransportpickup)
 
-
 function atrans_func(thePlayer)
-	if(isBeamter(thePlayer))then
-		if(serversettings["atommuell"]==0)then
-			outputChatBox("Das Lager ist leer, ein Transport ist nicht nötig!",thePlayer,255,0,0)
-		else
-			local x,y,z=getElementPosition(thePlayer)
-			if(getDistanceBetweenPoints3D(x,y,z,atomtruckSpawn[1],atomtruckSpawn[2],atomtruckSpawn[3])<20)then
-				local atomveh=createVehicle(433,atomtruckSpawn[1],atomtruckSpawn[2],atomtruckSpawn[3],atomtruckSpawn[4],atomtruckSpawn[5],atomtruckSpawn[6])
-				vioSetElementData(atomveh,"frakid",5000)
-				vioSetElementData(atomveh,"atomveh",true)
-				if(serversettings["atommuell"]<26)then				
-					vioSetElementData(atomveh,"atomtransmenge",serversettings["atommuell"])
-					serversettings["atommuell"]=0
-				else
-					serversettings["atommuell"]=serversettings["atommuell"]-25
-					vioSetElementData(atomveh,"atomtransmenge",25)
-				end
-					addEventHandler("onVehicleEnter",atomveh,enterAtomTruck)
-					addEventHandler("onVehicleExit",atomveh,exitAtomTruck)
-					addEventHandler("onVehicleExplode", atomveh, AtomTruckExplode)
-				warpPedIntoVehicle(thePlayer,atomveh,0)				
-				outputChatBox("Ein Atomtransport ist auf dem Weg! Bitte räumen Sie den Weg!",getRootElement(),255,0,0)
-			end	
-		end
-	else
-		outputChatBox("Wir übergeben unsere atomare Masse nur an zuverlässige Beamte!",thePlayer,255,0,0)
-	end
+    if(isBeamter(thePlayer))then
+        if (serversettings["atommuell"]==0) then
+            outputChatBox("Das Lager ist leer, ein Transport ist nicht nötig!",thePlayer,255,0,0)
+        else
+            local x,y,z=getElementPosition(thePlayer)
+            outputChatBox("Ein Atomtransport ist auf dem Weg! Bitte räumen Sie den Weg!",getRootElement(),255,0,0)
+            if(getDistanceBetweenPoints3D(x,y,z,atomtruckSpawn[1],atomtruckSpawn[2],atomtruckSpawn[3])<20)then
+                local atomveh=createVehicle(433,atomtruckSpawn[1],atomtruckSpawn[2],atomtruckSpawn[3],atomtruckSpawn[4],atomtruckSpawn[5],atomtruckSpawn[6])
+                vioSetElementData(atomveh,"frakid",5000)
+                vioSetElementData(atomveh,"atomveh",true)
+                if(serversettings["atommuell"]<26)then				
+                    vioSetElementData(atomveh,"atomtransmenge",serversettings["atommuell"])
+                    serversettings["atommuell"]=0
+                else
+                    serversettings["atommuell"]=serversettings["atommuell"]-25
+                    vioSetElementData(atomveh,"atomtransmenge",25)
+                end
+                createBoxes(serversettings["atommuell"])
+                addEventHandler("onVehicleEnter",atomveh,enterAtomTruck)
+                addEventHandler("onVehicleExit",atomveh,exitAtomTruck)
+                addEventHandler("onVehicleExplode", atomveh, AtomTruckExplode)
+                warpPedIntoVehicle(thePlayer,atomveh,0)
+            end
+        end
+    else
+        outputChatBox("Wir übergeben unsere atomare Masse nur an zuverlässige Beamte!",thePlayer,255,0,0)
+    end
 end
 addCommandHandler("atrans",atrans_func,false,false)
 
@@ -168,12 +170,44 @@ function exitAtomTruck(thePlayer, seat)
 	end
 end
 
+local boxes = {}
+function createBoxes(atomTrash)
+    deleteAllBoxes()
+    local x = 2683.98
+    local y = -2676.63
+    local z = 12.5
+    local rx = 0
+    local ry = 0
+    local rz = 90
+    local g = 0
+    local trashCounter = 0
+    for i = 0, 3 do
+        for j = 0, 4 do
+            trashCounter = trashCounter + 5
+            if (trashCounter <= atomTrash) then
+                boxes[g] = createObject(2977, x+(i*1.8),y-(j*1.8),z, rx,ry,rz)
+                g = g + 1
+            else
+                break
+            end
+        end
+    end
+end
 
+function deleteAllBoxes()
+    for i = 0, #boxes do
+        if (isElement(boxes[i])) then
+            destroyElement(boxes[i])
+        end
+    end
+    boxes = {}
+end
 
 function controlOnAtom()
 	local time= getRealTime()
 	if(time.minute==0)then
 		serversettings["atommuell"]=serversettings["atommuell"]+1
+        createBoxes(serversettings["atommuell"])
 		if(serversettings["atommuell"]>50)then
 			outputChatBoxForPolice("Das Atomkraftwerk nähert sich der kritischen Masse!")
 			if not(FlutInAction) then
@@ -197,6 +231,7 @@ function atomkatastrophe_func()
 	lastWTimer=false
 	atomkatastrophe=true
 	serversettings["atommuell"]=0
+    createBoxes(serversettings["atommuell"])
 	triggerClientEvent(getRootElement(),"setAtomKatastropheClient",getRootElement(),true)
 	setWindVelocity ( 10,10,0 )
 	setSunColor ( 255,0,0,0,255,0 )
@@ -241,10 +276,43 @@ function endAtomKatastrophe()
 	lastWTimer=setTimer(changeWeather,10000,1)
 end
 
+local restrictedArea, warningRestrictedArea
+function createRestrictedArea()
+    local x1 = 2576.825493
+    local y1 = -2751.00708
+    local x2 = 2809.03759
+    local y2 = -2609.23193
+    local abstandWarning = 47
+    restrictedArea = createColRectangle(x1, y1, x2-x1, y2-y1)
+    warningRestrictedArea = createColRectangle(x1-abstandWarning, y1-abstandWarning, x2-x1+abstandWarning*2, y2-y1+abstandWarning*2)
+    addEventHandler("onColShapeHit", restrictedArea, hitArea)
+    addEventHandler("onColShapeHit", warningRestrictedArea, hitWarningArea)
+    createRadarArea(x1, y1, x2-x1, y2-y1, 255, 0, 0, 175)
+end
 
+function hitArea(thePlayer)
+    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer) and not getElementData(thePlayer, "noAKWAreaWanteds")) then
+        if (not vioGetElementData(thePlayer, "wanteds")) then
+            vioSetElementData(thePlayer, "wanteds", 0)
+        end
+        vioSetElementData(thePlayer, "wanteds", vioGetElementData(thePlayer, "wanteds") + 3)
+        if (vioGetElementData(thePlayer, "wanteds") > 6) then
+            vioSetElementData(thePlayer, "wanteds", 6)
+        end
+        setPlayerWantedLevel(thePlayer, vioGetElementData(thePlayer, "wanteds"))
+        outputChatBox("Da du das Atomkraftwerk betreten hast, hast du 3 Wanteds erhalten", thePlayer, 255, 0, 0)
+        setElementData(thePlayer, "noAKWAreaWanteds", true)
+        setTimer(function()
+            if (isElement(thePlayer)) then
+                setElementData(thePlayer, "noAKWAreaWanteds", nil)
+            end
+        end, 15*60*1000, 1)
+        outputChatBoxForPolice("Eine unbekannte Person hat das Atomkraftwerk betreten!")
+    end
+end
 
-
-
-
-
-
+function hitWarningArea(thePlayer)
+    if (getElementType(thePlayer) == "player" and not isBeamter(thePlayer)) then
+        outputChatBox("ACHTUNG!!! Sie nähern sich dem Atomkraftwerk! Ein Betreten wird mit 3 Wanteds bestraft!", thePlayer, 255, 0, 0)
+    end
+end

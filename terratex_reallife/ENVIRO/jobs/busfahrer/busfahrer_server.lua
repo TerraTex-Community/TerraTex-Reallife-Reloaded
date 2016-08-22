@@ -45,7 +45,7 @@ function setNextStation(hitElement)
 
                     local skillLevel = vioGetElementData(thePlayer, "busSkill");
 
-                    bonus = Math.round(bonus / (6 - skillLevel));
+                    bonus = math.round(bonus / (6 - skillLevel));
 
                     -- Geld zum PayDay addieren
                     vioSetElementData(thePlayer, "addPayDayGehalt", vioGetElementData(thePlayer, "addPayDayGehalt") + bonus);

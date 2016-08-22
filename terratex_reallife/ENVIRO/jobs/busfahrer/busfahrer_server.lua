@@ -34,7 +34,7 @@ function setNextStation(hitElement)
                 local oldID = vioGetElementData(hitElement, "station")
                 local newID = getNextRouteHaltestellenIndex(route, oldID)
 
-                if (newId == 1) then
+                if (newID == 1) then
                     local bonus = routenBonus[route];
 
                     if isWetterEventID == 7 then

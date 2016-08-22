@@ -159,7 +159,7 @@ function resetPlayerHasSpawnedABus(thePlayer)
     end
 end
 
-local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true}
+local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true, ["chilliad"] = true}
 function startbus_cmd(thePlayer, cmd, routenname)
     if (vioGetElementData(thePlayer, "job") == 4) then
         if (vioGetElementData(thePlayer, "truckLic") > 0) then
@@ -214,10 +214,10 @@ function startbus_cmd(thePlayer, cmd, routenname)
                             end
                         end
                     else
-                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert und job", thePlayer, 255, 0, 0)
+                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chilliad", thePlayer, 255, 0, 0)
                     end
                 else
-                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert und job", thePlayer, 255, 0, 0)
+                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chilliad", thePlayer, 255, 0, 0)
                 end
             else
                 showError(thePlayer, "Du hast bereits einen Bus in den letzten 5 Minuten gestartet.")

@@ -212,10 +212,11 @@ function onMunTruckHit()
 					outputChatBox("Der Waffentruck ist beschädigt! Verteidige ihn bis er wieder funktioniert!",occupants[seat],255,0,0)
 					vioGetElementData(source,"MunDriver",false)
 					ejectPed(occupants[seat])
-					local rx,ry,rz=getElementRotation(source)
-					setElementRotation(source,0,0,rz)
 				end			
 			end
+			local rx,ry,rz=getElementRotation(source)
+			setElementRotation(source,0,0,rz)
+
 			setTimer(unfreezeMunTruck,60000,1,source)
 		end
 	end

@@ -220,7 +220,6 @@ function onMunTruckHit()
 			setTimer(unfreezeMunTruck,60000,1,source)
 		end
 	end
-
 end
 addEventHandler("onVehicleDamage",getRootElement(),onMunTruckHit)
 

@@ -472,6 +472,7 @@
     <script src="ENGINE/mapFileAdditions/mapEditorScriptingExtension_c.lua" type="client"/>
     <script src="ENGINE/mapFileAdditions/mapEditorScriptingExtension_s.lua" type="server"/>
     <script src="ENGINE/mapFileAdditions/allDimensionObject_client.lua" type="client"/>
+    <script src="ENGINE/mapFileAdditions/noOcclusionZones_client.lua" type="client"/>
     <!-- SF AIPORT -->
     <map src="MAPS/umgebung/map-sf-airport.map"/>
     <script src="MAPS/mapscripts/vorplatzwasser.lua" type="server"/>

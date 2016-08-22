@@ -45,6 +45,7 @@ function setPremiumVehicleLightColor_func(newcolorstring)
                         setVehicleHeadLightColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                         changePlayerMoney(thePlayer, -2500, "fahrzeug", "/pcolor", "Fahrzeugfarbe")
                         save_car(vehicle)
+                        triggerClientEvent(thePlayer, "pColor_Preview_setLightBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                     else
                         showError(thePlayer, "Du bist nicht Besitzer des Fahrzeugs!")
                     end
@@ -54,6 +55,7 @@ function setPremiumVehicleLightColor_func(newcolorstring)
                         vioSetElementData(vehicle, "Lichterfarbe", newcolorstring)
                         setVehicleOverrideLights(vehicle, 2)
                         setVehicleHeadLightColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
+                        triggerClientEvent(thePlayer, "pColor_Preview_setLightBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                     else
                         showError(thePlayer, "Du bist nicht Besitzer des Fahrzeugs und dieses Fahrzeug gehört auch nicht zu deiner Fraktion!")
                     end
@@ -87,6 +89,7 @@ function setPremiumVehicleColor_func(newcolorstring)
                         setVehicleColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]), tonumber(colors[4]), tonumber(colors[5]), tonumber(colors[6]))
                         changePlayerMoney(thePlayer, -7500, "fahrzeug", "/pcolor", "Fahrzeugfarbe")
                         save_car(vehicle)
+                        triggerClientEvent(thePlayer, "pColor_Preview_setColorBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]), tonumber(colors[4]), tonumber(colors[5]), tonumber(colors[6]))
                     else
                         showError(thePlayer, "Du bist nicht Besitzer des Fahrzeugs!")
                     end
@@ -94,6 +97,7 @@ function setPremiumVehicleColor_func(newcolorstring)
                     if (table.hasValue(frakselfcars[13], vehicle)) then
                         local colors = getStringComponents(newcolorstring)
                         setVehicleColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]), tonumber(colors[4]), tonumber(colors[5]), tonumber(colors[6]))
+                        triggerClientEvent(thePlayer, "pColor_Preview_setColorBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]), tonumber(colors[4]), tonumber(colors[5]), tonumber(colors[6]))
                     else
                         showError(thePlayer, "Du bist nicht Besitzer des Fahrzeugs und dieses Fahrzeug gehört auch nicht zu deiner Fraktion!")
                     end

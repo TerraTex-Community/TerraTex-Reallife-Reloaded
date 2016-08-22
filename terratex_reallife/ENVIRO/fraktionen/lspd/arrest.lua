@@ -3,11 +3,13 @@ local isStellBoit = {}
 
 function onStellBotSpawn()
     local bot = createPed(280, 238.961914062, 112.734375, 1003.21875, 274.67611694336)
+    setElementFrozen(bot, true);
     isStellBoit[bot] = true
     setElementInterior(bot, 10)
     bot = createPed(280, 233.044921875, 166.481445, 1003.02343, 265.45846557617)
     isStellBoit[bot] = true
     setElementInterior(bot, 3)
+    setElementFrozen(bot, true);
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)

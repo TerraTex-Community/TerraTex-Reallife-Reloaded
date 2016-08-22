@@ -167,18 +167,20 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
             local gangInNear = 0
             local policeInNear = 0
             for theKey, thePlayer in ipairs(getElementsByType("player")) do
-                if (isBeamter(thePlayer)) then
-                    local px, py, pz = getElementPosition(thePlayer)
-                    local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
-                    if (dis < 20) then
-                        policeInNear = policeInNear + 1
+                if (thePlayer ~= source) then
+                    if (isBeamter(thePlayer)) then
+                        local px, py, pz = getElementPosition(thePlayer)
+                        local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
+                        if (dis < 20) then
+                            policeInNear = policeInNear + 1
+                        end
                     end
-                end
-                if (vioGetElementData(thePlayer, "fraktion") == 5 or vioGetElementData(thePlayer, "fraktion") == 2) or vioGetElementData(thePlayer, "fraktion") == 12 or vioGetElementData(thePlayer, "fraktion") == 11 then
-                    local px, py, pz = getElementPosition(thePlayer)
-                    local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
-                    if (dis < 20) then
-                        gangInNear = gangInNear + 1
+                    if (vioGetElementData(thePlayer, "fraktion") == 5 or vioGetElementData(thePlayer, "fraktion") == 2) or vioGetElementData(thePlayer, "fraktion") == 12 or vioGetElementData(thePlayer, "fraktion") == 11 then
+                        local px, py, pz = getElementPosition(thePlayer)
+                        local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
+                        if (dis < 20) then
+                            gangInNear = gangInNear + 1
+                        end
                     end
                 end
             end

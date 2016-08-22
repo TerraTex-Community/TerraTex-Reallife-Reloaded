@@ -23,7 +23,8 @@ function setNextStation(hitElement)
                 end
 
                 local betragDirekt, betragPayDay = giveJobGehalt(thePlayer, 4, 1)
-                showError(thePlayer, string.format("Du erhälst für diese Haltestelle %s Gehalt. Zusätzlich hast du %s durch Fahrgäste verdient.", toprice(betragPayDay), toprice(betragDirekt)))
+                local message = string.format("Du erhälst für diese Haltestelle %s Gehalt. Zusätzlich hast du %s durch Fahrgäste verdient.", toprice(betragPayDay), toprice(betragDirekt));
+
                 --showError(thePlayer,string.format("Da du die Station erreicht hast erhaelst du %s $", betragDirekt+betragPayDay))
 
 
@@ -32,6 +33,29 @@ function setNextStation(hitElement)
                 local route = vioGetElementData(hitElement, "route")
                 local oldID = vioGetElementData(hitElement, "station")
                 local newID = getNextRouteHaltestellenIndex(route, oldID)
+
+                if (newId == 1) then
+                    local bonus = routenBonus[route];
+
+                    if isWetterEventID == 7 then
+                        bonus = bonus * 1.5;
+                    elseif isWetterEventID == 8 then
+                        bonus = bonus * 0.5;
+                    end
+
+                    local skillLevel = vioGetElementData(thePlayer, "busSkill");
+
+                    bonus = Math.round(bonus / (6 - skillLevel));
+
+                    -- Geld zum PayDay addieren
+                    vioSetElementData(thePlayer, "addPayDayGehalt", vioGetElementData(thePlayer, "addPayDayGehalt") + bonus);
+                    --PayDay Gehalt in den Log anzeigen
+                    saveMoneyLog(thePlayer, "Bank", "job", betragPayDay, "Busfahrer", "Gehalt zum PayDay");
+
+                    message = message .. " Für den Abschluss der Route erhälst du " .. toprice(bonus) .. ".";
+                end
+
+                showError(thePlayer, message);
                 vioSetElementData(hitElement, "station", newID)
                 local mx, my, mz = getHaltestellenKoordinatenByRouteID(route, newID)
                 local station = vioGetElementData(hitElement, "station")
@@ -159,7 +183,7 @@ function resetPlayerHasSpawnedABus(thePlayer)
     end
 end
 
-local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true, ["chilliad"] = true}
+local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true, ["chiliad"] = true}
 function startbus_cmd(thePlayer, cmd, routenname)
     if (vioGetElementData(thePlayer, "job") == 4) then
         if (vioGetElementData(thePlayer, "truckLic") > 0) then
@@ -214,10 +238,10 @@ function startbus_cmd(thePlayer, cmd, routenname)
                             end
                         end
                     else
-                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chilliad", thePlayer, 255, 0, 0)
+                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chiliad", thePlayer, 255, 0, 0)
                     end
                 else
-                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chilliad", thePlayer, 255, 0, 0)
+                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chiliad", thePlayer, 255, 0, 0)
                 end
             else
                 showError(thePlayer, "Du hast bereits einen Bus in den letzten 5 Minuten gestartet.")

@@ -36,6 +36,7 @@
     <script src="USEFULL_SCRIPTS/elementText/showElementText_server.lua" type="server"/>
     <script src="USEFULL_SCRIPTS/vehicle.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/vehicle_client.lua" type="client"/>
+    <script src="USEFULL_SCRIPTS/garageFunctions.lua" type="shared"/>
     <!--custom eventmanager -->
     <script src="SYSTEM/eventmanager/client.lua" type="client"/>
     <script src="SYSTEM/eventmanager/server.lua" type="server"/>

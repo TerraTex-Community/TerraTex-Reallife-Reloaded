@@ -1,15 +1,22 @@
-supershopMarkers = {};
+supershopMarkers = {}
+supershopMarkers[18] = {marker = false, x = -27.3447265625, y = -89.7255859375, z = 1003.546875} -- 24/7 Shop 1
+supershopMarkers[6] = {marker = false, x = -23.4, y = -55.5, z = 1003.5} -- 24/7 Shop 2
+
 function createSuperShopMarkers()
-	local marker = createMarker(-27.3447265625, -89.7255859375, 1003.546875, "corona", 1);
-	table.insert(supershopMarkers, {marker, -27.3447265625, -89.7255859375, 1003.546875});
-	setElementInterior(marker, 18);
-	for i = 1, 20, 1 do
-		local marker = createMarker(-27.3447265625, -89.7255859375, 1003.546875, "corona", 1);
-		setElementInterior(marker, 18);
-		setElementDimension(marker, i);
-	end
+    for keyShopMarker, tableShopMarker in next, supershopMarkers do
+        supershopMarkers[keyShopMarker].marker = createMarker(tableShopMarker.x, tableShopMarker.y, tableShopMarker.z, "corona", 1)
+        setElementInterior(supershopMarkers[keyShopMarker].marker, keyShopMarker)
+        
+        for keyMarker, tableMarker in ipairs(shop247marker) do
+            if (tableMarker.interior == keyShopMarker) then
+                local marker = createMarker(tableShopMarker.x, tableShopMarker.y, tableShopMarker.z, "corona", 1)
+                setElementInterior(marker, keyShopMarker)
+                setElementDimension(marker, keyMarker)
+            end
+        end
+    end
 end
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createSuperShopMarkers)
+addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createSuperShopMarkers)
 
 SuperShopWaren = {2.99, 24.89, 589.75, 15, 1.95, 4.85, 9.99, 49.75, 53.45, 485.75, 10000, 10000, 2.50, 2.50, 145.29};
 addEvent("buySuperShopGUI_Event",true)
@@ -122,11 +129,3 @@ function closeSuperShopGUI()
 	setElementPosition(source, supershopMarkers[id][2], supershopMarkers[id][3], supershopMarkers[id][4]);
 end
 addEventHandler("closeSuperShopGUI_Event", getRootElement(), closeSuperShopGUI)
-
-
-
-
-
-
-
-

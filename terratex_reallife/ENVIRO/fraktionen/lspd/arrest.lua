@@ -253,7 +253,6 @@ function frisk_func(thePlayer, Command, vonPlayerName)
         end
     end
 end
-
 addCommandHandler("frisk", frisk_func, false, false)
 
 addEvent("sendAlkDrugData", true)

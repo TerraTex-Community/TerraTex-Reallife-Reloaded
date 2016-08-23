@@ -13,8 +13,6 @@ function drop_func(thePlayer, Command, theWas)
                 outputChatBox(string.format("%s hat eine Tüte mit weißen Pulver weggeworfen!", pname), nearbyPlayer, 255, 255, 200)
             end
 
-
-
         elseif (theWas == "Materials") then
             vioSetElementData(thePlayer, "mats", 0)
             local posX, posY, posZ = getElementPosition(thePlayer)
@@ -25,9 +23,6 @@ function drop_func(thePlayer, Command, theWas)
             for index, nearbyPlayer in ipairs(nearbyPlayers) do
                 outputChatBox(string.format("%s hat einen schwarzen klirrenden Beutel weggeworfen!", pname), nearbyPlayer, 255, 255, 200)
             end
-
-
-
 
         elseif (theWas == "Benzinkanister") then
             vioSetElementData(thePlayer, "kanister", 0)
@@ -76,9 +71,7 @@ function drop_func(thePlayer, Command, theWas)
         end
     end
 end
-
 addCommandHandler("drop", drop_func, false, false)
-
 
 function use_func(thePlayer, Command, wasString)
     if (wasString == "AD-Gutscheine") then
@@ -222,7 +215,6 @@ function use_func(thePlayer, Command, wasString)
         showError(thePlayer, "Du kannst nur folgende Dinge mir /use verwenden: Drogen,Rubbellose,Benzinkanister,Snack,Hamburger,Fertigessen,Schnellhilfe,Lottoscheine!")
     end
 end
-
 addCommandHandler("use", use_func, false, false)
 
 function sendDiceText(thePlayer, dicetext)
@@ -304,7 +296,6 @@ function dice_func(thePlayer, cmd, argA, argB)
         end
     end
 end
-
 addCommandHandler("dice", dice_func, false, false)
 addCommandHandler("Würfel", dice_func, false, false)
 
@@ -341,16 +332,12 @@ function lotto_func(thePlayer, Command, numA, numB, numC)
         showError(thePlayer, "Du hast besitzt keine Lottoscheine die du einreichen könntest!")
     end
 end
-
 addCommandHandler("lotto", lotto_func, false, false)
-
 
 function jackpot_func(thePlayer)
     outputChatBox(string.format("Der Lottojackpot liegt bei %s$", serversettings["lottojackpot"]), thePlayer)
 end
-
 addCommandHandler("jackpot", jackpot_func)
-
 
 function pass_cmd(thePlayer, cmd, showplayer)
     local imBesitz = { "nicht im Besitz", "im Besitz" }
@@ -376,13 +363,8 @@ function pass_cmd(thePlayer, cmd, showplayer)
         outputChatBox("Nutzung: /pass [name]", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("pass", pass_cmd, false, false)
 
-
-
-
-
-
-
-
+addCommandHandler("testdrug", function (thePlayer)
+    outputChatBox(vioGetElementData(thePlayer, "DrogenImBlut"));
+end)

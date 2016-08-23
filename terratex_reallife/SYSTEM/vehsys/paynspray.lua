@@ -1,6 +1,7 @@
 local paynsprayMarker = {}
 
 function openPaynSpray()
+    createGarage(100, 13028, 1650.41,73.64,38.578, 1.05,0,255.7836, 1650.1,72.6,40.37, 1.05,90,255.7836) --Tankstelle an Maut LS<->LV
 
     setGarageOpen(12, true)
     setGarageOpen(8, true)
@@ -12,6 +13,7 @@ function openPaynSpray()
     setGarageOpen(32, true)
     setGarageOpen(19, true)
     setGarageOpen(27, true)
+    setGarageOpen(100, true)
     local mark = createMarker(2063.349609375, -1831.2890625, 11.252596855164, "cylinder", 4.0, 0, 0, 0, 0)
     table.insert(paynsprayMarker, { mark, 8 })
     local mark = createMarker(487.388671875, -1741.552734375, 8.837544441223, "cylinder", 4.0, 0, 0, 0, 0)
@@ -32,6 +34,8 @@ function openPaynSpray()
     table.insert(paynsprayMarker, { mark, 19 })
     local mark = createMarker(-2425.642578125, 1021.76953125, 50.397659301758, "cylinder", 4.0, 0, 0, 0, 0)
     table.insert(paynsprayMarker, { mark, 27 })
+    local mark = createMarker(1648, 63.1, 37.7, "cylinder", 4.0, 0, 0, 0, 0)
+    table.insert(paynsprayMarker, { mark, 100 })
     for theKey, theTable in ipairs(paynsprayMarker) do
         local x, y, z = getElementPosition(theTable[1])
         createBlip(x, y, z, 63, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) -- Pay'N'Spray

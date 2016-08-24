@@ -364,7 +364,3 @@ function pass_cmd(thePlayer, cmd, showplayer)
     end
 end
 addCommandHandler("pass", pass_cmd, false, false)
-
-addCommandHandler("testdrug", function (thePlayer)
-    outputChatBox(vioGetElementData(thePlayer, "DrogenImBlut"));
-end)

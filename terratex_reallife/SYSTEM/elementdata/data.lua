@@ -105,10 +105,3 @@ function changeVioElementData(player, dataString, value, valuebefore)
     end
 end
 
-
-
-
-
-
-
-

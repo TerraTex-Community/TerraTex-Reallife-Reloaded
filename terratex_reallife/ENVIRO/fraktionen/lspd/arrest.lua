@@ -543,17 +543,31 @@ function tazer_func(thePlayer)
                 if (nearestplayer == thePlayer) then nearestplayer = false end
                 if (nearestplayer) then
                     if (vioGetElementData(thePlayer, "Tazer") == 0) then
-                        local posX, posY, posZ = getElementPosition(nearestplayer)
-                        local chatSphere = createColSphere(posX, posY, posZ, 10)
-                        local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
-                        destroyElement(chatSphere)
-                        for index, nearbyPlayer in ipairs(nearbyPlayers) do
-                            outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                        local hasTazerEffect = true;
+                        local drugs = tonumber(getElementData(nearestplayer, "DrogenImBlut"))
+                        if (drugs > 20) then
+                            if (math.random(1,2) == 1) then
+                                hasTazerEffect = false;
+                            end
                         end
-                        toggleAllControls(nearestplayer, false, true, false)
-                        setPedAnimation(nearestplayer, "crack", "crckdeth2", -1, true, true, true)
-                        setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
-                        vioSetElementData(thePlayer, "Tazer", 1)
+
+                        if (hasTazerEffect) then
+                            local posX, posY, posZ = getElementPosition(nearestplayer)
+                            local chatSphere = createColSphere(posX, posY, posZ, 10)
+                            local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
+                            destroyElement(chatSphere)
+                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                                outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                            end
+                            toggleAllControls(nearestplayer, false, true, false)
+                            setPedAnimation(nearestplayer, "crack", "crckdeth2", -1, true, true, true)
+                            setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
+                            vioSetElementData(thePlayer, "Tazer", 1)
+                        else
+                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                                outputChatBox(string.format("%s hat %s getazert, allerdings zeigte dieser keinen Effect!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                            end
+                        end
                     else
                         showError(thePlayer, "Du kannst den Tazer nur alle 7 Sekunden nutzen!")
                     end
@@ -564,7 +578,6 @@ function tazer_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("tazer", tazer_func, false, false)
 
 function unfreeze_tazer(thePlayer, police)

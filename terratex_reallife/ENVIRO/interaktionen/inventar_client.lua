@@ -25,7 +25,7 @@ function refuseDrugedTime()
             everyTenDrug = everyTenDrug + 1
         end
 
-        drogenGramm = drogenGramm - 0.012
+        drogenGramm = drogenGramm - 0.024
     else
         if (drugeffekt_new) then
             coloroff(false)

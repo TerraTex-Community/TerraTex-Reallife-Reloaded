@@ -37,7 +37,7 @@ function refuseDrugedTime()
     if (drugedTime > 0) then
         drugedTime = drugedTime - 1
     end
-    setElementData(source, "DrogenImBlut", drogenGramm);
+    setElementData(getLocalPlayer(), "DrogenImBlut", drogenGramm);
     setTimer(refuseDrugedTime, 1000, 1)
 end
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), refuseDrugedTime)
@@ -46,7 +46,7 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 function addDrugTime()
     drugedTime = drugedTime + 0.3
     drogenGramm = drogenGramm + 0.5
-    setElementData(source, "DrogenImBlut", drogenGramm);
+    setElementData(getLocalPlayer(), "DrogenImBlut", drogenGramm);
 end
 addEvent("addDrugTime_Event", true)
 addEventHandler("addDrugTime_Event", getRootElement(), addDrugTime)

@@ -39,7 +39,7 @@ function loadPrivCars()
         end
         local abgeschleppt = 0
         abgeschleppt = tonumber(dasatz["abgeschleppt"])
-        if (tonumber(dasatz["SpawnX"]) == 0 and tonumber(dasatz["SpawnY"]) == 0 and tonumber(dasatz["SpawnZ"]) == 0) and not (abgeschleppt == 1) then
+        if (tonumber(dasatz["SpawnX"]) == 0 and tonumber(dasatz["SpawnY"]) == 0 and tonumber(dasatz["SpawnZ"]) == 0) and not (abgeschleppt == 1) and not (isDevServer()) then
             abgeschleppt = 1
             local name = "Fahrzeugspawnsystem"
             local nameofCar = dasatz["Besitzer"]

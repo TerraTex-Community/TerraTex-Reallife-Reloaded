@@ -7,7 +7,7 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
         end
         if (driverCounter == 0) then
             local vehicleType = getVehicleType(lastclicked)
-            if (((getElementData(lastclicked,"besitzer") and getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) and getElementType(lastclicked) == "vehicle" and getElementData(lastclicked,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer()))) then
+            if (getElementType(lastclicked) == "vehicle" and getElementData(lastclicked,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer()))) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
                 local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
                 local kmh = actualspeed * 180

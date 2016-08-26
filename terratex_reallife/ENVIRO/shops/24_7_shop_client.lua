@@ -121,7 +121,6 @@ local oldValues = { ["Snack"] = 1.95, ["Hamburger"] = 4.85, ["Fertigessen"] = 9.
 function closeSuperShopGUI()
     guiSetVisible(SuperShop_Window[1], false);
     showCursor(false);
-    triggerServerEvent("closeSuperShopGUI_Event", getLocalPlayer());
 end
 
 --addEventHandler("closeShopGUIS",getRootElement(),closeSuperShopGUI)

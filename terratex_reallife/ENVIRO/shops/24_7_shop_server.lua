@@ -125,9 +125,3 @@ function loadSuperShop_func(hitElement)
     end
 end
 
-addEvent("closeSuperShopGUI_Event", true)
---function closeSuperShopGUI()
---    local id = vioGetElementData(source, "lastSuperShop");
---    setElementPosition(source, supershopMarkers[id][2], supershopMarkers[id][3], supershopMarkers[id][4]);
---end
---addEventHandler("closeSuperShopGUI_Event", getRootElement(), closeSuperShopGUI)

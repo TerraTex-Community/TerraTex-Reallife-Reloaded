@@ -123,8 +123,6 @@ function closeSuperShopGUI()
     showCursor(false);
 end
 
---addEventHandler("closeShopGUIS",getRootElement(),closeSuperShopGUI)
-
 addEvent("showSuperGUI_Event", true)
 function showSuperShopGUI()
     local faktor = 1;
@@ -148,7 +146,6 @@ function showSuperShopGUI()
     guiSetVisible(SuperShop_Window[1], true);
     showCursor(true);
 end
-
 addEventHandler("showSuperGUI_Event", getRootElement(), showSuperShopGUI)
 
 SuperShop_Description = {
@@ -180,7 +177,6 @@ function clickOnSuperShopGui()
         end
     end
 end
-
 addEventHandler("onClientGUIClick", getRootElement(), clickOnSuperShopGui)
 
 

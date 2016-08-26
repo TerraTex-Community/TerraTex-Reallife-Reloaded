@@ -19,7 +19,6 @@ function createSuperShopMarkers()
         setElementDimension(marker, keyMarker)
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createSuperShopMarkers)
 
 addEvent("buySuperShopGUI_Event", true)
@@ -114,6 +113,7 @@ function buySuperShopGUI(id)
         end
     end
 end
+addEventHandler("buySuperShopGUI_Event", getRootElement(), buySuperShopGUI)
 
 function loadSuperShop_func(hitElement)
     for theKey, theMarker in pairs(shopMarker) do

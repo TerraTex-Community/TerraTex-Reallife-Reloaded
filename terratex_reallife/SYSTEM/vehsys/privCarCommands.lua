@@ -469,7 +469,6 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID, price)
         end
     end
 end
-
 addCommandHandler("sellcar", sellcar_func, false, false)
 
 function accept_sellcar(toPlayer)
@@ -570,10 +569,10 @@ function accept_sellcar(toPlayer)
                 showError(thePlayer, "Das Fahrzeug ist nicht in eurer Nähe.")
             end
         else
-            showError(thePlayer, "Der Spieler ist nicht in deiner Nähe.");
+            showError(thePlayer, "Der Verkäufer ist nicht in deiner Nähe.");
         end
     else
-        showError(thePlayer, "Dieser Spieler hat keinen freien Slot mehr!")
+        showError(thePlayer, "Du hast keinen freien Slot mehr!")
     end
 end
 

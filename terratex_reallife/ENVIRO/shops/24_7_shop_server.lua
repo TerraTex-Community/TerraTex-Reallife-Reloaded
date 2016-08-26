@@ -8,10 +8,11 @@ function createSuperShopMarkers()
     for keyShopMarker, tableShopMarker in pairs(shopMarker) do
         shopMarker[keyShopMarker].marker = createMarker(tableShopMarker.x, tableShopMarker.y, tableShopMarker.z, "corona", 1)
         setElementInterior(shopMarker[keyShopMarker].marker, keyShopMarker)
-        addEventHandler("buySuperShopGUI_Event", shopMarker[keyShopMarker].marker, buySuperShopGUI)
+        addEventHandler("onMarkerHit", shopMarker[keyShopMarker].marker, loadSuperShop_func)
     end
 
     -- create Fake Markers for view
+    local ports = get247PortTable()
     for keyMarker, tableMarker in ipairs(get247PortTable()) do
         local marker = createMarker(shopMarker[tableMarker.interior].x, shopMarker[tableMarker.interior].y, shopMarker[tableMarker.interior].z, "corona", 1)
         setElementInterior(marker, tableMarker.interior)
@@ -115,8 +116,8 @@ function buySuperShopGUI(id)
 end
 
 function loadSuperShop_func(hitElement)
-    for theKey, theMarker in ipairs(supershopMarkers) do
-        if (theMarker[1] == source) then
+    for theKey, theMarker in pairs(shopMarker) do
+        if (theMarker.marker == source) then
             vioSetElementData(hitElement, "lastSuperShop", theKey);
             triggerClientEvent(hitElement, "showSuperGUI_Event", hitElement);
             break;
@@ -124,12 +125,9 @@ function loadSuperShop_func(hitElement)
     end
 end
 
-addEventHandler("onMarkerHit", getRootElement(), loadSuperShop_func)
-
 addEvent("closeSuperShopGUI_Event", true)
-function closeSuperShopGUI()
-    local id = vioGetElementData(source, "lastSuperShop");
-    setElementPosition(source, supershopMarkers[id][2], supershopMarkers[id][3], supershopMarkers[id][4]);
-end
-
-addEventHandler("closeSuperShopGUI_Event", getRootElement(), closeSuperShopGUI)
+--function closeSuperShopGUI()
+--    local id = vioGetElementData(source, "lastSuperShop");
+--    setElementPosition(source, supershopMarkers[id][2], supershopMarkers[id][3], supershopMarkers[id][4]);
+--end
+--addEventHandler("closeSuperShopGUI_Event", getRootElement(), closeSuperShopGUI)

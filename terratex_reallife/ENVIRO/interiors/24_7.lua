@@ -27,7 +27,7 @@ local shop247marker = {
 function get247PortTable()
     return shop247marker;
 end
-	
+
 local shop247innenport = {}
 shop247innenport[18] = {x = -31.224609375, y = -88.9921875, z = 1004.46875} --24/7 Shop 1
 shop247innenport[6] = {x = -26.6, y = -56.5, z = 1003.5} --24/7 Shop 2
@@ -49,7 +49,7 @@ function on247Create()
             end
         end
     end
-    
+
     for theKey, theTable in ipairs(shop247marker) do
         theTable.marker = createMarker(theTable.x, theTable.y, theTable.z, "corona", 2.0)
     end
@@ -57,41 +57,41 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), on247Create)
 
 function onPlayerJOin_shopblip()
-	setTimer(loadEinkaufBlips, 10000, 1, source)
+    setTimer(loadEinkaufBlips, 10000, 1, source)
 end
 addEventHandler("onPlayerJoin", getRootElement(), onPlayerJOin_shopblip)
 
 function loadEinkaufBlips(source)
-	if (isElement(source)) then
-		for theKey, theTable in ipairs(shop247marker)do
-			local x, y, z = getElementPosition(theTable.marker)
-			triggerClientEvent(source, "createCustomBlip_event", source, x, y, 16, 16, "FILES/IMAGES/blips/kauf.png", 255)
-		end
-	end
+    if (isElement(source)) then
+        for theKey, theTable in ipairs(shop247marker)do
+            local x, y, z = getElementPosition(theTable.marker)
+            triggerClientEvent(source, "createCustomBlip_event", source, x, y, 16, 16, "FILES/IMAGES/blips/kauf.png", 255)
+        end
+    end
 end
 
 function portPlayerIn247(thePlayer)
-	if (isElement(thePlayer)) then
-		if (getElementType(thePlayer)=="player") then
-			if (not isPedInVehicle(thePlayer)) then
-				for theKey, theTable in ipairs(shop247marker) do
-					if (theTable.marker==source) then
-						setElementPosition(thePlayer, shop247innenport[theTable.interior].x, shop247innenport[theTable.interior].y, shop247innenport[theTable.interior].z)
-						setElementDimension(thePlayer, theKey)
-						setElementInterior(thePlayer, theTable.interior)
-						vioSetElementData(thePlayer, "in247bell", theKey)
-					end
-				end
-			end
-		end
-	end
+    if (isElement(thePlayer)) then
+        if (getElementType(thePlayer)=="player") then
+            if (not isPedInVehicle(thePlayer)) then
+                for theKey, theTable in ipairs(shop247marker) do
+                    if (theTable.marker==source) then
+                        setElementDimension(thePlayer, theKey)
+                        setElementInterior(thePlayer, theTable.interior)
+                        vioSetElementData(thePlayer, "in247bell", theKey)
+                        setElementPosition(thePlayer, shop247innenport[theTable.interior].x, shop247innenport[theTable.interior].y, shop247innenport[theTable.interior].z)
+                    end
+                end
+            end
+        end
+    end
 end
 addEventHandler("onMarkerHit", getRootElement(), portPlayerIn247)
 
 function portPlayerOutof247(thePlayer)
-	local in247=vioGetElementData(thePlayer,"in247bell")
-	setElementPosition(thePlayer, shop247marker[in247].pedX, shop247marker[in247].pedY, shop247marker[in247].pedZ)
-	setElementInterior(thePlayer, 0)
-	setElementDimension(thePlayer, 0)
-	triggerClientEvent(thePlayer, "closeShopGUIS", thePlayer)
+    local in247=vioGetElementData(thePlayer,"in247bell")
+    setElementInterior(thePlayer, 0)
+    setElementDimension(thePlayer, 0)
+    setElementPosition(thePlayer, shop247marker[in247].pedX, shop247marker[in247].pedY, shop247marker[in247].pedZ)
+    triggerClientEvent(thePlayer, "closeShopGUIS", thePlayer)
 end

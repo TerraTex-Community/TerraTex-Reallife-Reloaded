@@ -37,6 +37,8 @@
     <script src="USEFULL_SCRIPTS/vehicle.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/vehicle_client.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/garageFunctions.lua" type="shared"/>
+
+    <script src="ENVIRO/accept.lua" type="server"/>
     <!--custom eventmanager -->
     <script src="SYSTEM/eventmanager/client.lua" type="client"/>
     <script src="SYSTEM/eventmanager/server.lua" type="server"/>
@@ -181,7 +183,6 @@
     <script src="ENVIRO/baustellen.lua" type="server"/>
     <script src="ENVIRO/radio_streamer.lua" type="client"/>
     <script src="ENVIRO/heli.lua" type="server"/>
-    <script src="ENVIRO/accept.lua" type="server"/>
     
     <!-- Spezielle Autos -->
     <script src="ENVIRO/specialCars/abschleppTruck/abschleppTruck_server.lua" type="server"/>

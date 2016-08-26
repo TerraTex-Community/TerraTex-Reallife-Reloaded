@@ -279,13 +279,11 @@ function deletecar_func(thePlayer, command, SloteID)
                     MySql.helper.delete("user_vehicles", { ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid") });
 
                     local vehicle = vioGetElementData(thePlayer, "slot" .. SlotID);
-                    log_car_delete(
-                        vioGetElementData(vehicle, "besitzer"),
+                    log_car_delete(vioGetElementData(vehicle, "besitzer"),
                         vioGetElementData(vehicle, "slotid"),
                         getElementModel(vehicle),
                         "sold by user",
-                        vioGetElementData(vehicle, "besitzer")
-                    );
+                        vioGetElementData(vehicle, "besitzer"));
 
                     carPrice = math.round((carPrice / 100) * 25, 0)
 
@@ -303,9 +301,10 @@ function deletecar_func(thePlayer, command, SloteID)
         end
     end
 end
+
 addCommandHandler("deletecar", deletecar_func, false, false)
 
-function sellcar_func(thePlayer, Command, newplayername, SloteID)
+function givecar_func(thePlayer, Command, newplayername, SloteID)
     if (SloteID) then
         local SlotID = tonumber(SloteID)
         if (SlotID) then
@@ -390,5 +389,194 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID)
         end
     end
 end
+
+addCommandHandler("givecar", givecar_func, false, false)
+
+
+function sellcar_func(thePlayer, Command, newplayername, SloteID, price)
+    if (SloteID) then
+        local SlotID = tonumber(SloteID)
+        if (SlotID) then
+            if (not (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -2))) then
+                if not (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -1)) and not (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -2)) then
+                    local newplayer = getPlayerFromIncompleteName(newplayername)
+                    if (newplayer) then
+                        if (isPlayerLoggedIn(newplayer)) then
+                            local modelid = getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID))
+                            if (not (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "no_handel") == 1)) then
+                                local freeslots = 0
+                                local firstfreeslot = 0
+                                for zah = vioGetElementData(newplayer, "maxslots"), 1, -1 do
+                                    if tonumber(vioGetElementData(newplayer, "slot" .. zah)) == -1 then
+                                        freeslots = freeslots + 1
+                                        firstfreeslot = zah
+                                    end
+                                end
+
+                                if (not price) then
+                                    showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
+                                    return;
+                                end
+
+                                if (not tonumber(price)) then
+                                    showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
+                                    return;
+                                end
+
+                                price = tonumber(price);
+                                if (price < 1) then
+                                    showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
+                                    return;
+                                end
+
+                                if (freeslots > 0) then
+                                    if (getElementsDistance(thePlayer, newplayer) < 20) then
+                                        if (getElementsDistance(thePlayer, vioGetElementData(thePlayer, "slot" .. SlotID)) < 30) then
+                                            local acceptTable = {
+                                                price = price,
+                                                fromPlayer = thePlayer,
+                                                toPlayer = newplayer,
+                                                slotId = SlotID
+                                            };
+
+                                            vioSetElementData(thePlayer, "sellcar", acceptTable);
+                                            vioSetElementData(newplayer, "sellcar_accept", acceptTable);
+
+                                            outputChatBox("Der Spieler " .. getPlayerName(thePlayer) .. " hat dir sein Fahrzeug in seinen Slot " .. SlotID .. " für " .. toprice(price) .. " zum Verkauf angeboten.", newplayer);
+                                            outputChatBox("Den Verkauf kannst du mit '/accept sellcar' akzeptieren", newplayer);
+                                        else
+                                            showError(thePlayer, "Das Fahrzeug ist nicht in eurer Nähe.")
+                                        end
+                                    else
+                                        showError(thePlayer, "Der Spieler ist nicht in deiner Nähe.");
+                                    end
+                                else
+                                    showError(thePlayer, "Dieser Spieler hat keinen freien Slot mehr!")
+                                end
+                            else
+                                showError(thePlayer, "Dieses Fahrzeug ist vom Spielerhandel ausgeschlossen!")
+                            end
+                        else
+                            showError(thePlayer, "Dieser Spieler ist nicht Online!")
+                        end
+                    else
+                        showError(thePlayer, "Dieser Spieler ist nicht Online!")
+                    end
+                end
+            else
+                showError(thePlayer, "Abgeschleppte Fahrzeuge dürfen nicht verkauft werden")
+            end
+        end
+    end
+end
+
 addCommandHandler("sellcar", sellcar_func, false, false)
 
+function accept_sellcar(toPlayer)
+    local acceptTable = vioGetElementData(toPlayer, "sellcar_accept");
+
+    if (acceptTable ~= vioGetElementData(acceptTable.fromPlayer, "sellcar")) then
+        outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
+    end
+
+    local SlotID = acceptTable.slotId;
+    local thePlayer = acceptTable.fromPlayer;
+    local newplayer = toPlayer;
+    local price = acceptTable.price;
+
+
+    if (not SlotID) then
+        outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
+        return;
+    end
+
+    if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -2)) then
+        outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
+        return;
+    end
+
+    if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -1)) then
+        outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
+        return;
+    end
+
+    if (price < 1) then
+        outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
+        return;
+    end
+
+    if (getPlayerMoney(toPlayer) < price) then
+        outputChatBox("Du hast nicht genug Geld auf deiner Hand.", toPlayer);
+        return;
+    end
+
+    local freeslots = 0
+    local firstfreeslot = 0
+    for zah = vioGetElementData(newplayer, "maxslots"), 1, -1 do
+        if tonumber(vioGetElementData(newplayer, "slot" .. zah)) == -1 then
+            freeslots = freeslots + 1
+            firstfreeslot = zah
+        end
+    end
+
+    if (freeslots > 0) then
+        if (getElementsDistance(thePlayer, newplayer) < 20) then
+            if (getElementsDistance(thePlayer, vioGetElementData(thePlayer, "slot" .. SlotID)) < 30) then
+                vioSetElementData(newplayer, "slot" .. firstfreeslot, vioGetElementData(thePlayer, "slot" .. SlotID))
+
+                changePlayerMoney(toPlayer, -price, "fahrzeug", "Privater Fahrzeugkauf", "von " .. getPlayerName(thePlayer));
+                changePlayerMoney(thePlayer, price, "fahrzeug", "Privater Fahrzeugkauf", "an " .. getPlayerName(toPlayer));
+
+                vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "besitzer", getPlayerName(newplayer))
+                vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "slotid", firstfreeslot)
+
+                MySql.helper.update("user_vehicles", {
+                    SlotID = firstfreeslot,
+                    Besitzer = getPlayerName(newplayer)
+                }, {
+                    ID = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "dbid")
+                });
+
+                local vehname = getVehicleNameFromModel(getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID)))
+                showError(thePlayer, "Dieser Spieler hat das Fahrzeug erfolgreich gekauft")
+                outputChatBox(string.format("Dir wurde von %s ein %s in deinen Slot %s verkauft!", getPlayerName(thePlayer), vehname, firstfreeslot), newplayer, 255, 255, 0)
+
+                vioSetElementData(thePlayer, "slot" .. SlotID, -1)
+                for theKey, theVars in ipairs(privVeh) do
+                    if (theVars[1] == getPlayerName(thePlayer)) and (tonumber(theVars[2]) == SlotID) then
+                        theVars[1] = getPlayerName(newplayer)
+                        theVars[2] = firstfreeslot
+                    end
+                end
+                if ((vioGetElementData(newplayer, "maxslots") - (freeslots - 1)) > 10) then
+                    if (vioGetElementData(newplayer, "Erfolg_10erFahrzeugrausch") ~= 1) then
+                        vioSetElementData(newplayer, "Erfolg_10erFahrzeugrausch", 1)
+                        triggerClientEvent(newplayer, "onClientCreatePokalGUI", newplayer, "10er Fahrzeugrausch", "Besitze 10 Fahrzeuge!")
+                    end
+                end
+                if ((vioGetElementData(newplayer, "maxslots") - (freeslots - 1)) > 15) then
+                    if (vioGetElementData(newplayer, "Erfolg_20erFahrzeugrausch") ~= 1) then
+                        vioSetElementData(newplayer, "Erfolg_20erFahrzeugrausch", 1)
+                        triggerClientEvent(newplayer, "onClientCreatePokalGUI", newplayer, "15er Fahrzeugrausch", "Besitze 15 Fahrzeuge!")
+                    end
+                end
+                if ((vioGetElementData(newplayer, "maxslots") - (freeslots - 1)) > 20) then
+                    if (vioGetElementData(newplayer, "Erfolg_50erFahrzeugrausch") ~= 1) then
+                        vioSetElementData(newplayer, "Erfolg_50erFahrzeugrausch", 1)
+                        triggerClientEvent(newplayer, "onClientCreatePokalGUI", newplayer, "20er Fahrzeugrausch", "Besitze 20 Fahrzeuge!")
+                    end
+                end
+            else
+                showError(thePlayer, "Das Fahrzeug ist nicht in eurer Nähe.")
+            end
+        else
+            showError(thePlayer, "Der Spieler ist nicht in deiner Nähe.");
+        end
+    else
+        showError(thePlayer, "Dieser Spieler hat keinen freien Slot mehr!")
+    end
+end
+
+registerAcceptHandler("sellcar", accept_sellcar, {
+    requestedDataValues = { "sellcar_accept" }
+});

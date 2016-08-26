@@ -104,7 +104,6 @@ addCommandHandler("sblitzer", sblitzer_func, false, false)
 
 function checkClearLineBetweenBlitzerAndPlayer(HitElement)
     if (getElementType(HitElement) == "player") then
-        --outputChatBox("lala")
         local blitzerids = 1
         for theKey, theBlitzer in ipairs(blitzer) do
             if (blitzermark[theKey] == source) then
@@ -113,7 +112,6 @@ function checkClearLineBetweenBlitzerAndPlayer(HitElement)
         end
         if not (hasblitzer[blitzerids]) then
             hasblitzer[blitzerids] = true
-            --outputChatBox(tostring(blitzerids))
             triggerClientEvent(HitElement, "CheckClearLine_Blitzer", HitElement, source, blitzer[blitzerids])
             setTimer(resetBlitzerChecker, 1000, 1, blitzerids)
         end
@@ -126,16 +124,15 @@ end
 
 addEvent("blitzme_event", true)
 function playerInBlitzer(HitElement)
-    --		outputChatBox("2")
     if (getElementType(HitElement) == "vehicle") then
+        if (math.random(1,10) == 10) then return end
 
-
-        --		outputChatBox("2")
         local tx, ty, tz = getElementVelocity(HitElement)
         local speed = 180 * math.sqrt(tx * tx + ty * ty + tz * tz)
         local anzeigespeed = speed
         speed = math.round(speed - (speed / 10), 2)
         if (speed > 110) then
+
             local driver = getVehicleOccupant(HitElement)
             local id = 0
             for theKey, theBlitzer in ipairs(blitzer) do
@@ -144,6 +141,8 @@ function playerInBlitzer(HitElement)
                 end
             end
 
+            hasblitzer[id] = true;
+            setTimer(resetBlitzerChecker, 20000, 1, id);
 
             triggerClientEvent(driver, "setBlitzerEnabled", driver)
             local isInBeamtenCar = false
@@ -184,8 +183,6 @@ function playerInBlitzer(HitElement)
                     end
 
                     vioSetElementData(driver, "stvoFreePayDays", 0)
-
-
                 else
                     outputChatBox(string.format("Du wurdest mit %s km/h geblitzt!", speed), driver, 0, 0, 255)
                     outputChatBox("Du musst daher 100$ Verwarngeld bezahlen", driver, 0, 0, 255)
@@ -196,13 +193,4 @@ function playerInBlitzer(HitElement)
         end
     end
 end
-
 addEventHandler("blitzme_event", getRootElement(), playerInBlitzer)
-
-
-
-
-
-
-
-

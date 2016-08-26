@@ -1,4 +1,4 @@
-shop247marker = {
+local shop247marker = {
     {marker = false, x = 999.8369140625, y = -920.1591796875, z = 42.328125, pedX = 997.8505859375, pedY = -920.826171875, pedZ = 42.1796875, interior = 18},
     {marker = false, x = 1352.0341796875, y = -1758.7646484375, z = 13.5078125, pedX = 1350.095703125, pedY = -1757.255859375, pedZ = 13.5078125, interior = 18},
     {marker = false, x = 1833.2900390625, y = -1842.6884765625, z = 13.578125, pedX = 1829.7646484375, pedY = -1842.822265625, pedZ = 13.578125, interior = 18},
@@ -23,8 +23,12 @@ shop247marker = {
     {marker = false, x = 1315.51171875, y = -897.6806640625, z = 39.578125, pedX = 1315.052734375, pedY = -900.818359375, pedZ = 39.578125, interior = 18},
     {marker = false, x = 1638.934, y = 71.78, z = 37, pedX = 1636.1, pedY = 69.6, pedZ = 37.4, interior = 6} -- Tankstelle Autobahn LS<->LV
 }
+
+function get247PortTable()
+    return shop247marker;
+end
 	
-shop247innenport = {}
+local shop247innenport = {}
 shop247innenport[18] = {x = -31.224609375, y = -88.9921875, z = 1004.46875} --24/7 Shop 1
 shop247innenport[6] = {x = -26.6, y = -56.5, z = 1003.5} --24/7 Shop 2
 

@@ -26,6 +26,7 @@ function checkRuheZonenEnter()
         if (isNowRuheZone) then
             outputChatBox("Du hast eine Ruhezone betreten! Hier gelten besondere Regeln:", 255, 0, 0)
             outputChatBox(" -> KEIN DM", 255, 0, 0)
+            outputChatBox(" -> /park - Verbot", 255, 0, 0)
             outputChatBox(" -> Max. Geschwindigkeit: 30km/h", 255, 0, 0)
             if (isAdminLevel(getLocalPlayer(), 4)) then
                 outputChatBox(string.format("RuhezonenID: %s", idKey), 255, 0, 0)

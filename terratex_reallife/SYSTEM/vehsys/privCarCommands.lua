@@ -89,7 +89,7 @@ local noparkingcolA = createColRectangle(1696.6806640625, -1871.541015625, 114.6
 local noparkingcolB = createColRectangle(1511.7666015625, -1727.755859375, 36, 129)
 
 function park_func(thePlayer)
-    if (isElementWithinColShape(thePlayer, noparkingcolA) or isElementWithinColShape(thePlayer, noparkingcolB)) then
+    if (isElementWithinColShape(thePlayer, noparkingcolA) or isElementWithinColShape(thePlayer, noparkingcolB) or isInRuheZone(thePlayer)) then
         outputChatBox("Hier ist Parkverbot! Du kannst hier nicht parken!", thePlayer, 255, 0, 0)
     else
         local theVehicle = getPedOccupiedVehicle(thePlayer)

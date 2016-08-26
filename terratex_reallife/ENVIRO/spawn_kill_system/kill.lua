@@ -56,14 +56,8 @@ addEventHandler("onPlayerQuit", getRootElement(), onDiscoDeleteIcons)
 
 function death_func(ammo, attacker, weapon, bodypart)
     if not (vioGetElementData(source, "inArena")) then
-        if (isPedInVehicle(source)) then
-            removePedFromVehicle(source)
-        end
-
         -- Vars for Logging
         local wasBlacklistOrWantedKill = false
-
-
 
         local x, y, z = getElementPosition(source)
         local int = getElementInterior(source)

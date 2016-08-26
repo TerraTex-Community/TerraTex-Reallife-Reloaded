@@ -189,7 +189,7 @@ function playerInBlitzer(HitElement)
                     changePlayerMoney(driver, -100, "sonstiges", "Blitzer")
                 end
             end
-            outputChatBox("Die maximal zulässige Höchstgeschwindigkeit in der Stadt beträgt 80 km/h", driver, 255, 0, 0)
+            outputChatBox("Die maximal zulässige Höchstgeschwindigkeit in der Stadt beträgt 100 km/h", driver, 255, 0, 0)
         end
     end
 end

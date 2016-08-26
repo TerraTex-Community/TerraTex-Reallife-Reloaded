@@ -6,7 +6,8 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
             driverCounter = driverCounter + 1
         end
         if (driverCounter == 0) then
-            if ((getElementData(lastclicked,"besitzer") and getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
+            local vehicleType = getVehicleType(lastclicked)
+            if (getElementType(lastclicked) == "vehicle" and getElementData(lastclicked,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer()))) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
                 local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
                 local kmh = actualspeed * 180
@@ -19,7 +20,7 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
                         local z = getElementDistanceFromCentreOfMassToBaseOfModel(lastclicked)
                         setElementData(truck, "abschleppTruck_AttachedVehicle", lastclicked)
                         triggerServerEvent("abschleppTruck_Aufladen",getLocalPlayer(), lastclicked, z)
-                        setElementCollisionsEnabled(lastclicked, false)
+                        outputChatBox("Das Fahrzeug wird in 10 Sekunden aufgeladen")
                     else
                         showError(getLocalPlayer(), "Das Fahrzeug ist zu lang!")
                     end
@@ -111,6 +112,7 @@ function abschleppTruckLeave(theVehicle, seat)
                 if (getElementType(ElementValue) == "vehicle") then
                     setElementCollisionsEnabled(ElementValue, true)
                 end
+                break
             end
         end
     end
@@ -126,6 +128,7 @@ function abschleppTruckEnter()
                 if (getElementType(ElementValue) == "vehicle") then
                     setElementCollisionsEnabled(ElementValue, false)
                 end
+                break
             end
         end
     end
@@ -140,6 +143,12 @@ function abschleppTruck_SetClientAttachedVehicle(theVehicle)
     end
 end
 addEventHandler("abschleppTruck_SetClientAttachedVehicle", getRootElement(), abschleppTruck_SetClientAttachedVehicle)
+
+addEvent("abschleppTruck_SetClientAttachedVehicleCollisionsEnabled", true)
+function abschleppTruck_SetClientAttachedVehicleCollisionsEnabled(theVehicle, bool)
+    setElementCollisionsEnabled(theVehicle, bool)
+end
+addEventHandler("abschleppTruck_SetClientAttachedVehicleCollisionsEnabled", getRootElement(), abschleppTruck_SetClientAttachedVehicleCollisionsEnabled)
 
 function abschleppTruck_Abladen_EndPreview()
     if (isElement(abschleppTruckPreview)) then
@@ -184,3 +193,11 @@ function abschleppTruckAttachedNoEnter(player, seat, jacked)
     end
 end
 addEventHandler("onClientVehicleStartEnter", getRootElement(), abschleppTruckAttachedNoEnter)
+
+function abschleppTruckAttachedNoEnter_Loading(player, seat, jacked)
+    if (getElementData(source, "abschleppTruckAttached_Loading")) then
+        cancelEvent()
+        showError(player, "Du kannst in das Fahrzeug nicht einsteigen, da es gerade aufgeladen wird!")
+    end
+end
+addEventHandler("onClientVehicleStartEnter", getRootElement(), abschleppTruckAttachedNoEnter_Loading)

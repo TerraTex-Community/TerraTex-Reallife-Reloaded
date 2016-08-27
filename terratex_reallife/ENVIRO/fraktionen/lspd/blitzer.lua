@@ -157,7 +157,7 @@ function playerInBlitzer(HitElement)
                 return false
             end
             local rechspeed = speed - 100
-            local stvo = math.round(rechspeed / 20)
+            local stvo = math.round(rechspeed / 20, 0, "ceil")
             local geldstrafe = math.round(math.round(rechspeed / 20, 2) * 55) + 450
             if (((vioGetElementData(HitElement, "frakid") == 0) or (not (vioGetElementData(HitElement, "frakid")))) and not (vioGetElementData(HitElement, "atomveh")) and not (vioGetElementData(HitElement, "muntruck"))) then
                 if (speed > 120) then

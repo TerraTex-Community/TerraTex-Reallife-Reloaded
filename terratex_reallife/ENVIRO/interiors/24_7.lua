@@ -30,7 +30,7 @@ end
 
 local shop247innenport = {}
 shop247innenport[18] = {x = -31.224609375, y = -88.9921875, z = 1004.46875} --24/7 Shop 1
-shop247innenport[6] = {x = -26.6, y = -56.5, z = 1003.5} --24/7 Shop 2
+shop247innenport[6] = {x = -26.6, y = -54.5, z = 1004.46} --24/7 Shop 2
 
 local shop247ExitMarker = {}
 shop247ExitMarker[18] = {x = -31.05859375, y = -92.0107421875, z = 1003.5} -- 24/7 Shop 1

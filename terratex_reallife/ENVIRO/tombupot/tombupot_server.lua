@@ -1,5 +1,5 @@
 --DEFINES
-local maxTombuTickets = 1
+local maxTombuTickets = 3
 local tombuTicketPrice = 500
 local winTimeHour = 20
 local winTimeMinute = 0
@@ -19,7 +19,7 @@ function requestNewTombuTicket(thePlayer)
     if (isElement(thePlayer)) then
         if (getElementType(thePlayer) == "player") then
             if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
-                showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotteryziehung")
+                showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
             else
                 triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
             end
@@ -32,10 +32,11 @@ function acceptedBuyTomboTicket_func()
     if (getPlayerMoney(source) < tombuTicketPrice) then
         showError(source, "Du hast nicht genug Geld!")
     else
-        changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines TombupotTickets");
+        changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
+        changeBizKasse(16, 25, "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
 
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
-        outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupotlottery erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
+        outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupotlotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
     end
 end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)
@@ -47,9 +48,9 @@ function isLotteryTime()
 
     local time = getRealTime()
     if (time.hour == winTimeHour and time.minute == winTimeMinute) then
-        outputChatBox("Und die TombupotLotteryZiehung beginnt....")
+        outputChatBox("Und die Tombupot-Lotterieziehung beginnt....")
         local tickets = MySql.helper.getCountSync("user_tombupot")
-        local gewinn = tickets * tombuTicketPrice * 0.9
+        local gewinn = tickets * (tombuTicketPrice - 25)
         outputChatBox(string.format("Es wurden %s Tickets gekauft, dass ergibt einen Gewinn von %s", tickets, gewinn))
         outputChatBox("Der Gewinner wird ermittelt.......")
 
@@ -62,12 +63,12 @@ function isLotteryTime()
 
             local thePlayer = getPlayerFromName(dsatz["Nickname"])
             if (thePlayer) then
-                changePlayerMoney(thePlayer, gewinn, "sonstiges", "Gewinn in der Tombupotlotterie")
+                changePlayerMoney(thePlayer, gewinn, "sonstiges", "Gewinn in der Tombupot-Lotterie")
                 outputChatBox("Dein Gewinn wurde dir auf die Hand gegeben!", thePlayer, 155, 155, 0)
             else
                 MySql.helper.insert("user_gifts", {
                     Nickname = dsatz["Nickname"],
-                    Grund = "Du hast in der TombupotLottery gewonnen!",
+                    Grund = "Du hast in der Tombupot-Lotterie gewonnen!",
                     Geld = gewinn
                 });
             end
@@ -77,10 +78,9 @@ function isLotteryTime()
 
         dbExec(MySql._connection, "TRUNCATE TABLE user_tombupot");
 
-        outputChatBox("Vergesst nicht an der nächsten Tombupotlottery teilzunehmen!")
-        outputChatBox("Tickets für die Teilnahme gibts in allen Lottoläden! (Würfel auf der Karte!)")
+        outputChatBox("Vergesst nicht an der nächsten Tombupot-Lotterieziehung teilzunehmen!")
+        outputChatBox("Tickets für die Teilnahme gibts in allen Tombupot-Läden! (Würfel auf der Karte!)")
     else
         setTimer(isLotteryTime, 60000, 1)
     end
 end
-

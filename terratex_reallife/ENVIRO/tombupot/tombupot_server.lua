@@ -36,7 +36,7 @@ function acceptedBuyTomboTicket_func()
         changeBizKasse(16, 25, "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
 
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
-        outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupotlotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
+        outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupot-Lotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
     end
 end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)

@@ -198,6 +198,7 @@ function munTruckExplode()
         destroyElement(marker)
         destroyElement(blip)
     end
+    killTimer(getElementData(source, "checkTruck_Timer"))
 end
 
 function onMunTruckHit()

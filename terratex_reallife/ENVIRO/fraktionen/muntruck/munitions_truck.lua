@@ -44,7 +44,7 @@ function onMunTruckMarkerHit(hitElement)
             triggerClientEvent(hitElement, "showMunTruckBestellGUI", hitElement, frakmun[frak])
         end
     else
-        outputChatBox("Du bist hier unerwünscht!", hitElement, 255, 0, 0, 255)
+        outputChatBox("Du bist hier unerwünscht!", hitElement, 255, 0, 0)
     end
 end
 

@@ -52,6 +52,8 @@ function startpolicePCUI()
                 showCursor(true)
                 browserActualizeFields(source)
                 policePCBrowser = source;
+                setDevelopmentMode (true, true)
+                toggleBrowserDevTools ( policePCBrowser, true )
             end
         )
 

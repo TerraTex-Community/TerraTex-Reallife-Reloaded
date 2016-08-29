@@ -7,7 +7,7 @@ function createABaustelle()
 	end
 
 
-    local x = math.random(0, 3500)/1000
+    local x = math.random(0, 3000)/1000
     local howMany = math.ceil((table.getSize(baustellentable)) * math.exp(-x))
     local which = {}
     local c = 0

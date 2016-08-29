@@ -205,6 +205,9 @@ function onMunTruckHit()
 		if(getElementHealth(source)<=500)then
 			fixVehicle(source)
 			setElementFrozen(source,true)
+			local rx,ry,rz=getElementRotation(source)
+			setElementRotation(source,0,0,rz)
+
 			local occupants = getVehicleOccupants(source) 
 			local seats = getVehicleMaxPassengers(source) 
 			for seat = 0, seats do 
@@ -214,8 +217,6 @@ function onMunTruckHit()
 					ejectPed(occupants[seat])
 				end			
 			end
-			local rx,ry,rz=getElementRotation(source)
-			setElementRotation(source,0,0,rz)
 
 			setTimer(unfreezeMunTruck,60000,1,source)
 		end
@@ -228,6 +229,7 @@ function unfreezeMunTruck(source)
 		setElementFrozen(source,false)
 	end
 end
+
 
 
 

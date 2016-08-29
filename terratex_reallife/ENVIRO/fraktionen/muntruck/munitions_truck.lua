@@ -52,7 +52,7 @@ end
 
 addEvent("bestellMuntGui_Event", true)
 function bestellMuntGui(howmany)
-    local copson = 2
+    local copson = 0
     for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
         copson = copson + 1
     end

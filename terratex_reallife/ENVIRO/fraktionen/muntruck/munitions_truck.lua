@@ -83,7 +83,7 @@ function bestellMuntGui(howmany)
                 triggerClientEvent(source, "closeMuntGui_Event", source)
                 muntruckstarted = true
                 setTimer(resetWTruckTimer, 600000, 1)
-                setElementData(MunTruck, "chechTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
+                setElementData(MunTruck, "checkTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
                 frakdepot_log(vioGetElementData(source, "fraktion"), 1, -price, "WTruck-" .. getPlayerName(source))
                 for theKey, theValue in ipairs(munTruckMassage) do
                     if (theValue) then
@@ -170,7 +170,7 @@ function enterMunMarkerAbgabe(hitElementer)
                     end
                 end
 
-                killTimer(getElementData(hitElementer, "chechTruck_Timer"))
+                killTimer(getElementData(hitElementer, "checkTruck_Timer"))
                 destroyElement(hitElementer)
                 destroyElement(vioGetElementData(player, "MunMarker"))
                 destroyElement(vioGetElementData(player, "MunBlip"))

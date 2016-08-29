@@ -20,3 +20,8 @@ function createBlitzerDummysOnStartUp()
     end
 end
 addEventHandler("onResourceStart", getRootElement(), createBlitzerDummysOnStartUp)
+
+function test_blitzer()
+    outputDebugString(table.getSize(getElementsByType("blitzer")));
+end
+addCommandHandler("tb", test_blitzer)

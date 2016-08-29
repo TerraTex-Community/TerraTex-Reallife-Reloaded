@@ -28,5 +28,6 @@ function createVehicle(model, x, y, z, rx, ry, rz, numberplate, bDirection, vari
     end
 
     setElementData(vehicle, "_getVehicleRespawn", {spawnX, spawnY, spawnZ, spawnRX, spawnRY, spawnRZ});
+    return vehicle;
 end
 

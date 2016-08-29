@@ -21,6 +21,7 @@ end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),onPolicePCCreate)
 
 function onplayerclickpc(but,vutst,ele)
+    if but ~= "left" or vutst ~= "down" then return; end
 	if(table.hasValue(policePC,ele))then
 		if(isBeamter(source))then
 			triggerClientEvent(source,"onShowPolicePC",source,policeVehicles)

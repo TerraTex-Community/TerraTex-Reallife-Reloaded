@@ -36,21 +36,23 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onMunTruckMarker_create)
 
 function onMunTruckMarkerHit(hitElement)
-    local frak = vioGetElementData(hitElement, "fraktion")
-    if (frakmun[frak]) then
-        if (frakmun[frak] >= 1000000) then
-            outputChatBox("Euer Munitionsdepot ist bereits voll!", hitElement, 255, 0, 0)
+    if (getElementType(hitElement) == "player") then
+        local frak = vioGetElementData(hitElement, "fraktion")
+        if (frakmun[frak]) then
+            if (frakmun[frak] >= 1000000) then
+                outputChatBox("Euer Munitionsdepot ist bereits voll!", hitElement, 255, 0, 0)
+            else
+                triggerClientEvent(hitElement, "showMunTruckBestellGUI", hitElement, frakmun[frak])
+            end
         else
-            triggerClientEvent(hitElement, "showMunTruckBestellGUI", hitElement, frakmun[frak])
+            outputChatBox("Du bist hier unerwünscht!", hitElement, 255, 0, 0)
         end
-    else
-        outputChatBox("Du bist hier unerwünscht!", hitElement, 255, 0, 0)
     end
 end
 
 addEvent("bestellMuntGui_Event", true)
 function bestellMuntGui(howmany)
-    local copson = 0
+    local copson = 2
     for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
         copson = copson + 1
     end
@@ -83,7 +85,7 @@ function bestellMuntGui(howmany)
                 triggerClientEvent(source, "closeMuntGui_Event", source)
                 muntruckstarted = true
                 setTimer(resetWTruckTimer, 600000, 1)
-                setElementData(MunTruck, "checkTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
+                setElementData(MunTruck, "chechTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
                 frakdepot_log(vioGetElementData(source, "fraktion"), 1, -price, "WTruck-" .. getPlayerName(source))
                 for theKey, theValue in ipairs(munTruckMassage) do
                     if (theValue) then
@@ -170,7 +172,7 @@ function enterMunMarkerAbgabe(hitElementer)
                     end
                 end
 
-                killTimer(getElementData(hitElementer, "checkTruck_Timer"))
+                killTimer(getElementData(hitElementer, "chechTruck_Timer"))
                 destroyElement(hitElementer)
                 destroyElement(vioGetElementData(player, "MunMarker"))
                 destroyElement(vioGetElementData(player, "MunBlip"))

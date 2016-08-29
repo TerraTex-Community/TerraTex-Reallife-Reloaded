@@ -63,7 +63,7 @@ function bestellMuntGui(howmany)
     for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
         copson = copson + 1
     end
-    if (copson > 0) then
+    if (copson >= 2) then
         if (not (muntruckstarted)) then
 
             local price = howmany * 0.1
@@ -83,6 +83,7 @@ function bestellMuntGui(howmany)
                 triggerClientEvent(source, "closeMuntGui_Event", source)
                 muntruckstarted = true
                 setTimer(resetWTruckTimer, 600000, 1)
+                setElementData(MunTruck, "chechTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
                 frakdepot_log(vioGetElementData(source, "fraktion"), 1, -price, "WTruck-" .. getPlayerName(source))
                 for theKey, theValue in ipairs(munTruckMassage) do
                     if (theValue) then
@@ -169,7 +170,7 @@ function enterMunMarkerAbgabe(hitElementer)
                     end
                 end
 
-
+                killTimer(getElementData(hitElementer, "chechTruck_Timer"))
                 destroyElement(hitElementer)
                 destroyElement(vioGetElementData(player, "MunMarker"))
                 destroyElement(vioGetElementData(player, "MunBlip"))
@@ -202,25 +203,30 @@ end
 function onMunTruckHit()
     if (vioGetElementData(source, "muntruck")) then
         if (getElementHealth(source) <= 500) then
-            fixVehicle(source)
-            setElementFrozen(source, true)
-            local occupants = getVehicleOccupants(source)
-            local seats = getVehicleMaxPassengers(source)
-            for seat = 0, seats do
-                if (occupants[seat]) then
-                    outputChatBox("Der Waffentruck ist beschädigt! Verteidige ihn bis er wieder funktioniert!", occupants[seat], 255, 0, 0)
-                    vioGetElementData(source, "MunDriver", false)
-                    ejectPed(occupants[seat])
-                end
-            end
-            local rx, ry, rz = getElementRotation(source)
-            setElementRotation(source, 0, 0, rz)
-
-            setTimer(unfreezeMunTruck, 60000, 1, source)
+            fixTruck(source)
         end
     end
 end
 addEventHandler("onVehicleDamage", getRootElement(), onMunTruckHit)
+
+function fixTruck(truck)
+    if (not isElementFrozen(truck)) then
+        fixVehicle(truck)
+        setElementFrozen(truck, true)
+        local occupants = getVehicleOccupants(truck)
+        local seats = getVehicleMaxPassengers(truck)
+        for seat = 0, seats do
+            if (occupants[seat]) then
+                outputChatBox("Der Waffentruck ist beschädigt! Verteidige ihn bis er wieder funktioniert!", occupants[seat], 255, 0, 0)
+                vioGetElementData(truck, "MunDriver", false)
+                ejectPed(occupants[seat])
+            end
+        end
+        local rx, ry, rz = getElementRotation(truck)
+        setElementRotation(truck, 0, 0, rz)
+        setTimer(unfreezeMunTruck, 60000, 1, truck)
+    end
+end
 
 function unfreezeMunTruck(source)
     if (isElement(source)) then
@@ -228,15 +234,9 @@ function unfreezeMunTruck(source)
     end
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
+function checkTruck(truck)
+    local rx, ry, rz = getElementRotation(truck)
+    if (math.abs(rx) > 170 and math.abs(rx) < 190) then
+        fixTruck(truck)
+    end
+end

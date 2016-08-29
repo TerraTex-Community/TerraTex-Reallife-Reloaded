@@ -12,8 +12,11 @@ local policePCData = {
 local policePCWindow;
 local policePCBrowser;
 local policePCTimer = {
+    general = false,
     refreshPoliceVehicles = false,
 }
+
+local policePCActivePage = "overview";
 
 local function killAllPolicePcTimer()
     for theKey, theTimer in pairs(policePCTimer) do
@@ -53,6 +56,7 @@ function startpolicePCUI()
 
         killAllPolicePcTimer();
         policePCTimer.refreshPoliceVehicles = setTimer(refreshPoliceVehicles, 1000, 0);
+        policePCTimer.general = setTimer(actualizePolicePCPage, 1000, 0);
     end
 end
 
@@ -70,42 +74,32 @@ function loadPolicePCPage(get, post)
     if (get) then
         if (get.id) then
             if (get.id == "overview") then
---                triggerServerEvent("getFactionOverviewData", getLocalPlayer());
+                _renderPolicePCVehiclesPage();
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
             end
+
+            policePCActivePage = get.id;
+
         end
     end
 end
 
+function _renderPolicePCVehiclesPage()
+    local html = HTML.getFile("UI/PolicePC/_Vehicles.html", true);
 
+    if html then
 
+        html = HTML.prepare(html);
 
---
---function _renderFraktionsManagementOverviewPage(dataTable)
---    local htmlFile = fileOpen("UI/Fraktionsmanagement/_Overview.html", true);
---
---    if htmlFile then
---        local html = "";
---        while not fileIsEOF(htmlFile) do
---            html = html .. fileRead(htmlFile, 500);
---        end
---        fileClose(htmlFile)
---
---        for theKey, theContent in pairs(dataTable) do
---            html = string.gsub(html, "%%" .. theKey .. "%%", theContent)
---        end
---
---        html = string.gsub(html, '"', '\\"');
---        html = string.gsub(html, '\n', '');
---        html = string.gsub(html, '\r', '');
---
---        executeBrowserJavascript(managementBrowser, "setContent(\"" .. html .. "\");");
---
---    else
---        outputDebugString("Unable to open \"UI/Fraktionsmanagement/_Overview.html\"")
---    end
---end
---addEvent("sendFactionOverviewData", true);
---addEventHandler("sendFactionOverviewData", getRootElement(), _renderFraktionsManagementOverviewPage);
+        executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+
+    else
+        outputDebugString("Unable to open \"UI/PolicePC/_Vehicles.html\"")
+    end
+end
+
+function actualizePolicePCPage()
+
+end

@@ -9,6 +9,10 @@
   @import "gold_ui";
 }
 
+//#policePC-ui {
+  @import "policePC-ui";
+//}
+
 .placer-holder-top {
   margin-bottom: 10px;
   height:10px;
@@ -48,4 +52,7 @@
 
 .btn-fullwidth {
   width:100%
+}
+.fa-1_5 {
+  font-size: 1.5em;
 }

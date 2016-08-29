@@ -30,5 +30,7 @@ function refreshPoliceVehicles()
             end
         end
     end
+
+    setPolicePcData("vehicles", vehicleData);
 end
 

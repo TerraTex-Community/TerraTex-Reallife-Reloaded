@@ -1,0 +1,21 @@
+#map #radar{
+  width: 100%;
+  max-width:100%;
+}
+
+.cop-point {
+  position: absolute;
+  color: #0400ff;
+  text-shadow: $text-shadow-white;
+  font-weight: bold;
+  font-size: 1.25em;
+
+  .car {
+    font-size: 1.25em;
+  }
+
+  .carNumber {
+    float:left;
+    margin-right: 3px;
+  }
+}

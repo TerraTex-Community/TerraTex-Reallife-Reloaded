@@ -19,6 +19,7 @@
     <script src="ENGINE/mysql/mysql.lua" type="server"/>
     <!-- USEFUL -->
     <script src="USEFULL_SCRIPTS/debug.lua" type="shared"/>
+    <script src="USEFULL_SCRIPTS/html_client.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/camera_client.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/other_functions.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/classes.lua" type="shared"/>
@@ -576,6 +577,8 @@
     <file src="UI/Fraktionsmanagement/__Member_Row.html"/>
     <file src="UI/Fraktionsmanagement/factionmanagement.js"/>
     <file src="UI/PolicePC/Main.html" />
+    <file src="UI/PolicePC/_Vehicles.html" />
+    <file src="UI/PolicePC/__carEntry.html" />
     <file src="UI/PolicePC/policePC.js" />
 
     <!-- IMAGEFILES / BILDER -->

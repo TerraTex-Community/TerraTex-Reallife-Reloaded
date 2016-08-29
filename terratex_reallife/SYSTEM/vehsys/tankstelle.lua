@@ -137,7 +137,7 @@ function TankenMarkerHit(hitElement)
 end
 
 function setTankFulTanke(preis, hitElement, driver, marker, liter)
-    if (isElement(hitElement)) then
+    if (isElement(hitElement) and isElement(driver) and isPlayerLoggedIn(driver)) then
         vioSetElementData(hitElement, "isInTankProcedur", false);
         vioSetElementData(hitElement, "tank", 100);
         if (vioGetElementData(marker, "repairMarker")) then
@@ -157,12 +157,15 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt! Der Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5 Prozent Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
         end
         changeBizKasse(7, preis, "Tank")
-        setElementFrozen(hitElement, false)
+
+        if (vioGetElementData(driver, "Erfolg_Benzin_leer") ~= 1) then
+            vioSetElementData(driver, "Erfolg_Benzin_leer", 1)
+            triggerClientEvent(driver, "onClientCreatePokalGUI", driver, "Benzin leer", "Gehe das erste Mal tanken")
+        end
     end
 
-    if (vioGetElementData(driver, "Erfolg_Benzin_leer") ~= 1) then
-        vioSetElementData(driver, "Erfolg_Benzin_leer", 1)
-        triggerClientEvent(driver, "onClientCreatePokalGUI", driver, "Benzin leer", "Gehe das erste Mal tanken")
+    if (isElement(hitElement)) then
+        setElementFrozen(hitElement, false)
     end
 end
 

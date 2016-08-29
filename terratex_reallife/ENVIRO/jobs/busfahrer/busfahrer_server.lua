@@ -191,8 +191,9 @@ function startbus_cmd(thePlayer, cmd, routenname)
 
             if (vioGetElementData(thePlayer, "busstared") < getTimestamp() - 300) then
                 if (routenname) then
-                    if (routennamen[string.lower(routenname)]) then
-                        if (not (string.lower(routenname) == "rookie") and not (vioGetElementData(thePlayer, "reiseLic"))) then
+                    routenname = string.lower(routenname);
+                    if (routennamen[routenname]) then
+                        if (not (routenname == "rookie") and not (vioGetElementData(thePlayer, "reiseLic"))) then
                             outputChatBox("Für die Route 'all' benötigst du einen Reisepass!", thePlayer, 255, 0, 0)
                         else
                             local x, y, z = getElementPosition(thePlayer)
@@ -219,8 +220,8 @@ function startbus_cmd(thePlayer, cmd, routenname)
                                     setVehicleColor(busveh, r2,g2,b2, r,g,b)
                                     vioSetElementData(busveh, "hasTank", true)
                                     vioSetElementData(busveh, "hasTankFactor", 0.5)
-                                    vioSetElementData(busveh, "route", string.lower(routenname))
-                                    vioSetElementData(thePlayer, "route", string.lower(routenname))
+                                    vioSetElementData(busveh, "route", routenname)
+                                    vioSetElementData(thePlayer, "route", routenname)
                                     vioSetElementData(busveh, "driver", thePlayer)
                                     vioSetElementData(thePlayer, "busjobvehicle", busveh)
                                     vioSetElementData(busveh, "isBusVeh", true)

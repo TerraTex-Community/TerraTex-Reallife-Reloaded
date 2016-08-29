@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <object id="object (CJ_SKIP_Rubbish) (1)" breakable="true" interior="0" alpha="255" model="1358" doublesided="false" scale="1" dimension="0" posX="1583.707" posY="-1771.5201" posZ="13.73748" rotX="0" rotY="0" rotZ="0"></object>
+    <object id="object (ws_scaffolding_SFX) (1)" breakable="true" interior="0" alpha="255" model="3867" doublesided="false" scale="1" dimension="0" posX="1578.4" posY="-1776.4" posZ="14" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (ws_scaffolding_SFX) (3)" breakable="true" interior="0" alpha="255" model="3867" doublesided="false" scale="1" dimension="0" posX="1578.4" posY="-1793.8" posZ="14" rotX="0" rotY="0" rotZ="269.995"></object>
+    <object id="object (CJ_BIG_SKIP1) (1)" breakable="true" interior="0" alpha="255" model="1365" doublesided="false" scale="1" dimension="0" posX="1589.4229" posY="-1771.3391" posZ="13.68362" rotX="0" rotY="0" rotZ="358.978"></object>
+</map>

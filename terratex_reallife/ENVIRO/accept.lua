@@ -25,7 +25,7 @@ function call_accept(thePlayer, cmd, acceptName, ...)
         end
         acceptHandler[acceptName].func(thePlayer, cmd, unpack({...}));
     else
-        outputChatBox("Es gibt kein /accept " .. acceptName, thePlayer, 255, 0, 0);
+        outputChatBox("Es gibt kein /accept " .. tostring(acceptName), thePlayer, 255, 0, 0);
     end
 end
 addCommandHandler("accept", call_accept, false, false)

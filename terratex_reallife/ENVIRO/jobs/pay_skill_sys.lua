@@ -149,6 +149,12 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
             else
                 geldProSkill = jobSetupTable[jobID][3][skill]
             end
+
+            if (not geldProSkill) then
+                outputDebugString("Error in Job-Payment-Calculation: " .. debug.traceback());
+                return false;
+            end
+
             gesamtGehalt = gesamtGehalt + geldProSkill * auftraege
             if (jobSetupTable[jobID][5] ~= 1 and jobSetupTable[jobID][6]) then
                 gesamtGehalt = math.random(gesamtGehalt * jobSetupTable[jobID][5], gesamtGehalt)

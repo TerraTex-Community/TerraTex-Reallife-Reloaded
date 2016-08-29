@@ -1,5 +1,3 @@
-
-
 autohausVehicles = {}
 autohaustimer = {}
 autohausspawns = {
@@ -343,9 +341,7 @@ function buyCar(thevehicle)
                             vioSetElementData(spawnVeh, "Lichterfarbe", "255|255|255")
                             vioSetElementData(spawnVeh, "premColor", "-1")
                             fixVehicle(spawnVeh)
-                            setTimer(fixVehicle, 1000, 1, spawnVeh)
-                            setTimer(fixVehicle, 2000, 1, spawnVeh)
-                            setTimer(fixVehicle, 3000, 1, spawnVeh)
+
                             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
                             privCars[spawnVeh] = true
 

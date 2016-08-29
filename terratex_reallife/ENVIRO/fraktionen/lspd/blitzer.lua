@@ -19,7 +19,7 @@ function createBlitzerDummysOnStartUp()
         vioSetElementData(blitzerElement, "marker", false);
     end
 end
-addEventHandler("onResourceStart", getRootElement(), createBlitzerDummysOnStartUp)
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
 
 function test_blitzer()
     outputDebugString(table.getSize(getElementsByType("blitzer")));

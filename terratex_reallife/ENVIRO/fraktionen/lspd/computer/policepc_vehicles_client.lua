@@ -25,7 +25,8 @@ function refreshPoliceVehicles()
                 table.insert(vehicleData, {
                     position = pack(getElementPosition(theVehicle)),
                     cops = copsInVehicle,
-                    element = theVehicle
+                    element = theVehicle,
+                    id = tonumber(getElementData(theVehicle, "police-car-id"))
                 });
             end
         end

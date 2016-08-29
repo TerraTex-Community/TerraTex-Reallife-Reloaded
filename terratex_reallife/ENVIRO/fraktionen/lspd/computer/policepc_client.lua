@@ -114,9 +114,9 @@ function actualizePolicePCPage()
 
                 local cops = table.concat(theVehicle.cops, ", ");
 
-                HTML.prepare(carHtml, {carId = theKey, top = posY, left = posX, cops = cops});
+                HTML.prepare(carHtml, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
 
-                executeBrowserJavascript(policePCBrowser, "setCar(" .. theKey .. ",\"" ..  carHtml .. "\");");
+                executeBrowserJavascript(policePCBrowser, "setCar(" .. theVehicle.id .. ",\"" ..  carHtml .. "\");");
 
             end
         end

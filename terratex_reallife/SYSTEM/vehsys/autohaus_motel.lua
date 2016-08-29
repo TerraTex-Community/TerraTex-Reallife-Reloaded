@@ -1,5 +1,3 @@
-
-
 autohausVehicles = {}
 autohaustimer = {}
 autohausspawns = {
@@ -298,66 +296,6 @@ function autohaustimer_func(timerid)
     autohaustimer[timerid] = 0
 end
 
-function hasTheLicenseFor(thePlayer, vehid)
-    if (isTruck(vehid)) then
-        if (vioGetElementData(thePlayer, "truckLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isPlane(vehid)) then
-        if (vioGetElementData(thePlayer, "planeLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isCar(vehid)) then
-        if (vioGetElementData(thePlayer, "autoLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isBike(vehid)) then
-        if (vioGetElementData(thePlayer, "bikeLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isHeli(vehid)) then
-        if (vioGetElementData(thePlayer, "heliLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isBoat(vehid)) then
-        if (vioGetElementData(thePlayer, "boatLic") < 1) then
-            return false
-        else
-            return true
-        end
-    elseif (isQuad(vehid)) then
-        if (vioGetElementData(thePlayer, "quadLic") < 1) then
-            return false
-        else
-            return true
-        end
-    else
-        if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
-            return false
-        else
-            return true
-        end
-    end
-
-
-    if (isSpezVehicle(vehid)) then
-        if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
-            showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialfuehrerschein!")
-            cancelEvent()
-        end
-    end
-end
-
 function buyCar(thevehicle)
     local freeslots = 0
     local firstfreeslot = 0
@@ -403,9 +341,7 @@ function buyCar(thevehicle)
                             vioSetElementData(spawnVeh, "Lichterfarbe", "255|255|255")
                             vioSetElementData(spawnVeh, "premColor", "-1")
                             fixVehicle(spawnVeh)
-                            setTimer(fixVehicle, 1000, 1, spawnVeh)
-                            setTimer(fixVehicle, 2000, 1, spawnVeh)
-                            setTimer(fixVehicle, 3000, 1, spawnVeh)
+
                             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
                             privCars[spawnVeh] = true
 

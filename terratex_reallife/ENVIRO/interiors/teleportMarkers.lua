@@ -54,7 +54,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                         showError(hitElement, "Du bist kein Beamter!");
                         return;
                     end
-                elseif (marker.specialKey == "ammonation") then
+                elseif (markerData.specialKey == "ammonation") then
                     if (vioGetElementData(hitElement, "waffenLic") ~= 1) then
                         if (vioGetElementData(hitElement, "playtime") < 1500) then
                             showError(hitElement, "Aufseher: Kinder haben hier nichts zu suchen!");
@@ -63,7 +63,7 @@ function onTeleportMarkerHit(hitElement, matchingDimension)
                         showError(hitElement, "Aufseher: Sie besitzen keinen Waffenschein, daher sind sie hier unerwünscht! Bitte verpissen Sie sich!");
                         return;
                     end
-                elseif (marker.specialKey == "casino") then
+                elseif (markerData.specialKey == "casino") then
                     outputChatBox("Der Innenraum und sämtliche Spiele sind überwacht, Diebstahl und Bugusing lohnt sich nicht!", hitElement, 255, 0, 0);
                 end
             end

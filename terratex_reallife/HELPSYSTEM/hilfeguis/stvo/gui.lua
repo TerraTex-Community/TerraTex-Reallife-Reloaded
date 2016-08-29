@@ -35,7 +35,8 @@ local rules={
             {
                 ["text"]="Geschwindigkeitsbeschränkungen gelten wie folgt:",
                 ["underpoints"]={
-                    "innerorts: 80 km/h",
+                    "innerorts: 100 km/h",
+                    "Baustellen: 100 km/h",
                     "Ruhezonen: 30 km/h",
                     "außerorts: keine Beschränkung",
                     "Autobahn: keine Beschränkung",

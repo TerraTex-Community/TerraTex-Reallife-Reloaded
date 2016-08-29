@@ -59,8 +59,6 @@ function death_func(ammo, attacker, weapon, bodypart)
         -- Vars for Logging
         local wasBlacklistOrWantedKill = false
 
-
-
         local x, y, z = getElementPosition(source)
         local int = getElementInterior(source)
         local dim = getElementDimension(source)

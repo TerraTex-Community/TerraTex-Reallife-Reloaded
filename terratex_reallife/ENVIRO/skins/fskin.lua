@@ -1,6 +1,6 @@
-policeSkin={[150]=true,[265]=true,[266]=true,[268]=true,[280]=true,[281]=true,[282]=true,[283]=true,[284]=true,[288]=true}
+policeSkin={[150]=true,[265]=true,[266]=true,[280]=true,[281]=true,[282]=true,[283]=true,[284]=true,[288]=true}
 groveSkin={[105]=true,[106]=true,[107]=true,[269]=true,[270]=true,[271]=true}
-	skinMarkers={}
+skinMarkers={}
 
 function createSkinMarkers()
 
@@ -40,13 +40,10 @@ function fskin_func(hitElement)
 			setElementDimension(hitElement,randdim)
 			vioSetElementData(hitElement,"SkinFuncMarker",-1)	
 			triggerClientEvent(hitElement,"showSkinGui",hitElement)
-
 			toggleAllControls(hitElement,false)	
 	end
 end
 addCommandHandler("fskin",fskin_func)]]
-
-
 
 function skin_func(hitElement)
 	if(isElement(hitElement))then
@@ -122,8 +119,6 @@ addEvent("buy_skin",true)
 addEventHandler("buy_skin",getRootElement(),buy_skin_func)
 
 
-
-
 function break_skin_func()
 		if(vioGetElementData(source,"fraktion")>0)then
 			setElementModel(source,vioGetElementData(source,"FrakSkin"))
@@ -145,11 +140,3 @@ function break_skin_func()
 end
 addEvent("break_skin",true)
 addEventHandler("break_skin",getRootElement(),break_skin_func)
-
-
-
-
-
-
-
-

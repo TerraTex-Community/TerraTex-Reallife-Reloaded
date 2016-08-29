@@ -43,7 +43,7 @@ local jobSetupTable = {
         --Busfahrer
         "bus",
         { 50, 150, 300, 600, 1200 },
-        { [0] = 15, 37, 92, 154, 192, 320 },
+        { [0] = 22.5, 55.5, 138, 231, 288, 480 },
         { 0.5, 0.5 },
         0.25, -- Randfaktor
         false, -- Randfaktor vor Teilung
@@ -149,6 +149,12 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
             else
                 geldProSkill = jobSetupTable[jobID][3][skill]
             end
+
+            if (not geldProSkill) then
+                outputDebugString("Error in Job-Payment-Calculation: " .. debug.traceback());
+                return false;
+            end
+
             gesamtGehalt = gesamtGehalt + geldProSkill * auftraege
             if (jobSetupTable[jobID][5] ~= 1 and jobSetupTable[jobID][6]) then
                 gesamtGehalt = math.random(gesamtGehalt * jobSetupTable[jobID][5], gesamtGehalt)

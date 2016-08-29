@@ -1,5 +1,5 @@
 
-policeSkin={[150]=true,[265]=true,[266]=true,[268]=true,[280]=true,[281]=true,[282]=true,[283]=true,[284]=true,[288]=true,[267]=true}
+policeSkin={[150]=true,[265]=true,[266]=true,[280]=true,[281]=true,[282]=true,[283]=true,[284]=true,[288]=true,[267]=true}
 groveSkin={[105]=true,[106]=true,[107]=true,[269]=true,[270]=true,[271]=true,[311]=true,[301]=true,[300]=true}
 newsSkin={[148]=true,[188]=true,[227]=true,[187]=true}
 llsSkin={[111]=true,[112]=true,[113]=true,[12]=true,[223]=true,[46]=true,[126]=true,[125]=true,[124]=true,[98]=true}
@@ -12,24 +12,20 @@ violettasSkin={[13]=true,[102]=true,[103]=true,[104]=true }
 sharkracerSkin={[41]=true,[114]=true,[115]=true,[116]=true,[173]=true,[174]=true,[175]=true}
 
 
-
-
-        SkinGui_Window = {}
-        SkinGui_Button = {}
-        SkinGui_Label = {}
-        SkinGui_Grid = {}
+SkinGui_Window = {}
+SkinGui_Button = {}
+SkinGui_Label = {}
+SkinGui_Grid = {}
 
 addEventHandler("onClientResourceStart",resourceRoot,
     function()
-
-
         SkinGui_Window[1] = guiCreateWindow(591,122,292,367,"Skin-List",false)
 		table.insert(allGuis,SkinGui_Window[1])
         SkinGui_Button[1] = guiCreateButton(145,56,133,33,"GetIt!",false,SkinGui_Window[1])
         SkinGui_Button[2] = guiCreateButton(163,97,98,33,"Beenden",false,SkinGui_Window[1])
         SkinGui_Grid[1] = guiCreateGridList(37,39,96,310,false,SkinGui_Window[1])
 		guiGridListSetSelectionMode(SkinGui_Grid[1],2)
-		guiGridListAddColumn(SkinGui_Grid[1],"SKinID",0.4)
+		guiGridListAddColumn(SkinGui_Grid[1],"SkinID",0.4)
         SkinGui_Label[1] = guiCreateLabel(146,154,129,91,"Klicke auf eine ID um zusehen welcher Skin sich dahinter verbirkt!",false,SkinGui_Window[1])
 		guiLabelSetColor(SkinGui_Label[1],255,255,255)
 		guiLabelSetVerticalAlign(SkinGui_Label[1],"top")

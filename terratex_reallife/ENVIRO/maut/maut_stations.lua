@@ -83,8 +83,8 @@ function onOpenMautStelle(thePlayer)
 					if(getPlayerMoney(thePlayer)>(maut_price-0.01))then
                         changePlayerMoney(thePlayer,-maut_price,"sonstiges","Maut")
                         changeBizKasse(14, maut_price/10, "Bezinkauf")
-						outputChatBox("vielen Dank, dass Sie unsere Grenzstation verwenden!",thePlayer,255,0,0)
-						outputChatBox(string.format("Es wurden ihnen %s$ Mautgebühren abgezogen!", maut_price),thePlayer,255,0,0)
+						outputChatBox("Vielen Dank, dass Sie unsere Grenzstation verwenden!",thePlayer,255,0,0)
+						outputChatBox(string.format("Es wurden Ihnen %s$ Mautgebühren abgezogen!", maut_price),thePlayer,255,0,0)
 						outputChatBox("Einen schönen Tag noch!",thePlayer,255,0,0)
 						
 						if(side=="left")then
@@ -101,7 +101,7 @@ function onOpenMautStelle(thePlayer)
 						outputChatBox(string.format("Sie benötigen %s$ um den Grenzübergang zu passieren!", maut_price),thePlayer,255,0,0)
 					end
 				else
-					outputChatBox("Bitte warten Sie bis die Mautstelle wieder frei ist, bevor sie den Marker passieren!",thePlayer,255,0,0)
+					outputChatBox("Bitte warten Sie bis die Mautstelle wieder frei ist, bevor Sie den Marker passieren!",thePlayer,255,0,0)
 				end			
 			end
 		end

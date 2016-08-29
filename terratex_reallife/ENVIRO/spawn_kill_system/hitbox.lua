@@ -70,7 +70,13 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
         armor = 0
     end
     if(health < 1)then
+        if (isPedInVehicle(source)) then
+            removePedFromVehicle(source)
+        end
+
+        local x,y,z = getElementPosition(source)
         killPed(source,attacker, attackerweapon, bodypart,false)
+        setElementPosition(source, x, y, z)
     else
         if(isElement(attacker))then
             local hitTimer=setTimer(resetHitTimer,30000,1,source)

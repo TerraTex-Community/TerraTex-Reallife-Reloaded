@@ -36,6 +36,9 @@
     <script src="USEFULL_SCRIPTS/elementText/showElementText_server.lua" type="server"/>
     <script src="USEFULL_SCRIPTS/vehicle.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/vehicle_client.lua" type="client"/>
+    <script src="USEFULL_SCRIPTS/garageFunctions.lua" type="shared"/>
+
+    <script src="ENVIRO/accept.lua" type="server"/>
     <!--custom eventmanager -->
     <script src="SYSTEM/eventmanager/client.lua" type="client"/>
     <script src="SYSTEM/eventmanager/server.lua" type="server"/>
@@ -171,6 +174,13 @@
     <!-- Enviroment -->
     <script src="ENVIRO/chat.lua" type="server"/>
     <script src="ENVIRO/trafficlights.lua" type="server"/>
+    <!-- Interiors -->
+    <script src="ENVIRO/interiors/teleportMarkers.lua" type="server"/>
+    <script src="ENVIRO/interiors/burgershots.lua" type="server"/>
+    <script src="ENVIRO/interiors/24_7.lua" type="server"/>
+    <script src="ENVIRO/interiors/sex.lua" type="server"/>
+    <script src="ENVIRO/interiors/pizza.lua" type="server"/>
+    <script src="ENVIRO/interiors/cluckinbell.lua" type="server"/>
     <!--<script src="ENVIRO/schranken_client.lua" type="client" />-->
     <script src="ENVIRO/lotto.lua" type="server"/>
     <script src="ENVIRO/noob.lua" type="server"/>
@@ -180,7 +190,10 @@
     <script src="ENVIRO/baustellen.lua" type="server"/>
     <script src="ENVIRO/radio_streamer.lua" type="client"/>
     <script src="ENVIRO/heli.lua" type="server"/>
-    <script src="ENVIRO/accept.lua" type="server"/>
+    
+    <!-- Spezielle Autos -->
+    <script src="ENVIRO/specialCars/abschleppTruck/abschleppTruck_server.lua" type="server"/>
+    <script src="ENVIRO/specialCars/abschleppTruck/abschleppTruck_client.lua" type="client"/>
 
     <!-- telefon -->
     <script src="ENVIRO/inventar_new/mobilephone/mobile_client_old.lua" type="client"/>
@@ -228,13 +241,6 @@
     <script src="ENVIRO/waffen/ammonation/ammu_server.lua" type="server"/>
     <script src="ENVIRO/waffen/waffen_client.lua" type="client"/>
     <script src="ENVIRO/waffen/waffen.lua" type="server"/>
-    <!-- Interiors -->
-    <script src="ENVIRO/interiors/teleportMarkers.lua" type="server"/>
-    <script src="ENVIRO/interiors/burgershots.lua" type="server"/>
-    <script src="ENVIRO/interiors/24_7.lua" type="server"/>
-    <script src="ENVIRO/interiors/sex.lua" type="server"/>
-    <script src="ENVIRO/interiors/pizza.lua" type="server"/>
-    <script src="ENVIRO/interiors/cluckinbell.lua" type="server"/>
     <!-- animation -->
     <script src="ENVIRO/animation/animations.lua" type="server"/>
     <script src="ENVIRO/animation/animation_client.lua" type="client"/>
@@ -471,6 +477,7 @@
     <script src="ENGINE/mapFileAdditions/mapEditorScriptingExtension_c.lua" type="client"/>
     <script src="ENGINE/mapFileAdditions/mapEditorScriptingExtension_s.lua" type="server"/>
     <script src="ENGINE/mapFileAdditions/allDimensionObject_client.lua" type="client"/>
+    <script src="ENGINE/mapFileAdditions/noOcclusionZones_client.lua" type="client"/>
     <!-- SF AIPORT -->
     <map src="MAPS/umgebung/map-sf-airport.map"/>
     <script src="MAPS/mapscripts/vorplatzwasser.lua" type="server"/>
@@ -990,4 +997,3 @@
     <file src="UI/styles/images/food_background.png"/>
 
 </meta>
-

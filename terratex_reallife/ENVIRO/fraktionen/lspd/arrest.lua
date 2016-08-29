@@ -3,11 +3,13 @@ local isStellBoit = {}
 
 function onStellBotSpawn()
     local bot = createPed(280, 238.961914062, 112.734375, 1003.21875, 274.67611694336)
+    setElementFrozen(bot, true);
     isStellBoit[bot] = true
     setElementInterior(bot, 10)
     bot = createPed(280, 233.044921875, 166.481445, 1003.02343, 265.45846557617)
     isStellBoit[bot] = true
     setElementInterior(bot, 3)
+    setElementFrozen(bot, true);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onStellBotSpawn)
 
@@ -146,18 +148,20 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
             local gangInNear = 0
             local policeInNear = 0
             for theKey, thePlayer in ipairs(getElementsByType("player")) do
-                if (isBeamter(thePlayer)) then
-                    local px, py, pz = getElementPosition(thePlayer)
-                    local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
-                    if (dis < 20) then
-                        policeInNear = policeInNear + 1
+                if (thePlayer ~= source) then
+                    if (isBeamter(thePlayer)) then
+                        local px, py, pz = getElementPosition(thePlayer)
+                        local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
+                        if (dis < 20) then
+                            policeInNear = policeInNear + 1
+                        end
                     end
-                end
-                if (vioGetElementData(thePlayer, "fraktion") == 5 or vioGetElementData(thePlayer, "fraktion") == 2) or vioGetElementData(thePlayer, "fraktion") == 12 or vioGetElementData(thePlayer, "fraktion") == 11 then
-                    local px, py, pz = getElementPosition(thePlayer)
-                    local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
-                    if (dis < 20) then
-                        gangInNear = gangInNear + 1
+                    if (vioGetElementData(thePlayer, "fraktion") == 5 or vioGetElementData(thePlayer, "fraktion") == 2) or vioGetElementData(thePlayer, "fraktion") == 12 or vioGetElementData(thePlayer, "fraktion") == 11 then
+                        local px, py, pz = getElementPosition(thePlayer)
+                        local dis = getDistanceBetweenPoints3D(px, py, pz, x, y, z)
+                        if (dis < 20) then
+                            gangInNear = gangInNear + 1
+                        end
                     end
                 end
             end
@@ -200,7 +204,7 @@ function frisk_func(thePlayer, Command, vonPlayerName)
                 local dis = getDistanceBetweenPoints3D(xv, yv, zv, xt, yt, zt)
                 if (dis < 10) then
                     local foundsomething = 0
-                    outputChatBox(string.format("%s hat sie durchsucht!", getPlayerName(thePlayer)), vonPlayer, 0, 255, 255)
+                    outputChatBox(string.format("%s hat Sie durchsucht!", getPlayerName(thePlayer)), vonPlayer, 0, 255, 255)
                     outputChatBox(string.format("Du hast %s durchsucht. Du hast gefunden:", getPlayerName(vonPlayer)), thePlayer, 0, 255, 255)
                     if (vioGetElementData(vonPlayer, "drogen") > 0) then
                         outputChatBox(string.format("%s Gramm Drogen", vioGetElementData(vonPlayer, "drogen")), thePlayer, 0, 255, 255)
@@ -230,7 +234,6 @@ function frisk_func(thePlayer, Command, vonPlayerName)
         end
     end
 end
-
 addCommandHandler("frisk", frisk_func, false, false)
 
 addEvent("sendAlkDrugData", true)
@@ -255,7 +258,7 @@ function take_func(thePlayer, Command, wasstring, vonPlayerName)
                         vioSetElementData(vonPlayer, "autoLic", -5)
                         vioSetElementData(vonPlayer, "bikeLic", -5)
                         vioSetElementData(vonPlayer, "truckLic", -5)
-                        outputChatBox(string.format("Ihnen wurden die Fahrzeuglizensen (Motorrad- und Autofuehrerschein) von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
+                        outputChatBox(string.format("Ihnen wurden die Fahrzeuglizensen (Motorrad- und Autoführerschein) von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s erfolgreich die Fahrzeug Lizensen (Motorrad- und Autoführerschein) abgenommen!", getPlayerName(vonPlayer)), thePlayer, 255, 0, 0)
                     elseif (wasstring == "FlugLizensen") then
                         vioSetElementData(vonPlayer, "planeLic", -5)
@@ -276,7 +279,7 @@ function take_func(thePlayer, Command, wasstring, vonPlayerName)
                         outputChatBox(string.format("Ihnen wurden die Waffen von %s abgenommen!", getPlayerName(thePlayer)), vonPlayer, 255, 0, 0)
                         outputChatBox(string.format("Du hast %s erfolgreich die Waffen abgenommen!", getPlayerName(vonPlayer)), thePlayer, 255, 0, 0)
                     else
-                        showError(thePlayer, "Man kann nur folgende Dinge Abnehmen: illegals, weapons")
+                        showError(thePlayer, "Man kann nur folgende Dinge abnehmen: illegals, weapons")
                     end
                 end
             else
@@ -422,17 +425,31 @@ function tazer_func(thePlayer)
                 if (nearestplayer == thePlayer) then nearestplayer = false end
                 if (nearestplayer) then
                     if (vioGetElementData(thePlayer, "Tazer") == 0) then
-                        local posX, posY, posZ = getElementPosition(nearestplayer)
-                        local chatSphere = createColSphere(posX, posY, posZ, 10)
-                        local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
-                        destroyElement(chatSphere)
-                        for index, nearbyPlayer in ipairs(nearbyPlayers) do
-                            outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                        local hasTazerEffect = true;
+                        local drugs = tonumber(getElementData(nearestplayer, "DrogenImBlut"))
+                        if (drugs > 20) then
+                            if (math.random(1,2) == 1) then
+                                hasTazerEffect = false;
+                            end
                         end
-                        toggleAllControls(nearestplayer, false, true, false)
-                        setPedAnimation(nearestplayer, "crack", "crckdeth2", -1, true, true, true)
-                        setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
-                        vioSetElementData(thePlayer, "Tazer", 1)
+
+                        if (hasTazerEffect) then
+                            local posX, posY, posZ = getElementPosition(nearestplayer)
+                            local chatSphere = createColSphere(posX, posY, posZ, 10)
+                            local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
+                            destroyElement(chatSphere)
+                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                                outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                            end
+                            toggleAllControls(nearestplayer, false, true, false)
+                            setPedAnimation(nearestplayer, "crack", "crckdeth2", -1, true, true, true)
+                            setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
+                            vioSetElementData(thePlayer, "Tazer", 1)
+                        else
+                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                                outputChatBox(string.format("%s hat %s getazert, allerdings zeigte dieser keinen Effect!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
+                            end
+                        end
                     else
                         showError(thePlayer, "Du kannst den Tazer nur alle 7 Sekunden nutzen!")
                     end
@@ -443,7 +460,6 @@ function tazer_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("tazer", tazer_func, false, false)
 
 function unfreeze_tazer(thePlayer, police)
@@ -546,7 +562,7 @@ function cuff_func(theMaker, Command, thePlayerName)
                     showError(theMaker, "Einer von euch ist nicht in einen Fahrzeug! Daher wurden alle Fesseln unschaedlich gemacht!")
                 end
             else
-                showError(theMaker, "Du kannst dich nicht selbst fesseln oder entfesseln! bzw. Du bist gefesselt und kannst dich nicht bewegen!")
+                showError(theMaker, "Du kannst dich nicht selbst fesseln oder entfesseln!")
             end
         else
             showError(theMaker, "Der Spieler existiert nicht!")
@@ -629,7 +645,7 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                             vioSetElementData(thePlayer, "autoLic", -5)
                             vioSetElementData(thePlayer, "bikeLic", -5)
                             vioSetElementData(thePlayer, "truckLic", -5)
-                            outputChatBox("Du hast somit gerade deinen Fuehrerschein verloren", thePlayer, 0, 0, 255)
+                            outputChatBox("Du hast somit gerade deinen Führerschein verloren", thePlayer, 0, 0, 255)
                             vioSetElementData(thePlayer, "stvo", 0)
                         end
 
@@ -638,7 +654,7 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                             outputChatBoxForPolice(string.format("Er hat %s StVO-Punkte! Reporter: %s", vioGetElementData(thePlayer, "stvo"), getPlayerName(theMaker)))
 
                         else
-                            outputChatBoxForPolice(string.format("Er hat somit gerade seinen Fuehrerschein verloren!  Reporter: %s", getPlayerName(theMaker)))
+                            outputChatBoxForPolice(string.format("Er hat somit gerade seinen Führerschein verloren!  Reporter: %s", getPlayerName(theMaker)))
                         end
 
                         vioSetElementData(thePlayer, "stvoFreePayDays", 0)
@@ -672,7 +688,7 @@ function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
                         outputChatBox(string.format("Du hast %s ein %s-Strafzettel gegeben!", getPlayerName(thePlayer), toprice(thePrice)), theMaker, 255, 5, 0)
                     end
                 else
-                    showError(theMaker, "Einige eingaben sind Fehlerhaft! Usage: /ticket Name Preis Grund")
+                    showError(theMaker, "Einige Eingaben sind Fehlerhaft! Usage: /ticket Name Preis Grund")
                 end
             end
         end

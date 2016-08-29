@@ -42,7 +42,7 @@ function addHaltestelle(thePlayer,cmd,Richtung)
     local HID=false
     local HIDR=false
     if(aktuelleRoute)then
-        for theKey,theHaltestelle in ipairs(haltestellenTabelle)do
+        for theKey,theHaltestelle in ipairs(haltestellenTable)do
             if(getDistanceBetweenPoints3D(theHaltestelle[1],theHaltestelle[2],theHaltestelle[3],x,y,z)< 20)then
                 if(Richtung==theHaltestelle[4])then
                     HID=theKey
@@ -56,13 +56,13 @@ function addHaltestelle(thePlayer,cmd,Richtung)
             outputChatBox("Haltestelle wurde hinzugefügt!",thePlayer,255,0,0)
         else
             if(HIDR)then
-                table.insert(haltestellenTabelle,{x,y,z,Richtung,haltestellenTabelle[HIDR][5]})
-                local newID=table.maxn(haltestellenTabelle)
+                table.insert(haltestellenTable,{x,y,z,Richtung,haltestellenTable[HIDR][5]})
+                local newID=table.maxn(haltestellenTable)
                 table.insert(routenListe[aktuelleRoute],newID)
                 outputChatBox("Haltestelle wurde hinzugefügt!",thePlayer,255,0,0)
             else
-                table.insert(haltestellenTabelle,{x,y,z,Richtung,"dummy"})
-                local newID=table.maxn(haltestellenTabelle)
+                table.insert(haltestellenTable,{x,y,z,Richtung,"dummy"})
+                local newID=table.maxn(haltestellenTable)
                 table.insert(routenListe[aktuelleRoute],newID)
                 outputChatBox(string.format("Eine neue Haltestelle wurde angelegt... Name kann mit '/Hsetname %s' gesetzt werden!", newID),thePlayer,255,0,0)
             end
@@ -76,7 +76,7 @@ addCommandHandler("Hadd",addHaltestelle,false,false)
 function HsetName(thePlayer,cmd,HID,name,...)
     if(name)then
         local name=name.." "..table.concat({...}," ")
-        haltestellenTabelle[tonumber(HID)][5]=name
+        haltestellenTable[tonumber(HID)][5]=name
     else
         showError(thePlayer,"bitte geben sie einen namen an!")
     end
@@ -93,7 +93,7 @@ function printHaltestellenInFile(thePlayer)
     genContent=genContent.."//\n"
     genContent=genContent.."]]\n\n\n"
     genContent=genContent.."local haltestellenTable={}\n"
-    for theKey, theHaltestelle  in ipairs(haltestellenTabelle)do
+    for theKey, theHaltestelle  in ipairs(haltestellenTable)do
         genContent=genContent.."haltestellenTable["..theKey.."]={"..theHaltestelle[1]..","..theHaltestelle[2]..","..theHaltestelle[3]..",\""..theHaltestelle[4].."\",\""..theHaltestelle[5].."\"}\n"
     end
     genContent=genContent.."\n\n"

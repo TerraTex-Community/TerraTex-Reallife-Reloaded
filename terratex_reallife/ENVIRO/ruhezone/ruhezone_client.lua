@@ -26,6 +26,7 @@ function checkRuheZonenEnter()
         if (isNowRuheZone) then
             outputChatBox("Du hast eine Ruhezone betreten! Hier gelten besondere Regeln:", 255, 0, 0)
             outputChatBox(" -> KEIN DM", 255, 0, 0)
+            outputChatBox(" -> /park - Verbot", 255, 0, 0)
             outputChatBox(" -> Max. Geschwindigkeit: 30km/h", 255, 0, 0)
             if (isAdminLevel(getLocalPlayer(), 4)) then
                 outputChatBox(string.format("RuhezonenID: %s", idKey), 255, 0, 0)
@@ -59,23 +60,9 @@ addEventHandler("onClientVehicleExit", getRootElement(), onVehicleExitInRuheZone
 function player_ruhe_waffen_switch(asd, currentWeaponSlot)
     if (isInRuheZone) then
         if tonumber(getElementData(getLocalPlayer(), "fraktion")) == 0 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 3 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 10 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 4 then
-
-            if (asd > currentWeaponSlot) then
-                while (not (currentWeaponSlot == 11 or currentWeaponSlot == 9 or currentWeaponSlot == 0)) do
-                    currentWeaponSlot = currentWeaponSlot - 1
-                    if (currentWeaponSlot == -1) then
-                        currentWeaponSlot = 11
-                    end
-                end
-            else
-                while (not (currentWeaponSlot == 11 or currentWeaponSlot == 9 or currentWeaponSlot == 0)) do
-                    currentWeaponSlot = currentWeaponSlot + 1
-                    if (currentWeaponSlot == 12) then
-                        currentWeaponSlot = 0
-                    end
-                end
-            end
-            setPedWeaponSlot(getLocalPlayer(), currentWeaponSlot)
+           if(currentWeaponSlot ~= 11 and currentWeaponSlot ~= 9 and currentWeaponSlot ~= 0) then
+		cancelEvent()
+	   end
         end
     end
 end

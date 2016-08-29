@@ -1,4 +1,3 @@
-
 function createABaustelle()
     local baustellentable={}
 	for i=1,100,1 do
@@ -6,42 +5,27 @@ function createABaustelle()
             table.insert(baustellentable,i)
         end
 	end
---	n=n-1
 
 
-
-	local baustelle=math.random(1,table.getSize(baustellentable)+1)
-	if(baustelle==table.getSize(baustellentable)+1)then
-		loadAllBaustellen()
-	else 
-		local howMany=math.random(1,3)
-        if(howMany==1)then
-
-            outputDebugString(string.format("Baustelle %s von %s wurde geladen!", baustelle, table.getSize(baustellentable)))
-            local node = xmlLoadFile(":"..getResourceName(getThisResource()).."/MAPS/baustellen/baustelle_"..baustellentable[baustelle]..".map")
-            local mapRoot = loadMapData(node, root)
-            xmlUnloadFile(node)
-
-        else
-            local which={}
-            table.insert(which,baustelle)
-            local c=1
-            while(c<=howMany)do
-                baustelle=math.random(1,table.getSize(baustellentable))
-                if(not table.hasValue(which,baustelle))then
-                    table.insert(which,baustelle)
-                    c=c+1
-                end
-            end
-
-            for theKey, theBaustellenID in ipairs(which)do
-                outputDebugString(string.format("Baustelle %s von %s wurde geladen!", theBaustellenID, table.getSize(baustellentable)))
-                local node = xmlLoadFile(":"..getResourceName(getThisResource()).."/MAPS/baustellen/baustelle_"..baustellentable[theBaustellenID]..".map")
-                local mapRoot = loadMapData(node, root)
-                xmlUnloadFile(node)
-            end
-        end
+    local x = math.random(0, 3500)/1000
+    local howMany = math.ceil((table.getSize(baustellentable)) * math.exp(-x))
+    local which = {}
+    local c = 0
+    while (c < howMany) do
+        local baustelle = math.random(1, table.getSize(baustellentable))
+        table.insert(which, baustellentable[baustelle])
+        table.remove(baustellentable, baustelle)
+        c = c+1
     end
+
+    for theKey, theBaustellenID in ipairs(which) do
+        table.insert(baustellentable, theBaustellenID)
+        outputDebugString(string.format("Baustelle mit ID %s wurde geladen!", theBaustellenID))
+        local node = xmlLoadFile(":"..getResourceName(getThisResource()).."/MAPS/baustellen/baustelle_"..theBaustellenID..".map")
+        local mapRoot = loadMapData(node, root)
+        xmlUnloadFile(node)
+    end
+
 
     reloadMapExtensions()
 
@@ -76,11 +60,3 @@ function load_All_Baustellen_by_admin(thePlayer)
 	end
 end
 addCommandHandler("loadAllBaustellen",load_All_Baustellen_by_admin,false,false)
-
-
-
-
-
-
-
-

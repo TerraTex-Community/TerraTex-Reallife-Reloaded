@@ -1,33 +1,85 @@
-lspdschranke=createObject(968,1544.7264404297,-1630.7701416016,13.145315170288,0,-89.516113281,268.48498535156)
-lspdschrankestatus=false
-lspdschranketurnable=true
+lspdschranke = {}
+lspdschranke[0] = createObject(968,1544.7264404297,-1630.7701416016,13.145315170288,0,-89.516113281,268.48498535156)
+lspdschranke[1] = createObject(968,2739.66,-2661.81,13.24,0,90,180)
+lspdschranke[2] = createObject(968,2633.108,-2661.7976,13.24,0,90,0)
+lspdschrankestatus = {}
+lspdschrankestatus[0] = false
+lspdschrankestatus[1] = false
+lspdschrankestatus[2] = false
+lspdschranketurnable = {}
+lspdschranketurnable[0] = true
+lspdschranketurnable[1] = true
+lspdschranketurnable[2] = true
 
 function openPDSchranke(thePlayer)
 	if(isBeamter(thePlayer))then
 		local x,y,z=getElementPosition(thePlayer)
+        --PD-Hof LS
 		local dis=getDistanceBetweenPoints3D(x,y,z,1544.7264404297,-1630.7701416016,13.145315170288)
 		if(dis<10)then
-			if(lspdschranketurnable)then
-				if(lspdschrankestatus)then
-					moveObject(lspdschranke,3000,1544.7264404297,-1630.7701416016,13.145315170288,0,-89.516113281,0)
-					lspdschrankestatus=false
-					lspdschranketurnable=false
-					setTimer(setLSPDSchrankeMoveAble,3500,1)
+			if(lspdschranketurnable[0])then
+				if(lspdschrankestatus[0])then
+					moveObject(lspdschranke[0],3000,1544.7264404297,-1630.7701416016,13.145315170288,0,-89.516113281,0)
+					lspdschrankestatus[0]=false
+					lspdschranketurnable[0]=false
+					setTimer(function()
+                        lspdschranketurnable[0]=true
+                    end,3500,1)
 				else
-					moveObject(lspdschranke,3000,1544.7255859375,-1630.76953125,13.145315170288,0,89.516113281,0 )				
-					lspdschrankestatus=true				
-					lspdschranketurnable=false					
-					setTimer(setLSPDSchrankeMoveAble,3500,1)
+					moveObject(lspdschranke[0],3000,1544.7255859375,-1630.76953125,13.145315170288,0,89.516113281,0 )				
+					lspdschrankestatus[0]=true				
+					lspdschranketurnable[0]=false					
+					setTimer(function()
+                        lspdschranketurnable[0]=true
+                    end,3500,1)
+				end	
+			end
+		end
+        --Atomkraftwerk Schranke 1
+        local dis=getDistanceBetweenPoints3D(x,y,z,2739.66,-2661.81,13.24)
+		if(dis<10)then
+			if(lspdschranketurnable[1]) then
+				if(lspdschrankestatus[1]) then
+					moveObject(lspdschranke[1],3000,2739.66,-2661.81,13.24, 0,90,0)
+					lspdschrankestatus[1]=false
+					lspdschranketurnable[1]=false
+					setTimer(function()
+                        lspdschranketurnable[1]=true
+                    end,3500,1)
+				else
+					moveObject(lspdschranke[1],3000,2739.66,-2661.81,13.24, 0,-90,0)				
+					lspdschrankestatus[1]=true				
+					lspdschranketurnable[1]=false					
+					setTimer(function()
+                        lspdschranketurnable[1]=true
+                    end,3500,1)
+				end	
+			end
+		end
+        --Atomkraftwerk Schranke 2
+        local dis=getDistanceBetweenPoints3D(x,y,z,2633.108,-2661.7976,13.24)
+		if(dis<10)then
+			if(lspdschranketurnable[2]) then
+				if(lspdschrankestatus[2]) then
+					moveObject(lspdschranke[2],3000,2633.108,-2661.7976,13.24, 0,90,0)
+					lspdschrankestatus[2]=false
+					lspdschranketurnable[2]=false
+					setTimer(function()
+                        lspdschranketurnable[2]=true
+                    end,3500,1)
+				else
+					moveObject(lspdschranke[2],3000,2633.108,-2661.7976,13.24, 0,-90,0)				
+					lspdschrankestatus[2]=true				
+					lspdschranketurnable[2]=false					
+					setTimer(function()
+                        lspdschranketurnable[2]=true
+                    end,3500,1)
 				end	
 			end
 		end	
 	end
 end
 addCommandHandler("mv",openPDSchranke,false,false)
-
-function setLSPDSchrankeMoveAble()
-	lspdschranketurnable=true
-end
 
 lspdtor={}
 lspdtor[1]=createObject(969,1584.6666259766,-1638.1644287109,12.51545715332,0,359,0)
@@ -37,7 +89,7 @@ lspdtor[3]=createObject(2930,239.5,118.80000305176,1004.9000244141,0,0,0)
 setElementInterior(lspdtor[3],10)   
 lspdtor[4]=createObject(2930,3366.57,136.2922,17.2532,0,0,0)
 lspdtor[5]=createObject(2930,3366.5,136.2998,17.2532,0,0,179.995)
- lspdtorstatus={}
+lspdtorstatus={}
 lspdtorstatus[1]=false
 lspdtorstatus[2]=false
 lspdtorstatus[3]=false
@@ -169,13 +221,4 @@ function setUp_pd(player)
             end
         end
 	end
-end  
-
-
-
-
-
-
-
-
-
+end

@@ -64,7 +64,73 @@ function enterVehicle(thePlayer, seat, jacked, door)
 end
 addEventHandler("onVehicleStartEnter", getRootElement(), enterVehicle)
 
+function hasTheLicenseFor(thePlayer, vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [2] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if (isNoLicensCar(vehid)) then
+        return true;
+    end
+
+    if (isTruck(vehid)) then
+        if (vioGetElementData(thePlayer, "truckLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isPlane(vehid)) then
+        if (vioGetElementData(thePlayer, "planeLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isCar(vehid)) then
+        if (vioGetElementData(thePlayer, "autoLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isBike(vehid)) then
+        if (vioGetElementData(thePlayer, "bikeLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isHeli(vehid)) then
+        if (vioGetElementData(thePlayer, "heliLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isBoat(vehid)) then
+        if (vioGetElementData(thePlayer, "boatLic") < 1) then
+            return false
+        else
+            return true
+        end
+    elseif (isQuad(vehid)) then
+        if (vioGetElementData(thePlayer, "quadLic") < 1) then
+            return false
+        else
+            return true
+        end
+    else
+        if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
+            return false
+        else
+            return true
+        end
+    end
+
+    if (isSpezVehicle(vehid)) then
+        if (vioGetElementData(thePlayer, "sonstigeLic") < 1) then
+            showError(thePlayer, "Du kannst das nicht benutzen. Sie besitzen keinen Spezialfuehrerschein!")
+            cancelEvent()
+        end
+    end
+end
+
+
 function isSpezVehicle(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (table.hasValue(spezlic, vehid)) then
         return true
     else
@@ -73,6 +139,7 @@ function isSpezVehicle(vehid)
 end
 
 function isTruck(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (truckerlicveh[vehid]) then
         return true
     else
@@ -81,6 +148,7 @@ function isTruck(vehid)
 end
 
 function isCar(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (truckerlicveh[vehid]) then
         return false
     else
@@ -93,6 +161,7 @@ function isCar(vehid)
 end
 
 function isPlane(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Plane") then
         return true
     else
@@ -101,6 +170,7 @@ function isPlane(vehid)
 end
 
 function isBike(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Bike" and not (isNoLicensCar(vehid))) then
         return true
     else
@@ -109,6 +179,7 @@ function isBike(vehid)
 end
 
 function isHeli(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Helicopter") then
         return true
     else
@@ -117,6 +188,7 @@ function isHeli(vehid)
 end
 
 function isBoat(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Boat") then
         return true
     else
@@ -125,6 +197,7 @@ function isBoat(vehid)
 end
 
 function isQuad(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Quad") then
         return true
     else
@@ -134,6 +207,7 @@ end
 
 local noLizenseCar = { [462] = true, [448] = true }
 function isNoLicensCar(vehid)
+    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (noLizenseCar[vehid]) then
         return true
     else

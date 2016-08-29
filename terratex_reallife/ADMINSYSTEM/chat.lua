@@ -77,7 +77,6 @@ function w_func(theMaker, Command, thePlayerName, ...)
         end
     end
 end
-
 addCommandHandler("w", w_func, false, false)
 
 function re_func(theMaker, Command, ...)
@@ -101,11 +100,12 @@ function occ_func(theMaker, Command, ...)
     local message = table.concat({ ... }, "  ")
     if (isAdminLevel(theMaker, 0)) then
         local adminpre = ""
+        if (vioGetElementData(theMaker, "SupportLVL") == 1) then adminpre = "Supporter " end
         if (vioGetElementData(theMaker, "adminlvl") == 1) then adminpre = "Moderator " end
         if (vioGetElementData(theMaker, "adminlvl") == 2) then adminpre = "SuperModerator " end
         if (vioGetElementData(theMaker, "adminlvl") == 3) then adminpre = "Administrator " end
         if (vioGetElementData(theMaker, "adminlvl") == 4) then adminpre = "Serverleiter " end
-        if (vioGetElementData(theMaker, "SupportLVL") > 0) then adminpre = "Supporter " end
+        if (vioGetElementData(theMaker, "adminlvl") == 5) then adminpre = "[Hidden] " end
         message = "[[ " .. adminpre .. getPlayerName(theMaker) .. ": " .. message .. " ]]"
         outputChatBox(message, getRootElement(), 255, 20, 147)
     end

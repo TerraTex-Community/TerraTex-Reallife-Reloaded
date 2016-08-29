@@ -1,13 +1,12 @@
---
--- Created by IntelliJ IDEA.
--- User: accow
--- Date: 12.02.14
--- Time: 16:31
--- To change this template use File | Settings | File Templates.
---
+--[[
+//
+// HaltestellenListe generiert am
+// 22.8.2016 20:46:6
+//
+]]
 
--- haltestellenTabelle: Aufbau: [id]={x,y,z,richtung,name}
-haltestellenTable={}
+
+local haltestellenTable={}
 haltestellenTable[1]={1247.08203125,-1854.8349609375,12.976508140564,"O","Busbahnhof Los Santos"}
 haltestellenTable[2]={1480.5068359375,-1734.84765625,12.977502822876,"O","Stadthalle Los Santos"}
 haltestellenTable[3]={1727.4296875,-1817.3427734375,12.956211090088,"O","Hauptbahnhof Los Santos"}
@@ -60,7 +59,7 @@ haltestellenTable[49]={-1964.345703125,1119.72265625,53.020462036133,"N","Kathed
 haltestellenTable[50]={-2096.3994140625,-288.8720703125,35.023609161377,"W","San Fierro Arena"}
 haltestellenTable[51]={-2729.1953125,-309.171875,6.6360359191895,"SW","Tennisplatz"}
 haltestellenTable[52]={-2413.7451171875,-624.6025390625,132.05143737793,"S","Elektrizitaetswerk"}
-haltestellenTable[53]={-2245.009765625,-2194.4228515625,35.412910461426,"NW","Mount Chilliad"}
+haltestellenTable[53]={-2245.009765625,-2194.4228515625,35.412910461426,"NW","Mount Chiliad"}
 haltestellenTable[54]={960.00390625,-1118.8642578125,23.27748298645,"S","Am Friedhof"}
 haltestellenTable[55]={940.0146484375,-1239.89453125,15.92155456543,"S","Am Filmstudio"}
 haltestellenTable[56]={2306.166015625,-2325.791015625,12.978335380554,"SW","Meeresreinigerstation"}
@@ -69,13 +68,33 @@ haltestellenTable[58]={2402.849609375,-1258.8046875,23.430063247681,"O","PigPen"
 haltestellenTable[59]={1083.6396484375,1195.91796875,10.279914855957,"W","San Andreas News"}
 haltestellenTable[60]={-124.072265625,-401.91796875,0.6882746219635,"SO","Fleischberg"}
 haltestellenTable[61]={-1042.74609375,-1185.97265625,128.49440002441,"N","Hauptfarm"}
+haltestellenTable[62]={405.3515625,-1699.3720703125,8.4691390991211,"W","Santa Maria Beach"}
+haltestellenTable[63]={-82.966796875,-2512.2353515625,38.916439056396,"SO","Am Waldmotel"}
+haltestellenTable[64]={-1586.0947265625,-2754.5087890625,48.007831573486,"NW","Waldrastplatz "}
+haltestellenTable[65]={-2199.94140625,-2274.60546875,30.067972183228,"NW","Angel Pine Motel"}
+haltestellenTable[66]={-2766.546875,-1571.2529296875,140.85527038574,"N","Bergwachthütte"}
+haltestellenTable[67]={-2575.90625,-1477.32421875,358.62426757813,"S","Am Felsenpass"}
+haltestellenTable[68]={-2320.4482421875,-1671.7724609375,482.4504699707,"S","Mount Chiliad Gipfel"}
+haltestellenTable[69]={-2518.2099609375,-1870.845703125,301.19442749023,"S","Am Aktionpfad"}
+haltestellenTable[70]={-2241.2958984375,-2200.7724609375,35.399662017822,"NO","Mount Chiliad"}
+haltestellenTable[71]={-1857.595703125,-1752.1806640625,28.785396575928,"NO","Müllverbrennungsanlage"}
+haltestellenTable[72]={-1147.900390625,-2278.291015625,35.702724456787,"S","Waldwanderbrücke"}
+haltestellenTable[73]={-259.634765625,-2017.0966796875,31.034435272217,"N","Forstzentrale"}
+haltestellenTable[74]={-80.76953125,-1622.119140625,2.9838733673096,"NO","Am Wohnpark"}
 
-routenListe={}
+
+local routenListe={}
 routenListe["fraktion"]={1,2,3,28,7,8,29,16,17,30,31,21,32,33,34,35,27,10,36,13,14}
+routenListe["rookie"]={1,2,3,4,5,6,7,8,9,10,11,12,13,14}
 routenListe["sehenswert"]={1,2,3,37,38,39,40,41,42,15,16,43,44,45,46,47,48,49,50,51,52,53,54,55,14}
 routenListe["all"]={1,2,3,4,5,6,7,8,15,16,17,18,19,20,21,22,23,24,25,26,27,9,10,11,12,13,14}
+routenListe["chiliad"]={1,2,3,4,62,63,64,65,66,67,68,69,70,71,72,73,74,12,13,14}
 routenListe["job"]={1,2,3,4,56,5,6,57,58,8,22,23,25,26,59,60,61,12}
-routenListe["rookie"]={1,2,3,4,5,6,7,8,9,10,11,12,13,14 }
+
+
+-- Bonis auf Skill 5 Berechnung auf SKill: Betrag / (6 - SkillLevel)
+routenBonus = {all = 3369, rookie = 1608, job = 5780, fraktion = 2622, sehenswert = 11970, chiliad = 8960};
+routenFarben= {all = {150,0,0}, rookie = {0,150,0}, job = {0,0,150}, fraktion = {150,150,0}, sehenswert = {150,0,150}, chiliad = {0,150, 150}};
 
 --[[Abfrage Befehle für die Haltestellen]]
 function getHaltestellenKoordinaten(hID)
@@ -185,14 +204,6 @@ end
 
 addEvent("giveMeHList",true)
 function giveMeHList_func()
-    triggerClientEvent(source,"sendHData",source,routenListe, haltestellenTable)
+    triggerClientEvent(source,"sendHData",source,routenListe, haltestellenTable, routenFarben)
 end
 addEventHandler("giveMeHList",getRootElement(),giveMeHList_func)
-
-
-
-
-
-
-
-

@@ -23,7 +23,8 @@ function setNextStation(hitElement)
                 end
 
                 local betragDirekt, betragPayDay = giveJobGehalt(thePlayer, 4, 1)
-                showError(thePlayer, string.format("Du erhälst für diese Haltestelle %s Gehalt. Zusätzlich hast du %s durch Fahrgäste verdient.", toprice(betragPayDay), toprice(betragDirekt)))
+                local message = string.format("Du erhälst für diese Haltestelle %s Gehalt. Zusätzlich hast du %s durch Fahrgäste verdient.", toprice(betragPayDay), toprice(betragDirekt));
+
                 --showError(thePlayer,string.format("Da du die Station erreicht hast erhaelst du %s $", betragDirekt+betragPayDay))
 
 
@@ -32,6 +33,29 @@ function setNextStation(hitElement)
                 local route = vioGetElementData(hitElement, "route")
                 local oldID = vioGetElementData(hitElement, "station")
                 local newID = getNextRouteHaltestellenIndex(route, oldID)
+
+                if (newID == 1) then
+                    local bonus = routenBonus[route];
+
+                    if isWetterEventID == 7 then
+                        bonus = bonus * 1.5;
+                    elseif isWetterEventID == 8 then
+                        bonus = bonus * 0.5;
+                    end
+
+                    local skillLevel = vioGetElementData(thePlayer, "busSkill");
+
+                    bonus = math.round(bonus / (6 - skillLevel));
+
+                    -- Geld zum PayDay addieren
+                    vioSetElementData(thePlayer, "addPayDayGehalt", vioGetElementData(thePlayer, "addPayDayGehalt") + bonus);
+                    --PayDay Gehalt in den Log anzeigen
+                    saveMoneyLog(thePlayer, "Bank", "job", betragPayDay, "Busfahrer", "Gehalt zum PayDay");
+
+                    message = message .. " Für den Abschluss der Route erhälst du " .. toprice(bonus) .. ".";
+                end
+
+                showError(thePlayer, message);
                 vioSetElementData(hitElement, "station", newID)
                 local mx, my, mz = getHaltestellenKoordinatenByRouteID(route, newID)
                 local station = vioGetElementData(hitElement, "station")
@@ -159,7 +183,7 @@ function resetPlayerHasSpawnedABus(thePlayer)
     end
 end
 
-local routennamen = { ["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true }
+local routennamen = {["all"] = true, ["rookie"] = true, ["job"] = true, ["fraktion"] = true, ["sehenswert"] = true, ["chiliad"] = true}
 function startbus_cmd(thePlayer, cmd, routenname)
     if (vioGetElementData(thePlayer, "job") == 4) then
         if (vioGetElementData(thePlayer, "truckLic") > 0) then
@@ -167,8 +191,9 @@ function startbus_cmd(thePlayer, cmd, routenname)
 
             if (vioGetElementData(thePlayer, "busstared") < getTimestamp() - 300) then
                 if (routenname) then
-                    if (routennamen[string.lower(routenname)]) then
-                        if (not (string.lower(routenname) == "rookie") and not (vioGetElementData(thePlayer, "reiseLic"))) then
+                    routenname = string.lower(routenname);
+                    if (routennamen[routenname]) then
+                        if (not (routenname == "rookie") and not (vioGetElementData(thePlayer, "reiseLic"))) then
                             outputChatBox("Für die Route 'all' benötigst du einen Reisepass!", thePlayer, 255, 0, 0)
                         else
                             local x, y, z = getElementPosition(thePlayer)
@@ -179,10 +204,24 @@ function startbus_cmd(thePlayer, cmd, routenname)
                                     vioSetElementData(thePlayer, "hasStartedABus", true)
                                     setTimer(resetPlayerHasSpawnedABus, 10000, 1, thePlayer)
                                     local busveh = createVehicle(431, 1256.0751953125, -1806.45703125, 13.516704559326, 359.43420410156, 0, 216.49658203125)
+                                    local r,g,b  = unpack(routenFarben[routenname])
+                                    local r2     = r+55
+                                    local g2     = g+55
+                                    local b2     = b+55
+                                    if (r > 200) then
+                                        r2 = 255
+                                    end
+                                    if (g > 200) then
+                                        g2 = 255
+                                    end
+                                    if (b > 200) then
+                                        b2 = 255
+                                    end
+                                    setVehicleColor(busveh, r2,g2,b2, r,g,b)
                                     vioSetElementData(busveh, "hasTank", true)
                                     vioSetElementData(busveh, "hasTankFactor", 0.5)
-                                    vioSetElementData(busveh, "route", string.lower(routenname))
-                                    vioSetElementData(thePlayer, "route", string.lower(routenname))
+                                    vioSetElementData(busveh, "route", routenname)
+                                    vioSetElementData(thePlayer, "route", routenname)
                                     vioSetElementData(busveh, "driver", thePlayer)
                                     vioSetElementData(thePlayer, "busjobvehicle", busveh)
                                     vioSetElementData(busveh, "isBusVeh", true)
@@ -200,10 +239,10 @@ function startbus_cmd(thePlayer, cmd, routenname)
                             end
                         end
                     else
-                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert und job", thePlayer, 255, 0, 0)
+                        outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chiliad", thePlayer, 255, 0, 0)
                     end
                 else
-                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert und job", thePlayer, 255, 0, 0)
+                    outputChatBox("Es gibt nur die Routen: rookie (nur LS für Anfänger), all (ls/lv), fraktion, sehenswert, job und chiliad", thePlayer, 255, 0, 0)
                 end
             else
                 showError(thePlayer, "Du hast bereits einen Bus in den letzten 5 Minuten gestartet.")
@@ -215,11 +254,3 @@ function startbus_cmd(thePlayer, cmd, routenname)
 end
 
 addCommandHandler("busstart", startbus_cmd, false, false)
-
-
-
-
-
-
-
-

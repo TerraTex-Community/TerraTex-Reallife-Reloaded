@@ -31,7 +31,8 @@ local tankmarkercords = {
     { 1300.533203125, 1436.0380859375, 10.9107971191410, 6 }, --spez
     { 300.2060546875, 2065.2939453125, 17.640625, 3 }, --spez
     { -1674.6298828125, 404.2578125, 7.1708655357361, 2.0 },
-    { 1637.3968505859, 83.283386230469, 37.073993682861, 2.0 }
+    { 1643.57, 83.45, 36.1, 2.0 },
+    { 1642.3, 77.95, 36.1, 2.0 }
 }
 
 
@@ -89,21 +90,31 @@ function TankenMarkerHit(hitElement)
     if (getElementType(hitElement) == "vehicle") then
         if (vioGetElementData(hitElement, "tank") and getVehicleOccupant(hitElement)) then
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"])
-            if (getPlayerMoney(getVehicleOccupant(hitElement)) < price) then
-                outputChatBox(string.format("Du hast leider nicht genug Geld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0)
+            local zahlMethode = "Bar";
+            local kannTanken = false;
+            if (getPlayerMoney(getVehicleOccupant(hitElement)) >= price) then
+                zahlMethode = "Bar";
+                kannTanken = true;
             else
+                if (getPlayerBank(getVehicleOccupant(hitElement)) >= price) then
+                    zahlMethode = "Bank";
+                    kannTanken = true;
+                else
+                    zahlMethode = "Hartz4";
+                end
+            end
+
+            if (kannTanken) then
                 local freezetime = math.round((100 - vioGetElementData(hitElement, "tank")) * 600)
                 if (isGoldBoosterActive(getVehicleOccupant(hitElement), "FuelBooster")) then
                     freezetime = math.round(((100 - vioGetElementData(hitElement, "tank")) * 600) / 4)
                 end
-
                 outputChatBox("Bitte warte... Das Fahrzeug wird aufgetankt!", getVehicleOccupant(hitElement), 255, 0, 0)
                 setElementFrozen(hitElement, true)
                 vioSetElementData(hitElement, "isInTankProcedur", true)
                 vioSetElementData(hitElement, "motor", false)
                 setVehicleEngineState(hitElement, false)
                 vioSetElementData(hitElement, "motornum", 0)
-
                 if (vioGetElementData(source, "repairMarker")) then
                     freezetime = freezetime + 5000
                 end
@@ -112,31 +123,49 @@ function TankenMarkerHit(hitElement)
                 else
                     setTimer(setTankFulTanke, freezetime, 1, price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")))
                 end
+            else
+                if (zahlMethode == "Bar") then
+                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                elseif (zahlMethode == "Bank") then
+                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                elseif (zahlMethode == "Hartz4") then
+                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                end
             end
         end
     end
 end
 
 function setTankFulTanke(preis, hitElement, driver, marker, liter)
-    if (isElement(hitElement)) then
-        vioSetElementData(hitElement, "isInTankProcedur", false)
-        vioSetElementData(hitElement, "tank", 100)
-        if (vioGetElementData(marker, "repairMarker") and getElementHealth(hitElement) < 950) then
-            preis = preis + 1000
-            outputChatBox("Das Fahrzeug wurde repariert!", driver, 255, 0, 0)
-            fixVehicle(hitElement)
-        else
-            outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0)
+    if (isElement(hitElement) and isElement(driver) and isPlayerLoggedIn(driver)) then
+        vioSetElementData(hitElement, "isInTankProcedur", false);
+        vioSetElementData(hitElement, "tank", 100);
+        if (vioGetElementData(marker, "repairMarker")) then
+            if (getElementHealth(hitElement) < 950) then
+                preis = preis + 1000;
+                outputChatBox("Das Fahrzeug wurde repariert!", driver, 255, 0, 0);
+                fixVehicle(hitElement);
+            else
+                outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0);
+            end
         end
-        changePlayerMoney(driver, -preis, "fahrzeug", "Tanken")
+        if (getPlayerMoney(driver) >= preis) then
+            changePlayerMoney(driver, -preis, "fahrzeug", "Tanken");
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
+        elseif (getPlayerBank(driver) >= preis) then
+            changePlayerBank(driver, ((preis * 1.05) * -1), "fahrzeug", "Tanken");
+            outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt! Der Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5 Prozent Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
+        end
         changeBizKasse(7, preis, "Tank")
-        outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0)
-        setElementFrozen(hitElement, false)
+
+        if (vioGetElementData(driver, "Erfolg_Benzin_leer") ~= 1) then
+            vioSetElementData(driver, "Erfolg_Benzin_leer", 1)
+            triggerClientEvent(driver, "onClientCreatePokalGUI", driver, "Benzin leer", "Gehe das erste Mal tanken")
+        end
     end
 
-    if (vioGetElementData(driver, "Erfolg_Benzin_leer") ~= 1) then
-        vioSetElementData(driver, "Erfolg_Benzin_leer", 1)
-        triggerClientEvent(driver, "onClientCreatePokalGUI", driver, "Benzin leer", "Gehe das erste Mal tanken")
+    if (isElement(hitElement)) then
+        setElementFrozen(hitElement, false)
     end
 end
 

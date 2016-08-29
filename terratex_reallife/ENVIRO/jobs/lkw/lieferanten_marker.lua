@@ -56,7 +56,7 @@ function givePlayerTruckAuftrag_func(auftrag)
 			vioSetElementData(source,"lkw_auftrag",true)
 			vioSetElementData(source,"lkw_sicher",auftrag[1])
             changePlayerMoney(source,-auftrag[1],"job","Truckerjob","Sicherheiten")
-            outputChatBox(string.format("Dir wurden %s als Sicherheit abgezogen! Du erhälst Sie nach der Rückgabe des LKWs zurück!", toprice(auftrag[1])),source,255,0,0)
+            outputChatBox(string.format("Dir wurden %s als Kaution abgezogen! Du erhälst sie nach der Rückgabe des LKWs zurück!", toprice(auftrag[1])),source,255,0,0)
 			vioSetElementData(source,"lkw_gewinn",auftrag[2])
 			--outputChatBox(tostring(auftrag[2]))
 			local vehicle=createVehicle(auftrag[3],2778.84765625,-2456.1328125,14.642349243164,359.53857421875,0,90.390014648438,"TRUCKER")
@@ -96,7 +96,7 @@ function givePlayerTruckAuftrag_func(auftrag)
 			addEventHandler("onVehicleStartExit",vehicle,leaveTruckerVehicle)
 			addEventHandler("onVehicleStartEnter",vehicle,enterTruckerVehicle)
 		else
-			outputChatBox("Du kannst die Sicherheiten nicht bezahlen!",source,255,0,0)
+			outputChatBox("Du kannst die Kaution nicht bezahlen!",source,255,0,0)
 		end
 	else
 		outputChatBox("Dir fehlt der Truckerschein!",source,255,0,0)
@@ -119,7 +119,7 @@ function hitTruckerEndMarker(theHitElement)
 								end
 							end
 							local thePlayer=driver
-							outputChatBox("Gut du das Fahrzeug abgegeben!!",driver,88,191,162)
+							outputChatBox("Gut du hast das Fahrzeug abgegeben!!",driver,88,191,162)
 							if(isElement(vioGetElementData(thePlayer,"lkw_blip")))then
 								destroyElement(vioGetElementData(thePlayer,"lkw_blip"))
 							end
@@ -177,7 +177,9 @@ function hitTruckerMarker(theHitElement)
 			
 				if(getVehicleRealSpeed(theHitElement)<31)then
 					if(vioGetElementData(driver,"lkw_trailer"))then
-						destroyElement(vioGetElementData(driver,"lkw_trailer"))
+						if (isElement(vioGetElementData(driver, "lkw_trailer"))) then
+							destroyElement(vioGetElementData(driver, "lkw_trailer"))
+						end
 					end
 					outputChatBox("Gut du hast die Ware abgegeben! Bring nun das Fahrzeug zurück zum Hafen!",driver,88,191,162)
 					if(isElement(vioGetElementData(driver,"lkw_blip")))then
@@ -263,7 +265,7 @@ function enterTruckerVehicle(thePlayer,seat)
 				outputChatBox("Schön das du wieder an Board bist!",thePlayer,88,191,162)
 			else
 				cancelEvent()
-				outputChatBox("Dies ist ein Job Vehicle und kann nur von der Person gefahren, die den Auftrag angenommen hat!",thePlayer,255,0,0)
+				outputChatBox("Dies ist ein Job Fahrzeug und kann nur von der Person gefahren, die den Auftrag angenommen hat!",thePlayer,255,0,0)
 			end		
 		end
 	end
@@ -288,8 +290,8 @@ function hitAuftragsMarker(hitElement)
 		if not(vioGetElementData(hitElement,"lkw_auftrag")) then
 			triggerClientEvent(hitElement,"openLKWJobGui",hitElement)
 		else
-			outputChatBox("Tut mir Leid Sir, Sie haben bereits einen Auftrag und müssen diesen erst erfüllen!",hitElement,255,0,0)
-			outputChatBox("Abbruch des Auftrags mit /cancellkw - ACHTUNG: Sicherheiten gehen dabei verloren!",hitElement,255,0,0)
+			outputChatBox("Tut mir leid Sir, Sie haben bereits einen Auftrag und müssen diesen erst erfüllen!",hitElement,255,0,0)
+			outputChatBox("Abbruch des Auftrags mit /cancellkw - ACHTUNG: Die Kaution geht dabei verloren!",hitElement,255,0,0)
 		end
 	end
 end

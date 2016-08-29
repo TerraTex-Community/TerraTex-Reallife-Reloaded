@@ -85,7 +85,7 @@ function ad_func(thePlayer, Command, word, ...)
                     local message = word .. " " .. table.concat({ ... }, " ")
                     local oldMessage = message
                     local lengh = string.len(message)
-                    local price = lengh * 1.67
+                    local price = lengh * 5.67
                     chat_log(thePlayer, "(ad) " .. message)
                     if (getPlayerMoney(thePlayer) >= price or adAktivTime > 0) then
                         local test = string.find(message, "|||")
@@ -114,8 +114,7 @@ function ad_func(thePlayer, Command, word, ...)
                             setTimer(resetADTIMER, 30000, 1)
                         else
                             local messages = getMessageADComponents(message)
-                            price = price + 25.00
-
+                            price = price + 225.00 * table.getSize(messages)
                             if (getPlayerMoney(thePlayer) >= price or adAktivTime > 0) then
                                 if (adAktivTime > 0) then
                                     outputChatBox("Die Werbung hat dich nichts gekostet, da ein Gutschein noch", thePlayer, 255, 0, 0)
@@ -158,7 +157,6 @@ function ad_func(thePlayer, Command, word, ...)
         end
     end
 end
-
 addCommandHandler("ad", ad_func, false, false)
 
 function resetADTIMER()

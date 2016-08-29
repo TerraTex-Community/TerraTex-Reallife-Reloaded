@@ -121,7 +121,7 @@ function jobhelp_func(thePlayer)
 	elseif(jobid==3)then
 		outputChatBox("Nutze einen Müllwagen an der LS-Mülldeponie weitere Infos erhälst du im Fahrzeug!",thePlayer,255,0,0)
 	elseif(jobid==4)then
-		outputChatBox("Fahr einfach die Haltestellen ab und bring die Leute zu den Haltestellen! Starten einer Route mit /busstart [rookie/all/fraktion/job/sehenswert]",thePlayer,255,0,0)
+		outputChatBox("Fahr einfach die Haltestellen ab und bring die Leute zu den Haltestellen! Starten einer Route mit /busstart [rookie/all/fraktion/job/sehenswert/chiliad]",thePlayer,255,0,0)
 	elseif(jobid==5)then
 		outputChatBox("Nutze den Tow Truck und helfe liegen geblieben Fahrzeugen (Repairbefehl: /repair [Name] [Betrag])!",thePlayer,255,0,0)
 	elseif(jobid==6)then

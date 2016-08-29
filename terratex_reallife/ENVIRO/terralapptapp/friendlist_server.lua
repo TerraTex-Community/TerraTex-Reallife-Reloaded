@@ -172,7 +172,7 @@ function sendAnfrageFriendlist_func(name)
             else
                 if (MySql.helper.getCountSync("user", { Nickname = { "LIKE", "%" .. name .. "%" } }) == 1) then
 
-                    name = MySql.helper.getValueSync("user", "Nickname", { Nickname = { "LIKE", name } });
+                    name = MySql.helper.getValueSync("user", "Nickname", { Nickname = { "LIKE", "%" .. name .. "%" } });
 
                     if (MySql.helper.existSync("user_tapps_friendlist_request", {Fromname = getPlayerName(source), Toname = name })) then
                         showError(source, string.format("Du hast %s bereits eine Anfrage gestellt!", name))

@@ -12,12 +12,29 @@ function gj_func(thePlayer, cmd, jobid)
     if (isAdminLevel(thePlayer, 0)) then
         if (tonumber(jobid)) then
             if (JobPickups[tonumber(jobid)]) then
-                setElementPosition(thePlayer, JobPickups[tonumber(jobid)][3], JobPickups[tonumber(jobid)][4], JobPickups[tonumber(jobid)][5])
+				if (isPedInVehicle(thePlayer)) then
+					local i = getElementInterior(thePlayer)
+					local d = getElementDimension(thePlayer)
+					local theVehicle = getPedOccupiedVehicle(thePlayer)
+					setElementFrozen(theVehicle, true)
+					setElementInterior(theVehicle, i)
+					setElementDimension(theVehicle, d)
+					setElementVelocity(theVehicle, 0, 0, 0)
+					setElementPosition(theVehicle, JobPickups[tonumber(jobid)][3], JobPickups[tonumber(jobid)][4], JobPickups[tonumber(jobid)][5])
+					setElementFrozen(theVehicle, false)
+				else
+					local i = getElementInterior(thePlayer)
+					local d = getElementDimension(thePlayer)
+					setElementInterior(thePlayer, i)
+					setElementDimension(thePlayer, d)
+					setElementPosition(thePlayer, JobPickups[tonumber(jobid)][3], JobPickups[tonumber(jobid)][4], JobPickups[tonumber(jobid)][5])
+				end
+				showError(thePlayer, "Du wurdest zum Job teleportiert.")
             else
-                showError(thePlayer, "ungültige jobID")
+                showError(thePlayer, "Dieser Job existiert nicht.")
             end
         else
-            showError(thePlayer, "ungültige jobID")
+            showError(thePlayer, "Dieser Job existiert nicht.")
         end
     end
 end
@@ -34,8 +51,24 @@ function gotopoint(thePlayer, cmd, point)
             ableplaces = ableplaces .. theKey .. " "
         end
         if (pointsexist) then
-            setElementPosition(thePlayer, gppoints[point][1], gppoints[point][2], gppoints[point][3])
-            outputChatBox("Du wurdest erfolgreich zur Position " .. point .. " geportet", thePlayer, 255, 0, 0) --adminabfrage + falscher string
+			if (isPedInVehicle(thePlayer)) then
+                local i = getElementInterior(thePlayer)
+                local d = getElementDimension(thePlayer)
+                local theVehicle = getPedOccupiedVehicle(thePlayer)
+                setElementFrozen(theVehicle, true)
+                setElementInterior(theVehicle, i)
+                setElementDimension(theVehicle, d)
+                setElementVelocity(theVehicle, 0, 0, 0)
+                setElementPosition(theVehicle, gppoints[point][1], gppoints[point][2], gppoints[point][3])
+                setElementFrozen(theVehicle, false)
+            else
+                local i = getElementInterior(thePlayer)
+                local d = getElementDimension(thePlayer)
+                setElementInterior(thePlayer, i)
+                setElementDimension(thePlayer, d)
+                setElementPosition(thePlayer, gppoints[point][1], gppoints[point][2], gppoints[point][3])
+            end
+            outputChatBox("Du wurdest erfolgreich zur Position " .. point .. " geportet", thePlayer, 255, 0, 0)
         else
             outputChatBox("Mögliche Orte:", thePlayer, 255, 0, 0)
             outputChatBox(ableplaces, thePlayer, 255, 0, 0)
@@ -54,10 +87,10 @@ function set_mark_admin(thePlayer)
         vioSetElementData(thePlayer, "adminMarkZ", mz)
         vioSetElementData(thePlayer, "adminMarkInt", mint)
         vioSetElementData(thePlayer, "adminMarkDim", mdim)
-        outputChatBox("Der Marker wurde gespeichert! DU kannst dich mit /gotomark hinteleportieren!", thePlayer, 255, 0, 0)
+        outputChatBox("Der Marker wurde gespeichert! Du kannst dich mit /gotomark hinteleportieren!", thePlayer, 255, 0, 0)
     end
 end
-addCommandHandler("setMark", set_mark_admin, false, false)
+addCommandHandler("setmark", set_mark_admin, false, false)
 
 function gotomark_func(thePlayer)
     if (isAdminLevel(thePlayer, 0)) then
@@ -90,9 +123,7 @@ function goto_func(theMaker, Command, thePlayerName)
                 setElementVelocity(theVehicle, 0, 0, 0)
                 setElementPosition(theVehicle, gx + 3, gy + 3, gz + 1)
                 setElementFrozen(theVehicle, false)
-
             else
-
                 local gx, gy, gz = getElementPosition(thePlayer)
                 local i = getElementInterior(thePlayer)
                 local d = getElementDimension(thePlayer)
@@ -101,7 +132,7 @@ function goto_func(theMaker, Command, thePlayerName)
                 setElementPosition(theMaker, gx + 1, gy + 1, gz)
             end
         else
-            outputChatBox("Falscher Spielername", theMaker, 255, 0, 0)
+            showError(theMaker, "Falscher Spielername")
         end
     end
 end
@@ -118,11 +149,9 @@ function gethere_func(theMaker, Command, thePlayerName)
                 local theVehicle = getPedOccupiedVehicle(thePlayer)
                 setElementInterior(theVehicle, i)
                 setElementDimension(theVehicle, d)
-
                 setElementVelocity(theVehicle, 0, 0, 0)
                 setElementPosition(theVehicle, gx + 2, gy + 2, gz + 1)
             else
-
                 local gx, gy, gz = getElementPosition(theMaker)
                 local i = getElementInterior(theMaker)
                 local d = getElementDimension(theMaker)

@@ -61,9 +61,9 @@ function getPlayerFromIncompleteName(name)
             end
             return getPlayerFromName(config["clantag"]..name)
         else
-            name=string.lower(name)
-            name = pregReplace(name, "\\[", "")
-            name = pregReplace(name, "\\]", "")
+            name = string.lower(name)
+--            name = pregReplace(name, "\\[", "")
+--            name = pregReplace(name, "\\]", "")
             for theKey,thePlayer in ipairs(players) do
                 pname=string.lower (getPlayerName(thePlayer))
                 if(string.find(pname,name))then

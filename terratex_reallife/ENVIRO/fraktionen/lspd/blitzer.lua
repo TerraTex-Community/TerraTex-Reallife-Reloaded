@@ -21,7 +21,5 @@ function createBlitzerDummysOnStartUp()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
 
-function test_blitzer()
-    outputDebugString(table.getSize(getElementsByType("blitzer")));
-end
-addCommandHandler("tb", test_blitzer)
+-- @todo: copy and improve old blitzer code
+-- @todo: add as element data: creator and deletor of a "blitzer"

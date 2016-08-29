@@ -153,7 +153,7 @@ function respawnNoobCars(thePlayer,command,vehiclestring,frak)
             end
         end
     elseif(vehiclestring=="fraktion")then
-        if(isAdminLevel(thePlayer,1)) or (console[1]==thePlayer) then
+        if(isAdminLevel(thePlayer,1)) or isConsole(thePlayer) then
             if(frak)then
                 if(tonumber(frak))then
                     if(frakselfcars[tonumber(frak)])then

@@ -177,7 +177,9 @@ function hitTruckerMarker(theHitElement)
 			
 				if(getVehicleRealSpeed(theHitElement)<31)then
 					if(vioGetElementData(driver,"lkw_trailer"))then
-						destroyElement(vioGetElementData(driver,"lkw_trailer"))
+						if (isElement(vioGetElementData(driver, "lkw_trailer"))) then
+							destroyElement(vioGetElementData(driver, "lkw_trailer"))
+						end
 					end
 					outputChatBox("Gut du hast die Ware abgegeben! Bring nun das Fahrzeug zurück zum Hafen!",driver,88,191,162)
 					if(isElement(vioGetElementData(driver,"lkw_blip")))then

@@ -193,9 +193,9 @@ function accept_hotdog(thePlayer)
     else
         showError(thePlayer, "Dir wurden keine Hotdogs angeboten!")
     end
-    vioSetElementData(toPlayer, "hotDogSeller", false)
-    vioSetElementData(toPlayer, "hotDogSellerPrice", false)
-    vioSetElementData(toPlayer, "hotDogSellerMenge", false)
+    vioSetElementData(thePlayer, "hotDogSeller", false)
+    vioSetElementData(thePlayer, "hotDogSellerPrice", false)
+    vioSetElementData(thePlayer, "hotDogSellerMenge", false)
 end
 registerAcceptHandler("hotdog", accept_hotdog, {
     requestedDataValues = {"hotDogSeller", "hotDogSellerPrice", "hotDogSellerMenge"}

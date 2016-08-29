@@ -299,8 +299,10 @@ function checkNewWaterKill(vehicle, timerCounter)
                     else
                         if (isElement(vehicle)) then
                             local passengers = getVehicleOccupants(vehicle)
-                            for theKey, thePassenger in pairs(passengers) do
-                                killPed(thePassenger, nil, 63, 255, false)
+                            if (passengers) then
+                                for theKey, thePassenger in pairs(passengers) do
+                                    killPed(thePassenger, nil, 63, 255, false)
+                                end
                             end
                         end
                         triggerEvent("onVehicleExplode", vehicle)

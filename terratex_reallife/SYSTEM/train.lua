@@ -1,4 +1,4 @@
-trains = {}
+local trains = {}
 local trainSpeedSave = { 0.4, 0.4, 0.4, 0.2 }
 local traintimer = { 350, 350, 350, 700 }
 local traintraillers = { 4, 4, 4, 4 }
@@ -160,7 +160,7 @@ function resetTrainSpeed(theTrainID)
 end
 
 function pickupItemsByTrainDrop(player)
-    if (getElementType(player) == "player") then
+    if (getElementType(player) == "player" and isElement(source)) then
         local SettingTable = vioGetElementData(source, "dropItemSettings")
         destroyElement(source)
         if ("hamburger" == SettingTable[2]) then

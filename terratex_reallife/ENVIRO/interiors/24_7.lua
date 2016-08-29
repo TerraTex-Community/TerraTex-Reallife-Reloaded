@@ -89,9 +89,11 @@ end
 addEventHandler("onMarkerHit", getRootElement(), portPlayerIn247)
 
 function portPlayerOutof247(thePlayer)
-    local in247=vioGetElementData(thePlayer,"in247bell")
+    if (vioGetElementData(thePlayer,"in247bell")) then
+        local in247=vioGetElementData(thePlayer,"in247bell")
+        setElementPosition(thePlayer, shop247marker[in247].pedX, shop247marker[in247].pedY, shop247marker[in247].pedZ)
+    end
+    triggerClientEvent(thePlayer, "closeShopGUIS", thePlayer)
     setElementInterior(thePlayer, 0)
     setElementDimension(thePlayer, 0)
-    setElementPosition(thePlayer, shop247marker[in247].pedX, shop247marker[in247].pedY, shop247marker[in247].pedZ)
-    triggerClientEvent(thePlayer, "closeShopGUIS", thePlayer)
 end

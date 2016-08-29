@@ -33,7 +33,7 @@ function acceptedBuyTomboTicket_func()
         showError(source, "Du hast nicht genug Geld!")
     else
         changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
-        changeBizKasse(16, 25, "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
+        changeBizKasse(16, tombuTicketPrice * 0.05, "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
 
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
         outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupot-Lotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
@@ -50,7 +50,7 @@ function isLotteryTime()
     if (time.hour == winTimeHour and time.minute == winTimeMinute) then
         outputChatBox("Und die Tombupot-Lotterieziehung beginnt....")
         local tickets = MySql.helper.getCountSync("user_tombupot")
-        local gewinn = tickets * (tombuTicketPrice - 25)
+        local gewinn = tickets * (tombuTicketPrice * 0.95)
         outputChatBox(string.format("Es wurden %s Tickets gekauft, dass ergibt einen Gewinn von %s", tickets, gewinn))
         outputChatBox("Der Gewinner wird ermittelt.......")
 

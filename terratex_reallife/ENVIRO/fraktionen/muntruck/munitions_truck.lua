@@ -78,14 +78,17 @@ function bestellMuntGui(howmany)
                 vioSetElementData(MunTruck, "frakid", 5000)
                 vioSetElementData(MunTruck, "muntruck", true)
                 vioSetElementData(MunTruck, "muntruckbetrag", howmany)
+                local checkTimer = setTimer(checkTruck, 3000, 0, MunTruck)
+                setElementData(MunTruck, "chechTruck_Timer", checkTimer)
                 addEventHandler("onVehicleEnter", MunTruck, enterMunTruck)
                 addEventHandler("onVehicleExit", MunTruck, exitMunTruck)
-                addEventHandler("onVehicleExplode", MunTruck, munTruckExplode)
+                addEventHandler("onVehicleExplode", MunTruck, function()
+                    munTruckExplode(checkTimer)
+                end)
                 warpPedIntoVehicle(source, MunTruck, 0)
                 triggerClientEvent(source, "closeMuntGui_Event", source)
                 muntruckstarted = true
                 setTimer(resetWTruckTimer, 600000, 1)
-                setElementData(MunTruck, "chechTruck_Timer", setTimer(checkTruck, 3000, 0, MunTruck))
                 frakdepot_log(vioGetElementData(source, "fraktion"), 1, -price, "WTruck-" .. getPlayerName(source))
                 for theKey, theValue in ipairs(munTruckMassage) do
                     if (theValue) then
@@ -192,7 +195,8 @@ function exitMunTruck(thePlayer, seat)
     end
 end
 
-function munTruckExplode()
+function munTruckExplode(checkTimer)
+    killTimer(checkTimer)
     local player = vioGetElementData(source, "MunDriver")
     if (player) then
         local marker = vioGetElementData(player, "MunMarker")
@@ -200,7 +204,6 @@ function munTruckExplode()
         destroyElement(marker)
         destroyElement(blip)
     end
-    killTimer(getElementData(source, "checkTruck_Timer"))
 end
 
 function onMunTruckHit()

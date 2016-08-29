@@ -19,6 +19,7 @@
     <script src="ENGINE/mysql/mysql.lua" type="server"/>
     <!-- USEFUL -->
     <script src="USEFULL_SCRIPTS/debug.lua" type="shared"/>
+    <script src="USEFULL_SCRIPTS/general_lua_helper.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/html_client.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/camera_client.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/other_functions.lua" type="shared"/>
@@ -562,6 +563,7 @@
     <file src="UI/styles/fonts/fontawesome-webfont.woff"/>
     <file src="UI/styles/fonts/fontawesome-webfont.woff2"/>
     <file src="UI/styles/js/bootstrap.min.js"/>
+    <file src="UI/styles/js/tether.min.js"/>
     <file src="UI/styles/js/jquery.min.js"/>
     <file src="UI/styles/js/jqueryUI.js"/>
     <file src="UI/styles/js/countUp.js"/>

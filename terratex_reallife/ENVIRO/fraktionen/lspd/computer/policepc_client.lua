@@ -101,5 +101,24 @@ function _renderPolicePCVehiclesPage()
 end
 
 function actualizePolicePCPage()
+    if (policePCActivePage == "overview") then
+        local carHtml = HTML.getFile("UI/PolicePC/__carEntry.html", true);
+        if (carHtml) then
+            local htmlCopy = carHtml;
+            for theKey, theVehicle in ipairs(policePCData.vehicles) do
+                local posX, posY, posZ = unpack(theVehicle.position);
 
+                -- convert X and Y to Percentage
+                posX = (posX + 3000) / 60;
+                posY = (posY + 3000) / 60;
+
+                local cops = table.concat(theVehicle.cops, ", ");
+
+                HTML.prepare(carHtml, {carId = theKey, top = posY, left = posX, cops = cops});
+
+                executeBrowserJavascript(policePCBrowser, "setCar(" .. theKey .. ",\"" ..  carHtml .. "\");");
+
+            end
+        end
+    end
 end

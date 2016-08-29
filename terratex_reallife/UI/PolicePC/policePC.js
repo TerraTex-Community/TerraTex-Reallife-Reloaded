@@ -22,3 +22,13 @@ function setContent(content) {
 function toggleContentLoader(bool) {
     $("#page-loading").toggleClass("hidden-xs-up", !bool);
 }
+
+function setCar(id, html) {
+    if ($("#map div[data-car-id='" + id + "']").length > 0) {
+        $("#map div[data-car-id='" + id + "']").remove();
+    }
+    $("#map").append(html);
+    $("#map div[data-car-id='" + id + "']").tooltip({
+        container: 'body'
+    });
+}

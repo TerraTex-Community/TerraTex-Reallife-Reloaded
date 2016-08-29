@@ -23,8 +23,8 @@ function refreshPoliceVehicles()
 
             if (getElementsDistanceToPoint(theVehicle, x, y, z) > 100 or table.getSize(copsInVehicle) > 0) then
                 table.insert(vehicleData, {
-                    position = getElementPosition(theVehicle),
-                    beamte = copsInVehicle,
+                    position = pack(getElementPosition(theVehicle)),
+                    cops = copsInVehicle,
                     element = theVehicle
                 });
             end

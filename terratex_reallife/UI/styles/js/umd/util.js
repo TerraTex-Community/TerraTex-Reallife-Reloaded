@@ -1,172 +1,165 @@
-(function (global, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['exports', 'module'], factory);
-  } else if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
-    factory(exports, module);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, mod);
-    global.util = mod.exports;
+/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v4.0.0-alpha.3): util.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+const Util = (($) => {
+
+
+  /**
+   * ------------------------------------------------------------------------
+   * Private TransitionEnd Helpers
+   * ------------------------------------------------------------------------
+   */
+
+  let transition = false
+
+  const MAX_UID = 1000000
+
+  const TransitionEndEvent = {
+    WebkitTransition : 'webkitTransitionEnd',
+    MozTransition    : 'transitionend',
+    OTransition      : 'oTransitionEnd otransitionend',
+    transition       : 'transitionend'
   }
-})(this, function (exports, module) {
+
+  // shoutout AngusCroll (https://goo.gl/pxwQGp)
+  function toType(obj) {
+    return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+  }
+
+  function isElement(obj) {
+    return (obj[0] || obj).nodeType
+  }
+
+  function getSpecialTransitionEndEvent() {
+    return {
+      bindType: transition.end,
+      delegateType: transition.end,
+      handle(event) {
+        if ($(event.target).is(this)) {
+          return event.handleObj.handler.apply(this, arguments) // eslint-disable-line prefer-rest-params
+        }
+        return undefined
+      }
+    }
+  }
+
+  function transitionEndTest() {
+    if (window.QUnit) {
+      return false
+    }
+
+    let el = document.createElement('bootstrap')
+
+    for (let name in TransitionEndEvent) {
+      if (el.style[name] !== undefined) {
+        return { end: TransitionEndEvent[name] }
+      }
+    }
+
+    return false
+  }
+
+  function transitionEndEmulator(duration) {
+    let called = false
+
+    $(this).one(Util.TRANSITION_END, () => {
+      called = true
+    })
+
+    setTimeout(() => {
+      if (!called) {
+        Util.triggerTransitionEnd(this)
+      }
+    }, duration)
+
+    return this
+  }
+
+  function setTransitionEndSupport() {
+    transition = transitionEndTest()
+
+    $.fn.emulateTransitionEnd = transitionEndEmulator
+
+    if (Util.supportsTransitionEnd()) {
+      $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent()
+    }
+  }
+
+
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.0.0-alpha.2): util.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+   * Public Util Api
    * --------------------------------------------------------------------------
    */
 
-  'use strict';
+  let Util = {
 
-  var Util = (function ($) {
+    TRANSITION_END: 'bsTransitionEnd',
 
-    /**
-     * ------------------------------------------------------------------------
-     * Private TransitionEnd Helpers
-     * ------------------------------------------------------------------------
-     */
+    getUID(prefix) {
+      do {
+        /* eslint-disable no-bitwise */
+        prefix += ~~(Math.random() * MAX_UID) // "~~" acts like a faster Math.floor() here
+        /* eslint-enable no-bitwise */
+      } while (document.getElementById(prefix))
+      return prefix
+    },
 
-    var transition = false;
+    getSelectorFromElement(element) {
+      let selector = element.getAttribute('data-target')
 
-    var TransitionEndEvent = {
-      WebkitTransition: 'webkitTransitionEnd',
-      MozTransition: 'transitionend',
-      OTransition: 'oTransitionEnd otransitionend',
-      transition: 'transitionend'
-    };
+      if (!selector) {
+        selector = element.getAttribute('href') || ''
+        selector = /^#[a-z]/i.test(selector) ? selector : null
+      }
 
-    // shoutout AngusCroll (https://goo.gl/pxwQGp)
-    function toType(obj) {
-      return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-    }
+      return selector
+    },
 
-    function isElement(obj) {
-      return (obj[0] || obj).nodeType;
-    }
+    reflow(element) {
+      new Function('bs', 'return bs')(element.offsetHeight)
+    },
 
-    function getSpecialTransitionEndEvent() {
-      return {
-        bindType: transition.end,
-        delegateType: transition.end,
-        handle: function handle(event) {
-          if ($(event.target).is(this)) {
-            return event.handleObj.handler.apply(this, arguments);
+    triggerTransitionEnd(element) {
+      $(element).trigger(transition.end)
+    },
+
+    supportsTransitionEnd() {
+      return Boolean(transition)
+    },
+
+    typeCheckConfig(componentName, config, configTypes) {
+      for (let property in configTypes) {
+        if (configTypes.hasOwnProperty(property)) {
+          let expectedTypes = configTypes[property]
+          let value         = config[property]
+          let valueType
+
+          if (value && isElement(value)) {
+            valueType = 'element'
+          } else {
+            valueType = toType(value)
           }
-        }
-      };
-    }
 
-    function transitionEndTest() {
-      if (window.QUnit) {
-        return false;
-      }
-
-      var el = document.createElement('bootstrap');
-
-      for (var _name in TransitionEndEvent) {
-        if (el.style[_name] !== undefined) {
-          return { end: TransitionEndEvent[_name] };
-        }
-      }
-
-      return false;
-    }
-
-    function transitionEndEmulator(duration) {
-      var _this = this;
-
-      var called = false;
-
-      $(this).one(Util.TRANSITION_END, function () {
-        called = true;
-      });
-
-      setTimeout(function () {
-        if (!called) {
-          Util.triggerTransitionEnd(_this);
-        }
-      }, duration);
-
-      return this;
-    }
-
-    function setTransitionEndSupport() {
-      transition = transitionEndTest();
-
-      $.fn.emulateTransitionEnd = transitionEndEmulator;
-
-      if (Util.supportsTransitionEnd()) {
-        $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
-      }
-    }
-
-    /**
-     * --------------------------------------------------------------------------
-     * Public Util Api
-     * --------------------------------------------------------------------------
-     */
-
-    var Util = {
-
-      TRANSITION_END: 'bsTransitionEnd',
-
-      getUID: function getUID(prefix) {
-        do {
-          prefix += ~ ~(Math.random() * 1000000); // "~~" acts like a faster Math.floor() here
-        } while (document.getElementById(prefix));
-        return prefix;
-      },
-
-      getSelectorFromElement: function getSelectorFromElement(element) {
-        var selector = element.getAttribute('data-target');
-
-        if (!selector) {
-          selector = element.getAttribute('href') || '';
-          selector = /^#[a-z]/i.test(selector) ? selector : null;
-        }
-
-        return selector;
-      },
-
-      reflow: function reflow(element) {
-        new Function('bs', 'return bs')(element.offsetHeight);
-      },
-
-      triggerTransitionEnd: function triggerTransitionEnd(element) {
-        $(element).trigger(transition.end);
-      },
-
-      supportsTransitionEnd: function supportsTransitionEnd() {
-        return Boolean(transition);
-      },
-
-      typeCheckConfig: function typeCheckConfig(componentName, config, configTypes) {
-        for (var property in configTypes) {
-          if (configTypes.hasOwnProperty(property)) {
-            var expectedTypes = configTypes[property];
-            var value = config[property];
-            var valueType = undefined;
-
-            if (value && isElement(value)) {
-              valueType = 'element';
-            } else {
-              valueType = toType(value);
-            }
-
-            if (!new RegExp(expectedTypes).test(valueType)) {
-              throw new Error(componentName.toUpperCase() + ': ' + ('Option "' + property + '" provided type "' + valueType + '" ') + ('but expected type "' + expectedTypes + '".'));
-            }
+          if (!new RegExp(expectedTypes).test(valueType)) {
+            throw new Error(
+              `${componentName.toUpperCase()}: ` +
+              `Option "${property}" provided type "${valueType}" ` +
+              `but expected type "${expectedTypes}".`)
           }
         }
       }
-    };
+    }
+  }
 
-    setTransitionEndSupport();
+  setTransitionEndSupport()
 
-    return Util;
-  })(jQuery);
+  return Util
 
-  module.exports = Util;
-});
+})(jQuery)
+
+export default Util

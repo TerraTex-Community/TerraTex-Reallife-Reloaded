@@ -1,187 +1,176 @@
-(function (global, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['exports', 'module'], factory);
-  } else if (typeof exports !== 'undefined' && typeof module !== 'undefined') {
-    factory(exports, module);
-  } else {
-    var mod = {
-      exports: {}
-    };
-    factory(mod.exports, mod);
-    global.button = mod.exports;
-  }
-})(this, function (exports, module) {
+/**
+ * --------------------------------------------------------------------------
+ * Bootstrap (v4.0.0-alpha.3): button.js
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * --------------------------------------------------------------------------
+ */
+
+const Button = (($) => {
+
+
   /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.0.0-alpha.2): button.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
+   * ------------------------------------------------------------------------
+   * Constants
+   * ------------------------------------------------------------------------
    */
 
-  'use strict';
+  const NAME                = 'button'
+  const VERSION             = '4.0.0-alpha.3'
+  const DATA_KEY            = 'bs.button'
+  const EVENT_KEY           = `.${DATA_KEY}`
+  const DATA_API_KEY        = '.data-api'
+  const JQUERY_NO_CONFLICT  = $.fn[NAME]
 
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+  const ClassName = {
+    ACTIVE : 'active',
+    BUTTON : 'btn',
+    FOCUS  : 'focus'
+  }
 
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+  const Selector = {
+    DATA_TOGGLE_CARROT : '[data-toggle^="button"]',
+    DATA_TOGGLE        : '[data-toggle="buttons"]',
+    INPUT              : 'input',
+    ACTIVE             : '.active',
+    BUTTON             : '.btn'
+  }
 
-  var Button = (function ($) {
+  const Event = {
+    CLICK_DATA_API      : `click${EVENT_KEY}${DATA_API_KEY}`,
+    FOCUS_BLUR_DATA_API : `focus${EVENT_KEY}${DATA_API_KEY} `
+                        + `blur${EVENT_KEY}${DATA_API_KEY}`
+  }
 
-    /**
-     * ------------------------------------------------------------------------
-     * Constants
-     * ------------------------------------------------------------------------
-     */
 
-    var NAME = 'button';
-    var VERSION = '4.0.0-alpha';
-    var DATA_KEY = 'bs.button';
-    var EVENT_KEY = '.' + DATA_KEY;
-    var DATA_API_KEY = '.data-api';
-    var JQUERY_NO_CONFLICT = $.fn[NAME];
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-    var ClassName = {
-      ACTIVE: 'active',
-      BUTTON: 'btn',
-      FOCUS: 'focus'
-    };
+  class Button {
 
-    var Selector = {
-      DATA_TOGGLE_CARROT: '[data-toggle^="button"]',
-      DATA_TOGGLE: '[data-toggle="buttons"]',
-      INPUT: 'input',
-      ACTIVE: '.active',
-      BUTTON: '.btn'
-    };
+    constructor(element) {
+      this._element = element
+    }
 
-    var Event = {
-      CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY,
-      FOCUS_BLUR_DATA_API: 'focus' + EVENT_KEY + DATA_API_KEY + ' ' + ('blur' + EVENT_KEY + DATA_API_KEY)
-    };
 
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
+    // getters
 
-    var Button = (function () {
-      function Button(element) {
-        _classCallCheck(this, Button);
+    static get VERSION() {
+      return VERSION
+    }
 
-        this._element = element;
-      }
 
-      /**
-       * ------------------------------------------------------------------------
-       * Data Api implementation
-       * ------------------------------------------------------------------------
-       */
+    // public
 
-      // getters
+    toggle() {
+      let triggerChangeEvent = true
+      let rootElement        = $(this._element).closest(
+        Selector.DATA_TOGGLE
+      )[0]
 
-      _createClass(Button, [{
-        key: 'toggle',
+      if (rootElement) {
+        let input = $(this._element).find(Selector.INPUT)[0]
 
-        // public
+        if (input) {
+          if (input.type === 'radio') {
+            if (input.checked &&
+              $(this._element).hasClass(ClassName.ACTIVE)) {
+              triggerChangeEvent = false
 
-        value: function toggle() {
-          var triggerChangeEvent = true;
-          var rootElement = $(this._element).closest(Selector.DATA_TOGGLE)[0];
+            } else {
+              let activeElement = $(rootElement).find(Selector.ACTIVE)[0]
 
-          if (rootElement) {
-            var input = $(this._element).find(Selector.INPUT)[0];
-
-            if (input) {
-              if (input.type === 'radio') {
-                if (input.checked && $(this._element).hasClass(ClassName.ACTIVE)) {
-                  triggerChangeEvent = false;
-                } else {
-                  var activeElement = $(rootElement).find(Selector.ACTIVE)[0];
-
-                  if (activeElement) {
-                    $(activeElement).removeClass(ClassName.ACTIVE);
-                  }
-                }
-              }
-
-              if (triggerChangeEvent) {
-                input.checked = !$(this._element).hasClass(ClassName.ACTIVE);
-                $(this._element).trigger('change');
+              if (activeElement) {
+                $(activeElement).removeClass(ClassName.ACTIVE)
               }
             }
-          } else {
-            this._element.setAttribute('aria-pressed', !$(this._element).hasClass(ClassName.ACTIVE));
           }
 
           if (triggerChangeEvent) {
-            $(this._element).toggleClass(ClassName.ACTIVE);
+            input.checked = !$(this._element).hasClass(ClassName.ACTIVE)
+            $(this._element).trigger('change')
           }
-        }
-      }, {
-        key: 'dispose',
-        value: function dispose() {
-          $.removeData(this._element, DATA_KEY);
-          this._element = null;
+
+          input.focus()
         }
 
-        // static
-
-      }], [{
-        key: '_jQueryInterface',
-        value: function _jQueryInterface(config) {
-          return this.each(function () {
-            var data = $(this).data(DATA_KEY);
-
-            if (!data) {
-              data = new Button(this);
-              $(this).data(DATA_KEY, data);
-            }
-
-            if (config === 'toggle') {
-              data[config]();
-            }
-          });
-        }
-      }, {
-        key: 'VERSION',
-        get: function get() {
-          return VERSION;
-        }
-      }]);
-
-      return Button;
-    })();
-
-    $(document).on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
-      event.preventDefault();
-
-      var button = event.target;
-
-      if (!$(button).hasClass(ClassName.BUTTON)) {
-        button = $(button).closest(Selector.BUTTON);
+      } else {
+        this._element.setAttribute('aria-pressed',
+          !$(this._element).hasClass(ClassName.ACTIVE))
       }
 
-      Button._jQueryInterface.call($(button), 'toggle');
-    }).on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, function (event) {
-      var button = $(event.target).closest(Selector.BUTTON)[0];
-      $(button).toggleClass(ClassName.FOCUS, /^focus(in)?$/.test(event.type));
-    });
+      if (triggerChangeEvent) {
+        $(this._element).toggleClass(ClassName.ACTIVE)
+      }
+    }
 
-    /**
-     * ------------------------------------------------------------------------
-     * jQuery
-     * ------------------------------------------------------------------------
-     */
+    dispose() {
+      $.removeData(this._element, DATA_KEY)
+      this._element = null
+    }
 
-    $.fn[NAME] = Button._jQueryInterface;
-    $.fn[NAME].Constructor = Button;
-    $.fn[NAME].noConflict = function () {
-      $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return Button._jQueryInterface;
-    };
 
-    return Button;
-  })(jQuery);
+    // static
 
-  module.exports = Button;
-});
+    static _jQueryInterface(config) {
+      return this.each(function () {
+        let data = $(this).data(DATA_KEY)
+
+        if (!data) {
+          data = new Button(this)
+          $(this).data(DATA_KEY, data)
+        }
+
+        if (config === 'toggle') {
+          data[config]()
+        }
+      })
+    }
+
+  }
+
+
+  /**
+   * ------------------------------------------------------------------------
+   * Data Api implementation
+   * ------------------------------------------------------------------------
+   */
+
+  $(document)
+    .on(Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, (event) => {
+      event.preventDefault()
+
+      let button = event.target
+
+      if (!$(button).hasClass(ClassName.BUTTON)) {
+        button = $(button).closest(Selector.BUTTON)
+      }
+
+      Button._jQueryInterface.call($(button), 'toggle')
+    })
+    .on(Event.FOCUS_BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, (event) => {
+      let button = $(event.target).closest(Selector.BUTTON)[0]
+      $(button).toggleClass(ClassName.FOCUS, /^focus(in)?$/.test(event.type))
+    })
+
+
+  /**
+   * ------------------------------------------------------------------------
+   * jQuery
+   * ------------------------------------------------------------------------
+   */
+
+  $.fn[NAME]             = Button._jQueryInterface
+  $.fn[NAME].Constructor = Button
+  $.fn[NAME].noConflict  = function () {
+    $.fn[NAME] = JQUERY_NO_CONFLICT
+    return Button._jQueryInterface
+  }
+
+  return Button
+
+})(jQuery)
+
+export default Button

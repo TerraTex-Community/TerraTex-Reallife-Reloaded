@@ -1,6 +1,15 @@
-#map #radar{
-  width: 100%;
-  max-width:100%;
+#map {
+  #radar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 12px;
+  }
+  @media (min-width: 641px) {
+    font-size: 14px;
+  }
 }
 
 .cop-point {

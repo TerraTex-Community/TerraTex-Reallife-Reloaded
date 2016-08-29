@@ -15,9 +15,9 @@ function refreshPoliceVehicles()
 
             local occupants = getVehicleOccupants ( theVehicle );
             local copsInVehicle = {};
-            for seat, player in pairs(getVehicleOccupants(pseudoVehicle)) do
+            for seat, player in pairs(getVehicleOccupants(theVehicle)) do
                 if (isBeamter(player)) then
-                    table.insert(copsInVehicle, player);
+                    table.insert(copsInVehicle, getPlayerName(player));
                 end
             end
 

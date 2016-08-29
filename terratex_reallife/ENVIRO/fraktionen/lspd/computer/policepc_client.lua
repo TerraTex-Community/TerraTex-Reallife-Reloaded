@@ -33,14 +33,15 @@ function startpolicePCUI()
         policePCWindow = false;
         killAllPolicePcTimer();
     else
-        policePCWindow = guiCreateWindow(0, 0, 640, 500, "PoliceComputer TerraPoliceOS 2016", false)
+        policePCWindow = guiCreateWindow(0, 0, 800, 600, "PoliceComputer TerraPoliceOS 2016", false)
         table.insert(allGuis, policePCWindow);
         setGuiCenter(policePCWindow);
 
-        local browser = guiCreateBrowser(0, 15, 640, 500, true, false, false, policePCWindow);
+        local browser = guiCreateBrowser(0, 15, 1, 1, true, false, true, policePCWindow);
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
+                policePCBrowser = source;
                 setBrowserAjaxHandler(source, "ajax_policePC_load_page.html", loadPolicePCPage);
                 loadBrowserURL(source, "http://mta/local/UI/PolicePC/Main.html");
             end
@@ -105,16 +106,17 @@ function actualizePolicePCPage()
         local carHtml = HTML.getFile("UI/PolicePC/__carEntry.html", true);
         if (carHtml) then
             local htmlCopy = carHtml;
-            for theKey, theVehicle in ipairs(policePCData.vehicles) do
+            for theKey, theVehicle in pairs(policePCData.vehicles) do
                 local posX, posY, posZ = unpack(theVehicle.position);
 
                 -- convert X and Y to Percentage
                 posX = (posX + 3000) / 60;
-                posY = (posY + 3000) / 60;
+                posY = (-(posY - 3000)) / 60;
+
 
                 local cops = table.concat(theVehicle.cops, ", ");
 
-                HTML.prepare(carHtml, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
+                carHtml = HTML.prepare(carHtml, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
 
                 executeBrowserJavascript(policePCBrowser, "setCar(" .. theVehicle.id .. ",\"" ..  carHtml .. "\");");
 

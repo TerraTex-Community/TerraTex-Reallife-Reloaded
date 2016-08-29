@@ -79,7 +79,7 @@ function bestellMuntGui(howmany)
                 vioSetElementData(MunTruck, "muntruck", true)
                 vioSetElementData(MunTruck, "muntruckbetrag", howmany)
                 local checkTimer = setTimer(checkTruck, 3000, 0, MunTruck)
-                setElementData(MunTruck, "chechTruck_Timer", checkTimer)
+                setElementData(MunTruck, "checkTruck_Timer", checkTimer)
                 addEventHandler("onVehicleEnter", MunTruck, enterMunTruck)
                 addEventHandler("onVehicleExit", MunTruck, exitMunTruck)
                 addEventHandler("onVehicleExplode", MunTruck, function()
@@ -175,7 +175,7 @@ function enterMunMarkerAbgabe(hitElementer)
                     end
                 end
 
-                killTimer(getElementData(hitElementer, "chechTruck_Timer"))
+                killTimer(getElementData(hitElementer, "checkTruck_Timer"))
                 destroyElement(hitElementer)
                 destroyElement(vioGetElementData(player, "MunMarker"))
                 destroyElement(vioGetElementData(player, "MunBlip"))

@@ -2,6 +2,7 @@ abgabecol = createColRectangle(1543.314453125, -1635.0849609375, 63.84, 32.0379)
 abgabecolA = createColRectangle(2241.9189453125, 2434.1201171875, 55, 58)
 
 function abschleppNullSystem()
+
     if (isDevServer()) then
         return;
     end

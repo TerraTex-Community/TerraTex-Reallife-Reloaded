@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local HTML = {};
+HTML = {};
 
 --- Functions deletes and escapes symboles in html for using in javascript and replaces args
 function HTML.prepare(html, varTable)

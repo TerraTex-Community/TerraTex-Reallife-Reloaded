@@ -295,6 +295,7 @@
     <script src="ENVIRO/fraktionen/lspd/abschleppen.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/blitzer.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/computer/policepc_client.lua" type="client"/>
+    <script src="ENVIRO/fraktionen/lspd/computer/policepc_vehicles_client.lua" type="client"/>
     <script src="ENVIRO/fraktionen/lspd/computer/policepc_server.lua" type="server"/>
     <!-- GT -->
     <script src="ENVIRO/fraktionen/lspd/GeldTransporter/GeldTransporter_Server.lua" type="server"/>

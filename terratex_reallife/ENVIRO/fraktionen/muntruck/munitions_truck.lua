@@ -200,21 +200,22 @@ function munTruckExplode()
 end
 
 function onMunTruckHit()
-    if (vioGetElementData(source, "muntruck")) then
-        if (getElementHealth(source) <= 500) then
-            fixVehicle(source)
-            setElementFrozen(source, true)
-            local occupants = getVehicleOccupants(source)
-            local seats = getVehicleMaxPassengers(source)
-            for seat = 0, seats do
-                if (occupants[seat]) then
-                    outputChatBox("Der Waffentruck ist beschädigt! Verteidige ihn bis er wieder funktioniert!", occupants[seat], 255, 0, 0)
-                    vioGetElementData(source, "MunDriver", false)
-                    ejectPed(occupants[seat])
-                end
+	if(vioGetElementData(source,"muntruck"))then
+		if(getElementHealth(source)<=500)then
+			fixVehicle(source)
+			setElementFrozen(source,true)
+			local rx,ry,rz=getElementRotation(source)
+			setElementRotation(source,0,0,rz)
+
+			local occupants = getVehicleOccupants(source)
+			local seats = getVehicleMaxPassengers(source)
+			for seat = 0, seats do
+				if(occupants[seat])then
+					outputChatBox("Der Waffentruck ist beschädigt! Verteidige ihn bis er wieder funktioniert!",occupants[seat],255,0,0)
+					vioGetElementData(source,"MunDriver",false)
+					ejectPed(occupants[seat])
+				end
             end
-            local rx, ry, rz = getElementRotation(source)
-            setElementRotation(source, 0, 0, rz)
 
             setTimer(unfreezeMunTruck, 60000, 1, source)
         end
@@ -227,6 +228,7 @@ function unfreezeMunTruck(source)
         setElementFrozen(source, false)
     end
 end
+
 
 
 

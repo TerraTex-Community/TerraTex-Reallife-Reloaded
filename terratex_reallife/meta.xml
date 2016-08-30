@@ -17,6 +17,7 @@
     <script src="FIXES/setHealth_Armor.lua" type="server"/>
     <!-- MYSQL -->
     <script src="ENGINE/mysql/mysql.lua" type="server"/>
+    <script src="ENGINE/garageFunctions.lua" type="server"/>
     <!-- USEFUL -->
     <script src="USEFULL_SCRIPTS/debug.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/general_lua_helper.lua" type="shared"/>
@@ -38,7 +39,6 @@
     <script src="USEFULL_SCRIPTS/elementText/showElementText_server.lua" type="server"/>
     <script src="USEFULL_SCRIPTS/vehicle.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/vehicle_client.lua" type="client"/>
-    <script src="USEFULL_SCRIPTS/garageFunctions.lua" type="shared"/>
 
     <script src="ENVIRO/accept.lua" type="server"/>
     <!--custom eventmanager -->

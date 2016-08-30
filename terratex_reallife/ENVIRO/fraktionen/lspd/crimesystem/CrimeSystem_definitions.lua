@@ -33,9 +33,9 @@ CrimeSystem._jailTextToId = {
 };
 
 CrimeSystem._jailNames = {
-    ls = "LSPD Knast",
+    ls = "Los Santos Gefängnis",
     alka = "Alkatraz",
-    lv = "LVPD Knast"
+    lv = "Las Venturas Gefängnis"
 }
 
 -- Jail Spawn Points

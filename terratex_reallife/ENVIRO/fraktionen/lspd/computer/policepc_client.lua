@@ -158,15 +158,7 @@ function actualizePolicePCPage()
                 if (getElementData(thePlayer, "knastzeit") > 0) then
                     local time = getElementData(thePlayer, "knastzeit");
                     local totalTime = getElementData(thePlayer, "lastknastzeit");
-                    local jail = getElementData(thePlayer, "alkaknast");
-
-                    if (jail == 0) then
-                        jail = "Los Santos";
-                    elseif (jail == 1) then
-                        jail = "Las Venturas";
-                    else
-                        jail = "Alkatraz";
-                    end
+                    local jail = CrimeSystem._jailNames[CrimeSystem._jailIdToText[getElementData(thePlayer, "alkaknast")]];
 
                     executeBrowserJavascript(policePCBrowser, "setJailPlayer(\"" .. getPlayerName(thePlayer) .. "\", " .. jail ..", " .. time ..", " .. totalTime .." );");
 

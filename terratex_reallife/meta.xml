@@ -281,7 +281,7 @@
     <!-- LSPD / Beamte allgemein -->
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem.lua" type="server" />
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_commands.lua" type="server" />
-    <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_definitions.lua" type="server" />
+    <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_definitions.lua" type="shared" />
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_Jail_functions.lua" type="server" />
     <script src="ENVIRO/fraktionen/lspd/alka.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lspd/lspdcars.lua" type="server"/>

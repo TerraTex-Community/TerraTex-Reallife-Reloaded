@@ -95,6 +95,15 @@ function loadPolicePCPage(get, post)
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_JailList.html\"")
                 end
+            elseif (get.id == "suspects") then
+                local html = HTML.getFile("UI/PolicePC/_Suspects.html", true);
+                if html then
+                    html = HTML.prepare(html);
+                    executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+                    actualizePolicePCPage();
+                else
+                    outputDebugString("Unable to open \"UI/PolicePC/_Suspects.html\"")
+                end
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
@@ -152,6 +161,7 @@ function actualizePolicePCPage()
                 executeBrowserJavascript(policePCBrowser, "removeJailPlayer(\"" .. thePlayer .. "\");");
             end
         end
+        policePCData.lastJails = {};
 
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
             if (getElementData(thePlayer, "knastzeit")) then
@@ -160,6 +170,7 @@ function actualizePolicePCPage()
                     local totalTime = getElementData(thePlayer, "lastknastzeit");
                     local jail = CrimeSystem._jailNames[CrimeSystem._jailIdToText[getElementData(thePlayer, "alkaknast")]];
 
+                    table.insert(policePCData.lastJails, getPlayerName(thePlayer));
                     executeBrowserJavascript(policePCBrowser, "setJailPlayer(\"" .. getPlayerName(thePlayer) .. "\", " .. jail ..", " .. time ..", " .. totalTime .." );");
 
                     if (getElementData(thePlayer, "mussAlka") == 1) then
@@ -172,8 +183,37 @@ function actualizePolicePCPage()
                 executeBrowserJavascript(policePCBrowser, "removeJailPlayer(\"" .. getPlayerName(thePlayer) .. "\");");
             end
         end
+    elseif (policePCActivePage == "suspects") then
+        for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
+
+                local crimeLevel = getElementData(thePlayer, "crimeLevel");
+
+                local crimeState = "-";
+                for theKey, theState in ipairs(CrimeSystem._criminalStates) do
+                    if (theState.minPercentage <= crimeLevel) then
+                        crimeState = theState.name;
+                    end
+                end
+
+                local stvo = getElementData(thePlayer, "stvo");
+
+                executeBrowserJavascript(policePCBrowser, "setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");");
+
+                if (getElementData(thePlayer, "mussAlka") == 1) then
+                    executeBrowserJavascript(policePCBrowser, "setSuspectAlka(\"" .. getPlayerName(thePlayer) .. "\");");
+                end
+            end
+        end
     end
 end
+
+function removeDisconnectedPlayer()
+    if (policePCActivePage == "suspects") then
+        executeBrowserJavascript(policePCBrowser, "removeSuspect(\"" .. getPlayerName(source) .. "\");");
+    end
+end
+addEventHandler( "onClientPlayerQuit", getRootElement(), removeDisconnectedPlayer )
 
 function policePCdBlitzer(get)
     if (get) then

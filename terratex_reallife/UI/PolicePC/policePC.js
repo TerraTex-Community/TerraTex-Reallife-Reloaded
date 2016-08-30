@@ -82,3 +82,25 @@ function setJailPlayerAlka(userName) {
     var html = $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html();
     $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html(html + " (muss Alkatraz)");
 }
+
+function setSuspect(userName, crimeState, StVO) {
+    if ($("tr[data-nickname='" + userName + "']").length > 0) {
+        var row = $("tr[data-nickname='" + userName + "']");
+        row.find("td:nth-child(2)").html(userName);
+        row.find("td:nth-child(3)").html(crimeState);
+        row.find("td:nth-child(4)").html(StVO);
+    } else {
+        var editButton = "<i class='fa fa-edit edit' title='Akte bearbeiten'></i>";
+        var html = "<tr data-nickname='" + userName + "'><td>" + editButton + "</td><td>" + userName + "</td><td>" + crimeState +"</td>" + "</td><td>" + StVO + "</td></tr>";
+        $("tbody").append(html);
+    }
+}
+function removeSuspect(userName) {
+    $("tr[data-nickname='" + userName + "']").remove();
+}
+
+function setSuspectAlka(userName) {
+    $("tr[data-nickname='" + userName + "']").addClass("bg-danger");
+    var html = $("tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
+    $("tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
+}

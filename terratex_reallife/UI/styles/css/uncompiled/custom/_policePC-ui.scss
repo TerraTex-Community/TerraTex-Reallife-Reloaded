@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 100%;
   }
-  font-size: 8px;
+  font-size: 12px;
 
 }
 
@@ -12,11 +12,12 @@
   color: #0400ff;
   text-shadow: $text-shadow-white;
   font-weight: bold;
-  margin-left: -5px;
+  margin-left:-2.5em;
+  margin-top: -0.5em;
   cursor: pointer;
 
   .car {
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   .carNumber {
@@ -29,12 +30,13 @@
   position: absolute;
   text-shadow: $text-shadow-white;
   font-weight: bold;
-  margin-left: -2px;
+  margin-left:-0.5em;
+  margin-top: -0.5em;
   cursor: pointer;
   color: #10b301;
 
   .blitzer {
-    font-size: 1.25em;
+    font-size: 1em;
   }
 
   &.defect {

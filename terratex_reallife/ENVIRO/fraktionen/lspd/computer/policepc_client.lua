@@ -152,7 +152,7 @@ function actualizePolicePCPage()
 
                     htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
 
-                    executeBrowserJavascript(policePCBrowser, "setBlitzer(" .. getElementID(blitzerElement) .. ",\"" ..  htmlCopy .. "\");");
+                    executeBrowserJavascript(policePCBrowser, "setBlitzer(\"" .. getElementID(blitzerElement) .. "\",\"" ..  htmlCopy .. "\");");
 
                 end
             end
@@ -188,8 +188,8 @@ function actualizePolicePCPage()
         end
     elseif (policePCActivePage == "suspects") then
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
-            outputChatBox("yay")
             if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
+                outputChatBox("yay")
 
                 local crimeLevel = getElementData(thePlayer, "crimeLevel");
 

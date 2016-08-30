@@ -110,7 +110,7 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
                     vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
 
                     outputChatBox("Der Blitzer wurde erfolgreich abgebaut!", thePlayer, 255, 0, 0)
-                    outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s abgebaut!", blitzerids, getPlayerName(thePlayer)))
+                    outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s abgebaut!", blitzerid, getPlayerName(thePlayer)))
                 else
                     outputChatBox("Der Blitzer ist zur Zeit nicht in Benutzung! Weitere Infos unter /sblitzer", thePlayer, 255, 0, 0)
                 end

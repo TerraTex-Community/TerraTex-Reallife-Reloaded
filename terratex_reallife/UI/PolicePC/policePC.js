@@ -79,4 +79,6 @@ function removeJailPlayer(userName) {
 
 function setJailPlayerAlka(userName) {
     $("tr[data-nickname='" + userName + "']").addClass("bg-danger");
+    var html = $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html();
+    $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html(html + " (muss Alkatraz)");
 }

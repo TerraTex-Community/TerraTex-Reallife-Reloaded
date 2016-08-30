@@ -42,9 +42,10 @@ function setCar(id, html) {
         $("#map div[data-car-id='" + id + "']").remove();
     }
     $("#map").append(html);
+
+    //@todo: rework: they are not deleted correctly
     $("#map div[data-car-id='" + id + "']").tooltip({
         container: 'body',
-        selector: "#map div[data-car-id='" + id + "']",
         trigger: 'click'
     });
 }
@@ -55,10 +56,10 @@ function setBlitzer(id, html) {
     }
 
     $("#map").append(html);
+    //@todo: rework: they are not deleted correctly
     $("#map div[data-blitzer-id='" + id + "']").tooltip({
         container: 'body',
-        trigger: 'click',
-        selector: "#map div[data-blitzer-id='" + id + "']"
+        trigger: 'click'
     });
 }
 

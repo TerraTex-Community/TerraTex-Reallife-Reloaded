@@ -90,8 +90,9 @@ addCommandHandler("cblitzer", createBlitzer_func, false, false)
 function dblitzer_func(thePlayer, cmd, blitzerid)
     if (isBeamter(thePlayer)) then
         if (blitzerid) then
-            blitzerid = tonumber(blitzerid)
-            if (blitzerid) then
+            if (tonumber(blitzerid)) then
+
+                blitzerid = tonumber(blitzerid)
                 local blitzerElement = getElementByID("blitzer-" .. blitzerid);
 
                 if (vioGetElementData(blitzerElement, "state")) then

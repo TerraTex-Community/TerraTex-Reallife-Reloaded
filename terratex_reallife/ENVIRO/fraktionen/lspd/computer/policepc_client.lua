@@ -189,7 +189,7 @@ function actualizePolicePCPage()
     elseif (policePCActivePage == "suspects") then
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
             if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
-                outputChatBox("yay")
+
 
                 local crimeLevel = getElementData(thePlayer, "crimeLevel");
 
@@ -202,6 +202,7 @@ function actualizePolicePCPage()
 
                 local stvo = getElementData(thePlayer, "stvo");
 
+                outputChatBox("setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");")
                 executeBrowserJavascript(policePCBrowser, "setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");");
 
                 if (getElementData(thePlayer, "mussAlka") == 1) then

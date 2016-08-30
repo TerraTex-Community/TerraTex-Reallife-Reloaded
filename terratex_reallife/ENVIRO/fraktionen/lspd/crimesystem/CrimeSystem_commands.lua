@@ -21,7 +21,11 @@ function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
 
         if not orderedCriminals[lastState].criminals then orderedCriminals[lastState].criminals = {}; end
 
-        table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname);
+        if (vioGetElementData(theCriminal, "mussAlka") == 1) then
+            table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname .. " (muss Alkatraz)");
+        else
+            table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname);
+        end
     end
 
     if (not crimeStateOrPlayNamePart) then
@@ -47,7 +51,12 @@ function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
                 end
             end
 
-            outputChatBox("Der Spieler hat den Kriminalitätsstatus: Stufe " .. lastState .. " - " .. orderedCriminals[lastState].name, thePlayer);
+            local mussAlka = "";
+            if (vioGetElementData(toPlayer, "mussAlka") == 1) then
+                mussAlka = " (muss Alkatraz)"
+            end
+
+            outputChatBox("Der Spieler hat den Kriminalitätsstatus: Stufe " .. lastState .. " - " .. orderedCriminals[lastState].name .. mussAlka, thePlayer);
 
         else
             showError(thePlayer, "Dieser Spieler existiert nicht!");

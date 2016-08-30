@@ -192,7 +192,6 @@ end
 ---source = blitzerElement
 addEvent("blitzme_event", true)
 function playerInBlitzer(HitElement)
-    outputChatBox("recieved event")
     if (getElementType(HitElement) == "vehicle") then
         if (math.random(1,10) == 10) then return end
 

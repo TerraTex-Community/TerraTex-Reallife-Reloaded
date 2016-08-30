@@ -54,8 +54,8 @@ function startpolicePCUI()
                 showCursor(true)
                 browserActualizeFields(source)
                 policePCBrowser = source;
---                setDevelopmentMode (true, true)
---                toggleBrowserDevTools ( policePCBrowser, true )
+                setDevelopmentMode (true, true)
+                toggleBrowserDevTools ( policePCBrowser, true )
             end
         )
 
@@ -151,6 +151,9 @@ function actualizePolicePCPage()
                     posY = (-(posY - 3000)) / 60;
 
                     htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
+
+                    executeBrowserJavascript(policePCBrowser, "setBlitzer(" .. getElementID(blitzerElement) .. ",\"" ..  htmlCopy .. "\");");
+
                 end
             end
         end
@@ -185,6 +188,7 @@ function actualizePolicePCPage()
         end
     elseif (policePCActivePage == "suspects") then
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            outputChatBox("yay")
             if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
 
                 local crimeLevel = getElementData(thePlayer, "crimeLevel");

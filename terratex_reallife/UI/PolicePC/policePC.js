@@ -15,7 +15,7 @@ $(document).ready(function () {
             $.ajax("http://mta/local/ajax_policePC_dBlitzer.html?id=" + $("#dblitzer_id").val());
         }
     });
-    $("html").on("click", "#dblitzer_all", function(){
+    $("html").on("click", "#dblitzerall", function(){
         $("#dblitzer_id").toggleClass("bg-danger", false);
         $.ajax("http://mta/local/ajax_policePC_dBlitzer.html?id=all");
     });

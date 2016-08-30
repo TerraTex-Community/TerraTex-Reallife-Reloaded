@@ -36,14 +36,20 @@ local wasBlitzed = false
 
 addEvent("CheckClearLine_Blitzer", true)
 function checkMyClearBlitzerLine()
+    outputChatBox("recieved trigger")
     if (source == getLocalPlayer()) then
+        outputChatBox("I hit it")
         if (isPedInVehicle(getLocalPlayer())) then
+            outputChatBox("I am in the car")
 
             local bx, by, bz = getElementPosition(getElementData(source, "object"))
+            outputChatBox(bx .. " ".. by .. " ".. bz)
             local px, py, pz = getElementPosition(getLocalPlayer())
+            outputChatBox(px .. " ".. py .. " ".. pz)
             local veh = getPedOccupiedVehicle(getLocalPlayer())
 
             if (isLineOfSightClear(bx, by, bz, px, py, pz, true, false, false, true, false, false, false, blitzerele) and not (wasBlitzed)) then
+                outputChatBox("Line is clear")
                 triggerServerEvent("blitzme_event", source, veh)
                 wasBlitzed = true
                 setTimer(resetCheckedBlitzer, 2000, 1)

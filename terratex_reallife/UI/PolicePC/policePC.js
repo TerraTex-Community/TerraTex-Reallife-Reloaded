@@ -39,14 +39,13 @@ function toggleContentLoader(bool) {
 
 function setCar(id, html) {
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
-        $("#map div[data-blitzer-id='" + id + "']").tooltip('hide');
+        $("#map div[data-blitzer-id='" + id + "']").tooltip('dispose');
         $("#map div[data-car-id='" + id + "']").remove();
     }
     $("#map").append(html);
 
     //@todo: rework: they are not deleted correctly
     $("#map div[data-car-id='" + id + "']").tooltip({
-        container: 'body',
         trigger: 'click'
     });
 }
@@ -60,7 +59,6 @@ function setBlitzer(id, html) {
     $("#map").append(html);
     //@todo: rework: they are not deleted correctly
     $("#map div[data-blitzer-id='" + id + "']").tooltip({
-        container: 'body',
         trigger: 'hover'
     });
 }

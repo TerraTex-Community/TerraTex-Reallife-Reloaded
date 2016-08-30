@@ -194,9 +194,11 @@ function actualizePolicePCPage()
                 local crimeLevel = getElementData(thePlayer, "crimeLevel");
 
                 local crimeState = "-";
-                for theKey, theState in ipairs(CrimeSystem._criminalStates) do
-                    if (theState.minPercentage >= crimeLevel) then
-                        crimeState = theState.name;
+                if (crimeLevel > 0) then
+                    for theKey, theState in ipairs(CrimeSystem._criminalStates) do
+                        if (theState.minPercentage <= crimeLevel) then
+                            crimeState = theState.name;
+                        end
                     end
                 end
 

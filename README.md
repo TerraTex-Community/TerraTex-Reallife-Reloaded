@@ -28,3 +28,5 @@ Dieses Material steht unter der Creative-Commons-Lizenz Namensnennung-Nicht komm
 
 
 
+## Some Notes
+Intellij IDEA Project Scope: (file[TerraTex-Reallife-Reloaded]:.github//*||file[TerraTex-Reallife-Reloaded]:terratex_reallife//*||file:terratex.env.js||file:terratex.env||file:README.md||file:Lizenz.html||file:LICENSE.md||file:.gitignore)&&!file[TerraTex-Reallife-Reloaded]:terratex_reallife/WERBEBILDER//*&&!file[TerraTex-Reallife-Reloaded]:terratex_reallife/UI/styles/js/umd//*&&!file:terratex_reallife/UI/styles/js/bootstrap.js&&!file:terratex_reallife/UI/styles/js/bootstrap.min.js&&!file:terratex_reallife/UI/styles/js/countUp-jquery.js&&!file:terratex_reallife/UI/styles/js/jquery.min.js&&!file:terratex_reallife/UI/styles/js/jqueryUI.js&&!file:terratex_reallife/UI/styles/js/npm.js&&!file:terratex_reallife/UI/styles/js/tether.js&&!file:terratex_reallife/UI/styles/js/tether.min.js&&!file[TerraTex-Reallife-Reloaded]:terratex_reallife/UI/styles/css//*||file[TerraTex-Reallife-Reloaded]:terratex_reallife/UI/styles/css/uncompiled/custom//*

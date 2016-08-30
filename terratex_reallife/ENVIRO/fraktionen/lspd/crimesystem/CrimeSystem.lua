@@ -5,7 +5,6 @@
 -- Time: 16:16
 -- To change this template use File | Settings | File Templates.
 --
-CrimeSystem = {};
 
 function CrimeSystem.getCrimePercentage(thePlayer)
     local query = "SELECT sum(CrimePercentage) as CrimeLevel FROM user_crimes WHERE Nickname = ?";

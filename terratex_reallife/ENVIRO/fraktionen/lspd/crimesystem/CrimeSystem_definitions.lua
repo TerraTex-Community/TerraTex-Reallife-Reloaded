@@ -6,6 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+CrimeSystem = {};
+
 -- jailtime per percentage in minutes
 CrimeSystem._jailtimePerPercentage = 0.6;
 CrimeSystem._jailtimePerPercentageGestellt = 0.4;

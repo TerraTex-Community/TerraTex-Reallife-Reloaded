@@ -45,7 +45,7 @@ function createBlitzer_func(thePlayer, cmd, blitzerid)
                         local px, py, pz = getElementPosition(thePlayer)
                         local isZuNah = false
                         for theKey, blitzeri in ipairs(getElementsByType("blitzer")) do
-                            if (blitzeri) then
+                            if (vioGetElementData(blitzeri, "state")) then
                                 local blitzerObject = vioGetElementData(blitzeri, "object")
                                 local bx, by, bz = getElementPosition(blitzerObject)
                                 if (getDistanceBetweenPoints3D(px, py, pz, bx, by, bz) < 50) then
@@ -72,7 +72,7 @@ function createBlitzer_func(thePlayer, cmd, blitzerid)
                             vioSetElementData(obj, "blitzerElement", blitzerElement);
                             vioSetElementData(marker, "blitzerElement", blitzerElement);
 
-                            outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s aufgebaut!", blitzerids, getPlayerName(thePlayer)))
+                            outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s aufgebaut!", blitzerid, getPlayerName(thePlayer)))
                             outputChatBox("Der Blitzer wurde erfolgreich aufgebaut! Abbauen mit /dblitzer [ID]", thePlayer, 255, 0, 0)
                         end
                     end
@@ -149,17 +149,17 @@ function sblitzer_func(thePlayer)
                 local blitzerObject = vioGetElementData(blitzerElement, "object")
                 local bx, by, bz = getElementPosition(blitzerObject)
                 local dis = getDistanceBetweenPoints3D(px, py, pz, bx, by, bz)
-                
+
                 if (vioGetElementData(thePlayer, "fraktionsrang") >= 5) then
-                    outputChatBox(string.format("Nr. %s: Ort: %s Entfernung: %s Aufgebaut von %s", 
-                        theKey, 
-                        getZoneName(bx, by, bz), 
+                    outputChatBox(string.format("Nr. %s: Ort: %s Entfernung: %s Aufgebaut von %s",
+                        theKey,
+                        getZoneName(bx, by, bz),
                         math.round(dis),
                         vioGetElementData(blitzerElement, "createdBy")
                     ), thePlayer, 255, 0, 0)
                 else
                     outputChatBox(string.format("Nr. %s: Ort: %s Entfernung: %s", theKey, getZoneName(bx, by, bz), math.round(dis)), thePlayer, 255, 0, 0)
-                end 
+                end
             else
                 if (vioGetElementData(blitzerElement, "deletedBy") and vioGetElementData(thePlayer, "fraktionsrang") >= 5) then
                     outputChatBox(string.format("Nr. %s: nicht in Benutzung (Abgebaut von %s)!", getElementID(blitzerElement), vioGetElementData(blitzerElement, "deletedBy")), thePlayer, 255, 0, 0)
@@ -173,12 +173,16 @@ end
 addCommandHandler("sblitzer", sblitzer_func, false, false)
 
 function checkClearLineBetweenBlitzerAndPlayer(HitElement)
+    outputChatBox("Blitzer Hit")
     if (getElementType(HitElement) == "player") then
+        outputChatBox("Hit By Player")
         local blitzerElement = vioGetElementData(source, "blitzerElement");
 
         if not (vioGetElementData(blitzerElement, "executed")) then
+            outputChatBox("not executed")
             vioSetElementData(blitzerElement, "executed", true);
 
+            outputChatBox("should be triggered")
             triggerClientEvent(HitElement, "CheckClearLine_Blitzer", blitzerElement)
             setTimer(resetBlitzerChecker, 1000, 1, blitzerElement)
         end
@@ -192,6 +196,7 @@ end
 ---source = blitzerElement
 addEvent("blitzme_event", true)
 function playerInBlitzer(HitElement)
+    outputChatBox("recieved event")
     if (getElementType(HitElement) == "vehicle") then
         if (math.random(1,10) == 10) then return end
 

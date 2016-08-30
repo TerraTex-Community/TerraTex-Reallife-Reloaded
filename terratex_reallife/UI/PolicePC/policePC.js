@@ -44,6 +44,7 @@ function setCar(id, html) {
     $("#map").append(html);
     $("#map div[data-car-id='" + id + "']").tooltip({
         container: 'body',
+        selector: "#map div[data-car-id='" + id + "']",
         trigger: 'click'
     });
 }
@@ -56,7 +57,8 @@ function setBlitzer(id, html) {
     $("#map").append(html);
     $("#map div[data-blitzer-id='" + id + "']").tooltip({
         container: 'body',
-        trigger: 'click'
+        trigger: 'click',
+        selector: "#map div[data-blitzer-id='" + id + "']"
     });
 }
 

@@ -6,6 +6,20 @@ $(document).ready(function () {
     $('a[data-toggle="tab"]').click(function (e) {
         loadPage($(this).attr("data-page"));
     });
+
+    $("html").on("click", "#dblitzer", function(){
+        if ($("#dblitzer_id").val() == "" || $("#dblitzer_id").val() < 1) {
+            $("#dblitzer_id").toggleClass("bg-danger", true);
+        } else {
+            $("#dblitzer_id").toggleClass("bg-danger", false);
+            $.ajax("http://mta/local/ajax_policePC_dBlitzer.html?id=" + $("#dblitzer_id").val());
+        }
+    });
+    $("html").on("click", "#dblitzer_all", function(){
+        $("#dblitzer_id").toggleClass("bg-danger", false);
+        $.ajax("http://mta/local/ajax_policePC_dBlitzer.html?id=all");
+    });
+
 });
 
 function loadPage(id) {
@@ -29,6 +43,19 @@ function setCar(id, html) {
     }
     $("#map").append(html);
     $("#map div[data-car-id='" + id + "']").tooltip({
-        container: 'body'
+        container: 'body',
+        trigger: 'click'
+    });
+}
+
+function setBlitzer(id, html) {
+    if ($("#map div[data-blitzer-id='" + id + "']").length > 0) {
+        $("#map div[data-blitzer-id='" + id + "']").remove();
+    }
+
+    $("#map").append(html);
+    $("#map div[data-blitzer-id='" + id + "']").tooltip({
+        container: 'body',
+        trigger: 'click'
     });
 }

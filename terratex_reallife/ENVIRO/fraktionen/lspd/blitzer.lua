@@ -15,6 +15,11 @@ function createBlitzerDummysOnStartUp()
         local blitzerElement = createElement("blitzer");
         vioSetElementData(blitzerElement, "object", false);
         vioSetElementData(blitzerElement, "state", false);
+
+        -- not implemented yet
+        vioSetElementData(blitzerElement, "destroyed", false);
+        vioSetElementData(blitzerElement, "defect", false);
+
         vioSetElementData(blitzerElement, "executed", false);
         vioSetElementData(blitzerElement, "marker", false);
         vioSetElementData(blitzerElement, "createdBy", false);

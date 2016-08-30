@@ -43,6 +43,7 @@ function startpolicePCUI()
             function()
                 policePCBrowser = source;
                 setBrowserAjaxHandler(source, "ajax_policePC_load_page.html", loadPolicePCPage);
+                setBrowserAjaxHandler(source, "ajax_policePC_dBlitzer.html", policePCdBlitzer)
                 loadBrowserURL(source, "http://mta/local/UI/PolicePC/Main.html");
             end
         )
@@ -91,13 +92,9 @@ end
 
 function _renderPolicePCVehiclesPage()
     local html = HTML.getFile("UI/PolicePC/_Vehicles.html", true);
-
     if html then
-
         html = HTML.prepare(html);
-
         executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
-
     else
         outputDebugString("Unable to open \"UI/PolicePC/_Vehicles.html\"")
     end
@@ -105,10 +102,13 @@ end
 
 function actualizePolicePCPage()
     if (policePCActivePage == "overview") then
+
+        ---show cars
         local carHtml = HTML.getFile("UI/PolicePC/__carEntry.html", true);
         if (carHtml) then
-            local htmlCopy = carHtml;
             for theKey, theVehicle in pairs(policePCData.vehicles) do
+
+                local htmlCopy = carHtml;
                 local posX, posY, posZ = unpack(theVehicle.position);
 
                 -- convert X and Y to Percentage
@@ -118,11 +118,36 @@ function actualizePolicePCPage()
 
                 local cops = table.concat(theVehicle.cops, ", ");
 
-                carHtml = HTML.prepare(carHtml, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
+                htmlCopy = HTML.prepare(htmlCopy, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
 
-                executeBrowserJavascript(policePCBrowser, "setCar(" .. theVehicle.id .. ",\"" ..  carHtml .. "\");");
-
+                executeBrowserJavascript(policePCBrowser, "setCar(" .. theVehicle.id .. ",\"" ..  htmlCopy .. "\");");
             end
+        end
+
+        ---show blitzer
+        local blitzerHtml = HTML.getFile("UI/PolicePC/__blitzerEntry.html", true);
+        if (blitzerHtml) then
+
+            for theKey, blitzerElement in ipairs(getElementsByType("blitzer")) do
+                local htmlCopy = blitzerHtml;
+                if (getElementData(blitzerElement, "state")) then
+                    local posX, posY, posZ = getElementPosition(getElementData(blitzerElement, "object"));
+                    posX = (posX + 3000) / 60;
+                    posY = (-(posY - 3000)) / 60;
+
+                    htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
+                end
+            end
+        end
+    end
+end
+
+function policePCdBlitzer(get)
+    if (get) then
+        if (get.id) then
+            triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "dblitzer", get.id);
+        else
+            showError(getLocalPlayer(), "Bitte gebe eine Blitzer ID ein!");
         end
     end
 end

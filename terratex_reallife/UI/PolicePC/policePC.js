@@ -59,3 +59,24 @@ function setBlitzer(id, html) {
         trigger: 'click'
     });
 }
+
+function setJailPlayer(userName, jail, time, totalTime) {
+    if ($("tr[data-nickname='" + userName + "']").length > 0) {
+        var row = $("tr[data-nickname='" + userName + "']");
+        row.find("td:nth-child(1)").html(userName);
+        row.find("td:nth-child(2)").html(jail);
+        row.find("td:nth-child(3)").html(time);
+        row.find("td:nth-child(4)").html(totalTime);
+    } else {
+        var html = "<tr data-nickname='" + userName + "'><td>" + userName + "</td><td>" + jail +"</td>" + "</td><td>" + time + "</td><td>" + totalTime + "</td></tr>";
+        $("tbody").append(html);
+    }
+}
+
+function removeJailPlayer(userName) {
+    $("tr[data-nickname='" + userName + "']").remove();
+}
+
+function setJailPlayerAlka(userName) {
+    $("tr[data-nickname='" + userName + "']").addClass("bg-danger");
+}

@@ -581,6 +581,7 @@
     <file src="UI/Fraktionsmanagement/factionmanagement.js"/>
     <file src="UI/PolicePC/Main.html" />
     <file src="UI/PolicePC/_Vehicles.html" />
+    <file src="UI/PolicePC/_JailList.html" />
     <file src="UI/PolicePC/__carEntry.html" />
     <file src="UI/PolicePC/__blitzerEntry.html" />
     <file src="UI/PolicePC/policePC.js" />

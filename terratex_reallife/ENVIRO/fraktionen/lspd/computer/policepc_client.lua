@@ -7,7 +7,8 @@
 --
 local policePCData = {
     vehicles = {},
-    blitzer = {}
+    blitzer = {},
+    lastJails = {}
 };
 local policePCWindow;
 local policePCBrowser;
@@ -78,7 +79,22 @@ function loadPolicePCPage(get, post)
     if (get) then
         if (get.id) then
             if (get.id == "overview") then
-                _renderPolicePCVehiclesPage();
+                local html = HTML.getFile("UI/PolicePC/_Vehicles.html", true);
+                if html then
+                    html = HTML.prepare(html);
+                    executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+                else
+                    outputDebugString("Unable to open \"UI/PolicePC/_Vehicles.html\"")
+                end
+            elseif (get.id == "jail") then
+                local html = HTML.getFile("UI/PolicePC/_JailList.html", true);
+                if html then
+                    html = HTML.prepare(html);
+                    executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+                    actualizePolicePCPage();
+                else
+                    outputDebugString("Unable to open \"UI/PolicePC/_JailList.html\"")
+                end
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
@@ -87,16 +103,6 @@ function loadPolicePCPage(get, post)
             policePCActivePage = get.id;
 
         end
-    end
-end
-
-function _renderPolicePCVehiclesPage()
-    local html = HTML.getFile("UI/PolicePC/_Vehicles.html", true);
-    if html then
-        html = HTML.prepare(html);
-        executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
-    else
-        outputDebugString("Unable to open \"UI/PolicePC/_Vehicles.html\"")
     end
 end
 
@@ -137,6 +143,41 @@ function actualizePolicePCPage()
 
                     htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
                 end
+            end
+        end
+    elseif (policePCActivePage == "jail") then
+
+        for theKey, thePlayer in ipairs(policePCData.lastJails) do
+            if (not getPlayerFromName(thePlayer)) then
+                executeBrowserJavascript(policePCBrowser, "removeJailPlayer(\"" .. thePlayer .. "\");");
+            end
+        end
+
+        for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            if (getElementData(thePlayer, "knastzeit")) then
+                if (getElementData(thePlayer, "knastzeit") > 0) then
+                    local time = getElementData(thePlayer, "knastzeit");
+                    local totalTime = getElementData(thePlayer, "lastknastzeit");
+                    local jail = getElementData(thePlayer, "alkaknast");
+
+                    if (jail == 0) then
+                        jail = "Los Santos";
+                    elseif (jail == 1) then
+                        jail = "Las Venturas";
+                    else
+                        jail = "Alkatraz";
+                    end
+
+                    executeBrowserJavascript(policePCBrowser, "setJailPlayer(\"" .. getPlayerName(thePlayer) .. "\", " .. jail ..", " .. time ..", " .. totalTime .." );");
+
+                    if (getElementData(thePlayer, "mussAlka") == 1) then
+                        executeBrowserJavascript(policePCBrowser, "setJailPlayerAlka(\"" .. getPlayerName(thePlayer) .. "\");");
+                    end
+                else
+                    executeBrowserJavascript(policePCBrowser, "removeJailPlayer(\"" .. getPlayerName(thePlayer) .. "\");");
+                end
+            else
+                executeBrowserJavascript(policePCBrowser, "removeJailPlayer(\"" .. getPlayerName(thePlayer) .. "\");");
             end
         end
     end

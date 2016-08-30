@@ -174,11 +174,10 @@ addCommandHandler("sblitzer", sblitzer_func, false, false)
 
 function checkClearLineBetweenBlitzerAndPlayer(HitElement)
     if (getElementType(HitElement) == "player") then
-        if (isPedInVehicle(HitElement)) then
+        if (isPedInVehicle(HitElement) and getPedOccupiedVehicleSeat(HitElement) == 0) then
             local blitzerElement = vioGetElementData(source, "blitzerElement");
             if not (vioGetElementData(blitzerElement, "executed")) then
                 vioSetElementData(blitzerElement, "executed", true);
-                outputChatBox("should be triggered")
                 triggerClientEvent(HitElement, "CheckClearLine_Blitzer", blitzerElement)
                 setTimer(resetBlitzerChecker, 1000, 1, blitzerElement)
             end

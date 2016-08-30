@@ -174,7 +174,7 @@ function actualizePolicePCPage()
                     local jail = CrimeSystem._jailNames[CrimeSystem._jailIdToText[getElementData(thePlayer, "alkaknast")]];
 
                     table.insert(policePCData.lastJails, getPlayerName(thePlayer));
-                    executeBrowserJavascript(policePCBrowser, "setJailPlayer(\"" .. getPlayerName(thePlayer) .. "\", " .. jail ..", " .. time ..", " .. totalTime .." );");
+                    executeBrowserJavascript(policePCBrowser, "setJailPlayer(\"" .. getPlayerName(thePlayer) .. "\", \"" .. jail .."\", " .. time ..", " .. totalTime .." );");
 
                     if (getElementData(thePlayer, "mussAlka") == 1) then
                         executeBrowserJavascript(policePCBrowser, "setJailPlayerAlka(\"" .. getPlayerName(thePlayer) .. "\");");
@@ -190,7 +190,6 @@ function actualizePolicePCPage()
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
             if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
 
-
                 local crimeLevel = getElementData(thePlayer, "crimeLevel");
 
                 local crimeState = "-";
@@ -204,7 +203,6 @@ function actualizePolicePCPage()
 
                 local stvo = getElementData(thePlayer, "stvo");
 
-                outputChatBox("setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");")
                 executeBrowserJavascript(policePCBrowser, "setSuspect(\"" .. getPlayerName(thePlayer) .. "\", \"" .. crimeState .."\", " .. stvo ..");");
 
                 if (getElementData(thePlayer, "mussAlka") == 1) then

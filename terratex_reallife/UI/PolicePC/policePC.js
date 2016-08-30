@@ -67,29 +67,29 @@ function setBlitzer(id, html) {
 
 function setJailPlayer(userName, jail, time, totalTime) {
     if ($("tr[data-nickname='" + userName + "']").length > 0) {
-        var row = $("tr[data-nickname='" + userName + "']");
+        var row = $("#jaillist tr[data-nickname='" + userName + "']");
         row.find("td:nth-child(1)").html(userName);
         row.find("td:nth-child(2)").html(jail);
         row.find("td:nth-child(3)").html(time);
         row.find("td:nth-child(4)").html(totalTime);
     } else {
         var html = "<tr data-nickname='" + userName + "'><td>" + userName + "</td><td>" + jail +"</td>" + "</td><td>" + time + "</td><td>" + totalTime + "</td></tr>";
-        $("tbody").append(html);
+        $("#jaillist tbody").append(html);
     }
 }
 
 function removeJailPlayer(userName) {
-    $("tr[data-nickname='" + userName + "']").remove();
+    $("#jaillist tr[data-nickname='" + userName + "']").remove();
 }
 
 function setJailPlayerAlka(userName) {
-    $("tr[data-nickname='" + userName + "']").addClass("bg-danger");
-    var html = $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html();
-    $("tr[data-nickname='" + userName + "'] td:nth-child(2)").html(html + " (muss Alkatraz)");
+    $("#jaillist tr[data-nickname='" + userName + "']").addClass("bg-danger");
+    var html = $("#jaillist tr[data-nickname='" + userName + "'] td:nth-child(2)").html();
+    $("#jaillist tr[data-nickname='" + userName + "'] td:nth-child(2)").html(html + " (muss Alkatraz)");
 }
 
 function setSuspect(userName, crimeState, StVO) {
-    if ($("tr[data-nickname='" + userName + "']").length > 0) {
+    if ($("#supspectlist tr[data-nickname='" + userName + "']").length > 0) {
         var row = $("tr[data-nickname='" + userName + "']");
         row.find("td:nth-child(2)").html(userName);
         row.find("td:nth-child(3)").html(crimeState);
@@ -97,15 +97,15 @@ function setSuspect(userName, crimeState, StVO) {
     } else {
         var editButton = "<i class='fa fa-edit edit' title='Akte bearbeiten'></i>";
         var html = "<tr data-nickname='" + userName + "'><td>" + editButton + "</td><td>" + userName + "</td><td>" + crimeState +"</td>" + "</td><td>" + StVO + "</td></tr>";
-        $("tbody").append(html);
+        $("#supspectlist tbody").append(html);
     }
 }
 function removeSuspect(userName) {
-    $("tr[data-nickname='" + userName + "']").remove();
+    $("#supspectlist tr[data-nickname='" + userName + "']").remove();
 }
 
 function setSuspectAlka(userName) {
-    $("tr[data-nickname='" + userName + "']").addClass("bg-danger");
-    var html = $("tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
-    $("tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
+    $("#supspectlist tr[data-nickname='" + userName + "']").addClass("bg-danger");
+    var html = $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
+    $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
 }

@@ -195,7 +195,7 @@ function actualizePolicePCPage()
 
                 local crimeState = "-";
                 for theKey, theState in ipairs(CrimeSystem._criminalStates) do
-                    if (theState.minPercentage <= crimeLevel) then
+                    if (theState.minPercentage >= crimeLevel) then
                         crimeState = theState.name;
                     end
                 end
@@ -203,7 +203,7 @@ function actualizePolicePCPage()
                 local stvo = getElementData(thePlayer, "stvo");
 
                 outputChatBox("setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");")
-                executeBrowserJavascript(policePCBrowser, "setSuspect(\"" .. getPlayerName(thePlayer) .. "\", " .. crimeState ..", " .. stvo ..");");
+                executeBrowserJavascript(policePCBrowser, "setSuspect(\"" .. getPlayerName(thePlayer) .. "\", \"" .. crimeState .."\", " .. stvo ..");");
 
                 if (getElementData(thePlayer, "mussAlka") == 1) then
                     executeBrowserJavascript(policePCBrowser, "setSuspectAlka(\"" .. getPlayerName(thePlayer) .. "\");");

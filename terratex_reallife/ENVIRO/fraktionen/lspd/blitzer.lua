@@ -234,7 +234,7 @@ function playerInBlitzer(HitElement)
                     outputChatBox(string.format("Zusätzlich musst du %s Strafe zahlen!", toprice(geldstrafe)), driver, 0, 0, 255)
                     changePlayerMoney(driver, -geldstrafe, "sonstiges", "Blitzer")
 
-                    local id = vioSetElementData(source, "id")
+                    local id = vioGetElementData(source, "id")
                     outputChatBoxForPolice(string.format("%s hat %s StVO-Punkte erhalten! Grund: Mobiler Blitzer NR %s", getPlayerName(driver), stvo, id))
 
                     if (vioGetElementData(driver, "stvo") > 0) then

@@ -38,7 +38,7 @@ function startpolicePCUI()
         table.insert(allGuis, policePCWindow);
         setGuiCenter(policePCWindow);
 
-        local browser = guiCreateBrowser(0, 15, 1, 1, true, false, true, policePCWindow);
+        local browser = guiCreateBrowser(0, 15, 800, 600, true, false, false, policePCWindow);
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
@@ -54,8 +54,8 @@ function startpolicePCUI()
                 showCursor(true)
                 browserActualizeFields(source)
                 policePCBrowser = source;
-                setDevelopmentMode (true, true)
-                toggleBrowserDevTools ( policePCBrowser, true )
+--                setDevelopmentMode (true, true)
+--                toggleBrowserDevTools ( policePCBrowser, true )
             end
         )
 

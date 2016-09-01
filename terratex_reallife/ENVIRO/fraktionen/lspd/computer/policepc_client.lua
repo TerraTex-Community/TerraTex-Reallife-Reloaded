@@ -227,7 +227,7 @@ function actualizePolicePCPage()
         for theKey, thePlayer in ipairs(getElementsByType("player")) do
             if (getElementData(thePlayer, "stvo") and getElementData(thePlayer, "crimeLevel")) then
 
-                local crimeLevel = getElementData(thePlayer, "crimeLevel");
+                local crimeLevel = tonumber(getElementData(thePlayer, "crimeLevel"));
 
                 local crimeState = "-";
                 if (crimeLevel > 0) then

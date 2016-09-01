@@ -14,9 +14,7 @@ function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
     for theKey, theCriminal in ipairs(criminals) do
         local lastState = 1;
         for theKey, theState in ipairs(orderedCriminals) do
-            debug.print(theState.minPercentage)
-            debug.print(theCriminal.CrimeLevel)
-            if (theState.minPercentage <= theCriminal.CrimeLevel) then
+            if (theState.minPercentage <= tonumber(theCriminal.CrimeLevel)) then
                 lastState = theKey;
             end
         end

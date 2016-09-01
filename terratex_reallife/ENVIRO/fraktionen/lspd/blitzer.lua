@@ -12,7 +12,7 @@ local blitzerArray = {};
 function createBlitzerDummysOnStartUp()
     local c = 1;
     for c = 1, blitzerMax, 1 do
-        local blitzerElement = createElement("blitzer");
+        local blitzerElement = createElement("blitzer", "blitzer-" .. c);
         vioSetElementData(blitzerElement, "object", false);
         vioSetElementData(blitzerElement, "state", false);
 
@@ -25,7 +25,6 @@ function createBlitzerDummysOnStartUp()
         vioSetElementData(blitzerElement, "createdBy", false);
         vioSetElementData(blitzerElement, "deletedBy", false);
         vioSetElementData(blitzerElement, "id", c);
-        setElementID(blitzerElement, "blitzer-" .. c);
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)

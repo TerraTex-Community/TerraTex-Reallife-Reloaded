@@ -5,6 +5,30 @@
 -- Time: 16:16
 -- To change this template use File | Settings | File Templates.
 --
+CrimeSystem.syncObject = false;
+function createCrimeSystemSyncObject()
+    CrimeSystem.syncObject = createElement("SyncElement", "CrimeSystem");
+    CrimeSystem.loadCrimeTableToSyncObject();
+    setTimer(CrimeSystem.loadCrimeTableToSyncObject, 180000, 0);
+end
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createCrimeSystemSyncObject)
+
+function CrimeSystem.loadCrimeTableToSyncObject()
+    local query = dbQuery(MySql._connection, "SELECT * FROM data_crimes_list LEFT JOIN data_crimes_categories ON data_crimes_list.CategorieID = data_crimes_categories.ID");
+    local result = dbPoll(query, -1);
+
+    local crimesById = {};
+    local crimesByCategorieIdById = {};
+
+
+    debug.print(result);
+    for theKey, theRow in ipairs(result) do
+
+    end
+
+    vioSetElementData(CrimeSystem.syncObject, "CrimesById", crimesById);
+    vioSetElementData(CrimeSystem.syncObject, "CrimesByCategorieIdById", crimesByCategorieIdById);
+end
 
 function CrimeSystem.getCrimePercentage(thePlayer)
     local query = "SELECT sum(CrimePercentage) as CrimeLevel FROM user_crimes WHERE Nickname = ?";

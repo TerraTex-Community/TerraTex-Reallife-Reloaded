@@ -126,7 +126,18 @@ function loadPolicePCPage(get, post)
 end
 
 function loadCrimesToPolicePCPage()
+    local syncElement = getElementByID("CrimeSystem");
+    local items = getElementData(syncElement, "CrimesByCategorieIdById");
 
+    for categorieID, categorieData in pairs(items) do
+        if (categorieData.hidden == 0) then
+            executeBrowserJavascript(policePCBrowser, "createCategory(" .. categorieID .. ", \"" .. categorieData.name .. "\");");
+
+            for crimeID, crimeData in pairs(categorieData.crimes) do
+                executeBrowserJavascript(policePCBrowser, "createCrime(" .. crimeID .. ", " .. categorieID .. ", \"" .. crimeData.Name .. "\");");
+            end
+        end
+    end
 end
 
 function actualizePolicePCPage()

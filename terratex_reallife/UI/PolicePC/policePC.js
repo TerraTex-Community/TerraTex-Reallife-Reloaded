@@ -121,3 +121,45 @@ function setSuspectAlka(userName) {
     var html = $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
     $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
 }
+
+//@todo
+function createCategory(ID, name) {
+    var categorieHtml = "<thead class='thead-default' data-sort='" + ID + ".1' data-name='" + name + "'>";
+    categorieHtml += "<tr><th colspan='2'>" + name + "</th></tr>";
+    categorieHtml += "</thead>";
+
+    $("table").append(categorieHtml);
+
+    var createBodyHtml = "<tbody data-sort='" + ID + ".2' data-category='" + ID + "'></tbody>";
+    $("table").append(createBodyHtml);
+
+    sortCrimeTable();
+}
+
+function createCrime(ID, categoryID, name) {
+    var crimeHtml = "<tr data-sort='" + ID + "' data-category='" + categoryID + "' data-crime-name='" + name + "'>";
+    crimeHtml += "<td>" + ID + "</td><td>" + name + "</td>";
+    crimeHtml += "</tr>";
+
+    $("table tbody[data-category='" + categoryID + "']").append(crimeHtml);
+
+    sortCrimeTBodys();
+}
+
+function sortCrimeTable() {
+    $('table > *').sort(function (a, b) {
+        var contentA = parseFloat($(a).attr('data-sort'));
+        var contentB = parseFloat($(b).attr('data-sort'));
+        return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+    }).each(function(){ $("table").append($(this)); });
+}
+
+function sortCrimeTBodys() {
+    $('table tbody').each(function(){
+        $(this).find("tr").sort(function (a, b) {
+            var contentA = parseFloat($(a).attr('data-sort'));
+            var contentB = parseFloat($(b).attr('data-sort'));
+            return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
+        }).each(function(){ $(this).append($(this)); });
+    });
+}

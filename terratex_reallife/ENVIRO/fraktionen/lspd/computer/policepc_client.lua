@@ -233,6 +233,7 @@ function actualizePolicePCPage()
                 if (crimeLevel > 0) then
                     for theKey, theState in ipairs(CrimeSystem._criminalStates) do
                         if (theState.minPercentage <= crimeLevel) then
+                            debug.print(theState)
                             crimeState = theState.name;
                         end
                     end

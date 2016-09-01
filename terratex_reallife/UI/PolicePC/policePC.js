@@ -30,17 +30,17 @@ $(document).ready(function () {
         $("#filterCategory").attr("data-value", category);
 
         if (category == -1) {
-            $("table thead, table tbody").show();
+            $("table#crimeList thead, table#crimeList tbody").show();
         } else {
-            $("table thead, table tbody").hide();
-            $("table thead[data-category='" + category + "'], table tbody[data-category='" + category + "'] ").show();
+            $("table#crimeList thead, table#crimeList tbody").hide();
+            $("table#crimeList thead[data-category='" + category + "'], table#crimeList tbody[data-category='" + category + "'] ").show();
         }
         $("thead#head").show();
     });
 
     $(document).on("keyup", "#filterCrimes", function(){
         var text = $(this).val();
-        $("tbody tr").each(function(){
+        $("#crimeList tbody tr").each(function(){
             var title = $(this).attr("data-crime-name");
             if (title.indexOf(text) === -1) {
                 $(this).hide();
@@ -72,15 +72,17 @@ function setCar(id, html, newTop, newLeft) {
         $("#map div[data-car-id='" + id + "']").css("top", newTop + "%");
         $("#map div[data-car-id='" + id + "']").css("left", newLeft + "%");
         if ($("#map div[data-car-id='" + id + "']").attr("aria-describedby")) {
-            $("#map div[data-car-id='" + id + "']").tooltip('hide');
-            $("#map div[data-car-id='" + id + "']").tooltip('show');
+
+            // $("#map div[data-car-id='" + id + "']").tooltip('hide');
+
+            // $("#map div[data-car-id='" + id + "']").tooltip('show');
         }
     } else {
         $("#map").append(html);
     }
 
     $("#map div[data-car-id='" + id + "']").tooltip({
-        trigger: 'click'
+        trigger: 'hover'
     });
 }
 
@@ -100,7 +102,7 @@ function setBlitzer(id, html, newTop, newLeft) {
     }
 
     $("#map div[data-blitzer-id='" + id + "']").tooltip({
-        trigger: 'click'
+        trigger: 'hover'
     });
 }
 
@@ -135,7 +137,7 @@ function setJailPlayerAlka(userName) {
 }
 
 function setSuspect(userName, crimeState, StVO) {
-    if ($("#supspectlist tr[data-nickname='" + userName + "']").length > 0) {
+    if ($("#suspectlist tr[data-nickname='" + userName + "']").length > 0) {
         var row = $("tr[data-nickname='" + userName + "']");
         row.find("td:nth-child(2)").html(userName);
         row.find("td:nth-child(3)").html(crimeState);
@@ -143,7 +145,7 @@ function setSuspect(userName, crimeState, StVO) {
     } else {
         var editButton = "<i class='fa fa-edit edit' title='Akte bearbeiten'></i>";
         var html = "<tr data-nickname='" + userName + "'><td>" + editButton + "</td><td>" + userName + "</td><td>" + crimeState +"</td>" + "</td><td>" + StVO + "</td></tr>";
-        $("#supspectlist tbody").append(html);
+        $("#suspectlist tbody").append(html);
     }
 }
 function removeSuspect(userName) {
@@ -151,9 +153,9 @@ function removeSuspect(userName) {
 }
 
 function setSuspectAlka(userName) {
-    $("#supspectlist tr[data-nickname='" + userName + "']").addClass("bg-danger");
+    $("#suspectlist tr[data-nickname='" + userName + "']").addClass("bg-danger");
     var html = $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
-    $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
+    $("#suspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
 }
 
 function createCategory(ID, name) {
@@ -161,10 +163,10 @@ function createCategory(ID, name) {
     categorieHtml += "<tr><th colspan='2'>" + name + "</th></tr>";
     categorieHtml += "</thead>";
 
-    $("table").append(categorieHtml);
+    $("table#crimeList").append(categorieHtml);
 
     var createBodyHtml = "<tbody data-sort='" + ID + ".2' data-category='" + ID + "'></tbody>";
-    $("table").append(createBodyHtml);
+    $("table#crimeList").append(createBodyHtml);
 
     var addFilterOptionHtml = "<a class='dropdown-item' data-value='" + ID + "' href='#'>" + name + "</a>";
     $("#filterCategoryEntryList").append(addFilterOptionHtml);
@@ -179,7 +181,7 @@ function createCrime(ID, categoryID, name) {
     crimeHtml += "<td>" + ID + "</td><td>" + name + "</td>";
     crimeHtml += "</tr>";
 
-    $("table tbody[data-category='" + categoryID + "']").append(crimeHtml);
+    $("table#crimeList tbody[data-category='" + categoryID + "']").append(crimeHtml);
 
     sortCrimeTBodys();
 }
@@ -189,7 +191,7 @@ function sortCrimeTable() {
         var contentA = parseFloat($(a).attr('data-sort'));
         var contentB = parseFloat($(b).attr('data-sort'));
         return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
-    }).each(function(){ $("table").append($(this)); });
+    }).each(function(){ $("table#crimeList").append($(this)); });
 }
 
 function sortCrimeCategoryFilter() {
@@ -201,7 +203,7 @@ function sortCrimeCategoryFilter() {
 }
 
 function sortCrimeTBodys() {
-    $('table tbody').each(function(){
+    $('table#crimeList tbody').each(function(){
         var body = $(this);
         $(this).find("tr").sort(function (a, b) {
             var contentA = parseFloat($(a).attr('data-sort'));

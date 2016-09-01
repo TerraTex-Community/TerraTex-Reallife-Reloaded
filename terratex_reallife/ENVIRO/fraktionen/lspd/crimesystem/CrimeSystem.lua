@@ -20,12 +20,19 @@ function CrimeSystem.loadCrimeTableToSyncObject()
     local crimesById = {};
     local crimesByCategorieIdById = {};
 
-
-    debug.print(result);
     for theKey, theRow in ipairs(result) do
-
+        crimesById[theRow.ID] = theRow;
+        if (not crimesByCategorieIdById[theRow.CategorieID]) then
+            crimesByCategorieIdById[theRow.CategorieID] = {
+                name = theRow.CategorieName,
+                hidden = theRow.hidden,
+                crimes = {}
+            };
+        end
+        crimesByCategorieIdById[theRow.CategorieID].crimes[theRow.ID] = theRow;
     end
 
+    debug.print(crimesByCategorieIdById);
     vioSetElementData(CrimeSystem.syncObject, "CrimesById", crimesById);
     vioSetElementData(CrimeSystem.syncObject, "CrimesByCategorieIdById", crimesByCategorieIdById);
 end

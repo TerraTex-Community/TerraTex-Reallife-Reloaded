@@ -62,10 +62,10 @@ function toggleContentLoader(bool) {
     $("#page-loading").toggleClass("hidden-xs-up", !bool);
 }
 
-function setCar(id, html) {
+function setCar(id, html, newTop, newLeft) {
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
-        $("#map div[data-car-id='" + id + "']").css("top", newX + "%");
-        $("#map div[data-car-id='" + id + "']").css("left", newY + "%");
+        $("#map div[data-car-id='" + id + "']").css("top", newTop + "%");
+        $("#map div[data-car-id='" + id + "']").css("left", newLeft + "%");
     } else {
         $("#map").append(html);
     }
@@ -82,10 +82,10 @@ function removeCar(id) {
     }
 }
 
-function setBlitzer(id, html, newX, newY) {
+function setBlitzer(id, html, newTop, newLeft) {
     if ($("#map div[data-blitzer-id='" + id + "']").length > 0) {
-        $("#map div[data-blitzer-id='" + id + "']").css("top", newX + "%");
-        $("#map div[data-blitzer-id='" + id + "']").css("left", newY + "%");
+        $("#map div[data-blitzer-id='" + id + "']").css("top", newTop + "%");
+        $("#map div[data-blitzer-id='" + id + "']").css("left", newLeft + "%");
     } else {
         $("#map").append(html);
     }

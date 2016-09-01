@@ -161,7 +161,7 @@ function actualizePolicePCPage()
                 htmlCopy = HTML.prepare(htmlCopy, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
 
                 local js = "setCar(" .. theVehicle.id .. ",\"" ..  htmlCopy .. "\",";
-                js = js ..", " .. posX .. "," .. posY.. ");";
+                js = js .. posY .. "," .. posX.. ");";
 
                 executeBrowserJavascript(policePCBrowser, js);
             end
@@ -186,7 +186,7 @@ function actualizePolicePCPage()
                     htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
 
                     local js = "setBlitzer(\"" .. getElementID(blitzerElement) .. "\",\"" ..  htmlCopy .. "\",";
-                    js = js .. posX .. "," .. posY ..");"
+                    js = js .. posY .. "," .. posX ..");"
 
                     executeBrowserJavascript(policePCBrowser, js);
                 else

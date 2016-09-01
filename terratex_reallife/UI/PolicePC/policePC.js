@@ -154,7 +154,7 @@ function removeSuspect(userName) {
 
 function setSuspectAlka(userName) {
     $("#suspectlist tr[data-nickname='" + userName + "']").addClass("bg-danger");
-    var html = $("#supspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
+    var html = $("#suspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html();
     $("#suspectlist tr[data-nickname='" + userName + "'] td:nth-child(3)").html(html + " (muss Alkatraz)");
 }
 

@@ -105,6 +105,15 @@ function loadPolicePCPage(get, post)
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_Suspects.html\"")
                 end
+            elseif (get.id == "codelist") then
+                local html = HTML.getFile("UI/PolicePC/_CrimeList.html", true);
+                if html then
+                    html = HTML.prepare(html);
+                    executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+                    loadCrimesToPolicePCPage();
+                else
+                    outputDebugString("Unable to open \"UI/PolicePC/_Suspects.html\"")
+                end
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
@@ -114,6 +123,10 @@ function loadPolicePCPage(get, post)
 
         end
     end
+end
+
+function loadCrimesToPolicePCPage()
+
 end
 
 function actualizePolicePCPage()

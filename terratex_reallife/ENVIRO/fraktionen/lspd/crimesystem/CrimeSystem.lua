@@ -32,7 +32,6 @@ function CrimeSystem.loadCrimeTableToSyncObject()
         crimesByCategorieIdById[theRow.CategorieID].crimes[tonumber(theRow.ID)] = theRow;
     end
 
-    debug.print(crimesByCategorieIdById);
     vioSetElementData(CrimeSystem.syncObject, "CrimesById", crimesById);
     vioSetElementData(CrimeSystem.syncObject, "CrimesByCategorieIdById", crimesByCategorieIdById);
 end

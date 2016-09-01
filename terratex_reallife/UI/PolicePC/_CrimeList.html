@@ -5,9 +5,15 @@
     <div class="card-block">
         <div class="input-group">
             <div class="input-group-addon">Zeige Kategorie:</div>
-            <select id="filterCategory" class="form-control">
-                <option value="-1">Alle Kategorien anzeigen</option>
-            </select>
+            <div class="dropdown" id="filterCategory_dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterCategory" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" data-value="-1">
+                    Alle Kategorien anzeigen
+                </button>
+                <div class="dropdown-menu" aria-labelledby="filterCategory" id="filterCategoryEntryList">
+                    <a class="dropdown-item" data-value="-1" href="#">Alle Kategorien anzeigen</a>
+                </div>
+            </div>
         </div><br/>
         <div class="input-group">
             <div class="input-group-addon">In Verbrechen suchen nach:</div>

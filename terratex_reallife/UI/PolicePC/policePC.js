@@ -22,8 +22,13 @@ $(document).ready(function () {
     });
 
     //Filterfunctions
-    $("html").on("click", "#filterCategory", function(){
-        var category = $(this).val();
+    $("html").on("click", "#filterCategoryEntryList a", function(){
+        var category = $(this).attr("data-value");
+        var categoryText = $(this).html();
+
+        $("#filterCategory").html(categoryText);
+        $("#filterCategory").attr("data-value", category);
+
         if (category == -1) {
             $("table thead, table tbody").show();
         } else {
@@ -66,6 +71,10 @@ function setCar(id, html, newTop, newLeft) {
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
         $("#map div[data-car-id='" + id + "']").css("top", newTop + "%");
         $("#map div[data-car-id='" + id + "']").css("left", newLeft + "%");
+        if ($("#map div[data-car-id='" + id + "']").attr("aria-describedby")) {
+            $("#map div[data-car-id='" + id + "']").tooltip('hide');
+            $("#map div[data-car-id='" + id + "']").tooltip('show');
+        }
     } else {
         $("#map").append(html);
     }
@@ -157,8 +166,8 @@ function createCategory(ID, name) {
     var createBodyHtml = "<tbody data-sort='" + ID + ".2' data-category='" + ID + "'></tbody>";
     $("table").append(createBodyHtml);
 
-    var addFilterOptionHtml = "<option value='" + ID + "'>" + name + "</option>";
-    $("#filterCategory").append(addFilterOptionHtml);
+    var addFilterOptionHtml = "<a class='dropdown-item' data-value='" + ID + "' href='#'>" + name + "</a>";
+    $("#filterCategoryEntryList").append(addFilterOptionHtml);
 
     sortCrimeTable();
     sortCrimeCategoryFilter();
@@ -193,10 +202,11 @@ function sortCrimeCategoryFilter() {
 
 function sortCrimeTBodys() {
     $('table tbody').each(function(){
+        var body = $(this);
         $(this).find("tr").sort(function (a, b) {
             var contentA = parseFloat($(a).attr('data-sort'));
             var contentB = parseFloat($(b).attr('data-sort'));
             return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
-        }).each(function(){ $(this).append($(this)); });
+        }).each(function(){ body.append($(this)); });
     });
 }

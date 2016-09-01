@@ -9,12 +9,12 @@ CrimeSystem.syncObject = false;
 function createCrimeSystemSyncObject()
     CrimeSystem.syncObject = createElement("SyncElement", "CrimeSystem");
     CrimeSystem.loadCrimeTableToSyncObject();
-    setTimer(CrimeSystem.loadCrimeTableToSyncObject, 180000, 0);
+    setTimer(CrimeSystem.loadCrimeTableToSyncObject, 1800000, 0);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createCrimeSystemSyncObject)
 
 function CrimeSystem.loadCrimeTableToSyncObject()
-    local query = dbQuery(MySql._connection, "SELECT  dcl.ID, dcl.Name, dcl.CategorieID, dcl.MinPercentage, dcl.Percentage, dcc.CategorieName, dcc.hidden FROM data_crimes_list AS dcl LEFT JOIN data_crimes_categories AS dcc ON dcl.CategorieID = dcc.ID");
+    local query = dbQuery(MySql._connection, "SELECT  dcl.ID, dcl.Name, dcl.CategorieID, dcl.MinPercentage, dcl.Percentage, dcc.CategorieName, dcc.hidden FROM data_crimes_list AS dcl LEFT JOIN data_crimes_categories AS dcc ON dcl.CategorieID = dcc.ID ORDERED BY dcl.CategorieID ASC, dcl.ID ASC");
     local result = dbPoll(query, -1);
 
     local crimesById = {};

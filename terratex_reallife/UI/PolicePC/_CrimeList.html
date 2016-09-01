@@ -6,11 +6,29 @@
 <script src="../styles/js/bootstrap.min.js"></script>
 <script src="policePC.js"></script>
 
+<div class="card">
+    <div class="card-header">
+        Filter
+    </div>
+    <div class="card-block">
+        <div class="input-group">
+            <div class="input-group-addon">Zeige Kategorie:</div>
+            <select id="filterCategory" class="form-control">
+                <option value="-1">Alle Kategorien anzeigen</option>
+            </select>
+        </div><br/>
+        <div class="input-group">
+            <div class="input-group-addon">In Verbrechen suchen nach:</div>
+            <input type="text" class="form-control" id="filterCrimes" placeholder="">
+        </div>
+    </div>
+</div>
+
 <table class="table table-hover">
     <thead id="head" class="thead-inverse" data-sort="-10">
         <tr>
             <th style="width: 150px">Code</th>
-            <th>Crime</th>
+            <th>Verbrechen</th>
         </tr>
     </thead>
 </table>

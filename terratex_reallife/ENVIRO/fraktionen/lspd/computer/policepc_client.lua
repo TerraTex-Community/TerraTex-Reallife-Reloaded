@@ -7,6 +7,7 @@
 --
 local policePCData = {
     vehicles = {},
+    removeVehicles = {},
     blitzer = {},
     lastJails = {}
 };
@@ -135,8 +136,16 @@ function actualizePolicePCPage()
 
                 htmlCopy = HTML.prepare(htmlCopy, {carId = theVehicle.id, top = posY, left = posX, cops = cops});
 
-                executeBrowserJavascript(policePCBrowser, "setCar(" .. theVehicle.id .. ",\"" ..  htmlCopy .. "\");");
+                local js = "setCar(" .. theVehicle.id .. ",\"" ..  htmlCopy .. "\",";
+                js = js ..", " .. posX .. "," .. posY.. ");";
+
+                executeBrowserJavascript(policePCBrowser, js);
             end
+
+            for theKey, theVehicle in pairs(policePCData.removeVehicles) do
+                executeBrowserJavascript(policePCBrowser, "removeCar(\"" .. theVehicle.id .. "\");");
+            end
+
         end
 
         ---show blitzer
@@ -152,8 +161,12 @@ function actualizePolicePCPage()
 
                     htmlCopy = HTML.prepare(htmlCopy, {top = posY, left = posX, blitzerId = getElementID(blitzerElement)});
 
-                    executeBrowserJavascript(policePCBrowser, "setBlitzer(\"" .. getElementID(blitzerElement) .. "\",\"" ..  htmlCopy .. "\");");
+                    local js = "setBlitzer(\"" .. getElementID(blitzerElement) .. "\",\"" ..  htmlCopy .. "\",";
+                    js = js .. posX .. "," .. posY ..");"
 
+                    executeBrowserJavascript(policePCBrowser, js);
+                else
+                    executeBrowserJavascript(policePCBrowser, "removeBlitzer(\"" .. getElementID(blitzerElement) .. "\");");
                 end
             end
         end

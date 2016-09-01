@@ -9,6 +9,7 @@
 
 function refreshPoliceVehicles()
     local vehicleData = {};
+    local removeVehicleData = {};
     for theKey, theVehicle in ipairs(getElementsByType("vehicle")) do
         if (hasElementData(theVehicle, "frakid", {7, 5, 1, 9}, true)) then
             local x,y,z = unpack(getElementData(theVehicle, "_getVehicleRespawn"));
@@ -28,10 +29,16 @@ function refreshPoliceVehicles()
                     element = theVehicle,
                     id = tonumber(getElementData(theVehicle, "police-car-id"))
                 });
+            else
+                table.insert(removeVehicleData, {
+                    element = theVehicle,
+                    id = tonumber(getElementData(theVehicle, "police-car-id"))
+                });
             end
         end
     end
 
     setPolicePcData("vehicles", vehicleData);
+    setPolicePcData("removeVehicles", removeVehicleData);
 end
 

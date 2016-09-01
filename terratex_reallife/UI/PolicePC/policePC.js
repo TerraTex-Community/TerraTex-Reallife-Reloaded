@@ -38,31 +38,43 @@ function toggleContentLoader(bool) {
 }
 
 function setCar(id, html) {
-    //@todo -- rework -> set values instead of html
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
-        $("#map div[data-car-id='" + id + "']").tooltip('dispose');
-        $("#map div[data-car-id='" + id + "']").remove();
+        $("#map div[data-car-id='" + id + "']").css("top", newX + "%");
+        $("#map div[data-car-id='" + id + "']").css("left", newY + "%");
+    } else {
+        $("#map").append(html);
     }
-    $("#map").append(html);
 
-    //@todo: rework: they are not deleted correctly
     $("#map div[data-car-id='" + id + "']").tooltip({
         trigger: 'click'
     });
 }
 
-function setBlitzer(id, html) {
-    //@todo -- rework -> set values instead of html
+function removeCar(id) {
+    if ($("#map div[data-car-id='" + id + "']").length > 0) {
+        $("#map div[data-car-id='" + id + "']").tooltip('hide');
+        $("#map div[data-car-id='" + id + "']").remove();
+    }
+}
+
+function setBlitzer(id, html, newX, newY) {
+    if ($("#map div[data-blitzer-id='" + id + "']").length > 0) {
+        $("#map div[data-blitzer-id='" + id + "']").css("top", newX + "%");
+        $("#map div[data-blitzer-id='" + id + "']").css("left", newY + "%");
+    } else {
+        $("#map").append(html);
+    }
+
+    $("#map div[data-blitzer-id='" + id + "']").tooltip({
+        trigger: 'click'
+    });
+}
+
+function removeBlitzer(id) {
     if ($("#map div[data-blitzer-id='" + id + "']").length > 0) {
         $("#map div[data-blitzer-id='" + id + "']").tooltip('hide');
         $("#map div[data-blitzer-id='" + id + "']").remove();
     }
-
-    $("#map").append(html);
-    //@todo: rework: they are not deleted correctly
-    $("#map div[data-blitzer-id='" + id + "']").tooltip({
-        trigger: 'hover'
-    });
 }
 
 function setJailPlayer(userName, jail, time, totalTime) {

@@ -527,6 +527,7 @@
     <map src="MAPS/umgebung/Kino-Interior.map"/>
     <map src="MAPS/umgebung/Alcatraz.map"/>
     <map src="MAPS/umgebung/flugjob_helipad.map"/>
+    <map src="MAPS/umgebung/hochhaus-neben-glenpark.map"/>
     <!-- Innenräume -->
     <map src="MAPS/innenraume/TompuPotLottery.map"/>
     <map src="MAPS/innenraume/TT-bank-innen.map"/>

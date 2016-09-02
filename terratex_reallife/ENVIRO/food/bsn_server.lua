@@ -32,7 +32,7 @@ function hitDriveInMarker(hitElement)
                 if (isPedInVehicle(hitElement) and getMarkerSize(source) >= 2.0) then
                     outputChatBox("Das DriveInMenü kostet 15$!", hitElement, 255, 0, 0)
                 else
-                    outputChatBox("Das DriveInMenü kostet 15$!", hitElement, 255, 0, 0)
+                    outputChatBox("Das Menü kostet 15$!", hitElement, 255, 0, 0)
                 end
             else
                 changePlayerMoney(hitElement, -15, "sonstiges", "Essen gekauft (Drive In)")

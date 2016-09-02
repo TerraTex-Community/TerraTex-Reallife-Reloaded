@@ -55,6 +55,7 @@ function sendMessageToNearbyPlayers(message, messageType)
         elseif (string.lower(message) == "nein" or string.lower(message) == "ne" or string.lower(message) == "nö") then
             setElementData(source, "Auskunft_Step2", false)
             outputChatBox("Ich wünsche Ihnen noch einen schönen Tag.", source, 255, 255, 0)
+            outputChatBox("Der Gesprächspartner hat aufgelegt!", source)
         else
             local step2_state = getElementData(source, "Auskunft_Step2_Count")
             if (step2_state == 0) then

@@ -180,6 +180,8 @@ function abschleppTruck_Abladen_Click()
                         triggerServerEvent("abschleppTruck_Abladen",getLocalPlayer(), attached, x, y, z, rx, ry, rz)
                         setElementData(truck, "abschleppTruck_AttachedVehicle", nil)
                         setElementCollisionsEnabled(attached, true)
+                    else
+                        abschleppTruck_Abladen_EndPreview()
                     end
                     showCursor(false)
                 else

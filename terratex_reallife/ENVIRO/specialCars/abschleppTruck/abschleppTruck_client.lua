@@ -81,7 +81,7 @@ function abschleppTruck_Abladen_Preview()
                 local hit, x, y, z, elementHit = processLineOfSight(px, py, pz, worldx, worldy, worldz)
                 if (x and y and z) then
                     local tx, ty, tz = getElementPosition(truck)
-                    local distance = getDistanceBetweenPoints3D(x, y, z, tx, ty, tz);
+                    local distance = getDistanceBetweenPoints3D(x, y, z, tx, ty, tz)
                     if (distance and distance < 8.0) then
                         local zd = getElementDistanceFromCentreOfMassToBaseOfModel(abschleppTruckPreview)
                         setElementPosition(abschleppTruckPreview, x, y, z + zd)
@@ -161,21 +161,26 @@ function abschleppTruck_Abladen_EndPreview()
 end
 
 function abschleppTruck_Abladen_Click()
+    local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (abschleppTruckPreview) then
         local x, y, z    = getElementPosition(abschleppTruckPreview)
         local rx, ry, rz = getElementRotation(abschleppTruckPreview)
         abschleppTruck_Abladen_EndPreview()
         local truck = getPedOccupiedVehicle(getLocalPlayer())
-        if (isElement(truck) and getElementData(truck, "isAbschleppTruck")) then
+        if (isElement(truck) and getElementData(truck, "isAbschleppTruck") and x and y and z) then
             local attached = getElementData(truck, "abschleppTruck_AttachedVehicle")
             if (isElement(attached)) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
                 local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
                 local kmh = actualspeed * 180
                 if (kmh <= 2.0) then
-                    triggerServerEvent("abschleppTruck_Abladen",getLocalPlayer(), attached, x, y, z, rx, ry, rz)
-                    setElementData(truck, "abschleppTruck_AttachedVehicle", nil)
-                    setElementCollisionsEnabled(attached, true)
+                    local tx, ty, tz = getElementPosition(truck)
+                    local distance = getDistanceBetweenPoints3D(x, y, z, tx, ty, tz)
+                    if (distance and distance < 8.0) then
+                        triggerServerEvent("abschleppTruck_Abladen",getLocalPlayer(), attached, x, y, z, rx, ry, rz)
+                        setElementData(truck, "abschleppTruck_AttachedVehicle", nil)
+                        setElementCollisionsEnabled(attached, true)
+                    end
                     showCursor(false)
                 else
                     showError(getLocalPlayer(), "Du bist zu schnell zum Abladen!")

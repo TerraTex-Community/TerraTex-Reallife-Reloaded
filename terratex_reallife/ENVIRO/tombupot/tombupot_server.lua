@@ -1,9 +1,8 @@
 --DEFINES
 local maxTombuTickets = 3
-local tombuTicketPrice = 2000
+local tombuTicketPrice = 500
 local winTimeHour = 20
 local winTimeMinute = 0
-local bizPercentage = 1
 
 function createTombuPotLottery()
     local mark = createMarker(822.28997802734, 1.8700000047684, 1003.1799926758, "cylinder", 2)
@@ -12,18 +11,18 @@ function createTombuPotLottery()
     mark = createMarker(-2161.1398925781, 640.29998779297, 1051.3800048828, "cylinder", 2)
     setElementInterior(mark, 1)
     addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
+    mark = createMarker(1768.74609375, -1903.650390625, 13, "cylinder", 1)
+    addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
     setTimer(isLotteryTime, 60000, 1)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTombuPotLottery)
 
 function requestNewTombuTicket(thePlayer)
-    if (isElement(thePlayer)) then
-        if (getElementType(thePlayer) == "player") then
-            if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
-                showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
-            else
-                triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
-            end
+    if (isElement(thePlayer) and getElementType(thePlayer) == "player" and not isPedInVehicle(thePlayer)) then
+        if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
+            showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
+        else
+            triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
         end
     end
 end
@@ -34,7 +33,7 @@ function acceptedBuyTomboTicket_func()
         showError(source, "Du hast nicht genug Geld!")
     else
         changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
-        changeBizKasse(16, tombuTicketPrice * (bizPercentage / 100), "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
+        changeBizKasse(16, 25, "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
 
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
         outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupot-Lotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
@@ -51,7 +50,7 @@ function isLotteryTime()
     if (time.hour == winTimeHour and time.minute == winTimeMinute) then
         outputChatBox("Und die Tombupot-Lotterieziehung beginnt....")
         local tickets = MySql.helper.getCountSync("user_tombupot")
-        local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
+        local gewinn = tickets * (tombuTicketPrice - 25)
         outputChatBox(string.format("Es wurden %s Tickets gekauft, dass ergibt einen Gewinn von %s", tickets, gewinn))
         outputChatBox("Der Gewinner wird ermittelt.......")
 

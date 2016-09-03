@@ -1,4 +1,4 @@
-spawnDiscconectPlayers = {}
+spawnDisconnectPlayers = {}
 function disconnectSetSpawn()
     if not (vioGetElementData(source, "inArena")) then
         if (isPlayerLoggedIn(source)) then
@@ -7,18 +7,18 @@ function disconnectSetSpawn()
                 local int = getElementInterior(source)
                 local dim = getElementDimension(source)
                 local name = getPlayerName(source)
-                local timer = setTimer(deleteDisconnectPlayerTable, 600000, 1, name)
-                spawnDiscconectPlayers[name] = { px, py, pz, int, dim, timer }
+                local dtimer = setTimer(deleteDisconnectPlayerTable, 600000, 1, name)
+                spawnDisconnectPlayers[name] = { x = px, y = py, z = pz, interior = int, dimension = dim, timer = dtimer }
             end
         end
-        --	table.insert(spawnDiscconectPlayers,{name,px,py,pz,int,dim,timer})
+        --	table.insert(spawnDisconnectPlayers,{name,px,py,pz,int,dim,timer})
     end
 end
 
 addEventHandler("onPlayerQuit", getRootElement(), disconnectSetSpawn)
 
 function deleteDisconnectPlayerTable(name)
-    spawnDiscconectPlayers[name] = false
+    spawnDisconnectPlayers[name] = false
 end
 
 
@@ -116,7 +116,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
                         vioSetElementData(source, "spawnplace", 0)
                     end
-                    elseif (spawn == 3) and not (spawnDiscconectPlayers[name]) then
+                    elseif (spawn == 3) and not (spawnDisconnectPlayers[name]) then
                         local time = getRealTime()
                         local nickname = getPlayerName(source)
                         local slot = vioGetElementData(source, "VehicleSpawn")
@@ -195,17 +195,22 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
             loadKrankenhaus(source)
         end
 
-
-        if (spawnDiscconectPlayers[name]) then
+        if (spawnDisconnectPlayers[name]) then
             if (not (vioGetElementData(source, "knastzeit") > 0)) then
-                setElementDimension(source, spawnDiscconectPlayers[name][5])
-                setElementInterior(source, spawnDiscconectPlayers[name][4])
-                setElementPosition(source, spawnDiscconectPlayers[name][1], spawnDiscconectPlayers[name][2], spawnDiscconectPlayers[name][3])
+                setElementInterior(source, spawnDisconnectPlayers[name].interior)
+                setElementDimension(source, spawnDisconnectPlayers[name].dimension)
+                setElementPosition(source, spawnDisconnectPlayers[name].x, spawnDisconnectPlayers[name].y, spawnDisconnectPlayers[name].z)
             end
-            killTimer(spawnDiscconectPlayers[name][6])
-            spawnDiscconectPlayers[name] = false
+            killTimer(spawnDisconnectPlayers[name].timer)
+            if (not(vioGetElementData(source, "todezeit") == 0 and vioGetElementData(source, "knastzeit") > 0)) then
+                setElementFrozen(source, true)
+                setTimer(function()
+                    setElementFrozen(source, false)
+                end, 2000, 1)
+            end
+            spawnDisconnectPlayers[name] = false
         else
-            spawnDiscconectPlayers[name] = false
+            spawnDisconnectPlayers[name] = false
         end
     end
 end
@@ -619,13 +624,3 @@ end
 
 addEvent("giveMeStandardAusrustung", true)
 addEventHandler("giveMeStandardAusrustung", getRootElement(), setPlayerAusrustung)
-
-
-
-
-
-
-
-
-
-

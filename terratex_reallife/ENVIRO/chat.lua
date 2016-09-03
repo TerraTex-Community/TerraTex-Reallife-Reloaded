@@ -59,8 +59,8 @@ function sendMessageToNearbyPlayers(message, messageType)
                 changeBizKasse(10, verbindenKosten * verbindenAnteil, "Weiterverbinden 11880 "..getPlayerName(source))
                 outputChatBox("Sie werden nun verbunden.", source, 255, 255, 0)
                 executeCommandHandler("call", source, getElementData(source, "Auskunft_NextCall"))
-                setElementData(source, "Auskunft_Step2", false)
             end
+            setElementData(source, "Auskunft_Step2", false)
         elseif (string.lower(message) == "nein" or string.lower(message) == "ne" or string.lower(message) == "nö") then
             setElementData(source, "Auskunft_Step2", false)
             outputChatBox("Ich wünsche Ihnen noch einen schönen Tag.", source, 255, 255, 0)

@@ -12,18 +12,18 @@ function createTombuPotLottery()
     mark = createMarker(-2161.1398925781, 640.29998779297, 1051.3800048828, "cylinder", 2)
     setElementInterior(mark, 1)
     addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
+    mark = createMarker(1768.74609375, -1903.650390625, 13, "cylinder", 1)
+    addEventHandler("onMarkerHit", mark, requestNewTombuTicket)
     setTimer(isLotteryTime, 60000, 1)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTombuPotLottery)
 
 function requestNewTombuTicket(thePlayer)
-    if (isElement(thePlayer)) then
-        if (getElementType(thePlayer) == "player") then
-            if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
-                showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
-            else
-                triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
-            end
+    if (isElement(thePlayer) and getElementType(thePlayer) == "player" and not isPedInVehicle(thePlayer)) then
+        if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
+            showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
+        else
+            triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
         end
     end
 end

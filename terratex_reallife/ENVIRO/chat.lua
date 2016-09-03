@@ -28,6 +28,8 @@ addCommandHandler("anonym", send_anonym_message, false, false)
 local chatRadius = 20 --units
 
 -- define a handler that will distribute the message to all nearby players
+local verbindenKosten = 150
+local verbindenAnteil = 0.1
 function sendMessageToNearbyPlayers(message, messageType)
     if (vioGetElementData(source, "Auskunft")) then
         local name = message
@@ -36,7 +38,7 @@ function sendMessageToNearbyPlayers(message, messageType)
             if (vioGetElementData(player, "telefon")) then
                 outputChatBox(string.format("Die Telefonnummer des Spielers lautet %s!", vioGetElementData(player, "telefon")), source, 255, 255, 0)
                 vioSetElementData(source, "Auskunft", false)
-                outputChatBox("Wollen sie verbunden werden?", source, 255, 255, 0)
+                outputChatBox("Wollen sie kostenpflichtig verbunden werden? (150$)", source, 255, 255, 0)
                 setElementData(source, "Auskunft_Step2", true)
                 setElementData(source, "Auskunft_Step2_Count", 0)
                 setElementData(source, "Auskunft_NextCall", vioGetElementData(player, "telefon"))
@@ -49,9 +51,16 @@ function sendMessageToNearbyPlayers(message, messageType)
         end
     elseif (getElementData(source, "Auskunft_Step2")) then
         if (string.lower(message) == "ja" or string.lower(message) == "jo") then
-            outputChatBox("Sie werden nun verbunden.", source, 255, 255, 0)
-            executeCommandHandler("call", source, getElementData(source, "Auskunft_NextCall"))
-            setElementData(source, "Auskunft_Step2", false)
+            if (getPlayerMoney(source) < verbindenKosten) then
+                outputChatBox("Leider haben Sie zu wenig Geld dafür.", source, 255, 255, 0)
+                outputChatBox("Der Gesprächspartner hat aufgelegt!", source)
+            else
+                changePlayerMoney(source, -verbindenKosten, "sonstiges", "Weiterverbinden 11880");
+                changeBizKasse(10, verbindenKosten * verbindenAnteil, "Weiterverbinden 11880 "..getPlayerName(source))
+                outputChatBox("Sie werden nun verbunden.", source, 255, 255, 0)
+                executeCommandHandler("call", source, getElementData(source, "Auskunft_NextCall"))
+                setElementData(source, "Auskunft_Step2", false)
+            end
         elseif (string.lower(message) == "nein" or string.lower(message) == "ne" or string.lower(message) == "nö") then
             setElementData(source, "Auskunft_Step2", false)
             outputChatBox("Ich wünsche Ihnen noch einen schönen Tag.", source, 255, 255, 0)

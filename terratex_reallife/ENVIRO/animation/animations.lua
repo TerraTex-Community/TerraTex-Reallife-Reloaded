@@ -42,6 +42,7 @@ local animarray={
     ["chairsit"]={ "BEACH", "SitnWait_loop_W",true,false,false},
     ["wank"]={ "PAULNMAC", "wank_loop",true,false,false},
     ["eat"]={"VENDING", "vend_eat1_P",false,false,false},
+    ["revive"]={"MEDIC", "CPR",false,false,true},
 
     --[[specials]]
     ["handsup"]={"shop", "SHP_HandsUp_Scr",false,true,false},
@@ -138,6 +139,7 @@ addCommandHandler("crack",setAnimation,false,false)
 addCommandHandler("smoke",setAnimation,false,false)
 addCommandHandler("smokef",setAnimation,false,false)
 addCommandHandler("smokem",setAnimation,false,false)
+addCommandHandler("revive",setAnimation,false,false)
 
 
 function stopanima(playerSource)

@@ -117,9 +117,12 @@ function loadPolicePCPage(get, post)
             elseif (get.id == "PlayerCrimeList") then
                 local html = HTML.getFile("UI/PolicePC/_PlayerCrimeList.html", true);
                 if html then
-                    html = HTML.prepare(html);
+                    html = HTML.prepare(html, {
+                        playerName = get.nickname,
+                        stvo = getElementData(getPlayerFromName(get.nickname), "stvo")
+                    });
                     executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
-                    loadCrimesToPolicePCPage();
+                    loadCrimesToPolicePCPage(true);
                     loadPlayerCrimeList();
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_PlayerCrimeList.html\"")
@@ -265,8 +268,6 @@ function actualizePolicePCPage()
                 end
             end
         end
-    elseif (policePCActivePage == "PlayerCrimeList") then
-        loadCrimesToPolicePCPage(true);
     end
 end
 

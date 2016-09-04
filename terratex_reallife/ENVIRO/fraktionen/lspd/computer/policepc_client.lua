@@ -351,6 +351,8 @@ function policePCAkte(get)
                 local crime = decodeURI(get.crime);
                 local addreason = decodeURI(get.addreason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer).. " " .. crime.. " " .. addreason);
+            elseif (get.todo == "deletecrime") then
+                triggerServerEvent("deleteCrime", getLocalPlayer(), policePCData.activePlayer, get.crimeId);
             end
         end
     end

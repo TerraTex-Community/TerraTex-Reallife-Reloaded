@@ -38,6 +38,11 @@ $(document).ready(function () {
         $.ajax("http://mta/local/ajax_policePC_akte.html?todo=crime&crime=" + crimeID + "&addreason=" + additionalInfo);
     });
 
+    $("html").on("click", ".playerCrimeDelete", function(){
+        var crimeID = $(this).attr("data-crime-id");
+        $.ajax("http://mta/local/ajax_policePC_akte.html?todo=deletecrime&crimeId=" + crimeID);
+    });
+
     //Filterfunctions
     $("html").on("click", "#filterCategoryEntryList a", function(){
         var category = $(this).attr("data-value");
@@ -251,7 +256,7 @@ function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, delet
 
     var html = "<tr>";
     if (deleteAble) {
-        html += ("<td><button type='button' class='btn btn-danger' data-crime-id = '" + id + "'>Löschen</button></td>");
+        html += ("<td><button type='button' class='playerCrimeDelete btn btn-danger' data-crime-id = '" + id + "'>Löschen</button></td>");
     } else {
         html += "<td></td>";
     }
@@ -262,5 +267,5 @@ function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, delet
     html += ("<td>" + date + "</td>");
     html += ("<td>" + getBy + "</td></tr>");
 
-    $("#playerCrimeTable body").append(html);
+    $("#playerCrimeTable tbody").append(html);
 }

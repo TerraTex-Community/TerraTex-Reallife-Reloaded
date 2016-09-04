@@ -296,9 +296,13 @@ function policePCdBlitzer(get)
 end
 
 function policePCAkte(get)
+    outputChatBox("asd");
     if (get) then
+        outputChatBox("asd2");
         if (get.todo) then
+            outputChatBox("asd3");
             if (get.todo == "stvo") then
+                outputChatBox("asd4");
                 local stvos = get.count;
                 local reason = get.reason;
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer), stvos, reason);

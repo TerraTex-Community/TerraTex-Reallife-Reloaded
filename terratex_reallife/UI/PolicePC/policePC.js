@@ -27,12 +27,14 @@ $(document).ready(function () {
     });
 
     $("html").on("click", "#giveStVO", function(){
+        alert("giveStVO");
         var stvo_number = $("#stvo_number");
         var stvo_reason = $("#stvo_reason");
         $.ajax("http://mta/local/ajax_policePC_akte.html?todo=stvo&count=" + stvo_number + "&reason=" + stvo_reason);
     });
 
     $("html").on("click", "#giveCrime", function(){
+        alert("giveCrime");
         var crimeID = $("#crimeID");
         var additionalInfo = $("#additionalInfo");
         $.ajax("http://mta/local/ajax_policePC_akte.html?todo=crime&crime=" + crimeID + "&addreason=" + additionalInfo);

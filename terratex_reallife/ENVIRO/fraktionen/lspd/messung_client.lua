@@ -40,6 +40,8 @@ function checkMyClearBlitzerLine()
     local px, py, pz = getElementPosition(getLocalPlayer())
     local veh = getPedOccupiedVehicle(getLocalPlayer())
 
+    bz = bz + 3;
+
     if (isLineOfSightClear(bx, by, bz, px, py, pz, true, false, false, true, false, false, false, getElementData(source, "object")) and not (wasBlitzed)) then
         triggerServerEvent("blitzme_event", source, veh)
         wasBlitzed = true

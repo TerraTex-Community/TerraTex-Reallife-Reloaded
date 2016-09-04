@@ -57,9 +57,9 @@ function createBlitzer_func(thePlayer, cmd, blitzerid)
                             outputChatBox("Ein anderer Blitzer is bereits in der Nähe aufgebaut! Infos unter /sblitzer", thePlayer, 255, 0, 0)
                         else
                             local rx, ry, rz = getElementRotation(thePlayer, "default")
-                            local obj = createObject(1250, px, py, pz - 0.5, 0.0, 0.0, rz - 180.0)
-                            setElementPosition(thePlayer, px, py, pz + 0.5)
-                            local marker = createMarker(px, py, pz - 0.5, "cylinder", 30, 0, 0, 0, 0, getRootElement())
+                            local obj = createObject(1250, px, py, pz - 1.5, 0.0, 0.0, rz - 180.0)
+                            setElementPosition(thePlayer, px, py, pz + 3.5)
+                            local marker = createMarker(px, py, pz - 1.5, "cylinder", 30, 0, 0, 0, 0, getRootElement())
                             addEventHandler("onMarkerHit", marker, checkClearLineBetweenBlitzerAndPlayer)
 
                             vioSetElementData(blitzerElement, "state", true);

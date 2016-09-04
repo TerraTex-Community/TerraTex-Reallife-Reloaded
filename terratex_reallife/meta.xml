@@ -279,6 +279,12 @@
     <script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_client.lua" type="client"/>
     <script src="ENVIRO/fraktionen/leadercommands.lua" type="server"/>
     <!-- LSPD / Beamte allgemein -->
+    <script src="ENVIRO/fraktionen/lspd/blitzer_mod.lua" type="client" />
+    <file src="FILES/MODS/blitzer.txd" />
+    <file src="FILES/MODS/blitzer.dff" />
+    <file src="FILES/MODS/blitzer.col" />
+
+
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_definitions.lua" type="shared" />
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem.lua" type="server" />
     <script src="ENVIRO/fraktionen/lspd/crimesystem/CrimeSystem_commands.lua" type="server" />

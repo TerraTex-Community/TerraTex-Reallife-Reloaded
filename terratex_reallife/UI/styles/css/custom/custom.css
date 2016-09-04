@@ -2199,6 +2199,9 @@ a.ui-button:active,
 #policePC-ui #searchPopUp .modal-dialog {
   max-width: 95%; }
 
+#policePC-ui #playerCrimeTable * {
+  font-size: 0.9em; }
+
 .placer-holder-top {
   margin-bottom: 10px;
   height: 10px; }

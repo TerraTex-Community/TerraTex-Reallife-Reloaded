@@ -33,9 +33,9 @@ end
 
 function startpolicePCUI()
     if (policePCWindow) then
-        if isElement(policePCWindow) then destroyElement(policePCWindow) end
-        policePCWindow = false;
-        killAllPolicePcTimer();
+--        if isElement(policePCWindow) then destroyElement(policePCWindow) end
+--        policePCWindow = false;
+--        killAllPolicePcTimer();
     else
         policePCWindow = guiCreateWindow(0, 0, 800, 600, "PoliceComputer TerraPoliceOS 2016", false)
         table.insert(allGuis, policePCWindow);
@@ -57,8 +57,8 @@ function startpolicePCUI()
             function ( url )
                 showCursor(true)
                 policePCBrowser = source;
-                setDevelopmentMode (true, true)
-                toggleBrowserDevTools ( policePCBrowser, true )
+--                setDevelopmentMode (true, true)
+--                toggleBrowserDevTools ( policePCBrowser, true )
             end
         )
 
@@ -134,6 +134,7 @@ function loadPolicePCPage(get, post)
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
+                killAllPolicePcTimer();
             end
 
             policePCActivePage = get.id;
@@ -160,6 +161,7 @@ function renderPlayerCrimes_func(crimesList)
             js = js .. "," .. theCrime.CrimeID;
             js = js .. ", \"" .. theCrime.CategorieName ..  " - " .. theCrime.Name .. "\"";
             js = js .. ", \"" .. theCrime.AdditionalReason .. "\"";
+            js = js .. ", \"" .. theCrime.Timestamp .. "\"";
 
             local giveBy = theCrime.ReporterUser;
             if (not giveBy or tostring(giveBy) == "") then
@@ -173,6 +175,7 @@ function renderPlayerCrimes_func(crimesList)
             else
                 js = js .. ", false);";
             end
+
             executeBrowserJavascript(policePCBrowser, js);
         end
     end

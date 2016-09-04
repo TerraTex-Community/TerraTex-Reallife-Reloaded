@@ -256,7 +256,7 @@ function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, delet
 
     var html = "<tr>";
     if (deleteAble) {
-        html += ("<td><button type='button' class='playerCrimeDelete btn btn-danger' data-crime-id = '" + id + "'>Löschen</button></td>");
+        html += ("<td><button type='button' class='playerCrimeDelete btn btn-danger' data-crime-id = '" + id + "'><i class='fa fa-trash' aria-hidden='true'></i></button></td>");
     } else {
         html += "<td></td>";
     }

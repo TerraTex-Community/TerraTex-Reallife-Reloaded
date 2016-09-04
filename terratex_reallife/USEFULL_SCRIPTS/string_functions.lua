@@ -142,13 +142,14 @@ function Check(funcname, ...)
 end
 
 
-local decodeURI
+local decodeURL
 do
     local char, gsub, tonumber = string.char, string.gsub, tonumber
     local function _(hex) return char(tonumber(hex, 16)) end
 
-    function decodeURI(s)
+    function decodeURL(s)
         s = gsub(s, '%%(%x%x)', _)
         return s
     end
 end
+decodeURI = decodeURL;

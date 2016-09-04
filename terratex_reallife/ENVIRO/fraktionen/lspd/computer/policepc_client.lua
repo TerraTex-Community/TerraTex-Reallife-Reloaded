@@ -10,7 +10,8 @@ local policePCData = {
     removeVehicles = {},
     blitzer = {},
     lastJails = {},
-    activePlayer = false
+    activePlayer = false,
+    lastActivePlayerCrimeLevel = 0
 };
 local policePCWindow;
 local policePCBrowser;
@@ -80,6 +81,8 @@ end
 function loadPolicePCPage(get, post)
     if (get) then
         if (get.id) then
+            policePCData.activePlayer = false;
+            policePCData.lastActivePlayerCrimeLevel = 0;
             if (get.id == "overview") then
                 local html = HTML.getFile("UI/PolicePC/_Vehicles.html", true);
                 if html then
@@ -124,7 +127,6 @@ function loadPolicePCPage(get, post)
                     });
                     executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
                     loadCrimesToPolicePCPage(true);
-                    loadPlayerCrimeList();
                     policePCData.activePlayer = getPlayerFromName(get.nickname);
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_PlayerCrimeList.html\"")
@@ -140,8 +142,44 @@ function loadPolicePCPage(get, post)
     end
 end
 
-function loadPlayerCrimeList(playerName)
+addEvent("renderPlayerCrimes", true);
+function renderPlayerCrimes_func(crimesList)
+    if (policePCActivePage == "PlayerCrimeList") then
+        executeBrowserJavascript(policePCBrowser, "startReloadPlayerCrimeList();");
 
+        local time = getRealTime();
+        local unixTimeStamp = time.timestamp;
+
+        for theKey, theCrime in ipairs(crimesList) do
+            local isDeleteAble = (tonumber(theCrime.UNIX_TIMESTAMP) + (24 * 60 * 60)) >= unixTimeStamp;
+            local js = "addCrimeToPlayerCrimeList(";
+            js = js .. theCrime.ID;
+            js = js .. "," .. theCrime.CrimeID;
+            js = js .. ", \"" .. theCrime.CategorieName ..  " - " .. theCrime.Name .. "\"";
+            js = js .. ", \"" .. theCrime.AdditionalReason .. "\"";
+
+            local giveBy = theCrime.ReporterUser;
+            if (not giveBy or tostring(giveBy) == "") then
+                giveBy = theCrime.ReporterDisplay;
+            end
+
+            js = js .. ", \"" .. giveBy .. "\"";
+
+            if (isDeleteAble) then
+                js = js .. ", true);";
+            else
+                js = js .. ", false);";
+            end
+            executeBrowserJavascript(policePCBrowser, js);
+        end
+    end
+end
+addEventHandler("renderPlayerCrimes", getRootElement(), renderPlayerCrimes_func)
+
+
+function loadPlayerCrimeList()
+    executeBrowserJavascript(policePCBrowser, "startReloadPlayerCrimeList();");
+    triggerServerEvent("getPlayerCrimesForClient", getLocalPlayer(), policePCData.activePlayer);
 end
 
 function loadCrimesToPolicePCPage(addColumn)
@@ -274,6 +312,11 @@ function actualizePolicePCPage()
         local stvo = getElementData(policePCData.activePlayer, "stvo");
         executeBrowserJavascript(policePCBrowser, "setStVO(".. stvo ..");");
 
+        local crimeLevel = tonumber(getElementData(policePCData.activePlayer, "crimeLevel"));
+
+        if (crimeLevel ~= policePCData.lastActivePlayerCrimeLevel) then
+            loadPlayerCrimeList();
+        end
     end
 end
 
@@ -302,8 +345,8 @@ function policePCAkte(get)
                 local reason = decodeURI(get.reason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer) .. " " .. stvos .. " " .. reason);
             elseif (get.todo == "crime") then
-                local crime = decodeURI(get.count);
-                local addreason = decodeURI(get.reason);
+                local crime = decodeURI(get.crime);
+                local addreason = decodeURI(get.addreason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer).. " " .. crime.. " " .. addreason);
             end
         end

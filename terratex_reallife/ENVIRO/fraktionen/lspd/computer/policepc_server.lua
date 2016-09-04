@@ -41,6 +41,12 @@ function openPolicePCInPoliceVehicle(thePlayer)
 end
 addCommandHandler("pc", openPolicePCInPoliceVehicle, false,false)
 
+function getPlayerCrimesForClient_func(player)
+    triggerClientEvent(source, "renderPlayerCrimes", source, CrimeSystem.getPlayerCrimes(getPlayerName(player)));
+end
+addEvent("getPlayerCrimesForClient", true);
+addEventHandler("getPlayerCrimesForClient", getRootElement(), getPlayerCrimesForClient_func)
+
 
 
 

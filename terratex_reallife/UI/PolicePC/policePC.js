@@ -241,3 +241,26 @@ function sortCrimeTBodys() {
 function setStVO(number) {
     $("#stvo").html(number);
 }
+
+function startReloadPlayerCrimeList() {
+    $("#playerCrimeTable tbody").html("");
+    $("#crime-loading").toggleClass("hidden-xs-up", false);
+}
+
+function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, deleteAble) {
+
+    var html = "<tr>";
+    if (deleteAble) {
+        html += ("<td><button type='button' class='btn btn-danger' data-crime-id = '" + id + "'>Löschen</button></td>");
+    } else {
+        html += "<td></td>";
+    }
+
+    html += ("<td>" + code + "</td>");
+    html += ("<td>" + crimeText + "</td>");
+    html += ("<td>" + info + "</td>");
+    html += ("<td>" + date + "</td>");
+    html += ("<td>" + getBy + "</td></tr>");
+
+    $("#playerCrimeTable body").append(html);
+}

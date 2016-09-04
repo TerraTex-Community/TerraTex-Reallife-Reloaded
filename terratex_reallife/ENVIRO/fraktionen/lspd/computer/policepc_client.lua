@@ -55,7 +55,6 @@ function startpolicePCUI()
         addEventHandler ( "onClientBrowserDocumentReady" , guiGetBrowser(browser) ,
             function ( url )
                 showCursor(true)
-                browserActualizeFields(source)
                 policePCBrowser = source;
                 setDevelopmentMode (true, true)
                 toggleBrowserDevTools ( policePCBrowser, true )
@@ -296,20 +295,16 @@ function policePCdBlitzer(get)
 end
 
 function policePCAkte(get)
-    outputChatBox("asd");
     if (get) then
-        outputChatBox("asd2");
         if (get.todo) then
-            outputChatBox("asd3");
             if (get.todo == "stvo") then
-                outputChatBox("asd4");
                 local stvos = get.count;
                 local reason = get.reason;
-                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer), stvos, reason);
+                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer) .. " " .. stvos .. " " .. reason);
             elseif (get.todo == "crime") then
                 local crime = get.count;
                 local addreason = get.reason;
-                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer), crime, addreason);
+                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer).. " " .. crime.. " " .. addreason);
             end
         end
     end

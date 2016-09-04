@@ -298,12 +298,12 @@ function policePCAkte(get)
     if (get) then
         if (get.todo) then
             if (get.todo == "stvo") then
-                local stvos = get.count;
-                local reason = get.reason;
+                local stvos = decodeURI(get.count);
+                local reason = decodeURI(get.reason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer) .. " " .. stvos .. " " .. reason);
             elseif (get.todo == "crime") then
-                local crime = get.count;
-                local addreason = get.reason;
+                local crime = decodeURI(get.count);
+                local addreason = decodeURI(get.reason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer).. " " .. crime.. " " .. addreason);
             end
         end

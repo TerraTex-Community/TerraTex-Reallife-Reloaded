@@ -28,6 +28,8 @@ addCommandHandler("anonym", send_anonym_message, false, false)
 local chatRadius = 20 --units
 
 -- define a handler that will distribute the message to all nearby players
+local verbindenKosten = 150
+local verbindenAnteil = 0.1
 function sendMessageToNearbyPlayers(message, messageType)
     if (vioGetElementData(source, "Auskunft")) then
         local name = message
@@ -36,12 +38,44 @@ function sendMessageToNearbyPlayers(message, messageType)
             if (vioGetElementData(player, "telefon")) then
                 outputChatBox(string.format("Die Telefonnummer des Spielers lautet %s!", vioGetElementData(player, "telefon")), source, 255, 255, 0)
                 vioSetElementData(source, "Auskunft", false)
+                outputChatBox("Wollen sie kostenpflichtig verbunden werden? (150$)", source, 255, 255, 0)
+                setElementData(source, "Auskunft_Step2", true)
+                setElementData(source, "Auskunft_Step2_Count", 0)
+                setElementData(source, "Auskunft_NextCall", vioGetElementData(player, "telefon"))
             else
                 outputChatBox("Der Spieler ist nicht richtig mit dem Server verbunden, versuche es später erneut!", source, 255, 255, 0)
             end
         else
             outputChatBox("Tut mir leid, diese Person existiert nicht!", source, 255, 255, 0)
             vioSetElementData(source, "Auskunft", false)
+        end
+    elseif (getElementData(source, "Auskunft_Step2")) then
+        if (string.lower(message) == "ja" or string.lower(message) == "jo") then
+            if (getPlayerMoney(source) < verbindenKosten) then
+                outputChatBox("Leider haben Sie zu wenig Geld dafür.", source, 255, 255, 0)
+                outputChatBox("Der Gesprächspartner hat aufgelegt!", source)
+            else
+                changePlayerMoney(source, -verbindenKosten, "sonstiges", "Weiterverbinden 11880");
+                changeBizKasse(10, verbindenKosten * verbindenAnteil, "Weiterverbinden 11880 "..getPlayerName(source))
+                outputChatBox("Sie werden nun verbunden.", source, 255, 255, 0)
+                executeCommandHandler("call", source, getElementData(source, "Auskunft_NextCall"))
+            end
+            setElementData(source, "Auskunft_Step2", false)
+        elseif (string.lower(message) == "nein" or string.lower(message) == "ne" or string.lower(message) == "nö") then
+            setElementData(source, "Auskunft_Step2", false)
+            outputChatBox("Ich wünsche Ihnen noch einen schönen Tag.", source, 255, 255, 0)
+            outputChatBox("Der Gesprächspartner hat aufgelegt!", source)
+        else
+            local step2_state = getElementData(source, "Auskunft_Step2_Count")
+            if (step2_state == 0) then
+                outputChatBox("Entschuldigung, ich habe Sie leider nicht verstanden.", source, 255, 255, 0)
+            elseif (step2_state == 1) then
+                outputChatBox("Bitte antworten Sie mit 'Ja' oder 'Nein'!", source, 255, 255, 0)
+            elseif (step2_state == 2) then
+                outputChatBox("Der Gesprächspartner hat aufgelegt!", source)
+                setElementData(source, "Auskunft_Step2", false)
+            end
+            setElementData(source, "Auskunft_Step2_Count", getElementData(source, "Auskunft_Step2_Count") + 1)
         end
     else
         -- we will only send normal chat messages, action and team types will be ignored
@@ -288,4 +322,3 @@ function sendFlugChatMessage(name, message)
         end
     end
 end
-

@@ -252,6 +252,10 @@ function startReloadPlayerCrimeList() {
     $("#crime-loading").toggleClass("hidden-xs-up", false);
 }
 
+function finishPlayerCrimeList() {
+    $("#crime-loading").toggleClass("hidden-xs-up", true);
+}
+
 function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, deleteAble) {
 
     var html = "<tr>";

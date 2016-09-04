@@ -178,6 +178,7 @@ function renderPlayerCrimes_func(crimesList)
 
             executeBrowserJavascript(policePCBrowser, js);
         end
+        executeBrowserJavascript(policePCBrowser, "finishPlayerCrimeList();");
     end
 end
 addEventHandler("renderPlayerCrimes", getRootElement(), renderPlayerCrimes_func)

@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <removeWorldObject id="removeWorldObject (smashbar) (1)" radius="5.4857435" interior="0" model="1251" lodModel="0" posX="998.16345" posY="1758.2797" posZ="11.33122" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (smashbarpost) (1)" radius="3.2722673" interior="0" model="1250" lodModel="0" posX="997.72656" posY="1759.125" posZ="10.85156" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (smashbarpost) (2)" radius="3.2722673" interior="0" model="1250" lodModel="0" posX="997.41406" posY="1707.5234" posZ="10.85156" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+    <removeWorldObject id="removeWorldObject (smashbar) (2)" radius="5.4857435" interior="0" model="1251" lodModel="0" posX="997.10883" posY="1709.949" posZ="11.28927" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
+</map>

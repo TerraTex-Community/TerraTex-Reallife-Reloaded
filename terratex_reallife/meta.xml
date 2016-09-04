@@ -513,6 +513,7 @@
     <map src="MAPS/fraktionsbase/pd/lvpd.map"/>
     <map src="MAPS/fraktionsbase/pd/PDInnenraumverbesserung.map"/>
     <!-- Umgebung -->
+    <map src="MAPS/umgebung/deleteBlitzerFromWorld.map"/>
     <map src="MAPS/umgebung/TankstelleanderMaut.map"/>
     <map src="MAPS/umgebung/mechaniker.map"/>
     <map src="MAPS/umgebung/schwimmbad.map"/>

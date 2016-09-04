@@ -13,7 +13,7 @@ function showanimlist(playerSource)
     outputChatBox("/lay,/hide,/vomit,/eat,/wave,/slapass",playerSource, 200, 200, 0 )
     outputChatBox("/deal,/crack,/smoke,/ground,/fucku",playerSource, 200, 200, 0 )
     outputChatBox("/chat,/taichi,/chairsit,/dance [1-7],/piss,/wank",playerSource, 200, 200, 0 )
-    outputChatBox("/smokef,/smokem",playerSource, 200, 200, 0 )
+    outputChatBox("/smokef,/smokem,/revive",playerSource, 200, 200, 0 )
     outputChatBox("Zum Abbrechen einer Animation: /stopanim oder Leertaste",playerSource, 0, 0, 200 )
 end
 addCommandHandler("anims",showanimlist,false,false)

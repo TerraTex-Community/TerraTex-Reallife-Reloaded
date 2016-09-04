@@ -49,6 +49,8 @@
 }
 
 .edit {
-  color: $brand-danger;
+  //color: $brand-danger;
   cursor: pointer;
 }
+
+#searchPopUp .modal-dialog {max-width: 95%;}

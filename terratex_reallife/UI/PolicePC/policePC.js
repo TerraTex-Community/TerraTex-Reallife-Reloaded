@@ -7,6 +7,11 @@ $(document).ready(function () {
         loadPage($(this).attr("data-page"));
     });
 
+    $("html").on("click", ".editAkte", function(){
+        var who = $(this).parent().parent().attr("data-nickname");
+        loadPage("PlayerCrimeList", who);
+    });
+
     $("html").on("click", "#dblitzer", function(){
         if ($("#dblitzer_id").val() == "" || $("#dblitzer_id").val() < 1) {
             $("#dblitzer_id").toggleClass("bg-danger", true);
@@ -50,12 +55,21 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", "table#crimeList .selectCrime", function(){
+        var crimeId = $(this).attr("data-crime-id");
+        $("#crimeID").val(crimeId);
+        $('#searchPopUp').modal('hide');
+    });
 });
 
-function loadPage(id) {
+function loadPage(id, optionalNickname) {
     toggleContentLoader(true);
     $("#content").html("");
-    $.ajax("http://mta/local/ajax_policePC_load_page.html?id=" + id);
+    if (!optionalNickname) {
+        $.ajax("http://mta/local/ajax_policePC_load_page.html?id=" + id);
+    } else {
+        $.ajax("http://mta/local/ajax_policePC_load_page.html?id=" + id + "&nickname=" + optionalNickname);
+    }
 }
 
 function setContent(content) {
@@ -71,12 +85,6 @@ function setCar(id, html, newTop, newLeft) {
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
         $("#map div[data-car-id='" + id + "']").css("top", newTop + "%");
         $("#map div[data-car-id='" + id + "']").css("left", newLeft + "%");
-        if ($("#map div[data-car-id='" + id + "']").attr("aria-describedby")) {
-
-            // $("#map div[data-car-id='" + id + "']").tooltip('hide');
-
-            // $("#map div[data-car-id='" + id + "']").tooltip('show');
-        }
     } else {
         $("#map").append(html);
     }
@@ -143,7 +151,7 @@ function setSuspect(userName, crimeState, StVO) {
         row.find("td:nth-child(3)").html(crimeState);
         row.find("td:nth-child(4)").html(StVO);
     } else {
-        var editButton = "<i class='fa fa-edit edit' title='Akte bearbeiten'></i>";
+        var editButton = "<i class='fa fa-edit edit editAkte' title='Akte bearbeiten'></i>";
         var html = "<tr data-nickname='" + userName + "'><td>" + editButton + "</td><td>" + userName + "</td><td>" + crimeState +"</td>" + "</td><td>" + StVO + "</td></tr>";
         $("#suspectlist tbody").append(html);
     }
@@ -160,7 +168,7 @@ function setSuspectAlka(userName) {
 
 function createCategory(ID, name) {
     var categorieHtml = "<thead class='thead-default' data-sort='" + ID + ".1' data-name='" + name + "' data-category='" + ID + "'>";
-    categorieHtml += "<tr><th colspan='2'>" + name + "</th></tr>";
+    categorieHtml += "<tr><th colspan='3'>" + name + "</th></tr>";
     categorieHtml += "</thead>";
 
     $("table#crimeList").append(categorieHtml);
@@ -175,10 +183,15 @@ function createCategory(ID, name) {
     sortCrimeCategoryFilter();
 }
 
-function createCrime(ID, categoryID, name) {
+function createCrime(ID, categoryID, name, insertMode) {
 
     var crimeHtml = "<tr data-sort='" + ID + "' data-category='" + categoryID + "' data-crime-name='" + name + "'>";
     crimeHtml += "<td>" + ID + "</td><td>" + name + "</td>";
+    if (insertMode) {
+        crimeHtml += "<td><button type='submit' class='btn btn-success selectCrime' data-crime-id='" + ID + "'>Auswählen</button></td>";
+    } else {
+        crimeHtml += "<td></td>";
+    }
     crimeHtml += "</tr>";
 
     $("table#crimeList tbody[data-category='" + categoryID + "']").append(crimeHtml);

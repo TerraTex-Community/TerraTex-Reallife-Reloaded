@@ -585,6 +585,7 @@
     <file src="UI/PolicePC/_JailList.html" />
     <file src="UI/PolicePC/_CrimeList.html" />
     <file src="UI/PolicePC/_Suspects.html" />
+    <file src="UI/PolicePC/_PlayerCrimeList.html" />
     <file src="UI/PolicePC/__carEntry.html" />
     <file src="UI/PolicePC/__blitzerEntry.html" />
     <file src="UI/PolicePC/policePC.js" />

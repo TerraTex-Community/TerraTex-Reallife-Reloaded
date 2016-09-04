@@ -114,6 +114,16 @@ function loadPolicePCPage(get, post)
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_Suspects.html\"")
                 end
+            elseif (get.id == "PlayerCrimeList") then
+                local html = HTML.getFile("UI/PolicePC/_PlayerCrimeList.html", true);
+                if html then
+                    html = HTML.prepare(html);
+                    executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
+                    loadCrimesToPolicePCPage();
+                    loadPlayerCrimeList();
+                else
+                    outputDebugString("Unable to open \"UI/PolicePC/_PlayerCrimeList.html\"")
+                end
             elseif (get.id == "logout") then
                 if isElement(policePCWindow) then destroyElement(policePCWindow); end
                 policePCWindow = false;
@@ -125,7 +135,11 @@ function loadPolicePCPage(get, post)
     end
 end
 
-function loadCrimesToPolicePCPage()
+function loadPlayerCrimeList(playerName)
+
+end
+
+function loadCrimesToPolicePCPage(addColumn)
     local syncElement = getElementByID("CrimeSystem");
     local items = getElementData(syncElement, "CrimesByCategorieIdById");
 
@@ -134,7 +148,11 @@ function loadCrimesToPolicePCPage()
             executeBrowserJavascript(policePCBrowser, "createCategory(" .. categorieID .. ", \"" .. categorieData.name .. "\");");
 
             for crimeID, crimeData in pairs(categorieData.crimes) do
-                executeBrowserJavascript(policePCBrowser, "createCrime(" .. crimeID .. ", " .. categorieID .. ", \"" .. crimeData.Name .. "\");");
+                if not addColumn then
+                    executeBrowserJavascript(policePCBrowser, "createCrime(" .. crimeID .. ", " .. categorieID .. ", \"" .. crimeData.Name .. "\");");
+                else
+                    executeBrowserJavascript(policePCBrowser, "createCrime(" .. crimeID .. ", " .. categorieID .. ", \"" .. crimeData.Name .. "\", true);");
+                end
             end
         end
     end
@@ -247,6 +265,8 @@ function actualizePolicePCPage()
                 end
             end
         end
+    elseif (policePCActivePage == "PlayerCrimeList") then
+        loadCrimesToPolicePCPage(true);
     end
 end
 

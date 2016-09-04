@@ -147,6 +147,9 @@ function renderPlayerCrimes_func(crimesList)
     if (policePCActivePage == "PlayerCrimeList") then
         executeBrowserJavascript(policePCBrowser, "startReloadPlayerCrimeList();");
 
+        local crimeLevel = tonumber(getElementData(policePCData.activePlayer, "crimeLevel"));
+        policePCData.lastActivePlayerCrimeLevel = crimeLevel;
+
         local time = getRealTime();
         local unixTimeStamp = time.timestamp;
 

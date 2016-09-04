@@ -160,9 +160,9 @@ end
 
 function CrimeSystem.getPlayerCrimes(playerName)
     local query = "SELECT user_crimes.*, data_crimes_list.Name, data_crimes_categories.CategorieName, UNIX_TIMESTAMP(user_crimes.Timestamp) AS UNIX_TIMESTAMP FROM user_crimes";
-    query = query .. "LEFT JOIN data_crimes_list ON user_crimes.CrimeID = data_crimes_list.ID";
-    query = query .. "LEFT JOIN data_crimes_categories ON data_crimes_list.CategorieID = data_crimes_categories.ID";
-    query = query .. "WHERE Nickname=?";
+    query = query .. " LEFT JOIN data_crimes_list ON user_crimes.CrimeID = data_crimes_list.ID";
+    query = query .. " LEFT JOIN data_crimes_categories ON data_crimes_list.CategorieID = data_crimes_categories.ID";
+    query = query .. " WHERE Nickname=?";
 
     local dQuery = dbQuery(MySql._connection, query, playerName);
     local result = dbPoll(dQuery, -1);

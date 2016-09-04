@@ -13,7 +13,7 @@
         <span class="font-weight-bold">Neue StVO:</span><br/>
         <div class="input-group">
             <input type="number" class="form-control" id="stvo_number" placeholder="StVO-Anzahl" style="width: 30%">
-            <input type="text" class="form-control" id="stvo_reason" placeholder="StVO-Grund"style="width: 70%">
+            <input type="text" class="form-control" id="stvo_reason" placeholder="StVO-Grund" style="width: 70%">
 
             <span class="input-group-btn">
                 <button class="btn btn-secondary" id="giveStVO" type="button">StVO-Punkte geben</button>
@@ -34,7 +34,8 @@
                 <input type="number" class="form-control" id="crimeID" placeholder="Verbrechenscode">
 
                 <span class="input-group-btn">
-                    <button class="btn btn-secondary" id="search" type="button" data-toggle="modal" data-target="#searchPopUp">Suchen</button>
+                    <button class="btn btn-secondary" id="search" type="button" data-toggle="modal"
+                            data-target="#searchPopUp">Suchen</button>
                 </span>
             </div>
         </div>
@@ -44,28 +45,28 @@
             <textarea class="form-control" id="additionalInfo" rows="3"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-success">Verbrechen hinzufügen</button>
+        <button type="submit" class="btn btn-success" id=giveCrime>Verbrechen hinzufügen</button>
 
         <hr/>
 
         <table class="table table-hover" id="playerCrimeTable">
             <thead>
-                <tr>
-                    <th></th>
-                    <th>Verbrechen</th>
-                    <th>Zusatzinformationen</th>
-                    <th>Erhalten am</th>
-                </tr>
+            <tr>
+                <th></th>
+                <th>Verbrechen</th>
+                <th>Zusatzinformationen</th>
+                <th>Erhalten am</th>
+            </tr>
             </thead>
             <tbody>
 
             </tbody>
         </table>
     </div>
-
 </div>
 
-<div class="modal fade modal-lg" id="searchPopUp" tabindex="-1" role="dialog" aria-labelledby="searchPopUpLabel" aria-hidden="true">
+<div class="modal fade modal-lg" id="searchPopUp" tabindex="-1" role="dialog" aria-labelledby="searchPopUpLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -75,6 +76,7 @@
                 <h4 class="modal-title" id="searchPopUpLabel">Suche Verbrechenscode</h4>
             </div>
             <div class="modal-body" id="crimeListHtml">
+
                 <div class="card">
                     <div class="card-header">
                         Filter
@@ -83,15 +85,18 @@
                         <div class="input-group">
                             <div class="input-group-addon">Zeige Kategorie:</div>
                             <div class="dropdown" id="filterCategory_dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterCategory" data-toggle="dropdown" aria-haspopup="true"
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="filterCategory"
+                                        data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" data-value="-1">
                                     Alle Kategorien anzeigen
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="filterCategory" id="filterCategoryEntryList">
+                                <div class="dropdown-menu" aria-labelledby="filterCategory"
+                                     id="filterCategoryEntryList">
                                     <a class="dropdown-item" data-value="-1" href="#">Alle Kategorien anzeigen</a>
                                 </div>
                             </div>
-                        </div><br/>
+                        </div>
+                        <br/>
                         <div class="input-group">
                             <div class="input-group-addon">In Verbrechen suchen nach:</div>
                             <input type="text" class="form-control" id="filterCrimes" placeholder="">
@@ -101,13 +106,14 @@
 
                 <table class="table table-hover" id="crimeList">
                     <thead id="head" class="thead-inverse" data-sort="-10">
-                    <tr>
-                        <th style="width: 150px">Code</th>
-                        <th>Verbrechen</th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th style="width: 150px">Code</th>
+                            <th>Verbrechen</th>
+                            <th></th>
+                        </tr>
                     </thead>
                 </table>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

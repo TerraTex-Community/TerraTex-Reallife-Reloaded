@@ -9,7 +9,8 @@ local policePCData = {
     vehicles = {},
     removeVehicles = {},
     blitzer = {},
-    lastJails = {}
+    lastJails = {},
+    activePlayer = false
 };
 local policePCWindow;
 local policePCBrowser;
@@ -45,7 +46,8 @@ function startpolicePCUI()
             function()
                 policePCBrowser = source;
                 setBrowserAjaxHandler(source, "ajax_policePC_load_page.html", loadPolicePCPage);
-                setBrowserAjaxHandler(source, "ajax_policePC_dBlitzer.html", policePCdBlitzer)
+                setBrowserAjaxHandler(source, "ajax_policePC_dBlitzer.html", policePCdBlitzer);
+                setBrowserAjaxHandler(source, "ajax_policePC_akte.html", policePCAkte);
                 loadBrowserURL(source, "http://mta/local/UI/PolicePC/Main.html");
             end
         )
@@ -124,6 +126,7 @@ function loadPolicePCPage(get, post)
                     executeBrowserJavascript(policePCBrowser, "setContent(\"" .. html .. "\");");
                     loadCrimesToPolicePCPage(true);
                     loadPlayerCrimeList();
+                    policePCData.activePlayer = getPlayerFromName(get.nickname);
                 else
                     outputDebugString("Unable to open \"UI/PolicePC/_PlayerCrimeList.html\"")
                 end
@@ -268,6 +271,10 @@ function actualizePolicePCPage()
                 end
             end
         end
+    elseif (policePCActivePage == "PlayerCrimeList") then
+        local stvo = getElementData(policePCData.activePlayer, "stvo");
+        executeBrowserJavascript(policePCBrowser, "setStVO(".. stvo ..");");
+
     end
 end
 
@@ -284,6 +291,22 @@ function policePCdBlitzer(get)
             triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "dblitzer", get.id);
         else
             showError(getLocalPlayer(), "Bitte gebe eine Blitzer ID ein!");
+        end
+    end
+end
+
+function policePCAkte(get)
+    if (get) then
+        if (get.todo) then
+            if (get.todo == "stvo") then
+                local stvos = get.count;
+                local reason = get.reason;
+                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer), stvos, reason);
+            elseif (get.todo == "crime") then
+                local crime = get.count;
+                local addreason = get.reason;
+                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "su", getPlayerName(policePCData.activePlayer), crime, addreason);
+            end
         end
     end
 end

@@ -26,6 +26,18 @@ $(document).ready(function () {
         $.ajax("http://mta/local/ajax_policePC_dBlitzer.html?id=all");
     });
 
+    $("html").on("click", "#giveStVO", function(){
+        var stvo_number = $("#stvo_number");
+        var stvo_reason = $("#stvo_reason");
+        $.ajax("http://mta/local/ajax_policePC_akte.html?todo=stvo&count=" + stvo_number + "&reason=" + stvo_reason);
+    });
+
+    $("html").on("click", "#giveCrime", function(){
+        var crimeID = $("#crimeID");
+        var additionalInfo = $("#additionalInfo");
+        $.ajax("http://mta/local/ajax_policePC_akte.html?todo=crime&crime=" + crimeID + "&addreason=" + additionalInfo);
+    });
+
     //Filterfunctions
     $("html").on("click", "#filterCategoryEntryList a", function(){
         var category = $(this).attr("data-value");
@@ -200,7 +212,7 @@ function createCrime(ID, categoryID, name, insertMode) {
 }
 
 function sortCrimeTable() {
-    $('table > *').sort(function (a, b) {
+    $('table#crimeList > *').sort(function (a, b) {
         var contentA = parseFloat($(a).attr('data-sort'));
         var contentB = parseFloat($(b).attr('data-sort'));
         return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
@@ -224,4 +236,8 @@ function sortCrimeTBodys() {
             return (contentA < contentB) ? -1 : (contentA > contentB) ? 1 : 0;
         }).each(function(){ body.append($(this)); });
     });
+}
+
+function setStVO(number) {
+    $("#stvo").html(number);
 }

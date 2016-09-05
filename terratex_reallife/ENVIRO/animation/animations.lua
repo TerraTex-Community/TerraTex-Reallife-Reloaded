@@ -13,7 +13,7 @@ function showanimlist(playerSource)
     outputChatBox("/lay,/hide,/vomit,/eat,/wave,/slapass",playerSource, 200, 200, 0 )
     outputChatBox("/deal,/crack,/smoke,/ground,/fucku",playerSource, 200, 200, 0 )
     outputChatBox("/chat,/taichi,/chairsit,/dance [1-7],/piss,/wank",playerSource, 200, 200, 0 )
-    outputChatBox("/smokef,/smokem",playerSource, 200, 200, 0 )
+    outputChatBox("/smokef,/smokem,/revive",playerSource, 200, 200, 0 )
     outputChatBox("Zum Abbrechen einer Animation: /stopanim oder Leertaste",playerSource, 0, 0, 200 )
 end
 addCommandHandler("anims",showanimlist,false,false)
@@ -42,6 +42,7 @@ local animarray={
     ["chairsit"]={ "BEACH", "SitnWait_loop_W",true,false,false},
     ["wank"]={ "PAULNMAC", "wank_loop",true,false,false},
     ["eat"]={"VENDING", "vend_eat1_P",false,false,false},
+    ["revive"]={"MEDIC", "CPR",false,false,true},
 
     --[[specials]]
     ["handsup"]={"shop", "SHP_HandsUp_Scr",false,true,false},
@@ -138,6 +139,7 @@ addCommandHandler("crack",setAnimation,false,false)
 addCommandHandler("smoke",setAnimation,false,false)
 addCommandHandler("smokef",setAnimation,false,false)
 addCommandHandler("smokem",setAnimation,false,false)
+addCommandHandler("revive",setAnimation,false,false)
 
 
 function stopanima(playerSource)

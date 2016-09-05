@@ -237,9 +237,10 @@ function onvehicleexplode_exec(source)
                 setTimer(respawnVehicle, 10000, 1, source)
                 vioSetElementData(source, "motor", false)
             end
-        elseif (spawnDiscconectPlayers[vioGetElementData(source, "besitzer")]) then
+        elseif (spawnDisconnectPlayers[vioGetElementData(source, "besitzer")]) then
             local xc, yc, zc = getElementPosition(source)
-            local dis = getDistanceBetweenPoints3D(xc, yc, zc, spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][1], spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][2], spawnDiscconectPlayers[vioGetElementData(source, "besitzer")][3])
+            local besitzerSource = vioGetElementData(source, "besitzer")
+            local dis = getDistanceBetweenPoints3D(xc, yc, zc, spawnDisconnectPlayers[besitzerSource].x, spawnDisconnectPlayers[besitzerSource].y, spawnDisconnectPlayers[besitzerSource].z)
             if (dis < 50) then
                 MySql.helper.delete("user_vehicles", {ID = vioGetElementData(source, "dbid")});
 

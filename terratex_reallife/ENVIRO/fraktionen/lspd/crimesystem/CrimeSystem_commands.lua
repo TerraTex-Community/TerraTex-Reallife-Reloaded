@@ -31,7 +31,7 @@ function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
     if (not crimeStateOrPlayNamePart) then
         for theKey, theState in ipairs(orderedCriminals) do
             if (theState.criminals) then
-                outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "));
+                outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
             end
         end
     elseif (tonumber(crimeStateOrPlayNamePart)) then
@@ -79,6 +79,11 @@ addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
 
 function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
     if (isBeamter(thePlayer)) then
+        if not(toPlayerName and crimeCode) then
+            showError(thePlayer, "Usage: /su [Nickname] [Code] [Optional: Additional Informations]");
+            return;
+        end
+
         local additionalDescription = table.concat({...}, " ");
         if (additionalDescription == "") then
             additionalDescription = false;

@@ -20,7 +20,7 @@ INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALU
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (100, 'Ernstzunehmende Drohung', 10, 5);
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (100, 'versuchte Erpressung', 8, 2);
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (100, 'Behinderung von Beamtenarbeit', 8, 2);
-INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (100, 'Erregung öfentlichen Ärgernisses', 4, 2);
+INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (100, 'Erregung öffentlichen Ärgernisses', 4, 2);
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (200, 'Illegales Straßenrennen', 20, 10);
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (200, 'Flucht aus einer Verkehrskontrolle', 20, 10);
 INSERT INTO data_crimes_list (CategorieID, Name, Percentage, MinPercentage) VALUES (200, 'Durchfahren einer Grenze ohne Maut zu Bezahlen', 25, 15);

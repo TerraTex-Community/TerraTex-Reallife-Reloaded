@@ -42,7 +42,7 @@ function Alka_setsechsWanted(hitPlayer)
 end
 
 function setAlka_func(thePlayer, cmd, toPlayerNamePart)
-    if (toPlayerNamePart) and (zeit) then
+    if (toPlayerNamePart) then
         if (isBeamter(thePlayer)) then
             local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)
             if (toPlayer) then
@@ -72,7 +72,7 @@ function setAlka_func(thePlayer, cmd, toPlayerNamePart)
             end
         end
     else
-        outputChatBox("Nutzung: /setalka Name Zeit", thePlayer, 255, 0, 0)
+        outputChatBox("Nutzung: /setalka Name", thePlayer, 255, 0, 0)
     end
 end
 addCommandHandler("setAlka", setAlka_func, false, false)

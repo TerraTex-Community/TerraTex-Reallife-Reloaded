@@ -31,7 +31,7 @@ function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
     if (not crimeStateOrPlayNamePart) then
         for theKey, theState in ipairs(orderedCriminals) do
             if (theState.criminals) then
-                outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "));
+                outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
             end
         end
     elseif (tonumber(crimeStateOrPlayNamePart)) then

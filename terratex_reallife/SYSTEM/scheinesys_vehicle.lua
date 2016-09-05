@@ -161,6 +161,7 @@ function isCar(vehid)
 end
 
 function isPlane(vehid)
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (getVehicleType(vehid) == "Plane") then
         return true
     else
@@ -177,6 +178,7 @@ function isBike(vehid)
 end
 
 function isHeli(vehid)
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (getVehicleType(vehid) == "Helicopter") then
         return true
     else
@@ -185,6 +187,7 @@ function isHeli(vehid)
 end
 
 function isBoat(vehid)
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (getVehicleType(vehid) == "Boat") then
         return true
     else
@@ -193,6 +196,7 @@ function isBoat(vehid)
 end
 
 function isQuad(vehid)
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (getVehicleType(vehid) == "Quad") then
         return true
     else

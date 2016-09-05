@@ -8,7 +8,7 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), aktualizeblitzerMeldedPosition)
 
 function newsClickedOnBlitzer(mouseButton, buttonState, clickedElement)
-    if (vioGetElementData(source, "fraktion") == 3) and buttonState == "up" then
+    if (vioGetElementData(source, "fraktion") == 3) and buttonState == "up" and clickedElement then
         if (getElementData(clickedElement, "blitzerElement")) then
 
             local x, y, z = getElementPosition(clickedElement)

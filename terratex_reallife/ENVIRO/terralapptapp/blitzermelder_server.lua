@@ -9,7 +9,7 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), ak
 
 function newsClickedOnBlitzer(mouseButton, buttonState, clickedElement)
     if (vioGetElementData(source, "fraktion") == 3) and buttonState == "up" then
-        if (getElementType(clickedElement) == "blitzer") then
+        if (getElementData(clickedElement, "blitzerElement")) then
 
             local x, y, z = getElementPosition(clickedElement)
             local bereitsGemeldet = false

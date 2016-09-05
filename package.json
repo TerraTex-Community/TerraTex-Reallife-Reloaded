@@ -1,0 +1,19 @@
+{
+  "name": "terratex-reallife-reloaded",
+  "version": "1.2.0",
+  "description": "TerraTex Reloaded Reallife Script for MTA:SA",
+  "scripts": {
+    "build-sass": "node-sass --output-sytle compressed terratex_reallife/UI/styles/css/uncompiled/ -r -o terratex_reallife/UI/styles/css",
+    "build-env": "node scripts/terratex.env.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerraTex-Community/TerraTex-Reallife-Reloaded.git"
+  },
+  "author": "Geramy92",
+  "license": "cc-by-nc",
+  "bugs": {
+    "url": "https://github.com/TerraTex-Community/TerraTex-Reallife-Reloaded/issues"
+  },
+  "homepage": "http://terratex.eu"
+}

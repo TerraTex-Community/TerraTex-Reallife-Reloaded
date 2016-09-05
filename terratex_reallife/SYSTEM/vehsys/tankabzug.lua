@@ -62,9 +62,9 @@ function setNewTankVehicle(theVehicle)
                 if (vioGetElementData(theVehicle, "hasTankFactor")) then
                     tankminus = tankminus * vioGetElementData(theVehicle, "hasTankFactor")
                 elseif (getVehicleType(theVehicle) == "Plane") then
-                    tankminus = tankminus / 3
+                    tankminus = tankminus / 2
                 elseif (getVehicleType(theVehicle) == "Boat") then
-                    tankminus = tankminus * 3
+                    tankminus = tankminus * 2
                 end
 
                 tankminus = tankminus * damageFactor;

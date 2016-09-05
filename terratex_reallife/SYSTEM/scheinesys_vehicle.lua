@@ -65,7 +65,7 @@ end
 addEventHandler("onVehicleStartEnter", getRootElement(), enterVehicle)
 
 function hasTheLicenseFor(thePlayer, vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [2] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (isNoLicensCar(vehid)) then
         return true;
     end

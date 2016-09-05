@@ -1,8 +1,4 @@
 <map edf:definitions="editor_main">
-    <removeWorldObject id="removeWorldObject (VegasEroad013) (1)" radius="113.02837" interior="0" model="8446" lodModel="8605" posX="2152.3828" posY="1453.2266" posZ="9.74219" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
-    <object id="object (vgsSairportland15) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="8356" doublesided="false" scale="1" dimension="0" posX="1477.3906" posY="1749.5" posZ="9.83594" rotX="0" rotY="0" rotZ="0"></object>
-    <object id="object (vgsSairportland15) (3)" breakable="true" interior="0" collisions="true" alpha="255" model="8356" doublesided="false" scale="1" dimension="0" posX="1477.3906" posY="1749.5" posZ="9.83594" rotX="0" rotY="0" rotZ="0"></object>
-    <removeWorldObject id="removeWorldObject (vgsSairportland15) (1)" radius="97.836014" interior="0" model="8356" lodModel="8105" posX="1477.3906" posY="1749.5" posZ="9.83594" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
     <removeWorldObject id="removeWorldObject (ferris01_LAw2) (1)" radius="21.144135" interior="0" model="6298" lodModel="6463" posX="389.77344" posY="-2028.4687" posZ="19.80469" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
     <object id="object (pier03c_LAw2) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="6299" doublesided="false" scale="1" dimension="0" posX="1762.7148" posY="-1883.9844" posZ="14.57563" rotX="0" rotY="0" rotZ="270"></object>
     <object id="object (pier04a_LAw2) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="6462" doublesided="false" scale="1" dimension="0" posX="1757.0334" posY="-1893.6602" posZ="14.49164" rotX="0" rotY="0" rotZ="0"></object>

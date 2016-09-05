@@ -1,5 +1,4 @@
 local isStellBoit = {}
-local isStellBoit = {}
 
 function onStellBotSpawn()
     local bot = createPed(280, 238.961914062, 112.734375, 1003.21875, 274.67611694336)
@@ -166,6 +165,7 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
                 end
             end
 
+            local percentage = vioGetElementData(source, "crimeLevel");
             if ((vioGetElementData(source, "cuffed") == 1) or (gangInNear > 0 and vioGetElementData(source, "schutzzahlung") > 0) or (policeInNear > 0 and percentage > 0)) then
                 if (policeInNear > 0) then
                     if (percentage > 0) then

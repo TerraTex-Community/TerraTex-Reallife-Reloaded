@@ -48,7 +48,7 @@ addEvent("getPlayerCrimesForClient", true);
 addEventHandler("getPlayerCrimesForClient", getRootElement(), getPlayerCrimesForClient_func)
 
 function deleteCrime_func(player, crimeId)
-    CrimeSystem.deteleCrime(player, crimeId);
+    CrimeSystem.deleteCrime(player, crimeId);
     showError(player, "Ein Verbrechen wurde von ".. getPlayerName(source) .. " aus deiner Akte gelöscht!");
     showError(source, "Du hast ein Verbrechen von ".. getPlayerName(player) .. "'s Akte gelöscht!");
 end

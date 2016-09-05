@@ -143,9 +143,9 @@ function CrimeSystem.addNewCrime(thePlayer, crimeId, whoGives, additionalComment
     end
 end
 
-function CrimeSystem.deteleCrime(thePlayer, crimeId)
+function CrimeSystem.deleteCrime(thePlayer, crimeId)
     MySql.helper.delete("user_crimes", {Nickname = getPlayerName(thePlayer), ID = crimeId});
-    vioSetElementData(thePlayer, CrimeSystem.getCrimePercentage(thePlayer));
+    vioSetElementData(thePlayer, "crimeLevel", CrimeSystem.getCrimePercentage(thePlayer));
 end
 
 function CrimeSystem.clear(thePlayer)

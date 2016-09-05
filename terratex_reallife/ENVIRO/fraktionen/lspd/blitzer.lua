@@ -29,10 +29,10 @@ function createBlitzerDummysOnStartUp()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
 
-function createBlitzer_func(thePlayer, cmd, blitzerid)
+function createBlitzer_func(thePlayer, cmd, blitzerids)
     if (isBeamter(thePlayer) and not (isPedInVehicle(thePlayer))) then
-        if (blitzerid) then
-            blitzerid = tonumber(blitzerid)
+        if (blitzerids) then
+            local blitzerid = tonumber(blitzerids)
             if (blitzerid) then
                 if (blitzerid <= blitzerMax or blitzerid > 0) then
                     local blitzerElement = getElementByID("blitzer-" .. blitzerid);

@@ -79,6 +79,11 @@ addEventHandler("onPlayerQuit", getRootElement(), onPlayerSaveLogoutTime)
 
 function cmdSu(thePlayer, cmd, toPlayerName, crimeCode, ...)
     if (isBeamter(thePlayer)) then
+        if not(toPlayerName and crimeCode) then
+            showError(thePlayer, "Usage: /su [Nickname] [Code] [Optional: Additional Informations]");
+            return;
+        end
+
         local additionalDescription = table.concat({...}, " ");
         if (additionalDescription == "") then
             additionalDescription = false;

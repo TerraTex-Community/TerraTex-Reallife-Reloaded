@@ -130,7 +130,7 @@ end
 
 
 function isSpezVehicle(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (table.hasValue(spezlic, vehid)) then
         return true
     else
@@ -139,7 +139,7 @@ function isSpezVehicle(vehid)
 end
 
 function isTruck(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (truckerlicveh[vehid]) then
         return true
     else
@@ -148,7 +148,7 @@ function isTruck(vehid)
 end
 
 function isCar(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (truckerlicveh[vehid]) then
         return false
     else
@@ -161,7 +161,6 @@ function isCar(vehid)
 end
 
 function isPlane(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Plane") then
         return true
     else
@@ -170,7 +169,6 @@ function isPlane(vehid)
 end
 
 function isBike(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Bike" and not (isNoLicensCar(vehid))) then
         return true
     else
@@ -179,7 +177,6 @@ function isBike(vehid)
 end
 
 function isHeli(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Helicopter") then
         return true
     else
@@ -188,7 +185,6 @@ function isHeli(vehid)
 end
 
 function isBoat(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Boat") then
         return true
     else
@@ -197,7 +193,6 @@ function isBoat(vehid)
 end
 
 function isQuad(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
     if (getVehicleType(vehid) == "Quad") then
         return true
     else
@@ -207,7 +202,7 @@ end
 
 local noLizenseCar = { [462] = true, [448] = true }
 function isNoLicensCar(vehid)
-    assert(type(vehid) == "number", "Expected Number as Parameter [1] got " .. type(vehid) .. " Stack: ".. debug.traceback());
+    if type(vehid) == "userdata" then vehid = getElementModel(vehid) end
     if (noLizenseCar[vehid]) then
         return true
     else

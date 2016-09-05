@@ -34,7 +34,7 @@ function createBlitzer_func(thePlayer, cmd, blitzerids)
         if (blitzerids) then
             local blitzerid = tonumber(blitzerids)
             if (blitzerid) then
-                if (blitzerid <= blitzerMax or blitzerid > 0) then
+                if (blitzerid <= blitzerMax and blitzerid > 0) then
                     local blitzerElement = getElementByID("blitzer-" .. blitzerid);
 
                     if (vioGetElementData(blitzerElement, "state")) then

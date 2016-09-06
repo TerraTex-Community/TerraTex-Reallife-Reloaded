@@ -20,10 +20,13 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), cr
 
 function requestNewTombuTicket(thePlayer)
     if (isElement(thePlayer) and getElementType(thePlayer) == "player" and not isPedInVehicle(thePlayer)) then
-        if (MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) }) == maxTombuTickets) then
-            showError(thePlayer, "Du hast bereits die Maximale Anzahl an Tickets für die nächste Lotterieziehung erworben")
+        local tickets = MySql.helper.getCountSync("user_tombupot")
+        local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
+        local playerTicketCount = MySql.helper.getCountSync("user_tombupot", { Nickname = getPlayerName(thePlayer) })
+        if (playerTicketCount < maxTombuTickets) then
+            triggerClientEvent(thePlayer, "openDialogForBuyTickets", thePlayer, gewinn, tombuTicketPrice, playerTicketCount, maxTombuTickets)
         else
-            triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, tombuTicketPrice)
+            triggerClientEvent(thePlayer, "openDialogForMaxTickets", thePlayer, gewinn, maxTombuTickets)
         end
     end
 end
@@ -35,9 +38,11 @@ function acceptedBuyTomboTicket_func()
     else
         changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
         changeBizKasse(16, tombuTicketPrice * (bizPercentage / 100), "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
-
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
+        local tickets = MySql.helper.getCountSync("user_tombupot")
+        local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
         outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupot-Lotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
+        outputChatBox(string.format("Die Gewinnsumme liegt nun bei %s$!", gewinn), source, 155, 155, 0)
     end
 end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)

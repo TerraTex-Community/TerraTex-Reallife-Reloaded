@@ -541,6 +541,7 @@
     <map src="MAPS/umgebung/Alcatraz.map"/>
     <map src="MAPS/umgebung/flugjob_helipad.map"/>
     <map src="MAPS/umgebung/Marktplatz-am-Rookiespawn.map"/>
+    <map src="MAPS/umgebung/Glen-Park.map"/>
     <!-- Innenräume -->
     <map src="MAPS/innenraume/TompuPotLottery.map"/>
     <map src="MAPS/innenraume/TT-bank-innen.map"/>

@@ -30,6 +30,7 @@
     <script src="USEFULL_SCRIPTS/number_math_functions.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/element_functions.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/ask_gui.lua" type="client"/>
+    <script src="USEFULL_SCRIPTS/dialog_gui.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/dx_functions.lua" type="client"/>
     <script src="USEFULL_SCRIPTS/player_functions.lua" type="shared"/>
     <script src="USEFULL_SCRIPTS/gui_functions.lua" type="client"/>

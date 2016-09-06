@@ -7,6 +7,7 @@ ALTER TABLE user_data ADD children VARCHAR(255) DEFAULT "{}" NULL;
 CREATE TABLE `data_crimes_categories` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `CategorieName` varchar(255) DEFAULT NULL,
+  `hidden` INT(2) DEFAULT 0,
   `Order` int(11) DEFAULT '50',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;

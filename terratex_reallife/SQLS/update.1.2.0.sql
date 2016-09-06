@@ -177,3 +177,5 @@ INSERT INTO `objects_teleport_markers` (`ID`, `x`, `y`, `z`, `interior`, `dimens
 (60, 1824.51, -1300.54, 119.734, 0, 0, 'corona', 2.0, 59, NULL, NULL, NULL, NULL, 0, 0, NULL, 'Hochhaus neben Glenpark OUT');
 SET FOREIGN_KEY_CHECKS=1;
 SET GLOBAL FOREIGN_KEY_CHECKS=1;
+
+UPDATE objects_houses SET city = 2 WHERE ID = 18 OR ID = 93;

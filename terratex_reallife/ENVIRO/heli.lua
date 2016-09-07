@@ -7,26 +7,3 @@ function onEnterHeli(thePlayer)
 end
 addEventHandler("onVehicleEnter",getRootElement(),onEnterHeli)
 
-
-function onPlayerJoin_forHeli()
-	bindKey(source,"lshift","down",setPlayerHeliDriveBy)
-
-end
-addEventHandler("onPlayerJoin",getRootElement(),onPlayerJoin_forHeli)
-
-
-function setPlayerHeliDriveBy(player)
-
-	---LATER
-
-end
-
-
-
-
-
-
-
-
-
-

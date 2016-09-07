@@ -163,7 +163,6 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                     local ammo = MySql.helper.getValueSync("user_inventory", "Offline_Ammo", { Nickname = nickname });
                     local source = thePlayer
 
-                    local resetweapons = MySql.helper.getValueSync("user_data", "resetWeaponsAtNextLogin", { Nickname = nickname });
                     if (tonumber(hp) > 0) then
                         setElementHealth(source, hp)
                     end
@@ -242,12 +241,6 @@ function setPlayerSpawnWeapons(thePlayer, Fraktion, Rang)
             setPedArmor(thePlayer, 150)
             giveWeapon(thePlayer, 31, 1500)
         end
-    end
-    local nickname = getPlayerName(thePlayer)
-    local resetweapons = MySql.helper.getValueSync("user_data", "resetWeaponsAtNextLogin", { Nickname = nickname });
-    if (resetweapons == 1) then
-        takeAllWeapons(thePlayer)
-        MySql.helper.update("user_data", { resetWeaponsAtNextLogin = 0 }, { Nickname = nickname});
     end
 end
 

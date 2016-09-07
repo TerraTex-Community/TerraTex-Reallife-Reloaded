@@ -5476,7 +5476,6 @@ CREATE TABLE `user_data` (
   `ingamespenden` float NOT NULL DEFAULT '0',
   `werbernum` int(11) NOT NULL DEFAULT '0',
   `stvoFreePayDays` int(11) NOT NULL DEFAULT '0',
-  `resetWeaponsAtNextLogin` int(11) NOT NULL DEFAULT '0',
   `verheiratet` int(11) NOT NULL DEFAULT '0',
   `schutzgeld` int(11) NOT NULL DEFAULT '0',
   `AktiveDays` int(11) NOT NULL DEFAULT '0',
@@ -5490,7 +5489,6 @@ CREATE TABLE `user_data` (
   `speedtank` int(11) NOT NULL DEFAULT '0',
   `versicherung` int(11) NOT NULL DEFAULT '0',
   `fuehrerscheinlooser` int(11) NOT NULL DEFAULT '0',
-  `stvoprostunde` float NOT NULL DEFAULT '0',
   `lebensversicherung` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

@@ -265,6 +265,7 @@
     <script src="ENVIRO/kirche/kirche_client.lua" type="client"/>
     <!-- Spawn and killsystem-->
     <script src="ENVIRO/spawn_kill_system/spawn.lua" type="server"/>
+    <script src="ENVIRO/spawn_kill_system/spawn_on_connect.lua" type="server"/>
     <script src="ENVIRO/spawn_kill_system/kill.lua" type="server"/>
     <script src="ENVIRO/spawn_kill_system/kill_client.lua" type="client"/>
     <script src="ENVIRO/spawn_kill_system/spawnchange.lua" type="server"/>

@@ -168,7 +168,7 @@ function death_func(ammo, attacker, weapon, bodypart)
 
         vioSetElementData(source, "todelast", (todelast))
         vioSetElementData(source, "tode", (vioGetElementData(source, "tode") + 1))
-        vioSetElementData(source, "todezeit", deathtime)
+        setElementData(source, "hospitalTime", deathtime)
         loadKrankenhaus(source)
 
 
@@ -236,7 +236,7 @@ function loadKrankenhaus(thePlayer)
     triggerClientEvent(thePlayer, "setHalfFoodLevel", thePlayer)
     if (thePlayer) then
         setCameraMatrix(thePlayer, 1213.21826, -1326.199096, 25.8984375, 1172.643066, -1324.076171875, 14.15533638, 0, 90)
-        local zeit = vioGetElementData(thePlayer, "todezeit")
+        local zeit = tonumber(getElementData(thePlayer, "todezeit"));
         triggerClientEvent(thePlayer, "beDeath", thePlayer, zeit)
         vioSetElementData(thePlayer, "resetKrankenhausTimer", setTimer(resetToKra, 10000, 1, thePlayer))
     end
@@ -254,7 +254,7 @@ function resetToKra(thePlayer)
 end
 
 function setDeathEnd()
-    vioSetElementData(source, "todezeit", 0)
+    setElementData(source, "todezeit", 0)
     if (vioGetElementData(source, "fraktion") > 1 and vioGetElementData(source, "fraktion") ~= 5) then
         setPlayerSpawn(source, vioGetElementData(source, "spawnplace"), vioGetElementData(source, "FrakSkin"), vioGetElementData(source, "fraktion"))
 

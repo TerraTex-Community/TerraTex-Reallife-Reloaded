@@ -10,9 +10,35 @@ ALTER TABLE user_data DROP Wanteds;
 ALTER TABLE user_data DROP hkey;
 ALTER TABLE user_data DROP resetWeaponsAtNextLogin;
 ALTER TABLE user_data DROP stvoprostunde;
+ALTER TABLE user_data DROP TodZeit;
 
 ALTER TABLE user_inventory DROP Rubbellos;
 ALTER TABLE user_inventory DROP Offline_HP;
 ALTER TABLE user_inventory DROP Offline_Armor;
 ALTER TABLE user_inventory DROP Offline_Weapons;
 ALTER TABLE user_inventory DROP Offline_Ammo;
+
+
+
+
+
+
+
+
+CREATE TABLE `user_offline_data` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nickname` varchar(250) DEFAULT NULL,
+  `Position` varchar(255) DEFAULT '[[]]',
+  `Rotation` varchar(255) DEFAULT '[[]]',
+  `Interior` int(11) DEFAULT '0',
+  `Dimension` int(11) DEFAULT '0',
+  `AdditionalData` varchar(255) DEFAULT '[[]]',
+  `Weapons` varchar(255) DEFAULT '[[]]',
+  `HudStats` varchar(255) DEFAULT '[[]]',
+  `DutyState` int(11) DEFAULT '0',
+  `HostpitalTime` int(11) DEFAULT '0',
+  `WasSavedBefore` int(11) DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `user_offline_data_user_Nickname_fk` (`Nickname`),
+  CONSTRAINT `user_offline_data_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -45,6 +45,9 @@ addEventHandler("beDeath", getLocalPlayer(), beDeath_func)
 
 function aktualkrank(theTime,fulltime)
 	stopFoodTimerForSeconds(1)
+
+	setElementData(getLocalPlayer(), "hospitalTime", theTime);
+
 	theTime=theTime-1
 	if(theTime==11)then
 		triggerServerEvent("killMyDeathIcon",getLocalPlayer())

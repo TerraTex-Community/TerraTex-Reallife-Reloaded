@@ -5452,7 +5452,6 @@ CREATE TABLE `user_data` (
   `Fraktion` int(11) NOT NULL DEFAULT '0',
   `Fraktionsrang` int(11) NOT NULL DEFAULT '0',
   `Tode` int(11) NOT NULL DEFAULT '0',
-  `TodZeit` int(11) NOT NULL DEFAULT '0',
   `TodeLast` int(11) NOT NULL DEFAULT '0',
   `PlayTime` int(11) NOT NULL DEFAULT '0',
   `Bank` float NOT NULL DEFAULT '50000',

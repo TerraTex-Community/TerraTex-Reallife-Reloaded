@@ -21,7 +21,7 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
         -- for HudStats:
         local HudStats = {
             Armor = getPedArmor(source),
-            Health = getPedHealth(source),
+            Health = getElementHealth(source),
             Food = getElementData(source, "lastFood")
         };
 

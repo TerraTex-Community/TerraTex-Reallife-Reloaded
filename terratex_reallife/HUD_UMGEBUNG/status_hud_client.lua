@@ -137,7 +137,7 @@ function hud_render()
         end
 
         if (getElementHealth(getLocalPlayer()) < 20) then
-            checkToPlayheartBeatSound()
+            checkToPlayHeartBeatSound()
         end
 
         dxDrawImage(screenWidth - 550, 0, 550, 700, browser, 0, 0, 0, tocolor(255,255,255,255), true);

@@ -168,7 +168,7 @@ function death_func(ammo, attacker, weapon, bodypart)
 
         vioSetElementData(source, "todelast", (todelast))
         vioSetElementData(source, "tode", (vioGetElementData(source, "tode") + 1))
-        setElementData(source, "hospitalTime", deathtime)
+        setElementData(source, "todezeit", deathtime)
         loadKrankenhaus(source)
 
 

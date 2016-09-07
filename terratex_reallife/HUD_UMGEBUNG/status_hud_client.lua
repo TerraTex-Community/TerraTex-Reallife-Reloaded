@@ -131,6 +131,15 @@ function hud_render()
                 lastFood = getFood();
             end
         end
+
+        if (getFood() < 10) then
+            checkToPlayStomachSound()
+        end
+
+        if (getElementHealth(getLocalPlayer()) < 20) then
+            checkToPlayheartBeatSound()
+        end
+
         dxDrawImage(screenWidth - 550, 0, 550, 700, browser, 0, 0, 0, tocolor(255,255,255,255), true);
     end
 end
@@ -138,4 +147,23 @@ end
 function setHudNewMoney(value)
     moneyChanged = true;
     moneyValue = value;
+end
+
+local isStomachSoundPlaying = false;
+local isHeartBeatSoundPlaying = false;
+
+function checkToPlayStomachSound()
+    if not isStomachSoundPlaying then
+        isStomachSoundPlaying = true;
+        local sound = playSound ( "FILES/SOUNDS/stomach.mp3" )
+        addEventHandler ( "onClientSoundStopped", sound, function() isStomachSoundPlaying = false; end );
+    end
+end
+
+function checkToPlayHeartBeatSound()
+    if not isHeartBeatSoundPlaying then
+        isHeartBeatSoundPlaying = true;
+        local sound = playSound ( "FILES/SOUNDS/heartbeat.mp3" )
+        addEventHandler ( "onClientSoundStopped", sound, function() isHeartBeatSoundPlaying = false; end );
+    end
 end

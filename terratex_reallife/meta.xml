@@ -559,6 +559,8 @@
     <file src="FILES/SOUNDS/sprunk.ogg"/>
     <file src="FILES/SOUNDS/Windows_Battery_Critical.wav"/> <!-- HUFEISEN -->
     <file src="FILES/SOUNDS/heirat_sound_normal.mp3"/>
+    <file src="FILES/SOUNDS/heartbeat.mp3"/>
+    <file src="FILES/SOUNDS/stomach.mp3"/>
     <file src="FILES/SOUNDS/80_mobil02_mo.wav"/> <!-- BLTZER -->
     <file src="FILES/SOUNDS/tada.wav"/> <!-- POKAL -->
     <file src="FILES/SOUNDS/bus/stop.wav"/>

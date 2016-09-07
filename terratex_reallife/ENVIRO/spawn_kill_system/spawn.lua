@@ -1,28 +1,5 @@
-spawnDisconnectPlayers = {}
-function disconnectSetSpawn()
-    if not (vioGetElementData(source, "inArena")) then
-        if (isPlayerLoggedIn(source)) then
-            if (not isPedDead(source)) then
-                local px, py, pz = getElementPosition(source)
-                local int = getElementInterior(source)
-                local dim = getElementDimension(source)
-                local name = getPlayerName(source)
-                local dtimer = setTimer(deleteDisconnectPlayerTable, 600000, 1, name)
-                spawnDisconnectPlayers[name] = { x = px, y = py, z = pz, interior = int, dimension = dim, timer = dtimer }
-            end
-        end
-        --	table.insert(spawnDisconnectPlayers,{name,px,py,pz,int,dim,timer})
-    end
-end
-
-addEventHandler("onPlayerQuit", getRootElement(), disconnectSetSpawn)
-
-function deleteDisconnectPlayerTable(name)
-    spawnDisconnectPlayers[name] = false
-end
-
-
 function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
+
     local frakid = vioGetElementData(source, "fraktion")
     if (frakid == 1 or frakid == 4 or frakid == 5 or frakid == 9 or frakid == 10) then
         vioSetElementData(source, "isCopDuty", false)
@@ -31,6 +8,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
         vioSetElementData(source, "isMedicDuty", false)
         skinid = vioGetElementData(source, "skinid")
     end
+
     if (vioGetElementData(source, "cuffed")) then
         if (vioGetElementData(source, "cuffed") ~= 0) then
             vioSetElementData(source, "cuffed", 0)
@@ -46,7 +24,6 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
         setPedHeadless(source, false)
 
         local name = getPlayerName(source)
-
 
         if (vioGetElementData(source, "todezeit") == 0) then
             if (vioGetElementData(source, "knastzeit") > 0) then
@@ -192,31 +169,11 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
         else
             loadKrankenhaus(source)
         end
-
-        if (spawnDisconnectPlayers[name]) then
-            if (not (vioGetElementData(source, "knastzeit") > 0)) then
-                setElementInterior(source, spawnDisconnectPlayers[name].interior)
-                setElementDimension(source, spawnDisconnectPlayers[name].dimension)
-                setElementPosition(source, spawnDisconnectPlayers[name].x, spawnDisconnectPlayers[name].y, spawnDisconnectPlayers[name].z)
-            end
-            killTimer(spawnDisconnectPlayers[name].timer)
-            if (not(vioGetElementData(source, "todezeit") == 0 and vioGetElementData(source, "knastzeit") > 0)) then
-                setElementFrozen(source, true)
-                setTimer(function()
-                    setElementFrozen(source, false)
-                end, 2000, 1)
-            end
-            spawnDisconnectPlayers[name] = false
-        else
-            spawnDisconnectPlayers[name] = false
-        end
     end
 end
 
 
 function setPlayerSpawnWeapons(thePlayer, Fraktion, Rang)
-
-
     if (vioGetElementData(thePlayer, "job") == 7) then
         setPedArmor(thePlayer, 150)
         giveWeapon(thePlayer, 34, 25)
@@ -300,7 +257,6 @@ function setPlayerRearmWeapons(thePlayer, Fraktion, Rang)
     elseif (Fraktion == 2) then --grove
     if (2000 < frakmun[2]) then
         frakmun[2] = frakmun[2] - 2000
-        abzug = 2000
 
         frakdepot_log(2, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
         setPedArmor(thePlayer, 100)
@@ -351,7 +307,6 @@ function setPlayerRearmWeapons(thePlayer, Fraktion, Rang)
     if (2000 < frakmun[12]) then
 
         frakmun[12] = frakmun[12] - 2000
-        abzug = 2000
 
         frakdepot_log(12, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
         setPedArmor(thePlayer, 100)
@@ -402,7 +357,6 @@ function setPlayerRearmWeapons(thePlayer, Fraktion, Rang)
     if (2000 < frakmun[13]) then
 
         frakmun[13] = frakmun[13] - 2000
-        abzug = 2000
 
         frakdepot_log(13, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
         setPedArmor(thePlayer, 100)
@@ -512,7 +466,6 @@ function setPlayerRearmWeapons(thePlayer, Fraktion, Rang)
     if (2000 < frakmun[6]) then
 
         frakmun[6] = frakmun[6] - 2000
-        abzug = 2000
 
         frakdepot_log(6, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
         setPedArmor(thePlayer, 100)
@@ -560,57 +513,56 @@ function setPlayerRearmWeapons(thePlayer, Fraktion, Rang)
         end
     end
     elseif (Fraktion == 11) then --CF
-    if (2000 < frakmun[11]) then
+        if (2000 < frakmun[11]) then
 
-        frakmun[11] = frakmun[11] - 2000
-        abzug = 2000
+            frakmun[11] = frakmun[11] - 2000
+            frakdepot_log(11, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
 
-        frakdepot_log(11, 3, -abzug, "Spawn-" .. getPlayerName(thePlayer))
-        setPedArmor(thePlayer, 100)
+            setPedArmor(thePlayer, 100)
 
-        if (Rang == 1) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 23, 100)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 100)
+            if (Rang == 1) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 23, 100)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 100)
 
-        elseif (Rang == 2) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 23, 150)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 350)
-            giveWeapon(thePlayer, 30, 100)
+            elseif (Rang == 2) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 23, 150)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 350)
+                giveWeapon(thePlayer, 30, 100)
 
-        elseif (Rang == 3) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 24, 100)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 550)
-            giveWeapon(thePlayer, 30, 750)
+            elseif (Rang == 3) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 24, 100)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 550)
+                giveWeapon(thePlayer, 30, 750)
 
-        elseif (Rang == 4) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 24, 150)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 1500)
-            giveWeapon(thePlayer, 30, 1500)
+            elseif (Rang == 4) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 24, 150)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 1500)
+                giveWeapon(thePlayer, 30, 1500)
 
-        elseif (Rang == 5) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 24, 150)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 1500)
-            giveWeapon(thePlayer, 30, 1500)
+            elseif (Rang == 5) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 24, 150)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 1500)
+                giveWeapon(thePlayer, 30, 1500)
 
-        elseif (Rang == 6) then
-            giveWeapon(thePlayer, 5)
-            giveWeapon(thePlayer, 24, 150)
-            giveWeapon(thePlayer, 25, 10)
-            giveWeapon(thePlayer, 29, 1500)
-            giveWeapon(thePlayer, 30, 1500)
-            giveWeapon(thePlayer, 34, 20)
+            elseif (Rang == 6) then
+                giveWeapon(thePlayer, 5)
+                giveWeapon(thePlayer, 24, 150)
+                giveWeapon(thePlayer, 25, 10)
+                giveWeapon(thePlayer, 29, 1500)
+                giveWeapon(thePlayer, 30, 1500)
+                giveWeapon(thePlayer, 34, 20)
+            end
         end
-    end
     end
 end
 

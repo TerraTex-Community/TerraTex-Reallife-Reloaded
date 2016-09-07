@@ -46,7 +46,7 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
             HudStats = toJSON(HudStats),
             DutyState = duty,
             HostpitalTime = hospitalTime,
-            LastDisconnect = getRealTime().time,
+            LastDisconnect = getRealTime().timestamp,
             WasSavedBefore = 1
         }, {
             Nickname = getPlayerName(source)

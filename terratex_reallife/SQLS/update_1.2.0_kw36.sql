@@ -10,3 +10,9 @@ ALTER TABLE user_data DROP Wanteds;
 ALTER TABLE user_data DROP hkey;
 ALTER TABLE user_data DROP resetWeaponsAtNextLogin;
 ALTER TABLE user_data DROP stvoprostunde;
+
+ALTER TABLE user_inventory DROP Rubbellos;
+ALTER TABLE user_inventory DROP Offline_HP;
+ALTER TABLE user_inventory DROP Offline_Armor;
+ALTER TABLE user_inventory DROP Offline_Weapons;
+ALTER TABLE user_inventory DROP Offline_Ammo;

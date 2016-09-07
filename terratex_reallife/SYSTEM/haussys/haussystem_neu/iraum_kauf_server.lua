@@ -33,6 +33,7 @@ function hitMoebelMarker(thePlayer)
                         end
                     end
                     triggerClientEvent(thePlayer, "recieveValidIraum", thePlayer, validIR, haus:getIRaum())
+                    vioSetElementData(thePlayer, "inIraumShop", true);
                 else
                     showError(thePlayer, "Du bist nicht Besitzer eines Hauses. Du kannst unseren Laden nicht benutzen.")
                 end
@@ -48,6 +49,7 @@ function portPlayerOutOfMoebel()
     setElementInterior(source, 0)
     setElementDimension(source, 0)
     setElementPosition(source, 967.048828125, 2153.7392578125, 10.8203125)
+    vioSetElementData(source, "inIraumShop", false);
 end
 addEventHandler("leaveMoebel_event", getRootElement(), portPlayerOutOfMoebel)
 

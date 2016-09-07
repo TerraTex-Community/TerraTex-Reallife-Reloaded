@@ -12,22 +12,11 @@ function FoodLevelIs_func(menge)
 end
 addEventHandler("FoodLevelIs",getRootElement(),FoodLevelIs_func)
 
-
 addEvent("giveFoodPokal",true)
 function giveFoodPokal_func()
 	if(vioGetElementData(source,"Erfolg_Mein_erstes_Brot")~=1)then
 		vioSetElementData(source,"Erfolg_Mein_erstes_Brot",1)
 		triggerClientEvent(source,"onClientCreatePokalGUI",source,"Mein erstes Brot","Iss das erste Mal etwas")
 	end
-
-
 end
 addEventHandler("giveFoodPokal",getRootElement(),giveFoodPokal_func)
-
-
-
-
-
-
-
-

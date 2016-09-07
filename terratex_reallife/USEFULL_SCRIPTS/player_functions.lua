@@ -112,3 +112,17 @@ function getPlayersByDataValue(dataTag, dataValue )
     end
     return returnTable
 end
+
+function getPlayerWeapons(thePlayer)
+    local weapons = {};
+
+    for i = 0, 12, 1 do
+        local weaponId = getPedWeapon ( thePlayer,  i);
+        if (weaponId > 0) then
+            local ammo = getPedTotalAmmo ( thePlayer, i );
+            weapons[weaponId] = ammo;
+        end
+    end
+
+    return weapons;
+end

@@ -38,6 +38,7 @@ CREATE TABLE `user_offline_data` (
   `DutyState` int(11) DEFAULT '0',
   `HostpitalTime` int(11) DEFAULT '0',
   `WasSavedBefore` int(11) DEFAULT '0',
+  `LastDisconnect` int(11) DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `user_offline_data_user_Nickname_fk` (`Nickname`),
   CONSTRAINT `user_offline_data_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE

@@ -9,27 +9,30 @@ function getFood()
     return food;
 end
 
+function setFood(foodLvl)
+    food = foodLvl;
+end
+addEvent("setFoodLvl", true);
+addEventHandler("setFoodLvl", getRootElement(), setFood)
+
 addEvent("StopHealingTimer", true)
 function StopHealingTimer_func()
     local time = getRealTime()
     abhierHeilenTimer = time.timestamp
     --outputChatBox(tostring(abhierHeilenTimer))
 end
-
 addEventHandler("StopHealingTimer", getRootElement(), StopHealingTimer_func)
 
 function startFood()
     food = 100
     setTimer(reduceFood, 1000, 1)
 end
-
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), startFood)
 
 addEvent("stopFoodTimerForSeconds_Event", true)
 function stopFoodTimerForSeconds(seconds)
     waittimer = waittimer + seconds
 end
-
 addEventHandler("stopFoodTimerForSeconds_Event", getRootElement(), stopFoodTimerForSeconds)
 
 addEvent("krankheitsreduce", true)
@@ -66,10 +69,10 @@ function reduceFood()
         else
             waittimer = waittimer - 1
         end
+        setElementData(getLocalPlayer(), "lastFood", food);
     end
     foodtimer = setTimer(reduceFood, 1000, 1)
 end
-
 addEvent("addFood", true)
 
 function addFoodLevel(menge)
@@ -86,15 +89,12 @@ function addFoodLevel(menge)
 
     triggerServerEvent("giveFoodPokal", getLocalPlayer())
 end
-
 addEventHandler("addFood", getRootElement(), addFoodLevel)
-
 addEvent("setHalfFoodLevel", true)
 
 function foodreset()
     food = 50
 end
-
 addEventHandler("setHalfFoodLevel", getRootElement(), foodreset)
 
 
@@ -104,5 +104,4 @@ function showFood()
         if (food < 0) then food = 0 end
     end
 end
-
 addEventHandler("onClientRender", getRootElement(), showFood)

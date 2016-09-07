@@ -274,6 +274,7 @@
     <script src="ENVIRO/skins/skingui_client.lua" type="client"/>
     <!--FRAKTION-->
     <script src="ENVIRO/fraktionen/fraktion.lua" type="server"/>
+    <script src="ENVIRO/fraktionen/setFrakWeapons.lua" type="server"/>
     <script src="ENVIRO/fraktionen/respawn_functions.lua" type="server"/>
     <script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_server.lua" type="server"/>
     <script src="ENVIRO/fraktionen/fraktionsmanagementui/factionmanagement_client.lua" type="client"/>

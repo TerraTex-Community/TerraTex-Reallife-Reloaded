@@ -148,3 +148,26 @@ function spawnPlayerOnServerConnect(thePlayer)
         Nickname = getPlayerName(source)
     });
 end
+
+function suicide_func(thePlayer)
+    if vioGetElementData(thePlayer, "canUseSuicide") then
+        if (getRealTime().timestamp - vioGetElementData(thePlayer, "canUseSuicide") < (60 * 60)) then
+            outputChatBox("Dieser Befehl kann nur alle 60 Minuten benutzt werden", thePlayer);
+            return;
+        end
+    end
+
+    local x, y, z = getElementPosition(thePlayer);
+    outputChatBox("Bewege dich 5 Minuten nicht von hier weg. Danach wirst du automatisch getötet. (Dieser Befehl kann nur alle 60 Minuten benutzt werden)", thePlayer);
+    setTimer(executeSuicide, (5 * 60 *1000), 1, thePlayer, x, y, z);
+end
+addCommandHandler("suicide", suicide_func, false, false);
+
+function executeSuicide(thePlayer, x, y, z)
+    local newX, newY, newZ = getElementPosition(thePlayer);
+    if (getDistanceBetweenPoints3D(x, y, z, newX, newY, newZ) < 5) then
+        killPed(thePlayer, thePlayer);
+        vioSetElementData(thePlayer, "canUseSuicide", getRealTime().timestamp);
+    end
+    outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen");
+end

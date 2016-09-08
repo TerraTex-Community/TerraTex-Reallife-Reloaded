@@ -177,6 +177,7 @@ function executeSuicide(thePlayer, x, y, z)
     if (getDistanceBetweenPoints3D(x, y, z, newX, newY, newZ) < 5) then
         killPed(thePlayer, thePlayer);
         vioSetElementData(thePlayer, "canUseSuicide", getRealTime().timestamp);
+    else
+        outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen", thePlayer);
     end
-    outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen", thePlayer);
 end

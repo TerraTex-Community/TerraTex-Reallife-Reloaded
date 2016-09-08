@@ -27,7 +27,6 @@ trainDropItemList = {
     { 10000, "geld", 0.1 },
     { 1, "benzin", 0.75 },
     { 10, "benzin", 0.15 },
-    { 100, "rubbellose", 0.8 },
     { 1, "fertigessen", 0.6 },
     { 10, "fertigessen", 0.8 },
     { 1, "snack", 1 },

@@ -46,16 +46,6 @@ function drop_func(thePlayer, Command, theWas)
                 outputChatBox(string.format("%s hat Lottoscheine weggeworfen!", pname), nearbyPlayer, 255, 255, 200)
             end
 
-        elseif (theWas == "Rubbellose") then
-            vioSetElementData(thePlayer, "rubbellos", 0)
-            local posX, posY, posZ = getElementPosition(thePlayer)
-            local chatSphere = createColSphere(posX, posY, posZ, 10)
-            local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
-            destroyElement(chatSphere)
-            local pname = getPlayerName(thePlayer)
-            for index, nearbyPlayer in ipairs(nearbyPlayers) do
-                outputChatBox(string.format("%s hat Rubbellose weggeworfen!", pname), nearbyPlayer, 255, 255, 200)
-            end
         elseif (theWas == "Kondome") then
             vioSetElementData(thePlayer, "Kondome", 0)
             local posX, posY, posZ = getElementPosition(thePlayer)
@@ -67,7 +57,7 @@ function drop_func(thePlayer, Command, theWas)
                 outputChatBox(string.format("%s hat Kondome weggeworfen!", pname), nearbyPlayer, 255, 255, 200)
             end
         else
-            showError(thePlayer, "Du kannst nur folgende Dinge wegwerfen: Drogen, Materials, Benzinkanister, Rubbellose, Lottoscheine und Kondome")
+            showError(thePlayer, "Du kannst nur folgende Dinge wegwerfen: Drogen, Materials, Benzinkanister, Lottoscheine und Kondome")
         end
     end
 end

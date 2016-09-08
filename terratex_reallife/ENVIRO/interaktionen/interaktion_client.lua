@@ -620,11 +620,6 @@ function onClientInterClick_func(button, state, absoluteX, absoluteY, worldX, wo
                             guiGridListSetItemText(Click_Self_GUI_Grid[6], row, Click_Self_GUI_Column[12], "Lottoscheine", false, false)
                             guiGridListSetItemText(Click_Self_GUI_Grid[6], row, Click_Self_GUI_Column[13], tostring(getElementData(getLocalPlayer(), "lottoschein")), false, false)
                         end
-                        if (tonumber(getElementData(getLocalPlayer(), "rubbellos")) > 0) then
-                            row = guiGridListAddRow(Click_Self_GUI_Grid[6])
-                            guiGridListSetItemText(Click_Self_GUI_Grid[6], row, Click_Self_GUI_Column[12], "Rubbellose", false, false)
-                            guiGridListSetItemText(Click_Self_GUI_Grid[6], row, Click_Self_GUI_Column[13], tostring(getElementData(getLocalPlayer(), "rubbellos")), false, false)
-                        end
                         if (tonumber(getElementData(getLocalPlayer(), "snack")) > 0) then
                             row = guiGridListAddRow(Click_Self_GUI_Grid[6])
                             guiGridListSetItemText(Click_Self_GUI_Grid[6], row, Click_Self_GUI_Column[12], "Snack", false, false)

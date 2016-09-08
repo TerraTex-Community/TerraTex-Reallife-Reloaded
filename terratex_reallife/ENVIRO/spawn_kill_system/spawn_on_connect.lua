@@ -16,7 +16,11 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
         local hospitalTime = getElementData(source, "todezeit");
         local duty = vioGetElementData(source, "isMedicDuty") or vioGetElementData(source, "isCopDuty") or vioGetElementData(source, "taxi_duty");
         if (duty) then duty = 1; else duty = 0; end
-        local weapons = getPlayerWeapons(source);
+
+        local weapons = {};
+        if ((quitType ~= "Kicked" and quitType ~= "Banned") or reason=="GMX" or reason == "ShutDown") then
+            weapons = getPlayerWeapons(source);
+        end
 
         -- for HudStats:
         local HudStats = {

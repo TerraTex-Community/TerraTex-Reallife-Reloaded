@@ -17,6 +17,10 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
         local duty = vioGetElementData(source, "isMedicDuty") or vioGetElementData(source, "isCopDuty") or vioGetElementData(source, "taxi_duty");
         if (duty) then duty = 1; else duty = 0; end
 
+        if (vioGetElementData(source, "isCopSwat")) then
+            duty = 2;
+        end
+
         local weapons = {};
         if ((quitType ~= "Kicked" and quitType ~= "Banned") or reason=="GMX" or reason == "ShutDown") then
             weapons = getPlayerWeapons(source);
@@ -95,16 +99,21 @@ function spawnPlayerOnServerConnect(thePlayer)
         local timestamp = getRealTime().timestamp;
 
         if (timestamp - tonumber(offlineData.LastDisconnect) < (2 * 60 * 60)) then
-            if (tonumber(offlineData.DutyState) == 1) then
+            if (tonumber(offlineData.DutyState) > 0) then
                 if (isBeamter(thePlayer)) then
                     vioSetElementData(thePlayer, "isCopDuty", true);
+                    setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"));
+                    if (tonumber(offlineData.DutyState) == 2) then
+                        vioSetElementData(thePlayer,"isCopSwat",true)
+                        setElementModel(thePlayer,285)
+                    end
                 elseif (vioGetElementData(thePlayer, "fraktion") == 10) then
                     vioSetElementData(thePlayer, "isMedicDuty", true);
+                    setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"));
                 elseif (vioGetElementData(thePlayer, "fraktion") == 4) then
                     vioSetElementData(thePlayer, "taxi_duty", true);
+                    setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"));
                 end
-
-                setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"));
             end
         end
 

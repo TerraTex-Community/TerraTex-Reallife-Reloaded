@@ -103,17 +103,17 @@ function setPlayerAusrustung()
         if (frakmun[fraktion]) then
             if (2000 < frakmun[fraktion]) then
                 frakmun[fraktion] = frakmun[fraktion] - 2000
-                frakdepot_log(fraktion, 3, -2000, "Spawn-" .. getPlayerName(thePlayer))
+                frakdepot_log(fraktion, 3, -2000, "Spawn-" .. getPlayerName(source))
                 outputChatBox("Standardwaffenpaket für 2000 Munition erhalten!", source, 0, 255, 0);
             else
                 outputChatBox("Deine Fraktion hat keine Munition mehr!", source, 0, 255, 0);
                 return;
             end
         end
-
-        setPedArmor(source, 100)
-        setPlayerRearmWeapons(source)
     end
+
+    setPedArmor(source, 100)
+    setPlayerRearmWeapons(source)
 end
 addEvent("giveMeStandardAusrustung", true)
 addEventHandler("giveMeStandardAusrustung", getRootElement(), setPlayerAusrustung)

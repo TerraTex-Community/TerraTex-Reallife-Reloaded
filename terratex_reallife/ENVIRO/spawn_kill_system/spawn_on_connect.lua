@@ -178,5 +178,5 @@ function executeSuicide(thePlayer, x, y, z)
         killPed(thePlayer, thePlayer);
         vioSetElementData(thePlayer, "canUseSuicide", getRealTime().timestamp);
     end
-    outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen");
+    outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen", thePlayer);
 end

@@ -585,11 +585,7 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "afk_timer", 0)
         vioSetElementData(source, "afk_status", 0)
 
-        if (vioGetElementData(source, "fraktion") > 1 and vioGetElementData(source, "fraktion") ~= 5) then
-            setPlayerSpawn(source, vioGetElementData(source, "spawnplace"), vioGetElementData(source, "FrakSkin"), vioGetElementData(source, "fraktion"), 113)
-        else
-            setPlayerSpawn(source, vioGetElementData(source, "spawnplace"), vioGetElementData(source, "skinid"), vioGetElementData(source, "fraktion"), 113)
-        end
+        spawnPlayerOnServerConnect(source);
 
         loadTapps(source)
 

@@ -10,7 +10,7 @@ function getFood()
 end
 
 function setFood(foodLvl)
-    food = foodLvl;
+    food = tonumber(foodLvl);
 end
 addEvent("setFoodLvl", true);
 addEventHandler("setFoodLvl", getRootElement(), setFood)

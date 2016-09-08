@@ -166,11 +166,23 @@ function death_func(ammo, attacker, weapon, bodypart)
             end
         end
 
-        vioSetElementData(source, "todelast", (todelast))
-        vioSetElementData(source, "tode", (vioGetElementData(source, "tode") + 1))
-        setElementData(source, "todezeit", deathtime)
-        loadKrankenhaus(source)
+        local timeHandled = false;
+        if (vioGetElementData(source, "overwriteDeathTime")) then
+            if (vioGetElementData(source, "overwriteDeathTime") > 0) then
+                local newDeathTime = vioGetElementData(source, "overwriteDeathTime");
+                setElementData(source, "todezeit", newDeathTime);
+                timeHandled = true;
+                vioSetElementData(source, "overwriteDeathTime", false);
+            end
+        end
 
+        if not timeHandled then
+            vioSetElementData(source, "todelast", (todelast))
+            vioSetElementData(source, "tode", (vioGetElementData(source, "tode") + 1))
+            setElementData(source, "todezeit", deathtime)
+        end
+
+        loadKrankenhaus(source)
 
         -- logging
         if (attacker and attacker ~= source) then
@@ -184,7 +196,6 @@ function death_func(ammo, attacker, weapon, bodypart)
                 BlacklistOrWantedkill = wasBlacklistOrWantedKill,
                 WeaponID = weapon
             });
-
         end
     end
 end

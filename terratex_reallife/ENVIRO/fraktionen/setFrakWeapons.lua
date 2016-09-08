@@ -72,6 +72,12 @@ function setPlayerRearmWeapons(thePlayer)
     local fraktion = vioGetElementData(thePlayer, "fraktion");
     local rang = vioGetElementData(thePlayer, "fraktionsrang");
 
+    if (isBeamter(thePlayer) and (vioGetElementData(thePlayer,"isCopSwat"))) then
+        fraktion = 5;
+    end
+
+    setPedArmor(thePlayer, 100)
+
     if (frakRearmWeapons[fraktion]) then
         if (frakRearmWeapons[fraktion][rang]) then
             for theWeaponId, ammo in pairs (frakRearmWeapons[fraktion][rang]) do
@@ -104,6 +110,7 @@ function setPlayerAusrustung()
             if (2000 < frakmun[fraktion]) then
                 frakmun[fraktion] = frakmun[fraktion] - 2000
                 frakdepot_log(fraktion, 3, -2000, "Spawn-" .. getPlayerName(source))
+                setPlayerRearmWeapons(source)
                 outputChatBox("Standardwaffenpaket für 2000 Munition erhalten!", source, 0, 255, 0);
             else
                 outputChatBox("Deine Fraktion hat keine Munition mehr!", source, 0, 255, 0);
@@ -111,9 +118,6 @@ function setPlayerAusrustung()
             end
         end
     end
-
-    setPedArmor(source, 100)
-    setPlayerRearmWeapons(source)
 end
 addEvent("giveMeStandardAusrustung", true)
 addEventHandler("giveMeStandardAusrustung", getRootElement(), setPlayerAusrustung)

@@ -24,24 +24,15 @@ function rearm_func(thePlayer)
 		local disc=getDistanceBetweenPoints3D(x,y,z, 223.626953125,1861.013671875,13.14695930481)--254.4853515625,77.443359375,1003.640625
 		local disd=getDistanceBetweenPoints3D(x,y,z,254.4853515625,77.443359375,1003.640625)
 		if(dis<5)or(disb<5)or(disc<5)or(disd<5)then
-			Fraktion=vioGetElementData(thePlayer,"fraktion")
-			Rang=vioGetElementData(thePlayer,"fraktionsrang")
-			if(vioGetElementData(thePlayer,"isCopSwat"))then
-				setPlayerRearmWeapons(thePlayer,5,Rang)							
-			else
-				setPlayerRearmWeapons(thePlayer,Fraktion,Rang)		
-			end
+			local Fraktion=vioGetElementData(thePlayer,"fraktion")
+			local Rang=vioGetElementData(thePlayer,"fraktionsrang")
+			setPlayerRearmWeapons(thePlayer)
+
 			triggerClientEvent(thePlayer,"addFood",thePlayer,500)
 		end	
 		if(isPedInVehicle ( thePlayer ))then
 			if(getElementModel(getPedOccupiedVehicle ( thePlayer ))==433) and (vioGetElementData(getPedOccupiedVehicle ( thePlayer ),"Beamtenvehicle"))then
-				Fraktion=vioGetElementData(thePlayer,"fraktion")
-				Rang=vioGetElementData(thePlayer,"fraktionsrang")--Fraktion == 5 sek
-				if(vioGetElementData(thePlayer,"isCopSwat"))then
-					setPlayerRearmWeapons(thePlayer,5,Rang)							
-				else
-					setPlayerRearmWeapons(thePlayer,Fraktion,Rang)		
-				end
+				setPlayerRearmWeapons(thePlayer)
 				triggerClientEvent(thePlayer,"addFood",thePlayer,500)			
 			end		
 		end			

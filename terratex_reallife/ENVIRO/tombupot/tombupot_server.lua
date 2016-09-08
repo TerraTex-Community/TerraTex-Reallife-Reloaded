@@ -41,7 +41,7 @@ function acceptedBuyTomboTicket_func()
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
         local tickets = MySql.helper.getCountSync("user_tombupot")
         local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
-        triggerClientEvent("confirmTombuTicket", source, winTimeHour, winTimeMinute, gewinn)
+        triggerClientEvent(source, "confirmTombuTicket", source, winTimeHour, winTimeMinute, gewinn)
     end
 end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)

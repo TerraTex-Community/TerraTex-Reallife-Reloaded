@@ -34,15 +34,14 @@ end
 addEvent("acceptedBuyTomboTicket", true)
 function acceptedBuyTomboTicket_func()
     if (getPlayerMoney(source) < tombuTicketPrice) then
-        showError(source, "Du hast nicht genug Geld!")
+        triggerClientEvent("needMoreMoneyTombupot", source)
     else
         changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
         changeBizKasse(16, tombuTicketPrice * (bizPercentage / 100), "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))
         MySql.helper.insert("user_tombupot", {Nickname = getPlayerName(source)});
         local tickets = MySql.helper.getCountSync("user_tombupot")
         local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
-        outputChatBox(string.format("Du hast nun ein weiteres Ticket für die Tombupot-Lotterie erworben! Die Ziehung findet %s:%s Uhr statt!", winTimeHour, winTimeMinute), source, 155, 155, 0)
-        outputChatBox(string.format("Die Gewinnsumme liegt nun bei %s$!", gewinn), source, 155, 155, 0)
+        triggerClientEvent("confirmTombuTicket", source, winTimeHour, winTimeMinute, gewinn)
     end
 end
 addEventHandler("acceptedBuyTomboTicket", getRootElement(), acceptedBuyTomboTicket_func)

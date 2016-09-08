@@ -90,7 +90,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         spawnPlayer(source, 1742.8310546875, -1862.2724609375, 13.576497077942, 355.60266113281, skinid, 0, 0, team[fraktion])
                         vioSetElementData(source, "spawnplace", 0)
                     end
-                elseif (spawn == 3) and not (spawnDisconnectPlayers[name]) then
+                elseif (spawn == 3) then
                     local time = getRealTime()
                     local nickname = getPlayerName(source)
                     local slot = vioGetElementData(source, "VehicleSpawn")

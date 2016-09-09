@@ -74,7 +74,7 @@ function spawnPlayerOnServerConnect(thePlayer)
         local position = fromJSON(offlineData.Position);
         local rotation = fromJSON(offlineData.Rotation);
         local interior = tonumber(offlineData.Interior);
-        local dimension = tonumber(offlineData.Interior);
+        local dimension = tonumber(offlineData.Dimension);
         local additionalData = fromJSON(offlineData.AdditionalData);
 
         local skin = vioGetElementData(thePlayer, "skinid");

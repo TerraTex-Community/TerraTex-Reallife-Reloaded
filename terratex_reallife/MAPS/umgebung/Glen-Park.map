@@ -211,5 +211,4 @@
     <object id="object (pot_02) (13)" breakable="true" interior="0" alpha="255" model="644" doublesided="false" scale="1" dimension="0" posX="1940.7063" posY="-1179.0767" posZ="18.87894" rotX="0" rotY="0" rotZ="309.99"></object>
     <object id="object (pot_02) (14)" breakable="true" interior="0" alpha="255" model="644" doublesided="false" scale="1" dimension="0" posX="1936.0807" posY="-1181.5409" posZ="18.87894" rotX="0" rotY="0" rotZ="11.99"></object>
     <object id="object (sm_scrub_rock6) (2)" breakable="true" interior="0" alpha="255" model="758" doublesided="false" scale="1" dimension="0" posX="1989.4658" posY="-1205.7754" posZ="15.4309" rotX="0" rotY="0" rotZ="0"></object>
-    <removeWorldObject id="removeWorldObject (lasdkrtgrp1) (1)" radius="13.072611" interior="0" model="3573" lodModel="0" posX="1798.6484" posY="-2057.9141" posZ="14.98438" rotX="0" rotY="0" rotZ="0"></removeWorldObject>
 </map>

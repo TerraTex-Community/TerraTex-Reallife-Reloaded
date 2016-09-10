@@ -68,10 +68,10 @@ end
 
 function globalTankTimer()
     local aenderung = ((math.random(1, 300) / 100) - 1.5) / 10
-    if ((serversettings["tankpreis"] + aenderung) < 0.80) then
-        serversettings["tankpreis"] = 0.80
-    elseif ((serversettings["tankpreis"] + aenderung) > 1.815) then
-        serversettings["tankpreis"] = 1.815
+    if ((serversettings["tankpreis"] + aenderung) < 3.80) then
+        serversettings["tankpreis"] = 8.80
+    elseif ((serversettings["tankpreis"] + aenderung) > 15.815) then
+        serversettings["tankpreis"] = 8.815
     else
         serversettings["tankpreis"] = serversettings["tankpreis"] + aenderung
     end

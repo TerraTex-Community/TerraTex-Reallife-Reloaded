@@ -34,7 +34,7 @@ end
 addEvent("acceptedBuyTomboTicket", true)
 function acceptedBuyTomboTicket_func()
     if (getPlayerMoney(source) < tombuTicketPrice) then
-        triggerClientEvent("needMoreMoneyTombupot", source)
+        triggerClientEvent(source, "needMoreMoneyTombupot", source)
     else
         changePlayerMoney(source, -tombuTicketPrice, "sonstiges", "Kauf eines Tombupot-Lotterie-Tickets");
         changeBizKasse(16, tombuTicketPrice * (bizPercentage / 100), "Kauf Tombupot-Lotterie-Ticket von "..getPlayerName(source))

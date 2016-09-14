@@ -442,6 +442,7 @@ function tazer_func(thePlayer)
                                 outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
                             end
                             toggleAllControls(nearestplayer, false, true, false)
+                            vioSetElementData(nearestplayer, "isTazered", true);
                             setPedAnimation(nearestplayer, "crack", "crckdeth2", -1, true, true, true)
                             setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
                             vioSetElementData(thePlayer, "Tazer", 1)
@@ -471,6 +472,7 @@ function unfreeze_tazer(thePlayer, police)
             toggleControl(thePlayer, "walk", false)
             toggleControl(thePlayer, "sprint", false)
             setControlState(thePlayer, "walk", true)
+            vioSetElementData(thePlayer, "isTazered", false);
             setTimer(unfreeze_tazer_toggle, 14000, 1, thePlayer)
         end
     end

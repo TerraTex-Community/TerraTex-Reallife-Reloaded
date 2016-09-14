@@ -60,6 +60,10 @@ local animarray={
 
 
 function setAnimation(thePlayer,cmd)
+
+    if (vioGetElementData(thePlayer, "isTazered")) then
+        return;
+    end
     -- setPedAnimation(playerSource, "ped", "phone_out",-1,false,true,true)
     if(animarray[cmd])then
         vioSetElementData(thePlayer,"anim", 1)

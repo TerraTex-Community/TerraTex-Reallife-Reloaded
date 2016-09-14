@@ -7,61 +7,62 @@
 --
 
 function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
+    if (isBeamter(thePlayer)) then
+        local criminals = CrimeSystem.getSuspects();
+        local orderedCriminals = table.copy(CrimeSystem._criminalStates);
 
-    local criminals = CrimeSystem.getSuspects();
-    local orderedCriminals = table.copy(CrimeSystem._criminalStates);
-
-    for theKey, theCriminal in ipairs(criminals) do
-        local lastState = 1;
-        for theKey, theState in ipairs(orderedCriminals) do
-            if (theState.minPercentage <= tonumber(theCriminal.CrimeLevel)) then
-                lastState = theKey;
-            end
-        end
-
-        if not orderedCriminals[lastState].criminals then orderedCriminals[lastState].criminals = {}; end
-
-        if (vioGetElementData(theCriminal, "mussAlka") == 1) then
-            table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname .. " (muss Alkatraz)");
-        else
-            table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname);
-        end
-    end
-
-    if (not crimeStateOrPlayNamePart) then
-        for theKey, theState in ipairs(orderedCriminals) do
-            if (theState.criminals) then
-                outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
-            end
-        end
-    elseif (tonumber(crimeStateOrPlayNamePart)) then
-        if (orderedCriminals[tonumber(crimeStateOrPlayNamePart)]) then
-            local theState = orderedCriminals[tonumber(crimeStateOrPlayNamePart)];
-            outputChatBox("Stufe " .. crimeStateOrPlayNamePart .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
-        else
-            showError(thePlayer, "Dieser Kriminalitätsstatus existiert nicht.")
-        end
-    else
-        local toPlayer = getPlayerFromIncompleteName(crimeStateOrPlayNamePart);
-        if (toPlayer) then
-            local percentage = CrimeSystem.getCrimePercentage(toPlayer);
-
+        for theKey, theCriminal in ipairs(criminals) do
             local lastState = 1;
             for theKey, theState in ipairs(orderedCriminals) do
-                if (theState.minPercentage <= percentage) then
+                if (theState.minPercentage <= tonumber(theCriminal.CrimeLevel)) then
                     lastState = theKey;
                 end
             end
 
-            local mussAlka = "";
-            if (vioGetElementData(toPlayer, "mussAlka") == 1) then
-                mussAlka = " (muss Alkatraz)"
+            if not orderedCriminals[lastState].criminals then orderedCriminals[lastState].criminals = {}; end
+
+            if (vioGetElementData(theCriminal, "mussAlka") == 1) then
+                table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname .. " (muss Alkatraz)");
+            else
+                table.insert(orderedCriminals[lastState].criminals, theCriminal.Nickname);
             end
+        end
 
-            outputChatBox("Der Spieler hat den Kriminalitätsstatus: Stufe " .. lastState .. " - " .. orderedCriminals[lastState].name .. mussAlka, thePlayer);
-
+        if (not crimeStateOrPlayNamePart) then
+            for theKey, theState in ipairs(orderedCriminals) do
+                if (theState.criminals) then
+                    outputChatBox("Stufe " .. theKey .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
+                end
+            end
+        elseif (tonumber(crimeStateOrPlayNamePart)) then
+            if (orderedCriminals[tonumber(crimeStateOrPlayNamePart)]) then
+                local theState = orderedCriminals[tonumber(crimeStateOrPlayNamePart)];
+                outputChatBox("Stufe " .. crimeStateOrPlayNamePart .. " - " .. theState.name .. ": " .. table.concat(theState.criminals, ", "), thePlayer);
+            else
+                showError(thePlayer, "Dieser Kriminalitätsstatus existiert nicht.")
+            end
         else
-            showError(thePlayer, "Dieser Spieler existiert nicht!");
+            local toPlayer = getPlayerFromIncompleteName(crimeStateOrPlayNamePart);
+            if (toPlayer) then
+                local percentage = CrimeSystem.getCrimePercentage(toPlayer);
+
+                local lastState = 1;
+                for theKey, theState in ipairs(orderedCriminals) do
+                    if (theState.minPercentage <= percentage) then
+                        lastState = theKey;
+                    end
+                end
+
+                local mussAlka = "";
+                if (vioGetElementData(toPlayer, "mussAlka") == 1) then
+                    mussAlka = " (muss Alkatraz)"
+                end
+
+                outputChatBox("Der Spieler hat den Kriminalitätsstatus: Stufe " .. lastState .. " - " .. orderedCriminals[lastState].name .. mussAlka, thePlayer);
+
+            else
+                showError(thePlayer, "Dieser Spieler existiert nicht!");
+            end
         end
     end
 end

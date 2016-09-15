@@ -1,4 +1,6 @@
 # TerraTex-Reloaded
+
+[![Join the chat at https://gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded](https://badges.gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded.svg)](https://gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Refactored TerraTex Script - Pay Attention, this Version is not compatible with the old one.
 
 > <b>PAY ATTENTION THIS SCRIPT IS WORK IN PROGRESS!!</b>

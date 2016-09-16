@@ -202,7 +202,7 @@ function frisk_func(thePlayer, Command, vonPlayerName)
                 local xv, yv, zv = getElementPosition(vonPlayer)
                 local xt, yt, zt = getElementPosition(thePlayer)
                 local dis = getDistanceBetweenPoints3D(xv, yv, zv, xt, yt, zt)
-                if (dis < 10) then
+                if (dis < 20) then
                     local foundsomething = 0
                     outputChatBox(string.format("%s hat Sie durchsucht!", getPlayerName(thePlayer)), vonPlayer, 0, 255, 255)
                     outputChatBox(string.format("Du hast %s durchsucht. Du hast gefunden:", getPlayerName(vonPlayer)), thePlayer, 0, 255, 255)

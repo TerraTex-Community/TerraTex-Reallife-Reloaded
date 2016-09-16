@@ -253,7 +253,7 @@ function take_func(thePlayer, Command, wasstring, vonPlayerName)
                 local xv, yv, zv = getElementPosition(vonPlayer)
                 local xt, yt, zt = getElementPosition(thePlayer)
                 local dis = getDistanceBetweenPoints3D(xv, yv, zv, xt, yt, zt)
-                if (dis < 10) then
+                if (dis < 20) then
                     if (wasstring == "FahrzeugLizensen") then
                         vioSetElementData(vonPlayer, "autoLic", -5)
                         vioSetElementData(vonPlayer, "bikeLic", -5)

@@ -64,7 +64,7 @@ function letPlayerCreateSpike(player)
         triggerClientEvent(player, "createSpike", player)
     end
 end
-addCommandHandler("cspikes", letPlayerCreateSpike)
+addCommandHandler("cspike", letPlayerCreateSpike)
 
 function deleteSpikeInRange(player)
     if (isBeamter(player) and table.getn(spikes) > 0) then
@@ -87,7 +87,7 @@ function deleteSpikeInRange(player)
         end
     end
 end
-addCommandHandler("dspikes", deleteSpikeInRange)
+addCommandHandler("dspike", deleteSpikeInRange)
 
 function deleteAllSpike(player)
     if (isBeamter(player) and table.getn(spikes) > 0) then
@@ -99,4 +99,4 @@ function deleteAllSpike(player)
         outputChatBox("Die Nagelbänder wurden erfolgreich abgebaut", player)
     end
 end
-addCommandHandler("dspikes_all", deleteAllSpike)
+addCommandHandler("dallspikes", deleteAllSpike)

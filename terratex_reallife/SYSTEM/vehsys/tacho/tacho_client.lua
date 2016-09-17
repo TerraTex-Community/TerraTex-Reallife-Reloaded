@@ -372,6 +372,5 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 function slowBrakeTimer()
     if (slowBrake and brakeFloat < 1) then
         brakeFloat = brakeFloat + 0.02
-        outputChatBox(brakeFloat.."")
     end
 end

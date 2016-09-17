@@ -29,7 +29,7 @@ function checkIfWheelsAreInSpikes()
                     if wheelsAssignment[partName] and wheelsInSpike[wheelsAssignment[partName]] == 0 then
                         local x, y, z = getVehicleComponentPosition(vehicle, partName, "world")
                         local isInSpike = pnpoly(spike.poly.x, spike.poly.y, x, y)
-                        if (isInSpike) then
+                        if (isInSpike and isLineOfSightClear(x, y, z, ox, oy, oz, true, false, false, true, false, false, false, spike.obj)) then
                             wheelsInSpike[wheelsAssignment[partName]] = 1
                             changed = true
                         end

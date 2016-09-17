@@ -115,6 +115,11 @@ function onPlayerEnterTrashMaster_func()
         theElement[7] = createObject(1264, theElement[1] + 0.24, theElement[2] - 0.471, theElement[3])
         theElement[8] = createObject(1264, theElement[1] - 0.26, theElement[2] - 0.24, theElement[3] - 0.25)
         theElement[9] = createObject(1264, theElement[1] + 0.17, theElement[2] - 0.181, theElement[3] + 0.5)
+        setElementCollisionsEnabled ( theElement[5], false);
+        setElementCollisionsEnabled ( theElement[6], false);
+        setElementCollisionsEnabled ( theElement[7], false);
+        setElementCollisionsEnabled ( theElement[8], false);
+        setElementCollisionsEnabled ( theElement[9], false);
         theElement[10] = createBlip(theElement[1], theElement[2], theElement[3], 0, 2, 0, 0, 255, 255, 0, 1200)
     end
     deponieMarker = createMarker(2181.57421875, -1983.2900390625, 12.433829307556, "cylinder", 3.0, 13, 130, 0)
@@ -197,6 +202,11 @@ function enterTrashMasterCheckpoint(hitPlayer)
                     theElement[7] = createObject(1264, theElement[1] + 0.24, theElement[2] - 0.471, theElement[3])
                     theElement[8] = createObject(1264, theElement[1] - 0.26, theElement[2] - 0.24, theElement[3] - 0.25)
                     theElement[9] = createObject(1264, theElement[1] + 0.17, theElement[2] - 0.181, theElement[3] + 0.5)
+                    setElementCollisionsEnabled ( theElement[5], false);
+                    setElementCollisionsEnabled ( theElement[6], false);
+                    setElementCollisionsEnabled ( theElement[7], false);
+                    setElementCollisionsEnabled ( theElement[8], false);
+                    setElementCollisionsEnabled ( theElement[9], false);
                     theElement[10] = createBlip(theElement[1], theElement[2], theElement[3], 0, 2, 0, 0, 255, 255, 0, 1200)
                 end
             end

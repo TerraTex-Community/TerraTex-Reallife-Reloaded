@@ -284,6 +284,7 @@ addEventHandler("onClientVehicleEnter", getRootElement(), enterVehicleSeat)
 function exitVehicleSeat(thePlayer)
     if (thePlayer == getLocalPlayer()) then
         lastseat = false
+        slowBrake = false
     end
 end
 

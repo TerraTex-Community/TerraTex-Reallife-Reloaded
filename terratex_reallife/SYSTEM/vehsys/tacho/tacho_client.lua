@@ -1,5 +1,7 @@
 local lastseat = false
 local lastspeed = false
+local slowBrake = false
+local brakeFloat = 0
 
 local speedertype = 0
 local speedername = { [0] = "Sie haben den Tempomat abgeschaltet!", "Sie haben den Tempomat in den LimiterModus gestellt!", "Sie haben den Tempomat vollständig aktiviert!" }
@@ -44,16 +46,16 @@ function enterVehicle()
     if (isPedInVehicle(getLocalPlayer())) then
         if (lastseat == 0) then
             local xs, ys = guiGetScreenSize()
-
-            if (getPedOccupiedVehicle(getLocalPlayer())) then
+            local veh = getPedOccupiedVehicle(getLocalPlayer())
+            if (veh) then
                 benzin = 69
-                if (getElementData(getPedOccupiedVehicle(getLocalPlayer()), "tank")) then
-                    benzin = math.round(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "tank") * 0.69)
+                if (getElementData(veh, "tank")) then
+                    benzin = math.round(getElementData(veh, "tank") * 0.69)
                 end
                 local kmtext = "000000.0"
-                if (getElementData(getPedOccupiedVehicle(getLocalPlayer()), "kmstand")) then
-                    local km = tostring(math.round(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "kmstand"), 1))
-                    if (math.round(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "kmstand"), 1) == math.round(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "kmstand"), 0)) then
+                if (getElementData(veh, "kmstand")) then
+                    local km = tostring(math.round(getElementData(veh, "kmstand"), 1))
+                    if (math.round(getElementData(veh, "kmstand"), 1) == math.round(getElementData(veh, "kmstand"), 0)) then
                         km = km .. ".0"
                     end
                     if (string.len(km) == 8) then
@@ -70,7 +72,7 @@ function enterVehicle()
                         kmtext = newkm .. km
                     end
                 end
-                local tx, ty, tz = getElementVelocity(getPedOccupiedVehicle(getLocalPlayer()))
+                local tx, ty, tz = getElementVelocity(veh)
                 local speed = 180 * math.sqrt(tx * tx + ty * ty + tz * tz)
                 local messpeed = math.sqrt(tx * tx + ty * ty + tz * tz)
                 txo = tx
@@ -128,11 +130,10 @@ function enterVehicle()
                                 wasBremseSet = true
                             else
                                 local mult = (maxspeed / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                             end
                         end
-                        local veh = getPedOccupiedVehicle(getLocalPlayer());
-                        if (speedertype == 2 and getVehicleEngineState (veh) and tonumber(getElementData(veh, "tank")) > 10 ) then
+                        if (speedertype == 2 and getVehicleEngineState(veh) and getElementData(veh, "tank") and tonumber(getElementData(veh, "tank")) > 10 ) then
                             --wasBremseSet=true
                             if not ((messpeed + 4 * (1 / 180)) < maxspeed) then
                                 if (getKeyState("num_add")) then
@@ -153,7 +154,7 @@ function enterVehicle()
                         end
                     end
 
-                    local whA, whB, whC, whD = getVehicleWheelStates(getPedOccupiedVehicle(getLocalPlayer()))
+                    local whA, whB, whC, whD = getVehicleWheelStates(veh)
                     local futsch = 0
                     if (whA == 1) then
                         futsch = futsch + 1
@@ -168,60 +169,63 @@ function enterVehicle()
                         futsch = futsch + 1
                     end
                     if (futsch > 0) then
-
+                        if (not slowBrake) then
+                            brakeFloat = 0
+                            slowBrake = true
+                        end
                         if (messpeed > maxwheelspeed[futsch]) then
-                            local mult = (maxwheelspeed[futsch] / (messpeed / 100)) / 100
-                            setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                            local mult = ((maxwheelspeed[futsch] / (messpeed / 100)) / 100) * brakeFloat + 1 - brakeFloat
+                            setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                         end
                         if (speedertype == 2) then
                             speedertype = 0
                             setControlState("accelerate", false)
                         end
+                    else
+                        slowBrake = false
                     end
 
                     if not (tonumber(getElementData(getLocalPlayer(), "inArena")) ~= 0) then
-                        if (getElementHealth(getPedOccupiedVehicle(getLocalPlayer())) < 500) then
+                        if (getElementHealth(veh) < 500) then
                             if (messpeed > maxmotorspeed) then
-
                                 local mult = (maxmotorspeed / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = maxmotorspeed
                             end
                         end
 
-                        if (getElementHealth(getPedOccupiedVehicle(getLocalPlayer())) < 350) then
-                            if (getVehicleEngineState(getPedOccupiedVehicle(getLocalPlayer()))) then
-                                triggerServerEvent("shutdownMotor", getPedOccupiedVehicle(getLocalPlayer()))
+                        if (getElementHealth(veh) < 350) then
+                            if (getVehicleEngineState(veh)) then
+                                triggerServerEvent("shutdownMotor", veh)
                             end
                         end
                     end
                     --wtruck
-                    local vehicle = getPedOccupiedVehicle(getLocalPlayer())
                     if (config["feature.limiter.muntruck"]) then
-                        if (getElementData(vehicle, "muntruck") or getElementData(vehicle, "atomveh") or getElementData(vehicle, "isGTruck")) then
+                        if (getElementData(veh, "muntruck") or getElementData(veh, "atomveh") or getElementData(veh, "isGTruck")) then
                             if (messpeed > (1 / 180 * tonumber(config["feature.limiter.muntruck"]))) then
                                 local mult = ((1 / 180 * tonumber(config["feature.limiter.muntruck"])) / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = (1 / 180 * tonumber(config["feature.limiter.muntruck"]))
                             end
                         end
                     end
                     --faggio
                     if config["feature.limiter.faggio"] then
-                        if (getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 462) then
+                        if (getElementModel(veh) == 462) then
                             if (messpeed > (1 / 180 * tonumber(config["feature.limiter.faggio"]))) then
                                 local mult = ((1 / 180 * tonumber(config["feature.limiter.faggio"])) / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = (1 / 180 * tonumber(config["feature.limiter.faggio"]))
                             end
                         end
                     end
                     --Pizza
                     if config["feature.limiter.pizza"] then
-                        if (getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 448) then
+                        if (getElementModel(veh) == 448) then
                             if (messpeed > (1 / 180 * tonumber(config["feature.limiter.pizza"]))) then
                                 local mult = ((1 / 180 * tonumber(config["feature.limiter.pizza"])) / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = (1 / 180 * tonumber(config["feature.limiter.pizza"]))
                             end
                         end
@@ -229,20 +233,20 @@ function enterVehicle()
 
                     --quad
                     if config["feature.limiter.pizza"] then
-                        if (getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 471) then
+                        if (getElementModel(veh) == 471) then
                             if (messpeed > (1 / 180 * tonumber(config["feature.limiter.pizza"]))) then
                                 local mult = ((1 / 180 * tonumber(config["feature.limiter.quad"])) / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = (1 / 180 * tonumber(config["feature.limiter.quad"]))
                             end
                         end
                     end
 
 
-                    if not (isPlane(getPedOccupiedVehicle(getLocalPlayer()))) then
+                    if not (isPlane(veh)) then
                         local isnotFrakcar = false
-                        if (tonumber(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "frakid"))) then
-                            if (tonumber(getElementData(getPedOccupiedVehicle(getLocalPlayer()), "frakid")) ~= 0) then
+                        if (tonumber(getElementData(veh, "frakid"))) then
+                            if (tonumber(getElementData(veh, "frakid")) ~= 0) then
                                 isnotFrakcar = false
                             else
                                 isnotFrakcar = true
@@ -250,10 +254,10 @@ function enterVehicle()
                         else
                             isnotFrakcar = true
                         end
-                        if (isInRuheZone and (getElementData(getPedOccupiedVehicle(getLocalPlayer()), "besitzer") or isnotFrakcar)) then
+                        if (isInRuheZone and (getElementData(veh, "besitzer") or isnotFrakcar)) then
                             if (messpeed > (1 / 180 * 30)) then
                                 local mult = ((1 / 180 * 30) / (messpeed / 100)) / 100
-                                setElementVelocity(getPedOccupiedVehicle(getLocalPlayer()), tx * mult, ty * mult, tz * mult)
+                                setElementVelocity(veh, tx * mult, ty * mult, tz * mult)
                                 maxspeed = (1 / 180 * 30)
                             end
                         end
@@ -359,11 +363,14 @@ end
 
 addEventHandler("onClientVehicleEnter", getRootElement(), disbaleTeme)
 
+function slowBrake_start()
+    setTimer(slowBrakeTimer, 100, 0)
+end
+addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), slowBrake_start)
 
-
-
-
-
-
-
-
+function slowBrakeTimer()
+    if (slowBrake and brakeFloat < 1) then
+        brakeFloat = brakeFloat + 0.02
+        outputChatBox(brakeFloat.."")
+    end
+end

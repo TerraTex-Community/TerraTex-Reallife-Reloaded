@@ -51,9 +51,9 @@ function createSpike(x, y, z, rotZ, minX, minY, maxX, maxY)
             local _poly = {x = {x1, x2, x3, x4}, y = {y1, y2, y3, y4}}
             table.insert(spikes, {obj = _obj, bigCol = _bigCol, poly = _poly})
             sendSpikeTable(getRootElement())
-            outputChatBox("Das Nagelband wurde erfolgreich ausgelegt", player)
+            outputChatBox("Das Nagelband wurde erfolgreich ausgelegt", source)
         else
-            outputChatBox("Es wurden bereits "..spikeLimit.." Nagelbänder ausgelegt", player)
+            outputChatBox("Es wurden bereits "..spikeLimit.." Nagelbänder ausgelegt", source)
         end
     end
 end

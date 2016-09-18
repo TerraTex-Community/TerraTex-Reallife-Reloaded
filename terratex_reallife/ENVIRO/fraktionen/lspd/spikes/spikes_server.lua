@@ -97,7 +97,7 @@ function deleteAllSpike(player)
         end
         spikes = {}
         sendSpikeTable(getRootElement())
-        outputChatBox("Die Nagelbänder wurde erfolgreich abgebaut", player)
+        outputChatBox("Alle Nagelbänder wurden erfolgreich abgebaut", player)
     end
 end
 addCommandHandler("dallspikes", deleteAllSpike)

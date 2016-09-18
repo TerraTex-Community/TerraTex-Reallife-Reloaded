@@ -135,8 +135,6 @@ function Haus:pickupHit(thePlayer)
         end
     end
 
-
-
     if (self.besitzer) then
         if (getPlayerName(thePlayer) == self.besitzer) then
             Text = "Hausnummer: %s\nAktueller Hauswert: %s\nHauskasse: %s\nMiete: %s\n%s mit %s Stockwerken bietet %s qm Wohnfläche \n(von %s möglichen qm) mit einer %s Ausstattung."
@@ -170,7 +168,7 @@ end
 function Haus:setMiete(miete)
     self.miete = miete
 
-    local result = MySql.helper.getSync("user_data", "Nickname", {hkey = (-self.ID)});
+    local result = MySql.helper.getSync("user_data", "Nickname", {newhkey = (-self.ID)});
     for theKey, theRow in ipairs(result) do
         MySql.helper.insert("user_offline_messages", {
             VonName = "Mietsystem",

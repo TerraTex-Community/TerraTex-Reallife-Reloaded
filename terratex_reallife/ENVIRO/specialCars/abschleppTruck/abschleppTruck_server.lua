@@ -42,7 +42,7 @@ function abschleppTruck_Aufladen(theVehicle, z)
                     end
                     setElementFrozen(theVehicle, true)
                     setTimer(function()
-                        if (isElement(theVehicle)) then
+                        if (isElement(theVehicle) and isElementFrozen(abschleppTruck)) then
                             local driverCounter = 0
                             for seat, player in pairs(getVehicleOccupants(theVehicle)) do
                                 driverCounter = driverCounter + 1
@@ -54,9 +54,9 @@ function abschleppTruck_Aufladen(theVehicle, z)
                                 triggerClientEvent("abschleppTruck_SetClientAttachedVehicleCollisionsEnabled", player, theVehicle, false)
                             end
                             setElementFrozen(abschleppTruck, false)
+                            setElementFrozen(theVehicle, false)
+                            setElementData(theVehicle, "abschleppTruckAttached_Loading", nil)
                         end
-                        setElementFrozen(theVehicle, false)
-                        setElementData(theVehicle, "abschleppTruckAttached_Loading", nil)
                     end, 10000, 1)
                 end
             else

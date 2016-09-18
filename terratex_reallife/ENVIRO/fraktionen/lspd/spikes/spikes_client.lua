@@ -23,21 +23,24 @@ function checkIfWheelsAreInSpikes()
     for theKey, spike in ipairs(spikes) do
         if (isElementWithinColShape(getLocalPlayer(), spike.bigCol)) then
             for theKey2, vehicle in pairs(getElementsWithinColShape(spike.bigCol, "vehicle")) do
-                local changed = false
-                local wheelsInSpike = {getVehicleWheelStates(vehicle)}
-                for partName in pairs(getVehicleComponents(vehicle)) do
-                    if wheelsAssignment[partName] and wheelsInSpike[wheelsAssignment[partName]] == 0 then
-                        local x, y, z = getVehicleComponentPosition(vehicle, partName, "world")
-                        local isInSpike = pnpoly(spike.poly.x, spike.poly.y, x, y)
-                        if (isInSpike and isLineOfSightClear(x, y, z, ox, oy, oz, true, false, false, true, false, false, false, spike.obj)) then
-                            wheelsInSpike[wheelsAssignment[partName]] = 1
-                            changed = true
+                local vx, vy, vz = getElementPosition(vehicle)
+                if (isLineOfSightClear(vx, vy, vz, spike.pos.x, spike.pos.y, spike.pos.z, true, false, false, true, false, false, false, spike.obj)) then
+                    local changed = false
+                    local wheelsInSpike = {getVehicleWheelStates(vehicle)}
+                    for partName in pairs(getVehicleComponents(vehicle)) do
+                        if wheelsAssignment[partName] and wheelsInSpike[wheelsAssignment[partName]] == 0 then
+                            local x, y, z = getVehicleComponentPosition(vehicle, partName, "world")
+                            local isInSpike = pnpoly(spike.poly.x, spike.poly.y, x, y)
+                            if (isInSpike) then
+                                wheelsInSpike[wheelsAssignment[partName]] = 1
+                                changed = true
+                            end
                         end
                     end
-                end
-                if (changed) then
-                    setVehicleWheelStates(vehicle, unpack(wheelsInSpike))
-                    triggerServerEvent("wheelsInSpike", getLocalPlayer(), vehicle, wheelsInSpike)
+                    if (changed) then
+                        setVehicleWheelStates(vehicle, unpack(wheelsInSpike))
+                        triggerServerEvent("wheelsInSpike", getLocalPlayer(), vehicle, wheelsInSpike)
+                    end
                 end
             end
         end

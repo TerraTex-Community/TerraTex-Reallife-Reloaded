@@ -232,15 +232,15 @@ end
 function medic_wiederbelebenende(theMedic, thePickup)
     setElementFrozen(theMedic, false)
     triggerClientEvent(thePickup, "end_kill", thePickup)
-    outputChatBox("Die Wiederbelebung wurde vom Bankkonto oder Versicherung gezahlt! (75$ - 25$ in Frakkasse)", theMedic)
+    outputChatBox("Die Wiederbelebung wurde vom Bankkonto oder Versicherung gezahlt! (200$ - 100$ in Frakkasse)", theMedic)
     if (vioGetElementData(thePickup, "lebensversicherung") == 0) then
-        outputChatBox("Die Sonderbehandlung eines Arztes wurde von ihrem Bankkonto bezahlt (75$)", thePickup)
-        changePlayerBank(thePickup, -75, "sonstiges", "Wiederbelebung durch Medic")
+        outputChatBox("Die Sonderbehandlung eines Arztes wurde von ihrem Bankkonto bezahlt (200$)", thePickup)
+        changePlayerBank(thePickup, -200, "sonstiges", "Wiederbelebung durch Medic")
     else
         outputChatBox("Die Sonderbehandlung wurde von deiner Lebensversicherung bezahlt!", thePickup)
     end
-    changePlayerMoney(theMedic, 50, "fraktion", "Person wiederbelebt")
-    frakkasse[10] = frakkasse[10] + 25.00
+    changePlayerMoney(theMedic, 100, "fraktion", "Person wiederbelebt")
+    frakkasse[10] = frakkasse[10] + 100.00
 end
 
 function loadKrankenhaus(thePlayer)

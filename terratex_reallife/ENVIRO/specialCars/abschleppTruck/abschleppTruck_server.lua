@@ -42,7 +42,7 @@ function abschleppTruck_Aufladen(theVehicle, z)
                     end
                     setElementFrozen(theVehicle, true)
                     setTimer(function()
-                        if (isElement(theVehicle)) then
+                        if (isElement(theVehicle) and isElementFrozen(abschleppTruck)) then
                             local driverCounter = 0
                             for seat, player in pairs(getVehicleOccupants(theVehicle)) do
                                 driverCounter = driverCounter + 1
@@ -50,22 +50,25 @@ function abschleppTruck_Aufladen(theVehicle, z)
                             if (driverCounter == 0) then
                                 attachElements(theVehicle, abschleppTruck, 0, -1.5, z/2+0.05)
                                 setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", theVehicle)
-                                triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", player, theVehicle)
-                                triggerClientEvent("abschleppTruck_SetClientAttachedVehicleCollisionsEnabled", player, theVehicle, false)
+                                triggerClientEvent(player, "abschleppTruck_SetClientAttachedVehicle", player, theVehicle)
+                                triggerClientEvent(player, "abschleppTruck_SetClientAttachedVehicleCollisionsEnabled", player, theVehicle, false)
                             end
                             setElementFrozen(abschleppTruck, false)
+                            setElementFrozen(theVehicle, false)
+                            setElementData(theVehicle, "abschleppTruckAttached_Loading", nil)
+                        else
+                            setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", nil)
+                            triggerClientEvent(player, "abschleppTruck_SetClientAttachedVehicle", player, nil)
                         end
-                        setElementFrozen(theVehicle, false)
-                        setElementData(theVehicle, "abschleppTruckAttached_Loading", nil)
                     end, 10000, 1)
                 end
             else
                 showError(source, "Dieses Fahrzeug kann nicht aufgeladen werden")
-                triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, nil)
+                triggerClientEvent(source, "abschleppTruck_SetClientAttachedVehicle", source, nil)
             end
         else
             showError(source, "In dem aufzuladenen Fahrzeug befindet sich ein Spieler!")
-            triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, nil)
+            triggerClientEvent(source, "abschleppTruck_SetClientAttachedVehicle", source, nil)
         end
     end
 end
@@ -93,11 +96,11 @@ function abschleppTruck_Abladen(theVehicle, x, y, z, rx, ry, rz)
                 end
                 setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", nil)
                 setElementData(abschleppTruck, "abschleppTruck_AttachedVehicleWasFrozen", nil)
-                triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, nil)
+                triggerClientEvent(source, "abschleppTruck_SetClientAttachedVehicle", source, nil)
             end
         else
             showError(source, "Dieses Fahrzeug kann nicht abgeladen werden")
-            triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, attachedVehicle)
+            triggerClientEvent(source, "abschleppTruck_SetClientAttachedVehicle", source, attachedVehicle)
         end
     end
 end
@@ -107,7 +110,7 @@ function abschleppTruckEnter(theVehicle, seat, jacked)
     if (getElementData(theVehicle, "isAbschleppTruck")) then
         local attached = getElementData(theVehicle, "abschleppTruck_AttachedVehicle")
         if (isElement(attached) and seat == 0) then
-            triggerClientEvent("abschleppTruck_SetClientAttachedVehicle", source, attached)
+            triggerClientEvent(source, "abschleppTruck_SetClientAttachedVehicle", source, attached)
         end
     end
 end

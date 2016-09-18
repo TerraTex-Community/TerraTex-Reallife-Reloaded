@@ -24,16 +24,16 @@ end
 addEventHandler("wheelsInSpike", getRootElement(), wheelsInSpike)
 
 addEvent("createSpike", true)
-function createSpike(x, y, z, rotZ, minX, minY, maxX, maxY)
+function createSpike(ox, oy, oz, rotZ, minX, minY, maxX, maxY)
     if (isBeamter(source)) then
         if (table.getn(spikes) <= spikeLimit) then
             local alpha = rotZ * math.pi / 180
             local c = math.cos(alpha)
             local s = math.sin(alpha)
-            minX = minX + x - 0.4
-            minY = minY + y - 0.4
-            maxX = maxX + x + 0.8
-            maxY = maxY + y + 0.8
+            minX = minX + ox - 0.4
+            minY = minY + oy - 0.4
+            maxX = maxX + ox + 0.8
+            maxY = maxY + oy + 0.8
             local mx = (minX + maxX) / 2
             local my = (minY + maxY) / 2
             local x1 = c * (minX - mx) - s * (minY - my) + mx
@@ -45,11 +45,12 @@ function createSpike(x, y, z, rotZ, minX, minY, maxX, maxY)
             local x4 = c * (maxX - mx) - s * (maxY - my) + mx 
             local y4 = c * (maxY - my) + s * (maxX - mx) + my
             
-            local _obj = createObject(2892, x, y, z, 0, 0, rotZ)
+            local _obj = createObject(2892, ox, oy, oz, 0, 0, rotZ)
             setElementCollisionsEnabled(_obj, false)
-            local _bigCol = createColSphere(x, y, z, 40)
+            local _bigCol = createColSphere(ox, oy, oz, 40)
             local _poly = {x = {x1, x2, x3, x4}, y = {y1, y2, y3, y4}}
-            table.insert(spikes, {obj = _obj, bigCol = _bigCol, poly = _poly})
+            local _pos = {x = ox, y = oy, z = oz}
+            table.insert(spikes, {obj = _obj, bigCol = _bigCol, poly = _poly, pos = _pos})
             sendSpikeTable(getRootElement())
             outputChatBox("Das Nagelband wurde erfolgreich ausgelegt", source)
         else
@@ -96,7 +97,7 @@ function deleteAllSpike(player)
         end
         spikes = {}
         sendSpikeTable(getRootElement())
-        outputChatBox("Die Nagelbänder wurden erfolgreich abgebaut", player)
+        outputChatBox("Die Nagelbänder wurde erfolgreich abgebaut", player)
     end
 end
 addCommandHandler("dallspikes", deleteAllSpike)

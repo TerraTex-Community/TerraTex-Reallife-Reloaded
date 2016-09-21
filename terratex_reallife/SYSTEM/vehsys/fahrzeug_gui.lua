@@ -28,7 +28,7 @@ addEventHandler("onClientResourceStart", resourceRoot,
         FahrzeufUE_Label[8] = guiCreateLabel(32, 188, 62, 22, "Grund:", false, FahrzeufUE_Window[1])
         FahrzeufUE_Label[9] = guiCreateLabel(51, 215, 58, 18, "An", false, FahrzeufUE_Window[1])
         FahrzeufUE_Edit[3] = guiCreateEdit(80, 211, 150, 25, "Name", false, FahrzeufUE_Window[1])
-        FahrzeufUE_Button[7] = guiCreateButton(236, 212, 112, 24, "Verkaufen", false, FahrzeufUE_Window[1])
+        FahrzeufUE_Button[7] = guiCreateButton(236, 212, 112, 24, "weitergeben", false, FahrzeufUE_Window[1])
         FahrzeufUE_Button[8] = guiCreateButton(355,212,112,24,"Aufladen",false,FahrzeufUE_Window[1])
         FahrzeufUE_Button[9] = guiCreateButton(355,212,112,24,"Abladen",false,FahrzeufUE_Window[1])
         table.insert(allGuis, FahrzeufUE_Window[1])
@@ -66,7 +66,7 @@ function sellFahrzeugGUI()
         local grund = guiGetText(FahrzeufUE_Edit[3])
         if (grund) then
             if (grund ~= "") then
-                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "sellcar", grund .. " " .. getElementData(lastclicked, "slotid"))
+                triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "givecar", grund .. " " .. getElementData(lastclicked, "slotid"))
             else
                 showError(getLocalPlayer(), "Du musst eine Zielperson angeben!")
             end

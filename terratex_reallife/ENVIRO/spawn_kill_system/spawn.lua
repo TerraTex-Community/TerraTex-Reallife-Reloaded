@@ -123,9 +123,9 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                 outputChatBox("Aufgrund einer Flut wurden Sie an einen sicheren Platz gebracht!", source, 255, 0, 0)
                 spawnPlayer(source, 1307.62890625, -874.5673828125, 39.578125, 302.96084594727, skinid, 0, 0, team[fraktion]) -- flutspawn
             end
+
+            setPlayerSpawnWeapons(source)
         end
         setElementHealth(source, 100)
-
-        setPlayerSpawnWeapons(source, frakid, fraktionsrang)
     end
 end

@@ -96,7 +96,7 @@ function setPlayerSpawnWeapons(thePlayer)
     else
         if (frakSpawnWeapons[fraktion]) then
             for theWeaponId, ammo in pairs (frakSpawnWeapons[fraktion]) do
-                giveWeapon(thePlayer, theWeaponId, ammo)
+                giveWeapon(thePlayer, theWeaponId, ammo);
             end
         end
     end

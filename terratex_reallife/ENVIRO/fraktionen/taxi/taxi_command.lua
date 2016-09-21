@@ -152,7 +152,10 @@ function taxi_duty(thePlayer)
             for theKey, thePerson in ipairs(getPlayersInTeam(team[4])) do
                 outputChatBox(string.format("Der Spieler %s ist nun nicht mehr im Dienst!", getPlayerName(thePlayer)), thePerson, 150, 120, 0)
             end
+            takeAllWeapons ( thePlayer );
         else
+            takeAllWeapons ( thePlayer );
+            setPlayerSpawnWeapons(thePlayer);
             vioSetElementData(thePlayer, "taxi_duty", true)
             setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"))
             --	outputChatBox("Der Taxifahrer "..getPlayerName(thePlayer).." ist im Dienst",getRootElement(),16,188,0)

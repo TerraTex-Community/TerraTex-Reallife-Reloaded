@@ -81,6 +81,7 @@ function setPlayerRearmWeapons(thePlayer)
     if (frakRearmWeapons[fraktion]) then
         if (frakRearmWeapons[fraktion][rang]) then
             for theWeaponId, ammo in pairs (frakRearmWeapons[fraktion][rang]) do
+                takeWeapon(thePlayer, theWeaponId);
                 giveWeapon(thePlayer, theWeaponId, ammo)
             end
         end
@@ -96,6 +97,7 @@ function setPlayerSpawnWeapons(thePlayer)
     else
         if (frakSpawnWeapons[fraktion]) then
             for theWeaponId, ammo in pairs (frakSpawnWeapons[fraktion]) do
+                takeWeapon(thePlayer, theWeaponId);
                 giveWeapon(thePlayer, theWeaponId, ammo);
             end
         end
@@ -104,7 +106,6 @@ end
 
 function setPlayerAusrustung()
     if (checkMunKistenDistance(source)) then
-
         local fraktion = vioGetElementData(source, "fraktion");
         if (frakmun[fraktion]) then
             if (2000 < frakmun[fraktion]) then

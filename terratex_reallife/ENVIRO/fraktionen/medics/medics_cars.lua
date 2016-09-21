@@ -87,15 +87,18 @@ local function handlerMedicDuty(thePlayer)
 	local x, y, z = getElementPosition(thePlayer)
 	if (vioGetElementData(thePlayer, "fraktion") == 10) then
 		if (getDistanceBetweenPoints3D(1607.3505859375, 1816.220703125, 10.8203125, x, y, z)<10 or getDistanceBetweenPoints3D(2034.177734375,-1401.669921875,17.294855117798,x,y,z) < 10) then
-				if (vioGetElementData(thePlayer, "isMedicDuty")) then
-					vioSetElementData(thePlayer, "isMedicDuty", false)			
-					setElementModel(thePlayer, vioGetElementData(thePlayer, "skinid"))
-					showError(thePlayer, "Du bist nun nicht mehr im Dienst.")
-				else	
-					vioSetElementData(thePlayer, "isMedicDuty", true)
-					setElementModel(thePlayer,vioGetElementData(thePlayer, "FrakSkin"))	
-					showError(thePlayer, "Du bist nun im Dienst.")
-				end	
+			if (vioGetElementData(thePlayer, "isMedicDuty")) then
+				takeAllWeapons ( thePlayer );
+				vioSetElementData(thePlayer, "isMedicDuty", false)
+				setElementModel(thePlayer, vioGetElementData(thePlayer, "skinid"))
+				showError(thePlayer, "Du bist nun nicht mehr im Dienst.")
+			else
+				takeAllWeapons ( thePlayer );
+				setPlayerSpawnWeapons(thePlayer);
+				vioSetElementData(thePlayer, "isMedicDuty", true)
+				setElementModel(thePlayer,vioGetElementData(thePlayer, "FrakSkin"))
+				showError(thePlayer, "Du bist nun im Dienst.")
+			end
 		else
 			showError(thePlayer, "Du bist nicht am Krankenhaus.")
 		end

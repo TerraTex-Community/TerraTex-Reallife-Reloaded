@@ -27,6 +27,8 @@ function spawnAutomat()
     automat = createObject(2942, 420.9697265625, -1365.4931640625, 14.34, 0, 0, 213.90173339844)
     -- Automat Parkplatz Südlich von Motorrad Autohaus LS
     automat = createObject(2942, 209.3486328125, -1433.748046875, 12.7097, 0, 0, 23.069000244141)
+    -- Automat Eingang Grotti LS
+    automat = createObject(2942, 550, -1260.1000976563, 16.5, 0, 0, 215)
     -- Automat in BankInterior
     automat = createObject(2942, 1537.7216796875, 1669.6123046875, 8373.6259765625, 0, 0, 90)
     setElementInterior(automat, 1)

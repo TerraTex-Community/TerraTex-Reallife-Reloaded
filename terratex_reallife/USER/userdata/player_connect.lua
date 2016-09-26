@@ -332,6 +332,11 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "todelast", tonumber(userdataData["TodeLast"]))
         vioSetElementData(source, "playtime", tonumber(userdataData["PlayTime"]))
         vioSetElementData(source, "afktime", tonumber(userdataData["afktime"]))
+
+        if (tonumber(userdataData["afktime"]) > 0) then
+            outputChatBox("Aufgrund deiner Verstösse gegen das AFK System, wird deine Spielzeit weitere " .. tonumber(userdataData["afktime"]) .. " Minuten nicht gezählt");
+        end
+
         vioSetElementData(source, "money", tonumber(userdataData["Geld"]))
         vioSetElementData(source, "bank", tonumber(userdataData["Bank"]))
         vioSetElementData(source, "addPayDayGehalt", tonumber(userdataData["paydaygehalt"]))

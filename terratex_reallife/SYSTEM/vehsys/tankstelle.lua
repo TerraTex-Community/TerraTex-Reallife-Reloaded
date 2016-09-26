@@ -28,8 +28,6 @@ function createTankstellenMarker()
             price = tonumber(theStation.Price)
         });
     end
-
-    debug.print(fuelStations);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTankstellenMarker)
 

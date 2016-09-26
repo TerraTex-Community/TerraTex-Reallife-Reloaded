@@ -9,3 +9,5 @@ CREATE TABLE `log_playtime` (
   KEY `log_playtime_user_Nickname_fk` (`Nickname`),
   CONSTRAINT `log_playtime_user_Nickname_fk` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE faction_inventory ADD Tanksatz INT DEFAULT 50 NULL;

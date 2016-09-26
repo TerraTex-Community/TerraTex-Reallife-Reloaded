@@ -57,10 +57,10 @@ function login(get, post)
                 wasLoginSended = true;
                 setTimer(reloadLoginGui, 1000, 1)
 
-                if (get.password == "") then
+                if (decodeURI(get.password) == "") then
                     showError(getLocalPlayer(), "Du hast kein korrektes Passwort eingegeben!")
                 else
-                    triggerServerEvent("loginPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), get.password)
+                    triggerServerEvent("loginPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), decodeURI(get.password))
                 end
             end
         end

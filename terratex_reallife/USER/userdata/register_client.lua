@@ -62,7 +62,7 @@ function register(get, post)
             local birthdayParts = string.explode(get.birthday, "-");
 
             if (not (hasClickedRegisterGui)) then
-                if (not (utf_check(get.password)) or not (utf_check(get.email)) or not (utf_check(get.recruiter))) then
+                if (not (utf_check(decodeURI(get.password))) or not (utf_check(decodeURI(get.email))) or not (utf_check(decodeURI(get.recruiter)))) then
                     showError(getLocalPlayer(), "Sponderzeichen sind nur begrenzt möglich. Du verwendest Sonderzeichen, die nicht möglich sind!")
                 else
                     if (get.password == "") then get.password = "a" end
@@ -70,14 +70,13 @@ function register(get, post)
 
                     if (get.password == get.passwordwdh) then
                         if string.len(get.email) > 0 then
-                            get.email = string.gsub(get.email, "%%40", "@");
                             if (table.getSize(birthdayParts) == 3) then
                                 if ((tonumber(birthdayParts[1]) < 32) and (tonumber(birthdayParts[1]) > 0)) then
                                     if ((tonumber(birthdayParts[2]) < 13) and (tonumber(birthdayParts[2]) > 0)) then
                                         if ((tonumber(birthdayParts[3]) < 2016) and (tonumber(birthdayParts[3]) > 1900)) then
-                                            if (get.recruiter == "") then get.recruiter = "" end
-                                            triggerServerEvent("registerPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), get.password, get.email,
-                                                birthdayParts[1], birthdayParts[2], birthdayParts[3], get.recruiter, get.gender)
+                                            if (decodeURI(get.recruiter) == "") then get.recruiter = "" end
+                                            triggerServerEvent("registerPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), decodeURI(get.password), decodeURI(get.email),
+                                                birthdayParts[1], birthdayParts[2], birthdayParts[3], decodeURI(get.recruiter), decodeURI(get.gender))
                                         else
                                             showError(getLocalPlayer(), "Du hast kein korrektes Geburstdatum eingegeben(3)!")
                                         end

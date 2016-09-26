@@ -5,36 +5,39 @@ function update_play_time_func()
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
         if (isPlayerLoggedIn(thePlayer)) then
             if (vioGetElementData(thePlayer, "afk_status") == 0) then
-                vioSetElementData(thePlayer, "playtime", (vioGetElementData(thePlayer, "playtime") + 1))
-                local paydaytime = math.mod((vioGetElementData(thePlayer, "playtime")), 60)
-                if (paydaytime == 0) then
-                    payday(thePlayer)
-                end
-                checkTimeErfolge(thePlayer, (vioGetElementData(thePlayer, "playtime") / 60))
-                if (vioGetElementData(thePlayer, "playtime") < (25 * 60)) then
-                    setPlayerNametagText(thePlayer, "[ROOKIE]-" .. getPlayerName(thePlayer))
+                if (vioGetElementData(thePlayer, "afktime") > 0) then
+                    vioSetElementData(thePlayer, "afktime", vioGetElementData(thePlayer, "afktime") - 1);
                 else
-                    setPlayerNametagText(thePlayer, getPlayerName(thePlayer))
-                end
-                local minuten = math.round((math.round(vioGetElementData(thePlayer, "playtime") / 60, 2) - math.round(vioGetElementData(thePlayer, "playtime") / 60, 0, "floor")) * 60)
-                if (minuten < 10) then
-                    minuten = "0" .. tostring(minuten)
-                else
-                    minuten = tostring(minuten)
-                end
-                local timestring = tostring(math.round(vioGetElementData(thePlayer, "playtime") / 60, 0, "floor")) .. "|" .. minuten
-                vioSetElementData(thePlayer, "playTime_formated", timestring)
+                    vioSetElementData(thePlayer, "playtime", (vioGetElementData(thePlayer, "playtime") + 1))
+                    local paydaytime = math.mod((vioGetElementData(thePlayer, "playtime")), 60)
+                    if (paydaytime == 0) then
+                        payday(thePlayer)
+                    end
+                    checkTimeErfolge(thePlayer, (vioGetElementData(thePlayer, "playtime") / 60))
+                    if (vioGetElementData(thePlayer, "playtime") < (25 * 60)) then
+                        setPlayerNametagText(thePlayer, "[ROOKIE]-" .. getPlayerName(thePlayer))
+                    else
+                        setPlayerNametagText(thePlayer, getPlayerName(thePlayer))
+                    end
+                    local minuten = math.round((math.round(vioGetElementData(thePlayer, "playtime") / 60, 2) - math.round(vioGetElementData(thePlayer, "playtime") / 60, 0, "floor")) * 60)
+                    if (minuten < 10) then
+                        minuten = "0" .. tostring(minuten)
+                    else
+                        minuten = tostring(minuten)
+                    end
+                    local timestring = tostring(math.round(vioGetElementData(thePlayer, "playtime") / 60, 0, "floor")) .. "|" .. minuten
+                    vioSetElementData(thePlayer, "playTime_formated", timestring)
 
-                if (vioGetElementData(thePlayer, "knastzeit") > 0) then
-                    vioSetElementData(thePlayer, "inJail", "x");
-                else
-                    vioSetElementData(thePlayer, "inJail", "");
+                    if (vioGetElementData(thePlayer, "knastzeit") > 0) then
+                        vioSetElementData(thePlayer, "inJail", "x");
+                    else
+                        vioSetElementData(thePlayer, "inJail", "");
+                    end
                 end
             end
         end
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), update_play_time_func)
 
 function checkTimeErfolge(thePlayer, PlayTime)

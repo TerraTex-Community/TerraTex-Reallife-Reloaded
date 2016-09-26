@@ -14,6 +14,7 @@ config["mappername"]="${MAPPER}"
 config["scriptername"]="${SCRIPTER}"
 config["dailyrestarttype"]="${RESTART_TYPE}"
 config["afk.punish"]="${AFK_PUNISH}"
+config["afk.stop_play_time"]=${AFK_STOP_PLAY_TIME}
 config["gold.price"]=${GOLD_PRICE}
 config["feature.stardard_of_living"]=${FEATURE_SOL}
 config["feature.limiter.pizza"]=${FEATURE_LIMIT_PIZZA}

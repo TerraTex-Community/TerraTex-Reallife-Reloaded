@@ -41,6 +41,8 @@ config["dailyrestarttype"]="GMX"
 -- What should be done, if a user is afk but does not use /afk
 -- Options: "kick" - will kick the player or "afk" - will set player in afk mode automatically
 config["afk.punish"] = "kick"
+-- The play time of a player will not count up after afk kick for xxx minutes
+config["afk.stop_play_time"] = 25
 
 config["gold.price"] = 10000
 

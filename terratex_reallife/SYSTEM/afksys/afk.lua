@@ -60,13 +60,8 @@ function afk_timer()
             if not (vioGetElementData(thePlayer, "afk_status") == 1) then
                 vioSetElementData(thePlayer, "afk_timer", vioGetElementData(thePlayer, "afk_timer") + 1)
                 if (vioGetElementData(thePlayer, "afk_timer") >= 15 and not (isAdminLevel(thePlayer, 4))) then
-                    local playerTime = vioGetElementData(thePlayer, "playtime")
-                    if (math.round(playerTime / 60, 0, "floor") == math.round((playerTime - 20) / 60, 0, "floor")) then
-                        vioSetElementData(thePlayer, "playtime", playerTime - 20)
-                    else
-                        local newPlayerTime = (math.round(playerTime / 60, 0, "floor") * 60) + 1
-                        vioSetElementData(thePlayer, "playtime", newPlayerTime)
-                    end
+
+                    vioSetElementData(thePlayer, "afktime", vioGetElementData(thePlayer, "afktime") + config["afk.stop_play_time"]);
 
                     if (not config["afk.punish"] or string.lower(config["afk.punish"]) == "kick") then
                         outputChatBox(string.format("Der Spieler %s wurde vom AFK-System nach 15 Minuten gekickt (kein /afk)!", getPlayerName(thePlayer)), getRootElement(), 255, 0, 0)

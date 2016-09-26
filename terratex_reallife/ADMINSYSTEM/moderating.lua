@@ -42,8 +42,7 @@ function check_func(thePlayer, command, toPlayerNamePart)
 end
 addCommandHandler("rcheck", check_func, false, false)
 
-function rkick_func(thePlayer, command, theBeBanned, ...)
-
+function rkick_func(thePlayer, command, time, theBeBanned, ...)
     local reasons = table.concat({ ... }, "  ")
     if (isConsole(thePlayer)) then
 
@@ -76,6 +75,51 @@ function rkick_func(thePlayer, command, theBeBanned, ...)
     end
 end
 addCommandHandler("rkick", rkick_func, false, false)
+
+function afkkick_func(thePlayer, command, time, theBeBanned, reason, ...)
+    if (not tonumber(time)) then
+        reason = theBeBanned;
+        theBeBanned = time;
+        time = 60;
+    end
+
+    if not reason then reason = "" end
+    local reasons = reason .. " " .. table.concat({ ... }, "  ")
+    if (isConsole(thePlayer)) then
+
+        local banmeele = getPlayerFromIncompleteName(theBeBanned)
+        if not (banmeele == false) then
+            local pname = getPlayerName(banmeele)
+
+            vioSetElementData(banmeele, "afktime", vioGetElementData(banmeele, "afktime") + tonumber(time));
+
+            outputChatBox("Der Spieler " .. pname .. " wurde von der Console AFK - gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
+            outputDebugString("Der Spieler " .. pname .. " wurde von der Console AFK - gekickt. Grund " .. reasons)
+            kickPlayer(banmeele, reasons)
+
+        else
+            outputDebugString("Error: Der Spieler existiert nicht!")
+        end
+
+    else
+        if (isAdminLevel(thePlayer, 0)) then
+
+            local banmeele = getPlayerFromIncompleteName(theBeBanned)
+            if isElement(banmeele) then
+                local pname = getPlayerName(banmeele)
+                local aname = getPlayerName(thePlayer)
+
+                vioSetElementData(banmeele, "afktime", vioGetElementData(banmeele, "afktime") + tonumber(time));
+
+                outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " AFK - gekickt. Grund :" .. reasons, getRootElement(), 255, 0, 0)
+                kickPlayer(banmeele, thePlayer, reasons)
+            else
+                outputChatBox("Der Spieler existiert nicht", thePlayer, 255, 0, 0)
+            end
+        end
+    end
+end
+addCommandHandler("afkkick", afkkick_func, false, false)
 
 
 function ban_func(thePlayer, command, theBeBanned, ...)

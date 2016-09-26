@@ -4,15 +4,20 @@
 -- repair nur alle 60 Sekunden
 
 function resetHasRepaired(thePlayer, theVehicle, toPlayer)
-    if (isElement(thePlayer)) then
+
+    if (isElement(thePlayer) and isElement(theVehicle) and not isVehicleBlown ( theVehicle )) then
         showError(thePlayer, "Ihr Fahrzeug wurde erfolgreich repariert!")
         vioSetElementData(thePlayer, "hasRepaired", false)
+        fixVehicle(theVehicle)
+        setVehicleWheelStates(theVehicle, 0, 0, 0, 0)
+    else
+        return;
     end
     if (isElement(theVehicle)) then
         vioSetElementData(theVehicle, "isInRepairProcedur", false)
         setElementFrozen(theVehicle, false)
-        fixVehicle(theVehicle)
-        setVehicleWheelStates(theVehicle, 0, 0, 0, 0)
+    else
+        return;
     end
 end
 
@@ -20,10 +25,10 @@ function repair_func(thePlayer, Command, ToPlayerName, Price)
     if not (vioGetElementData(thePlayer, "inArena")) then
         if (vioGetElementData(thePlayer, "job") == 5) then
             if (ToPlayerName) and (Price) then
-                PriceNum = tonumber(Price)
+                local PriceNum = tonumber(Price)
                 if (PriceNum) then
                     if (PriceNum > 5) then
-                        toPlayer = getPlayerFromIncompleteName(ToPlayerName)
+                        local toPlayer = getPlayerFromIncompleteName(ToPlayerName)
                         if (toPlayer) then
                             local isGTPlayer = false
                             if (gtVehiclePlayerElement) then

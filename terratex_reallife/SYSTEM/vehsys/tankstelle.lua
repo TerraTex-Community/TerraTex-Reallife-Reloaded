@@ -89,14 +89,22 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), se
 function TankenMarkerHit(hitElement)
     if (getElementType(hitElement) == "vehicle") then
         if (vioGetElementData(hitElement, "tank") and getVehicleOccupant(hitElement)) then
-            local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"])
+            local price = math.round((100 - vioGetElementData(hitElement, "tank")) * serversettings["tankpreis"]);
+            local frakPrice = 0;
+
+            if (vioGetElementData(hitElement, "frakid")) then
+                local frak = vioGetElementData(hitElement, "frakid");
+                local satz = fraktanksatz[frak];
+                frakPrice = price / 100 * satz;
+            end
+
             local zahlMethode = "Bar";
             local kannTanken = false;
-            if (getPlayerMoney(getVehicleOccupant(hitElement)) >= price) then
+            if (getPlayerMoney(getVehicleOccupant(hitElement)) >= (price - frakPrice)) then
                 zahlMethode = "Bar";
                 kannTanken = true;
             else
-                if (getPlayerBank(getVehicleOccupant(hitElement)) >= price) then
+                if (getPlayerBank(getVehicleOccupant(hitElement)) >= (price - frakPrice)) then
                     zahlMethode = "Bank";
                     kannTanken = true;
                 else
@@ -149,6 +157,19 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
                 outputChatBox("Da das Fahrzeug in einem sehr guten Zustand ist, wurde es nicht repariert!", driver, 255, 0, 0);
             end
         end
+
+        local frakPrice = 0;
+
+        if (vioGetElementData(hitElement, "frakid")) then
+            local frak = vioGetElementData(hitElement, "frakid");
+            local satz = fraktanksatz[frak];
+            frakPrice = price / 100 * satz;
+            preis = preis - frakPrice;
+
+            frakkasse[frak] = frakkasse[frak] - frakPrice;
+            frakdepot_log(frak, 1, -frakPrice, "Frakzeugtank" , "Tankstelle - " .. getPlayerName(driver));
+        end
+
         if (getPlayerMoney(driver) >= preis) then
             changePlayerMoney(driver, -preis, "fahrzeug", "Tanken");
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt!\nDer Preis wurde Bar bezahlt.", math.round(liter, 2), toprice(preis), serversettings["tankpreis"]), driver, 255, 0, 0);
@@ -156,7 +177,7 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter)
             changePlayerBank(driver, ((preis * 1.05) * -1), "fahrzeug", "Tanken");
             outputChatBox(string.format("Du hast erfolgreich  %s l für %s (%s $/Liter) getankt! Der Preis wurde mittels Bankomat bezahlt. Dafuer fallen 5 Prozent Bearbeitungsgebuehren an.", math.round(liter, 2), toprice(preis * 1.05), serversettings["tankpreis"]), driver, 255, 0, 0);
         end
-        changeBizKasse(7, preis, "Tank")
+        changeBizKasse(7, preis + frakPrice, "Tank")
 
         if (vioGetElementData(driver, "Erfolg_Benzin_leer") ~= 1) then
             vioSetElementData(driver, "Erfolg_Benzin_leer", 1)

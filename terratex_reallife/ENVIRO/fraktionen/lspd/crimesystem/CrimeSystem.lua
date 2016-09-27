@@ -37,6 +37,9 @@ function CrimeSystem.loadCrimeTableToSyncObject()
 end
 
 function CrimeSystem.getCrimePercentage(thePlayer)
+    --- At last here will be a an update of the players file
+    triggerClientEvent("policePCUpdateFile", thePlayer);
+
     local query = "SELECT sum(CrimePercentage) as CrimeLevel FROM user_crimes WHERE Nickname = ?";
     local executedQuery = dbQuery(MySql._connection, query, getPlayerName(thePlayer));
 

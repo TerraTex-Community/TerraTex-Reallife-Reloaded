@@ -327,6 +327,14 @@ function actualizePolicePCPage()
     end
 end
 
+addEvent("policePCUpdateFile", true);
+function policePCUpdateFile_func()
+    if (policePCWindow and policePCActivePage == "PlayerCrimeList" and source == policePCData.activePlayer) then
+        loadPlayerCrimeList();
+    end
+end
+addEventHandler("policePCUpdateFile", getRootElement(), policePCUpdateFile_func)
+
 function removeDisconnectedPlayer()
     if (policePCActivePage == "suspects") then
         executeBrowserJavascript(policePCBrowser, "removeSuspect(\"" .. getPlayerName(source) .. "\");");

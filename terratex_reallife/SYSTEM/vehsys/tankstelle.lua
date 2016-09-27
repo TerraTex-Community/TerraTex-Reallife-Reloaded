@@ -22,7 +22,7 @@ function createTankstellenMarker()
 
         local x,y,z = getElementPosition(pumps[1]);
         table.insert(blipcoord, { x,y,z });
-        table.insert(fuelStations, tonumber(theStation.Price), {
+        table.insert(fuelStations, tonumber(theStation.ID), {
             id = tonumber(theStation.ID),
             pumps = pumps,
             price = tonumber(theStation.Price)
@@ -66,10 +66,11 @@ function globalTankTimer()
             fuelStations[theKey].price = theStation.price + aenderung
         end
 
-        for theKey, theMarker in ipairs(theStation.pumps) do
+        for theMarkerKey, theMarker in ipairs(theStation.pumps) do
             changeElementShowText(theMarker, 0xFFFF00FF, string.format("Tankpreis: %s $/l", fuelStations[theKey].price))
         end
 
+        MySql.helper.update("objects_fuel_stations", {Price = fuelStations[theKey].price}, {ID = theStation.id} );
     end
 
     setTimer(globalTankTimer, 3600000, 1)
@@ -84,7 +85,6 @@ function TankenMarkerHit(hitElement)
     if (getElementType(hitElement) == "vehicle") then
         if (vioGetElementData(hitElement, "tank") and getVehicleOccupant(hitElement)) then
             local stationID = vioGetElementData(source, "fuelStationID");
-
 
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * fuelStations[stationID].price);
             local frakPrice = 0;
@@ -124,24 +124,24 @@ function TankenMarkerHit(hitElement)
                     freezetime = freezetime + 5000
                 end
                 if (freezetime < 1000) then
-                    setTankFulTanke(price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")))
+                    setTankFulTanke(price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")), fuelStations[stationID].price)
                 else
-                    setTimer(setTankFulTanke, freezetime, 1, price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")))
+                    setTimer(setTankFulTanke, freezetime, 1, price, hitElement, getVehicleOccupant(hitElement), source, (100 - vioGetElementData(hitElement, "tank")), fuelStations[stationID].price)
                 end
             else
                 if (zahlMethode == "Bar") then
-                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                    outputChatBox(string.format("Du hast leider nicht genug Bargeld!(Preis pro Liter: %s$)", fuelStations[stationID].price), getVehicleOccupant(hitElement), 255, 0, 0);
                 elseif (zahlMethode == "Bank") then
-                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                    outputChatBox(string.format("Du hast leider nicht genug Geld auf der Bank!(Preis pro Liter: %s$)", fuelStations[stationID].price), getVehicleOccupant(hitElement), 255, 0, 0);
                 elseif (zahlMethode == "Hartz4") then
-                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", serversettings["tankpreis"]), getVehicleOccupant(hitElement), 255, 0, 0);
+                    outputChatBox(string.format("Du besitzt nicht genug Geld zum bezahlen der Tankrechnung! Ein Tanken wird daher verweigert!(Preis pro Liter: %s$)", fuelStations[stationID].price), getVehicleOccupant(hitElement), 255, 0, 0);
                 end
             end
         end
     end
 end
 
-function setTankFulTanke(preis, hitElement, driver, marker, liter)
+function setTankFulTanke(preis, hitElement, driver, marker, liter, pricePerLitre)
     if (isElement(hitElement) and isElement(driver) and isPlayerLoggedIn(driver)) then
         vioSetElementData(hitElement, "isInTankProcedur", false);
         vioSetElementData(hitElement, "tank", 100);

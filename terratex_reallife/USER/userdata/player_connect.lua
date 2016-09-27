@@ -594,7 +594,7 @@ function LoginPlayerData(nickname, pw)
 
         loadTapps(source)
 
-        triggerClientEvent(source, "stopBackGround");
+        triggerClientEvent(source, "stopBackGround", source);
 
         fadeCamera(source, true, 5.0)
         setCameraTarget(source, source)

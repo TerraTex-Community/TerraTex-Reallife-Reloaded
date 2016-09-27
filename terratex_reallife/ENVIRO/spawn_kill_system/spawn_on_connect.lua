@@ -11,7 +11,7 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
         local timestamp = vioGetElementData(source, "loggedin");
         local logouttime = getRealTime().timestamp;
 
-        dbExec(MySql._connection, 'INSERT INTO log_playtime (Nickname, login, logout) VALUES (%, FROM_UNIXTIME(%), FROM_UNIXTIME(%))', getPlayerName(source), timestamp, logouttime);
+        dbExec(MySql._connection, 'INSERT INTO log_playtime (Nickname, login, logout) VALUES (?, FROM_UNIXTIME(?), FROM_UNIXTIME(?))', getPlayerName(source), timestamp, logouttime);
 
         -- GMX and ShutDown -> Save Weapons -> all Other Kicks delete them
         local position = pack(getElementPosition(source));

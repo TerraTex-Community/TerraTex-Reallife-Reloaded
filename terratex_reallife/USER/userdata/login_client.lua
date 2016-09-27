@@ -51,16 +51,17 @@ addEventHandler("hideLoginGui", getRootElement(), disableLoginGui)
 
 local wasLoginSended = false;
 function login(get, post)
+    get = post;
     if (get) then
         if (get.password) then
             if (not wasLoginSended) then
                 wasLoginSended = true;
-                setTimer(reloadLoginGui, 1000, 1)
+                setTimer(reloadLoginGui, 1000, 1);
 
                 if (decodeURI(get.password) == "") then
-                    showError(getLocalPlayer(), "Du hast kein korrektes Passwort eingegeben!")
+                    showError(getLocalPlayer(), "Du hast kein korrektes Passwort eingegeben!");
                 else
-                    triggerServerEvent("loginPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), decodeURI(get.password))
+                    triggerServerEvent("loginPlayer", getLocalPlayer(), getPlayerName(getLocalPlayer()), decodeURI(get.password));
                 end
             end
         end

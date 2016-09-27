@@ -36,19 +36,26 @@
 <script>
     $(document).ready(function () {
         $("button").click(function () {
-            $.ajax("http://mta/local/ajax_login_login.html?password=" + $("#password").val());
-            $("#password").val("");
+            login();
         });
 
         $('#password').keypress(function (e) {
             var key = e.which;
             if(key == 13)  // the enter key code
             {
-                $.ajax("http://mta/local/ajax_login_login.html?password=" + $("#password").val());
-                $("#password").val("");
+                login();
             }
         });
     });
+    function login() {
+        $.ajax({
+            url: "http://mta/local/ajax_login_login.html",
+            method: "post",
+            data: {
+                password: $("#password").val()
+            }
+        });
+    }
 </script>
 
 

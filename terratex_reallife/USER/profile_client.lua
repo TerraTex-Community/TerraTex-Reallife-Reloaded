@@ -43,9 +43,9 @@ addCommandHandler("profile", startProfileUI, false, false);
 function change_password(get, post)
     if (get) then
         if (get.oldPassword and get.newPassword and get.newPasswordWdh) then
-            if (get.oldPassword ~= "" and get.newPassword ~= "" and get.newPasswordWdh ~= "") then
-                if (get.newPassword == get.newPasswordWdh)then
-                    triggerServerEvent("profileChangePassword", getLocalPlayer(), get.oldPassword, get.newPassword);
+            if (decodeURI(get.oldPassword) ~= "" and decodeURI(get.newPassword) ~= "" and decodeURI(get.newPasswordWdh) ~= "") then
+                if (decodeURI(get.newPassword) == decodeURI(get.newPasswordWdh))then
+                    triggerServerEvent("profileChangePassword", getLocalPlayer(), decodeURI(get.oldPassword), decodeURI(get.newPassword));
                 else
                     showError(getLocalPlayer(), "Die neuen Passwörter stimmen nicht überein!");
                 end

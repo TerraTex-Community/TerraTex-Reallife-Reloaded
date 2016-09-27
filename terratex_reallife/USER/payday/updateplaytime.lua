@@ -495,5 +495,9 @@ function payday_cmd_func(thePlayer)
         outputChatBox("Du hattest seit deinem letzten Login keinen PayDay", thePlayer, 255, 0, 0)
     end
 end
-
 addCommandHandler("payday", payday_cmd_func, false, false)
+
+function gehalt_cmd_func(thePlayer)
+    outputChatBox("Du hast seit dem letzten PayDay" .. toprice(vioGetElementData(thePlayer, "addPayDayGehalt")) .. "erarbeitet. (Berechnung ohne Abzug der Steuer, ohne Zusatzgelder z.B. Trinkgeld)");
+end
+addCommandHandler("gehalt", gehalt_cmd_func, false ,false)

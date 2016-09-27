@@ -5,7 +5,7 @@
 -- Time: 14:29
 -- To change this template use File | Settings | File Templates.
 --
-
+local runBackGround = true;
 
 local fixedCameraPositions_login = {
     { 1213.21826, -1326.199096, 25.8984375, 1172.643066, -1324.076171875, 14.15533638 },
@@ -20,14 +20,21 @@ local fixedCameraPositions_login = {
 }
 
 function fadeStartCameraOut()
-    if (not isPlayerLoggedIn(getLocalPlayer())) then
+    if (runBackGround and not isPlayerLoggedIn(getLocalPlayer())) then
         fadeCamera(false, 3)
         setTimer(showBackgroundcameraForLogin, 3000, 1)
     end
 end
 
+function stopBackGround_func()
+    runBackGround = false;
+end
+addEvent("stopBackGround", true);
+addEventHandler("stopBackGround", getRootElement(), stopBackGround_func)
+
+
 function showBackgroundcameraForLogin()
-    if (not isPlayerLoggedIn(getLocalPlayer())) then
+    if (runBackGround and not isPlayerLoggedIn(getLocalPlayer())) then
 
         local typer = math.random(1, 3)
         if (typer == 1 and getLoggedInPlayersCount() > 0) then

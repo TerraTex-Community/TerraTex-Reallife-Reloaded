@@ -67,7 +67,7 @@ function globalTankTimer()
         end
 
         for theMarkerKey, theMarker in ipairs(theStation.pumps) do
-            changeElementShowText(theMarker, 0xFFFF00FF, string.format("Tankpreis: %s $/l", fuelStations[theKey].price))
+            changeElementShowText(theMarker, 0xFFFF00FF, string.format("Tankpreis: %s $/l", toprice(fuelStations[theKey].price)))
         end
 
         MySql.helper.update("objects_fuel_stations", {Price = fuelStations[theKey].price}, {ID = theStation.id} );
@@ -159,6 +159,7 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter, pricePerLitre
 
         if (vioGetElementData(hitElement, "frakid")) then
             local frak = vioGetElementData(hitElement, "frakid");
+            outputChatBox("frak" .. frak)
             local satz = fraktanksatz[frak];
             frakPrice = price / 100 * satz;
             preis = preis - frakPrice;

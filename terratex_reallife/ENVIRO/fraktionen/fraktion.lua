@@ -145,7 +145,7 @@ function ftank_func(thePlayer, command, steuersatz)
                 steuersatz = math.floor(steuersatz)
                 if (steuersatz >= 0 and steuersatz <= 100) then
                     local fraktion = vioGetElementData(thePlayer, "fraktion")
-                    fraktanksatz = steuersatz
+                    fraktanksatz[fraktion] = steuersatz
                     outputChatBox(string.format("Der Tanksatz der Fraktion wurde auf %s Prozent festgesetzt!", steuersatz), thePlayer, 255, 0, 0)
                 else
                     outputChatBox("Der Tanksatz muss zwischen 1 und 40 Prozent liegen", thePlayer, 255, 0, 0)

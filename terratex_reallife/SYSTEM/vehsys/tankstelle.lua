@@ -159,9 +159,8 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter, pricePerLitre
 
         if (vioGetElementData(hitElement, "frakid")) then
             local frak = vioGetElementData(hitElement, "frakid");
-            outputChatBox("frak" .. frak)
             local satz = fraktanksatz[frak];
-            frakPrice = price / 100 * satz;
+            frakPrice = preis / 100 * satz;
             preis = preis - frakPrice;
 
             frakkasse[frak] = frakkasse[frak] - frakPrice;

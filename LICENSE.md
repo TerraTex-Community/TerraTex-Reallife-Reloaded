@@ -1,3 +1,4 @@
+CC-BY-NC-4.0
 ## creative commons Attribution-NonCommercial 4.0 International
 
 # Attribution-NonCommercial 4.0 International

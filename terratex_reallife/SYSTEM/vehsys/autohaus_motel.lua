@@ -157,6 +157,8 @@ function createBuyCars()
     table.insert(autohausVehicles, { vehicle, "Super GT", 4, 140000.00 })
 
     -- Flugzeughaus
+    vehicle = createVehicle(513, 2797.1000976563, -1542.6999511719, 11.5, 0, 0, 216)
+    table.insert(autohausVehicles, { vehicle, "Stuntplane", 5, 590000.00 })
     vehicle = createVehicle(469, 1906.4, -2321.8, 13.6, 0, 0, 270); --Sparrow
     table.insert(autohausVehicles, { vehicle, "Sparrow", 5, 120000.00 })
     vehicle = createVehicle(487, 1900.7, -2313.2, 13.8, 0, 0, 272); --Maverick
@@ -203,11 +205,9 @@ function createBuyCars()
     vehicle = createVehicle(489, 2797.3000488281, -1554.5, 11, 0, 0, 270)
     table.insert(autohausVehicles, { vehicle, "Rancher", 7, 35000.00 })
     vehicle = createVehicle(495, 2797.1999511719, -1558.5999755859, 11.199999809265, 0, 0, 269.75)
-    table.insert(autohausVehicles, { vehicle, "Sandking", 7, 833000.00 })
+    table.insert(autohausVehicles, { vehicle, "Sandking", 7, 1233000.00 })
     vehicle = createVehicle(500, 2797, -1549.6999511719, 11.10000038147, 0, 0, 267.5)
     table.insert(autohausVehicles, { vehicle, "Mesa", 7, 32500.00 })
-    vehicle = createVehicle(513, 2797.1000976563, -1542.6999511719, 11.5, 0, 0, 216)
-    table.insert(autohausVehicles, { vehicle, "Stuntplane", 5, 390000.00 })
     vehicle = createVehicle(539, 2821, -1543, 10.60000038147, 0, 0, 132)
     table.insert(autohausVehicles, { vehicle, "Vortex", 7, 80000.00 })
     vehicle = createVehicle(400, 2796.6999511719, -1562.5, 10.60000038147, 0, 0, 270)

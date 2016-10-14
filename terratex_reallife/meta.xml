@@ -319,6 +319,7 @@
     <script src="ENVIRO/fraktionen/muntruck/munitionstruck_client.lua" type="client"/>
     <!-- laden_attack -->
     <script src="ENVIRO/fraktionen/laden_attack/attack.lua" type="server"/>
+    <script src="ENVIRO/fraktionen/gangfight/dev_create_gf.lua" type="server"/>
     <!-- Grove -->
     <script src="ENVIRO/fraktionen/grove/grove_col.lua" type="server"/>
     <script src="ENVIRO/fraktionen/grove/grovecars.lua" type="server"/>

@@ -1,0 +1,109 @@
+--
+-- Created by IntelliJ IDEA.
+-- User: C5217649
+-- Date: 14.10.2016
+-- Time: 14:16
+-- To change this template use File | Settings | File Templates.
+--
+
+local attackElement = createElement("SyncElement", "GFSync");
+local gfPositions = {};
+
+function createGFPositions()
+    local gfs = MySql.helper.getSync("faction_gangfights", "*");
+
+    for theKey, theGfPosition in ipairs(gfs) do
+        local gfPositionElement = createElement("GfPosition", "gf-" .. theGfPosition.ID);
+        local pickup = createPickup(theGfPosition.X, theGfPosition.Y, theGfPosition.Z, 3, 1313);
+        addEventHandler("onPickupHit", pickup, hitGfPositionPickup);
+
+        vioSetElementData(gfPositionElement, "pickup", pickup);
+        vioSetElementData(pickup, "gfElement", gfPositionElement);
+
+        if (tonumber(theGfPosition.HoursWithoutAttack) > 48) then
+            theGfPosition.HoursWithoutAttack = 0;
+            theGfPosition.Owner = -1;
+        end
+
+        vioSetElementData(gfPositionElement, "data", theGfPosition)
+        table.insert(gfPositions, gfPositionElement);
+    end
+
+    -- set default options to attackElement
+    vioSetElementData(attackElement, "data", {
+        attackInProcess = false,
+        attackFaction = 0,
+        defendFaction = 0,
+        timer = false,
+        round = 0,
+        attackId = -1
+    });
+
+    setTimer(calcAndSaveGfPositionIncome, 3600000, 0);
+end
+
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createGFPositions)
+
+function hitGfPositionPickup(thePlayer)
+    if (getElementType(thePlayer) == 'player') then
+        local data = vioGetElementData(attackElement, "data");
+        local gfElement = vioGetElementData(source, "gfElement");
+        local elementData = vioGetElementData(gfElement, "data");
+
+        if (not data.attackInProcess or data.attackId ~= tonumber(elementData.ID)) then
+            local faction = fraktionbezeichner[tonumber(elementData.Owner)];
+            local gfName = elementData.Name;
+            outputChatBox(gfName .. " - Besitzer: " .. faction);
+
+        else
+            local gfName = elementData.Name;
+            outputChatBox(gfName .. " - Besitzer: -=Umstritten=-");
+
+        end
+    end
+end
+
+function calcAndSaveGfPositionIncome()
+    for theKey, theGfPositionElement in ipairs(gfPositions) do
+        local theGfPosition = vioGetElementData(theGfPositionElement, "data");
+        theGfPosition.HoursWithoutAttack = tonumber(theGfPosition.HoursWithoutAttack) + 1;
+
+        if (theGfPosition.HoursWithoutAttack > 48) then
+            theGfPosition.HoursWithoutAttack = 0;
+            theGfPosition.Owner = -1;
+        end
+
+        if (tonumber(theGfPosition.Owner) > 0) then
+            if (tonumber(theGfPosition.Type) == 0) then
+                -- Give only Money
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 1500
+                frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Geldladen")
+
+            elseif (tonumber(theGfPosition.Type) == 1) then
+                -- Give Money and Drugs
+                frakdrogen[tonumber(theGfPosition.Owner)] = frakdrogen[tonumber(theGfPosition.Owner)] + 250
+                frakdepot_log(tonumber(theGfPosition.Owner), 3, 100, "Drogenladen")
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 500
+                frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Drogenladen")
+
+            elseif (tonumber(theGfPosition.Type) == 2) then
+                -- Give Money and Mats
+                frakmun[tonumber(theGfPosition.Owner)] = frakmun[tonumber(theGfPosition.Owner)] + 500
+                frakdepot_log(tonumber(theGfPosition.Owner), 2, 100, "Waffenladen")
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 500
+                frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Waffenladen")
+            end
+        end
+
+        if (not isDevServer()) then
+            MySql.helper.update("faction_gangfights", {
+                Owner = theGfPosition.Owner,
+                HoursWithoutAttack = theGfPosition.HoursWithoutAttack
+            }, {
+                ID = theGfPosition.ID
+            });
+        end
+
+        vioSetElementData(theGfPositionElement, "data", theGfPosition);
+    end
+end

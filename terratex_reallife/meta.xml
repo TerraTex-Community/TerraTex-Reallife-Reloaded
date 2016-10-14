@@ -320,6 +320,7 @@
     <!-- laden_attack -->
     <script src="ENVIRO/fraktionen/laden_attack/attack.lua" type="server"/>
     <script src="ENVIRO/fraktionen/gangfight/dev_create_gf.lua" type="server"/>
+    <script src="ENVIRO/fraktionen/gangfight/load_gf_positions.lua" type="server"/>
     <!-- Grove -->
     <script src="ENVIRO/fraktionen/grove/grove_col.lua" type="server"/>
     <script src="ENVIRO/fraktionen/grove/grovecars.lua" type="server"/>

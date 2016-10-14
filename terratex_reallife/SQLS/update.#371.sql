@@ -13,6 +13,7 @@ CREATE TABLE `faction_gangfights` (
   `ASpawnX` float DEFAULT NULL,
   `ASpawnY` float DEFAULT NULL,
   `ASpawnZ` float DEFAULT NULL,
+  `HoursWithoutAttack` int(11) DEFAULT 0,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

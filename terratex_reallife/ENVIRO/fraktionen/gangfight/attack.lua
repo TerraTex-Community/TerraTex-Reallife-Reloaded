@@ -64,6 +64,11 @@ function cmdAttack(thePlayer, cmd, ...)
                             data.blip = blip;
 
                             vioSetElementData(gfElement, "data", data);
+
+                            for theKey, player in ipairs(players) do
+                                showError(player, "Der Angriff wurde gestartet, bitte warte auf die Verteidiger!");
+                                setElementDimension(player, 1337);
+                            end
                         else
                             showError(thePlayer, "Es läuft bereits ein Gangfight!");
                         end
@@ -83,6 +88,7 @@ addCommandHandler("attack", cmdAttack, false, false)
 
 function noDefendersOnGf()
 --    @todo implement
+--    reset player dimension
 end
 
 function cmdDefend(thePlayer, cmd, ...)

@@ -68,6 +68,8 @@ function cmdAttack(thePlayer, cmd, ...)
                             data.round = 0;
                             data.timer = setTimer(noDefendersOnGf, (10 * 60 * 1000), 1);
                             data.blip = blip;
+                            data.roundsAttackers = 0;
+                            data.roundsDefenders = 0;
 
                             vioSetElementData(gfElement, "data", data);
 
@@ -121,6 +123,8 @@ function noDefendersOnGf()
     data.attackers = {};
     data.defenders = {};
     data.round = 0;
+    data.roundsAttackers = 0;
+    data.roundsDefenders = 0;
     data.timer = false;
     data.blip = false;
     vioSetElementData(gfElement, "data", data);

@@ -36,6 +36,8 @@ function createGFPositions()
         defendFaction = 0,
         attackers = {},
         defenders = {},
+        roundsAttackers = 0,
+        roundsDefenders = 0,
         timer = false,
         round = 0,
         attack = false

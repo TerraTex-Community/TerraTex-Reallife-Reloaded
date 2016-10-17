@@ -87,8 +87,37 @@ end
 addCommandHandler("attack", cmdAttack, false, false)
 
 function noDefendersOnGf()
---    @todo implement
---    reset player dimension
+    local gfElement = getElementById("GFSync");
+    local data = vioGetElementData(gfElement, "data");
+
+    destroyElement(data.blip);
+
+    for theKey, theMember in ipairs(team[data.defendFaction]) do
+        outputChatBox("Ihr seid zu spät! Ihr habt den Laden verloren!", theMember, 255, 0, 0);
+    end
+
+    for theKey, player in ipairs(data.attackers) do
+        showError(player, "Der Laden gehört nun euch!");
+        setElementDimension(player, 0);
+    end
+
+    local gfPosition = data.attack;
+
+    local gfPositionData = vioGetElementData(data.attack, "data")
+    gfPositionData.Owner = data.attackFaction;
+    vioSetElementData(gfPosition, "data", gfPositionData);
+    calcAndSaveGfPositionIncome();
+
+    data.attackInProcess = false;
+    data.attack = false;
+    data.attackFaction = 0;
+    data.defendFaction = 0;
+    data.attackers = {};
+    data.defenders = {};
+    data.round = 0;
+    data.timer = false;
+    data.blip = false;
+    vioSetElementData(gfElement, "data", data);
 end
 
 function cmdDefend(thePlayer, cmd, ...)

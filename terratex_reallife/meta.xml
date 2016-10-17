@@ -323,6 +323,7 @@
     <script src="ENVIRO/fraktionen/gangfight/load_gf_positions.lua" type="server"/>
     <script src="ENVIRO/fraktionen/gangfight/attack.lua" type="server"/>
     <script src="ENVIRO/fraktionen/gangfight/gf_helper.lua" type="server"/>
+    <script src="ENVIRO/fraktionen/gangfight/run_gf.lua" type="server"/>
     <!-- Grove -->
     <script src="ENVIRO/fraktionen/grove/grove_col.lua" type="server"/>
     <script src="ENVIRO/fraktionen/grove/grovecars.lua" type="server"/>

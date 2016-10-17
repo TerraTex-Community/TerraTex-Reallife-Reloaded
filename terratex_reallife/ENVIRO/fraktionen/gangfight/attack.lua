@@ -33,6 +33,11 @@ function cmdAttack(thePlayer, cmd, ...)
                             showError(thePlayer, "Der Spieler ".. theUserName .. " ist nicht in der Nähe des Gangfights!");
                             return;
                         end
+
+                        if vioGetElementData(player, "fraktion") ~= vioGetElementData(thePlayer, "fraktion") then
+                            showError(thePlayer, "Der Spieler ".. theUserName .. " ist kein Mitglied deiner Fraktion!");
+                            return;
+                        end
                     end
 
                     if (table.getSize(players) <= getMaxDefenders(tonumber(gfPositionData.Owner))) then
@@ -49,8 +54,7 @@ function cmdAttack(thePlayer, cmd, ...)
                             end
                             for theKey, theMember in ipairs(team[tonumber(gfPositionData.Owner)]) do
                                 setElementVisibleTo ( blip, theMember, true );
-
-                                outputChatBox("Einer eurer Läden wird angegriffen! Fahrt hin und verteidigt ihn!", theMember, 255, 0, 0);
+                                outputChatBox("Einer eurer Läden wird angegriffen! Fahrt hin und verteidigt ihn (mit bis zu " .. table.getSize(players) .. " Teilnehmern)!", theMember, 255, 0, 0);
                             end
 
                             data.attackInProcess = true;
@@ -121,6 +125,58 @@ function noDefendersOnGf()
 end
 
 function cmdDefend(thePlayer, cmd, ...)
-    --    @todo implement
+    local gfElement = getElementById("GFSync");
+    local data = vioGetElementData(gfElement, "data");
+
+    if (data.attackInProcess) then
+
+        local gfPosition = data.attack;
+        local gfPositionData = vioGetElementData(gfPosition, "data");
+
+        if (data.attackFaction == vioGetElementData(thePlayer, "fraktion")) then
+--            @todo: implement ui for that
+            local players = {...};
+            if (table.getSize(players) > 0) then
+                for theKey, theUserName in ipairs(players) do
+                    local player = getPlayerFromIncompleteName(theUserName);
+                    if not player then
+                        showError(thePlayer, "Der Spieler ".. theUserName .. " existiert nicht!");
+                        return;
+                    end
+
+                    if (getElementsDistanceToPoint(player, gfPositionData.X, gfPositionData.Y, gfPositionData.Z) > 30) then
+                        showError(thePlayer, "Der Spieler ".. theUserName .. " ist nicht in der Nähe des Gangfights!");
+                        return;
+                    end
+
+                    if vioGetElementData(player, "fraktion") ~= vioGetElementData(thePlayer, "fraktion") then
+                        showError(thePlayer, "Der Spieler ".. theUserName .. " ist kein Mitglied deiner Fraktion!");
+                        return;
+                    end
+                end
+
+                if (table.getSize(players) <= table.getSize(data.attackers)) then
+                    data.defenders = players;
+                    if (isTimer(data.Timer)) then killTimer(data.Timer) end
+
+                    for theKey, theMember in ipairs(data.defenders) do
+                        outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
+                    end
+                    for theKey, theMember in ipairs(data.attackers) do
+                        outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
+                    end
+
+                    data.timer = setTimer(startGf, 5000, 1);
+                    vioSetElementData(gfElement, "data", data);
+
+
+                else
+                    showError(thePlayer, "Ihr seid zuviele! Es stehen nur " .. table.getSize(data.attackers) .. " Angreifer zur Verfügung.");
+                end
+            else
+                showError(thePlayer, "Usage: /defend name1 name2 name3 ...");
+            end
+        end
+    end
 end
 addCommandHandler("defend", cmdDefend, false, false)

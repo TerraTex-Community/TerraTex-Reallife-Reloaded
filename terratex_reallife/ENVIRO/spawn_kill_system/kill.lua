@@ -55,7 +55,10 @@ end
 addEventHandler("onPlayerQuit", getRootElement(), onDiscoDeleteIcons)
 
 function death_func(ammo, attacker, weapon, bodypart)
-    if not (vioGetElementData(source, "inArena")) then
+    local gfElement = getElementById("GFSync");
+    local gfData = vioGetElementData(gfElement, "data");
+
+    if not (vioGetElementData(source, "inArena")) and not (table.hasValue(gfData.attackers, source)) and not (table.hasValue(gfData.defenders, source)) then
         -- Vars for Logging
         local wasBlacklistOrWantedKill = false
 

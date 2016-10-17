@@ -21,6 +21,7 @@ function cmdAttack(thePlayer, cmd, ...)
             else
 --              @todo: replace this namelisting with UI
                 local players = {...};
+                local playersElements = {};
                 if (table.getSize(players) > 0) then
                     for theKey, theUserName in ipairs(players) do
                         local player = getPlayerFromIncompleteName(theUserName);
@@ -38,6 +39,7 @@ function cmdAttack(thePlayer, cmd, ...)
                             showError(thePlayer, "Der Spieler ".. theUserName .. " ist kein Mitglied deiner Fraktion!");
                             return;
                         end
+                        table.insert(playersElements, player);
                     end
 
                     if (table.getSize(players) <= getMaxDefenders(tonumber(gfPositionData.Owner))) then
@@ -61,7 +63,7 @@ function cmdAttack(thePlayer, cmd, ...)
                             data.attack = gfPosition;
                             data.attackFaction = vioGetElementData(thePlayer, "fraktion");
                             data.defendFaction = tonumber(gfPositionData.Owner);
-                            data.attackers = players;
+                            data.attackers = playersElements;
                             data.defenders = {};
                             data.round = 0;
                             data.timer = setTimer(noDefendersOnGf, (10 * 60 * 1000), 1);
@@ -136,6 +138,7 @@ function cmdDefend(thePlayer, cmd, ...)
         if (data.attackFaction == vioGetElementData(thePlayer, "fraktion")) then
 --            @todo: implement ui for that
             local players = {...};
+            local playersElements = {};
             if (table.getSize(players) > 0) then
                 for theKey, theUserName in ipairs(players) do
                     local player = getPlayerFromIncompleteName(theUserName);
@@ -153,10 +156,11 @@ function cmdDefend(thePlayer, cmd, ...)
                         showError(thePlayer, "Der Spieler ".. theUserName .. " ist kein Mitglied deiner Fraktion!");
                         return;
                     end
+                    table.insert(playersElements, player);
                 end
 
                 if (table.getSize(players) <= table.getSize(data.attackers)) then
-                    data.defenders = players;
+                    data.defenders = playersElements;
                     if (isTimer(data.Timer)) then killTimer(data.Timer) end
 
                     local costDef = table.getSize(data.defenders) * 2500;

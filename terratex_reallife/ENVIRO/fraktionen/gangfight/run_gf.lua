@@ -7,6 +7,6 @@
 --
 
 function startGf()
-
+--    create ColShapes
 end
 

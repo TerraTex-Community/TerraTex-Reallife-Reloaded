@@ -34,14 +34,15 @@ function createGFPositions()
         attackInProcess = false,
         attackFaction = 0,
         defendFaction = 0,
+        attackers = {},
+        defenders = {},
         timer = false,
         round = 0,
-        attackId = -1
+        attack = false
     });
 
     setTimer(calcAndSaveGfPositionIncome, 3600000, 0);
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createGFPositions)
 
 function hitGfPositionPickup(thePlayer)
@@ -76,21 +77,21 @@ function calcAndSaveGfPositionIncome()
         if (tonumber(theGfPosition.Owner) > 0) then
             if (tonumber(theGfPosition.Type) == 0) then
                 -- Give only Money
-                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 1500
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[tonumber(theGfPosition.Owner)] + 1500
                 frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Geldladen")
 
             elseif (tonumber(theGfPosition.Type) == 1) then
                 -- Give Money and Drugs
                 frakdrogen[tonumber(theGfPosition.Owner)] = frakdrogen[tonumber(theGfPosition.Owner)] + 250
                 frakdepot_log(tonumber(theGfPosition.Owner), 3, 100, "Drogenladen")
-                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 500
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[tonumber(theGfPosition.Owner)] + 500
                 frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Drogenladen")
 
             elseif (tonumber(theGfPosition.Type) == 2) then
                 -- Give Money and Mats
                 frakmun[tonumber(theGfPosition.Owner)] = frakmun[tonumber(theGfPosition.Owner)] + 500
                 frakdepot_log(tonumber(theGfPosition.Owner), 2, 100, "Waffenladen")
-                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[attackerLadenInfos[theKey][1]] + 500
+                frakkasse[tonumber(theGfPosition.Owner)] = frakkasse[tonumber(theGfPosition.Owner)] + 500
                 frakdepot_log(tonumber(theGfPosition.Owner), 1, 100, "Waffenladen")
             end
         end
@@ -106,4 +107,15 @@ function calcAndSaveGfPositionIncome()
 
         vioSetElementData(theGfPositionElement, "data", theGfPosition);
     end
+end
+
+function getNearGfPosition(thePlayer)
+    for theKey, theGfPosition in ipairs(gfPositions) do
+        local theGfPositionData = vioGetElementData(theGfPosition, "data");
+        if (getElementsDistanceToPoint(thePlayer, theGfPositionData.X, theGfPositionData.Y, theGfPositionData.Z) < 30) then
+            return theGfPosition, theGfPositionData;
+        end
+    end
+
+    return false, false;
 end

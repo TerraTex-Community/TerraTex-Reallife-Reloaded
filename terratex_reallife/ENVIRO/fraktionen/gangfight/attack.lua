@@ -159,11 +159,19 @@ function cmdDefend(thePlayer, cmd, ...)
                     data.defenders = players;
                     if (isTimer(data.Timer)) then killTimer(data.Timer) end
 
+                    local costDef = table.getSize(data.defenders) * 2500;
+                    local costAttack = table.getSize(data.attackers) * 5000;
+
+                    frakmun[data.attackFaction] = frakmun[data.attackFaction] - costAttack;
+                    frakmun[data.defendFaction] = frakmun[data.defendFaction] - costDef;
+
                     for theKey, theMember in ipairs(data.defenders) do
+                        outputChatBox("Die Kosten von " .. costDef .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                         setElementDimension(theMember, 1337);
                     end
                     for theKey, theMember in ipairs(data.attackers) do
+                        outputChatBox("Die Kosten von " .. costAttack .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                     end
 

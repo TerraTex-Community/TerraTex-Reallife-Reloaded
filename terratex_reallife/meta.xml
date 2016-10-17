@@ -319,7 +319,7 @@
     <script src="ENVIRO/fraktionen/muntruck/munitions_truck.lua" type="server"/>
     <script src="ENVIRO/fraktionen/muntruck/munitionstruck_client.lua" type="client"/>
     <!-- laden_attack -->
-    <script src="ENVIRO/fraktionen/gangfight/dev_create_gf.lua" type="server"/>
+    <!--<script src="ENVIRO/fraktionen/gangfight/dev_create_gf.lua" type="server"/>-->
     <script src="ENVIRO/fraktionen/gangfight/load_gf_positions.lua" type="server"/>
     <script src="ENVIRO/fraktionen/gangfight/attack.lua" type="server"/>
     <script src="ENVIRO/fraktionen/gangfight/gf_helper.lua" type="server"/>

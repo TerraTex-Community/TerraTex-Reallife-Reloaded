@@ -89,6 +89,21 @@ function admin_gf_cmd(thePlayer, cmd, cmdExtend, value, ...)
                 admin_gf_reset();
                 outputChatBox("Gangfight created!");
             end
+        elseif (cmdExtend == 'srsmall') then
+            if (X) then
+                RSmall = getElementsDistanceToPoint(thePlayer, X, Y, Z)
+                outputChatBox("RSmall = " .. RSmall)
+            else
+                outputChatBox('set pos first')
+            end
+
+        elseif (cmdExtend == 'srlarge') then
+            if (X) then
+                RLarge = getElementsDistanceToPoint(thePlayer, X, Y, Z)
+                outputChatBox("RLarge = " .. RLarge)
+            else
+                outputChatBox('set pos first')
+            end
 
         else
             if not value then
@@ -102,12 +117,6 @@ function admin_gf_cmd(thePlayer, cmd, cmdExtend, value, ...)
             elseif (cmdExtend == 'stype') then
                 Type = value;
                 outputChatBox("Type saved!");
-            elseif (cmdExtend == 'srsmall') then
-                RSmall = value;
-                outputChatBox("RSmall saved!");
-            elseif (cmdExtend == 'srlarge') then
-                RLarge = value;
-                outputChatBox("RLarge saved!");
             end
         end
     end

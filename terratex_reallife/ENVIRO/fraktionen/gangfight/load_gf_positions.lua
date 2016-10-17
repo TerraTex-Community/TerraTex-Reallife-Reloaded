@@ -52,9 +52,15 @@ function hitGfPositionPickup(thePlayer)
         local elementData = vioGetElementData(gfElement, "data");
 
         if (not data.attackInProcess or data.attackId ~= tonumber(elementData.ID)) then
-            local faction = fraktionbezeichner[tonumber(elementData.Owner)];
-            local gfName = elementData.Name;
-            outputChatBox(gfName .. " - Besitzer: " .. faction);
+
+            if (tonumber(elementData.Owner) == -1) then
+                local gfName = elementData.Name;
+                outputChatBox(gfName .. " - Besitzer: Niemand");
+            else
+                local faction = fraktionbezeichner[tonumber(elementData.Owner)];
+                local gfName = elementData.Name;
+                outputChatBox(gfName .. " - Besitzer: " .. faction);
+            end
 
         else
             local gfName = elementData.Name;

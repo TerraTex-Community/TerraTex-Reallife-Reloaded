@@ -161,6 +161,7 @@ function cmdDefend(thePlayer, cmd, ...)
 
                     for theKey, theMember in ipairs(data.defenders) do
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
+                        setElementDimension(theMember, 1337);
                     end
                     for theKey, theMember in ipairs(data.attackers) do
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)

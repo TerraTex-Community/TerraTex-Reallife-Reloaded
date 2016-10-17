@@ -80,7 +80,7 @@ function startRound()
             if (isElement(thePlayer)) then
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
-                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 5 Sekunden.", thePlayer);
+                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
             end
         end
@@ -90,13 +90,13 @@ function startRound()
             if (isElement(thePlayer)) then
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
-                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 5 Sekunden.", thePlayer);
+                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
             end
         end
     end
 
-    setTimer(spawnOtherGFTeam, 5000, 1);
+    setTimer(spawnOtherGFTeam, 30000, 1);
 end
 
 function spawnOtherGFTeam()

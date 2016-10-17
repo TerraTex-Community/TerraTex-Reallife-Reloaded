@@ -129,5 +129,20 @@ function spawnOtherGFTeam()
 end
 
 function givePlayerGFWeapons(thePlayer)
---    @todo: implement
+    setPedArmor(thePlayer, 100);
+
+    takeWeapon(thePlayer, 5);
+    giveWeapon(thePlayer, 5, 1);
+
+    takeWeapon(thePlayer, 24);
+    giveWeapon(thePlayer, 24, 50);
+
+    takeWeapon(thePlayer, 25);
+    giveWeapon(thePlayer, 25, 10);
+
+    takeWeapon(thePlayer, 29);
+    giveWeapon(thePlayer, 29, 1500);
+
+    takeWeapon(thePlayer, 30);
+    giveWeapon(thePlayer, 30, 1500);
 end

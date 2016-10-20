@@ -32,11 +32,10 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
             setTimer(setElementFrozen, 3000, 1, source, false)
         else
             if (not FlutInAction) then
+                local spawnCity = "ls";
                 if (spawn == 109) then
-                    if (frakid == 1) then
-                        frakid = 9
-                        spawn = 1
-                    end
+                    spawnCity = "lv";
+                    spawn = 1;
                 end
                 --noobspawn
                 if (spawn == 0) then
@@ -48,7 +47,11 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         outputChatBox("Während eines Angriffs werdet ihr in einer sicheren Umgebung gespawned!", source, 255, 0, 0)
                         spawnPlayer(source, 1565.541015625, 23.0830078125, 24.1640625, 92.52001953125, skinid, 0, 0, team[fraktion])
                     elseif (frakid == 1) then
-                        spawnPlayer(source, 218.6328125, 110.7275390625, 1003.21875, 7.0780639648438, skinid, 10, 0, team[fraktion]) -- policespawn
+                        if (spawnCity == "ls") then
+                            spawnPlayer(source, 218.6328125, 110.7275390625, 1003.21875, 7.0780639648438, skinid, 10, 0, team[fraktion]) -- policespawn
+                        else
+                            spawnPlayer(source, 215.95703125, 145.75, 1003.0234375, 183.87274169922, skinid, 3, 0, team[fraktion])
+                        end
                     elseif (frakid == 2) then
                         spawnPlayer(source, 2494.2998046875, -1704.654296875, 1018.34375, 73.381561279297, skinid, 3, 0, team[fraktion]) -- grove
                     elseif (frakid == 3) then
@@ -63,10 +66,12 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         spawnPlayer(source, 223.791015625, 1860.880859375, 13.14695930481, 25.029998779297, skinid, 0, 0, team[fraktion])
                     elseif (frakid == 8) then
                         spawnPlayer(source, -405.896484375, -1433.970703125, 25.720909118652, 183.78485107422, skinid, 0, 0, team[fraktion])
-                    elseif (frakid == 9) then
-                        spawnPlayer(source, 215.95703125, 145.75, 1003.0234375, 183.87274169922, skinid, 3, 0, team[fraktion]) --lvpd
                     elseif (frakid == 10) then
-                        spawnPlayer(source, 1607.3505859375, 1816.220703125, 10.8203125, 114.33920288086, skinid, 0, 0, team[fraktion]) --medic
+                        if (spawnCity == "ls") then
+                            spawnPlayer(source, 2039.474609375, -1413.380859375, 17.1640625, 130.33920288086, skinid, 0, 0, team[fraktion]) --medic
+                        else
+                            spawnPlayer(source, 1607.3505859375, 1816.220703125, 10.8203125, 114.33920288086, skinid, 0, 0, team[fraktion]) --medic
+                        end
                     elseif (frakid == 11) then
                         spawnPlayer(source, 2017.888671875, 1915.2509765625, 12.32729434967, 8.2920532226563, skinid, 0, 0, team[fraktion]) --cash
                     elseif (frakid == 12) then

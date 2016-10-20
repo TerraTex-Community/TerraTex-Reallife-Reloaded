@@ -163,8 +163,11 @@ function setTankFulTanke(preis, hitElement, driver, marker, liter, pricePerLitre
             frakPrice = preis / 100 * satz;
             preis = preis - frakPrice;
 
-            frakkasse[frak] = frakkasse[frak] - frakPrice;
-            frakdepot_log(frak, 1, -frakPrice, "Frakzeugtank" , "Tankstelle - " .. getPlayerName(driver));
+            if (frakPrice > 0) then
+                frakkasse[frak] = frakkasse[frak] - frakPrice;
+                frakdepot_log(frak, 1, -frakPrice, "Frakzeugtank" , "Tankstelle - " .. getPlayerName(driver));
+                outputChatBox("Die Fraktion hat von der Tankrechnung einen Anteil von ".. toprice(frakPrice).. " übernommen!", driver, 255, 0, 0);
+            end
         end
 
         if (getPlayerMoney(driver) >= preis) then

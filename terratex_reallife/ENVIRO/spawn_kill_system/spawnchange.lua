@@ -5,11 +5,11 @@ function spawnchange_func(thePlayer, Command, placestring, slotid)
         if (placestring == "fraktion") then
             if (vioGetElementData(thePlayer, "fraktion") > 0) then
                 if (not (slotid)) then
-                    slotid = "lspd"
+                    slotid = "ls"
                 end
-                if (string.lower(slotid) == "lvpd") then
+                if (string.lower(slotid) == "lv") then
                     vioSetElementData(thePlayer, "spawnplace", 109)
-                    showError(thePlayer, "Dein Spawn wurde erfolgreich auf die LVPD Fraktionsbase gesetzt")
+                    showError(thePlayer, "Dein Spawn wurde erfolgreich auf die LV Fraktionsbase gesetzt")
                 else
                     vioSetElementData(thePlayer, "spawnplace", 1)
                     showError(thePlayer, "Dein Spawn wurde erfolgreich auf die Fraktionsbase gesetzt")

@@ -42,7 +42,7 @@ function check_func(thePlayer, command, toPlayerNamePart)
 end
 addCommandHandler("rcheck", check_func, false, false)
 
-function rkick_func(thePlayer, command, time, theBeBanned, ...)
+function rkick_func(thePlayer, command, theBeBanned, ...)
     local reasons = table.concat({ ... }, "  ")
     if (isConsole(thePlayer)) then
 

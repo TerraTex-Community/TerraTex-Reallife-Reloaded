@@ -98,7 +98,6 @@ function noDefendersOnGf()
     local gfElement = getElementById("GFSync");
     local data = vioGetElementData(gfElement, "data");
 
-    destroyElement(data.blip);
 
     for theKey, theMember in ipairs(team[data.defendFaction]) do
         outputChatBox("Ihr seid zu spät! Ihr habt den Laden verloren!", theMember, 255, 0, 0);
@@ -109,10 +108,13 @@ function noDefendersOnGf()
         setElementDimension(player, 0);
     end
 
+    destroyElement(data.blip);
     local gfPosition = data.attack;
 
     local gfPositionData = vioGetElementData(data.attack, "data")
     gfPositionData.Owner = data.attackFaction;
+    gfPositionData.lastFight = getRealTime().timestamp;
+    gfPositionData.HoursWithoutAttack = 0;
     vioSetElementData(gfPosition, "data", gfPositionData);
     calcAndSaveGfPositionIncome();
 

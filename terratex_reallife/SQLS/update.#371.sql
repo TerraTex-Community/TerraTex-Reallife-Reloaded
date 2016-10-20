@@ -26,3 +26,4 @@ INSERT INTO faction_gangfights (Name, Type, Owner, X, Y, Z, RSmall, RLarge, ASpa
 INSERT INTO faction_gangfights (Name, Type, Owner, X, Y, Z, RSmall, RLarge, ASpawnX, ASpawnY, ASpawnZ, HoursWithoutAttack) VALUES ('Drogenversteck Süd LV', 1, -1, 2425.37, 1899.14, 6.01562, 198, 456, 2596.58, 1726.8, 10.3833, 0);
 INSERT INTO faction_gangfights (Name, Type, Owner, X, Y, Z, RSmall, RLarge, ASpawnX, ASpawnY, ASpawnZ, HoursWithoutAttack) VALUES ('Drogenversteck Nord LV', 1, -1, 2647.27, 828.799, 8.82031, 135, 398, 2632.43, 1079.42, 10.8203, 0);
 
+DROP TABLE faction_shops;

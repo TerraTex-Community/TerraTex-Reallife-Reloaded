@@ -24,6 +24,7 @@ function createGFPositions()
             theGfPosition.HoursWithoutAttack = 0;
             theGfPosition.Owner = -1;
         end
+        theGfPosition["lastFight"] = 0;
 
         vioSetElementData(gfPositionElement, "data", theGfPosition)
         table.insert(gfPositions, gfPositionElement);

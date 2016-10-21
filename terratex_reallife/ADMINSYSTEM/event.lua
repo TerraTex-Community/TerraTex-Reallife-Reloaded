@@ -74,3 +74,68 @@ function freezeAbleVehicles_func(thePlayer, cmd, cmd_id, id)
 end
 addCommandHandler("fveh", freezeAbleVehicles_func, false, false)
 
+---------------------------------------------------------------------------------------------------------------------------
+
+addEvent("createBarrier_event", true);
+addEvent("destroyBarrier_event", true);
+
+local barriers = {};
+local createdBarriers = 0;
+function createBarrier_func(posTable)
+    if (isAdminLevel(source, 3)) then
+        if (table.getSize(posTable) > 0) then
+            createdBarriers = createdBarriers + 1;
+            local barrierObjects = {};
+            local lastX, lastY, lastZ = 0,0,0;
+
+            for theKey, thePosition in ipairs(posTable) do
+                if (getDistanceBetweenPoints3D(thePosition.x, thePosition.y, thePosition.z, lastX, lastY, lastZ) > 0.75) then
+                    local object = createObject(1237, thePosition.x, thePosition.y, thePosition.z);
+                    table.insert(barrierObjects, object);
+                    lastX, lastY, lastZ = thePosition.x, thePosition.y, thePosition.z;
+                end
+            end
+
+            barriers[createdBarriers] = {};
+            table.insert(barriers[createdBarriers], object);
+            outputChatBox("Barrier created. New Id: " .. createdBarriers, source, 0, 255, 0);
+        else
+            showError(source, "Nothing recorded. Use '/barrier rec'");
+        end
+    end
+end
+addEventHandler("createBarrier_event", getRootElement(), createBarrier_func);
+
+function destroyBarrier_func(id)
+    if (isAdminLevel(source, 3)) then
+        if (id == "all") then
+            for theKey, theBarrier in pairs(barriers) do
+                if (theBarrier) then
+                    for theKey, theBarrierObject in ipairs(theBarrier) do
+                        if (isElement(theBarrierObject)) then
+                            destroyElement(theBarrierObject);
+                        end
+                    end
+                end
+            end
+            barriers = {};
+            showError(source, "Destroyed All Barriers");
+        elseif (tonumber(id)) then
+            id = tonumber(id);
+            if (barriers[id]) then
+                for theKey, theBarrierObject in ipairs(barriers[id]) do
+                    if (isElement(theBarrierObject)) then
+                        destroyElement(theBarrierObject);
+                    end
+                end
+                barriers[id] = false;
+                showError(source, "Destroyed Barrier Id ".. id);
+            else
+                showError(source, "Non valid ID.");
+            end
+        else
+            showError(source, "Non valid ID.");
+        end
+    end
+end
+addEventHandler("destroyBarrier_event", getRootElement(), destroyBarrier_func)

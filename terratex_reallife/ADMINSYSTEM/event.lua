@@ -89,7 +89,7 @@ function createBarrier_func(posTable)
             local lastX, lastY, lastZ = 0,0,0;
 
             for theKey, thePosition in ipairs(posTable) do
-                if (getDistanceBetweenPoints3D(thePosition.x, thePosition.y, thePosition.z, lastX, lastY, lastZ) > 0.75) then
+                if (getDistanceBetweenPoints3D(thePosition.x, thePosition.y, thePosition.z, lastX, lastY, lastZ) > 0.7) then
                     local object = createObject(1237, thePosition.x, thePosition.y, thePosition.z);
                     table.insert(barrierObjects, object);
                     lastX, lastY, lastZ = thePosition.x, thePosition.y, thePosition.z;

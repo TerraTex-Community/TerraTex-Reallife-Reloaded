@@ -10,7 +10,7 @@ local colshapes = {};
 local disableSpawnCollision;
 
 function startGf()
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
@@ -62,7 +62,7 @@ end
 -- GF
 function startRound()
 --    Spawn Players Team Attack
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
@@ -101,7 +101,7 @@ function startRound()
 end
 
 function spawnOtherGFTeam()
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
@@ -133,7 +133,7 @@ function spawnOtherGFTeam()
 end
 
 function checkEndGfOrNextRound()
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
@@ -237,14 +237,14 @@ function destroyAllGFColshapes()
         destroyElement(theColShape);
     end
 
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     data.attackInProcess = false;
     vioSetElementData(gfElement, "data", data);
 end
 
 function gfRoundTimeUp()
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     data.timer = false;
 
@@ -289,7 +289,7 @@ end
 
 function gfPlayerDeath()
     if (vioGetElementData(source, "inGf")) then
-        local gfElement = getElementById("GFSync");
+        local gfElement = getElementByID("GFSync");
         local data = vioGetElementData(gfElement, "data");
 
         if (not data.timer) then

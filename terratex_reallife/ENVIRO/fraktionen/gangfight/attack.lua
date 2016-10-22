@@ -19,6 +19,11 @@ function cmdAttack(thePlayer, cmd, ...)
                 vioSetElementData(gfPosition, "data", gfPositionData);
                 calcAndSaveGfPositionIncome();
             else
+                if (gfPosition.lastFight > getRealTime().timestamp - (3 * 60 )) then
+                    showError(thePlayer, "Ein Laden kann nur alle 3 Stunden angegriffen werden!");
+                    return;
+                end
+
 --              @todo: replace this namelisting with UI
                 local players = {...};
                 local playersElements = {};
@@ -43,7 +48,7 @@ function cmdAttack(thePlayer, cmd, ...)
                     end
 
                     if (table.getSize(players) <= getMaxDefenders(tonumber(gfPositionData.Owner))) then
-                        local gfElement = getElementById("GFSync");
+                        local gfElement = getElementByID("GFSync");
                         local data = vioGetElementData(gfElement, "data");
 
                         if (not data.attackInProcess)then
@@ -95,7 +100,7 @@ end
 addCommandHandler("attack", cmdAttack, false, false)
 
 function noDefendersOnGf()
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
 
 
@@ -133,7 +138,7 @@ function noDefendersOnGf()
 end
 
 function cmdDefend(thePlayer, cmd, ...)
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
 
     if (data.attackInProcess) then

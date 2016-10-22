@@ -38,7 +38,7 @@ function showKillGfText()
         dxDrawText ( text, 0,0, screenW, screenH, tocolor(255,0,0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0 );
     end
 
-    local gfElement = getElementById("GFSync");
+    local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
 
     if (isTimer(data.timer) and (table.hasValue(data.Attackers, getLocalPlayer()) or table.hasValue(data.Defenders, getLocalPlayer()))) then

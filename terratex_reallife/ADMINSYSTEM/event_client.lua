@@ -10,7 +10,7 @@ local isRecording = false;
 local barrier = {};
 
 function barrier_func(cmd, command, ext)
-    if (isAdminLevel(thePlayer, 3)) then
+    if (isAdminLevel(getLocalPlayer(), 3)) then
         if (cmd == "rec") then
             isRecording = true;
             barrier = {};

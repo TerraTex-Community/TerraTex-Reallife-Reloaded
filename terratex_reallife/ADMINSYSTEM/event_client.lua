@@ -32,7 +32,12 @@ addCommandHandler("barrier", barrier_func, false, false);
 function onBarrierRecord()
     if (isRecording) then
         local x,y,z = getElementPosition(getLocalPlayer());
-        table.insert(barrier, {x=x, y=y, z=(z - 1)});
+        if (isPedInVehicle(getLocalPlayer())) then
+            local nx,ny,nz = getVehicleComponentPosition ( veh, "wheel_if_dummy", "world" )
+            table.insert(barrier, {x=x, y=y, z=(nz - 0.15)});
+        else
+            table.insert(barrier, {x=x, y=y, z=(z - 1)});
+        end
     end
 end
 addEventHandler("onClientRender", getRootElement(), onBarrierRecord)

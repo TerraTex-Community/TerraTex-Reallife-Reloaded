@@ -52,7 +52,7 @@ function showKillGfText()
         restTime = data.timerEnd - getRealTime().timestamp;
     end
 
-    if (restTime > 0 and (table.hasValue(data.Attackers, getLocalPlayer()) or table.hasValue(data.Defenders, getLocalPlayer()))) then
+    if (restTime > 0 and (table.hasValue(data.attackers, getLocalPlayer()) or table.hasValue(data.defenders, getLocalPlayer()))) then
 --        Spieler ist im GF
         local minutes = math.floor(restTime / 60);
         local seconds = math.floor(restTime - (minutes * 60));
@@ -60,10 +60,10 @@ function showKillGfText()
             seconds = "0" .. seconds;
         end
 
-        local screenX, screenY = getScreenSize();
+        local screenX, screenY = guiGetScreenSize();
 
         local sX = (screenX / 2) - (456 / 2)
-        local sY = (screenY / 2) - (56 / 2)
+        local sY = 0
 
         dxDrawRectangle(sX,sY,456.0,56.0,tocolor(0,0,0,255),false)
         local taxastring="Rundenzeit: "..minutes..":"..seconds;

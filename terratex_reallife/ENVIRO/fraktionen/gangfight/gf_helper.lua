@@ -18,9 +18,9 @@ function getMaxDefenders(fraktion)
         if (vioGetElementData(theMember, "playtime") > (25*60)) then
             if (vioGetElementData(theMember, "afk_status") == 0) then
                 if (vioGetElementData(theMember, "knastzeit") == 0) then
-                    if (vioGetElementData(theMember, "loggedin") < (getRealTime().timestamp - 600)) then
+--                    if (vioGetElementData(theMember, "loggedin") < (getRealTime().timestamp - 600)) then
                         counter = counter + 1;
-                    end
+--                    end
                 end
             end
         end

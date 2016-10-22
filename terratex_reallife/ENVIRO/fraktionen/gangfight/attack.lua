@@ -19,7 +19,7 @@ function cmdAttack(thePlayer, cmd, ...)
                 vioSetElementData(gfPosition, "data", gfPositionData);
                 calcAndSaveGfPositionIncome();
             else
-                if (gfPosition.lastFight > getRealTime().timestamp - (3 * 60 )) then
+                if (gfPositionData.lastFight > getRealTime().timestamp - (3 * 60 )) then
                     showError(thePlayer, "Ein Laden kann nur alle 3 Stunden angegriffen werden!");
                     return;
                 end
@@ -56,10 +56,10 @@ function cmdAttack(thePlayer, cmd, ...)
                             local blip = createBlip ( gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 19, 2, 255, 0, 0, 255, 0, 99999.0, getRootElement() )
                             vioSetElementData(blip, "flashing");
                             setElementVisibleTo ( blip, getRootElement(), false );
-                            for theKey, theMember in ipairs(team[vioGetElementData(thePlayer, "fraktion")]) do
+                            for theKey, theMember in ipairs(getPlayersInTeam(team[vioGetElementData(thePlayer, "fraktion")])) do
                                 setElementVisibleTo ( blip, theMember, true );
                             end
-                            for theKey, theMember in ipairs(team[tonumber(gfPositionData.Owner)]) do
+                            for theKey, theMember in ipairs(getPlayersInTeam(team[tonumber(gfPositionData.Owner)])) do
                                 setElementVisibleTo ( blip, theMember, true );
                                 outputChatBox("Einer eurer Läden wird angegriffen! Fahrt hin und verteidigt ihn (mit bis zu " .. table.getSize(players) .. " Teilnehmern)!", theMember, 255, 0, 0);
                             end
@@ -78,7 +78,7 @@ function cmdAttack(thePlayer, cmd, ...)
 
                             vioSetElementData(gfElement, "data", data);
 
-                            for theKey, player in ipairs(players) do
+                            for theKey, player in ipairs(playersElements) do
                                 showError(player, "Der Angriff wurde gestartet, bitte warte auf die Verteidiger!");
                                 setElementDimension(player, 1337);
                             end
@@ -146,7 +146,7 @@ function cmdDefend(thePlayer, cmd, ...)
         local gfPosition = data.attack;
         local gfPositionData = vioGetElementData(gfPosition, "data");
 
-        if (data.attackFaction == vioGetElementData(thePlayer, "fraktion")) then
+        if (data.defendFaction == vioGetElementData(thePlayer, "fraktion")) then
 --            @todo: implement ui for that
             local players = {...};
             local playersElements = {};

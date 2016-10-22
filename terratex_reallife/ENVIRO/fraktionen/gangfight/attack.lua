@@ -71,7 +71,8 @@ function cmdAttack(thePlayer, cmd, ...)
                             data.attackers = playersElements;
                             data.defenders = {};
                             data.round = 0;
-                            data.timer = setTimer(noDefendersOnGf, (10 * 60 * 1000), 1);
+                            data.timer = false;
+                            data.timeOutTimer = setTimer(noDefendersOnGf, (10 * 60 * 1000), 1);
                             data.blip = blip;
                             data.roundsAttackers = 0;
                             data.roundsDefenders = 0;
@@ -102,7 +103,6 @@ addCommandHandler("attack", cmdAttack, false, false)
 function noDefendersOnGf()
     local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
-
 
     for theKey, theMember in ipairs(team[data.defendFaction]) do
         outputChatBox("Ihr seid zu spät! Ihr habt den Laden verloren!", theMember, 255, 0, 0);
@@ -172,7 +172,7 @@ function cmdDefend(thePlayer, cmd, ...)
 
                 if (table.getSize(players) <= table.getSize(data.attackers)) then
                     data.defenders = playersElements;
-                    if (isTimer(data.Timer)) then killTimer(data.Timer) end
+                    if (isTimer(data.timeOutTimer)) then killTimer(data.timeOutTimer) end
 
                     local costDef = table.getSize(data.defenders) * 2500;
                     local costAttack = table.getSize(data.attackers) * 5000;

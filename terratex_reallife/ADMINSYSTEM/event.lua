@@ -24,7 +24,7 @@ function freezeAbleVehicles_func(thePlayer, cmd, cmd_id, id)
             setElementInterior(veh, int, x + 3, y + 3, z + 10);
             setElementDimension(veh, dim);
             vioSetElementData(veh, "hasTank", false);
-            vioSetElementData(veh, "freezeAbleVehicle", true);
+            vioSetElementData(veh, "FreezeAbleVehicle", true);
             table.insert(freezeAbleVehicles, veh);
             showError(thePlayer, "FreezeAbleVehicle created");
         elseif (cmd_id == "destroy") then
@@ -64,7 +64,7 @@ function freezeAbleVehicles_func(thePlayer, cmd, cmd_id, id)
             showError(thePlayer, "All FreezeAbleVehicle freezed");
         elseif (cmd_id == "unfreezeall") then
             for theKey, theVehicle in ipairs(freezeAbleVehicles) do
-                setElementFrozen(theVehicle, true);
+                setElementFrozen(theVehicle, false);
             end
             showError(thePlayer, "All FreezeAbleVehicle unfreezed");
         else

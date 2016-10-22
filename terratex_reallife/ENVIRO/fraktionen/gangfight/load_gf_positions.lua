@@ -14,7 +14,7 @@ function createGFPositions()
 
     for theKey, theGfPosition in ipairs(gfs) do
         local gfPositionElement = createElement("GfPosition", "gf-" .. theGfPosition.ID);
-        local pickup = createPickup(theGfPosition.X, theGfPosition.Y, theGfPosition.Z, 3, 1313);
+        local pickup = createPickup(theGfPosition.X, theGfPosition.Y, theGfPosition.Z, 3, 1313, 0);
         addEventHandler("onPickupHit", pickup, hitGfPositionPickup);
 
         vioSetElementData(gfPositionElement, "pickup", pickup);

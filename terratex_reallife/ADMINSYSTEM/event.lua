@@ -10,10 +10,10 @@ local freezeAbleVehicles = {};
 
 function freezeAbleVehicles_func(thePlayer, cmd, cmd_id, id)
     if (isAdminLevel(thePlayer, 3)) then
-       if (tonumber(cmd_id)) then
-           id = cmd_id;
-           cmd_id = "create";
-       end
+        if (tonumber(cmd_id)) then
+            id = cmd_id;
+            cmd_id = "create";
+        end
 
         if (cmd_id == "create") then
             local vehmod = tonumber(id);
@@ -96,8 +96,7 @@ function createBarrier_func(posTable)
                 end
             end
 
-            barriers[createdBarriers] = {};
-            table.insert(barriers[createdBarriers], object);
+            barriers[createdBarriers] = barrierObjects;
             outputChatBox("Barrier created. New Id: " .. createdBarriers, source, 0, 255, 0);
         else
             showError(source, "Nothing recorded. Use '/barrier rec'");

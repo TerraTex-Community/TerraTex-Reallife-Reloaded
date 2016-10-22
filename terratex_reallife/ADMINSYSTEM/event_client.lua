@@ -33,8 +33,11 @@ function onBarrierRecord()
     if (isRecording) then
         local x,y,z = getElementPosition(getLocalPlayer());
         if (isPedInVehicle(getLocalPlayer())) then
-            local nx,ny,nz = getVehicleComponentPosition ( veh, "wheel_if_dummy", "world" )
-            table.insert(barrier, {x=x, y=y, z=(nz - 0.15)});
+            local nx,ny,nz = getVehicleComponentPosition ( getPedOccupiedVehicle(getLocalPlayer()), "wheel_lf_dummy", "world" );
+            if not nz then
+                nx,ny,nz = getVehicleComponentPosition ( getPedOccupiedVehicle(getLocalPlayer()), "wheel_rear", "world" );
+            end
+            table.insert(barrier, {x=x, y=y, z=(nz - 0.45)});
         else
             table.insert(barrier, {x=x, y=y, z=(z - 1)});
         end

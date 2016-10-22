@@ -24,7 +24,7 @@ function createGFPositions()
             theGfPosition.HoursWithoutAttack = 0;
             theGfPosition.Owner = -1;
         end
-        theGfPosition["lastFight"] = 0;
+        theGfPosition.lastFight = 0;
 
         vioSetElementData(gfPositionElement, "data", theGfPosition)
         table.insert(gfPositions, gfPositionElement);
@@ -58,16 +58,16 @@ function hitGfPositionPickup(thePlayer)
 
             if (tonumber(elementData.Owner) == -1) then
                 local gfName = elementData.Name;
-                outputChatBox(gfName .. " - Besitzer: Niemand");
+                outputChatBox(gfName .. " - Besitzer: Niemand", thePlayer);
             else
                 local faction = fraktionbezeichner[tonumber(elementData.Owner)];
                 local gfName = elementData.Name;
-                outputChatBox(gfName .. " - Besitzer: " .. faction);
+                outputChatBox(gfName .. " - Besitzer: " .. faction, thePlayer);
             end
 
         else
             local gfName = elementData.Name;
-            outputChatBox(gfName .. " - Besitzer: -=Umstritten=-");
+            outputChatBox(gfName .. " - Besitzer: -=Umstritten=-", thePlayer);
 
         end
     end

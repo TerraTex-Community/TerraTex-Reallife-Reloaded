@@ -32,7 +32,7 @@ addCommandHandler("barrier", barrier_func, false, false);
 function onBarrierRecord()
     if (isRecording) then
         local x,y,z = getElementPosition(getLocalPlayer());
-        table.insert(barrier, {x=x, y=y, z=(z - 0.75)});
+        table.insert(barrier, {x=x, y=y, z=(z - 0.85)});
     end
 end
 addEventHandler("onClientRender", getRootElement(), onBarrierRecord)

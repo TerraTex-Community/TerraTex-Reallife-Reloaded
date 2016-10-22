@@ -71,6 +71,7 @@ function cmdAttack(thePlayer, cmd, ...)
                             data.attackers = playersElements;
                             data.defenders = {};
                             data.round = 0;
+                            data.timerEnd = 0;
                             data.timer = false;
                             data.timeOutTimer = setTimer(noDefendersOnGf, (10 * 60 * 1000), 1);
                             data.blip = blip;
@@ -128,6 +129,7 @@ function noDefendersOnGf()
     data.attackFaction = 0;
     data.defendFaction = 0;
     data.attackers = {};
+    data.timerEnd = 0;
     data.defenders = {};
     data.round = 0;
     data.roundsAttackers = 0;

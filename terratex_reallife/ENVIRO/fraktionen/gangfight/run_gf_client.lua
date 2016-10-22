@@ -36,14 +36,24 @@ function showKillGfText()
 
         local screenW, screenH = guiGetScreenSize();
         dxDrawText ( text, 0,0, screenW, screenH, tocolor(255,0,0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0 );
+
+        if (not isElementWithinColShape ( getLocalPlayer(), colshape )) then
+            killTimer(killGFTimer);
+            killGFTimer = false;
+            colshape = false;
+        end
     end
 
     local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
 
-    if (isTimer(data.timer) and (table.hasValue(data.Attackers, getLocalPlayer()) or table.hasValue(data.Defenders, getLocalPlayer()))) then
+    local restTime = 0;
+    if (data.timerEnd > 0) then
+        restTime = data.timerEnd - getRealTime().timestamp;
+    end
+
+    if (restTime > 0 and (table.hasValue(data.Attackers, getLocalPlayer()) or table.hasValue(data.Defenders, getLocalPlayer()))) then
 --        Spieler ist im GF
-        local restTime = math.floor(getTimerDetails ( data.timer ) / 1000);
         local minutes = math.floor(restTime / 60);
         local seconds = math.floor(restTime - (minutes * 60));
         if (seconds < 10) then

@@ -16,7 +16,7 @@ function startGf()
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
 
---    create ColShapes
+    --    create ColShapes
     disableSpawnCollision = createColCircle ( gfPositionData.X, gfPositionData.Y, 1.5 );
     table.insert(colshapes, disableSpawnCollision);
     setElementDimension(disableSpawnCollision, 1337);
@@ -47,8 +47,8 @@ function sendKillWarning(element, matchDim)
         local gfElement = getElementByID("GFSync");
         local data = vioGetElementData(gfElement, "data");
 
-        local type = vioGetElementData(killPlayerColShape, "gfColType");
-        if (type == 1) then
+        local colType = vioGetElementData(source, "gfColType");
+        if (colType == 1) then
             --        attacker colshape
             if (data.round % 2 == 1) then
                 if (data.attackFaction == vioGetElementData(element, "fraktion"))then
@@ -75,7 +75,7 @@ function sendKillWarning(element, matchDim)
 end
 
 function resetElementCollision(element, matchDim)
-    if (matchDim) then
+    if (matchDim and startedRound) then
         setElementCollisionsEnabled ( element, true);
     end
 end
@@ -90,7 +90,7 @@ end
 
 -- GF
 function startRound()
---    Spawn Players Team Attack
+    --    Spawn Players Team Attack
     local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
@@ -119,8 +119,8 @@ function spawnFirstTeam()
         -- in rounds 1,3 and 5 spawn Attacker Team
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
+                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -130,8 +130,8 @@ function spawnFirstTeam()
         -- in rounds 2,4 spawn Defender Team
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
+                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -139,7 +139,7 @@ function spawnFirstTeam()
         end
     end
 
-    setTimer(spawnOtherGFTeam, 60000, 1);
+    setTimer(spawnOtherGFTeam, 30000, 1);
 end
 
 function spawnOtherGFTeam()
@@ -152,8 +152,8 @@ function spawnOtherGFTeam()
         -- in rounds 1,3 and 5 spawn Attacker Team
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
-                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
+                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -163,8 +163,8 @@ function spawnOtherGFTeam()
         -- in rounds 2,4 spawn Defender Team
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
-                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementCollisionsEnabled(thePlayer, false);
+                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -174,6 +174,7 @@ function spawnOtherGFTeam()
 
     startedRound = true;
 
+    data.timerEnd = getRealTime().timestamp + 300;
     data.timer = setTimer(gfRoundTimeUp, 300000, 1);
     vioSetElementData(gfElement, "data", data);
 end
@@ -216,6 +217,7 @@ function checkEndGfOrNextRound()
         data.roundsAttackers = 0;
         data.roundsDefenders = 0;
         data.timer = false;
+        data.timerEnd = 0;
         data.blip = false;
         vioSetElementData(gfElement, "data", data);
         setElementDimension(disableSpawnCollision, 0);
@@ -254,6 +256,7 @@ function checkEndGfOrNextRound()
         data.roundsAttackers = 0;
         data.roundsDefenders = 0;
         data.timer = false;
+        data.timerEnd = 0;
         data.blip = false;
         vioSetElementData(gfElement, "data", data);
         setElementDimension(disableSpawnCollision, 0);
@@ -368,6 +371,7 @@ function gfPlayerDeath()
 
         if (countFrakA == 0) then
             killTimer(data.timer);
+            data.timerEnd = 0;
             data.Timer = false;
             data.roundsDefenders = data.roundsDefenders + 1;
 
@@ -388,6 +392,7 @@ function gfPlayerDeath()
             checkEndGfOrNextRound();
         elseif (countFrakD == 0) then
             killTimer(data.timer);
+            data.timerEnd = 0;
             data.Timer = false;
             data.roundsAttackers = data.roundsAttackers + 1;
 

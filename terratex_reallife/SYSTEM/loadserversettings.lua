@@ -72,11 +72,10 @@ function loadSettingsFromDB()
 
             local changeaccounts = 0
 
-            local result = MySql.helper.getSync("user", "Nickname", {
-                {"AktiveDays", ">", 30},
-                {"AktiveDays", "<", 35}
-            });
 
+            local query = "SELECT Nickname FROM user WHERE Nickname IN (SELECT Besitzer FROM user_vehicles WHERE abgeschleppt = 0) AND AktiveDays > 10";
+            local qh = dbQuery(MySql._connection, query);
+            local result = dbPoll( qh, -1 );
             if (result) then
                 for theKey, theRow in ipairs(result) do
                     MySql.helper.update("user_vehicles", {abgeschleppt = 1}, {Besitzer = theRow["Nickname"]});
@@ -86,34 +85,12 @@ function loadSettingsFromDB()
                 end
             end
 
-            result = MySql.helper.getSync("user", "Nickname", {
-                {"AktiveDays", ">", 60},
-                {"AktiveDays", "<", 65}
-            });
-
-            if (result) then
-                for theKey, theRow in ipairs(result) do
-                    MySql.helper.delete("user_vehicles", {Besitzer = theRow["Nickname"]});
-                    MySql.helper.insert("log_car_deletes", {
-                        Owner = theRow.Nickname,
-                        SlotId = -1,
-                        VehicleModel = -1,
-                        Reason = "Alle Fahrzeuge durch Inaktivität",
-                        DeletedBy = "Inaktivitätssystem"
-                    });
-                    save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurden alle Fahrzeuge gelöscht.");
-                    changeaccounts = changeaccounts + 1
-                end
-            end
-
-            result = MySql.helper.getSync("user", "Nickname", {
-                {"AktiveDays", ">", 90},
-                {"AktiveDays", "<", 95}
-            });
+            local query = "SELECT Nickname FROM user WHERE AktiveDays > 60 AND Nickname IN (SELECT Nickname FROM user_data WHERE newhkey != 0 OR bizKey != 0 OR prestigeKey != 0)";
+            local qh = dbQuery(MySql._connection, query);
+            local result = dbPoll( qh, -1 );
             if (result) then
                 for theKey, theRow in ipairs(result) do
                     MySql.helper.update("user_data", {
-                        Fraktion = 0,
                         newhkey = 0,
                         bizkey = 0,
                         prestigeKey = 0
@@ -124,7 +101,7 @@ function loadSettingsFromDB()
                 end
             end
 
-            local query = "SELECT user_data.* FROM user_data LEFT JOIN user ON user.Nickname=user_data.Nickname WHERE user_data.PlayTime<=600 and user.AktiveDays>=30"
+            local query = "SELECT user_data.* FROM user_data LEFT JOIN user ON user.Nickname=user_data.Nickname WHERE user_data.PlayTime<=60 and user.AktiveDays>=30"
             local handler = dbQuery(MySql._connection, query);
             local result = dbPoll(handler, -1);
 
@@ -137,12 +114,13 @@ function loadSettingsFromDB()
                 end
             end
 
-            result = MySql.helper.getSync("user", "Nickname", {
-                AktiveDays = {">", 365}
-            });
+
+            local query = "SELECT Nickname FROM user WHERE AktiveDays > 365 AND Nickname IN (SELECT Nickname FROM admin_user_bans)";
+            local qh = dbQuery(MySql._connection, query);
+            local result = dbPoll( qh, -1 );
             if (result) then
                 for theKey, dasatz in ipairs(result) do
-                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
+                    MySql.helper.delete("admin_user_bans", {Nickname = dasatz["Nickname"]});
 
                     save_log("nickdelete", dasatz["Nickname"]);
                     changeaccounts = changeaccounts + 1;

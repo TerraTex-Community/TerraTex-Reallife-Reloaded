@@ -108,7 +108,13 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
                     end
                     vioSetElementData(source, "deleteMultiAccErlaubnis", id)
                 else
-                    cancelEvent(true, "Es wurden bereits Accounts von diesem PC, auf dem Server registriert.")
+                    local accounts = MySql.helper.getSync("user", {"Nickname"}, { Serial = playerSerial });
+                    local rAccounts = {};
+                    for theKey, theAccount in ipairs(accounts) do
+                        table.insert(rAccounts, theAccount.Nickname);
+                    end
+
+                    cancelEvent(true, "Es wurden bereits Accounts von diesem PC, auf dem Server registriert. (" .. table.concat(rAccounts, ", ") .. ")")
                     return true;
                 end
             end

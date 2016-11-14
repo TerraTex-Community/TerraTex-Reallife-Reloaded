@@ -107,14 +107,27 @@ function uninvite_func(theMaker,Command,thePlayerName)
 				outputChatBox(string.format("Du hast %s aus der Fraktion geschmissen!", getPlayerName(thePlayer)),theMaker,0,255,0)
 				setPlayerTeam (thePlayer,nil)
 			else
-
 				outputChatBox("Dieser Spieler ist nicht in deiner Fraktion",theMaker,255,0,0)
-
 			end
 		end
 	end
 end
 addCommandHandler("uninvite",uninvite_func,false,false)
+
+function uninvite_me_func(theMaker)
+	if (vioGetElementData(theMaker,"fraktion") > 0) then
+		vioSetElementData(theMaker,"spawnplace",0)
+		vioSetElementData(theMaker,"fraktion",0)
+		vioSetElementData(theMaker,"fraktionsrang",0)
+		vioSetElementData(theMaker,"FrakSkin",0)
+		vioSetElementData(theMaker,"rechte_AllLeader",0)
+		setElementModel(theMaker,vioGetElementData(theMaker,"skinid"))
+		takeAllWeapons ( theMaker )
+		outputChatBox(string.format("Du hast die Fraktion verlassen!"),theMaker,0,255,0)
+		setPlayerTeam (theMaker,nil)
+	end
+end
+addCommandHandler("uninviteme",uninvite_me_func,false,false)
 
 function giverank_func(theMaker,Command,thePlayerName,theRank)
 	local thePlayer=getPlayerFromIncompleteName(thePlayerName)

@@ -28,8 +28,6 @@ addCommandHandler("mv",mv_taxi_func,false,false)
 function onCreatetaxicars_func()
 	taxiObject=createObject(7657,1812.78833008,-2067.48437500,14.27042961,0.00000000,0.00000000,90.00000000) 
 
-
-
 	frakselfcars[4][1]  = createVehicle(438,1734.79345703,-2056.68554688,13.50827503,0,0,269.00000000,"SA-TAXI")
 	frakselfcars[4][2]  = createVehicle(438,1734.77001953,-2061.51147461,13.50827503,0,0,268.99475098,"SA-TAXI")
 	frakselfcars[4][3]  = createVehicle(438,1734.76867676,-2066.27319336,13.50827503,0,0,268.99475098,"SA-TAXI")
@@ -44,7 +42,6 @@ function onCreatetaxicars_func()
 	frakselfcars[4][12]  = createVehicle(580,1768.4052734375,-2033.77734375,13.47914981842,353.95202636719,359.89013671875,270.76354980469,"SA-TAXI")
 	frakselfcars[4][13]  = createVehicle(580,1768.244140625,-2038.46875,13.316600799561,0.010986328125,359.76928710938,269.68688964844,"SA-TAXI")
 	frakselfcars[4][14] = createVehicle(409,1762.4755859375,-2056.18359375,13.384185791016,0.010986328125,359.79125976563,270.77453613281,"SA-TAXI") 
-
 
 	for theKey,theVehicle in ipairs(frakselfcars[4]) do
 		setVehicleColor ( theVehicle, 6,6,6,6 )
@@ -177,17 +174,5 @@ function donotentertaxi(thePlayer,seat)
 		outputChatBox(string.format("Grundtarif:%s", toprice(taxiGrundPrice)),thePlayer)
 	
 	end
-
 end
-
-
-
-
-
-
-
-
-
-
-
 

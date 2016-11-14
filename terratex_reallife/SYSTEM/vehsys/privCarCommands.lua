@@ -160,6 +160,7 @@ function lock_func(thePlayer, Command, SloteID)
                                 seats = getVehicleOccupants(vioGetElementData(thePlayer, "slot" .. SlotID))
                                 if not (seats[0]) and not (seats[1]) and not (seats[2]) and not (seats[3]) then
                                     setElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID), true)
+                                    vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID),"damageAfterFreeze", getVehicleDamageParts(vioGetElementData(thePlayer, "slot" .. SlotID)))
                                 end
                             end
                         else

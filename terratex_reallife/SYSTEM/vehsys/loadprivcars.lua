@@ -267,9 +267,9 @@ function onVehicleDamage_func(loss)
                 if not (getVehicleOccupant(source)) then
                     if (getElementHealth(source) > 500) then
                         if (getElementHealth(source) + loss > 1000) then
-                            setElementHealth(source, 1000)
-                        else
-                            setElementHealth(source, getElementHealth(source) + loss)
+                            local damageAfterFreeze = vioGetElementData(source, "damageAfterFreeze");
+                            setVehicleDamageParts(source, damageAfterFreeze);
+                            setTimer(recheckVehicleFreezeDamage, 2000, 1, source, damageAfterFreeze);
                         end
                     end
                 end
@@ -288,6 +288,14 @@ function onVehicleDamage_func(loss)
     end
 end
 addEventHandler("onVehicleDamage", getRootElement(), onVehicleDamage_func)
+
+function recheckVehicleFreezeDamage(vehicle, damageAfterFreeze)
+    if (isElement(vehicle)) then
+        if (vioGetElementData(vehicle, "locked") and isElementFrozen(vehicle)) then
+            setVehicleDamageParts(vehicle, damageAfterFreeze);
+        end
+    end
+end
 
 function getElementLastPostion(vehicle)
     return vioGetElementData(source, "lastX"), vioGetElementData(source, "lastY"), vioGetElementData(soruce, "lastZ")

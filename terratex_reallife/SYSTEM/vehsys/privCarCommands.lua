@@ -153,6 +153,7 @@ function lock_func(thePlayer, Command, SloteID)
                                 showError(thePlayer, "Du hast das Fahrzeug erfolgreich aufgeschlossen!")
                                 if (isElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID))) then
                                     setElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID), false)
+                                    setVehicleDamageProof ( vioGetElementData(thePlayer, "slot" .. SlotID), false )
                                 end
                             else
                                 vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "locked", true)
@@ -161,6 +162,8 @@ function lock_func(thePlayer, Command, SloteID)
                                 if not (seats[0]) and not (seats[1]) and not (seats[2]) and not (seats[3]) then
                                     setElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID), true)
                                     vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID),"damageAfterFreeze", getVehicleDamageParts(vioGetElementData(thePlayer, "slot" .. SlotID)))
+
+                                    setVehicleDamageProof ( vioGetElementData(thePlayer, "slot" .. SlotID), true )
                                 end
                             end
                         else

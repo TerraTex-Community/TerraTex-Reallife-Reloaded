@@ -73,16 +73,27 @@ function wantAKart_Event_func()
 end
 addEventHandler("wantAKart_Event", getRootElement(), wantAKart_Event_func)
 
-local adventDay = { [1] = true, [8] = true, [15] = true, [22] = true, [24] = true, [25] = true, [26] = true }
+local adventDay = { [27] = true, [4] = true, [11] = true, [18] = true, [24] = true, [25] = true, [26] = true }
 function adventPresent()
     setTimer(adventPresent, 60000, 1)
     local time = getRealTime()
     if (time.hour == 19 and time.minute == 30) then
-        if (time.monthday < 27 and time.month == 11) then
+        if (time.monthday < 27 and time.month == 11 or time.monthday > 26 and time.month == 10) then
             if (adventDay[time.monthday]) then
                 for theKey, thePlayers in ipairs(getElementsByType("player")) do
                     if (isPlayerLoggedIn(thePlayers)) then
                         give_AdventsPresent(thePlayers, math.random(table.getn(adventPresets_big)))
+
+                        if (not MySql.helper.existSync("data_chrismas", {
+                            Nickname = getPlayerName(thePlayers)
+                        })) then
+                            if (vioGetElementData(thePlayers, "playtime")/60 > 25) then
+                                vioSetElementData(thePlayers, "canHaveSteamTicket", true);
+                                local text = "Herzlichen Glückwunsch, zusätzlich erhälst du jetzt die Chance an der Steam-Spiele Verlosung teilzunehmen.";
+                                text = text .. " Mit '/accept chrismas' nimmst du an der Verlosung teil. Es werden unter allen Teilnehmern bis zu 20 Spiele verlost!";
+                                outputChatBox(text, thePlayers,  166, 0, 166)
+                            end
+                        end
                     end
                 end
             else
@@ -96,6 +107,18 @@ function adventPresent()
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), adventPresent)
+
+
+registerAcceptHandler("chrismas", function(thePlayer)
+    outputChatBox("Herzlichen Glückwunsch, du nimmst an der Verlosung teil. Die Spiele werden zwischen Weihnachten und Silvester verlost. Die Keys/Geschenklinks werden an deine registrierte E-Mail gesendet, daher überprüfe deine Email unter /profile", thePlayer, 166,0,166)
+
+    MySql.helper.insert("data_chrismas", {
+        Nickname = getPlayerName(thePlayer)
+    });
+end, {
+    requestedDataValues = {"canHaveSteamTicket"}
+});
+
 
 function give_AdventsPresent(player, presentID)
     local text = adventPresets_big[presentID][2]

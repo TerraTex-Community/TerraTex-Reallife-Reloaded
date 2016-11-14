@@ -15,6 +15,7 @@ sondermeldungstext = {
 oldrainlevel = 0
 rainlevel = 0
 newHeatSize = 0
+isWinter = true;
 
 local timeankuendigung = 10 * 60 * 1000
 local timenewweather = 40 * 60 * 1000
@@ -56,8 +57,9 @@ function changeWeather(setrainlevel)
     resetWaterLevel()
     resetWaterColor()
 
-    --setWaterColor(255,255,255,255) -- WINTER
-
+    if isWinter then
+        setWaterColor(255,255,255,255) -- WINTER
+    end
 
     lastWTimer = setTimer(changeWeather, timenewweather, 1)
     weatheraktualTimer = lastWTimer
@@ -158,9 +160,13 @@ function changeWeather(setrainlevel)
             rot = math.random(0, 60)
         end
         setTimer(setSunColor, timeankuendigung, 1, rot, gruen, blau, rot, gruen, blau)
-        setTimer(setSkyGradient, timeankuendigung, 1, rot, gruen, blau, rot, gruen, blau)
 
-        --setSkyGradient(50, 50, 50, 50, 50, 50) --Winter
+        if not isWinter then
+            setTimer(setSkyGradient, timeankuendigung, 1, rot, gruen, blau, rot, gruen, blau)
+        else
+            setSkyGradient(50, 50, 50, 50, 50, 50) --Winter
+        end
+
 
     else
         resetSunSize()
@@ -183,9 +189,12 @@ function changeWeather(setrainlevel)
             setSunSize(10)
         end
         setTimer(setSunColor, timeankuendigung, 1, 255, 240, 150, 255, 240, 150)
-        setTimer(setSkyGradient, timeankuendigung, 1, rot, gruen, blau, rot, gruen, blau)
 
-        --setSkyGradient(175, 175, 175, 175, 175, 175)---WINTER
+        if not isWinter then
+            setTimer(setSkyGradient, timeankuendigung, 1, rot, gruen, blau, rot, gruen, blau)
+        else
+            setSkyGradient(175, 175, 175, 175, 175, 175)---WINTER
+        end
     end
 
     local timer = getRealTime()

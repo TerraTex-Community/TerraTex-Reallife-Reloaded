@@ -942,12 +942,12 @@
     <!-- <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" /> -->
 
     <!-- <WEIHNACHTEN> -->
-    <!-- <map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
+    <map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
     <script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />
-    <script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" /> -->
+    <script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />
 
     <!--- WINTER SECTION -->
-    <!-- <script src="ADDONS/winter/snowshader/cShader.lua" type="client" />
+    <script src="ADDONS/winter/snowshader/cShader.lua" type="client" />
     <file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />
     <file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />
     <file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />
@@ -964,7 +964,7 @@
     <settings>
         <setting name="gui_enabled" value="[true]"/>
         <setting name="snow_toggle" value="[true]"/>
-    </settings>-->
+    </settings>
 
     <!--Ostern-->
     <script src="EVENTSCRIPS/ostern/ostern_server.lua" type="server"/>

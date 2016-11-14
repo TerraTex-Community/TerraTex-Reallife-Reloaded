@@ -5,6 +5,12 @@
 -- Time: 17:44
 -- To change this template use File | Settings | File Templates.
 --
+hideHud = false;
+function toggleHudViaCommand()
+    hideHud = not hideHud;
+end
+addCommandHandler("showhud", getRootElement(), toggleHudViaCommand)
+
 local showHud = false;
 local browser = false;
 local moneyChanged = true;
@@ -58,7 +64,7 @@ end
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), createHud)
 
 function hud_render()
-    if (showHud and not(isPlayerMapVisible ()) and not(isPedDead (getLocalPlayer()))) then
+    if (showHud and not(isPlayerMapVisible ()) and not(isPedDead (getLocalPlayer())) and not hideHud) then
         local screenWidth, screenHeight = guiGetScreenSize();
         if (not isBrowserLoading ( browser )) then
             if (moneyChanged) then

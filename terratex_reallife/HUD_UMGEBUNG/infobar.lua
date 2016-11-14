@@ -27,7 +27,7 @@ addEventHandler("onClientResourceStart", resourceRoot,
 
 addEventHandler("onClientPreRender", root,
     function()
-        if(client_settings["infotext"])then
+        if(client_settings["infotext"] and not hideHud)then
             local screenW, screenH = guiGetScreenSize()
             dxDrawRectangle(0, (screenH - 27) , screenW, 27, tocolor(17, 0, 0, 195), false)
             dxDrawText(texts[lastTextID], 10, screenH-27, screenW-20, ( screenH-27) + 27, tocolor(139, 0, 0, 224), 1.00, "bankgothic", "left", "center", false, false, false, false, false)

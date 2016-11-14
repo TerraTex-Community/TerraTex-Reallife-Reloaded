@@ -961,10 +961,10 @@
     <script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>
     <script src="ADDONS/winter/snowfall/snow.lua" type="client"/>
     <script src="ADDONS/winter/snowfall/snow_s.lua"/>
-    <settings>
-        <setting name="gui_enabled" value="[true]"/>
-        <setting name="snow_toggle" value="[true]"/>
-    </settings>
+    <!--<settings>-->
+        <!--<setting name="gui_enabled" value="[false]"/>-->
+        <!--<setting name="snow_toggle" value="[true]"/>-->
+    <!--</settings>-->
 
     <!--Ostern-->
     <script src="EVENTSCRIPS/ostern/ostern_server.lua" type="server"/>

@@ -193,6 +193,10 @@ end
 
 addEventHandler("onClientRender",g_root,
 	function()
+		if hideHud then
+			return;
+		end
+
 		if VISIBLE_BLIP_COUNT == 0 then
 			return
 		end

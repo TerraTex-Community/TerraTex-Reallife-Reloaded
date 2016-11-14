@@ -9,7 +9,7 @@ hideHud = false;
 function toggleHudViaCommand()
     hideHud = not hideHud;
 end
-addCommandHandler("showhud", getRootElement(), toggleHudViaCommand)
+addCommandHandler("showhud", toggleHudViaCommand, false, false)
 
 local showHud = false;
 local browser = false;

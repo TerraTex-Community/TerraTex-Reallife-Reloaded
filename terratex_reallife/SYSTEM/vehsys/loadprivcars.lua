@@ -84,8 +84,11 @@ function loadPrivCars()
                 setElementRotation(thevehicle, position[4], position[5], position[6])
             end
         end
+        vioSetElementData(thevehicle,"damageAfterFreeze", fromJSON(dasatz["lastDamageStates"]))
 
         setElementFrozen(thevehicle, true)
+
+        setVehicleDamageProof ( thevehicle, true )
 
         vioSetElementData(thevehicle, "premColor", "-1")
 

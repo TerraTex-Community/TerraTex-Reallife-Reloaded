@@ -122,6 +122,10 @@ function spawnPlayerOnServerConnect(thePlayer)
             end
         end
 
+        if (vioGetElementData(thePlayer, "fraktion") == 3) then
+            setPlayerSpawnWeapons(thePlayer)
+        end
+
         for theKey, theValue in pairs(additionalData) do
             if theKey ~= "inarena" and theKey ~= "iniraumshop" then
                 vioSetElementData(thePlayer, theKey, theValue);

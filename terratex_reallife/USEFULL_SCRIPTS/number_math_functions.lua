@@ -52,17 +52,21 @@ function math.Tausend(v)
 end
 
 
-math._random=math.random
+math.__random=math.random
 function math.random(value,maxvalue)
+    if (not value) then
+        return math.__random()
+    end
+
     if(not maxvalue)then
-        return math._random(value)
+        return math.__random(value)
     end
     
     
     if(value==maxvalue)then
         return value
     else
-        return math._random(value,maxvalue)
+        return math.__random(value,maxvalue)
     end
 end
 

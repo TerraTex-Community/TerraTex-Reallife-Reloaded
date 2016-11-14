@@ -9,12 +9,5 @@ end)
 _setRainLevel=setRainLevel
 function setRainLevel(int)
 	_setRainLevel(0)
-	console.log("done");
 	triggerClientEvent(getRootElement(),"changedRainLevel_winter",getRootElement(),int)
 end
-
-function test()
-
-	setRainLevel(2);
-end
-addCommandHandler("tt", test)

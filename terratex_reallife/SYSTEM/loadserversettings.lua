@@ -101,18 +101,18 @@ function loadSettingsFromDB()
                 end
             end
 
-            local query = "SELECT user_data.* FROM user_data LEFT JOIN user ON user.Nickname=user_data.Nickname WHERE user_data.PlayTime<=60 and user.AktiveDays>=30"
-            local handler = dbQuery(MySql._connection, query);
-            local result = dbPoll(handler, -1);
-
-            if (result) then
-                for theKey, dasatz in ipairs(result) do
-                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
-
-                    save_log("nickdelete", dasatz["Nickname"]);
-                    changeaccounts = changeaccounts + 1;
-                end
-            end
+--            local query = "SELECT user_data.* FROM user_data LEFT JOIN user ON user.Nickname=user_data.Nickname WHERE user_data.PlayTime<=60 and user.AktiveDays>=30"
+--            local handler = dbQuery(MySql._connection, query);
+--            local result = dbPoll(handler, -1);
+--
+--            if (result) then
+--                for theKey, dasatz in ipairs(result) do
+--                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
+--
+--                    save_log("nickdelete", dasatz["Nickname"]);
+--                    changeaccounts = changeaccounts + 1;
+--                end
+--            end
 
 
             local query = "SELECT Nickname FROM user WHERE AktiveDays > 365 AND Nickname IN (SELECT Nickname FROM admin_user_bans)";

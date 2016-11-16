@@ -283,7 +283,7 @@ function payday(thePlayer)
         Einnahmen = Einnahmen * 2
     end
 
-    --gesantrechnung
+    --gesamtrechnung
     local Gesamt = Einnahmen - Ausgaben
 
     --Miete
@@ -373,8 +373,8 @@ function payday(thePlayer)
     vioSetElementData(thePlayer, "fisheslasthour", 0)
     -- BIZ
     if (vioGetElementData(thePlayer, "bizKey") ~= 0) then
-        bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] = bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] + 111.11
-        outputChatBox("Du hast in deinen Bizkonto 111.11$ BizBonus gutgeschrieben bekommen!", thePlayer, 0, 191, 70)
+        bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] = bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] + 200000
+        outputChatBox("Du hast in deinen Bizkonto 20000$ BizBonus gutgeschrieben bekommen!", thePlayer, 0, 191, 70)
         if (vioGetElementData(thePlayer, "Erfolg_MyOwnBiz") ~= 1) then
             vioSetElementData(thePlayer, "Erfolg_MyOwnBiz", 1)
             triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "My Own Biz", "Besitze dein eigenes Buisness")

@@ -46,3 +46,5 @@ INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : -2414.8896
 INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : -1674.1083984375, "y":418.0009765625, "z":7.1729331016541, "size":2},{"x" : -1674.6298828125, "y":404.2578125, "z":7.1708655357361, "size":2}]]', 5);
 INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : 621.5537109375, "y":1679.708984375, "z":6.7192716598511, "size":2},{"x" : 609.0615234375, "y":1699.529296875, "z":6.7210984230042, "size":2},{"x" : 615.46875, "y":1690.236328125, "z":6.7192645072937, "size":2}]]', 5);
 INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : -1329.486328125, "y":2671.9453125, "z":49.789577484131, "size":2},{"x" : -1327.01953125, "y":2682.8017578125, "z":49.789585113525, "size":2}]]', 5);
+
+ALTER TABLE objects_businesses ADD PaidUntil INT DEFAULT 0 NULL;

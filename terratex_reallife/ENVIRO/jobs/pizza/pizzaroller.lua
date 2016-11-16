@@ -169,28 +169,25 @@ function notinpizzaCarEnter(thePlayer, seat, jacked, door)
 end
 addEventHandler("onVehicleEnter", getRootElement(), notinpizzaCarEnter)
 
-function notinpizzaCarEnter(thePlayer, seat, jacked, door)
+function notinpizzaCarExit(thePlayer, seat, jacked, door)
     if (seat == 0) then
         for theKey, theVehicle in pairs(pizzaRoller) do
             if (source == theVehicle) then
-                if not (vioGetElementData(thePlayer, "job") == 8) then
-                else
+                if (vioGetElementData(thePlayer, "job") == 8) then
                     StopPizzaLieferant(thePlayer)
                 end
             end
         end
     end
 end
-addEventHandler("onVehicleExit", getRootElement(), notinpizzaCarEnter)
+addEventHandler("onVehicleExit", getRootElement(), notinpizzaCarExit)
 
 function onPlayerDeadPizza()
     local thePlayer = source
-    if not (vioGetElementData(thePlayer, "job") == 8) then
-    else
+    if (vioGetElementData(thePlayer, "job") == 8) then
         StopPizzaLieferant(thePlayer)
     end
 end
-
 addEventHandler("onPlayerWasted", getRootElement(), onPlayerDeadPizza)
 
 

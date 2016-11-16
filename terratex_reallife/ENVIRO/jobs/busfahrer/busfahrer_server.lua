@@ -93,7 +93,6 @@ function busstop_func(thePlayer)
         end
     end
 end
-
 addCommandHandler("busstop", busstop_func, false, false)
 
 function send_Station_Info_Bus(theBus)
@@ -113,7 +112,7 @@ function send_Station_Info_Bus(theBus)
 end
 
 function exitBusVehicle(thePlayer, seat)
-    if (seat == 0) then
+    if (seat == 0 and vioGetElementData(thePlayer, "job") == 4) then
         local timer = setTimer(destroyTheBus, 180000, 1, source)
         vioSetElementData(source, "killBusTimer", timer)
         if (isElement(vioGetElementData(source, "marker"))) then

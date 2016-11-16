@@ -111,6 +111,18 @@ function send_Station_Info_Bus(theBus)
     end
 end
 
+function startExitBusVehicle(thePlayer,seat, jacked)
+    if (seat == 0 and vioGetElementData(thePlayer, "job") == 4 and jacked) then
+        local timer = setTimer(destroyTheBus, 180000, 1, source)
+        vioSetElementData(source, "killBusTimer", timer)
+        if (isElement(vioGetElementData(source, "marker"))) then
+            destroyElement(vioGetElementData(source, "marker"))
+            destroyElement(vioGetElementData(source, "blip"))
+        end
+        outputChatBox("Du hast 180 Sekunden um wieder in den Bus zusteigen!", thePlayer, 0, 255, 0)
+    end
+end
+
 function exitBusVehicle(thePlayer, seat)
     if (seat == 0 and vioGetElementData(thePlayer, "job") == 4) then
         local timer = setTimer(destroyTheBus, 180000, 1, source)

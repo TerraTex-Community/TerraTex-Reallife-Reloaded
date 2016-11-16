@@ -12,6 +12,14 @@ function loadBizFromDB_func()
         bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { bizKey = zahler });
         bizData[zahler]["PaidUntil"] = tonumber(dasatz["PaidUntil"]);
 
+        if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
+            if (bizData[zahler]["Besitzer"]) then
+                MySql.helper.update("user_data", { bizKey = 0 } ,{ bizKey = zahler });
+            end
+            bizData[zahler]["Besitzer"] = false;
+            bizData[zahler]["PaidUntil"] = 0;
+        end
+
         local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
         addEventHandler("onPickupHit", bizpickup, showBizInfo)
         bizPickupInfo[bizpickup] = zahler
@@ -175,7 +183,7 @@ addCommandHandler("bizhelp", bizhelp_func, false, false)
 function paylease_cmd_info(thePlayer)
     local bizNum = vioGetElementData(thePlayer, "bizKey")
     if (bizNum > 0) then
-        local actualTimeStamp = getRealTime();
+        local actualTimeStamp = getRealTime().timestamp;
         local calcTimeStamp = bizData[bizNum]["PaidUntil"];
         if (calcTimeStamp < actualTimeStamp) then
             calcTimeStamp = actualTimeStamp;

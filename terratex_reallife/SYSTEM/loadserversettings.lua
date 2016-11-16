@@ -49,12 +49,10 @@ function loadSettingsFromDB()
     serversettings["atommuell"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "atommuell" });
     serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "spielerDesMonats" });
 
-
     setGameType("TerraTex Reallife Reloaded Script " .. serversettings["Version"])
     setRuleValue("Homepage", config["maindomain"])
     setMapName("TerraTex")
     resetWaterLevel(0)
-
 
     serversettings["Max_User"] = 0
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
@@ -85,14 +83,13 @@ function loadSettingsFromDB()
                 end
             end
 
-            local query = "SELECT Nickname FROM user WHERE AktiveDays > 60 AND Nickname IN (SELECT Nickname FROM user_data WHERE newhkey != 0 OR bizKey != 0 OR prestigeKey != 0)";
+            local query = "SELECT Nickname FROM user WHERE AktiveDays > 60 AND Nickname IN (SELECT Nickname FROM user_data WHERE newhkey != 0 OR prestigeKey != 0)";
             local qh = dbQuery(MySql._connection, query);
             local result = dbPoll( qh, -1 );
             if (result) then
                 for theKey, theRow in ipairs(result) do
                     MySql.helper.update("user_data", {
                         newhkey = 0,
-                        bizkey = 0,
                         prestigeKey = 0
                     }, {Nickname = theRow["Nickname"]})
                     save_offline_message(theRow["Nickname"], "Inaktiv-System", "Aufgrund deiner Inaktivität wurde deine Fraktion, dein Haus, dein Prestige und dein Business zurückgesetzt.")

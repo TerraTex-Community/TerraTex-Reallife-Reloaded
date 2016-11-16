@@ -15,9 +15,15 @@ function loadBizFromDB_func()
         if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
             if (bizData[zahler]["Besitzer"]) then
                 MySql.helper.update("user_data", { bizKey = 0 } ,{ bizKey = zahler });
+                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Du hast deine Pacht nicht rechtzeitig bezahlt. Das Business wurde zum Verkauf freigegeben.")
             end
             bizData[zahler]["Besitzer"] = false;
             bizData[zahler]["PaidUntil"] = 0;
+        elseif (bizData[zahler]["PaidUntil"] - getRealTime().timestamp < 14 * 24 * 60 * 60) then
+            if (bizData[zahler]["Besitzer"]) then
+                local rest = (bizData[zahler]["PaidUntil"] - getRealTime().timestamp)/60/60/24;
+                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. rest .. " Tagen fällig.");
+            end
         end
 
         local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)

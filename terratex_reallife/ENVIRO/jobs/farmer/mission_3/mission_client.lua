@@ -2598,8 +2598,6 @@ local duengermarker = {
     { -1014.056640625, -924.1767578125, 128.92262268066 }
 }
 
-local farmerJobExplodeDeleteTable = {};
-
 addEvent("startFarmMission_3", true)
 function startFarmMission_3_func(tractor)
     farmerJobExplodeDeleteTable = {}

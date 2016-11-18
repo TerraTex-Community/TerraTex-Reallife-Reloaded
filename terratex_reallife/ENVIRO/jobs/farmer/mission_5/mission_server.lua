@@ -10,7 +10,7 @@ function farmerjob_mission_start_5()
 	triggerClientEvent(source,"startFarmMission_5",source,tractor)
 	addEventHandler("onVehicleExplode",tractor,onVehicleMission_3_explode)
 	vioSetElementData(source,"isFarmingActiv",true)
-	outputChatBox("Die Müllers brauchen Hilfe, bring deren Ernte ein! (Sammle alle grünen Marker ein!",source,0,255,0)	
+	outputChatBox("Die Müllers brauchen Hilfe, bring deren Ernte ein! (Sammle alle grünen Marker ein!)",source,0,255,0)
 end
 addEventHandler("farmerjob_mission_start_5",getRootElement(),farmerjob_mission_start_5)
 
@@ -28,12 +28,4 @@ addEventHandler("finish_farmer_mission_5",getRootElement(),finish_farmer_mission
 function stopExitingTractor_mission_5()
 	cancelEvent()
 end
-
-
-
-
-
-
-
-
 

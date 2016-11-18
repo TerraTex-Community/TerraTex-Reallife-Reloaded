@@ -10,6 +10,21 @@ function loadBizFromDB_func()
         bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
         bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
         bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { bizKey = zahler });
+        bizData[zahler]["PaidUntil"] = tonumber(dasatz["PaidUntil"]);
+
+        if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
+            if (bizData[zahler]["Besitzer"]) then
+                MySql.helper.update("user_data", { bizKey = 0 } ,{ bizKey = zahler });
+                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Du hast deine Pacht nicht rechtzeitig bezahlt. Das Business wurde zum Verkauf freigegeben.")
+            end
+            bizData[zahler]["Besitzer"] = false;
+            bizData[zahler]["PaidUntil"] = 0;
+        elseif (bizData[zahler]["PaidUntil"] - getRealTime().timestamp < 14 * 24 * 60 * 60) then
+            if (bizData[zahler]["Besitzer"]) then
+                local rest = (bizData[zahler]["PaidUntil"] - getRealTime().timestamp)/60/60/24;
+                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. rest .. " Tagen fällig.");
+            end
+        end
 
         local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
         addEventHandler("onPickupHit", bizpickup, showBizInfo)
@@ -22,7 +37,6 @@ function loadBizFromDB_func()
         setElementShowText(bizpickup, { 0, 0, 255, 255 }, bizData[zahler]["Name"] .. "\n" .. BesitzerText, true, 15, 1.3, 0.2)
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadBizFromDB_func)
 
 function showBizInfo(thePlayer)
@@ -37,6 +51,11 @@ function showBizInfo(thePlayer)
     else
         besitzer = bizData[bizNum]["Besitzer"]
         BizString = string.format("Business: %s\ngehört: %s\nWert: %s", bizData[bizNum]["Name"], besitzer, bizData[bizNum]["Preis"])
+
+        if (besitzer == getPlayerName(thePlayer)) then
+            local timeData = getRealTime( bizData[bizNum]["PaidUntil"] );
+            outputChatBox("Die Pacht deines Biz ist noch bezahlt bis: " .. timeData.monthday .. "." .. (timeData.month +1 ) .. "." .. (timeData.year + 1900), thePlayer)
+        end
     end
     showError(thePlayer, BizString)
 end
@@ -56,13 +75,12 @@ function savebizzes_norm(timer)
     if not isDevServer() then
         outputDebugString("Started Biz Save")
         for theKey, theBiz in ipairs(bizData) do
-            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"], PaidUntil = theBiz["PaidUntil"] }, { ID = theKey});
         end
         outputDebugString("Biz Saved")
         setTimer(savebizzes_norm, 3600000, 1)
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), savebizzes_norm)
 
 function savebizzes(timer)
@@ -70,12 +88,11 @@ function savebizzes(timer)
         outputDebugString("Started Biz Save")
 
         for theKey, theBiz in ipairs(bizData) do
-            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"] }, { ID = theKey});
+            MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"], PaidUntil = theBiz["PaidUntil"] }, { ID = theKey});
         end
         outputDebugString("Biz Saved")
     end
 end
-
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), savebizzes)
 
 function bizbank_func(thePlayer, Command, betrag)
@@ -117,7 +134,6 @@ function bizbank_func(thePlayer, Command, betrag)
         end
     end
 end
-
 addCommandHandler("bizbank", bizbank_func, false, false)
 
 function sellbizto_func(thePlayer, Command, toPlayerName)
@@ -165,8 +181,52 @@ function bizhelp_func(thePlayer)
     outputChatBox("   [BETRAG] -> Positiv einzahlen; Negativ auszahlen", thePlayer)
     outputChatBox("/sellbiz - Biz an das System verkaufen (65% des Kaufpreises)", thePlayer)
     outputChatBox("/sellbizto - Biz an einen anderen Spieler Übergeben", thePlayer)
+    outputChatBox("/paylease - Pacht bezahlen", thePlayer)
+    outputChatBox("/leaseinfo - Zeigt bis wann die Pacht noch bezahlt ist", thePlayer)
 end
 addCommandHandler("bizhelp", bizhelp_func, false, false)
+
+function paylease_cmd_info(thePlayer)
+    local bizNum = vioGetElementData(thePlayer, "bizKey")
+    if (bizNum > 0) then
+        local actualTimeStamp = getRealTime().timestamp;
+        local calcTimeStamp = bizData[bizNum]["PaidUntil"];
+        if (calcTimeStamp < actualTimeStamp) then
+            calcTimeStamp = actualTimeStamp;
+        end
+
+        local maximum = 60 - ((calcTimeStamp - actualTimeStamp)  / 60 / 60 / 24);
+        local paidDays = 0;
+        local price = 0;
+        if (maximum < 30) then
+            calcTimeStamp = calcTimeStamp + (60 * 60 * 24 * maximum);
+            price = 75000 * (maximum / 30);
+            paidDays = maximum;
+        else
+            calcTimeStamp = calcTimeStamp + (60 * 60 * 24 * 30);
+            price = 75000;
+            paidDays = 30;
+        end
+
+        if (price >= getPlayerBank(thePlayer)) then
+            changePlayerBank(thePlayer, -price, "sonstiges", "Business Pachtkosten")
+            bizData[bizNum]["PaidUntil"] = calcTimeStamp;
+            showError(thePlayer, "Die Pacht deines Business wurde um " .. paidDays .. " Tage verlängert!");
+        else
+            showError(thePlayer, "Die Pacht kostet " .. toprice(price) .. ". Du hast nicht genug auf deiner Bank!");
+        end
+    end
+end
+addCommandHandler("paylease", paylease_cmd_info, false, false)
+
+function leaseInfo_cmd_func(thePlayer)
+    local bizNum = vioGetElementData(thePlayer, "bizKey")
+    if (bizNum > 0) then
+        local timeData = getRealTime( bizData[bizNum]["PaidUntil"] );
+        outputChatBox("Die Pacht deines Biz ist noch bezahlt bis: " .. timeData.monthday .. "." .. (timeData.month +1 ) .. "." .. (timeData.year + 1900), thePlayer)
+    end
+end
+addCommandHandler("leaseinfo", leaseInfo_cmd_func, false, false)
 
 function sellbiz_func(thePlayer)
     if (vioGetElementData(thePlayer, "bizKey") == 0) then

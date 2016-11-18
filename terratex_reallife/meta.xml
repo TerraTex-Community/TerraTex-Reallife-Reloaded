@@ -113,6 +113,7 @@
     <script src="SYSTEM/prestigesys/prestige_load.lua" type="server"/>
     <!-- Wettersys-->
     <script src="SYSTEM/wettersys/wetter.lua" type="server"/>
+    <script src="SYSTEM/wettersys/suncalc.lua" type="server"/>
     <script src="SYSTEM/wettersys/wetter_client.lua" type="client"/>
     <!-- AFKsys-->
     <script src="SYSTEM/afksys/afk.lua" type="server"/>

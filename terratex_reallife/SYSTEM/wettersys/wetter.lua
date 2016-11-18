@@ -147,6 +147,11 @@ function changeWeather(setrainlevel)
             wellenhoehe = math.random((wellenmax * 50), (wellenmax * 100)) / 100
         end
     end
+
+
+    local sunrise = calcSunTime(true);
+    local sunset = calcSunTime(false);
+
     setTimer(setWaveHeight, timeankuendigung, 1, wellenhoehe)
     if (newdarkhimmel) then
         setSunSize(0)
@@ -166,8 +171,6 @@ function changeWeather(setrainlevel)
         else
             setSkyGradient(50, 50, 50, 50, 50, 50) --Winter
         end
-
-
     else
         resetSunSize()
         resetSunColor()
@@ -182,12 +185,16 @@ function changeWeather(setrainlevel)
         end
         setSunSize(10)
         local timer = getRealTime()
-        if (timer.hour == 5 or timer.hour == 6 or timer.hour == 19 or timer.hour == 20 or ((newrainlevel < -2.5 and nebel))) then
+
+
+        if (timer.hour == sunrise or timer.hour == sunset or ((newrainlevel < -2.5 and nebel))) then
             blau = math.random(60, 100)
             gruen = math.random(80, 140)
             rot = math.random(100, 255)
+
             setSunSize(10)
         end
+
         setTimer(setSunColor, timeankuendigung, 1, 255, 240, 150, 255, 240, 150)
 
         if not isWinter then
@@ -198,7 +205,7 @@ function changeWeather(setrainlevel)
     end
 
     local timer = getRealTime()
-    if (timer.hour > 20 or timer.hour < 5) then
+    if (timer.hour > sunset or timer.hour < sunrise) then
         blau = math.random(0, 20)
         setTimer(setSkyGradient, timeankuendigung, 1, 0, 0, blau, 0, 0, blau)
     end
@@ -392,26 +399,3 @@ function sendWetterEventToClient()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), sendWetterEventToClient)
 
---http://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=today&formatted=0
---function TimeStamp(dateStringArg)
---
---    local inYear, inMonth, inDay, inHour, inMinute, inSecond, inZone =
---    string.match(dateStringArg, '^(%d%d%d%d)-(%d%d)-(%d%d)T(%d%d):(%d%d):(%d%d)(.-)$')
---
---    local zHours, zMinutes = string.match(inZone, '^(.-):(%d%d)$')
---
---    local returnTime = os.time({year=inYear, month=inMonth, day=inDay, hour=inHour, min=inMinute, sec=inSecond, isdst=false})
---
---    zHours = zHours - 12
---
---    if (isdst) then
---        zHours = zHours - 1;
---    end
---
---    if zHours then
---        returnTime = returnTime - ((tonumber(zHours)*3600) + (tonumber(zMinutes)*60))
---    end
---
---    return returnTime
---
---end

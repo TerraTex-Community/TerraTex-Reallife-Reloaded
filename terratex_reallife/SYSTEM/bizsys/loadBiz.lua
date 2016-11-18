@@ -12,17 +12,19 @@ function loadBizFromDB_func()
         bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { bizKey = zahler });
         bizData[zahler]["PaidUntil"] = tonumber(dasatz["PaidUntil"]);
 
-        if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
-            if (bizData[zahler]["Besitzer"]) then
-                MySql.helper.update("user_data", { bizKey = 0 } ,{ bizKey = zahler });
-                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Du hast deine Pacht nicht rechtzeitig bezahlt. Das Business wurde zum Verkauf freigegeben.")
-            end
-            bizData[zahler]["Besitzer"] = false;
-            bizData[zahler]["PaidUntil"] = 0;
-        elseif (bizData[zahler]["PaidUntil"] - getRealTime().timestamp < 14 * 24 * 60 * 60) then
-            if (bizData[zahler]["Besitzer"]) then
-                local rest = (bizData[zahler]["PaidUntil"] - getRealTime().timestamp)/60/60/24;
-                save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. rest .. " Tagen fällig.");
+        if (not isDevServer()) then
+            if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
+                if (bizData[zahler]["Besitzer"]) then
+                    MySql.helper.update("user_data", { bizKey = 0 } ,{ bizKey = zahler });
+                    save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Du hast deine Pacht nicht rechtzeitig bezahlt. Das Business wurde zum Verkauf freigegeben.")
+                end
+                bizData[zahler]["Besitzer"] = false;
+                bizData[zahler]["PaidUntil"] = 0;
+            elseif (bizData[zahler]["PaidUntil"] - getRealTime().timestamp < 14 * 24 * 60 * 60) then
+                if (bizData[zahler]["Besitzer"]) then
+                    local rest = (bizData[zahler]["PaidUntil"] - getRealTime().timestamp)/60/60/24;
+                    save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. rest .. " Tagen fällig.");
+                end
             end
         end
 
@@ -200,11 +202,11 @@ function paylease_cmd_info(thePlayer)
         local price = 0;
         if (maximum < 30) then
             calcTimeStamp = calcTimeStamp + (60 * 60 * 24 * maximum);
-            price = 75000 * (maximum / 30);
+            price = 150000 * (maximum / 30);
             paidDays = maximum;
         else
             calcTimeStamp = calcTimeStamp + (60 * 60 * 24 * 30);
-            price = 75000;
+            price = 150000;
             paidDays = 30;
         end
 

@@ -1,7 +1,7 @@
 frakselfcars[13]={}
 function createracecars()
 
-     vehicle= createVehicle(451,2407.0888671875,1020.744140625,10.527860641479,359.53308105469,359.99450683594,269.67590332031, "Race")
+     local vehicle= createVehicle(451,2407.0888671875,1020.744140625,10.527860641479,359.53308105469,359.99450683594,269.67590332031, "Race")
      table.insert(frakselfcars[13],vehicle)
      vehicle= createVehicle(412,2392.8623046875,1039.0634765625,10.6577501297,0.186767578125,0,176.8359375, "Race")
      table.insert(frakselfcars[13],vehicle)

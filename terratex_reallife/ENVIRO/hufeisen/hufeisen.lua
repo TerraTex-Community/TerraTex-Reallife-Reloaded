@@ -1,8 +1,8 @@
 addEvent("foundHufeisen_func",true)
 function foundHufeisen()
-	vioSetElementData(source,"Hufeisen",vioGetElementData(source,"Hufeisen")+1)
-	outputChatBox("Du hast ein Hufeisen gefunden! Es war 100$ wert!",source,100,255,100)
-    changePlayerMoney(source,100,"sonstiges","Hufeisen")
+	vioSetElementData(source,"Hufeisen",vioGetElementData(source,"Hufeisen") + 1)
+	outputChatBox("Du hast ein Hufeisen gefunden! Es war 1000$ wert!",source,100,255,100)
+    changePlayerMoney(source,1000,"sonstiges","Hufeisen")
 	
 	if(vioGetElementData(source,"Hufeisen")>9)then
 		if(vioGetElementData(source,"Erfolg_10Hufeisen")==0)then
@@ -27,15 +27,6 @@ function foundHufeisen()
 		
 		end	
 	end
-
-
 end
 addEventHandler("foundHufeisen_func",getRootElement(),foundHufeisen)
-
-
-
-
-
-
-
 

@@ -14,7 +14,7 @@ function farmerjob_mission_start_4()
 	addEventHandler("onTrailerDetach", anhaenger, reattachTrailerfarmmission4)
 	triggerClientEvent(source,"startFarmMission_4",source,tractor,anhaenger)
 	vioSetElementData(source,"isFarmingActiv",true)
-	outputChatBox("Fahre mit dem Traktor und Plüge das Feld! (Sammle alle grünen Marker ein!",source,0,255,0)	
+	outputChatBox("Fahre mit dem Traktor und Plüge das Feld! (Sammle alle grünen Marker ein!)",source,0,255,0)
 end
 addEventHandler("farmerjob_mission_start_4",getRootElement(),farmerjob_mission_start_4)
 

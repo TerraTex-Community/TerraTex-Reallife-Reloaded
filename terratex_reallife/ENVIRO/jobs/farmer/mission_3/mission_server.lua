@@ -10,7 +10,7 @@ function farmerjob_mission_start_3()
 	addEventHandler("onVehicleExplode",tractor,onVehicleMission_3_explode)
 	triggerClientEvent(source,"startFarmMission_3",source,tractor)
 	vioSetElementData(source,"isFarmingActiv",true)
-	outputChatBox("Fahre mit dem Traktor den Dünger aus! (Sammle alle grünen Marker ein!",source,0,255,0)	
+	outputChatBox("Fahre mit dem Traktor den Dünger aus! (Sammle alle grünen Marker ein!)",source,0,255,0)
 end
 addEventHandler("farmerjob_mission_start_3",getRootElement(),farmerjob_mission_start_3)
 

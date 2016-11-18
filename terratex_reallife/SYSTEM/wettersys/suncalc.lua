@@ -12,8 +12,8 @@ local zenith = 90.5;
 
 --- (N)
 function getDayOfYear()
---    return getRealTime().yearday;
-    return 325;
+    return getRealTime().yearday;
+--    return 325;  -- for testing
 end
 
 --- riseOrSet  (t)

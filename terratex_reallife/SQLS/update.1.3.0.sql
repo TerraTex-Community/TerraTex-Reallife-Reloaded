@@ -48,3 +48,4 @@ INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : 621.553710
 INSERT INTO objects_fuel_stations (GasPumps, Price) VALUES ('[[{"x" : -1329.486328125, "y":2671.9453125, "z":49.789577484131, "size":2},{"x" : -1327.01953125, "y":2682.8017578125, "z":49.789585113525, "size":2}]]', 5);
 
 ALTER TABLE objects_businesses ADD PaidUntil INT DEFAULT 0 NULL;
+UPDATE objects_businesses SET Preis = 500000;

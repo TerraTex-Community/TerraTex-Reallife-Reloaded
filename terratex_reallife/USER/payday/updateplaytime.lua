@@ -373,7 +373,7 @@ function payday(thePlayer)
     vioSetElementData(thePlayer, "fisheslasthour", 0)
     -- BIZ
     if (vioGetElementData(thePlayer, "bizKey") ~= 0) then
-        bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] = bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] + 200000
+        bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] = bizData[vioGetElementData(thePlayer, "bizKey")]["Kasse"] + 20000
         outputChatBox("Du hast in deinen Bizkonto 20000$ BizBonus gutgeschrieben bekommen!", thePlayer, 0, 191, 70)
         if (vioGetElementData(thePlayer, "Erfolg_MyOwnBiz") ~= 1) then
             vioSetElementData(thePlayer, "Erfolg_MyOwnBiz", 1)

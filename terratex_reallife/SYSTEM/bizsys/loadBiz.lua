@@ -210,7 +210,7 @@ function paylease_cmd_info(thePlayer)
             paidDays = 30;
         end
 
-        if (price >= getPlayerBank(thePlayer)) then
+        if (price <= getPlayerBank(thePlayer)) then
             changePlayerBank(thePlayer, -price, "sonstiges", "Business Pachtkosten")
             bizData[bizNum]["PaidUntil"] = calcTimeStamp;
             showError(thePlayer, "Die Pacht deines Business wurde um " .. paidDays .. " Tage verlängert!");
@@ -268,6 +268,7 @@ function buybiz_func(thePlayer, Command)
                     vioSetElementData(thePlayer, "bizKey", biz)
                     changePlayerMoney(thePlayer, -bizData[biz]["Preis"], "sonstiges", "Bizkauf")
                     bizData[biz]["Besitzer"] = getPlayerName(thePlayer)
+                    bizData[biz]["PaidUntil"] = getRealTime().timestamp + (60 * 60 * 24 * 30);
                     showError(thePlayer, "Du hast das Biz erfolgreich gekauft!")
                     local BesitzerText = string.format("Wert: %s", bizData[biz]["Preis"])
                     if (bizData[biz]["Besitzer"]) then

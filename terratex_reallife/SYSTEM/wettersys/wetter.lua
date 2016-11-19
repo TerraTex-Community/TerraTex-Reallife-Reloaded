@@ -152,6 +152,8 @@ function changeWeather(setrainlevel)
     local sunrise = calcSunTime(true);
     local sunset = calcSunTime(false);
 
+    outputDebugString("Suntimes: " .. sunrise .. " " .. sunset)
+
     setTimer(setWaveHeight, timeankuendigung, 1, wellenhoehe)
     if (newdarkhimmel) then
         setSunSize(0)

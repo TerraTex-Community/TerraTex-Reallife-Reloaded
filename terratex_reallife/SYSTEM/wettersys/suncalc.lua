@@ -114,7 +114,5 @@ function calcSunTime(riseOrSet)
         UT = UT + 2;
     end
 
-
-
     return math.floor(UT);
 end

@@ -100,18 +100,18 @@ function calcSunTime(riseOrSet)
     local T = calculateLocalMeanTime(riseOrSet);
     local UT = T - lngHour;
 
-    while (UT > 24) do
-        UT = UT - 24;
-    end
-
-    while (UT < 24) do
-        UT = UT + 24;
-    end
-
     if (getRealTime().isdst) then
         UT = UT + 1;
     else
         UT = UT + 2;
+    end
+
+    while (UT > 24) do
+        UT = UT - 24;
+    end
+
+    while (UT < 0) do
+        UT = UT + 24;
     end
 
     return math.floor(UT);

@@ -79,7 +79,7 @@ function calcAndSaveGfPositionIncome()
         local theGfPosition = vioGetElementData(theGfPositionElement, "data");
         theGfPosition.HoursWithoutAttack = tonumber(theGfPosition.HoursWithoutAttack) + 1;
 
-        if (theGfPosition.HoursWithoutAttack > 48) then
+        if (theGfPosition.HoursWithoutAttack > 120) then
             theGfPosition.HoursWithoutAttack = 0;
             theGfPosition.Owner = -1;
         end

@@ -174,6 +174,9 @@ function cmdDefend(thePlayer, cmd, ...)
 
                 if (table.getSize(players) <= table.getSize(data.attackers)) then
                     data.defenders = playersElements;
+                    data.defenderNames = {};
+                    data.attackerNames = {};
+
                     if (isTimer(data.timeOutTimer)) then killTimer(data.timeOutTimer) end
 
                     local costDef = table.getSize(data.defenders) * 2500;
@@ -186,10 +189,14 @@ function cmdDefend(thePlayer, cmd, ...)
                         outputChatBox("Die Kosten von " .. costDef .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                         setElementDimension(theMember, 1337);
+                        vioSetElementDimension(theMember, "isInGf", true);
+                        table.insert(data.defenderNames, getPlayerName(theMember));
                     end
                     for theKey, theMember in ipairs(data.attackers) do
                         outputChatBox("Die Kosten von " .. costAttack .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
+                        vioSetElementDimension(theMember, "isInGf", true);
+                        table.insert(data.attackerNames, getPlayerName(theMember));
                     end
 
                     data.timer = setTimer(startGf, 5000, 1);
@@ -206,3 +213,37 @@ function cmdDefend(thePlayer, cmd, ...)
     end
 end
 addCommandHandler("defend", cmdDefend, false, false)
+
+function rejoinGf(thePlayer)
+    local gfElement = getElementByID("GFSync");
+    local data = vioGetElementData(gfElement, "data");
+
+    if (data.attackInProcess) then
+        if (not vioGetElementData(thePlayer, "isInGf")) then
+            local userName = getPlayerName(thePlayer);
+
+            for theKey, theMemberName in ipairs(data.attackerNames) do
+                if (theMemberName == userName) then
+                    table.insert(data.attackers, thePlayer);
+                    setElementHealth(thePlayer, 0)
+                    setElementDimension(thePlayer, 1337);
+                    showError(thePlayer, "Du nimmst wieder am GF teil!");
+                end
+            end
+
+            for theKey, theMemberName in ipairs(data.defenderNames) do
+                if (theMemberName == userName) then
+                    table.insert(data.defenders, thePlayer);
+                    setElementHealth(thePlayer, 0)
+                    setElementDimension(thePlayer, 1337);
+                    showError(thePlayer, "Du nimmst wieder am GF teil!");
+                end
+            end
+
+            vioSetElementData(gfElement, "data", data);
+        else
+            showError(thePlayer, "Du befindest dich bereits im Gangfight!")
+        end
+    end
+end
+addCommandHandler("gfrejoin", rejoinGf, false, false)

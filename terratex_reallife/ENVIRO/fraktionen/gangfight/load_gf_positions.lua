@@ -20,7 +20,7 @@ function createGFPositions()
         vioSetElementData(gfPositionElement, "pickup", pickup);
         vioSetElementData(pickup, "gfElement", gfPositionElement);
 
-        if (tonumber(theGfPosition.HoursWithoutAttack) > 48) then
+        if (tonumber(theGfPosition.HoursWithoutAttack) > 120) then
             theGfPosition.HoursWithoutAttack = 0;
             theGfPosition.Owner = -1;
         end

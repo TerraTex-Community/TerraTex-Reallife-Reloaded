@@ -63,5 +63,7 @@ config["feature.limiter.quad"] = 90
 config["feature.limiter.muntruck"] = 100
 
 
-
+-- #################### Web API ####################
+config["api.user"] = "user"
+config["api.password"] = "password"
 

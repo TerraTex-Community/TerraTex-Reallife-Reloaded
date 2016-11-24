@@ -21,5 +21,5 @@ config["feature.limiter.pizza"]=${FEATURE_LIMIT_PIZZA}
 config["feature.limiter.faggio"]=${FEATURE_LIMIT_FAGGIO}
 config["feature.limiter.quad"]=${FEATURE_LIMIT_QUAD}
 config["feature.limiter.muntruck"]=${FEATURE_LIMIT_MUNTRUCK}
-config["api.user"]=${API_USER}
-config["api.password"]=${API_PASSWORD}
+config["api.user"]="${API_USER}"
+config["api.password"]="${API_PASSWORD}"

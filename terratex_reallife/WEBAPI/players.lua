@@ -17,8 +17,9 @@ function apiGetListOfPlayers()
             Serial = getPlayerSerial(thePlayer),
             PlayerData = getAllElementData ( thePlayer )
         };
+        table.insert(result, playerObject);
     end
 
-    return players;
+    return result;
 end
 

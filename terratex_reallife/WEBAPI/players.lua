@@ -8,6 +8,17 @@
 
 function apiGetListOfPlayers()
     local players = getElementsByType("player");
+    local result = {};
+
+    for theKey, thePlayer in ipairs(players) do
+        local playerObject = {
+            Name = getPlayerName(thePlayer),
+            IP = getPlayerIP(thePlayer),
+            Serial = getPlayerSerial(thePlayer),
+            PlayerData = getAllElementData ( thePlayer )
+        };
+    end
+
     return players;
 end
 

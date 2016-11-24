@@ -22,7 +22,3 @@ function initWebApi()
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), initWebApi)
-
-function testapi()
-    return "testApiReturn";
-end

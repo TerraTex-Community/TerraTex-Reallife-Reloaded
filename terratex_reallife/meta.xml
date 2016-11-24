@@ -1038,6 +1038,5 @@
 
     <!-- Web API -->
     <script src="WEBAPI/init_web_api.lua" type="server" />
-    <export function='testapi' http='true' />
 
 </meta>

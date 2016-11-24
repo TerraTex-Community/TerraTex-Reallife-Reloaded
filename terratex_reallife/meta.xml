@@ -1038,5 +1038,7 @@
 
     <!-- Web API -->
     <script src="WEBAPI/init_web_api.lua" type="server" />
+    <script src="WEBAPI/players.lua" type="server" />
+    <export function='apiGetListOfPlayers' http='true' />
 
 </meta>

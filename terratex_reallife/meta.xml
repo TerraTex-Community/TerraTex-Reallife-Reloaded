@@ -1034,4 +1034,10 @@
     <file src="UI/styles/images/food.png"/>
     <file src="UI/styles/images/food_background.png"/>
 
+
+
+    <!-- Web API -->
+    <script src="WEBAPI/init_web_api.lua" type="server" />
+    <export function='testapi' http='true' />
+
 </meta>

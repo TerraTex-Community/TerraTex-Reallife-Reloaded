@@ -23,3 +23,16 @@ function apiGetListOfPlayers()
     return result;
 end
 
+function apiIsPlayerOnline(playername)
+    if (getPlayerFromIncompleteName(playername)) then
+        if (isPlayerLoggedIn(playername)) then
+            return true;
+        else
+            return false;
+        end
+    else
+        return false;
+    end
+end
+
+

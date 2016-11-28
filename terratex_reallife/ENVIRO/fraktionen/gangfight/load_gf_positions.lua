@@ -49,6 +49,19 @@ function createGFPositions()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createGFPositions)
 
+function sladen(thePlayer)
+    local frak = vioGetElementData(thePlayer, "fraktion");
+
+    outputChatBox("Läden in eurer Kontrolle: ", thePlayer)
+
+    for theKey, thePosition in ipairs(getElementsByType("GfPosition")) do
+        local data = vioGetElementData(thePosition, "data");
+        if (data.Owner == frak) then
+            outputChatBox("- " .. data.Name, thePlayer);
+        end
+    end
+end
+
 function hitGfPositionPickup(thePlayer)
     if (getElementType(thePlayer) == 'player') then
         local data = vioGetElementData(attackElement, "data");

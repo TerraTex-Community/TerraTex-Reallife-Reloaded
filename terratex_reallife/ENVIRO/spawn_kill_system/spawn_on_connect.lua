@@ -7,7 +7,7 @@
 --
 
 function onPlayerDisconnect(quitType, reason, responsibleElement)
-    if (isPlayerLoggedIn(source) and not vioGetElementDimension(source, "isInGf")) then
+    if (isPlayerLoggedIn(source) and not vioGetElementData(source, "isInGf")) then
         local timestamp = vioGetElementData(source, "loggedin");
         local logouttime = getRealTime().timestamp;
 

@@ -196,14 +196,14 @@ function checkEndGfOrNextRound()
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight gewonnen, ihr behaltet den Laden!", thePlayer, 0, 255, 0);
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
-                vioSetElementDimension(thePlayer, "isInGf", false);
+                vioSetElementData(thePlayer, "isInGf", false);
             end
         end
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight verloren!", thePlayer, 0, 255, 0);
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
-                vioSetElementDimension(thePlayer, "isInGf", false);
+                vioSetElementData(thePlayer, "isInGf", false);
             end
         end
 
@@ -238,14 +238,14 @@ function checkEndGfOrNextRound()
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight verloren, ihr verliert den Laden!", thePlayer, 0, 255, 0);
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
-                vioSetElementDimension(thePlayer, "isInGf", false);
+                vioSetElementData(thePlayer, "isInGf", false);
             end
         end
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight gewonnen, ihr habt den Laden erobert!", thePlayer, 0, 255, 0);
                 spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
-                vioSetElementDimension(thePlayer, "isInGf", false);
+                vioSetElementData(thePlayer, "isInGf", false);
             end
         end
 

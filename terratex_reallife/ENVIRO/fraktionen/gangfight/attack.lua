@@ -189,13 +189,13 @@ function cmdDefend(thePlayer, cmd, ...)
                         outputChatBox("Die Kosten von " .. costDef .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                         setElementDimension(theMember, 1337);
-                        vioSetElementDimension(theMember, "isInGf", true);
+                        vioSetElementData(theMember, "isInGf", true);
                         table.insert(data.defenderNames, getPlayerName(theMember));
                     end
                     for theKey, theMember in ipairs(data.attackers) do
                         outputChatBox("Die Kosten von " .. costAttack .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
-                        vioSetElementDimension(theMember, "isInGf", true);
+                        vioSetElementData(theMember, "isInGf", true);
                         table.insert(data.attackerNames, getPlayerName(theMember));
                     end
 

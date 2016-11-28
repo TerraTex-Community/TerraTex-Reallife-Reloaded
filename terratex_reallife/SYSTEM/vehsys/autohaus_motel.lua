@@ -394,7 +394,7 @@ function buyCar(thevehicle)
                                 kaufpreis = vehicle[4]
                             });
 
-                            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
+--                            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
                             vioSetElementData(spawnVeh, "dbid", dbid)
                             warpPedIntoVehicle(source, spawnVeh)
                             showError(source, "Du hast dieses Fahrzeug erfolgreich gekauft! Bitte parke es auf einen PARKPLATZ Reallife mäßig mit /park. Parkst du es nicht wird es an den Koordinaten 0 0 0 spawnen und eventuell gelöscht!")

@@ -328,7 +328,7 @@ function changeWeather(setrainlevel)
         local logtext = "[" .. times.monthday .. "." .. (times.month + 1) .. "." .. (times.year + 1900) .. " - " .. times.hour .. ":" .. times.minute .. ":" .. times.second .. "] " .. newrainlevel .. ": " .. regenstaerke .. " " .. besonderheiten
         save_log("wetter", logtext)
     end
-    outputDebugString("Wetter changed")
+--    outputDebugString("Wetter changed")
 end
 
 function start_flut()

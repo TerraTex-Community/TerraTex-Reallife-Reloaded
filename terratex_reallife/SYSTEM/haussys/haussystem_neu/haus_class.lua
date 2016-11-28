@@ -79,7 +79,7 @@ function Haus:save()
         Kasse = self.kasse,
         IRID = self.irid
     }, {ID = self.ID});
-    outputDebugString("Save House " .. self.ID)
+--    outputDebugString("Save House " .. self.ID)
 end
 
 function Haus:getCoords()

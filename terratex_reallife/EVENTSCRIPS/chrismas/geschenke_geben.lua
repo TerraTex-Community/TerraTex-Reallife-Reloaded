@@ -63,7 +63,7 @@ function wantAKart_Event_func()
             });
 
             local dbid = MySql.helper.getValueSync("user_vehicles", "ID", { SlotID = firstfreeslot, Besitzer = getPlayerName(source) });
-            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
+--            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
             vioSetElementData(spawnVeh, "dbid", dbid)
 
             warpPedIntoVehicle(source, spawnVeh)

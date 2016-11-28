@@ -136,7 +136,7 @@ end
 addEventHandler("onVehicleExit", getRootElement(), onVehicleEnableFire)
 
 function save_priv_carsB()
-    outputDebugString("Started Cars Saving")
+--    outputDebugString("Started Cars Saving")
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
         for theKey, thetable in ipairs(privVeh) do
             if (isElement(thetable[3])) then
@@ -154,7 +154,7 @@ function save_priv_carsB()
             end
         end
     end
-    outputDebugString("Cars saved!")
+--    outputDebugString("Cars saved!")
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_priv_carsB)
@@ -258,8 +258,10 @@ function onvehicleexplode_exec(source)
         privCars[source] = nil
 
     else
-        setTimer(respawnVehicle, 10000, 1, source)
-        vioSetElementData(source, "motor", false)
+        if (isElement(source)) then
+            setTimer(respawnVehicle, 10000, 1, source)
+            vioSetElementData(source, "motor", false)
+        end
     end
 end
 

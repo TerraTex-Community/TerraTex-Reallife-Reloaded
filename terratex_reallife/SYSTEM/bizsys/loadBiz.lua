@@ -75,11 +75,11 @@ end
 
 function savebizzes_norm(timer)
     if not isDevServer() then
-        outputDebugString("Started Biz Save")
+--        outputDebugString("Started Biz Save")
         for theKey, theBiz in ipairs(bizData) do
             MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"], PaidUntil = theBiz["PaidUntil"] }, { ID = theKey});
         end
-        outputDebugString("Biz Saved")
+--        outputDebugString("Biz Saved")
         setTimer(savebizzes_norm, 3600000, 1)
     end
 end
@@ -87,12 +87,12 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), sa
 
 function savebizzes(timer)
     if not isDevServer() then
-        outputDebugString("Started Biz Save")
+--        outputDebugString("Started Biz Save")
 
         for theKey, theBiz in ipairs(bizData) do
             MySql.helper.update("objects_businesses", { Kasse = theBiz["Kasse"], PaidUntil = theBiz["PaidUntil"] }, { ID = theKey});
         end
-        outputDebugString("Biz Saved")
+--        outputDebugString("Biz Saved")
     end
 end
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), savebizzes)

@@ -11,11 +11,18 @@ function apiGetListOfPlayers()
     local result = {};
 
     for theKey, thePlayer in ipairs(players) do
+        local saveData = {};
+        for k, v in pairs ( getAllElementData ( thePlayer ) ) do
+            if (type(v) ~= "userdata") then
+                saveData[k] = v;
+            end
+        end
+
         local playerObject = {
             Name = getPlayerName(thePlayer),
             IP = getPlayerIP(thePlayer),
             Serial = getPlayerSerial(thePlayer),
-            PlayerData = getAllElementData ( thePlayer )
+            PlayerData = saveData
         };
         table.insert(result, playerObject);
     end

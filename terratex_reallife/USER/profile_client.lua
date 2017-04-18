@@ -68,6 +68,7 @@ addEventHandler("cleanPasswordFields", getRootElement(), cleanPasswordFields_fun
 
 function close_profile()
     showCursor(false);
+    toggleAllControls(true);
     if isElement(profileWindow) then destroyElement(profileWindow) end
     profileWindow = false;
 end

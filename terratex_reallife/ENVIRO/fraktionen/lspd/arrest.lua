@@ -703,3 +703,16 @@ function sos_func(thePlayer)
     end
 end
 addCommandHandler("sos", sos_func, false, false)
+
+function fcc_func(thePlayer)
+    if (isBeamter(thePlayer)) then
+        if(not (vioGetElementData(thePlayer, "fcc"))) then
+			vioSetElementData(thePlayer, "fcc", true)
+			showError(thePlayer,"Du kannst nun den /fc in Beamtenfahrzeugen nutzen.")
+		else
+			vioSetElementData(thePlayer, "fcc", false)
+			showError(thePlayer,"Du kannst nun den /fc in Beamtenfahrzeugen nicht mehr nutzen.")
+		end
+    end
+end
+addCommandHandler("fcc", fcc_func, false, false)

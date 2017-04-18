@@ -609,6 +609,7 @@ function LoginPlayerData(nickname, pw)
         sendalkacolshape_func(source)
 
         triggerClientEvent(source, "showHud", source, true);
+		vioSetElementData(source, "fcc", false)
     else
         local logversuche = tonumber(vioGetElementData(source, "logtries"))
         logversuche = logversuche + 1

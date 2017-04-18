@@ -301,7 +301,7 @@ addCommandHandler("t", t_func, false, false)
 function flug_chat(thePlayer, cmd, text, ...)
     if (isPedInVehicle(thePlayer)) then
         local veh = getPedOccupiedVehicle(thePlayer)
-        if ((isPlane(veh) or isHeli(veh)) and (getPedOccupiedVehicleSeat(thePlayer) == 0)) then
+        if (((isPlane(veh) or isHeli(veh)) and (getPedOccupiedVehicleSeat(thePlayer) == 0)) or (isPoliceCar(veh) and vioGetElementData(thePlayer, "fcc"))) then
             if (text) then
                 text = text .. " " .. table.concat({ ... }, " ")
                 chat_log(thePlayer, "(flugchat) " .. text)
@@ -316,7 +316,7 @@ function sendFlugChatMessage(name, message)
     for theKey, thePerson in ipairs(getElementsByType("player")) do
         if (isPedInVehicle(thePerson)) then
             local veh = getPedOccupiedVehicle(thePerson)
-            if ((isPlane(veh) or isHeli(veh)) and (getPedOccupiedVehicleSeat(thePerson) == 0)) then
+            if (((isPlane(veh) or isHeli(veh)) and (getPedOccupiedVehicleSeat(thePerson) == 0)) or (isPoliceCar(veh) and vioGetElementData(thePerson, "fcc"))) then
                 outputChatBox(string.format("Flugchat (/fc) %s: %s", name, message), thePerson, 244, 0, 252)
             end
         end

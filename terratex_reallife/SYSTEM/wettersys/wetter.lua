@@ -15,7 +15,7 @@ sondermeldungstext = {
 oldrainlevel = 0
 rainlevel = 0
 newHeatSize = 0
-isWinter = true;
+isWinter = false;
 
 local timeankuendigung = 10 * 60 * 1000
 local timenewweather = 40 * 60 * 1000

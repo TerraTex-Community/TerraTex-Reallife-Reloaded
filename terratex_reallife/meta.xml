@@ -943,25 +943,25 @@
     <!-- <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" /> -->
 
     <!-- <WEIHNACHTEN> -->
-    <map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
-    <script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />
-    <script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />
+    <!--<map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />-->
+    <!--<script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />-->
+    <!--<script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />-->
 
     <!--- WINTER SECTION -->
-    <script src="ADDONS/winter/snowshader/cShader.lua" type="client" />
-    <file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />
-    <file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />
-    <file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />
-    <file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />
-    <file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />
-    <file src="ADDONS/winter/snowfall/direction_image.png"/>
-    <file src="ADDONS/winter/snowfall/direction_pointer.png"/>
-    <file src="ADDONS/winter/snowfall/cursor.png"/>
-    <file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>
-    <file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>
-    <script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>
-    <script src="ADDONS/winter/snowfall/snow.lua" type="client"/>
-    <script src="ADDONS/winter/snowfall/snow_s.lua"/>
+    <!--<script src="ADDONS/winter/snowshader/cShader.lua" type="client" />-->
+    <!--<file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />-->
+    <!--<file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />-->
+    <!--<file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />-->
+    <!--<file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />-->
+    <!--<file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />-->
+    <!--<file src="ADDONS/winter/snowfall/direction_image.png"/>-->
+    <!--<file src="ADDONS/winter/snowfall/direction_pointer.png"/>-->
+    <!--<file src="ADDONS/winter/snowfall/cursor.png"/>-->
+    <!--<file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>-->
+    <!--<file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>-->
+    <!--<script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>-->
+    <!--<script src="ADDONS/winter/snowfall/snow.lua" type="client"/>-->
+    <!--<script src="ADDONS/winter/snowfall/snow_s.lua"/>-->
     <!--<settings>-->
         <!--<setting name="gui_enabled" value="[false]"/>-->
         <!--<setting name="snow_toggle" value="[true]"/>-->

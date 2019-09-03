@@ -16,6 +16,20 @@ module.exports = function(grunt) {
                 dest: deployPath + "/scoreboard_custom_terratex",
                 cwd: './scoreboard_custom_terratex',
                 dot: true
+            },
+            backup: {
+                expand: true,
+                src: '*config.lua',
+                dest: deployPath,
+                cwd: deployPath + "/terratex_reallife",
+                dot: true
+            },
+            restoreBackup: {
+                expand: true,
+                src: '*config.lua',
+                dest: deployPath + "/terratex_reallife",
+                cwd: deployPath,
+                dot: true
             }
         },
         'clean': {
@@ -31,6 +45,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['clean:deploy', 'copy:terratex', 'copy:scoreboard']);
+    grunt.registerTask('default', ['copy:backup', 'clean:deploy', 'copy:terratex', 'copy:scoreboard', 'copy:restoreBackup']);
 
 };

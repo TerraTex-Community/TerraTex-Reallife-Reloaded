@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('prepare') {
+    stage('compile css') {
       steps {
-        echo 'test'
+        sh 'node-sass --output-sytle compressed terratex_reallife/UI/styles/css/uncompiled/ -r -o terratex_reallife/UI/styles/css'
       }
     }
   }

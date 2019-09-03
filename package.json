@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/TerraTex-Community/TerraTex-Reallife-Reloaded/issues"
   },
-  "homepage": "http://terratex.eu"
+  "homepage": "http://terratex.eu",
+  "dependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-mkdir": "^1.0.0"
+  }
 }

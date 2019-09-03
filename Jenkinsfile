@@ -22,4 +22,27 @@ pipeline {
       }
     }
   }
+
+  post {
+      success {
+          telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
+
+          script {
+              def telegram = "MTA:SA Änderungen: "
+              def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+              publisher.publishLastChanges()
+              def changes = publisher.getLastChanges()
+              for (commit in changes.getCommits()) {
+                  def commitInfo = commit.getCommitInfo()
+                  telegram = """${telegram}
+- ${commitInfo.getCommitMessage()}"""
+              }
+
+              telegramSend telegram
+          }
+      }
+      failure {
+          telegramSend "Es ist ein Fehler beim Deployen einer neuen Version auf den MTA:SA Server aufgetreten."
+      }
+  }
 }

@@ -35,6 +35,8 @@ pipeline {
             if (env.BRANCH_NAME == "master") {
                 telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
                   def telegram = "MTA:SA Änderungen: "
+              
+              try {
                   def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
                   publisher.publishLastChanges()
                   def changes = publisher.getLastChanges()
@@ -43,10 +45,11 @@ pipeline {
                       telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
                   }
-
+              } catch (e) {}
                   telegramSend telegram
               } else {
                 def telegram = "MTA:SA: Neuer PR auf Github mit: "
+               try {
                                 def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
                                 publisher.publishLastChanges()
                                 def changes = publisher.getLastChanges()
@@ -55,6 +58,7 @@ pipeline {
                                     telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
                                 }
+              } catch (e) {}
                 telegramSend telegram
               }
           }

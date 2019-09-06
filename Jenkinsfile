@@ -30,10 +30,10 @@ pipeline {
 
   post {
       success {
-          telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
 
           script {
             if (env.BRANCH_NAME == "master") {
+                telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
                   def telegram = "MTA:SA Änderungen: "
                   def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
                   publisher.publishLastChanges()

@@ -7,7 +7,8 @@ local texts={
     "Besuche unseren Teamspeak3-Server: "..config["teamspeak"],
     "Du hast ein Bug gefunden? Melde ihn im Bugtracker: "..config["bugdomain"],
     "Dieses Script wird entwickelt von "..config["scriptername"],
-    "Die Maps werden erstellt von "..config["mappername"]
+    "Die Maps werden erstellt von "..config["mappername"],
+    "Blizzard stinkt"
 }
 local lastTextID=0
 

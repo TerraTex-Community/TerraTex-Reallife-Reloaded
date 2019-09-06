@@ -18,7 +18,12 @@ pipeline {
     }
     stage('deploy') {
       steps {
-        bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
+        script {
+
+            if (env.BRANCH_NAME == "master") {
+                bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
+            }
+        }
       }
     }
   }
@@ -28,17 +33,30 @@ pipeline {
           telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
 
           script {
-              def telegram = "MTA:SA Änderungen: "
-              def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
-              publisher.publishLastChanges()
-              def changes = publisher.getLastChanges()
-              for (commit in changes.getCommits()) {
-                  def commitInfo = commit.getCommitInfo()
-                  telegram = """${telegram}
+            if (env.BRANCH_NAME == "master") {
+                  def telegram = "MTA:SA Änderungen: "
+                  def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+                  publisher.publishLastChanges()
+                  def changes = publisher.getLastChanges()
+                  for (commit in changes.getCommits()) {
+                      def commitInfo = commit.getCommitInfo()
+                      telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
-              }
+                  }
 
-              telegramSend telegram
+                  telegramSend telegram
+              } else {
+                def telegram = "MTA:SA: Neuer PR auf Github mit: "
+                                def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+                                publisher.publishLastChanges()
+                                def changes = publisher.getLastChanges()
+                                for (commit in changes.getCommits()) {
+                                    def commitInfo = commit.getCommitInfo()
+                                    telegram = """${telegram}
+- ${commitInfo.getCommitMessage()}"""
+                                }
+                telegramSend telegram
+              }
           }
       }
       failure {

@@ -19,7 +19,7 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-
+            echo env.BRANCH_NAME
             if (env.BRANCH_NAME == "master") {
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
             }

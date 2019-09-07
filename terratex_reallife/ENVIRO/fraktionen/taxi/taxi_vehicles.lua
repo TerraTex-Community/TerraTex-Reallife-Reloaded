@@ -27,29 +27,29 @@ addCommandHandler("mv",mv_taxi_func,false,false)
 
 function onCreatetaxicars_func()
 	-- Fraktionstor
-	taxiObject=createObject(2933, 1812.8000488281, -2072.3620605469, 14.265000343323, 0, 0f, 90)
+	taxiObject=createObject(2933, 1812.8000488281, -2072.3620605469, 14.265000343323, 0, 0, 90)
 	-- Cabbie
 	frakselfcars[4][1]  = createVehicle(438, 1808.900390625, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
 	frakselfcars[4][2]  = createVehicle(438, 1805.299804687, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
 	frakselfcars[4][3]  = createVehicle(438, 1801.599609375, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
-	frakselfcars[4][3]  = createVehicle(438, 1797.7998046875, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
-	frakselfcars[4][3]  = createVehicle(438, 1794.099609375, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
+	frakselfcars[4][4]  = createVehicle(438, 1797.7998046875, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
+	frakselfcars[4][5]  = createVehicle(438, 1794.099609375, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
 	-- Taxi
-	frakselfcars[4][4]  = createVehicle(420, 1808.900390625, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
-	frakselfcars[4][5]  = createVehicle(420, 1805.299804687, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
-	frakselfcars[4][6]  = createVehicle(420, 1801.599609375, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
-	frakselfcars[4][7]  = createVehicle(420, 1797.799804687, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
-	frakselfcars[4][8]  = createVehicle(420, 1794.099609375, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
+	frakselfcars[4][6]  = createVehicle(420, 1808.900390625, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
+	frakselfcars[4][7]  = createVehicle(420, 1805.299804687, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
+	frakselfcars[4][8]  = createVehicle(420, 1801.599609375, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
+	frakselfcars[4][9]  = createVehicle(420, 1797.799804687, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
+	frakselfcars[4][10]  = createVehicle(420, 1794.099609375, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
 	-- Maverick
-	frakselfcars[4][10] = createVehicle(487, 1736.099609375, -2063.099609375, 17.75, 0, 0, 212, "SA-TAXI")
+	frakselfcars[4][11] = createVehicle(487, 1736.099609375, -2063.099609375, 17.75, 0, 0, 212, "SA-TAXI")
 	-- Stafford
-	frakselfcars[4][11]  = createVehicle(580, 1807.6999511719, -2043.3000488281, 13.345000267029, 0, 0, 90, "SA-TAXI")
-	frakselfcars[4][12]  = createVehicle(580, 1807.6999511719, -2047.0999755859, 13.345000267029, 0, 0, 90, "SA-TAXI")
-	frakselfcars[4][13]  = createVehicle(580, 1807.6999511719, -2050.8999023438, 13.345000267029, 0, 0, 90, "SA-TAXI")
+	frakselfcars[4][12]  = createVehicle(580, 1807.6999511719, -2043.3000488281, 13.345000267029, 0, 0, 90, "SA-TAXI")
+	frakselfcars[4][13]  = createVehicle(580, 1807.6999511719, -2047.0999755859, 13.345000267029, 0, 0, 90, "SA-TAXI")
+	frakselfcars[4][14]  = createVehicle(580, 1807.6999511719, -2050.8999023438, 13.345000267029, 0, 0, 90, "SA-TAXI")
 	-- Stretch
-	frakselfcars[4][14] = createVehicle(409, 1806.8000488281, -2054.6000976563, 13.319999694824, 0, 0, 90, "SA-TAXI")
+	frakselfcars[4][15] = createVehicle(409, 1806.8000488281, -2054.6000976563, 13.319999694824, 0, 0, 90, "SA-TAXI")
 	-- Bus
-	frakselfcars[4][14] = createVehicle(431, 1805, -2058.3994140625, 13.655, 0, 0, 90, "SA-TAXI")
+	frakselfcars[4][16] = createVehicle(431, 1805, -2058.3994140625, 13.655, 0, 0, 90, "SA-TAXI")
 
 	for theKey,theVehicle in ipairs(frakselfcars[4]) do
 	setVehicleColor ( theVehicle, 6,6,6,6 )

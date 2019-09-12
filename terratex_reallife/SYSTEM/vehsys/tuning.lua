@@ -109,7 +109,7 @@ function tuningMarker_func(hitElement)
                                 --while not(driver==getVehicleOccupant ( theMarker[3], 0 )) do
                                 warpPedIntoVehicle(driver,theMarker[3])
                                 --end
-                                triggerClientEvent(driver,"showTuningGarage",theMarker[3],colors,getVehiclePaintjob(hitElement),tuningstring)
+                                triggerClientEvent(driver,"showTuningGarage",theMarker[3],colors,getVehiclePaintjob(hitElement),tuningstring, true)
 
 
 
@@ -151,7 +151,7 @@ function tuningMarker_func(hitElement)
 								--while not(driver==getVehicleOccupant ( theMarker[3], 0 )) do
 									warpPedIntoVehicle(driver,theMarker[3])
 								--end
-								triggerClientEvent(driver,"showTuningGarage",theMarker[3],vioGetElementData(hitElement,"colors"),vioGetElementData(hitElement,"paintjob"),vioGetElementData(hitElement,"tuning"))
+								triggerClientEvent(driver,"showTuningGarage",theMarker[3],vioGetElementData(hitElement,"colors"),vioGetElementData(hitElement,"paintjob"),vioGetElementData(hitElement,"tuning"), false)
                             else
                                 showError(driver,"Wir fassen dieses geklaute Fahrzeug nicht an!")
                             end

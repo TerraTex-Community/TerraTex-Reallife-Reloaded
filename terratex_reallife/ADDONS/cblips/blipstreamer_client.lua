@@ -231,7 +231,7 @@ addEventHandler("onClientRender",g_root,
 					else
 						camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
 					end
-				elseif getControlState"look_behind" then
+				elseif getPedControlState(getLocalPlayer(), "look_behind") then
 					camRot = -math.rad(getPedRotation(localPlayer))
 				else
 					camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)

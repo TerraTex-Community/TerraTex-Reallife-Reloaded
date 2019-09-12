@@ -87,7 +87,7 @@ function changeWeather(setrainlevel)
     --rainlevel unreal mit weniger regen
 
     local newrainlevel = -math.random(0, 311) / 100
-    if (math.random(1, 16) ~= 2) then
+    if (math.random(1, 16) == 2) then
         newrainlevel = -newrainlevel
     end
 

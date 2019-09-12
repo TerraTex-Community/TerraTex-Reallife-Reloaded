@@ -89,8 +89,6 @@ function tuningMarker_func(hitElement)
                                 setElementModel(theMarker[3],getElementModel(hitElement))
                                 vioSetElementData(driver,"PreTuningGarageMarker",source)
 
-
-
                                 -- ab hier umschreiben
 
                                 local tuning = getVehicleUpgrades ( hitElement )
@@ -171,8 +169,6 @@ addEvent("exitFromTuning",true)
 
 function tuningMarker_Exit(newcolorstring,wasColorChanged,newtuningstring,pricing,paintjob)
 
-
-
 	local driver=source
 	local veh=vioGetElementData(driver,"PreTuningVeh")
 	removePedFromVehicle(driver)
@@ -231,7 +227,8 @@ function tuningMarker_Exit(newcolorstring,wasColorChanged,newtuningstring,pricin
 		end			
 	end
 	local colors=getStringComponents(vioGetElementData(hitElement,"colors"))
-	setVehicleColor(hitElement,tonumber(colors[1]),tonumber(colors[2]),tonumber(colors[3]),tonumber(colors[4]))	
+	setVehicleColor(hitElement,tonumber(colors[1]),tonumber(colors[2]),tonumber(colors[3]),tonumber(colors[4]))
+	-- @todo: reset Premium Colors if there are some colors see #204
 
 	toggleAllControls(driver,true)
 	vioSetElementData(driver,"cuffed",0)

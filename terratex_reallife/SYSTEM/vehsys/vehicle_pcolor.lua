@@ -42,10 +42,10 @@ function setPremiumVehicleLightColor_func(newcolorstring)
                         vioSetElementData(vehicle, "Lichterfarbe", newcolorstring)
                         setVehicleOverrideLights(vehicle, 2)
                         local colors = getStringComponents(newcolorstring)
-                        setVehicleHeadLightColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                         changePlayerMoney(thePlayer, -2500, "fahrzeug", "/pcolor", "Fahrzeugfarbe")
                         save_car(vehicle)
                         triggerClientEvent(thePlayer, "pColor_Preview_setLightBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
+                        setVehicleHeadLightColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                     else
                         showError(thePlayer, "Du bist nicht Besitzer des Fahrzeugs!")
                     end
@@ -54,6 +54,7 @@ function setPremiumVehicleLightColor_func(newcolorstring)
                     if (table.hasValue(frakselfcars[13], vehicle)) then
                         vioSetElementData(vehicle, "Lichterfarbe", newcolorstring)
                         setVehicleOverrideLights(vehicle, 2)
+                        local colors = getStringComponents(newcolorstring)
                         setVehicleHeadLightColor(vehicle, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                         triggerClientEvent(thePlayer, "pColor_Preview_setLightBefore", thePlayer, tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                     else

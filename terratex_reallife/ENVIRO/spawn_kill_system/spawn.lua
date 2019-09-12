@@ -68,7 +68,7 @@ function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
                         spawnPlayer(source, -405.896484375, -1433.970703125, 25.720909118652, 183.78485107422, skinid, 0, 0, team[fraktion])
                     elseif (frakid == 10) then
                         if (spawnCity == "ls") then
-                            spawnPlayer(source, 2039.474609375, -1413.380859375, 17.1640625, 130.33920288086, skinid, 0, 0, team[fraktion]) --medic
+                            spawnPlayer(source, 1144.6999511719, -1319.5, 13.60000038147, 89.9986267, skinid, 0, 0, team[fraktion]) --medic
                         else
                             spawnPlayer(source, 1607.3505859375, 1816.220703125, 10.8203125, 114.33920288086, skinid, 0, 0, team[fraktion]) --medic
                         end

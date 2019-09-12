@@ -1,6 +1,7 @@
 -- FILE: 	mapEditorScriptingExtension_s.lua
 -- PURPOSE:	Prevent the map editor feature set being limited by what MTA can load from a map file by adding a script file to maps
 -- VERSION:	RemoveWorldObjects (v1) AutoLOD (v1)
+setOcclusionsEnabled( false )
 
 local usedLODModels = {}
 

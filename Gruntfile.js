@@ -1,8 +1,16 @@
 module.exports = function(grunt) {
     const deployPath = grunt.option('path') || 'dev';
+    const moment = require("moment");
 
     grunt.initConfig({
         'copy': {
+            saveLogs: {
+                expand: true,
+                src: '**/*',
+                dest: `${deployPath}/oldLogs/${moment().format('YYYYMMDDHHmmss')}`,
+                cwd: deployPath + "/terratex_reallife/LOGS",
+                dot: true
+            },
             terratex: {
                 expand: true,
                 src: '**/*',
@@ -46,5 +54,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('default', ['copy:backup', 'clean:deploy', 'copy:terratex', 'copy:scoreboard', 'copy:restoreBackup']);
+    grunt.registerTask('logs', ['copy:saveLogs']);
 
 };

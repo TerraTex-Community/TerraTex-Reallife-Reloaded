@@ -56,7 +56,7 @@ function loadFManagementPage(get, post)
 end
 
 function _renderFraktionsManagementOverviewPage(dataTable)
-    if (not managementBrowser and managementWindow) then
+    if (not isElement(managementBrowser) and isElement(managementWindow)) then
         outputDebugString("Browser not loaded yet ... delay call");
         setTimer ( _renderFraktionsManagementOverviewPage, 250, 1, dataTable );
     end

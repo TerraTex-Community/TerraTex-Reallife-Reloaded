@@ -7,7 +7,7 @@
 --
 
 local isDevServerV=false
-addEvent("recieveNewDevState",true)
+addEvent("recieveNewDevState", true)
 function setDevServer()
     isDevServerV=true
 end

@@ -13,6 +13,7 @@ function showLeaderManagementGUI()
         if (managementWindow) then
             if isElement(managementWindow) then destroyElement(managementWindow); end
             managementWindow = false;
+            managementBrowser = false;
         else
             managementWindow = guiCreateWindow(0, 0, 800, 600, "Fraktionsmanagement", false);
             table.insert(allGuis, managementWindow);
@@ -48,12 +49,19 @@ function loadFManagementPage(get, post)
             elseif (get.id == "logout") then
                 if isElement(managementWindow) then destroyElement(managementWindow); end
                 managementWindow = false;
+                managementBrowser = false;
             end
         end
     end
 end
 
 function _renderFraktionsManagementOverviewPage(dataTable)
+    if (not managementBrowser and managementWindow) then
+        outputDebugString("Browser not loaded yet ... delay call");
+        setTimer ( _renderFraktionsManagementOverviewPage, 250, 1, dataTable );
+    end
+
+
     local htmlFile = fileOpen("UI/Fraktionsmanagement/_Overview.html", true);
 
     if htmlFile then
@@ -168,6 +176,7 @@ function factionManagementMemberKick_func(nickname)
     if (getPlayerName(getLocalPlayer()) == nickname ) then
         if isElement(managementWindow) then destroyElement(managementWindow); end
         managementWindow = false;
+        managementBrowser = false;
     else
         executeBrowserJavascript(managementBrowser, "$(\"tr[data-nickname='" .. nickname .. "']\").remove();");
     end
@@ -179,6 +188,7 @@ function factionManagementMemberGiveRank_func(nickname, rank)
     if (getPlayerName(getLocalPlayer()) == nickname and rank ~= 6) then
         if isElement(managementWindow) then destroyElement(managementWindow); end
         managementWindow = false;
+        managementBrowser = false;
     else
         triggerServerEvent("getFactionMemberData", getLocalPlayer());
     end

@@ -108,7 +108,7 @@ function enterVehicle()
                 --[[if(stopspeed>0.2)then
                     if(speedertype==2)then
                         speedertype=0
-                        setControlState("accelerate",false)
+                        setPedControlState( getLocalPlayer(),"accelerate",false)
                     end
                 end ]]
                 --outputChatBox(speedertype)
@@ -116,17 +116,17 @@ function enterVehicle()
                     if (speedertype ~= 0) then
                         --outputChatBox(tostring((maxspeed/(messpeed/100))/100))
                         if (wasBremseSet) then
-                            --setControlState("handbrake",false)
-                            setControlState("brake_reverse", false)
-                            setControlState("accelerate", false)
+                            --setPedControlState( getLocalPlayer(),"handbrake",false)
+                            setPedControlState( getLocalPlayer(),"brake_reverse", false)
+                            setPedControlState( getLocalPlayer(),"accelerate", false)
                             wasBremseSet = false
                         end
                         if (messpeed > maxspeed) then
 
                             if (messpeed > (maxspeed + (5 / 180))) then
-                                --setControlState("handbrake",true)
-                                setControlState("brake_reverse", true)
-                                setControlState("accelerate", false)
+                                --setPedControlState( getLocalPlayer(),"handbrake",true)
+                                setPedControlState( getLocalPlayer(),"brake_reverse", true)
+                                setPedControlState( getLocalPlayer(),"accelerate", false)
                                 wasBremseSet = true
                             else
                                 local mult = (maxspeed / (messpeed / 100)) / 100
@@ -147,9 +147,9 @@ function enterVehicle()
                                 end
                             end
                             if (messpeed < maxspeed) then
-                                setControlState("accelerate", true)
+                                setPedControlState( getLocalPlayer(),"accelerate", true)
                             else
-                                setControlState("accelerate", false)
+                                setPedControlState( getLocalPlayer(),"accelerate", false)
                             end
                         end
                     end
@@ -179,7 +179,7 @@ function enterVehicle()
                         end
                         if (speedertype == 2) then
                             speedertype = 0
-                            setControlState("accelerate", false)
+                            setPedControlState( getLocalPlayer(),"accelerate", false)
                         end
                     else
                         slowBrake = false
@@ -298,7 +298,7 @@ function setSpeedo(command, types)
                     local typer = tonumber(types)
                     if (typer > 0 and typer < 3) then
 
-                        setControlState("accelerate", false)
+                        setPedControlState( getLocalPlayer(),"accelerate", false)
                         speedertype = typer
                         outputChatBox(speedername[typer])
                         if (typer == 2) then
@@ -316,7 +316,7 @@ function setSpeedo(command, types)
                     end
                 else
                     speedertype = 0
-                    setControlState("accelerate", false)
+                    setPedControlState( getLocalPlayer(),"accelerate", false)
                 end
             end
         end
@@ -328,7 +328,7 @@ addCommandHandler("tmp", setSpeedo, false, false)
 function stopspeedo()
     if (speedertype == 2) then
         speedertype = 0
-        setControlState("accelerate", false)
+        setPedControlState( getLocalPlayer(),"accelerate", false)
     end
 end
 
@@ -336,7 +336,7 @@ function setspeedoA()
     setSpeedo("tmp", 0)
     stopspeedo()
     speedertype = 0
-    setControlState("accelerate", false)
+    setPedControlState( getLocalPlayer(),"accelerate", false)
 end
 
 function setspeedoB()
@@ -358,7 +358,7 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 function disbaleTeme(player)
     if (player == getLocalPlayer()) then
         speedertype = 0
-        setControlState("accelerate", false)
+        setPedControlState( getLocalPlayer(),"accelerate", false)
     end
 end
 

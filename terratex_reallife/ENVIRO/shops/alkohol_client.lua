@@ -40,8 +40,8 @@ function AlkholTimer_function()
 		alkoholDureTimer=alkoholDureTimer+1
 		if(alkoholDureTimer==3)then
 			isAlkholEffect=false
-			setControlState("vehicle_left",false)
-			setControlState("vehicle_right",false)
+			setPedControlState( getLocalPlayer(), "vehicle_left",false)
+			setPedControlState( getLocalPlayer(), "vehicle_right",false)
 		end
 	end
 	if(alkoholProzent>0)then
@@ -69,9 +69,9 @@ function alkoholeffect()
 			end
 			--outputChatBox("test "..alkoholDureTimer.." "..tostring(isAlkholEffect))
 			if(alkoholDirection=="left")then
-				setControlState("vehicle_left",true)
+				setPedControlState( getLocalPlayer(), "vehicle_left",true)
 			else
-				setControlState("vehicle_right",true)
+				setPedControlState( getLocalPlayer(), "vehicle_right",true)
 			end			
 				
 				

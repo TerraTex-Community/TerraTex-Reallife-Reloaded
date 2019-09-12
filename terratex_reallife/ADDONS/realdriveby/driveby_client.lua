@@ -258,8 +258,8 @@ function limitedKeyPress (key,keyState,speed)
 end
 
 function pressKey ( controlName )
-	setControlState ( controlName, true )
-	setTimer ( setControlState, 150, 1, controlName, false )
+	setPedControlState ( controlName, true )
+	setTimer ( setPedControlState, 150, 1, getLocalPlayer(), controlName, false )
 end
 
 ---Left/right toggling

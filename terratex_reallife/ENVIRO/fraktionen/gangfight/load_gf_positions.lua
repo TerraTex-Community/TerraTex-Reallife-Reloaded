@@ -61,6 +61,7 @@ function sladen(thePlayer)
         end
     end
 end
+addCommandHandler("sladen", sladen, false, false);
 
 function hitGfPositionPickup(thePlayer)
     if (getElementType(thePlayer) == 'player') then

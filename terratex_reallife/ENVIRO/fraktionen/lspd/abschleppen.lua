@@ -1,5 +1,7 @@
-abgabecol = createColRectangle(1543.314453125, -1635.0849609375, 63.84, 32.0379)
+abgabecol = createColRectangle(2484.5, -2113.7001953125, 63.84, 32.0379)
 abgabecolA = createColRectangle(2241.9189453125, 2434.1201171875, 55, 58)
+
+local VerwahrungLSPD = createBlip(2447.8000488281, -2120.8999023438, 13.60000038147, 51, 1, 0, 0, 0, 255, 0, 255, getRootElement())
 
 function abschleppNullSystem()
 
@@ -91,7 +93,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                 destroyElement(theVehicle)
                 outputChatBox("Du hast das Fahrzeug erfolgreich abgeschleppt!", source, 255, 0, 0)
             else
-                outputChatBox("Das entsprechende Fahrzeug steht nicht am Garagenvorplatz des PD's", source, 255, 0, 0)
+                outputChatBox("Das entsprechende Fahrzeug steht nicht am am Garagentor auf der Verwahrungsstelle.", source, 255, 0, 0)
             end
         end
     end
@@ -117,7 +119,7 @@ addEventHandler("onTrailerDetach", getRootElement(), deattachAbschleppingCar)
 local abholpreis = 1000
 
 function createAbholPickup_abschleppt()
-    local abschlepppickup = createPickup(1538.302734375, -1620.265625, 13.546875, 3, 1239)
+    local abschlepppickup = createPickup(2447.8000488281, -2120.8999023438, 13.60000038147, 3, 1239)
     addEventHandler("onPickupHit", abschlepppickup, showAbschleppInfo)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createAbholPickup_abschleppt)
@@ -155,9 +157,11 @@ function getcar_func(thePlayer, cmd, IDs)
                         local thevehicle = thePlayer;
 
                         if not (isPlane(tonumber(dasatz["Model"])) or isHeli(tonumber(dasatz["Model"])) or isBoat(tonumber(dasatz["Model"]))) then
-                            thevehicle = createVehicle(dasatz["Model"], 1534.52734375, -1609.6181640625, 13.454211235046, 359.73083496094, 354.84741210938, 359.72534179688, dasatz["Besitzer"])
+                            thevehicle = createVehicle(dasatz["Model"], 2459.900390625, -2114.5, 13.5, 0, 0, 0, dasatz["Besitzer"])
                         elseif (isBoat(tonumber(dasatz["Model"]))) then
                             thevehicle = createVehicle(dasatz["Model"], 801.3193359375, -2054.2001953125, -0.44321331381798, 3.702392578125, 4.691162109375, 0.010986328125, dasatz["Besitzer"])
+						elseif (isHeli(tonumber(dasatz["Model"]))) then
+							thevehicle = createVehicle(dasatz["Model"], 2654.1000976563, -2092, 19.39999961853, 0, 0, 90, dasatz["Besitzer"])
                         else
                             thevehicle = createVehicle(dasatz["Model"], 1945.5, -2316.3, 16.7, 0, 0, 184, dasatz["Besitzer"])
                         end

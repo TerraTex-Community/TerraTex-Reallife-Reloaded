@@ -215,7 +215,7 @@ function onvehicleexplode_exec(source)
         end
 
         if (versicherung == 1) then
-            local satz = 0.25
+            local satz = 0.55
             local wert = 0
 
             --WERT?

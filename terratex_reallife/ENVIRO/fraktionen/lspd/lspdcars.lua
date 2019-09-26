@@ -108,19 +108,19 @@ function createpoliceVehicles()
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     -- Sultan --
-    vehicle = createVehicle(560, 1578.599609375, -1710.5, 13.14259147644, 0, 0, 0, "SAHP")
+    vehicle = createVehicle(560, 1578.599609375, -1710.5, 5.5900001525879, 0, 0, 0, "SAHP")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    vehicle = createVehicle(560, 1574.400390625, -1710.5, 13.14259147644, 0, 0, 0, "SAHP")
+    vehicle = createVehicle(560, 1574.400390625, -1710.5, 5.5900001525879, 0, 0, 0, "SAHP")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    vehicle = createVehicle(560, 1570.400390625, -1710.5, 13.14259147644, 0, 0, 0, "SAHP")
+    vehicle = createVehicle(560, 1570.400390625, -1710.5, 5.5900001525879, 0, 0, 0, "SAHP")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
@@ -137,6 +137,30 @@ function createpoliceVehicles()
     vehicle = createVehicle(497, 2871.3359375, 64.91015625, 19.92308807373, 355.19348144531, 359.59350585938, 327.21130371094, "STAAT")
     table.insert(policeVehicles, vehicle)
     vioSetElementData(vehicle, "alkaheli", "ja")
+    table.insert(frakselfcars[1], vehicle)
+	-- DFT-30 --
+	vehicle = createAbschleppTruck(2456.1999511719, -2077.3999023438, 14.199999809265, 0, 0, 180) -- SAPD Abschlepptruck
+    setAbschleppTruckAsPoliceTruck(vehicle)
+    setVehiclePlateText(vehicle, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
+	vehicle = createAbschleppTruck(2460.7001953125, -2077.3999023438, 14.199999809265, 0, 0, 180) -- SAPD Abschlepptruck
+    setAbschleppTruckAsPoliceTruck(vehicle)
+    setVehiclePlateText(vehicle, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
+	-- Towtruck --
+	vehicle = createVehicle(525, 2435.6000976563, -2078.6000976563, 13.5, 0, 0, 180, "SAPD") --  police
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
+	vehicle = createVehicle(525, 2439.8999023438, -2078.6000976563, 13.5, 0, 0, 180, "SAPD") --  police
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
+	vehicle = createVehicle(525, 2446, -2078.6000976563, 13.5, 0, 0, 180, "SAPD") --  police
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
+	vehicle = createVehicle(525, 2450.1005859375, -2078.6000976563, 13.5, 0, 0, 180, "SAPD") --  police
+    table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     ----- Sondereinsatzkommando -----
     -- S.W.A.T. (Wasserwerfer) --

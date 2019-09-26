@@ -289,7 +289,7 @@ function deletecar_func(thePlayer, command, SloteID)
                         "sold by user",
                         vioGetElementData(vehicle, "besitzer"));
 
-                    carPrice = math.round((carPrice / 100) * 25, 0)
+                    carPrice = math.round((carPrice / 100) * 55, 0)
 
                     if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then
                         carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.25

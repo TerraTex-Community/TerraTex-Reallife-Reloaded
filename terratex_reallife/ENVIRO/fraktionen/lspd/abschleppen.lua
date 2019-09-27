@@ -133,7 +133,7 @@ end
 
 function getcar_func(thePlayer, cmd, IDs)
     local px, py, pz = getElementPosition(thePlayer)
-    if (getDistanceBetweenPoints3D(px, py, pz, 1538.302734375, -1620.265625, 13.546875) < 10) then
+    if (getDistanceBetweenPoints3D(px, py, pz, 2447.8000488281, -2120.8999023438, 13.60000038147) < 10) then
 
         if (IDs) then
             if (tonumber(IDs)) then

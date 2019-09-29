@@ -237,7 +237,7 @@ function onvehicleexplode_exec(source)
             outputChatBox(string.format("Ihr Fahrzeug im Slot %s wurde zerstört", vioGetElementData(source, "slotid")), besitzer, 255, 0, 0)
 
             if (versicherung == 1) then
-                outputChatBox("Eine Versicherung hat ihnen 25% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
+                outputChatBox("Eine Versicherung hat ihnen 55% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
                 changePlayerMoney(besitzer, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
             end
         else

@@ -263,7 +263,7 @@ function deletecar_func(thePlayer, command, SloteID)
         if not (vioGetElementData(thePlayer, "slot" .. SlotID) == nil) then
             if (not (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID)) == -1)) then
                 if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID)) == -2) then
-                    outputChatBox("Dieses Fahrzeug wurde abgeschleppt und muss am PD abgeholt werden!", thePlayer, 255, 0, 0)
+                    outputChatBox("Dieses Fahrzeug wurde abgeschleppt und muss an der Verwahrungsstelle abgeholt werden!", thePlayer, 255, 0, 0)
                 else
                     local vehmod = getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID))
                     for theKey, theVehicle in ipairs(autohausVehicles) do
@@ -292,10 +292,10 @@ function deletecar_func(thePlayer, command, SloteID)
                     carPrice = math.round((carPrice / 100) * 55, 0)
 
                     if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then
-                        carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.25
+                        carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.55
                     end
 
-                    showError(thePlayer, "Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 25% des Kaufpreises erhalten!")
+                    showError(thePlayer, "Das Fahrzeug wurde erfolgreich verschrottet. Sie haben 55% des Kaufpreises erhalten!")
 
                     changePlayerMoney(thePlayer, carPrice, "fahrzeug", "Fahrzeugverkauf")
                     destroyElement(vioGetElementData(thePlayer, "slot" .. SlotID))

@@ -137,7 +137,7 @@ addCommandHandler("mheal", handlerMHeal, false, false)
 local function handlerMedicDuty(thePlayer)
 	local x, y, z = getElementPosition(thePlayer)
 	if (vioGetElementData(thePlayer, "fraktion") == 10) then
-		if (getDistanceBetweenPoints3D(1607.3505859375, 1816.220703125, 10.8203125, x, y, z)<10 or getDistanceBetweenPoints3D(1144.6999511719, -1319.5, 13.60000038147, 89.9986267,x,y,z) < 10) then
+		if (getDistanceBetweenPoints3D(1607.3505859375, 1816.220703125, 10.8203125, x, y, z)<10 or getDistanceBetweenPoints3D(1144.8000488281, -1319.5999755859, 13.60000038147,x,y,z) < 10) then
 			if (vioGetElementData(thePlayer, "isMedicDuty")) then
 				takeAllWeapons ( thePlayer );
 				vioSetElementData(thePlayer, "isMedicDuty", false)

@@ -27,7 +27,7 @@ addCommandHandler("mv",mv_taxi_func,false,false)
 
 function onCreatetaxicars_func()
 	-- Fraktionstor
-	taxiObject=createObject(2933, 1812.8000488281, -2072.3620605469, 14.265000343323, 0, 0, 90)
+	taxiObject=createObject(2933, 812.8000488281, -2072.3620605469, 14.265000343323, 0, 0, 90)
 	-- Cabbie
 	frakselfcars[4][1]  = createVehicle(438, 1808.900390625, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
 	frakselfcars[4][2]  = createVehicle(438, 1805.299804687, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")

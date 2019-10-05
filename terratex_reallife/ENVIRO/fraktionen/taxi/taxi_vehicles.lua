@@ -10,14 +10,14 @@ taxiObjectOpen=false
 taxiGrundPrice=0
 function mv_taxi_func(thePlayer)
 	local x,y,z=getElementPosition(thePlayer)
-	local dis=getDistanceBetweenPoints3D(x,y,z,812.8000488281, -2072.3620605469, 14.265000343323)
+	local dis=getDistanceBetweenPoints3D(x,y,z,1812.8000488281, -2072.3620605469, 14.265000343323)
 	if(dis<20)then
 		if(vioGetElementData(thePlayer,"fraktion")==4)then
 			if(taxiObjectOpen)then
-				moveObject(taxiObject,2500,812.8000488281, -2072.3620605469, 14.265000343323)
+				moveObject(taxiObject,2500,1812.8000488281, -2072.3620605469, 14.265000343323)
 				taxiObjectOpen=false
 			else
-				moveObject(taxiObject,2500,812.8000488281, -2063.8000488281, 14.265000343323)
+				moveObject(taxiObject,2500,1812.8000488281, -2063.8000488281, 14.265000343323)
 				taxiObjectOpen=true
 			end
 		end
@@ -27,7 +27,7 @@ addCommandHandler("mv",mv_taxi_func,false,false)
 
 function onCreatetaxicars_func()
 	-- Fraktionstor
-	taxiObject=createObject(2933, 812.8000488281, -2072.3620605469, 14.265000343323, 0, 0, 90)
+	taxiObject=createObject(2933, 1812.8000488281, -2072.3620605469, 14.265000343323, 0, 0, 90)
 	-- Cabbie
 	frakselfcars[4][1]  = createVehicle(438, 1808.900390625, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")
 	frakselfcars[4][2]  = createVehicle(438, 1805.299804687, -2037.7001953125, 13.539999961853, 0, 0, 0, "SA-TAXI")

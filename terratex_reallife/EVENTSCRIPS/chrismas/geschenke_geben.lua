@@ -73,7 +73,7 @@ function wantAKart_Event_func()
 end
 addEventHandler("wantAKart_Event", getRootElement(), wantAKart_Event_func)
 
-local adventDay = { [27] = true, [4] = true, [11] = true, [18] = true, [24] = true, [25] = true, [26] = true }
+local adventDay = { [15] = true, [21] = true, [24] = true, [25] = true, [26] = true }
 function adventPresent()
     setTimer(adventPresent, 60000, 1)
     local time = getRealTime()

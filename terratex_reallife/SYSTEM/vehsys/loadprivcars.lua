@@ -127,14 +127,14 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrivCars)
 
 function vehicleLightsJohann (veh) 
-   setVehicleSirens ( veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255 ) 	-- vorne L
-   setVehicleSirens ( veh, 2, -0.900, -3.800, 0.300, 0, 0, 255, 000, 000 )			-- hinten L
-   setVehicleSirens ( veh, 3, 0.900, -3.800, 0.300, 0, 0, 000, 000, 255 )			-- hinten R
-   setVehicleSirens ( veh, 4, -0.100, 1.400, 0.700, 0, 0, 255, 000, 000 )			-- Winschutzscheibe L
-   setVehicleSirens ( veh, 5, 0.100, 1.400, 0.700, 0, 0, 000, 000, 255 )			-- Windschutzscheibe R
-   setVehicleSirens ( veh, 6, 0.100, -2.500, 0.600, 0, 0, 000, 000, 255 )			-- Heckscheibe R
-   setVehicleSirens ( veh, 7, -0.100, -2.500, 0.600, 0, 0, 255, 000, 000 )			-- Heckscheibe L
-   setVehicleSirens ( veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )		-- vorne R
+   setVehicleSirens ( veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )     -- vorne L
+   setVehicleSirens ( veh, 2, -0.900, -3.800, 0.300, 255, 0, 0, 255, 255 )            -- hinten L
+   setVehicleSirens ( veh, 3, 0.900, -3.800, 0.300, 0, 0, 255, 255, 255 )            -- hinten R
+   setVehicleSirens ( veh, 4, -0.100, 1.400, 0.700, 255, 0, 0, 255, 255 )            -- Winschutzscheibe L
+   setVehicleSirens ( veh, 5, 0.100, 1.400, 0.700, 0, 0, 255, 255, 255 )            -- Windschutzscheibe R
+   setVehicleSirens ( veh, 6, 0.100, -2.500, 0.600, 0, 0, 255, 255, 255 )            -- Heckscheibe R
+   setVehicleSirens ( veh, 7, -0.100, -2.500, 0.600, 255, 0, 0, 255, 255 )            -- Heckscheibe L
+   setVehicleSirens ( veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )        -- vorne R
    addVehicleSirens ( veh, 8, 2, true, false, false, true ) 
 end 
 

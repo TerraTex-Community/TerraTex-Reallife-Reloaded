@@ -82,18 +82,7 @@ function adventPresent()
             if (adventDay[time.monthday]) then
                 for theKey, thePlayers in ipairs(getElementsByType("player")) do
                     if (isPlayerLoggedIn(thePlayers)) then
-                        give_AdventsPresent(thePlayers, math.random(table.getn(adventPresets_big)))
-
-                        if (not MySql.helper.existSync("data_chrismas", {
-                            Nickname = getPlayerName(thePlayers)
-                        })) then
-                            if (vioGetElementData(thePlayers, "playtime")/60 > 25) then
-                                vioSetElementData(thePlayers, "canHaveSteamTicket", true);
-                                local text = "Herzlichen Glückwunsch, zusätzlich erhälst du jetzt die Chance an der Steam-Spiele Verlosung teilzunehmen.";
-                                text = text .. " Mit '/accept chrismas' nimmst du an der Verlosung teil. Es werden unter allen Teilnehmern bis zu 20 Spiele verlost!";
-                                outputChatBox(text, thePlayers,  166, 0, 166)
-                            end
-                        end
+                        give_AdventsPresent(thePlayers, math.random(table.getn(adventPresets_big)))                       
                     end
                 end
             else

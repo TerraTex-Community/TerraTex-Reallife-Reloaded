@@ -16,10 +16,10 @@ function loadPrivCars()
         local thevehicle = createVehicle(dasatz["Model"], dasatz["SpawnX"], dasatz["SpawnY"], dasatz["SpawnZ"], dasatz["SpawnRX"], dasatz["SpawnRY"], dasatz["SpawnRZ"], dasatz["Besitzer"])
         local colors = {}
         
-        if (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") {
+        if (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") then
                 
             vehicleLightsJohann(thevehicle)
-        }
+        end
         
         local counter = 0
         for color = 0, 3, 1 do

@@ -15,6 +15,12 @@ function loadPrivCars()
     for theKey, dasatz in ipairs(result) do
         local thevehicle = createVehicle(dasatz["Model"], dasatz["SpawnX"], dasatz["SpawnY"], dasatz["SpawnZ"], dasatz["SpawnRX"], dasatz["SpawnRY"], dasatz["SpawnRZ"], dasatz["Besitzer"])
         local colors = {}
+        
+        if (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") {
+                
+            vehicleLightsJohann(thevehicle)
+        }
+        
         local counter = 0
         for color = 0, 3, 1 do
             local countlast = counter
@@ -114,10 +120,23 @@ function loadPrivCars()
             table.insert(privVeh, { vara, slot, thevehicle })
             vioSetElementData(thevehicle, "abgeschleppt", 0)
         end
+      
     end
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrivCars)
+
+function vehicleLightsJohann (veh) 
+   setVehicleSirens ( veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255 ) 	-- vorne L
+   setVehicleSirens ( veh, 2, -0.900, -3.800, 0.300, 0, 0, 255, 000, 000 )			-- hinten L
+   setVehicleSirens ( veh, 3, 0.900, -3.800, 0.300, 0, 0, 000, 000, 255 )			-- hinten R
+   setVehicleSirens ( veh, 4, -0.100, 1.400, 0.700, 0, 0, 255, 000, 000 )			-- Winschutzscheibe L
+   setVehicleSirens ( veh, 5, 0.100, 1.400, 0.700, 0, 0, 000, 000, 255 )			-- Windschutzscheibe R
+   setVehicleSirens ( veh, 6, 0.100, -2.500, 0.600, 0, 0, 000, 000, 255 )			-- Heckscheibe R
+   setVehicleSirens ( veh, 7, -0.100, -2.500, 0.600, 0, 0, 255, 000, 000 )			-- Heckscheibe L
+   setVehicleSirens ( veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )		-- vorne R
+   addVehicleSirens ( veh, 8, 2, true, false, false, true ) 
+end 
 
 function onVehicleDisableFire(thePlayer)
     if (vioGetElementData(source, "besitzer")) then

@@ -93,7 +93,7 @@ function abgeschleppt_police_click(theVehicle, grund)
                 destroyElement(theVehicle)
                 outputChatBox("Du hast das Fahrzeug erfolgreich abgeschleppt!", source, 255, 0, 0)
             else
-                outputChatBox("Das entsprechende Fahrzeug steht nicht am am Garagentor auf der Verwahrungsstelle.", source, 255, 0, 0)
+                outputChatBox("Das entsprechende Fahrzeug steht nicht am Garagentor auf der Verwahrungsstelle.", source, 255, 0, 0)
             end
         end
     end
@@ -156,9 +156,9 @@ function getcar_func(thePlayer, cmd, IDs)
                         local dasatz = result[1];
                         local thevehicle = thePlayer;
 
-                        if not (isPlane(tonumber(dasatz["Model"])) or isHeli(tonumber(dasatz["Model"])) or isBoat(tonumber(dasatz["Model"]))) then
+                        if not (isPlane(tonumber(dasatz["Model"])) or isHeli(tonumber(dasatz["Model"])) or isBoat(tonumber(dasatz["Model"])) or isWaterPlane(dasatz["Model"])) then
                             thevehicle = createVehicle(dasatz["Model"], 2459.900390625, -2114.5, 13.5, 0, 0, 0, dasatz["Besitzer"])
-                        elseif (isBoat(tonumber(dasatz["Model"]))) then
+                        elseif (isBoat(tonumber(dasatz["Model"])) or isWaterPlane(dasatz["Model"])) then
                             thevehicle = createVehicle(dasatz["Model"], 801.3193359375, -2054.2001953125, -0.44321331381798, 3.702392578125, 4.691162109375, 0.010986328125, dasatz["Besitzer"])
 						elseif (isHeli(tonumber(dasatz["Model"]))) then
 							thevehicle = createVehicle(dasatz["Model"], 2654.1000976563, -2092, 19.39999961853, 0, 0, 90, dasatz["Besitzer"])

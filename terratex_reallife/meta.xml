@@ -528,6 +528,7 @@
     <map src="MAPS/fraktionsbase/pd/PDGlasTheke.map"/>
     <map src="MAPS/fraktionsbase/pd/lvpd.map"/>
     <map src="MAPS/fraktionsbase/pd/PDInnenraumverbesserung.map"/>
+    <map src="MAPS/fraktionsbase/grove_base.map"/>
     <!-- Umgebung -->
     <map src="MAPS/umgebung/deleteBlitzerFromWorld.map"/>
     <map src="MAPS/umgebung/TankstelleanderMaut.map"/>
@@ -942,7 +943,7 @@
 
     <!-- Eventscripts -->
     <!-- SILVESTER -->
-    <!-- <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" /> -->
+    <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" />
 
     <!-- <WEIHNACHTEN> -->
     <map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />

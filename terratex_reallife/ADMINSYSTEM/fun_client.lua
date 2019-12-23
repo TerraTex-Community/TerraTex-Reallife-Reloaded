@@ -84,3 +84,24 @@ function hovercar_func()
 	end
 end
 addCommandHandler("hovercar", hovercar_func)
+
+local godcar=false
+function godcar_func()
+	if(isAdminLevel(getLocalPlayer(),3))then
+		if not hovercar then
+			godcar=true
+		else
+			godcar=false
+		end
+	end
+end
+addCommandHandler("godcar", godcar_func)
+
+
+function handleVehicleGod(attacker, weapon, loss, x, y, z, tire)
+    if (isPedInVehicle(getLocalPlayer() and getPedOccupiedVehicle ( getLocalPlayer() ) == source then
+        -- A weapon was used and the vehicle model ID is that of the SWAT tank so cancel the damage.
+        cancelEvent()
+    end
+end
+addEventHandler("onClientVehicleDamage", root, handleVehicleGod)

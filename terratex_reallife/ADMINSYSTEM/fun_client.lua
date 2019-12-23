@@ -69,3 +69,18 @@ function FlyCar()
 	end
 end
 addCommandHandler("flycar",FlyCar)
+
+local hovercar=false
+function hovercar_func()
+	if(isAdminLevel(getLocalPlayer(),3))then
+		if not hovercar then
+			setWorldSpecialPropertyEnabled ( "hovercars", true)
+			hovercar=true
+		else
+			setWorldSpecialPropertyEnabled ( "hovercars", false)
+			hovercar=false
+
+		end
+	end
+end
+addCommandHandler("hovercar", hovercar_func)

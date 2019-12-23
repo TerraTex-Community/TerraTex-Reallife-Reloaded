@@ -15,7 +15,7 @@ local gppoints = {
     ["oldap"] = { 384, 2601.1000976563, 16.5 }, -- Old Airport
     ["sfap"] = { -1233.1999511719, 55.7999999237061, 14.1000038147 }, -- SF Airport
     ["blueberry"] = { 0, 0, 4 }, -- Blueberry
-	["palomino"] = { 2312.6000976563, -8.6000003814697, 32.5 } -- Palomino Creek
+    ["palomino"] = { 2312.6000976563, -8.6000003814697, 32.5 } -- Palomino Creek
 }
 
 --- commands

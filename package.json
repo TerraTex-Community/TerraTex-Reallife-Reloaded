@@ -22,9 +22,5 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-mkdir": "^1.0.0",
     "moment": "^2.24.0"
-  },
-  "devDependencies": {
-    "@types/ragemp-c": "github:CocaColaBear/types-ragemp-c#master",
-    "@types/ragemp-s": "github:CocaColaBear/types-ragemp-s#master"
   }
 }

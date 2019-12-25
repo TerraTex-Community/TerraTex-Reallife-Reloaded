@@ -165,7 +165,7 @@ end)
 
 addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
     if(isAdminLevel(thePlayer,3))then
-            if(toPlayerPart)then
+        if(toPlayerPart)then
                 local toPlayer=getPlayerFromIncompleteName(toPlayerPart)
                 if(toPlayer)then
                     vioSetElementData(toPlayer, "lolgunActive", not vioGetElementData(toPLayer, "lolgunActive"))
@@ -175,7 +175,6 @@ addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
                          outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " not active", thePlayer)
                     end
 
-                end
             else
                 showError(thePlayer,"Dieser Spieler existiert nicht.")
             end

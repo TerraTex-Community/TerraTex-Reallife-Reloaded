@@ -165,7 +165,7 @@ end)
 
 addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
     if(isAdminLevel(thePlayer,3))then
-        if(toPlayerPart)then
+        if(toPlayerNamePart)then
             local toPlayer=getPlayerFromIncompleteName(toPlayerNamePart)
             if(toPlayer)then
                     vioSetElementData(toPlayer, "lolgunActive", not vioGetElementData(toPLayer, "lolgunActive"))

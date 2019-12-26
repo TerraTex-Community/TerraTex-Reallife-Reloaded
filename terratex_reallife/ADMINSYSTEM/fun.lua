@@ -188,7 +188,7 @@ addEvent("onCustomPedFire", true)
 addEventHandler ("onCustomPedFire", getRootElement(),
    function (endX, endY, endZ)
         if (vioGetElementData(source, "lolgunActive")) then
-            createExplosion(endX, endY, endZ, 12, source)
+            createExplosion(endX, endY, endZ, 2, source)
         end
    end
 )

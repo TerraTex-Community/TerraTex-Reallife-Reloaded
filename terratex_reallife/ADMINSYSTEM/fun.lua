@@ -164,7 +164,7 @@ end)
 
 
 addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
-    if(isAdminLevel(thePlayer,3))then
+    if (isAdminLevel(thePlayer,3)) then
         if(toPlayerNamePart)then
             local toPlayer=getPlayerFromIncompleteName(toPlayerNamePart)
             if(toPlayer)then
@@ -187,6 +187,9 @@ end)
 addEventHandler ("onPlayerWeaponFire", getRootElement(),
    function (weapon, endX, endY, endZ, hitElement, startX, startY, startZ)
         if (vioGetElementData(source, "lolgunActive")) then
+            if (weapon == 38) then
+                outputChatBox("works why ever not but triggers")
+            end
             createExplosion(endX, endY, endZ, 2, source)
         end
    end

@@ -108,8 +108,9 @@ addEventHandler("onClientVehicleDamage", getRootElement(), handleVehicleGod)
 
 
 function onClientPlayerWeaponFireFunc(weapon, ammo, ammoInClip, hitX, hitY, hitZ, hitElement)
-
-    triggerServerEvent("onCustomPedFire", getLocalPlayer(), hitX, hitY, hitZ)
+    if (source == getLocalPlayer()) then
+        triggerServerEvent("onCustomPedFire", getLocalPlayer(), hitX, hitY, hitZ)
+    end
 end
 -- Add this as a handler so that the function will be triggered every time a player fires.
 addEventHandler("onClientPlayerWeaponFire", getRootElement(), onClientPlayerWeaponFireFunc)

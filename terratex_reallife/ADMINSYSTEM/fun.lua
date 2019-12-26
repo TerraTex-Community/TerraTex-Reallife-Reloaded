@@ -188,7 +188,10 @@ addEvent("onCustomPedFire", true)
 addEventHandler ("onCustomPedFire", getRootElement(),
    function (endX, endY, endZ)
         if (vioGetElementData(source, "lolgunActive")) then
-            createExplosion(endX, endY, endZ, 2, source)
+            local x,y,z = getElementPosition(source)
+            if (getDistanceBetweenPoints3D (endX, endY, endZ, x, y, z) => 5) then
+                createExplosion(endX, endY, endZ, 2, source)
+            end
         end
    end
 )

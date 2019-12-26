@@ -168,13 +168,13 @@ addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
         if(toPlayerNamePart)then
             local toPlayer=getPlayerFromIncompleteName(toPlayerNamePart)
             if(toPlayer)then
-                    vioSetElementData(toPlayer, "lolgunActive", not vioGetElementData(toPLayer, "lolgunActive"))
-                    if (vioGetElementData(toPLayer, "lolgunActive")) then
-                        outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " active", thePlayer)
-                    else
-                         outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " not active", thePlayer)
-                    end
-
+                if (not vioGetElementData(toPLayer, "lolgunActive")) then
+                    vioSetElementData(toPlayer, "lolgunActive", true )
+                    outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " active", thePlayer)
+                else
+                    vioSetElementData(toPlayer, "lolgunActive", false )
+                     outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " not active", thePlayer)
+                end
             else
                 showError(thePlayer,"Dieser Spieler existiert nicht.")
             end

@@ -105,3 +105,11 @@ function handleVehicleGod(attacker, weapon, loss, x, y, z, tire)
     end
 end
 addEventHandler("onClientVehicleDamage", getRootElement(), handleVehicleGod)
+
+
+function onClientPlayerWeaponFireFunc(weapon, ammo, ammoInClip, hitX, hitY, hitZ, hitElement)
+
+    triggerServerEvent("onCustomPedFire", getLocalPlayer(), hitX, hitY, hitZ)
+end
+-- Add this as a handler so that the function will be triggered every time a player fires.
+addEventHandler("onClientPlayerWeaponFire", getRootElement(), onClientPlayerWeaponFireFunc)

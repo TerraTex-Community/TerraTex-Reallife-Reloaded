@@ -184,13 +184,11 @@ addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
     end
 end)
 
-addEventHandler ("onPlayerWeaponFire", getRootElement(),
-   function (weapon, endX, endY, endZ, hitElement, startX, startY, startZ)
+addEvent("onCustomPedFire", true)
+addEventHandler ("onCustomPedFire", getRootElement(),
+   function (endX, endY, endZ)
         if (vioGetElementData(source, "lolgunActive")) then
-            if (weapon == 38) then
-                outputChatBox("works why ever not but triggers")
-            end
-            createExplosion(endX, endY, endZ, 2, source)
+            createExplosion(endX, endY, endZ, 12, source)
         end
    end
 )

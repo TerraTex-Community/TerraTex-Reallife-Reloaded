@@ -1,7 +1,11 @@
 
 function startShootRocketEvery30Seconds5Rockets()
-	shootRocket()
-	setTimer(startShootRocketEvery30Seconds5Rockets,30000,1)
+	local time = getRealTime()
+	
+	if (time.month == 11 and time.monthday == 31) then
+		shootRocket()
+		setTimer(startShootRocketEvery30Seconds5Rockets,30000,1)
+	end
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),startShootRocketEvery30Seconds5Rockets)
 

@@ -169,6 +169,17 @@ function isPlane(vehid)
     end
 end
 
+function isWaterPlane(vehid)
+    if type(vehid) == "userdata" then
+        vehid = getElementModel(vehid)
+    end
+    if (getVehicleType(vehid) == "460") then
+        return true
+    else
+        return false
+    end
+end
+
 function isBike(vehid)
     if (getVehicleType(vehid) == "Bike" and not (isNoLicensCar(vehid))) then
         return true

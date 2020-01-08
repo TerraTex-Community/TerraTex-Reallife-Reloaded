@@ -943,12 +943,12 @@
 
     <!-- Eventscripts -->
     <!-- SILVESTER -->
-    <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" />
+    <!--<script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" />-->
 
     <!-- <WEIHNACHTEN> -->
-    <map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
-    <script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />
-    <script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />
+    <!--<map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
+    <!--<script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />-->
+    <!--<script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />-->
 
     <!--- WINTER SECTION -->
     <!--<script src="ADDONS/winter/snowshader/cShader.lua" type="client" />-->

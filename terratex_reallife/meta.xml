@@ -951,25 +951,7 @@
     <script src="EVENTSCRIPS/christmas/geschenke_geben.lua" type="server" />
     <script src="EVENTSCRIPS/christmas/loadTree.lua" type="server" />
 
-    <!--- WINTER SECTION -->
-    <!--<script src="ADDONS/winter/snowshader/cShader.lua" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowfall/direction_image.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/direction_pointer.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/cursor.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow.lua" type="client"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow_s.lua"/>-->
-    <!--<settings>-->
-        <!--<setting name="gui_enabled" value="[false]"/>-->
-        <!--<setting name="snow_toggle" value="[true]"/>-->
-    <!--</settings>-->
+
 
     <!--Ostern-->
     <script src="EVENTSCRIPS/ostern/ostern_server.lua" type="server"/>
@@ -1038,12 +1020,32 @@
     <file src="UI/styles/images/food.png"/>
     <file src="UI/styles/images/food_background.png"/>
 
-
-
     <!-- Web API -->
     <script src="WEBAPI/init_web_api.lua" type="server" />
     <script src="WEBAPI/players.lua" type="server" />
     <export function='apiGetListOfPlayers' http='true' />
     <export function='apiIsPlayerOnline' http='true' />
+
+
+    <!--- WINTER SECTION -->
+    <script src="ADDONS/winter/calcWinter.lua" type="shared" />
+    <script src="ADDONS/winter/snowshader/cShader.lua" type="client" />
+    <file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />
+    <file src="ADDONS/winter/snowfall/direction_image.png"/>
+    <file src="ADDONS/winter/snowfall/direction_pointer.png"/>
+    <file src="ADDONS/winter/snowfall/cursor.png"/>
+    <file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>
+    <file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>
+    <script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>
+    <script src="ADDONS/winter/snowfall/snow.lua" type="client"/>
+    <script src="ADDONS/winter/snowfall/snow_s.lua"/>
+    <settings>
+        <setting name="gui_enabled" value="[false]"/>
+        <setting name="snow_toggle" value="[true]"/>
+    </settings>
 
 </meta>

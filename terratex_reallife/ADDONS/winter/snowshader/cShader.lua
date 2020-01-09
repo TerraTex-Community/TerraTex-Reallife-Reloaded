@@ -112,7 +112,13 @@ local function enableShader()
 	isEffectEnabled = true
 	return true
 end
-addEventHandler("onClientResourceStart", resourceRoot, enableShader)
+
+function turnOnShaderInWinter()
+	if (isWinter()) then
+		enableShader()
+	end
+end
+addEventHandler("onClientResourceStart", resourceRoot, turnOnShaderInWinter)
 
 --This function disables the shader.
 local function disableShader()
@@ -136,7 +142,13 @@ local function disableShader()
 	isEffectEnabled = false
 	return true
 end
-addEventHandler("onClientResourceStop", resourceRoot, disableShader)
+
+function disableShaderInWinter()
+	if (isWinter()) then
+		disableShader()
+	end
+end
+addEventHandler("onClientResourceStop", resourceRoot, disableShaderInWinter)
 
 --This function ensures the max-distance of the shader is always correct.
 function processShader()
@@ -156,16 +168,21 @@ function setShaderEnabled(doEnableShader)
 		return disableShader()
 	end
 end
+
 function switchWinterMode()
-	setShaderEnabled(not(isShaderEnabled()))
-	outputChatBox("Wintermodus geändert")
+	if (isWinter()) then
+		setShaderEnabled(not(isShaderEnabled()))
+		outputChatBox("Wintermodus geändert")
+	end
 end
 addCommandHandler("winter",switchWinterMode,false,false)
 
 function onClientResourceStart_winter()
-	outputChatBox("Um den Wintermode richtig nutzen zu können, stelle 'sunshine-effekt' und 'neue Details' aus",160,0,160)
-	outputChatBox("Wintermodus aus und an schalten mit /winter",160,0,160)
-	outputChatBox("Schneefallmodus aus und ein schalten mit /snow",160,0,160)
+	if (isWinter()) then
+		outputChatBox("Um den Wintermode richtig nutzen zu können, stelle 'sunshine-effekt' und 'neue Details' aus",160,0,160)
+		outputChatBox("Wintermodus aus und an schalten mit /winter",160,0,160)
+		outputChatBox("Schneefallmodus aus und ein schalten mit /snow",160,0,160)
+	end
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),onClientResourceStart_winter)
 

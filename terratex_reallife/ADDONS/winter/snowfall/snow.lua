@@ -59,29 +59,35 @@ function startSnow()
 end
 
 function toggleSnow()
-	if snowing then
-		stopSnow()
-		outputChatBox("Schneefall deaktiviert")
-	else
-		startSnow() 
-		outputChatBox("Schneefall aktiviert")
+	if (isWinter()) then
+		if snowing then
+			stopSnow()
+			outputChatBox("Schneefall deaktiviert")
+		else
+			startSnow()
+			outputChatBox("Schneefall aktiviert")
+		end
+
 	end
 end
 addCommandHandler("snow",toggleSnow,false,false)
 		
 function stopSnow()
-	if snowing then
-		removeEventHandler("onClientRender",root,drawSnow)
-		for i,flake in pairs(snowflakes) do
-			snowflakes[i] = nil
+	if (isWinter()) then
+		if snowing then
+			removeEventHandler("onClientRender",root,drawSnow)
+			for i,flake in pairs(snowflakes) do
+				snowflakes[i] = nil
+			end
+			snowflakes = nil
+			flake_removal = nil
+			snowing = false
+			--	outputChatBox("Snow stopped")
+			return true
 		end
-		snowflakes = nil
-		flake_removal = nil
-		snowing = false
-	--	outputChatBox("Snow stopped")
-		return true
+		return false
+
 	end
-	return false
 end
 addEventHandler("onClientResourceStop",resourceRoot,stopSnow)
 
@@ -400,30 +406,6 @@ function drawSnow()
 end
 
 
---debug
---[[
-addCommandHandler("ssize",function()
-	if snowflakes then
-		outputDebugString("Snowflake table size: "..#snowflakes)
-	end
-end)
-
-addCommandHandler("swdir",function(cmd,xdir,ydir)
-	updateSnowWindDirection(xdir,ydir)
-end)
-
-addCommandHandler("swspeed",function(cmd,speed)
-	updateSnowWindSpeed(speed)
-end)
-
-addCommandHandler("sdensity",function(cmd,dense,blend,speed)
-	updateSnowDensity(dense,blend,speed)
-end)
-
-addCommandHandler("salpha",function(cmd,alpha)
-	updateSnowAlphaFadeIn(alpha)
-end)
-]]
 
 function setSnowValues()
 	updateSnowType("real")
@@ -455,31 +437,26 @@ function CheckWindChange()
 end
 
 function setSnowValues_timed()
-	setTimer(setSnowValues,5000,1)
+
+	if (isWinter()) then
+		setTimer(setSnowValues,5000,1)
+
+	end
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),setSnowValues_timed)
 
 addEvent("changedRainLevel_winter",true)
 function changedRainLevel_winter_func(int)
-	
-	if(int>0)then
-		updateSnowDensity((300+(2000*int)),true)
-		-- outputChatBox(tostring((200+(2000*int))))
-	else
-		updateSnowDensity(300,true)	
+
+	if (isWinter()) then
+		if(int>0)then
+			updateSnowDensity((300+(2000*int)),true)
+			-- outputChatBox(tostring((200+(2000*int))))
+		else
+			updateSnowDensity(300,true)
+		end
+
 	end
 end
 addEventHandler("changedRainLevel_winter",getRootElement(),changedRainLevel_winter_func)
 
-
-
-
-
-		-- <export function="updateSnowType" type="client"/> <!-- <type> - can be "real" or "cartoon" (or your own specified type) -->
-		-- <export function="updateSnowDensity" type="client"/> <!-- <new density> <blend> -->
-		-- <export function="updateSnowWindDirection" type="client"/> <!-- <x> <y> - between 1 and 0 -->
-		-- <export function="updateSnowWindSpeed" type="client"/> <!-- <speed> -->
-		-- <export function="updateSnowflakeSize" type="client"/> <!-- <min size> <max size> -->
-		-- <export function="updateSnowJitter" type="client"/> <!-- <true/false> -->
-		-- <export function="startSnow" type="client"/>
-		-- <export function="stopSnow" type="client"/>

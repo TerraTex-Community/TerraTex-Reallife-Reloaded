@@ -1,6 +1,8 @@
 function createWeihnachtsbaumIcon()
-	local icon=createPickup(1489.7138671875,-1608.7177734375,14.039297103882,"cylinder",2.0)
-	addEventHandler("onClientPickupHit",icon,hitWeihnachtsPickup)
+	if (isAdventTime()) then
+		local icon=createPickup(1489.7138671875,-1608.7177734375,14.039297103882,"cylinder",2.0)
+		addEventHandler("onClientPickupHit",icon,hitWeihnachtsPickup)
+	end
 end
 addEventHandler("onClientResourceStart",getResourceRootElement(getThisResource()),createWeihnachtsbaumIcon)
 

@@ -67,41 +67,58 @@ local function GTDestroyElements()
 end
 
 local function GTFinishMoneyTranportNow(theElement)
-	if (gtIsTransportStarted) then
-		if (source == gtVehicleFinishMarker) then
-			if (isElement(theElement)) then
-				if (getElementType(theElement) == "vehicle") then
-					if(theElement == gtVehicleVehicleElement) then
-						local player = getVehicleOccupant(theElement, 0)
-						if (getVehicleOccupant(theElement, 0) == gtVehiclePlayerElement) then
-							local fraktion = vioGetElementData(player,"fraktion")
-							if (vioGetElementData(gtVehiclePlayerElement, "fraktion") == gtVehicleFraktionInteger) then
-								killTimer(gtVehicleCheckRepairTimer)
-								showError(gtVehiclePlayerElement, "Herzlichen Glückwunsch! Sie haben das Ziel erreicht.")
-								if (gtVehicleFraktionInteger == 1 or gtVehicleFraktionInteger == 5 or gtVehicleFraktionInteger == 7 or gtVehicleFraktionInteger == 8 or gtVehicleFraktionInteger == 9) then
-									frakkasse[1] = frakkasse[1] + 120000
-									frakdepot_log(1, 1, 120000, string.format("Geltransporter abgegeben: %s", getPlayerName(player)))
-								elseif (gtVehicleFraktionInteger == 2 or gtVehicleFraktionInteger == 6 or gtVehicleFraktionInteger == 11 or gtVehicleFraktionInteger == 12) then
-									frakkasse[vioGetElementData(gtVehiclePlayerElement, "fraktion")] = frakkasse[vioGetElementData(gtVehiclePlayerElement, "fraktion")] + 50000
-									frakdepot_log(vioGetElementData(gtVehiclePlayerElement, "fraktion"), 1, 50000, string.format("Geltransporter abgegeben: %s", getPlayerName(player)))
-								end
-								for i = 1, 12, 1 do
-									if (i ~= 4 and i ~= 10) then
-										local players = getPlayersInTeam(team[i])
-										for k, v in ipairs(players) do
-											if (isElement(v)) then
-												outputChatBox("Der Geldtransporter hat seinen Zielort erreicht.", v,  255, 0, 0)
+	local gangson = 0
+	for theKey, thePlayers in ipairs(getPlayersInTeam(team[2])) do
+		gangson = gangson + 1
+	end
+	for theKey, thePlayers in ipairs(getPlayersInTeam(team[6])) do
+		gangson = gangson + 1
+	end
+	for theKey, thePlayers in ipairs(getPlayersInTeam(team[11])) do
+		gangson = gangson + 1
+	end
+	for theKey, thePlayers in ipairs(getPlayersInTeam(team[12])) do
+		gangson = gangson + 1
+	end
+	if (gangson >= 3) then
+		if (gtIsTransportStarted) then
+			if (source == gtVehicleFinishMarker) then
+				if (isElement(theElement)) then
+					if (getElementType(theElement) == "vehicle") then
+						if(theElement == gtVehicleVehicleElement) then
+							local player = getVehicleOccupant(theElement, 0)
+							if (getVehicleOccupant(theElement, 0) == gtVehiclePlayerElement) then
+								local fraktion = vioGetElementData(player,"fraktion")
+								if (vioGetElementData(gtVehiclePlayerElement, "fraktion") == gtVehicleFraktionInteger) then
+									killTimer(gtVehicleCheckRepairTimer)
+									showError(gtVehiclePlayerElement, "Herzlichen Glückwunsch! Sie haben das Ziel erreicht.")
+									if (gtVehicleFraktionInteger == 1 or gtVehicleFraktionInteger == 5 or gtVehicleFraktionInteger == 7 or gtVehicleFraktionInteger == 8 or gtVehicleFraktionInteger == 9) then
+										frakkasse[1] = frakkasse[1] + 120000
+										frakdepot_log(1, 1, 120000, string.format("Geltransporter abgegeben: %s", getPlayerName(player)))
+									elseif (gtVehicleFraktionInteger == 2 or gtVehicleFraktionInteger == 6 or gtVehicleFraktionInteger == 11 or gtVehicleFraktionInteger == 12) then
+										frakkasse[vioGetElementData(gtVehiclePlayerElement, "fraktion")] = frakkasse[vioGetElementData(gtVehiclePlayerElement, "fraktion")] + 50000
+										frakdepot_log(vioGetElementData(gtVehiclePlayerElement, "fraktion"), 1, 50000, string.format("Geltransporter abgegeben: %s", getPlayerName(player)))
+									end
+									for i = 1, 12, 1 do
+										if (i ~= 4 and i ~= 10) then
+											local players = getPlayersInTeam(team[i])
+											for k, v in ipairs(players) do
+												if (isElement(v)) then
+													outputChatBox("Der Geldtransporter hat seinen Zielort erreicht.", v,  255, 0, 0)
+												end
 											end
 										end
 									end
+									GTDestroyElements()
 								end
-								GTDestroyElements()
 							end
 						end
 					end
 				end
 			end
 		end
+	else
+		outputChatBox("Es müssen mindestens 3 böse Fraktionisten online sein!", source, 255, 0, 0)
 	end
 end
 

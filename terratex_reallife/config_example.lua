@@ -54,6 +54,10 @@ config["gold.price"] = 10000
 -- never = you always spawn where you selected to spawn - not where went offline
 config["feature.spawnWhereOffline"] = "always"
 
+-- Enable or Disable Spawn Position of Vehicles. If this is disabled after a server restart vehicles will always spawn at
+-- their park position
+config["feature.spawnVehiclesToLastPosition"] = true
+
 -- Enable or Disable Standard of Living (Means you need a specific house value to buy expensive cars)
 config["feature.stardard_of_living"] = true
 

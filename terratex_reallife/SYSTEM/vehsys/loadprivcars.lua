@@ -17,7 +17,6 @@ function loadPrivCars()
         local colors = {}
         
         if (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") then
-                
             vehicleLightsJohann(thevehicle)
         end
         
@@ -81,7 +80,7 @@ function loadPrivCars()
 
         local position = fromJSON(dasatz["lastPosition"]);
 
-        if position then
+        if position and config["feature.spawnVehiclesToLastPosition"] then
             if position[1] and position[2] and position[3] and (position[1] ~= 0 or position[2] ~= 0 or position[3] ~= 0) then
                 setElementPosition(thevehicle, position[1], position[2], position[3])
             end

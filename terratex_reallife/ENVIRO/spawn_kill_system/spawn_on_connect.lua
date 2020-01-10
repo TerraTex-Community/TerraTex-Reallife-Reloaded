@@ -1,10 +1,4 @@
---
--- Created by IntelliJ IDEA.
--- User: C5217649
--- Date: 07.09.2016
--- Time: 15:32
--- To change this template use File | Settings | File Templates.
---
+local lastGMX = getRealTime()
 
 function onPlayerDisconnect(quitType, reason, responsibleElement)
     if (isPlayerLoggedIn(source) and not vioGetElementData(source, "isInGf")) then
@@ -68,6 +62,26 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
 end
 addEventHandler("onPlayerQuit", getRootElement(), onPlayerDisconnect)
 
+function offOnSpawn(offlineData)
+    if (config["feature.spawnWhereOffline"] == "always") then
+        return true;
+    end
+
+    if (config["feature.spawnWhereOffline"] == "never") then
+        return false;
+    end
+
+    if (lastGMX.timestamp >= tonumber(offlineData.LastDisconnect)) then
+        return false;
+    end
+
+    if (config["feature.spawnWhereOffline"] == "hour" and tonumber(offlineData.LastDisconnect) >= (getRealTime().timestamp - 3600)) then
+        return true;
+    end
+
+    return false
+end
+
 
 local frakSpawnInZiviSkin = {1, 4, 5, 9, 10};
 function spawnPlayerOnServerConnect(thePlayer)
@@ -75,7 +89,7 @@ function spawnPlayerOnServerConnect(thePlayer)
     local result = MySql.helper.getSync("user_offline_data", "*", {Nickname = playerName});
     local offlineData = result[1];
 
-    if (tonumber(offlineData.WasSavedBefore) == 1) then
+    if (tonumber(offlineData.WasSavedBefore) == 1 and offOnSpawn(offlineData)) then
         local position = fromJSON(offlineData.Position);
         local rotation = fromJSON(offlineData.Rotation);
         local interior = tonumber(offlineData.Interior);
@@ -103,7 +117,7 @@ function spawnPlayerOnServerConnect(thePlayer)
 
         local timestamp = getRealTime().timestamp;
 
-        if (timestamp - tonumber(offlineData.LastDisconnect) < (2 * 60 * 60)) then
+        if (timestamp - tonumber(offlineData.LastDisconnect) < (60 * 60)) then
             if (tonumber(offlineData.DutyState) > 0) then
                 if (isBeamter(thePlayer)) then
                     vioSetElementData(thePlayer, "isCopDuty", true);

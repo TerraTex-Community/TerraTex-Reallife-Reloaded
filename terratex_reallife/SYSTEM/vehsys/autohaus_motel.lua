@@ -275,7 +275,7 @@ function createBuyCars()
     for i = 1, 7, 1 do
         local rand = math.random(1, table.getSize(autohausVehicles))
         if (not table.hasValue(rabattCars, rand)) then
-            local rabatt = (math.random(25,80) / 100);
+            local rabatt = (math.random(20,80) / 100);
             autohausVehicles[rand][4] = autohausVehicles[rand][4] * rabatt;
 
             table.insert(rabattCars, rand)
@@ -299,7 +299,7 @@ function showRabbatCars_func(thePlayer)
     if (vioGetElementData(thePlayer, "fraktion") == 3) then
         outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
         for m, z in ipairs(rabattCars) do
-            local percentage = (rabattCarsReduce[m] * 100);
+            local percentage = 100 - (rabattCarsReduce[m] * 100);
             outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", thePlayer)
         end
     end

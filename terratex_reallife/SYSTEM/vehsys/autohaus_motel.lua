@@ -12,6 +12,7 @@ autohausspawns = {
 }
 
 rabattCars = {}
+rabattCarsReduce = {}
 
 function createBuyCars()
     autohaustimer = { 0, 0, 0, 0, 0, 0 }
@@ -271,11 +272,14 @@ function createBuyCars()
     end
 
     local i = 1;
-    for i = 1, 5, 1 do
+    for i = 1, 7, 1 do
         local rand = math.random(1, table.getSize(autohausVehicles))
-        autohausVehicles[rand][4] = autohausVehicles[rand][4] * 0.8
         if (not table.hasValue(rabattCars, rand)) then
+            local rabatt = (math.random(25,80) / 100);
+            autohausVehicles[rand][4] = autohausVehicles[rand][4] * rabatt;
+
             table.insert(rabattCars, rand)
+            table.insert(rabattCarsReduce, rabatt)
         end
     end
     local pick = createPickup(427.771484375, -1353.470703125, 15.021891593933, 3, 1239)
@@ -295,11 +299,11 @@ function showRabbatCars_func(thePlayer)
     if (vioGetElementData(thePlayer, "fraktion") == 3) then
         outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
         for m, z in ipairs(rabattCars) do
-            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]), thePlayer)
+            local percentage = (rabattCarsReduce[m] * 100);
+            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", thePlayer)
         end
     end
 end
-
 addCommandHandler("rabattcars", showRabbatCars_func, false, false)
 
 function startEnterBuyVehicle_func()

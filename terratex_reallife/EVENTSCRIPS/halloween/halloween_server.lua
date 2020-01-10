@@ -1,10 +1,4 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 16.04.14
--- Time: 11:48
--- To change this template use File | Settings | File Templates.
---
+-- @fixme: this script was never finished!
 
 --[[Ostereier auslesen]]
 local eiID = 1241

@@ -56,7 +56,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
 		table.insert(allGuis,GUIflysJob_Window[1] )
         GUIflysJob_Button[1] = guiCreateButton(0.0258,0.0855,0.3173,0.0665,"Auftrag annehmen!",true,GUIflysJob_Window[1])
         GUIflysJob_Button[2] = guiCreateButton(0.5683,0.0903,0.2768,0.0618,"Beenden!",true,GUIflysJob_Window[1])
-        GUIflysJob_Label[1] = guiCreateLabel(0.0295,0.1995,0.9446,0.1116,"Die Anzahl der Aufträge ist abhängig von deinen Skilllevel, dass du mit /skill fly ansehen kannst! Wähle einen Auftrag! Die Kaution muss beim Fahrtantritt abgegeben werden und wird bei erfolgreicher Beendigung des Jobs zurückgezahlt!",true,GUIflysJob_Window[1])
+        GUIflysJob_Label[1] = guiCreateLabel(0.0295,0.1995,0.9446,0.1116,"Die Anzahl der Aufträge ist abhängig von deinen Skilllevel, dass du mit /skill fly ansehen kannst! Wähle einen Auftrag! Die Kaution muss beim Flugantritt abgegeben werden und wird bei erfolgreicher Beendigung des Jobs zurückgezahlt!",true,GUIflysJob_Window[1])
         guiLabelSetHorizontalAlign(GUIflysJob_Label[1],"left",true)
         GUIflysJob_Grid[1] = guiCreateGridList(0.0314,0.323,0.9428,0.6366,true,GUIflysJob_Window[1])
         guiGridListSetSelectionMode(GUIflysJob_Grid[1],0)

@@ -954,6 +954,7 @@
 
 
     <!--Ostern-->
+    <script src="EVENTSCRIPS/ostern/isEaster.lua" type="shared"/>
     <script src="EVENTSCRIPS/ostern/ostern_server.lua" type="server"/>
     <script src="EVENTSCRIPS/ostern/ostern_client.lua" type="client"/>
     <file src="FILES/MODS/adrenaline.dff"/>

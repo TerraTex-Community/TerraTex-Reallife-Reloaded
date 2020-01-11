@@ -97,17 +97,6 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), adventPresent)
 
 
-registerAcceptHandler("chrismas", function(thePlayer)
-    outputChatBox("Herzlichen Glückwunsch, du nimmst an der Verlosung teil. Die Spiele werden zwischen Weihnachten und Silvester verlost. Die Keys/Geschenklinks werden an deine registrierte E-Mail gesendet, daher überprüfe deine Email unter /profile", thePlayer, 166,0,166)
-
-    MySql.helper.insert("data_chrismas", {
-        Nickname = getPlayerName(thePlayer)
-    });
-end, {
-    requestedDataValues = {"canHaveSteamTicket"}
-});
-
-
 function give_AdventsPresent(player, presentID)
     local text = adventPresets_big[presentID][2]
     if (text == "adgutschein") then

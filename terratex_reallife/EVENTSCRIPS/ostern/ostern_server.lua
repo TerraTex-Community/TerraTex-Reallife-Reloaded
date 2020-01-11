@@ -71,6 +71,7 @@ function eiHit(thePlayer)
         local anzGefunden = MySql.helper.getValueSync("objects_events_pickups", "count(*)", { gefundenVon = pName, event = "ostern" });
 
         outputChatBox("Osterhase: Glückwunsch, du hast jetzt schon " .. anzGefunden .. " Ostereier gefunden", thePlayer, math.random(1, 255), math.random(1, 255), math.random(1, 255))
+        giveEasterPresent(thePlayer)
 
         local thereAreEier = 0
         for theKey, theEi in ipairs(eier) do
@@ -84,6 +85,93 @@ function eiHit(thePlayer)
         end
     end
 end
+
+function giveEasterPresent(player)
+    local config = easterPresents[math.random(1, table.getSize(easterPresents))];
+    local amount = math.random(1, config.maxAmount);
+    if ("hamburger" == config.item) then
+        vioSetElementData(player, "hamburger", vioGetElementData(player, "hamburger") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Hamburger gefunden!", player, 166, 0, 166)
+    elseif ("lotto" == config.item) then
+        vioSetElementData(player, "lottoschein", vioGetElementData(player, "lottoschein") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Lottoscheine gefunden!", player, 166, 0, 166)
+    elseif ("carfinder" == config.item) then
+        vioSetElementData(player, "carfinder", vioGetElementData(player, "carfinder") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Carfinder gefunden!", player, 166, 0, 166)
+    elseif ("schnellhilfe" == config.item) then
+        vioSetElementData(player, "schnellhilfe", vioGetElementData(player, "schnellhilfe") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Schnellhilfen gefunden!", player, 166, 0, 166)
+    elseif ("geld" == config.item) then
+        changePlayerMoney(player, amount, "sonstiges", "Geschenk vom Server")
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " $ gefunden!", player, 166, 0, 166)
+    elseif ("benzin" == config.item) then
+        vioSetElementData(player, "kanister", vioGetElementData(player, "kanister") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Benzinkanister gefunden!", player, 166, 0, 166)
+    elseif ("fertigessen" == config.item) then
+        vioSetElementData(player, "fertigessen", vioGetElementData(player, "fertigessen") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Fertigessen gefunden!", player, 166, 0, 166)
+    elseif ("snack" == config.item) then
+        vioSetElementData(player, "snack", vioGetElementData(player, "snack") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Snacks gefunden!", player, 166, 0, 166)
+    elseif ("kondome" == config.item) then
+        vioSetElementData(player, "Kondome", vioGetElementData(player, "Kondome") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Kondome gefunden!", player, 166, 0, 166)
+    elseif ("gold" == config.item) then
+        vioSetElementData(player, "Gold", vioGetElementData(player, "Gold") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Gold gefunden!", player, 166, 0, 166)
+    elseif ("hufeisenhelfer" == config.item) then
+        vioSetElementData(player, "Hufeisenhelfer", vioGetElementData(player, "Hufeisenhelfer") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Hufeisenhelfer gefunden!", player, 166, 0, 166)
+    elseif ("blutstreifentest" == config.item) then
+        vioSetElementData(player, "blutmesser", vioGetElementData(player, "blutmesser") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Blutstreifentests gefunden!", player, 166, 0, 166)
+    elseif ("carslot" == config.item) then
+        vioSetElementData(player, "maxslots", vioGetElementData(player, "maxslots") + amount)
+        outputChatBox("Du hast im Inneren des Eis " .. amount .. " Carslots gefunden!", player, 166, 0, 166)
+    end
+end
+
+easterPresents = {
+    { ["maxAmount"] = 3, ["item"] = "adgutschein" },
+    { ["maxAmount"] = 5, ["item"] = "adgutschein" },
+    { ["maxAmount"] = 10, ["item"] = "hamburger" },
+    { ["maxAmount"] = 15, ["item"] = "hamburger" },
+    { ["maxAmount"] = 20, ["item"] = "hamburger" },
+    { ["maxAmount"] = 10, ["item"] = "lotto" },
+    { ["maxAmount"] = 5, ["item"] = "lotto" },
+    { ["maxAmount"] = 2, ["item"] = "lotto" },
+    { ["maxAmount"] = 3, ["item"] = "carfinder" },
+    { ["maxAmount"] = 5, ["item"] = "carfinder" },
+    { ["maxAmount"] = 7, ["item"] = "carfinder" },
+    { ["maxAmount"] = 2, ["item"] = "schnellhilfe" },
+    { ["maxAmount"] = 10, ["item"] = "schnellhilfe" },
+    { ["maxAmount"] = 20, ["item"] = "schnellhilfe" },
+    { ["maxAmount"] = 5000, ["item"] = "geld" },
+    { ["maxAmount"] = 30000, ["item"] = "geld" },
+    { ["maxAmount"] = 100000, ["item"] = "geld" },
+    { ["maxAmount"] = 1, ["item"] = "gold" },
+    { ["maxAmount"] = 10, ["item"] = "gold" },
+    { ["maxAmount"] = 25, ["item"] = "gold" },
+    { ["maxAmount"] = 5, ["item"] = "benzin" },
+    { ["maxAmount"] = 10, ["item"] = "benzin" },
+    { ["maxAmount"] = 15, ["item"] = "benzin" },
+    { ["maxAmount"] = 50, ["item"] = "fertigessen" },
+    { ["maxAmount"] = 25, ["item"] = "fertigessen" },
+    { ["maxAmount"] = 10, ["item"] = "fertigessen" },
+    { ["maxAmount"] = 10, ["item"] = "snack" },
+    { ["maxAmount"] = 30, ["item"] = "snack" },
+    { ["maxAmount"] = 50, ["item"] = "snack" },
+    { ["maxAmount"] = 10, ["item"] = "kondome" },
+    { ["maxAmount"] = 30, ["item"] = "kondome" },
+    { ["maxAmount"] = 50, ["item"] = "kondome" },
+    { ["maxAmount"] = 7, ["item"] = "hufeisenhelfer" },
+    { ["maxAmount"] = 5, ["item"] = "hufeisenhelfer" },
+    { ["maxAmount"] = 2, ["item"] = "hufeisenhelfer" },
+    { ["maxAmount"] = 10, ["item"] = "blutstreifentest" },
+    { ["maxAmount"] = 15, ["item"] = "blutstreifentest" },
+    { ["maxAmount"] = 20, ["item"] = "blutstreifentest" },
+    { ["maxAmount"] = 1, ["item"] = "carslot" }
+}
 
 function addEi_func(thePlayer, cmd, comment, ...)
     if (isAdminLevel(thePlayer, 4)) then

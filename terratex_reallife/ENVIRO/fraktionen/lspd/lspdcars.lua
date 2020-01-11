@@ -587,7 +587,6 @@ function createpoliceVehicles()
         prepare(theVehicle, 9)
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createpoliceVehicles)
 
 function isPoliceCar(source)

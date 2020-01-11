@@ -11,7 +11,7 @@ addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),crea
 function sendInnenDienstInfo(thePlayer)
 	if(innendienstpickup==source)then
 		if(isBeamter(thePlayer))then
-			outputChatBox("Innendienst: '/id an' zum anmelden und '/id ab' zum abmelden!",thePlayer,255,0,0)
+			outputChatBox("Innendienst: '/id an' zum Anmelden und '/id ab' zum Abmelden!",thePlayer,255,0,0)
 		end
 	end
 end

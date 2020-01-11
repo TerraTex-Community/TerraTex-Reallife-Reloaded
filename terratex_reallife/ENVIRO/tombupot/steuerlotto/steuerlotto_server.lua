@@ -60,6 +60,7 @@ function isSteuerLotteryTime()
             end
 
             dbExec(MySql._connection, "TRUNCATE TABLE user_steuerlotto");
+            serversettings["steuerlottojackpot"] = 0;
         end
     else
         setTimer(isSteuerLotteryTime, 60000, 1)

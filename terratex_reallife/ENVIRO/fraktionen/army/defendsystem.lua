@@ -1,4 +1,4 @@
-
+--käse
 			
 addEvent("defend_rocket_to",true)	
 function createDefendRocket()

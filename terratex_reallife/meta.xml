@@ -366,7 +366,7 @@
     <script src="ENVIRO/fraktionen/taxi/taxi_command.lua" type="server"/>
     <script src="ENVIRO/fraktionen/taxi/taxi_vehicles.lua" type="server"/>
     <!-- SEK -->
-    <script src="ENVIRO/fraktionen/sek/sek_tore.lua" type="server"/>
+    <!--  <script src="ENVIRO/fraktionen/sek/sek_tore.lua" type="server"/> -->
     <!-- LLS -->
     <script src="ENVIRO/fraktionen/lls/lls_cars.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lls/lls_schutz.lua" type="server"/>
@@ -517,7 +517,7 @@
     <map src="MAPS/autohauser/bootskaufhaus.map"/>
     <!-- Frakbase -->
     <map src="MAPS/fraktionsbase/MedicBaseLS.map"/>
-    <map src="MAPS/fraktionsbase/sekbase.map"/>
+    <!-- <map src="MAPS/fraktionsbase/sekbase.map"/> -->
     <map src="MAPS/fraktionsbase/waffentest_name.map"/>
     <map src="MAPS/fraktionsbase/Newsbase_new.map"/>
     <map src="MAPS/fraktionsbase/mafiabase_neu.map"/>

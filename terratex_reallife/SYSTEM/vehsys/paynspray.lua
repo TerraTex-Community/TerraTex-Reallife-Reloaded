@@ -20,7 +20,7 @@ function openPaynSpray()
     table.insert(paynsprayMarker, { mark, 12 })
     local mark = createMarker(1025.044921875, -1020.9736328125, 32.098804473877, "cylinder", 4.0, 0, 0, 0, 0)
     table.insert(paynsprayMarker, { mark, 11 })
-    local mark = createMarker(1670.9000244141, 2205.6000976563, 10.800000190735, "cylinder", 4.0, 0, 0, 0, 0) -- lv
+    local mark = createMarker(1977.2177734375, 2162.5048828125, 11.0703125, "cylinder", 4.0, 0, 0, 0, 0) --lv strip
     table.insert(paynsprayMarker, { mark, 36 })
     local mark = createMarker(-1420.5849609375, 2584.3154296875, 55.84326171875, "cylinder", 4.0, 0, 0, 0, 0)
     table.insert(paynsprayMarker, { mark, 40 })

@@ -45,6 +45,7 @@ function a_func(theMaker, Command, ...)
         if (vioGetElementData(theMaker, "adminlvl") == 3) then adminpre = "Administrator " end
         if (vioGetElementData(theMaker, "adminlvl") == 4) then adminpre = "Serverleiter " end
         if (vioGetElementData(theMaker, "adminlvl") == 5) then adminpre = "[Hidden] " end
+        if (vioGetElementData(theMaker, "adminlvl") == 6 ) then adminpre = "Developer " end
         local players = getElementsByType("player")
         for theKey, thePlayer in ipairs(players) do
             if (isPlayerLoggedIn(thePlayer)) then
@@ -106,6 +107,7 @@ function occ_func(theMaker, Command, ...)
         if (vioGetElementData(theMaker, "adminlvl") == 3) then adminpre = "Administrator " end
         if (vioGetElementData(theMaker, "adminlvl") == 4) then adminpre = "Serverleiter " end
         if (vioGetElementData(theMaker, "adminlvl") == 5) then adminpre = "[Hidden] " end
+        if (vioGetElementData(theMaker, "adminlvl") == 6) then adminpre = "Developer " end
         message = "[[ " .. adminpre .. getPlayerName(theMaker) .. ": " .. message .. " ]]"
         outputChatBox(message, getRootElement(), 255, 20, 147)
     end

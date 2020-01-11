@@ -14,7 +14,7 @@ function lottoziehung_func(timer)
     end
 
     local curtime = getRealTime()
-    if (curtime["hour"] == 19 and curtime["minute"] == 10) then
+    if (curtime["hour"] == 19 and curtime["minute"] == 0) then
         local winners = 0
         local winTab = {}
         local lottozahlA = math.random(1, 100)

@@ -41,6 +41,7 @@ function isSteuerLotteryTime()
                 if (not isFirst) then
                     whereClause = whereClause .. ","
                 end
+                isFirst = false;
                 whereClause = whereClause .. "?"
                 table.insert(values, getPlayerName(thePlayer));
             end

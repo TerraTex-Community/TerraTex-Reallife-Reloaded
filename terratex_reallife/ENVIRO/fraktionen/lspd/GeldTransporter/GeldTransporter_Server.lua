@@ -403,9 +403,3 @@ addEventHandler("onPickupHit", getRootElement(), GTOnEnterStartMarker)
 
 
 
-
-
-
-
-
-

@@ -1,6 +1,7 @@
 --DEFINES
 local winTimeHour = 19
 local winTimeMinute = 30
+local percentage = 5
 
 function createTombuPotLottery()
     setTimer(isSteuerLotteryTime, 60000, 1)
@@ -8,7 +9,7 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createTombuPotLottery)
 
 function addPlayerToSteuerLotto(thePlayer, amount)
-    serversettings["steuerlottojackpot"] = serversettings["steuerlottojackpot"] + (amount / 100);
+    serversettings["steuerlottojackpot"] = serversettings["steuerlottojackpot"] + (amount / 100 * percentage);
     local playerTicketCount = MySql.helper.getCountSync("user_steuerlotto", { Nickname = getPlayerName(thePlayer) })
     if (playerTicketCount < 1) then
         MySql.helper.insert("user_steuerlotto", {Nickname = getPlayerName(thePlayer)});

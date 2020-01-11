@@ -16,35 +16,33 @@
 -- ]]
 
 function isAdminLevel(thePlayer, lvl)
-    if(isConsole(thePlayer))then
+    if (isConsole(thePlayer)) then
         return true
     end
 
-    if(not isElement(thePlayer))then
-        outputDebugString("ErrorHelp isAdminLevel: "..debug.traceback())
+    if (not isElement(thePlayer)) then
+        outputDebugString("ErrorHelp isAdminLevel: " .. debug.traceback())
     end
 
-    if(not(isPlayerLoggedIn(thePlayer)))then
-       return false
+    if (not (isPlayerLoggedIn(thePlayer))) then
+        return false
     end
 
-    local adminlvl=tonumber(getElementData(thePlayer,"adminlvl"))
-    local supportlvl=tonumber(getElementData(thePlayer,"SupportLVL"))
-    local isDeveloper=tonumber(getElementData(thePlayer,"isDeveloper"))
+    local adminlvl = tonumber(getElementData(thePlayer, "adminlvl"))
+    local supportlvl = tonumber(getElementData(thePlayer, "SupportLVL"))
+    local isDeveloper = tonumber(getElementData(thePlayer, "isDeveloper"))
 
-
-
-    if(isDevServer())then
-       if(isDeveloper==1)then
-          return true
-       end
+    if (isDevServer()) then
+        if (isDeveloper == 1) then
+            return true
+        end
     end
 
-    if(lvl==0 and (supportlvl>0 or adminlvl>0))then
+    if (lvl == 0 and (supportlvl > 0 or adminlvl > 0)) then
         return true
     end
 
-    if(adminlvl>=lvl and adminlvl>0)then
+    if (adminlvl >= lvl and adminlvl > 0) then
         return true
     end
 
@@ -52,7 +50,7 @@ function isAdminLevel(thePlayer, lvl)
 end
 
 function isConsole(element)
-    if (getElementType ( element) == "console") then
+    if (getElementType(element) == "console") then
         return true;
     else
         return false;

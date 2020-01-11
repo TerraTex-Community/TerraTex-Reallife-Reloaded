@@ -146,6 +146,7 @@
     <script src="ENVIRO/tombupot/steuerlotto/steuerlotto_server.lua" type="server" />
     <script src="USER/payday/sozialstatus.lua" type="server"/>
     <script src="USER/payday/sozialstatus_client.lua" type="client"/>
+
     <script src="USER/payday/updateplaytime.lua" type="server"/>
     <script src="USER/payday/updateplaytime_client.lua" type="client"/>
     <!-- HELPSYSTEM -->

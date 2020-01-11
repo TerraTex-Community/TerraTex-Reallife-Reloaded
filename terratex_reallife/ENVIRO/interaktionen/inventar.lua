@@ -326,7 +326,7 @@ addCommandHandler("lotto", lotto_func, false, false)
 
 function jackpot_func(thePlayer)
     local tickets = MySql.helper.getCountSync("user_tombupot")
-    local gewinn = tickets * (tombuTicketPrice * (1 - (bizPercentage / 100)))
+    local gewinn = tickets * (tombuTicketPrice * (1 - (getTombuBizPercentage() / 100)))
 
     outputChatBox(string.format("Der Lottojackpot liegt bei %s$", toprice(serversettings["lottojackpot"])), thePlayer)
     outputChatBox(string.format("Der Steuer-Lottojackpot liegt bei %s$", toprice(serversettings["steuerlottojackpot"])), thePlayer)

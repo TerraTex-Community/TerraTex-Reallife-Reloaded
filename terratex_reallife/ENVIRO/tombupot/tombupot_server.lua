@@ -5,6 +5,10 @@ local winTimeHour = 20
 local winTimeMinute = 0
 local bizPercentage = 1
 
+function getTombuBizPercentage()
+    return bizPercentage
+end
+
 function createTombuPotLottery()
     local mark = createMarker(822.28997802734, 1.8700000047684, 1003.1799926758, "cylinder", 2)
     setElementInterior(mark, 3)

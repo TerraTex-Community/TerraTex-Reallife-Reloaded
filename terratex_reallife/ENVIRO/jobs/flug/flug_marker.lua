@@ -107,7 +107,7 @@ function hitflyerserEndMarker(theHitElement)
                             message = message .. ") hat sein Ziel Las Venturas erreicht.";
                             sendFlugChatMessage("Flugkontrolle", message)
 
-                            outputChatBox("Gut, dass du das Fahrzeug abgegeben hast!!", driver, 88, 191, 162)
+                            outputChatBox("Gut, dass du das Flugzeug abgegeben hast!", driver, 88, 191, 162)
                             if (isElement(vioGetElementData(thePlayer, "flys_blip"))) then
                                 destroyElement(vioGetElementData(thePlayer, "flys_blip"))
                             end
@@ -147,7 +147,7 @@ function hitflyerserEndMarker(theHitElement)
                             outputChatBox("Dir fehlt der Flugschein!", driver, 255, 0, 0)
                         end
                     else
-                        outputChatBox("Das Flugzeug ist zum Ausladen zu schnell!", driver, 255, 0, 0)
+                        outputChatBox("Das Flugzeug ist zum ausladen zu schnell!", driver, 255, 0, 0)
                     end
                 end
             end
@@ -165,7 +165,7 @@ function hitflyerserMarker(theHitElement)
                     if (vioGetElementData(driver, "flys_trailer")) then
                         destroyElement(vioGetElementData(driver, "flys_trailer"))
                     end
-                    outputChatBox("Gut du hast die Ware abgegeben! Bring nun das Fahrzeug zurück zum Flughafen LV!", driver, 88, 191, 162)
+                    outputChatBox("Gut, du hast die Ware abgegeben! Bring nun das Flugzeug zurück zum Flughafen LV!", driver, 88, 191, 162)
                     if (isElement(vioGetElementData(driver, "flys_blip"))) then
                         destroyElement(vioGetElementData(driver, "flys_blip"))
                     end
@@ -243,10 +243,10 @@ function enterflyerserVehicle(thePlayer, seat)
                 if (isTimer(vioGetElementData(thePlayer, "flys_timer"))) then
                     killTimer(vioGetElementData(thePlayer, "flys_timer"))
                 end
-                outputChatBox("Schön das du wieder an Board bist!", thePlayer, 88, 191, 162)
+                outputChatBox("Schön, dass du wieder an Board bist!", thePlayer, 88, 191, 162)
             else
                 cancelEvent()
-                outputChatBox("Dies ist ein Job Vehicle und kann nur von der Person gefahren, die den Auftrag angenommen hat!", thePlayer, 255, 0, 0)
+                outputChatBox("Dies ist ein Job Flugzeug und kann nur von der Person geflogen werden, die den Auftrag angenommen hat!", thePlayer, 255, 0, 0)
             end
         end
     end

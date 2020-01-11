@@ -262,7 +262,7 @@ function acceptTTTQuestion()
     if(isSelected)then
         triggerServerEvent("acceptTTTQuestion_Event",getLocalPlayer(),gameID,lastGameData[gameID]["realGegner"])
     else
-        showError(getLocalPlayer(),"Du hast kein Spiel zum annehmen ausgewählt!")
+        showError(getLocalPlayer(),"Du hast kein Spiel zum Annehmen ausgewählt!")
     end
 end
 
@@ -278,7 +278,7 @@ function cancelTTTQuestion()
     if(isSelected)then
         triggerServerEvent("cancelTTTQuestion_Event",getLocalPlayer(),gameID,lastGameData[gameID]["realGegner"])
     else
-        showError(getLocalPlayer(),"Du hast kein Spiel zum ablehnen ausgewählt!")
+        showError(getLocalPlayer(),"Du hast kein Spiel zum Ablehnen ausgewählt!")
     end
 end
 

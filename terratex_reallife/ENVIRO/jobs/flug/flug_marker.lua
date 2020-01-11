@@ -147,7 +147,7 @@ function hitflyerserEndMarker(theHitElement)
                             outputChatBox("Dir fehlt der Flugschein!", driver, 255, 0, 0)
                         end
                     else
-                        outputChatBox("Das Flugzeug ist zum ausladen zu schnell!", driver, 255, 0, 0)
+                        outputChatBox("Das Flugzeug ist zum Ausladen zu schnell!", driver, 255, 0, 0)
                     end
                 end
             end

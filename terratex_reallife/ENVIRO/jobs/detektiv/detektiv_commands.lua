@@ -19,8 +19,8 @@ function find_func(thePlayer, Command, toPlayerName)
                 if not (vioGetElementData(thePlayer, "hasFind")) then
                     if (vioGetElementData(toPlayer, "telefontoggle") == 0) then
                         outputChatBox("Es wurde eine exakte Handyortung vorgenommen (rote Markierung)!", thePlayer, 255, 0, 0)
-                        local theBlip = createBlipAttachedTo(toPlayer, 0, 2, 0, 191, 255, 255, 0, 99999.0, thePlayer)
-                        setTimer(delete_find_func, 5000, 1, theBlip)
+                        local theBlip = createBlipAttachedTo(toPlayer, 0, 2, 255, 0, 0, 255, 0, 99999.0, thePlayer)
+                        setTimer(delete_find_func, 15000, 1, theBlip)
                     else
                         outputChatBox("Das Handy des Gesuchten ist aus! Eine ungefähre Ortung wurde durchgeführt!(rote Markierung)", thePlayer, 255, 0, 0)
                         local xab = math.random(0, 500) - 250
@@ -29,9 +29,9 @@ function find_func(thePlayer, Command, toPlayerName)
                         px = px - xab
                         py = py - yab
                         local area = createRadarArea(px, py, 250, 250, 0, 191, 255, 100, thePlayer)
-                        local blip = createBlip((px + 125), (py + 125), pz, 0, 3, 0, 191, 255, 255, 0, 9999999, thePlayer)
-                        setTimer(delete_find_func, 5000, 1, area)
-                        setTimer(delete_find_func, 5000, 1, blip)
+                        local blip = createBlip((px + 125), (py + 125), pz, 0, 3, 255, 0, 0, 255, 0, 9999999, thePlayer)
+                        setTimer(delete_find_func, 15000, 1, area)
+                        setTimer(delete_find_func, 15000, 1, blip)
                     end
                     vioSetElementData(thePlayer, "hasFind", true)
                     setTimer(resetFind_func, 15000, 1, thePlayer)

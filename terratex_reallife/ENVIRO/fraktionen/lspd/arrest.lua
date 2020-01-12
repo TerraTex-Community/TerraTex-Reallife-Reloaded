@@ -329,9 +329,9 @@ function m_func(thePlayer, Command, ...)
     local reason = table.concat({ ... }, " ")
     if (reason) then
         if (isPedInVehicle(thePlayer)) then
-            if (isBeamter(thePlayer)) then
+            if (isBeamter(thePlayer)) or (isAdminLevel(thePlayer, 2)) then
                 local vehid = getPedOccupiedVehicle(thePlayer)
-                if isPoliceCar(vehid) then
+                if isPoliceCar(vehid) or (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") then
 
                     local posX, posY, posZ = getElementPosition(thePlayer)
                     local chatSphere = createColSphere(posX, posY, posZ, 100)
@@ -699,7 +699,7 @@ function sos_func(thePlayer)
                 setElementVisibleTo(blip, thePlayers, true)
             end
         end
-        setTimer(destroyElement, 10000, 1, blip)
+        setTimer(destroyElement, 15000, 1, blip)
     end
 end
 addCommandHandler("sos", sos_func, false, false)

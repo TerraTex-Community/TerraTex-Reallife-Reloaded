@@ -29,7 +29,7 @@ function admins_func(theMaker, command)
             if (vioGetElementData(thePlayer, "adminlvl") == 3) then adminpre = "Administrator: " end
             if (vioGetElementData(thePlayer, "adminlvl") == 4) then adminpre = "Serverleiter: " end
             if (vioGetElementData(thePlayer, "adminlvl") == 5) then adminpre = "[Hidden]: " end
-             if (vioGetElementData(thePlayer, "adminlvl") == 1337) then adminpre = "Gott 1337: " end
+             if (vioGetElementData(thePlayer, "adminlvl") == 1337) then adminpre = "1337 Gott: " end
             if (vioGetElementData(thePlayer, "SupportLVL") > 0) then adminpre = "Supporter: " end
             outputChatBox(adminpre .. getPlayerName(thePlayer), theMaker)
         end

@@ -73,35 +73,37 @@ local function handlerCreateMedicVehicle()
 	
 	----- Fahrzeuge Los Santos -----
 	-- Maverick --
-	vehicle = createVehicle(487, 1118.2998046875, -1301.7001953125, 19.834999084473, 0, 0, 270, "EMERGENCY")
+	vehicle = createVehicle(487, 1118.2998046875, -1301.7001953125, 19.834999084473, 0, 0, 270, "Medic")
 	table.insert(frakselfcars[10],vehicle)
 	-- Raindance --
-	vehicle = createVehicle(563, 1139.099609375, -1301.400390625, 20.540000915527, 0, 0, 90, "EMERGENCY")
+	vehicle = createVehicle(563, 1139.099609375, -1301.400390625, 20.540000915527, 0, 0, 90, "Medic")
 	table.insert(frakselfcars[10],vehicle)
 	-- Ambulance --
-	vehicle = createVehicle(416, 1145.8000488281, -1297.0999755859, 13.800000190735, 0, 0, 0, "EMERGENCY")
+	vehicle = createVehicle(416, 1145.8000488281, -1297.0999755859, 13.800000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1141.099609375, -1297.0999755859, 13.800000190735, 0, 0, 0, "EMERGENCY")
+	vehicle = createVehicle(416, 1141.099609375, -1297.0999755859, 13.800000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1134.099609375, -1297.0999755859, 13.800000190735, 0, 0, 0, "EMERGENCY")
+	vehicle = createVehicle(416, 1134.099609375, -1297.0999755859, 13.800000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1129.2998046875, -1297.0999755859, 13.800000190735, 0, 0, 0, "EMERGENCY")
+	vehicle = createVehicle(416, 1129.2998046875, -1297.0999755859, 13.800000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1129.2998046875, -1305.7001953125, 13.800000190735, 0, 0, 180, "EMERGENCY")
+	vehicle = createVehicle(416, 1129.2998046875, -1305.7001953125, 13.800000190735, 0, 0, 180, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1134.099609375, -1305.7001953125, 13.800000190735, 0, 0, 180, "EMERGENCY")
+	vehicle = createVehicle(416, 1134.099609375, -1305.7001953125, 13.800000190735, 0, 0, 180, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1141.099609375, -1305.7001953125, 13.800000190735, 0, 0, 180, "EMERGENCY")
+	vehicle = createVehicle(416, 1141.099609375, -1305.7001953125, 13.800000190735, 0, 0, 180, "Medic")
 	table.insert(frakselfcars[10],vehicle)
-	vehicle = createVehicle(416, 1145.8000488281, -1305.7001953125, 13.800000190735, 0, 0, 180, "EMERGENCY")
+	vehicle = createVehicle(416, 1145.8000488281, -1305.7001953125, 13.800000190735, 0, 0, 180, "Medic")
 	table.insert(frakselfcars[10],vehicle)
 	--[[
 	-- FBI Rancher --
 	vehicle = createVehicle(490, 1121.900390625, -1297.5, 13.699999809265, 0, 0, 0, "EMERGENCY")
 	table.insert(frakselfcars[10],vehicle)
-	-- Police SF --
-	vehicle = createVehicle(597, 1117.5, -1297.400390625, 13.300000190735, 0, 0, 0, "EMERGENCY")
+	--]]
+	-- Police LV --
+	vehicle = createVehicle(598, 1117.5, -1297.400390625, 13.300000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10],vehicle)
+	--[[
 	-- Stratum --
 	vehicle = createVehicle(561, 1117.5, -1305.2998046875, 13.435000419617, 0, 0, 180, "EMERGENCY")
 	table.insert(frakselfcars[10],vehicle)

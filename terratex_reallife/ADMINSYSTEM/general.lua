@@ -15,6 +15,7 @@ function admins_func(theMaker, command)
         for k, v in ipairs(getPlayersByDataValue("adminlvl", 5)) do table.insert(adminList, v) end
     end
 
+    for k, v in ipairs(getPlayersByDataValue("adminlvl", 1337)) do table.insert(adminList, v) end
     for k, v in ipairs(getPlayersByDataValue("adminlvl", 4)) do table.insert(adminList, v) end
     for k, v in ipairs(getPlayersByDataValue("adminlvl", 3)) do table.insert(adminList, v) end
     for k, v in ipairs(getPlayersByDataValue("adminlvl", 2)) do table.insert(adminList, v) end
@@ -28,6 +29,7 @@ function admins_func(theMaker, command)
             if (vioGetElementData(thePlayer, "adminlvl") == 3) then adminpre = "Administrator: " end
             if (vioGetElementData(thePlayer, "adminlvl") == 4) then adminpre = "Serverleiter: " end
             if (vioGetElementData(thePlayer, "adminlvl") == 5) then adminpre = "[Hidden]: " end
+             if (vioGetElementData(thePlayer, "adminlvl") == 1337) then adminpre = "1337 Gott: " end
             if (vioGetElementData(thePlayer, "SupportLVL") > 0) then adminpre = "Supporter: " end
             outputChatBox(adminpre .. getPlayerName(thePlayer), theMaker)
         end

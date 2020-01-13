@@ -90,8 +90,10 @@ function godcar_func()
 	if( isAdminLevel(getLocalPlayer(),3))then
 		if not hovercar then
 			godcar=true
+			outputChatBox("godcar ON")
 		else
 			godcar=false
+			outputChatBox("godcar OFF")
 		end
 	end
 end

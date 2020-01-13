@@ -345,7 +345,6 @@ function m_func(thePlayer, Command, ...)
         end
     end
 end
-
 addCommandHandler("m", m_func, false, false)
 
 function tazer_func(thePlayer)

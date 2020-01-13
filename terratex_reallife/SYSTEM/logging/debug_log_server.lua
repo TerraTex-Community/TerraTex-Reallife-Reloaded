@@ -51,7 +51,7 @@ function storeDebugLogEntries()
         logsPerPlayer[def.username] = logsPerPlayer[def.username] .. def.entry .. "\n"
     end
 
-    for username, entry in pairs(lastBulkTable) do
+    for username, entry in pairs(logsPerPlayer) do
         save_log("user_client_logs/" .. username, entry)
     end
 end

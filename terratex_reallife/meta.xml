@@ -50,7 +50,9 @@
     <script src="SYSTEM/uhr/synctime_client.lua" type="client"/>
     <script src="SYSTEM/uhr/synctime_server.lua" type="server"/>
 
-    <script src="SYSTEM/loggingsys.lua" type="server"/>
+    <script src="SYSTEM/logging/loggingsys.lua" type="server"/>
+    <script src="SYSTEM/logging/debug_log_client.lua" type="client"/>
+    <script src="SYSTEM/logging/debug_log_server.lua" type="server"/>
     <script src="SYSTEM/elementdata/data.lua" type="server"/>
     <script src="SYSTEM/train.lua" type="server"/>
     <script src="SYSTEM/zugschranken.lua" type="server"/>

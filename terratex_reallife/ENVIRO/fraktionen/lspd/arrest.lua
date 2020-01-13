@@ -331,7 +331,7 @@ function m_func(thePlayer, Command, ...)
         if (isPedInVehicle(thePlayer)) then
             if (isBeamter(thePlayer)) or (isAdminLevel(thePlayer, 2)) then
                 local vehid = getPedOccupiedVehicle(thePlayer)
-                if isPoliceCar(vehid) or (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") then
+                if isPoliceCar(vehid) or (getElementModel() == 409 and isAdminLevel(thePlayer, 2)) then
 
                     local posX, posY, posZ = getElementPosition(thePlayer)
                     local chatSphere = createColSphere(posX, posY, posZ, 100)

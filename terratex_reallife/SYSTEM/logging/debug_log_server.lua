@@ -42,10 +42,20 @@ function storeDebugLogEntries()
     lastBulkTable = currentBulkTable;
     currentBulkTable = {};
 
+    local logsPerPlayer = {}
+
     for theKey, def in ipairs(lastBulkTable) do
-        save_log("user_client_log/" .. def.username, def.entry)
+        if (logsPerPlayer[def.username] == nil) then
+            logsPerPlayer[def.username] = ""
+        end
+        logsPerPlayer[def.username] = logsPerPlayer[def.username] .. def.entry .. "\n"
+    end
+
+    for username, entry in pairs(lastBulkTable) do
+        save_log("user_client_logs/" .. username, entry)
     end
 end
+
 
 function onDebugStoreRunner()
     setTimer(storeDebugLogEntries, 600000, 0)

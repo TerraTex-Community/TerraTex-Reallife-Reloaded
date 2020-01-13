@@ -210,6 +210,7 @@ function stopCarPaintReflectLite()
 end
 
 function updateScreen()
+	if not cprlEffectEnabled then return end
 	if myScreenSource then
 		dxUpdateScreenSource( myScreenSource)
 	end

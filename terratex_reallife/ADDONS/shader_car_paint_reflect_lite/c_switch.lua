@@ -36,7 +36,7 @@
 -- Switch effect on or off
 --------------------------------
 function switchCarPaintReflectLite( cprlOn )
-	outputDebugString( "switchCarPaintReflectLite: " .. tostring(cprlOn) )
+	--outputDebugString( "switchCarPaintReflectLite: " .. tostring(cprlOn) )
 	if cprlOn then
 		startCarPaintReflectLite()
 	else

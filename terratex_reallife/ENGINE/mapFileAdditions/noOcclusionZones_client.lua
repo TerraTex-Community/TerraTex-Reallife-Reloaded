@@ -16,7 +16,7 @@ function enterZone(theShape)
     for key,value in pairs(zones) do
         if (theShape == zones[key].colCircle and getElementDimension(thePlayer) == zones[key].dimension and getElementInterior(thePlayer) == zones[key].interior) then
             setOcclusionsEnabled(false)
-            outputDebugString("occlusionsEnabled: false")
+            --outputDebugString("occlusionsEnabled: false")
         end
     end
 end
@@ -26,7 +26,7 @@ function leaveZone(theShape)
     for key,value in pairs(zones) do
         if (theShape == zones[key].colCircle and getElementDimension(thePlayer) == zones[key].dimension and getElementInterior(thePlayer) == zones[key].interior) then
             setOcclusionsEnabled(true)
-            outputDebugString("occlusionsEnabled: true")
+            --outputDebugString("occlusionsEnabled: true")
         end
     end
 end

@@ -177,7 +177,7 @@ function RTPool.GetUnused( mx, my )
 	-- Add new
 	local rt = dxCreateRenderTarget( mx, my )
 	if rt then
-		outputDebugString( "creating new RT " .. tostring(mx) .. " x " .. tostring(mx) )
+		--outputDebugString( "creating new RT " .. tostring(mx) .. " x " .. tostring(mx) )
 		RTPool.list[rt] = { bInUse = true, mx = mx, my = my }
 	end
 	return rt

@@ -50,7 +50,7 @@ function save_steuer_log(player, betrag, type)
     });
 end
 
-function save_log(logname, message)
+function save_log(logname, message, noNewLineAtEnd)
     local filename = "LOGS/" .. logname .. ".log"
     local filehandler
     if not (fileExists(filename)) then
@@ -63,8 +63,10 @@ function save_log(logname, message)
 
         local fileSize = fileGetSize(filehandler)
         fileSetPos(filehandler, fileSize)
-        local messages = " \n " .. message
-        fileWrite(filehandler, messages)
+        if (not noNewLineAtEnd) then
+            message = "\n" .. message
+        end
+        fileWrite(filehandler, message)
         fileClose(filehandler)
     end
 end

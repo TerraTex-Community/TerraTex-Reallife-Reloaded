@@ -52,7 +52,7 @@ function storeDebugLogEntries()
     end
 
     for username, entry in pairs(logsPerPlayer) do
-        save_log("user_client_logs/" .. username, entry)
+        save_log("user_client_logs/" .. username, entry, true)
     end
 end
 

@@ -166,7 +166,7 @@ function GUIPremiumColor_buyLights()
     triggerServerEvent("setPremiumVehicleLightColor", getLocalPlayer(), newcolorstring)
 end
 
-addEvent("pColor_setLightBefore", true)
+addEvent("pColor_Preview_setLightBefore", true)
 function Preview_setLightBefore(R, G, B)
     colorBeforePreview_Light_R = R
     colorBeforePreview_Light_G = G

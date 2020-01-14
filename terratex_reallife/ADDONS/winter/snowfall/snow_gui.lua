@@ -382,7 +382,7 @@ end
 function loadSnowSettings()
 	local file = xmlLoadFile("settings.xml")
 	if not file then
-		outputDebugString("Couldnt find snow settings file. Creating...")
+		--outputDebugString("Couldnt find snow settings file. Creating...")
 		if highlight then
 			addEventHandler("onClientPreRender",root,highlightCursor)
 		end
@@ -468,7 +468,7 @@ function saveSnowSettings()
 	if not file then
 		file = xmlCreateFile("settings.xml","settings")
 		if file then
-			outputDebugString("Created snow settings file successfully.")
+			--outputDebugString("Created snow settings file successfully.")
 		else
 			outputDebugString("Could not create snow settings file.")
 			return

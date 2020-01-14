@@ -139,7 +139,7 @@ function death_func(ammo, attacker, weapon, bodypart)
 
                     CrimeSystem.addNewCrime(attacker, crimeId, "System");
 
-                    outputChatBoxForPolice(getPlayerName .. " hat eine neue Straftat begangen");
+                    outputChatBoxForPolice(getPlayerName(attacker) .. " hat eine neue Straftat begangen");
                 end
             end
 

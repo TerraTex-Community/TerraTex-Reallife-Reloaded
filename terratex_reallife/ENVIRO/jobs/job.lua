@@ -1,37 +1,36 @@
 JobPickups = {}
 
 function createJobPickups()
-    JobPickups[1] = {
-        createPickup(393.251953125, -2073.3642578125, 7.8359375, 3, 1239, 5000),
-        "Fischerjob", 393.251953125, -2073.3642578125, 7.8359375
-    }
-    local pickele = createPickup(328.5732421875, 1125.552734375, 1083.8828125, 3, 1239, 5000)
-    setElementInterior(pickele, 5)
-    JobPickups[2] = { pickele, "Drogendealer", 328.5732421875, 1125.552734375, 1083.8828125 }
-    JobPickups[3] = { createPickup(2200.1708984375, -1970.1962890625, 13.78413105011, 3, 1239, 5000), "Muellmannjob", 2200.1708984375, -1970.1962890625, 13.78413105011 }
-    JobPickups[4] = { createPickup(1219.38671875, -1812.4951171875, 16.59375, 3, 1239, 5000), "Busfahrer", 1219.38671875, -1812.4951171875, 16.59375 }
-    JobPickups[5] = { createPickup(1644.615234375, -1841.912109375, 13.543103218079, 3, 1239, 5000), "Mechaniker", 1644.615234375, -1841.912109375, 13.543103218079 }
-    JobPickups[6] = { createPickup(1412.23046875, -1789.8720703125, 15.282786369324, 3, 1239, 5000), "Detektiv", 1412.23046875, -1789.8720703125, 15.282786369324 }
-    JobPickups[7] = { createPickup(1574.3349609375, -1340.13671875, 16.484375, 3, 1239, 5000), "Hitman", 1574.3349609375, -1340.13671875, 16.484375 }
-    JobPickups[8] = { createPickup(2125.380859375, -1823.4150390625, 13.554768562317, 3, 1239, 5000), "Pizza", 2125.380859375, -1823.4150390625, 13.554768562317 }
-    JobPickups[9] = { createPickup(1549.666015625, -1670.4208984375, 13.563942909241, 3, 1239, 5000), "Anwalt", 1549.666015625, -1670.4208984375, 13.563942909241 }
-    JobPickups[10] = { createPickup(1366.583984375, -1274.91796875, 13.546875, 3, 1239, 5000), "Waffendealer", 1366.583984375, -1274.91796875, 13.546875 }
-    JobPickups[11] = { createPickup(2771.8046875, -2463.8359375, 13.637566566467, 3, 1239, 5000), "Trucker", 2771.8046875, -2463.8359375, 13.637566566467 }
-    JobPickups[12] = { createPickup(1514.890625, 1683.7958984375, 10.8203125, 3, 1239, 5000), "Pilot", 1514.890625, 1683.7958984375, 10.8203125 }
-    JobPickups[13] = { createPickup(1648.7177734375, 701.60546875, 10.8203125, 3, 1239, 5000), "Straßenputzer", 1648.7177734375, 701.60546875, 10.8203125 }
-    JobPickups[14] = { createPickup(-1058.248046875, -1195.4794921875, 129.17562866211, 3, 1239, 5000), "Farmer", -1058.248046875, -1195.4794921875, 129.17562866211 }
-    JobPickups[15] = { createPickup(816.7919921875, 856.6943359375, 12.7890625, 3, 1239, 5000), "Bergwerksarbeiter", 816.7919921875, 856.6943359375, 12.7890625 }
-    JobPickups[16] = { createPickup(2415.14, -1220.74, 24.7, 3, 1239, 5000), "Nutte", 2415.14, -1220.74, 24.7 }
-    JobPickups[17] = { createPickup(2500.166015625, -2259.4609375, 3, 3, 1239, 5000), "Meeresreinigung", 2500.166015625, -2259.4609375, 3 }
-    JobPickups[18] = { createPickup(-49.994140625, -232.490234375, 6.7646160125732, 3, 1239, 5000), "Hotdogverkäufer", -49.994140625, -232.490234375, 6.7646160125732 }
+
+    JobPickups[1] = {nil, "Fischerjob", 393.251953125, -2073.3642578125, 7.8359375, 0 }
+    JobPickups[2] = { nil, "Drogendealer", 328.5732421875, 1125.552734375, 1083.8828125, 5 }
+    JobPickups[3] = { nil, "Muellmannjob", 2200.1708984375, -1970.1962890625, 13.78413105011, 0 }
+    JobPickups[4] = { nil, "Busfahrer", 1219.38671875, -1812.4951171875, 16.59375, 0 }
+    JobPickups[5] = { nil, "Mechaniker", 1644.615234375, -1841.912109375, 13.543103218079, 0 }
+    JobPickups[6] = { nil, "Detektiv", 1412.23046875, -1789.8720703125, 15.282786369324, 0 }
+    JobPickups[7] = { nil, "Hitman", 1574.3349609375, -1340.13671875, 16.484375, 0 }
+    JobPickups[8] = { nil, "Pizza", 2125.380859375, -1823.4150390625, 13.554768562317, 0 }
+    JobPickups[9] = { nil, "Anwalt", 1549.666015625, -1670.4208984375, 13.563942909241, 0 }
+    JobPickups[10] = { nil, "Waffendealer", 1366.583984375, -1274.91796875, 13.546875, 0 }
+    JobPickups[11] = { nil, "Trucker", 2771.8046875, -2463.8359375, 13.637566566467, 0 }
+    JobPickups[12] = { nil, "Pilot", 1514.890625, 1683.7958984375, 10.8203125, 0 }
+    JobPickups[13] = { nil, "Straßenputzer", 1648.7177734375, 701.60546875, 10.8203125, 0 }
+    JobPickups[14] = { nil, "Farmer", -1058.248046875, -1195.4794921875, 129.17562866211, 0 }
+    JobPickups[15] = { nil, "Bergwerksarbeiter", 816.7919921875, 856.6943359375, 12.7890625, 0 }
+    JobPickups[16] = { nil, "Nutte", 2415.14, -1220.74, 24.7, 0 }
+    JobPickups[17] = { nil, "Meeresreinigung", 2500.166015625, -2259.4609375, 3, 0 }
+    JobPickups[18] = { nil, "Hotdogverkäufer", -49.994140625, -232.490234375, 6.7646160125732, 0 }
     --JobBlips
     for theKey, theJob in ipairs(JobPickups) do
-        setElementShowText(theJob[1], { 255, 255, 255, 255 }, theJob[2], true, 15, 1, 0.5)
-        if (getElementInterior(theJob[1]) == 0) and theKey ~= 7 then
-            createBlip(theJob[3], theJob[4], theJob[5], 58, 2, 255, 0, 0, 255, 0, 50)
-        end
+		theJob[1] = createPickup(theJob[3], theJob[4], theJob[5], 3, 1239, 5000)
+		setElementInterior(theJob[1], theJob[6])
+		setElementShowText(theJob[1], { 255, 255, 255, 255 }, theJob[2], true, 15, 1, 0.5)
+		if (getElementInterior(theJob[1]) == 0) and theKey ~= 7 then
+			createBlip(theJob[3], theJob[4], theJob[5], 58, 2, 255, 0, 0, 255, 0, 50)
+		end
     end
-    createBlip(2166.3935546875, -1671.7578125, 15.074158668518, 58, 2, 255, 0, 0, 255, 0, 50)--drogendealer
+    createBlip(2166.3935546875, -1671.7578125, 15.074158668518, 58, 2, 255, 0, 0, 255, 0, 50)
+    --drogendealer
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createJobPickups)
 

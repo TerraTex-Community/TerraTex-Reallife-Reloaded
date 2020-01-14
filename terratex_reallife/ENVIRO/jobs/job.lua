@@ -2,7 +2,7 @@ JobPickups = {}
 
 function createJobPickups()
 
-    JobPickups[1] = {nil, "Fischerjob", 393.251953125, -2073.3642578125, 7.8359375, 0 }
+    JobPickups[1] = { nil, "Fischerjob", 393.251953125, -2073.3642578125, 7.8359375, 0 }
     JobPickups[2] = { nil, "Drogendealer", 328.5732421875, 1125.552734375, 1083.8828125, 5 }
     JobPickups[3] = { nil, "Muellmannjob", 2200.1708984375, -1970.1962890625, 13.78413105011, 0 }
     JobPickups[4] = { nil, "Busfahrer", 1219.38671875, -1812.4951171875, 16.59375, 0 }
@@ -20,7 +20,8 @@ function createJobPickups()
     JobPickups[16] = { nil, "Nutte", 2415.14, -1220.74, 24.7, 0 }
     JobPickups[17] = { nil, "Meeresreinigung", 2500.166015625, -2259.4609375, 3, 0 }
     JobPickups[18] = { nil, "Hotdogverkäufer", -49.994140625, -232.490234375, 6.7646160125732, 0 }
-    --JobBlips
+
+    -- JobBlips
     for theKey, theJob in ipairs(JobPickups) do
 		theJob[1] = createPickup(theJob[3], theJob[4], theJob[5], 3, 1239, 5000)
 		setElementInterior(theJob[1], theJob[6])
@@ -29,8 +30,9 @@ function createJobPickups()
 			createBlip(theJob[3], theJob[4], theJob[5], 58, 2, 255, 0, 0, 255, 0, 50)
 		end
     end
+
+    -- drogendealer
     createBlip(2166.3935546875, -1671.7578125, 15.074158668518, 58, 2, 255, 0, 0, 255, 0, 50)
-    --drogendealer
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createJobPickups)
 

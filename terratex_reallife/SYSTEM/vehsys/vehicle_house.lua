@@ -7,6 +7,10 @@
 --
 
 function getMaxVehicleWert(houseID)
+    if (not houseID) then
+        houseID = 0;
+    end
+
     local hrid = houseID
     local hid = math.abs(houseID)
 
@@ -80,7 +84,7 @@ function stealTooExpensiveVehicles()
                         abgeschleppt = 1,
                         lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
                         lastHealth = getElementHealth(theVehicle)
-                    }, {ID = vioGetElementData(theVehicle, "dbid")});
+                    }, { ID = vioGetElementData(theVehicle, "dbid") });
 
                     for theKey, theTable in ipairs(privVeh) do
                         if (theTable[3] == source) then

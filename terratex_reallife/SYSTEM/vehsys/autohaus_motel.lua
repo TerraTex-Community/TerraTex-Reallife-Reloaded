@@ -290,7 +290,7 @@ function createBuyCars()
     addEventHandler("onPickupHit", pick, shoeAutohausInfoIcon)
 
     local rabattPickup = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
-    addEventHandler("onPickupHit", pickup, sendRabattCarMessage, false)
+    addEventHandler("onPickupHit", rabattPickup, sendRabattCarMessage, false)
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBuyCars)

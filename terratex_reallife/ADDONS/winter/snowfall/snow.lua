@@ -250,6 +250,10 @@ end
 function drawSnow()
 	if not snowing then return end
 
+    if (not settings.type) then
+        setDefaultSnowValues()
+    end
+
     local tick = getTickCount()
 
     local cx, cy, cz = getCameraMatrix()
@@ -341,9 +345,6 @@ function drawSnow()
                             --	if isLineOfSightClear(cx,cy,cz,flake.x+lx,flake.y+ly,flake.z+lz,true,true,true,true,false,false,false,true) then
                             --dxDrawImage(draw_x,draw_y,flake.size,flake.size,"flakes/snowflake"..tostring(flake.image).."_".. settings.type ..".png",flake.rot,0,0,tocolor(222,235,255,flake.alpha))
 							local type = settings.type;
-							if (not type) then
-								type = "real"
-							end
                             dxDrawImageSection(draw_x, draw_y, flake.size, flake.size, flake.section[1], flake.section[2], 32, 32, "ADDONS/winter/snowfall/flakes/" .. type .. "_tile.png", flake.rot, 0, 0, tocolor(222, 235, 255, flake.alpha))
                             --	end
 
@@ -403,7 +404,7 @@ function drawSnow()
     --outputDebugString(string.format("Snow took: %.6f",getTickCount() - tick))
 end
 
-function setSnowValues()
+function setDefaultSnowValues()
     updateSnowType("real")
     -- updateSnowDensity(200,false)
     int = getRainLevel()
@@ -418,6 +419,9 @@ function setSnowValues()
     updateSnowflakeSize(1, 4)
     updateSnowFallSpeed(1, 20)
     updateSnowJitter(true)
+end
+
+function setSnowValues()
     startSnow()
     setTimer(CheckWindChange, 5000, 0)
 end

@@ -325,7 +325,12 @@ end
 addCommandHandler("lotto", lotto_func, false, false)
 
 function jackpot_func(thePlayer)
-    outputChatBox(string.format("Der Lottojackpot liegt bei %s$", serversettings["lottojackpot"]), thePlayer)
+    local tickets = MySql.helper.getCountSync("user_tombupot")
+    local gewinn = tickets * (getTombuTicketPrice() * (1 - (getTombuBizPercentage() / 100)))
+
+    outputChatBox(string.format("Der Lottojackpot liegt bei %s$", toprice(serversettings["lottojackpot"])), thePlayer)
+    outputChatBox(string.format("Der Steuer-Lottojackpot liegt bei %s$", toprice(serversettings["steuerlottojackpot"])), thePlayer)
+    outputChatBox(string.format("Bei der Tombupotlotterie nehmen aktuell %s Tickets teil, das entspricht einen Gewinn von %s$", tickets, toprice(gewinn)), thePlayer)
 end
 addCommandHandler("jackpot", jackpot_func)
 

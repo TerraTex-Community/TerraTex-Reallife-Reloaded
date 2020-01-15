@@ -7,19 +7,19 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
         end
         if (driverCounter == 0) then
             local vehicleType = getVehicleType(lastclicked)
-            if (getElementType(lastclicked) == "vehicle" and getElementData(lastclicked,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked,"besitzer") == getPlayerName(getLocalPlayer()))) then
+            if (getElementType(lastclicked) == "vehicle" and getElementData(lastclicked, "besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked, "besitzer") == getPlayerName(getLocalPlayer()))) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
-                local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
+                local actualspeed = (speedx ^ 2 + speedy ^ 2 + speedz ^ 2) ^ (0.5)
                 local kmh = actualspeed * 180
                 if (kmh <= 2.0) then
                     local testVeh = createVehicle(getElementModel(lastclicked), 0, 0, 0)
                     local x0, y0, z0, x1, y1, z1 = getElementBoundingBox(testVeh)
                     destroyElement(testVeh)
-                    local laenge = y1-y0
+                    local laenge = y1 - y0
                     if (laenge <= 7.92) then
                         local z = getElementDistanceFromCentreOfMassToBaseOfModel(lastclicked)
                         setElementData(truck, "abschleppTruck_AttachedVehicle", lastclicked)
-                        triggerServerEvent("abschleppTruck_Aufladen",getLocalPlayer(), lastclicked, z)
+                        triggerServerEvent("abschleppTruck_Aufladen", getLocalPlayer(), lastclicked, z)
                         outputChatBox("Das Fahrzeug wird in 10 Sekunden aufgeladen")
                     else
                         showError(getLocalPlayer(), "Das Fahrzeug ist zu lang!")
@@ -44,9 +44,9 @@ abschleppTruck_Abladen_GUI = function()
         if (isElement(truck) and getElementData(truck, "isAbschleppTruck")) then
             local attached = getElementData(truck, "abschleppTruck_AttachedVehicle")
             if (isElement(attached)) then
-                if ((getElementData(attached,"besitzer") and getElementData(attached,"besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck,"AbschleppTruck_PoliceTruck")) then
+                if ((getElementData(attached, "besitzer") and getElementData(attached, "besitzer") == getPlayerName(getLocalPlayer())) or getElementData(truck, "AbschleppTruck_PoliceTruck")) then
                     local variant1, variant2 = getVehicleVariant(attached)
-                    abschleppTruckPreview = createVehicle(getElementModel(attached), 0,0,0, 0,0,0, getVehiclePlateText(attached), variant1, variant2)
+                    abschleppTruckPreview = createVehicle(getElementModel(attached), 0, 0, 0, 0, 0, 0, getVehiclePlateText(attached), variant1, variant2)
                     setVehiclePaintjob(abschleppTruckPreview, getVehiclePaintjob(attached))
                     setVehicleEngineState(abschleppTruckPreview, getVehicleEngineState(attached))
                     for light = 0, 3, 1 do
@@ -85,7 +85,7 @@ function abschleppTruck_Abladen_Preview()
                     if (distance and distance < 8.0) then
                         local zd = getElementDistanceFromCentreOfMassToBaseOfModel(abschleppTruckPreview)
                         setElementPosition(abschleppTruckPreview, x, y, z + zd)
-                        setVehicleColor(abschleppTruckPreview, 255,255,255, 255,255,255, 255,255,255, 255,255,255)
+                        setVehicleColor(abschleppTruckPreview, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255)
                         local rx, ry, rz = getElementRotation(truck)
                         setElementRotation(abschleppTruckPreview, rx, ry, rz)
                         setElementAlpha(abschleppTruckPreview, 128)
@@ -105,7 +105,7 @@ function abschleppTruck_Abladen_Preview()
 end
 
 function abschleppTruckLeave(theVehicle, seat)
-    if (theVehicle and getElementData(theVehicle, "isAbschleppTruck")) then
+    if (theVehicle and isElement(theVehicle) and getElementData(theVehicle, "isAbschleppTruck")) then
         local attachedElements = getAttachedElements(theVehicle)
         if (attachedElements) then
             for ElementKey, ElementValue in ipairs(attachedElements) do
@@ -122,7 +122,7 @@ addEventHandler("onClientPlayerVehicleExit", getRootElement(), abschleppTruckLea
 function abschleppTruckEnter()
     local theVehicle = getPedOccupiedVehicle(source)
     if (getElementData(theVehicle, "isAbschleppTruck")) then
-        local attachedElements = getAttachedElements (theVehicle)
+        local attachedElements = getAttachedElements(theVehicle)
         if (attachedElements) then
             for ElementKey, ElementValue in ipairs(attachedElements) do
                 if (getElementType(ElementValue) == "vehicle") then
@@ -163,7 +163,7 @@ end
 function abschleppTruck_Abladen_Click()
     local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (abschleppTruckPreview) then
-        local x, y, z    = getElementPosition(abschleppTruckPreview)
+        local x, y, z = getElementPosition(abschleppTruckPreview)
         local rx, ry, rz = getElementRotation(abschleppTruckPreview)
         abschleppTruck_Abladen_EndPreview()
         local truck = getPedOccupiedVehicle(getLocalPlayer())
@@ -171,13 +171,13 @@ function abschleppTruck_Abladen_Click()
             local attached = getElementData(truck, "abschleppTruck_AttachedVehicle")
             if (isElement(attached)) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
-                local actualspeed = (speedx^2 + speedy^2 + speedz^2)^(0.5)
+                local actualspeed = (speedx ^ 2 + speedy ^ 2 + speedz ^ 2) ^ (0.5)
                 local kmh = actualspeed * 180
                 if (kmh <= 2.0) then
                     local tx, ty, tz = getElementPosition(truck)
                     local distance = getDistanceBetweenPoints3D(x, y, z, tx, ty, tz)
                     if (distance and distance < 8.0) then
-                        triggerServerEvent("abschleppTruck_Abladen",getLocalPlayer(), attached, x, y, z, rx, ry, rz)
+                        triggerServerEvent("abschleppTruck_Abladen", getLocalPlayer(), attached, x, y, z, rx, ry, rz)
                         setElementData(truck, "abschleppTruck_AttachedVehicle", nil)
                         setElementCollisionsEnabled(attached, true)
                     else

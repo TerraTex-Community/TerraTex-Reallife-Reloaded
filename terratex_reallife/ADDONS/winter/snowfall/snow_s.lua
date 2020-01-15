@@ -3,7 +3,10 @@ local snowToggle = get("snow_toggle")
 
 addEvent("onClientReady",true)
 addEventHandler("onClientReady",root,function()
-	triggerClientEvent(client,"triggerGuiEnabled",client,guiEnabled,snowToggle)
+
+	if (isWinter()) then
+		triggerClientEvent(client,"triggerGuiEnabled",client,guiEnabled,snowToggle)
+	end
 end)
 
 _setRainLevel=setRainLevel

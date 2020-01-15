@@ -8,14 +8,15 @@ autohausspawns = {
     { 1945.5, -2316.3, 16.7, 0, 0, 184 },
     { 802.79998779297, -2077.1999511719, 1.7999999523163, 0, 0, 183 },
     { 2811.6999511719, -1578.6999511719, 10.89999961853, 0, 0, 268 },
-	{ 552, -1276.3000488281, 17.10000038147, 0, 0, 320 }
+    { 552, -1276.3000488281, 17.10000038147, 0, 0, 320 }
 }
 
 rabattCars = {}
+rabattCarsReduce = {}
 
 function createBuyCars()
     autohaustimer = { 0, 0, 0, 0, 0, 0 }
-	-- Billigautohändler
+    -- Billigautohändler
     --PreisÄndern: table.insert Zeile letzter Wert
     local vehicle = createVehicle(418, 2122.2900390625, -1157.87109375, 24.226362228394, 357.15454101562, 2.2576904296875, 0.3076171875)
     table.insert(autohausVehicles, { vehicle, "Moonbeam", 1, 4160.00 }) --E
@@ -63,7 +64,7 @@ function createBuyCars()
     table.insert(autohausVehicles, { vehicle, "Cadrona", 1, 3500.00 }) --E
 
     --AUTOHAUS 2
-	-- Motorradhändler
+    -- Motorradhändler
     vehicle = createVehicle(457, 445.1396484375, -1342.6279296875, 14.773164749146, 359.84619140625, 357.11608886719, 123.93127441406)
     table.insert(autohausVehicles, { vehicle, "Caddy", 2, 2400.00 })
     vehicle = createVehicle(424, 446.97265625, -1345.2509765625, 14.775791168213, 358.84094238281, 357.34680175781, 119.08630371094)
@@ -109,7 +110,8 @@ function createBuyCars()
     vehicle = createVehicle(533, 1669.8000488281, 1297.6900634766, 10.60000038147, 0, 0, 180)
     table.insert(autohausVehicles, { vehicle, "Feltzer", 3, 52500.00 }) --E
     vehicle = createVehicle(545, 1682.5205078125, 1297.884765625, 10.631306648254, 0, 359.99450683594, 180.54931640625)
-    table.insert(autohausVehicles, { vehicle, "Hustler", 3, 45000.00 }) --- E
+    table.insert(autohausVehicles, { vehicle, "Hustler", 3, 45000.00 })
+    --- E
     vehicle = createVehicle(551, 1663.30859375, 1306.26171875, 10.620839118958, 359.9560546875, 0, 359.86267089844)
     table.insert(autohausVehicles, { vehicle, "Merit", 3, 28000.00 }) --E
     vehicle = createVehicle(466, 1676.3994140625, 1297.4013671875, 10.362077713013, 0.428466796875, 0.0054931640625, 179.99450683594)
@@ -120,7 +122,7 @@ function createBuyCars()
     table.insert(autohausVehicles, { vehicle, "Windsor", 3, 85000.00 }) --E
 
     --Autohaus Nummer 4
-	-- Sportautohändler
+    -- Sportautohändler
     vehicle = createVehicle(560, 1110.10546875, 2390.1123046875, 16.812082290649, 340.36193847656, 1.3787841796875, 117.78442382813)
     table.insert(autohausVehicles, { vehicle, "Sultan", 4, 148000.00 })
     vehicle = createVehicle(562, 1105.0703125, 2356.7822265625, 10.658887863159, 359.65942382813, 359.99450683594, 36.1669921875)
@@ -189,7 +191,7 @@ function createBuyCars()
     table.insert(autohausVehicles, { vehicle, "Dinghy", 6, 35000.00 })
 
     --autohaus 7
-	-- Premiumautohändler
+    -- Premiumautohändler
     vehicle = createVehicle(543, 2802.6000976563, -1540.9000244141, 10.699999809265, 0, 0, 180.75)
     table.insert(autohausVehicles, { vehicle, "Sadler", 7, 2000.00 })
     vehicle = createVehicle(413, 2812.1999511719, -1540.5999755859, 11.10000038147, 0, 0, 180)
@@ -222,39 +224,39 @@ function createBuyCars()
     table.insert(autohausVehicles, { vehicle, "Mower", 7, 4500.00 })
     vehicle = createVehicle(478, 2795.5927734375, -1571.4453125, 10.650381088257, 0.4888916015625, 0, 268.91784667969)
     table.insert(autohausVehicles, { vehicle, "Walton", 7, 6000 })
-	
-	--autohaus 8
+
+    --autohaus 8
     -- Grotti
-	vehicle = createVehicle(550, 564, 2802.6000976563, -1277.1999511719, 17.200000762939, 0, 0, 101.99157714844)
-	table.insert(autohausVehicles, { vehicle, "Sunrise", 8, 9000.00 })
-	vehicle = createVehicle(575, 565.09997558594, -1282.3000488281, 17, 0, 0, 99.997497558594)
-	table.insert(autohausVehicles, { vehicle, "Broadway", 8, 25000.00 })
-	vehicle = createVehicle(576, 562.5, -1288.3000488281, 17, 0, 0, 39.995727539063)
-	table.insert(autohausVehicles, { vehicle, "Tornado", 8, 12000.00 })
-	vehicle = createVehicle(474, 557.70001220703, -1290.6999511719, 17.10000038147, 0, 0, 0)
-	table.insert(autohausVehicles, { vehicle, "Hermes", 8, 13000.00 })
-	vehicle = createVehicle(566, 552.5, -1290.40002441415, 17.10000038147, 0, 0, 0.9942626953125)
-	table.insert(autohausVehicles, { vehicle, "Tahoma", 8, 7500.00 })
-	vehicle = createVehicle(535, 546.5, -1290.8000488281, 17.10000038147, 0, 0, 349.99139404297)
-	table.insert(autohausVehicles, { vehicle, "Slamvan", 8, 18750.00 })
-	vehicle = createVehicle(567, 540.5, -1290.6999511719, 17.200000762939, 0, 0, 335.98956298828)
-	table.insert(autohausVehicles, { vehicle, "Savanna", 8, 6000.00 })
-	vehicle = createVehicle(536, 534.09997558594, -1290.5999755859, 17.200000762939, 0, 0, 335.98956298828)
-	table.insert(autohausVehicles, { vehicle, "Blade", 8, 5750.00 })
-	vehicle = createVehicle(561, 527.79998779297, -1290.5, 17.200000762939, 0, 0, 321.99822998047)
-	table.insert(autohausVehicles, { vehicle, "Stratum", 8, 5500.00 })
-	vehicle = createVehicle(565, 529.59997558594, -1279.6999511719, 16.89999961853, 0, 0, 189.99743652344)
-	table.insert(autohausVehicles, { vehicle, "Flash", 8, 17500.00 })
-	vehicle = createVehicle(589, 533.59997558594, -1276.6999511719, 17, 0, 0, 189.99749755859)
-	table.insert(autohausVehicles, { vehicle, "Club", 8, 22000.00 })
-	vehicle = createVehicle(518, 538.09997558594, -1274, 17, 0, 0, 180)
-	table.insert(autohausVehicles, { vehicle, "Buccaneer", 8, 1800.00 })
-	vehicle = createVehicle(517, 542.40002441406, -1270.4000244141, 17.200000762939, 0, 0, 180)
-	table.insert(autohausVehicles, { vehicle, "Majestic", 8, 5600.00 })
-	vehicle = createVehicle(534, 547.09997558594, -1267.5, 17.10000038147, 0, 0, 180)
-	table.insert(autohausVehicles, { vehicle, "Remington", 8, 20000.00 })
-	vehicle = createVehicle(412, 551.90002441406, -1264.8000488281, 17.200000762939, 0, 0, 180)
-	table.insert(autohausVehicles, { vehicle, "Vodoo", 8, 3000.00 })
+    vehicle = createVehicle(550, 564, 2802.6000976563, -1277.1999511719, 17.200000762939, 0, 0, 101.99157714844)
+    table.insert(autohausVehicles, { vehicle, "Sunrise", 8, 9000.00 })
+    vehicle = createVehicle(575, 565.09997558594, -1282.3000488281, 17, 0, 0, 99.997497558594)
+    table.insert(autohausVehicles, { vehicle, "Broadway", 8, 25000.00 })
+    vehicle = createVehicle(576, 562.5, -1288.3000488281, 17, 0, 0, 39.995727539063)
+    table.insert(autohausVehicles, { vehicle, "Tornado", 8, 12000.00 })
+    vehicle = createVehicle(474, 557.70001220703, -1290.6999511719, 17.10000038147, 0, 0, 0)
+    table.insert(autohausVehicles, { vehicle, "Hermes", 8, 13000.00 })
+    vehicle = createVehicle(566, 552.5, -1290.40002441415, 17.10000038147, 0, 0, 0.9942626953125)
+    table.insert(autohausVehicles, { vehicle, "Tahoma", 8, 7500.00 })
+    vehicle = createVehicle(535, 546.5, -1290.8000488281, 17.10000038147, 0, 0, 349.99139404297)
+    table.insert(autohausVehicles, { vehicle, "Slamvan", 8, 18750.00 })
+    vehicle = createVehicle(567, 540.5, -1290.6999511719, 17.200000762939, 0, 0, 335.98956298828)
+    table.insert(autohausVehicles, { vehicle, "Savanna", 8, 6000.00 })
+    vehicle = createVehicle(536, 534.09997558594, -1290.5999755859, 17.200000762939, 0, 0, 335.98956298828)
+    table.insert(autohausVehicles, { vehicle, "Blade", 8, 5750.00 })
+    vehicle = createVehicle(561, 527.79998779297, -1290.5, 17.200000762939, 0, 0, 321.99822998047)
+    table.insert(autohausVehicles, { vehicle, "Stratum", 8, 5500.00 })
+    vehicle = createVehicle(565, 529.59997558594, -1279.6999511719, 16.89999961853, 0, 0, 189.99743652344)
+    table.insert(autohausVehicles, { vehicle, "Flash", 8, 17500.00 })
+    vehicle = createVehicle(589, 533.59997558594, -1276.6999511719, 17, 0, 0, 189.99749755859)
+    table.insert(autohausVehicles, { vehicle, "Club", 8, 22000.00 })
+    vehicle = createVehicle(518, 538.09997558594, -1274, 17, 0, 0, 180)
+    table.insert(autohausVehicles, { vehicle, "Buccaneer", 8, 1800.00 })
+    vehicle = createVehicle(517, 542.40002441406, -1270.4000244141, 17.200000762939, 0, 0, 180)
+    table.insert(autohausVehicles, { vehicle, "Majestic", 8, 5600.00 })
+    vehicle = createVehicle(534, 547.09997558594, -1267.5, 17.10000038147, 0, 0, 180)
+    table.insert(autohausVehicles, { vehicle, "Remington", 8, 20000.00 })
+    vehicle = createVehicle(412, 551.90002441406, -1264.8000488281, 17.200000762939, 0, 0, 180)
+    table.insert(autohausVehicles, { vehicle, "Vodoo", 8, 3000.00 })
 
     for theKey, theKoords in ipairs(autohausspawns) do
         createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
@@ -271,11 +273,14 @@ function createBuyCars()
     end
 
     local i = 1;
-    for i = 1, 5, 1 do
+    for i = 1, 7, 1 do
         local rand = math.random(1, table.getSize(autohausVehicles))
-        autohausVehicles[rand][4] = autohausVehicles[rand][4] * 0.8
         if (not table.hasValue(rabattCars, rand)) then
+            local rabatt = (math.random(20, 80) / 100);
+            autohausVehicles[rand][4] = autohausVehicles[rand][4] * rabatt;
+
             table.insert(rabattCars, rand)
+            table.insert(rabattCarsReduce, rabatt)
         end
     end
     local pick = createPickup(427.771484375, -1353.470703125, 15.021891593933, 3, 1239)
@@ -283,6 +288,9 @@ function createBuyCars()
 
     pick = createPickup(2130.6787109375, -1149.76171875, 24.216320037842, 3, 1239)
     addEventHandler("onPickupHit", pick, shoeAutohausInfoIcon)
+
+    local rabattPickup = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
+    addEventHandler("onPickupHit", rabattPickup, sendRabattCarMessage, false)
 end
 
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBuyCars)
@@ -295,12 +303,20 @@ function showRabbatCars_func(thePlayer)
     if (vioGetElementData(thePlayer, "fraktion") == 3) then
         outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
         for m, z in ipairs(rabattCars) do
-            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]), thePlayer)
+            local percentage = 100 - (rabattCarsReduce[m] * 100);
+            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", thePlayer)
         end
     end
 end
-
 addCommandHandler("rabattcars", showRabbatCars_func, false, false)
+
+function sendRabattCarMessage(player)
+    outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", player)
+    for m, z in ipairs(rabattCars) do
+        local percentage = 100 - (rabattCarsReduce[m] * 100);
+        outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", player)
+    end
+end
 
 function startEnterBuyVehicle_func()
     for theKey, thevehicle in ipairs(autohausVehicles) do
@@ -394,7 +410,7 @@ function buyCar(thevehicle)
                                 kaufpreis = vehicle[4]
                             });
 
---                            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
+                            --                            outputDebugString("Buyed Car dbid:" .. tostring(dbid))
                             vioSetElementData(spawnVeh, "dbid", dbid)
                             warpPedIntoVehicle(source, spawnVeh)
                             showError(source, "Du hast dieses Fahrzeug erfolgreich gekauft! Bitte parke es auf einen PARKPLATZ Reallife mäßig mit /park. Parkst du es nicht wird es an den Koordinaten 0 0 0 spawnen und eventuell gelöscht!")

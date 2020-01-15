@@ -1,4 +1,4 @@
-abgabecol = createColRectangle(2484.5, -2113.7001953125, 63.84, 32.0379)
+abgabecol = createColSphere(2483.384765625,-2110.2294921875,13.114736557007, 40)
 abgabecolA = createColRectangle(2241.9189453125, 2434.1201171875, 55, 58)
 
 local VerwahrungLSPD = createBlip(2447.8000488281, -2120.8999023438, 13.60000038147, 51, 1, 0, 0, 0, 255, 0, 255, getRootElement())

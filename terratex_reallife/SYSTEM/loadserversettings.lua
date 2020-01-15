@@ -48,6 +48,7 @@ function loadSettingsFromDB()
     serversettings["Version"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Version" });
     serversettings["atommuell"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "atommuell" });
     serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "spielerDesMonats" });
+    serversettings["steuerlottojackpot"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "steuerlottojackpot" });
 
     setGameType("TerraTex Reallife Reloaded Script " .. serversettings["Version"])
     setRuleValue("Homepage", config["maindomain"])
@@ -140,6 +141,7 @@ function saveSettingsInDB()
     MySql.helper.update("data_settings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
     MySql.helper.update("data_settings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
     MySql.helper.update("data_settings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("data_settings", { Wert = serversettings["steuerlottojackpot"] }, { Name = "steuerlottojackpot"});
     MySql.helper.update("data_settings", { Wert = rainlevel }, { Name = "regenlevel"});
 
     setTimer(saveSettingsInDB, 3600000, 1)
@@ -153,6 +155,7 @@ function stopResource_func()
     MySql.helper.update("data_settings", { Wert = serversettings["matspreis"] }, { Name = "matspreis"});
     MySql.helper.update("data_settings", { Wert = serversettings["tankpreis"] }, { Name = "tankpreis"});
     MySql.helper.update("data_settings", { Wert = serversettings["atommuell"] }, { Name = "atommuell"});
+    MySql.helper.update("data_settings", { Wert = serversettings["steuerlottojackpot"] }, { Name = "steuerlottojackpot"});
     MySql.helper.update("data_settings", { Wert = rainlevel }, { Name = "regenlevel"});
 
 

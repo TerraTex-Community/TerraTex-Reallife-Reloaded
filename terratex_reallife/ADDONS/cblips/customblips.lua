@@ -41,30 +41,30 @@ function renderBlip ( blip, toF11Map, radarWorldX, radarWorldY, camRot, radarRad
 	local width,height = streamedBlips[blip].width,streamedBlips[blip].height
 	local radarScale = streamedBlips[blip].radarScale
 	if not toF11Map then
-		local toBlipRot = getVectorRotation(radarWorldX,radarWorldY,blipX,blipY )
-		local blipRot = toBlipRot - camRot
-		--Get the screen radius at that rotation
-		local radius = getRadarScreenRadius ( blipRot )
-			
-		local distance = getDistanceBetweenPoints2D ( radarWorldX,radarWorldY,blipX,blipY )
-		if (distance <= radarRadius) then
-			radius = (distance/radarRadius)*radius		
-		end
-		local tx = radius * math.sin(blipRot) + abs.center_x
-		local ty = -radius * math.cos(blipRot) + abs.center_y	
+		--local toBlipRot = getVectorRotation(radarWorldX,radarWorldY,blipX,blipY )
+		--local blipRot = toBlipRot - camRot
+		----Get the screen radius at that rotation
+		--local radius = getRadarScreenRadius ( blipRot )
 		--
-		local sx,sy  = width,height
-		if radarScale then
-			sx,sy = width*radarScale, height*radarScale
-			setWidgetSize (blip,sx,sy)
-		else
-			--If the user hasnt forced a radar blip scale, we use GTA's default sizing
-			local ratio = abs.radar_blip_y/height
-			sx = ratio*width
-			sy = abs.radar_blip_y
-			setWidgetSize (blip,sx,sy)
-		end
-		setWidgetPosition(blip,tx-sx/2,ty-sy/2)
+		--local distance = getDistanceBetweenPoints2D ( radarWorldX,radarWorldY,blipX,blipY )
+		--if (distance <= radarRadius) then
+		--	radius = (distance/radarRadius)*radius
+		--end
+		--local tx = radius * math.sin(blipRot) + abs.center_x
+		--local ty = -radius * math.cos(blipRot) + abs.center_y
+		----
+		--local sx,sy  = width,height
+		--if radarScale then
+		--	sx,sy = width*radarScale, height*radarScale
+		--	setWidgetSize (blip,sx,sy)
+		--else
+		--	--If the user hasnt forced a radar blip scale, we use GTA's default sizing
+		--	local ratio = abs.radar_blip_y/height
+		--	sx = ratio*width
+		--	sy = abs.radar_blip_y
+		--	setWidgetSize (blip,sx,sy)
+		--end
+		--setWidgetPosition(blip,tx-sx/2,ty-sy/2)
 	else --Render to f11 map
 		local minX, minY, maxX, maxY, sizeX, sizeY = F11minX, F11minY, F11maxX, F11maxY, F11sizeX, F11sizeY
 		--
@@ -76,5 +76,6 @@ function renderBlip ( blip, toF11Map, radarWorldX, radarWorldY, camRot, radarRad
 		local sx,sy = width,height
 		setWidgetSize (blip,width,height)
 		setWidgetPosition(blip,mapX-sx/2,mapY-sy/2)
+		setWidgetAlpha(blip, 0.5)
 	end
 end

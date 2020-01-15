@@ -53,7 +53,7 @@ function isOnFisherBoat(player)
         veh = getPedOccupiedVehicle(player)
     end
 
-    if (veh) then
+    if (veh and isElement(veh) and getElementType(veh) == "vehicle") then
         if (getVehicleType(veh) == "Boat") then
             if not (vioGetElementData(veh, "locked")) then
                 if (canFishVehicle[getElementModel(veh)] or vioGetElementData(player, "industrialFishingLic") == 1) then

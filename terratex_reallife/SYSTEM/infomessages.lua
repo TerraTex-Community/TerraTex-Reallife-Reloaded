@@ -25,7 +25,7 @@ function messageB()
 				outputChatBox("eine Liste der Admins die Online sind erhälst du mit /admins",thePlayer,255,255,0)	
 				outputChatBox("eine Liste mit allen Service Telefonnumern erhälst du mit /service",thePlayer,255,255,0)					
 			end	
-			outputChatBox("Die Regeln des Servers findest du unter F1 und weitere unter /rules!",thePlayer,255,255,0)	
+			outputChatBox("Die Regeln des Servers findest du unter F1!",thePlayer,255,255,0)
 		end
 	end
 	setTimer(messageC,1800000,1)
@@ -41,7 +41,7 @@ function messageC()
 				outputChatBox("Nutze X und L um Licht und Motor an zu machen!",thePlayer,255,255,0)	
 				outputChatBox("Rufe mit F11 die Karte auf um dich besser zu orientieren!",thePlayer,255,255,0)				
 			end	
-			outputChatBox("Die Regeln des Servers findest du unter F1 und weitere unter /rules!",thePlayer,255,255,0)	
+			outputChatBox("Die Regeln des Servers findest du unter F1!",thePlayer,255,255,0)
 		end
 	end
 	setTimer(messageA,1800000,1)

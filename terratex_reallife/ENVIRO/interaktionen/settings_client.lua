@@ -64,11 +64,17 @@ function build_settingsmenu()
 
     gui["essenCheck"] = guiCreateCheckBox(227, 137, 166, 21, "An / Aus", false, false, gui["scrollArea"])
 
-    gui["label_12"] = guiCreateLabel(12, 182, 209, 31, "Infotext in der Fußzeile anzeigen", false, gui["scrollArea"])
-    guiLabelSetHorizontalAlign(gui["label_12"], "left", false)
-    guiLabelSetVerticalAlign(gui["label_12"], "center")
+	gui["label_12"] = guiCreateLabel(12, 182, 209, 31, "Infotext in der Fußzeile anzeigen", false, gui["scrollArea"])
+	guiLabelSetHorizontalAlign(gui["label_12"], "left", false)
+	guiLabelSetVerticalAlign(gui["label_12"], "center")
 
-    gui["infotextCheck"] = guiCreateCheckBox(227, 187, 166, 21, "An / Aus", false, false, gui["scrollArea"])
+	gui["infotextCheck"] = guiCreateCheckBox(227, 187, 166, 21, "An / Aus", false, false, gui["scrollArea"])
+
+	gui["label_13"] = guiCreateLabel(12, 222, 209, 31, "Hunger & Lebens Sound", false, gui["scrollArea"])
+	guiLabelSetHorizontalAlign(gui["label_13"], "left", false)
+	guiLabelSetVerticalAlign(gui["label_13"], "center")
+
+	gui["hungerSoundCheck"] = guiCreateCheckBox(227, 222, 166, 21, "An / Aus", false, false, gui["scrollArea"])
 
 	
 	gui["tab_2"] = guiCreateTab("Grafik", gui["settingsTabPanel"])
@@ -150,6 +156,7 @@ function loadStandardSettings()
 	client_settings["newDetails"]=false
 	client_settings["LackShadder"]=false
 	client_settings["infotext"]=true
+	client_settings["hungersound"]=true
 
 end
 function onSettingsGUICreate()
@@ -224,6 +231,7 @@ function on_settingsCloseButton_clicked(button, state, absoluteX, absoluteY)
 	--Daten aus GUI auslesen
 	client_settings["InfoSounds"]=guiCheckBoxGetSelected ( settingsGUI["infoCheck"]  )
 	client_settings["infotext"]=guiCheckBoxGetSelected ( settingsGUI["infotextCheck"]  )
+	client_settings["hungersound"]=guiCheckBoxGetSelected ( settingsGUI["hungerSoundCheck"]  )
 	client_settings["RadioStreamer"]=guiCheckBoxGetSelected ( settingsGUI["streamerCheck"]  )
 	client_settings["BloomShader"]=guiCheckBoxGetSelected ( settingsGUI["bloomCheck"]  )
 	client_settings["newDetails"]=guiCheckBoxGetSelected ( settingsGUI["detailsCheck"]  )
@@ -291,6 +299,9 @@ function loadConfigFile()
         if(xmlFindChild ( node, "infotext", 0 ))then
 		    client_settings["infotext"]=StrToBool(xmlNodeGetValue (xmlFindChild ( node, "infotext", 0 ) ))
         end
+		if(xmlFindChild ( node, "hungersound", 0 ))then
+		    client_settings["hungersound"]=StrToBool(xmlNodeGetValue (xmlFindChild ( node, "hungersound", 0 ) ))
+        end
 		client_settings["Standartradio"]=tonumber(xmlNodeGetValue (xmlFindChild ( node, "Standartradio", 0 ) ))
 		client_settings["RadioStreamer"]=StrToBool(xmlNodeGetValue (xmlFindChild ( node, "RadioStreamer", 0 ) ))
 		client_settings["Blur"]=tonumber(xmlNodeGetValue (xmlFindChild ( node, "Blur", 0 ) ))
@@ -316,6 +327,7 @@ end
 function writeSettingsInSettingsGUI()
 	guiCheckBoxSetSelected ( settingsGUI["infoCheck"] , client_settings["InfoSounds"])
 	guiCheckBoxSetSelected ( settingsGUI["infotextCheck"] , client_settings["infotext"])
+	guiCheckBoxSetSelected ( settingsGUI["hungerSoundCheck"] , client_settings["hungersound"])
 	guiCheckBoxSetSelected ( settingsGUI["streamerCheck"], client_settings["RadioStreamer"])
 	guiCheckBoxSetSelected ( settingsGUI["bloomCheck"],client_settings["BloomShader"])
 	guiCheckBoxSetSelected ( settingsGUI["detailsCheck"],client_settings["newDetails"])

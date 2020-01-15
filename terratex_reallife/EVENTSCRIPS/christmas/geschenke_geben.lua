@@ -73,13 +73,12 @@ function wantAKart_Event_func()
 end
 addEventHandler("wantAKart_Event", getRootElement(), wantAKart_Event_func)
 
-local adventDay = { [15] = true, [21] = true, [24] = true, [25] = true, [26] = true }
 function adventPresent()
     setTimer(adventPresent, 60000, 1)
     local time = getRealTime()
     if (time.hour == 19 and time.minute == 30) then
-        if (time.monthday < 27 and time.month == 11 or time.monthday > 26 and time.month == 10) then
-            if (adventDay[time.monthday]) then
+        if (isAdventTime() or (isAdventDayToday())) then
+            if (isAdventDayToday()) then
                 for theKey, thePlayers in ipairs(getElementsByType("player")) do
                     if (isPlayerLoggedIn(thePlayers)) then
                         give_AdventsPresent(thePlayers, math.random(table.getn(adventPresets_big)))                       
@@ -96,17 +95,6 @@ function adventPresent()
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), adventPresent)
-
-
-registerAcceptHandler("chrismas", function(thePlayer)
-    outputChatBox("Herzlichen Glückwunsch, du nimmst an der Verlosung teil. Die Spiele werden zwischen Weihnachten und Silvester verlost. Die Keys/Geschenklinks werden an deine registrierte E-Mail gesendet, daher überprüfe deine Email unter /profile", thePlayer, 166,0,166)
-
-    MySql.helper.insert("data_chrismas", {
-        Nickname = getPlayerName(thePlayer)
-    });
-end, {
-    requestedDataValues = {"canHaveSteamTicket"}
-});
 
 
 function give_AdventsPresent(player, presentID)

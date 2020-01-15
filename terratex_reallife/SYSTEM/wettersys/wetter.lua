@@ -29,7 +29,7 @@ function setWetterOnResourceStart()
 	rainlevel=MySql.helper.getValueSync("data_settings", "Wert", { Name = "regenlevel" });
 
     changeWeather()
-    local pickup = createPickup(1473.146484375, -1771.8291015625, 18.795755386353, 3, 1239, 5000)
+    local pickup = createPickup(1046.37109375,1010.3427734375,11, 3, 1239, 5000)
     addEventHandler("onPickupHit", pickup, sendOeffiWetterMessage, false)
 end
 

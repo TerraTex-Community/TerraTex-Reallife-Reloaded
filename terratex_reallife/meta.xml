@@ -50,7 +50,9 @@
     <script src="SYSTEM/uhr/synctime_client.lua" type="client"/>
     <script src="SYSTEM/uhr/synctime_server.lua" type="server"/>
 
-    <script src="SYSTEM/loggingsys.lua" type="server"/>
+    <script src="SYSTEM/logging/loggingsys.lua" type="server"/>
+    <script src="SYSTEM/logging/debug_log_client.lua" type="client"/>
+    <script src="SYSTEM/logging/debug_log_server.lua" type="server"/>
     <script src="SYSTEM/elementdata/data.lua" type="server"/>
     <script src="SYSTEM/train.lua" type="server"/>
     <script src="SYSTEM/zugschranken.lua" type="server"/>
@@ -143,8 +145,10 @@
     <script src="USER/userdata/save_data.lua" type="server"/>
     <script src="USER/userdata/save_data_client.lua" type="client"/>
     <!-- payday -->
+    <script src="ENVIRO/tombupot/steuerlotto/steuerlotto_server.lua" type="server" />
     <script src="USER/payday/sozialstatus.lua" type="server"/>
     <script src="USER/payday/sozialstatus_client.lua" type="client"/>
+
     <script src="USER/payday/updateplaytime.lua" type="server"/>
     <script src="USER/payday/updateplaytime_client.lua" type="client"/>
     <!-- HELPSYSTEM -->
@@ -364,7 +368,7 @@
     <script src="ENVIRO/fraktionen/taxi/taxi_command.lua" type="server"/>
     <script src="ENVIRO/fraktionen/taxi/taxi_vehicles.lua" type="server"/>
     <!-- SEK -->
-    <script src="ENVIRO/fraktionen/sek/sek_tore.lua" type="server"/>
+    <!--  <script src="ENVIRO/fraktionen/sek/sek_tore.lua" type="server"/> -->
     <!-- LLS -->
     <script src="ENVIRO/fraktionen/lls/lls_cars.lua" type="server"/>
     <script src="ENVIRO/fraktionen/lls/lls_schutz.lua" type="server"/>
@@ -515,7 +519,7 @@
     <map src="MAPS/autohauser/bootskaufhaus.map"/>
     <!-- Frakbase -->
     <map src="MAPS/fraktionsbase/MedicBaseLS.map"/>
-    <map src="MAPS/fraktionsbase/sekbase.map"/>
+    <!-- <map src="MAPS/fraktionsbase/sekbase.map"/> -->
     <map src="MAPS/fraktionsbase/waffentest_name.map"/>
     <map src="MAPS/fraktionsbase/Newsbase_new.map"/>
     <map src="MAPS/fraktionsbase/mafiabase_neu.map"/>
@@ -560,7 +564,7 @@
     <map src="MAPS/umgebung/Marktplatz-am-Rookiespawn.map"/>
     <map src="MAPS/umgebung/Glen-Park.map"/>
     <map src="MAPS/umgebung/hochhaus-neben-glenpark.map"/>
-    <map src="MAPS/umgebung/PaynPrayLV_neu.map"/>
+    <!-- <map src="MAPS/umgebung/PaynPrayLV_neu.map"/> -->
     <!-- Innenräume -->
     <map src="MAPS/innenraume/TompuPotLottery.map"/>
     <map src="MAPS/innenraume/TT-bank-innen.map"/>
@@ -943,34 +947,18 @@
 
     <!-- Eventscripts -->
     <!-- SILVESTER -->
-    <!--<script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" />-->
+    <script src="EVENTSCRIPS/silvester/silvester_client.lua" type="client" />
 
     <!-- <WEIHNACHTEN> -->
-    <!--<map src="EVENTSCRIPS/chrismas/Wheinachtsbaum.map" />
-    <!--<script src="EVENTSCRIPS/chrismas/baum_icon.lua" type="client" />-->
-    <!--<script src="EVENTSCRIPS/chrismas/geschenke_geben.lua" type="server" />-->
+    <script src="EVENTSCRIPS/christmas/christmas_calc.lua" type="shared" />
+    <script src="EVENTSCRIPS/christmas/baum_icon_client.lua" type="client" />
+    <script src="EVENTSCRIPS/christmas/geschenke_geben.lua" type="server" />
+    <script src="EVENTSCRIPS/christmas/loadTree.lua" type="server" />
 
-    <!--- WINTER SECTION -->
-    <!--<script src="ADDONS/winter/snowshader/cShader.lua" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />-->
-    <!--<file src="ADDONS/winter/snowfall/direction_image.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/direction_pointer.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/cursor.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>-->
-    <!--<file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow.lua" type="client"/>-->
-    <!--<script src="ADDONS/winter/snowfall/snow_s.lua"/>-->
-    <!--<settings>-->
-        <!--<setting name="gui_enabled" value="[false]"/>-->
-        <!--<setting name="snow_toggle" value="[true]"/>-->
-    <!--</settings>-->
+
 
     <!--Ostern-->
+    <script src="EVENTSCRIPS/ostern/isEaster.lua" type="shared"/>
     <script src="EVENTSCRIPS/ostern/ostern_server.lua" type="server"/>
     <script src="EVENTSCRIPS/ostern/ostern_client.lua" type="client"/>
     <file src="FILES/MODS/adrenaline.dff"/>
@@ -1037,12 +1025,32 @@
     <file src="UI/styles/images/food.png"/>
     <file src="UI/styles/images/food_background.png"/>
 
-
-
     <!-- Web API -->
     <script src="WEBAPI/init_web_api.lua" type="server" />
     <script src="WEBAPI/players.lua" type="server" />
     <export function='apiGetListOfPlayers' http='true' />
     <export function='apiIsPlayerOnline' http='true' />
+
+
+    <!--- WINTER SECTION -->
+    <script src="ADDONS/winter/calcWinter.lua" type="shared" />
+    <script src="ADDONS/winter/snowshader/cShader.lua" type="client" />
+    <file src="ADDONS/winter/snowshader/smallnoise3d.dds" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_ground.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_trees.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/snow_naughty_trees.fx" type="client" />
+    <file src="ADDONS/winter/snowshader/mta-helper.fx" type="client" />
+    <file src="ADDONS/winter/snowfall/direction_image.png"/>
+    <file src="ADDONS/winter/snowfall/direction_pointer.png"/>
+    <file src="ADDONS/winter/snowfall/cursor.png"/>
+    <file src="ADDONS/winter/snowfall/flakes/cartoon_tile.png"/>
+    <file src="ADDONS/winter/snowfall/flakes/real_tile.png"/>
+    <script src="ADDONS/winter/snowfall/snow_gui.lua" type="client"/>
+    <script src="ADDONS/winter/snowfall/snow.lua" type="client"/>
+    <script src="ADDONS/winter/snowfall/snow_s.lua"/>
+    <settings>
+        <setting name="gui_enabled" value="[false]"/>
+        <setting name="snow_toggle" value="[true]"/>
+    </settings>
 
 </meta>

@@ -128,7 +128,7 @@ function calcAndSaveGfPositionIncome()
                 ID = theGfPosition.ID
             });
 
-            outputServerLog ( "stored gfladen " .. theGfPosition.ID )
+            --outputServerLog ( "stored gfladen " .. theGfPosition.ID )
         end
 
         vioSetElementData(theGfPositionElement, "data", theGfPosition);

@@ -25,7 +25,11 @@ function StellenNow(thePlayer)
                 vioSetElementData(thePlayer, "lastknastzeit", time);
                 setElementModel(thePlayer, 62);
 
-                if (Kaution == 0) then Kaution = "keine"; else Kaution = toprice(Kaution); end
+                if (Kaution == 0) then
+                    Kaution = "keine";
+                else
+                    Kaution = toprice(Kaution);
+                end
 
                 outputChatBox(string.format("Du sitzt %s Minuten im Knast. Kaution: %s", time, Kaution), thePlayer);
                 outputChatBoxForPolice(string.format("Der Stellbot hat %s eingesperrt!", getPlayerName(thePlayer)));
@@ -35,8 +39,8 @@ function StellenNow(thePlayer)
                 end
 
                 vioSetElementData(thePlayer, "alkaknast", 0);
-                local int, x,y,z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
-                setElementPosition(thePlayer, x,y,z);
+                local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
+                setElementPosition(thePlayer, x, y, z);
 
                 CrimeSystem.clear(thePlayer);
             else
@@ -74,7 +78,7 @@ function accept_stellen(thePlayer)
     end
 end
 registerAcceptHandler("stellen", accept_stellen, {
-    requestedDataValues = {"canStellen"}
+    requestedDataValues = { "canStellen" }
 });
 
 function beamtenchat(thePlayer, command, ...)
@@ -329,9 +333,9 @@ function m_func(thePlayer, Command, ...)
     local reason = table.concat({ ... }, " ")
     if (reason) then
         if (isPedInVehicle(thePlayer)) then
-            if (isBeamter(thePlayer)) then
+            if (isBeamter(thePlayer)) or (isAdminLevel(thePlayer, 2)) then
                 local vehid = getPedOccupiedVehicle(thePlayer)
-                if isPoliceCar(vehid) then
+                if isPoliceCar(vehid) or (getElementModel(vehid) == 409 and isAdminLevel(thePlayer, 2)) then
 
                     local posX, posY, posZ = getElementPosition(thePlayer)
                     local chatSphere = createColSphere(posX, posY, posZ, 100)
@@ -345,7 +349,6 @@ function m_func(thePlayer, Command, ...)
         end
     end
 end
-
 addCommandHandler("m", m_func, false, false)
 
 function tazer_func(thePlayer)
@@ -370,13 +373,15 @@ function tazer_func(thePlayer)
                         end
                     end
                 end
-                if (nearestplayer == thePlayer) then nearestplayer = false end
+                if (nearestplayer == thePlayer) then
+                    nearestplayer = false
+                end
                 if (nearestplayer) then
                     if (vioGetElementData(thePlayer, "Tazer") == 0) then
                         local hasTazerEffect = true;
                         local drugs = tonumber(getElementData(nearestplayer, "DrogenImBlut"))
                         if (drugs > 20) then
-                            if (math.random(1,2) == 1) then
+                            if (math.random(1, 2) == 1) then
                                 hasTazerEffect = false;
                             end
                         end
@@ -665,7 +670,7 @@ function accept_ticket(thePlayer)
     end
 end
 registerAcceptHandler("ticket", accept_ticket, {
-    requestedDataValues = {"ticket", "ticketgive"}
+    requestedDataValues = { "ticket", "ticketgive" }
 });
 
 function sos_func(thePlayer)
@@ -699,7 +704,7 @@ function sos_func(thePlayer)
                 setElementVisibleTo(blip, thePlayers, true)
             end
         end
-        setTimer(destroyElement, 10000, 1, blip)
+        setTimer(destroyElement, 15000, 1, blip)
     end
 end
 addCommandHandler("sos", sos_func, false, false)

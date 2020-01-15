@@ -10,41 +10,39 @@
 local gmxtimer = false
 local secondgmxtimer = false
 
-function gmx_func(theMaker, cmd, zeitinminuten, grund, ...)
-
-    if (grund) then
-        grund = grund .. " " .. table.concat({ ... }, " ")
-    else
-        grund = " Neustart ohne Angabe"
-    end
-    if not (zeitinminuten) then
-        zeitinminuten = 1
-    end
-    if (zeitinminuten) then
-        if (not (tonumber(zeitinminuten))) then
-            zeitinminuten = 1
-        end
-    end
-    local second = zeitinminuten * 60 * 1000
-    outputDebugString("GMX Started by Console in " .. zeitinminuten .. " Minuten! Grund: " .. grund)
-
-    if (isAdminLevel(theMaker, 3)) or (isConsole(theMaker)) then
-        if (isTimer(gmxtimer)) then
-            killTimer(gmxtimer)
-        end
-        if (isTimer(secondgmxtimer)) then
-            killTimer(secondgmxtimer)
-        end
-        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
-        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
-        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
-        outputChatBox("Der Server braucht für den Restart ca. 5 Minuten!", getRootElement(), 255, 0, 0)
-        secondgmxtimer = setTimer(gmxRestTime, 60000, 1, zeitinminuten)
-        gmxtimer = setTimer(gmx_start, second, 1)
-    end
-end
-
-addCommandHandler("gmx", gmx_func, false, false)
+--function gmx_func(theMaker, cmd, zeitinminuten, grund, ...)
+--
+--    if (grund) then
+--        grund = grund .. " " .. table.concat({ ... }, " ")
+--    else
+--        grund = " Neustart ohne Angabe"
+--    end
+--    if not (zeitinminuten) then
+--        zeitinminuten = 1
+--    end
+--    if (zeitinminuten) then
+--        if (not (tonumber(zeitinminuten))) then
+--            zeitinminuten = 1
+--        end
+--    end
+--    local second = zeitinminuten * 60 * 1000
+--    outputDebugString("GMX Started by Console in " .. zeitinminuten .. " Minuten! Grund: " .. grund)
+--
+--    if (isAdminLevel(theMaker, 3)) or (isConsole(theMaker)) then
+--        if (isTimer(gmxtimer)) then
+--            killTimer(gmxtimer)
+--        end
+--        if (isTimer(secondgmxtimer)) then
+--            killTimer(secondgmxtimer)
+--        end
+--        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
+--        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
+--        outputChatBox("Ein Serverneustart beginnt in " .. zeitinminuten .. " Minuten! Grund: " .. grund, getRootElement(), 255, 0, 0)
+--        outputChatBox("Der Server braucht für den Restart ca. 5 Minuten!", getRootElement(), 255, 0, 0)
+--        secondgmxtimer = setTimer(gmxRestTime, 60000, 1, zeitinminuten)
+--        gmxtimer = setTimer(gmx_start, second, 1)
+--    end
+--end
 
 function shutdown_func(theMaker, cmd, zeitinminuten, grund, ...)
     if (grund) then
@@ -79,6 +77,7 @@ function shutdown_func(theMaker, cmd, zeitinminuten, grund, ...)
 end
 
 addCommandHandler("stopserver", shutdown_func, false, false)
+addCommandHandler("gmx", shutdown_func, false, false)
 
 function startShutDown()
     setServerPassword("jhkjgkjhasdgkhaghasdjkf6575")

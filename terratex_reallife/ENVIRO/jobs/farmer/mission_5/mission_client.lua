@@ -262,7 +262,6 @@ function startFarmMission_5_func(tractor)
         table.insert(farmerJobExplodeDeleteTable, marker)
     end
 end
-
 addEventHandler("startFarmMission_5", getRootElement(), startFarmMission_5_func)
 
 function hitDuengenc(playa)
@@ -273,9 +272,11 @@ function hitDuengenc(playa)
                 istractor = true
             end
         end
+
         if (mission_5_trac == playa) then
             istractor = true
         end
+
         if not (istractor) then
             outputChatBox("Ernten kann man nur mit dem Mähdrescher!", 255, 0, 0)
         else
@@ -283,9 +284,9 @@ function hitDuengenc(playa)
             duengerc = duengerc + 1
 
             local finished = false
-            if (duengerc == (table.getn(duengermarkerc) / 4)) then
+            if (duengerc >= (table.getn(duengermarkerc) / 2)) then
                 finished = true
-
+                DeleteMissionFarmerStop_func()
 
                 triggerServerEvent("finish_farmer_mission_5", getLocalPlayer())
             end

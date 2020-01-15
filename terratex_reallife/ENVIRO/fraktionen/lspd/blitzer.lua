@@ -7,6 +7,7 @@
 --
 
 local blitzerMax = 10;
+local blitzerMaxPer5Players = 1;
 local blitzerArray = {};
 
 function createBlitzerDummysOnStartUp()
@@ -39,8 +40,9 @@ function createBlitzer_func(thePlayer, cmd, blitzerids)
 
                     if (vioGetElementData(blitzerElement, "state")) then
                         outputChatBox("Der Blitzer ist zur Zeit in Benutzung! Weitere Infos unter /sblitzer", thePlayer, 255, 0, 0)
+                    elseif (calcCurrentBlitzerCount() + 1 > calcMaxAllowedBlitzer()) then
+                        outputChatBox("Es sind bei der aktuellen Spieler Zahl " .. calcMaxAllowedBlitzer() .. " Blitzer erlaubt. Aktuell sind " .. calcCurrentBlitzerCount() .. " aufgebaut.", thePlayer, 255, 0, 0)
                     else
-
                         local px, py, pz = getElementPosition(thePlayer)
                         local isZuNah = false
                         for theKey, blitzeri in ipairs(getElementsByType("blitzer")) do
@@ -85,6 +87,25 @@ function createBlitzer_func(thePlayer, cmd, blitzerids)
     end
 end
 addCommandHandler("cblitzer", createBlitzer_func, false, false)
+
+function calcMaxAllowedBlitzer()
+    local countPlayer = table.getSize(getElementsByType("player"))
+    local blitzerCMax = blitzerMaxPer5Players * math.ceil(countPlayer / 5);
+    if (blitzerCMax > blitzerMax) then
+        blitzerCMax = blitzerMax;
+    end
+    return blitzerCMax;
+end
+
+function calcCurrentBlitzerCount()
+    local countBlitzer = 0;
+    for theKey, blitzerElement in ipairs(getElementsByType("blitzer")) do
+        if (vioGetElementData(blitzerElement, "state")) then
+            countBlitzer = countBlitzer + 1
+        end
+    end
+    return countBlitzer
+end
 
 function dblitzer_func(thePlayer, cmd, blitzerid)
     if (isBeamter(thePlayer)) then

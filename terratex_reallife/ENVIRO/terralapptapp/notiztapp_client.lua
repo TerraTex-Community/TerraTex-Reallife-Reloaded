@@ -16,8 +16,8 @@ addEventHandler("onClientResourceStart",resourceRoot,
 		guiSetVisible(Notizblock_Window[1],false)
 		
 		if not(fileExists ( notizpath ))then
-			fileCreate(notizpath)
-			fileClose(notizpath)
+			local newFile = fileCreate(notizpath)
+			fileClose(newFile)
 		end
     end
 )

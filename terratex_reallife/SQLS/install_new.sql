@@ -6985,6 +6985,20 @@ ALTER TABLE `user_vehicles`
 SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
+CREATE TABLE IF NOT EXISTS `user_steuerlotto` (
+                                               `ID` int(11) NOT NULL AUTO_INCREMENT,
+                                               `Nickname` varchar(255) NOT NULL,
+                                               PRIMARY KEY (`ID`),
+                                               KEY `Nickname` (`Nickname`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- Constraints der Tabelle `user_steuerlotto`
+--
+ALTER TABLE `user_steuerlotto`
+    ADD CONSTRAINT `user_steuerlotto_ibfk_1` FOREIGN KEY (`Nickname`) REFERENCES `user` (`Nickname`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO `data_settings` (`Name`, `Wert`) VALUES ('steuerlottojackpot', '0');
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -23,6 +23,9 @@ pipeline {
             if (env.BRANCH_NAME == "master") {
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources logs'
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
+
+                bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources logs'
+                bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources'
             }
         }
       }

@@ -172,6 +172,8 @@ function payday(thePlayer)
     save_steuer_log(thePlayer, steuer, "steuer")
     Ausgaben = Ausgaben + steuer
 
+    addPlayerToSteuerLotto(thePlayer, steuer)
+
     --Sozialabgabenberechnung
     local proz = serversettings["sozialabgabesatz"]
     if (math.round(vioGetElementData(thePlayer, "playtime") / 60) < 25) then

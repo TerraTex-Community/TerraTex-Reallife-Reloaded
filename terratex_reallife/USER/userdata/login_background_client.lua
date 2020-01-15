@@ -54,7 +54,7 @@ function showBackgroundcameraForLogin()
             local randPos = math.random(1, table.getSize(fixedCameraPositions_login))
             local randPosB = math.random(1, table.getSize(fixedCameraPositions_login))
             while (randPos == randPosB) do
-                local randPosB = math.random(1, table.getSize(fixedCameraPositions_login))
+                randPosB = math.random(1, table.getSize(fixedCameraPositions_login))
             end
             smoothMoveCamera(fixedCameraPositions_login[randPos][1], fixedCameraPositions_login[randPos][2], fixedCameraPositions_login[randPos][3], fixedCameraPositions_login[randPos][4], fixedCameraPositions_login[randPos][5], fixedCameraPositions_login[randPos][6], fixedCameraPositions_login[randPosB][1], fixedCameraPositions_login[randPosB][2], fixedCameraPositions_login[randPosB][3], fixedCameraPositions_login[randPosB][4], fixedCameraPositions_login[randPosB][5], fixedCameraPositions_login[randPosB][6], 30000, true)
             setTimer(fadeStartCameraOut, 35000, 1)

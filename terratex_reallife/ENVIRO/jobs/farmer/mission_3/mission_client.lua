@@ -2611,7 +2611,7 @@ function startFarmMission_3_func(tractor)
 end
 addEventHandler("startFarmMission_3", getRootElement(), startFarmMission_3_func)
 
-isNotFarmingHitable = { [610] = true, [531] = true, [478] = true, [455] = true }
+isNotFarmingHitable = { [610] = true, [531] = true, [532] = true, [478] = true, [455] = true }
 function sync_cooli(ele)
     if (isElement(ele)) then
         for theKey, theCar in ipairs(getElementsByType("vehicle")) do

@@ -213,7 +213,7 @@ local function GTPlayerGetInVehicle(thePlayer, seat, jacked, door)
 							gtVehicleGetInTimer = setTimer(GTSetGetInPlayerInVehicle, 5000, 1)
 							if (gtVehiclePlayerElement) then
 								gtVehicleLastPlayerElement = gtVehicleGetInPlayerElement
-								gtVehiclePlayerName = getPlayerName(gtVehiclePlayerElement)
+								gtVehiclePlayerName = getPlayerName(gtVehicleGetInPlayerElement)
 								setElementFrozen(gtVehicleLastPlayerElement, true)
 								if (isElement(gtVehiclePlayerElement)) then
 									destroyElement(gtVehiclePlayerElement)
@@ -400,12 +400,6 @@ local function GTOnEnterStartMarker(thePlayer)
 	end
 end
 addEventHandler("onPickupHit", getRootElement(), GTOnEnterStartMarker)
-
-
-
-
-
-
 
 
 

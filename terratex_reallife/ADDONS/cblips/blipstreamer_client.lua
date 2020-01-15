@@ -216,27 +216,27 @@ addEventHandler("onClientRender",g_root,
 	
 		if not toF11Map then --Render to the radar
 			--Are we in fixed camera mode?
-			if not cameraTarget then
-				camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
-			else
-				local vehicle = getPedOccupiedVehicle(localPlayer)
-				if ( vehicle ) then
-					--Look back works on all vehicles
-					if getPedControlState(getLocalPlayer(), "vehicle_look_behind") or
-					( getPedControlState(getLocalPlayer(),"vehicle_look_left") and getPedControlState(getLocalPlayer(),"vehicle_look_right") ) or
-					--Look left/right on any vehicle except planes and helis (these rotate them)
-					( getVehicleType(vehicle)~="Plane" and getVehicleType(vehicle)~="Helicopter" and 
-					( getPedControlState(getLocalPlayer(),"vehicle_look_left") or getPedControlState(getLocalPlayer(),"vehicle_look_right") ) ) then
-						camRot = -math.rad(getPedRotation(localPlayer))
-					else
-						camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
-					end
-				elseif getPedControlState(getLocalPlayer(), "look_behind") then
-					camRot = -math.rad(getPedRotation(localPlayer))
-				else
-					camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
-				end
-			end
+			--if not cameraTarget then
+			--	camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
+			--else
+			--	local vehicle = getPedOccupiedVehicle(localPlayer)
+			--	if ( vehicle ) then
+			--		--Look back works on all vehicles
+			--		if getPedControlState(getLocalPlayer(), "vehicle_look_behind") or
+			--		( getPedControlState(getLocalPlayer(),"vehicle_look_left") and getPedControlState(getLocalPlayer(),"vehicle_look_right") ) or
+			--		--Look left/right on any vehicle except planes and helis (these rotate them)
+			--		( getVehicleType(vehicle)~="Plane" and getVehicleType(vehicle)~="Helicopter" and
+			--		( getPedControlState(getLocalPlayer(),"vehicle_look_left") or getPedControlState(getLocalPlayer(),"vehicle_look_right") ) ) then
+			--			camRot = -math.rad(getPedRotation(localPlayer))
+			--		else
+			--			camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
+			--		end
+			--	elseif getPedControlState(getLocalPlayer(), "look_behind") then
+			--		camRot = -math.rad(getPedRotation(localPlayer))
+			--	else
+			--		camRot = getVectorRotation(camX,camY,camTargetX,camTargetY)
+			--	end
+			--end
 		else
 			F11minX,F11minY,F11maxX,F11maxY = getPlayerMapBoundingBox()
 			F11sizeX = F11maxX - F11minX
@@ -257,10 +257,10 @@ addEventHandler("onClientRender",g_root,
 						else
 							setWidgetVisible(blip,false)
 						end
-					elseif	(	not infoTable.radius	) or
-							(( 	getDistanceBetweenPoints2D ( x,y,bx,by )-radarRadius ) < infoTable.radius ) then
-						setWidgetVisible(blip,true)
-						renderBlip(blip,toF11Map,x,y,camRot,radarRadius,F11minX,F11minY,F11maxX,F11maxY,F11sizeX,F11sizeY)
+					--elseif	(	not infoTable.radius	) or
+					--		(( 	getDistanceBetweenPoints2D ( x,y,bx,by )-radarRadius ) < infoTable.radius ) then
+					--	setWidgetVisible(blip,true)
+					--	renderBlip(blip,toF11Map,x,y,camRot,radarRadius,F11minX,F11minY,F11maxX,F11maxY,F11sizeX,F11sizeY)
 					else
 						setWidgetVisible(blip,false)
 					end

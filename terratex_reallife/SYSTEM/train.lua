@@ -48,7 +48,7 @@ function createTrans_Timer_Func()
 end
 
 function createTrains_func()
-    if (trainCounter < 4) then
+    if (trainCounter < 2) then -- normally 4
         local rand = math.random(0, 1)
         local trainID = 537 + rand
 

@@ -138,11 +138,11 @@ function hud_render()
             end
         end
 
-        if (getFood() < 10) then
+        if (getFood() < 10)  and client_settings["hungersound"] then
             checkToPlayStomachSound()
         end
 
-        if (getElementHealth(getLocalPlayer()) < 20) then
+        if (getElementHealth(getLocalPlayer()) < 20) and client_settings["hungersound"] then
             checkToPlayHeartBeatSound()
         end
 

@@ -47,6 +47,17 @@ config["afk.stop_play_time"] = 25
 config["gold.price"] = 10000
 
 -- ################  FEATURE SETTINGS  #################
+-- After going online where to spawn:
+-- always = You always spawn, where you went offline
+-- gmx = You always spawn, where you went offline as long as there was no GMX
+-- hour = You always spawn, where you went offline for one hour
+-- never = you always spawn where you selected to spawn - not where went offline
+config["feature.spawnWhereOffline"] = "always"
+
+-- Enable or Disable Spawn Position of Vehicles. If this is disabled after a server restart vehicles will always spawn at
+-- their park position
+config["feature.spawnVehiclesToLastPosition"] = true
+
 -- Enable or Disable Standard of Living (Means you need a specific house value to buy expensive cars)
 config["feature.stardard_of_living"] = true
 

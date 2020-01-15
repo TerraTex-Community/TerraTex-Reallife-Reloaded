@@ -14,9 +14,9 @@ function Alka_SendWarning(hitPlayer)
                     ja = false
                 end
             end
-            if(ja)then
-                outputChatBox("Sie haben ein Sperrgebiet betreten! Sie haben genau 5 Sekunden es zu verlassen!",hitPlayer,255,0,0)
-                outputChatBox("Sie werden ohne weitere Warnung abgeschossen!",hitPlayer,255,0,0)
+            if (ja) then
+                outputChatBox("Sie haben ein Sperrgebiet betreten! Sie haben genau 5 Sekunden es zu verlassen!", hitPlayer, 255, 0, 0)
+                outputChatBox("Sie werden ohne weitere Warnung abgeschossen!", hitPlayer, 255, 0, 0)
                 setTimer(Alka_setsechsWanted, 5000, 1, hitPlayer)
             end
         end
@@ -46,7 +46,7 @@ function setAlka_func(thePlayer, cmd, toPlayerNamePart)
         if (isBeamter(thePlayer)) then
             local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)
             if (toPlayer) then
-                if (vioGetElementData(toPlayer, "oldJailTime") > 0) then
+                if (vioGetElementData(toPlayer, "oldJailTime") and vioGetElementData(toPlayer, "oldJailTime") > 0) then
                     if (isElementWithinColShape(toPlayer, Alka_recSetShape) and isElementWithinColShape(thePlayer, Alka_recSetShape)) then
                         vioSetElementData(toPlayer, "kaution", 0)
                         vioSetElementData(toPlayer, "knastzeit", vioGetElementData(toPlayer, "oldJailTime") + 60)

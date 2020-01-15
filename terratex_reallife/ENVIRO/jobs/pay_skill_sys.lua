@@ -98,11 +98,11 @@ local jobSetupTable = {
         -- Farmerjob
         "farmer",
         { 15, 35, 80, 250, 500 },
-        { [0] = 46, 115, 288, 480, 600, 1200 },
+        { [0] = 66, 245, 480, 960, 1450, 1992 },
         { 0, 0 },
         1, -- Randfaktor
         true, -- Randfaktor vor Teilung
-        { 0.4, 0.9, 0.3, false, 1.2, 3, false, 0.9 },
+        { 0.4, 0.9, 0.3, false, 1.5, 3, false, 0.9 },
         "Farmerjob"
     },
     [15] = {

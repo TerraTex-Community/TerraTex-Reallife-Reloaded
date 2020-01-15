@@ -36,7 +36,9 @@ function startSnow()
 
 
         -- let it snow
-
+        if (type(settings.density) ~= "number") then
+            settings.density = 1
+        end
         for i = 1, settings.density do
 
             local x, y, z = random(0, box_width * 2), random(0, box_depth * 2), random(0, box_height * 2)

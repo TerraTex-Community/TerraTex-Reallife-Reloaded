@@ -282,7 +282,6 @@ function createBuyCars()
             buyType = buyType,
             inSell = false,
             inSellPercentage = 0
-
         });
     end
 

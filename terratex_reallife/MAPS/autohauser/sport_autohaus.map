@@ -52,7 +52,6 @@
     <object id="object (Frame_Clip_4) (1)" doublesided="false" model="2257" interior="0" dimension="0" posX="1123" posY="2360.5" posZ="12.60000038147" rotX="0" rotY="0" rotZ="269.99996948242"></object>
     <object id="object (Frame_Clip_4) (2)" doublesided="false" model="2257" interior="0" dimension="0" posX="1123.3000488281" posY="2367.6999511719" posZ="18.10000038147" rotX="0" rotY="0" rotZ="269.99450683594"></object>
     <object id="object (Frame_Clip_3) (1)" doublesided="false" model="2256" interior="0" dimension="0" posX="1123" posY="2355.6999511719" posZ="12.89999961853" rotX="0" rotY="0" rotZ="269.99996948242"></object>
-   <object id="object (Vgs_guardhouse01) (1)" doublesided="false" model="8168" interior="0" dimension="0" posX="1709.8000488281" posY="1313.9000244141" posZ="11.60000038147" rotX="0" rotY="0" rotZ="17"></object>
 </map>
 
 

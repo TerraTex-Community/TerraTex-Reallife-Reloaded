@@ -513,9 +513,8 @@
     <map src="MAPS/hauser/iraumfix.map"/>
     <map src="MAPS/hauser/geramyshaus.map"/>
     <!-- Autohäuser -->
-    <map src="MAPS/autohauser/luxus_sport_autohaus.map"/>
+    <map src="MAPS/autohauser/sport_autohaus.map"/>
     <map src="MAPS/autohauser/flugautohaus.map"/>
-    <map src="MAPS/autohauser/Premium.map"/>
     <map src="MAPS/autohauser/bootskaufhaus.map"/>
     <!-- Frakbase -->
     <map src="MAPS/fraktionsbase/MedicBaseLS.map"/>

@@ -13,7 +13,7 @@ end
 function readFile(path)
     local hFile = fileOpen(path)
     if hFile then
-        local buffer
+        local buffer = ""
         while not fileIsEOF(hFile) do
             buffer = buffer .. fileRead(hFile, 500)
         end

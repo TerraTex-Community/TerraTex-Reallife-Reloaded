@@ -63,34 +63,7 @@ function createBuyCars()
     vehicle = createVehicle(527, 2119.1435546875, -1122.166015625, 25.080596923828, 0.6646728515625, 358.49487304688, 314.59899902344)
     table.insert(autohausVehicles, { vehicle, "Cadrona", 1, 3500.00 }) --E
 
-    --Autohaus Nummer 3
-    vehicle = createVehicle(409, 1697.5234375, 1316.3779296875, 10.63438129425, 359.50561523438, 0, 89.813232421875)
-    table.insert(autohausVehicles, { vehicle, "Stretch", 3, 537000.00 }) -- E
-    vehicle = createVehicle(405, 1695.3935546875, 1297.8984375, 10.658576011658, 0, 0, 179.71435546875)
-    table.insert(autohausVehicles, { vehicle, "Sentinel", 3, 95000.00 }) --E
-    vehicle = createVehicle(467, 1676.5, 1306.1904296875, 10.879893302917, 0.0714111328125, 359.99450683594, 359.89562988281)
-    table.insert(autohausVehicles, { vehicle, "Oceanic", 3, 35000.00 }) --E
-    vehicle = createVehicle(507, 1682.6396484375, 1305.9814453125, 10.609205245972, 0.010986328125, 0, 358.84643554688)
-    table.insert(autohausVehicles, { vehicle, "Elegant", 3, 12500.00 }) --E
-    vehicle = createVehicle(439, 1663.4500732422, 1297.5999755859, 10.800000190735, 0, 0, 180)
-    table.insert(autohausVehicles, { vehicle, "Stallion", 3, 45000.00 }) --E
-    vehicle = createVehicle(442, 1689.0146484375, 1298.111328125, 10.645729064941, 0.7965087890625, 0, 180.10986328125)
-    table.insert(autohausVehicles, { vehicle, "Romero", 3, 30000.00 }) --E
-    vehicle = createVehicle(580, 1688.916015625, 1305.9658203125, 10.654562950134, 359.98901367188, 0, 359.45617675781)
-    table.insert(autohausVehicles, { vehicle, "Stafford", 3, 30000 }) --E
-    vehicle = createVehicle(533, 1669.8000488281, 1297.6900634766, 10.60000038147, 0, 0, 180)
-    table.insert(autohausVehicles, { vehicle, "Feltzer", 3, 52500.00 }) --E
-    vehicle = createVehicle(545, 1682.5205078125, 1297.884765625, 10.631306648254, 0, 359.99450683594, 180.54931640625)
-    table.insert(autohausVehicles, { vehicle, "Hustler", 3, 45000.00 })
-    --- E
-    vehicle = createVehicle(551, 1663.30859375, 1306.26171875, 10.620839118958, 359.9560546875, 0, 359.86267089844)
-    table.insert(autohausVehicles, { vehicle, "Merit", 3, 28000.00 }) --E
-    vehicle = createVehicle(466, 1676.3994140625, 1297.4013671875, 10.362077713013, 0.428466796875, 0.0054931640625, 179.99450683594)
-    table.insert(autohausVehicles, { vehicle, "Glendale", 3, 42507.00 }) --E
-    vehicle = createVehicle(421, 1695.2900390625, 1306.357421875, 10.420056343079, 359.71435546875, 359.99450683594, 359.70336914063)
-    table.insert(autohausVehicles, { vehicle, "Washington", 3, 75000.00 }) --E
-    vehicle = createVehicle(555, 1669.806640625, 1306.3955078125, 10.50422000885, 359.86267089844, 359.86267089844, 357.65441894531)
-    table.insert(autohausVehicles, { vehicle, "Windsor", 3, 85000.00 }) --E
+
 
     --Autohaus Nummer 4
     -- Sportautohändler
@@ -194,26 +167,29 @@ function createBuyCars()
         createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
     end
 
-    --temp transform code
+    --temp transform code to generate preview vehicles
     local newCarTableForJson = {}
     for theKey, thevehicle in ipairs(autohausVehicles) do
-        local buyType = "land"
-        if (isBoat(thevehicle[1]) or getElementModel(thevehicle[1]) == 460) then
-            buyType = "water"
-        elseif (isHeli(thevehicle[1]) or isPlane(thevehicle[1])) then
-            buyType = "air"
-        elseif (isBike(thevehicle[1])) then
-            buyType = "bike"
+        local comment = "";
+        if (thevehicle[3] == 1) then
+            comment = "billighändler"
+        elseif (thevehicle[3] == 2) then
+            comment = "bikehändler"
+        elseif (thevehicle[3] == 4) then
+            comment = "Sportautohändler"
+        elseif (thevehicle[3] == 5) then
+            comment = "flugzeughändler"
+        elseif (thevehicle[3] == 6) then
+            comment = "bootshändler"
         end
 
+        local x, y, z = getElementPosition(thevehicle[1])
+        local rx, ry, rz = getElementRotation(thevehicle[1])
         table.insert(newCarTableForJson, {
             modelId = getElementModel(thevehicle[1]),
-            --name = thevehicle[2],
-            name = getVehicleName(thevehicle[1]),
-            price = thevehicle[4],
-            buyType = buyType,
-            inSell = false,
-            inSellPercentage = 0
+            position = { x, y, z },
+            rotation = { rx, ry, rz },
+            dealerComment = comment
         });
     end
 

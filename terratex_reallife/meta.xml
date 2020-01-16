@@ -84,8 +84,11 @@
     <script src="SYSTEM/vehsys/tacho/tacho_client.lua" type="client"/>
     <script src="SYSTEM/vehsys/landebahnen.lua" type="server"/>
     <script src="SYSTEM/vehsys/start_veh.lua" type="server"/>
-    <script src="SYSTEM/vehsys/autohaus_motel.lua" type="server"/>
-    <script src="SYSTEM/vehsys/autohaus_client.lua" type="client"/>
+
+
+    <script src="SYSTEM/vehsys/shop/vehicle_shop_preview.lua" type="server"/>
+<!--    <script src="SYSTEM/vehsys/autohaus_motel.lua" type="server"/>-->
+<!--    <script src="SYSTEM/vehsys/autohaus_client.lua" type="client"/>-->
     <script src="SYSTEM/vehsys/loadprivcars.lua" type="server"/>
     <script src="SYSTEM/vehsys/privCarCommands.lua" type="server"/>
     <script src="SYSTEM/vehsys/fahrzeug_gui.lua" type="client"/>

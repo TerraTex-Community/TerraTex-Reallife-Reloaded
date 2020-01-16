@@ -35,3 +35,52 @@ local carDealer = {
     }
 }
 --maps löschen: luxusautohaus / premiumautohaus
+
+--
+--for theKey, theKoords in ipairs(autohausspawns) do
+--    createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
+--end
+
+
+
+--outputDebugString(tostring(table.getn(autohausVehicles)) .. " Cars loaded in Carhouse!")
+--for theKey, thevehicle in ipairs(autohausVehicles) do
+--    vioSetElementData(thevehicle[1], "isAutohausVehicle", true)
+--    setVehicleDamageProof(thevehicle[1], true)
+--    setElementFrozen(thevehicle[1], true)
+--
+--    --RabattCars
+--end
+--local i = 1;
+--for i = 1, 7, 1 do
+--    local rand = math.random(1, table.getSize(autohausVehicles))
+--    if (not table.hasValue(rabattCars, rand)) then
+--        local rabatt = (math.random(20, 80) / 100);
+--        autohausVehicles[rand][4] = autohausVehicles[rand][4] * rabatt;
+--
+--        table.insert(rabattCars, rand)
+--        table.insert(rabattCarsReduce, rabatt)
+--    end
+--end
+
+--local rabattPickup = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
+--addEventHandler("onPickupHit", rabattPickup, sendRabattCarMessage, false)
+--function showRabbatCars_func(thePlayer)
+--    if (vioGetElementData(thePlayer, "fraktion") == 3) then
+--        outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
+--        for m, z in ipairs(rabattCars) do
+--            local percentage = 100 - (rabattCarsReduce[m] * 100);
+--            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", thePlayer)
+--        end
+--    end
+--end
+--addCommandHandler("rabattcars", showRabbatCars_func, false, false)
+--
+--function sendRabattCarMessage(player)
+--    outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", player)
+--    for m, z in ipairs(rabattCars) do
+--        local percentage = 100 - (rabattCarsReduce[m] * 100);
+--        outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", player)
+--    end
+--end
+--

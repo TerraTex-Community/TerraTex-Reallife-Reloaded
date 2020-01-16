@@ -262,6 +262,32 @@ function createBuyCars()
         createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
     end
 
+    --temp transform code
+    local newCarTableForJson = {}
+    for theKey, thevehicle in ipairs(autohausVehicles) do
+        local buyType = "land"
+        if (isBoat(thevehicle[1]) or getElementModel(thevehicle[1]) == 460) then
+            buyType = "water"
+        elseif (isHeli(thevehicle[1]) or isPlane(thevehicle[1])) then
+            buyType = "air"
+        elseif (isBike(thevehicle[1])) then
+            buyType = "bike"
+        end
+
+        table.insert(newCarTableForJson, {
+            modelId = getElementModel(thevehicle[1]),
+            name = thevehicle[2],
+            price = thevehicle[4],
+            buyType = buyType,
+            inSell = false,
+            inSellPercentage = 0
+        });
+    end
+
+    local jsonCode = toJSON(newCarTableForJson, false, "spaces");
+    save_log("vehicle_shop.json", jsonCode);
+    --temp transform code end
+
     --[[ 2 name - 3 autohaus - 4 Preis - 5 Standartpreis wenn varianz aktiviert (mom deaktiviert --> verlangt MDB)]]
     outputDebugString(tostring(table.getn(autohausVehicles)) .. " Cars loaded in Carhouse!")
     for theKey, thevehicle in ipairs(autohausVehicles) do

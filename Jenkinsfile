@@ -3,7 +3,6 @@ pipeline {
     node {
       label 'windows'
     }
-
   }
   stages {
     stage('compile css') {
@@ -24,6 +23,10 @@ pipeline {
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources logs'
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
 
+                bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources logs'
+                bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources'
+
+            } else {
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources logs'
                 bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources'
             }
@@ -52,16 +55,16 @@ pipeline {
               } catch (e) {}
                   telegramSend telegram
               } else {
-                def telegram = "MTA:SA: Neuer PR auf Github mit: "
-               try {
-                                def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
-                                publisher.publishLastChanges()
-                                def changes = publisher.getLastChanges()
-                                for (commit in changes.getCommits()) {
-                                    def commitInfo = commit.getCommitInfo()
-                                    telegram = """${telegram}
+                  def telegram = "MTA:SA: Neuer PR auf Github mit: "
+                  try {
+                       def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+                       publisher.publishLastChanges()
+                       def changes = publisher.getLastChanges()
+                       for (commit in changes.getCommits()) {
+                           def commitInfo = commit.getCommitInfo()
+                           telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
-                                }
+                       }
               } catch (e) {}
                 telegramSend telegram
               }

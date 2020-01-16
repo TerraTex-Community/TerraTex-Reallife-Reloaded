@@ -276,7 +276,8 @@ function createBuyCars()
 
         table.insert(newCarTableForJson, {
             modelId = getElementModel(thevehicle[1]),
-            name = thevehicle[2],
+            --name = thevehicle[2],
+            name = getVehicleName(thevehicle[1]),
             price = thevehicle[4],
             buyType = buyType,
             inSell = false,

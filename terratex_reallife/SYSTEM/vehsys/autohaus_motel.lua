@@ -283,7 +283,6 @@ function createBuyCars()
             inSell = false,
             inSellPercentage = 0
         });
-
     end
 
     local jsonCode = toJSON(newCarTableForJson, false, "spaces");

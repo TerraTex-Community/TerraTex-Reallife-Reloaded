@@ -34,12 +34,26 @@ local carDealer = {
         type = "water"
     }
 }
---maps löschen: luxusautohaus / premiumautohaus
 
---
---for theKey, theKoords in ipairs(autohausspawns) do
---    createBlip(theKoords[1], theKoords[2], theKoords[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement()) --Autohaus
---end
+function createVehicleShops()
+    for theKey, theShop in ipairs(carDealer) do
+        createBlip(theShop.marker[1], theShop.marker[2], theShop.marker[3], 55, 0.5, 255, 0, 0, 255, 0, 255, getRootElement())
+        local marker = createMarker(theShop.marker[1], theShop.marker[2], theShop.marker[3], "cylinder", 2.0, 0, 0, 150, 150, getRootElement())
+        vioSetElementData(marker, "vehicleShopMarkerDef", theShop)
+        vioSetElementData(marker, "isVehicleShopMarker", true)
+        addEventHandler("onMarkerHit", marker, onVehicleShopMarkerHit)
+    end
+end
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createVehicleShops)
+
+function onVehicleShopMarkerHit(thePlayer)
+    if (getElementType(thePlayer) == "player" and not isPedInVehicle (thePlayer)) then
+        -- @todo: check for no wanteds
+        -- @todo: generate Vehicle List
+        outputChatBox("open vehicle shop", thePlayer)
+    end
+end
+
 
 
 

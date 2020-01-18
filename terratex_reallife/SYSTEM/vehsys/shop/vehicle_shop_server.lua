@@ -86,6 +86,8 @@ function generateVehicleShopList()
         vehicleShopCars[rand].inSellPercentage = rabatt;
         vehicleShopCars[rand].inSell = true
 
+        local reducedPrice = vehicleShopCars[rand].price * (100 - rabatt) / 100;
+
         outputDebugString(getVehicleNameFromModel(vehicleShopCars[rand].modelId) .. ": " .. toprice(reducedPrice) .. " (" .. vehicleShopCars[rand].inSellPercentage .. " %)")
     end
 end

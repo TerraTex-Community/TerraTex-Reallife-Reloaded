@@ -1,3 +1,4 @@
+local vehicleShopCars = {}
 local carDealer = {
     -- billigautohaus
     {
@@ -43,58 +44,52 @@ function createVehicleShops()
         vioSetElementData(marker, "isVehicleShopMarker", true)
         addEventHandler("onMarkerHit", marker, onVehicleShopMarkerHit)
     end
+
+    generateVehicleShopList()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createVehicleShops)
 
 function onVehicleShopMarkerHit(thePlayer)
-    if (getElementType(thePlayer) == "player" and not isPedInVehicle (thePlayer)) then
+    if (getElementType(thePlayer) == "player" and not isPedInVehicle(thePlayer)) then
         -- @todo: check for no wanteds
         -- @todo: generate Vehicle List
         outputChatBox("open vehicle shop", thePlayer)
     end
+
+    local reduceIcon = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
+    addEventHandler("onPickupHit", reduceIcon, showReducedCars, false)
 end
 
+function generateVehicleShopList()
+    local json = readFile(":terratex_reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop.json");
+    vehicleShopCars = fromJSON(json);
 
+    -- generate random reduced cars
+    local i;
+    for i = 1, 10, 1 do
+        local rand = math.random(1, table.getSize(vehicleShopCars))
+        if (not table.hasValue(vehicleShopCars, rand)) then
+            local rabatt = math.random(20, 80);
+            vehicleShopCars[rand].inSellPercentage = rabatt;
+            vehicleShopCars[rand].inSell = true
+        end
+    end
+end
 
+function showReducedCars(thePlayer)
+    outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
+    for theKey, theCar in ipairs(vehicleShopCars) do
+        if (theCar.inSell) then
+            local reducedPrice = theCar.price * (100 - theCar.inSellPercentage) / 100;
+            outputChatBox(getVehicleNameFromModel ( theCar.modelId )  .. ": " .. toprice(reducedPrice) .. " (" .. theCar.inSellPercentage .. " %)", thePlayer)
+        end
+    end
+end
 
---outputDebugString(tostring(table.getn(autohausVehicles)) .. " Cars loaded in Carhouse!")
---for theKey, thevehicle in ipairs(autohausVehicles) do
---    vioSetElementData(thevehicle[1], "isAutohausVehicle", true)
---    setVehicleDamageProof(thevehicle[1], true)
---    setElementFrozen(thevehicle[1], true)
---
---    --RabattCars
---end
---local i = 1;
---for i = 1, 7, 1 do
---    local rand = math.random(1, table.getSize(autohausVehicles))
---    if (not table.hasValue(rabattCars, rand)) then
---        local rabatt = (math.random(20, 80) / 100);
---        autohausVehicles[rand][4] = autohausVehicles[rand][4] * rabatt;
---
---        table.insert(rabattCars, rand)
---        table.insert(rabattCarsReduce, rabatt)
---    end
---end
+function showReducedCarsCmd(thePlayer)
+    if (vioGetElementData(thePlayer, "fraktion") == 3) then
+        showReducedCars(thePlayer);
+    end
+end
+addCommandHandler("rabattcars", showReducedCarsCmd, false, false)
 
---local rabattPickup = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
---addEventHandler("onPickupHit", rabattPickup, sendRabattCarMessage, false)
---function showRabbatCars_func(thePlayer)
---    if (vioGetElementData(thePlayer, "fraktion") == 3) then
---        outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", thePlayer)
---        for m, z in ipairs(rabattCars) do
---            local percentage = 100 - (rabattCarsReduce[m] * 100);
---            outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", thePlayer)
---        end
---    end
---end
---addCommandHandler("rabattcars", showRabbatCars_func, false, false)
---
---function sendRabattCarMessage(player)
---    outputChatBox("Folgende Fahrzeuge sind heute rabattiert: ", player)
---    for m, z in ipairs(rabattCars) do
---        local percentage = 100 - (rabattCarsReduce[m] * 100);
---        outputChatBox(autohausVehicles[z][2] .. ": " .. toprice(autohausVehicles[z][4]) .. " (" .. percentage .. " %)", player)
---    end
---end
---

@@ -64,7 +64,7 @@ function onVehicleShopMarkerHit(thePlayer)
             end
         end
 
-        local transferJson = toJson(shopVehicleList);
+        local transferJson = toJSON(shopVehicleList);
         outputChatBox(transferJson, thePlayer)
     end
 

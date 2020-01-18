@@ -4,35 +4,35 @@ local carDealer = {
     {
         spawn = { 2126.619140625, -1140.4541015625, 24.910829544067, 4.7955322265625, 358.32458496094, 358.62121582031 },
         marker = { 2130.4326171875, -1149.8203125, 23.50613861084 },
-        type = "land"
+        buyType = "land"
     },
 
     -- motorrad autohaus
     {
         spawn = { 545.529296875, -1277.7919921875, 17.028762817383, 358.77502441406, 0, 298.15246582031 },
         marker = { 555.669921875, -1292.025390625, 16.548237609863 },
-        type = "bike"
+        buyType = "bike"
     },
 
     -- sportautohaus
     {
         spawn = { 1086.232421875, 2396.1416015625, 10.464502334595, 359.57153320313, 359.97802734375, 87.379760742188 },
         marker = { 1110.8375244141, 2373.0610351563, 10.295311737061 },
-        type = "land"
+        buyType = "land"
     },
 
     --flugzeughändler
     {
         spawn = { 1945.5, -2316.3, 16.7, 0, 0, 184 },
         marker = { 1977.130859375, -2308.94921875, 12.846875 },
-        type = "air"
+        buyType = "air"
     },
 
     --bootshaus
     {
         spawn = { 802.79998779297, -2077.1999511719, 1.7999999523163, 0, 0, 183 },
         marker = { 813.54803466797, -2079.9807128906, 1.9609375476837 },
-        type = "water"
+        buyType = "water"
     }
 }
 
@@ -51,9 +51,21 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), cr
 
 function onVehicleShopMarkerHit(thePlayer)
     if (getElementType(thePlayer) == "player" and not isPedInVehicle(thePlayer)) then
-        -- @todo: check for no wanteds
-        -- @todo: generate Vehicle List
-        outputChatBox("open vehicle shop", thePlayer)
+        if (CrimeSystem.getCrimePercentage(thePlayer) >= 15) then
+            outputChatBox("Solange du gesucht wirst, kannst du bei uns nicht einkaufen!", thePlayer, 255, 0, 0);
+            return;
+        end
+        local shopData = vioGetElementData(source, "vehicleShopMarkerDef");
+
+        local shopVehicleList = {}
+        for theKey, theVehicle in ipairs(vehicleShopCars) do
+            if (theVehicle.buyType == shopData.buyType) then
+                table.insert(shopVehicleList, theVehicle);
+            end
+        end
+
+        local transferJson = toJson(shopVehicleList);
+        outputChatBox(transferJson, thePlayer)
     end
 
     local reduceIcon = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
@@ -81,7 +93,7 @@ function showReducedCars(thePlayer)
     for theKey, theCar in ipairs(vehicleShopCars) do
         if (theCar.inSell) then
             local reducedPrice = theCar.price * (100 - theCar.inSellPercentage) / 100;
-            outputChatBox(getVehicleNameFromModel ( theCar.modelId )  .. ": " .. toprice(reducedPrice) .. " (" .. theCar.inSellPercentage .. " %)", thePlayer)
+            outputChatBox(getVehicleNameFromModel(theCar.modelId) .. ": " .. toprice(reducedPrice) .. " (" .. theCar.inSellPercentage .. " %)", thePlayer)
         end
     end
 end

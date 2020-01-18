@@ -9,23 +9,26 @@ function openVehicleShop(vehicleJson)
     vehicleList = fromJSON(vehicleJson);
 
     if (vehicleShopWindow) then
-        if isElement(vehicleShopWindow) then destroyElement(vehicleShopWindow); end
+        if isElement(vehicleShopWindow) then
+            destroyElement(vehicleShopWindow);
+        end
         vehicleShopWindow = false;
         vehicleShopBrowser = false;
-    else
-        vehicleShopWindow = guiCreateWindow(0, 0, 880, 600, "Fahrzeugshop", false);
-        table.insert(allGuis, vehicleShopWindow);
-        setGuiCenter(vehicleShopWindow);
+    end
+    vehicleShopWindow = guiCreateWindow(0, 0, 880, 600, "Fahrzeugshop", false);
+    table.insert(allGuis, vehicleShopWindow);
+    setGuiCenter(vehicleShopWindow);
+    registerGuiToCloseOnPositionChange(vehicleShopWindow, 5, closeVehShop)
 
-        local browser = guiCreateBrowser(10, 10, 880, 600, true, false, false, vehicleShopWindow);
+    local browser = guiCreateBrowser(10, 10, 880, 600, true, false, false, vehicleShopWindow);
 
-
-        addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
+    addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
+                setBrowserAjaxHandler(source, "ajax_vehshop_close.html", closeVehShop);
                 loadBrowserURL(source, "http://mta/local/UI/VehicleShop.html");
             end);
 
-        addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
+    addEventHandler("onClientBrowserDocumentReady", guiGetBrowser(browser),
             function(url)
                 showCursor(true)
                 vehicleShopBrowser = source;
@@ -35,7 +38,7 @@ function openVehicleShop(vehicleJson)
                     local addFunc = "addVehicleToShopList(";
                     addFunc = addFunc .. theVehicle.modelId .. ", "
                     addFunc = addFunc .. "\"" .. theVehicle.name .. "\", "
-                    addFunc = addFunc .. "\"" .. toprice(theVehicle.price).. "\""
+                    addFunc = addFunc .. "\"" .. toprice(theVehicle.price) .. "\""
 
                     if (theVehicle.inSell) then
                         addFunc = addFunc .. ", "
@@ -49,8 +52,14 @@ function openVehicleShop(vehicleJson)
                     executeBrowserJavascript(vehicleShopBrowser, addFunc)
                 end
             end);
-    end
 
 end
 addEventHandler("openVehicleShop", getRootElement(), openVehicleShop)
 
+function closeVehShop()
+    if isElement(vehicleShopWindow) then
+        destroyElement(vehicleShopWindow);
+    end
+    vehicleShopWindow = false;
+    vehicleShopBrowser = false;
+end

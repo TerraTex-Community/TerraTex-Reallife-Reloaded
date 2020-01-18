@@ -35,13 +35,13 @@ function openVehicleShop(vehicleJson)
                     local addFunc = "addVehicleToShopList(";
                     addFunc = addFunc .. theVehicle.modelId .. ", "
                     addFunc = addFunc .. "\"" .. theVehicle.name .. "\", "
-                    addFunc = addFunc .. toprice(theVehicle.price)
+                    addFunc = addFunc .. "\"" .. toprice(theVehicle.price).. "\""
 
                     if (theVehicle.inSell) then
                         addFunc = addFunc .. ", "
                         addFunc = addFunc .. "true, "
                         addFunc = addFunc .. theVehicle.inSellPercentage .. ", "
-                        addFunc = addFunc .. toprice(theVehicle.price * (100 - theVehicle.inSellPercentage) / 100)
+                        addFunc = addFunc .. "\"" .. toprice(theVehicle.price * (100 - theVehicle.inSellPercentage) / 100) .. "\""
                     end
 
                     addFunc = addFunc .. ");"

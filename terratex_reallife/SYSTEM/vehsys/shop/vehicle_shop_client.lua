@@ -10,11 +10,11 @@ function openVehicleShop(vehicleJson)
         vehicleShopWindow = false;
         vehicleShopBrowser = false;
     else
-        vehicleShopWindow = guiCreateWindow(0, 0, 800, 600, "Fahrzeugshop", false);
+        vehicleShopWindow = guiCreateWindow(0, 0, 880, 600, "Fahrzeugshop", false);
         table.insert(allGuis, vehicleShopWindow);
         setGuiCenter(vehicleShopWindow);
 
-        local browser = guiCreateBrowser(10, 10, 800, 600, true, false, false, vehicleShopWindow);
+        local browser = guiCreateBrowser(10, 10, 880, 600, true, false, false, vehicleShopWindow);
 
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),

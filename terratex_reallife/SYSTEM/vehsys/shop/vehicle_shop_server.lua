@@ -86,7 +86,7 @@ function generateVehicleShopList()
         vehicleShopCars[rand].inSellPercentage = rabatt;
         vehicleShopCars[rand].inSell = true
 
-        outputDebugString(getVehicleNameFromModel(theCar.modelId) .. ": " .. toprice(reducedPrice) .. " (" .. theCar.inSellPercentage .. " %)")
+        outputDebugString(getVehicleNameFromModel(vehicleShopCars[rand].modelId) .. ": " .. toprice(reducedPrice) .. " (" .. vehicleShopCars[rand].inSellPercentage .. " %)")
     end
 end
 

@@ -1,10 +1,14 @@
+
+
 <div class="card">
     <div class="card-header">
         Filter
     </div>
-    <div class="card-block">
+    <div class="card-body">
         <div class="input-group">
-            <div class="input-group-addon">Zeige Kategorie:</div>
+            <div class="input-group-prepend">
+                <div class="input-group-text">Zeige Kategorie:</div>
+            </div>
             <div class="dropdown" id="filterCategory_dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="filterCategory" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" data-value="-1">
@@ -16,7 +20,10 @@
             </div>
         </div><br/>
         <div class="input-group">
-            <div class="input-group-addon">In Verbrechen suchen nach:</div>
+
+            <div class="input-group-prepend">
+                <div class="input-group-text">In Verbrechen suchen nach:</div>
+            </div>
             <input type="text" class="form-control" id="filterCrimes" placeholder="">
         </div>
     </div>
@@ -31,3 +38,6 @@
         </tr>
     </thead>
 </table>
+
+
+

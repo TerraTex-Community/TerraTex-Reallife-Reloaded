@@ -2239,3 +2239,27 @@ a.ui-button:active,
 
 .fa-1_5 {
   font-size: 1.5em; }
+
+.card-darkblue {
+  background-color: #2b2b7c; }
+
+.card-margin-top {
+  margin-top: 15px; }
+
+.salebar {
+  padding: 5px 30px;
+  position: absolute;
+  top: 65%;
+  white-space: nowrap;
+  left: 57%;
+  transform: rotate(-45deg); }
+
+.price s {
+  color: #6c757d !important; }
+
+.price .newPrice {
+  color: #dc3545;
+  font-weight: bold; }
+
+.hidden {
+  display: none; }

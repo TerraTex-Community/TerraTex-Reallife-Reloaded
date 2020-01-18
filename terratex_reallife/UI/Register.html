@@ -6,14 +6,15 @@
     <link rel="stylesheet" href="styles/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/css/custom/custom.css">
     <script src="styles/js/jquery.min.js"></script>
-    <script src="styles/js/tether.min.js"></script>
+    <script src="styles/js/Popper.js"></script>
+<!--    <script src="styles/js/tether.min.js"></script>-->
     <script src="styles/js/bootstrap.min.js"></script>
     <script src="styles/js/jqueryUI.js"></script>
 </head>
 <body id="Register">
 <img class="card-img-top" src="../FILES/IMAGES/Server_Header.png" data-src="../FILES/IMAGES/Server_Header.png"/>
 <div class="container-fluid">
-    <div class="card-block">
+    <div class="card-body">
         <fieldset class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Password" required>
@@ -33,8 +34,7 @@
             <!--</select>-->
 
             <div class="dropdown" id="gender_dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="gender" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" data-value="anonym">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="gender" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-value="anonym">
                     Keine Angabe
                 </button>
                 <div class="dropdown-menu" aria-labelledby="gender">

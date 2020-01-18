@@ -65,7 +65,8 @@ function onVehicleShopMarkerHit(thePlayer)
         end
 
         local transferJson = toJSON(shopVehicleList);
-        outputChatBox(transferJson, thePlayer)
+        vioSetElementData(thePlayer, "activeVehicleShop", shopData)
+        triggerClientEvent(thePlayer, "openVehicleShop", thePlayer, transferJson)
     end
 
     local reduceIcon = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000)
@@ -75,16 +76,17 @@ end
 function generateVehicleShopList()
     local json = readFile(":terratex_reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop.json");
     vehicleShopCars = fromJSON(json);
+    outputDebugString("loaded " ..  table.getSize(vehicleShopCars) .. " vehicles for shops")
 
     -- generate random reduced cars
     local i;
     for i = 1, 10, 1 do
         local rand = math.random(1, table.getSize(vehicleShopCars))
-        if (not table.hasValue(vehicleShopCars, rand)) then
-            local rabatt = math.random(20, 80);
-            vehicleShopCars[rand].inSellPercentage = rabatt;
-            vehicleShopCars[rand].inSell = true
-        end
+        local rabatt = math.random(20, 80);
+        vehicleShopCars[rand].inSellPercentage = rabatt;
+        vehicleShopCars[rand].inSell = true
+
+        outputDebugString(getVehicleNameFromModel(theCar.modelId) .. ": " .. toprice(reducedPrice) .. " (" .. theCar.inSellPercentage .. " %)")
     end
 end
 

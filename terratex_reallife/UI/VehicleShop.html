@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="styles/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="styles/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/css/custom/custom.css">
+    <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/Popper.js"></script>
+    <script src="styles/js/tether.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
+</head>
+<body id="gold-ui">
+<div class="placer-holder-top"></div>
+<div class="container-fluid">
+
+    <div class="card card-inverse card-darkblue">
+        <div class="card-header card-darkblue">
+            <h4 class="card-title text-light" style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
+                Fahrzeugshop
+            </h4>
+            <div style="float: right">
+                <button class="btn btn-danger" id="closeGoldMarket">Shop verlassen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-inverse card-darkblue">
+        <div class="card-header card-darkblue  text-light">
+            <div>
+                Filter optionen.....
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-3 card-margin-top" id="vehList">
+
+
+
+    </div>
+
+
+</div>
+<div class="placer-holder-top"></div>
+
+<script>
+    $(document).ready(function () {
+
+
+        $(document).on('click', '.sellButton', function(){
+            var id = $(this).parent().parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_vehshop_item.html?item=" + id);
+            return false;
+        });
+
+        $("#closeGoldMarket").click(function(){
+            $.ajax("http://mta/local/ajax_vehshop_close.html");
+        });
+    });
+
+    function addVehicleToShopList(id, name, price, inSale, salePercentage, salePrice) {
+        const salePriceClass = inSale ? "" : "hidden";
+        const nonSalePriceClass = inSale ? "hidden" : "";
+
+        const template = `<div class="col mb-4" id="${id}">
+            <div class="card">
+                <h5 class="card-header">${name}</h5>
+                <div style="position: relative; overflow: hidden">
+                    <img src="styles/images/vehicleImages/Vehicle_${id}.jpg" class="card-img-top">
+                    <div class="bg-danger text-light text-bold text-center salebar ${salePriceClass}">
+                        ${salePercentage}% in Sale
+                    </div>
+                </div>
+                <div class="card-body text-xs-center price ${salePriceClass}">
+                    Preis: <s>${price} $</s> <span class="newPrice">${salePrice} $</span>
+                </div>
+                <div class="card-body text-xs-center price ${nonSalePriceClass}">
+                    Preis: ${price} $
+                </div>
+                <div class="card-footer text-muted text-xs-center">
+                    <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
+                </div>
+            </div>
+        </div>`;
+
+        $("#vehList").append(template);
+    }
+</script>
+</body>
+
+</html>

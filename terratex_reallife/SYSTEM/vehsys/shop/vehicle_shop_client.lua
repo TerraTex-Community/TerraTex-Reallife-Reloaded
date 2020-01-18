@@ -1,6 +1,8 @@
 local vehicleShopWindow = nil;
 local vehicleShopBrowser = nil;
 
+-- @todo: close window on distance
+
 addEvent("openVehicleShop", true)
 function openVehicleShop(vehicleJson)
     local vehicleList = fromJSON(vehicleJson);

@@ -93,7 +93,7 @@ function checkDistanceOnGui()
                 getDistanceBetweenPoints3D(currentPositionX, currentPositionY, currentPositionZ, theGui.position[1], theGui.position[2], theGui.position[3]) > theGui.maxDistance
             ) then
                 theGui.gui = false;
-                closeFunc();
+                theGui.closeFunc();
             end
         end
     end

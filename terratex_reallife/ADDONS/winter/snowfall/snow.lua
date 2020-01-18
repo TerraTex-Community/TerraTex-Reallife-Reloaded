@@ -337,6 +337,9 @@ function drawSnow()
                             jitter_y = (flake.jitter_direction[2] * jitter_cycle)
                         end
 
+                        outputDebugString(flake.x + lx + jitter_x)
+                        outputDebugString(jitter_x, flake.y + ly + jitter_y)
+                        outputDebugString( flake.z + lz)
                         draw_x, draw_y = getScreenFromWorldPosition(flake.x + lx + jitter_x, flake.y + ly + jitter_y, flake.z + lz, 15, false)
 
                         if draw_x and draw_y then

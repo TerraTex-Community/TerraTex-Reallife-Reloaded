@@ -242,101 +242,98 @@ function createpoliceVehicles()
 	vehicle = createVehicle(525, 2450.1005859375, -2078.6000976563, 13.5, 0, 0, 180, "SAPD") --  police
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
+
+
     ----- Sondereinsatzkommando -----
- 
---[[ wrong cords 
---S.W.A.T. (Wasserwerfer) --
-    vehicle = createVehicle(601, 1985, 2128, 10.585, 0, 0, 0, "SEK")
+    -- S.W.A.T. (Wasserwerfer) --
+    vehicle = createVehicle(601, 2246.5, 2431, 3, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     -- Enforcer --
-    vehicle = createVehicle(427, 1988.9000244141, 2128.1999511719, 10.935000419617, 0, 0, 0, "SEK")
+    vehicle = createVehicle(427, 2250.8999023438, 2431.3999023438, 3.4000000953674, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(427, 1992.6999511719, 2128.1999511719, 10.935000419617, 0, 0, 0, "SEK")
+    vehicle = createVehicle(427, 2255.3000488281, 2431.3999023438, 3.4000000953674, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    -- FBI Truck --
-    vehicle = createVehicle(528, 1996.5, 2128.1000976563, 10.835000038147, 0, 0, 0, "SEK")
+    -- F.B.I. Truck --
+    vehicle = createVehicle(528, 2240.3000488281, 2442.3000488281, 3.2999999523163, 0, 0, 270, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(528, 2000.1999511719, 2128.1000976563, 10.835000038147, 0, 0, 0, "SEK")
+    vehicle = createVehicle(528, 2240.3000488281, 2447.1000976563, 3.2999999523163, 0, 0, 270, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     -- Police Maverick --
-    vehicle = createVehicle(497, 1948.9000244141, 2186.75, 24.700000762939, 0, 0, 270, "SEK")
+    vehicle = createVehicle(497, 2271.8999023438, 2470.1000976563, 41, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(497, 1948.9000244141, 2169.05, 24.700000762939, 0, 0, 270, "SEK")
+    vehicle = createVehicle(497, 2285.6000976563, 2470.1999511719, 41, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    -- FBI Rancher // LV --
-    vehicle = createVehicle(490, 2003.9000244141, 2128.3000488281, 10.965000152588, 0, 0, 0, "SEK")
+    -- FBI Rancher --
+    vehicle = createVehicle(490, 2259.6000976563, 2431, 3.414999961853, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(490, 2007.6999511719, 2128.3000488281, 10.965000152588, 0, 0, 0, "SEK")
+    vehicle = createVehicle(490, 2264, 2431, 3.414999961853, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(490, 2011.4000244141, 2128.3000488281, 10.965000152588, 0, 0, 0, "SEK")
+    vehicle = createVehicle(490, 2268.3999023438, 2431, 3.414999961853, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(490, 2015.0999755859, 2128.3000488281, 10.965000152588, 0, 0, 0, "SEK")
+    vehicle = createVehicle(490, 2272.6999511719, 2431, 3.414999961853, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    vehicle = createVehicle(490, 2018.6999511719, 2128.3000488281, 10.965000152588, 0, 0, 0, "SEK")
+    vehicle = createVehicle(490, 2277.1000976563, 2431, 3.414999961853, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
-    -- FBI Rancher // LS --
-    --vehicle = createVehicle(490, 1585.3000488281, -1667.5, 6.03, 0, 0, 270, "SEK")
-    --table.insert(policeVehicles, vehicle)
-    --table.insert(frakselfcars[5], vehicle)
+    -- HPV 1000 (Police-Bike) --
+    vehicle = createVehicle(523, 2240.3000488281, 2451.8999023438, 2.8499999046326, 0, 0, 0, "SEK")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[5], vehicle)
+    vehicle = createVehicle(523, 2240.3000488281, 2456.6000976563, 2.8499999046326, 0, 0, 0, "SEK")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[5], vehicle)
+    vehicle = createVehicle(523, 2240.3000488281, 2461.3999023438, 2.8499999046326, 0, 0, 0, "SEK")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[5], vehicle)
     -- Cheetah --
-    vehicle = createVehicle(415, 1977.1999511719, 2126.8000488281, 10.60000038147, 0, 0, 0, "SEK")
+    vehicle = createVehicle(415, 2294.6999511719, 2430.3999023438, 3.0499999523163, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     removeVehicleSirens(vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    vehicle = createVehicle(415, 1980.4000244141, 2126.8000488281, 10.60000038147, 0, 0, 0, "SEK")
+    vehicle = createVehicle(415, 2299.1000976563, 2430.3999023438, 3.0499999523163, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     removeVehicleSirens(vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    -- Washington // LV --
-    vehicle = createVehicle(421, 1972.9000244141, 1972.9000244141, 10.710000038147, 0, 0, 0, "SEK")
+    -- Washington --
+    vehicle = createVehicle(421, 2290.3000488281, 2430.8000488281, 3.1549999713898, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     removeVehicleSirens(vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    vehicle = createVehicle(421, 1969.6999511719, 1972.9000244141, 10.710000038147, 0, 0, 0, "SEK")
+    vehicle = createVehicle(421, 2285.8999023438, 2430.8000488281, 3.1549999713898, 0, 0, 0, "SEK")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     removeVehicleSirens(vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-    -- Washington // LS --
-    --vehicle = createVehicle(421, 1585.3000488281, -1671.6999511719, 5.7750000953674, 0, 0, 270, "SEK")
-    --table.insert(policeVehicles, vehicle)
-    --table.insert(frakselfcars[5], vehicle)
-    --removeVehicleSirens(vehicle)
-    --addVehicleSirens(vehicle, 2, 2, false, false, true, false)
-    --setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
-    --setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
     -- Boxille Mission --
-    vehicle = createVehicle(609, 1973.0999755859, 2152.3999023438, 10.935000419617, 0, 0, 240, "SA-TTx")
+    vehicle = createVehicle(609, 2240.3999023438, 2437.5, 3.4000000953674, 0, 0, 270, "SA-TTx")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[5], vehicle)
     removeVehicleSirens(vehicle)
     addVehicleSirens(vehicle, 2, 2, false, false, true, false)
     setVehicleSirens(vehicle, 1, 0, 0.6, 0.2, 255, 0, 0, 255, 147.9)
     setVehicleSirens(vehicle, 2, 0, 0.6, 0.2, 0, 0, 255, 255, 56.1)
-	--]]
 	
     ----- National Academy of Military Education -----
     vehicle = createVehicle(520, 279.28125, 1954.705078125, 18.367252349854, 1.8621826171875, 0, 267.60498046875, "NAME")
@@ -555,98 +552,97 @@ function createpoliceVehicles()
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[7], vehicle)
     transportHeliArmy = vehicle
-    vehicle = createVehicle(598, 2277.2509765625, 2431.3212890625, 3.0171566009521, 359.6044921875, 359.99450683594, 359.53857421875, "SAPD") --  lvpd
+
+    ----- Las Venturas Police Department (closed) -----
+    -- LV Police Car --
+    vehicle = createVehicle(598, 2251.8000488281, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2272.7119140625, 2430.9736328125, 3.0196599960327, 359.60998535156, 0, 0.010986328125, "SAPD") -- lvpd
+    vehicle = createVehicle(598, 2256.1000976563, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2268.232421875, 2430.5927734375, 3.0190379619598, 359.60998535156, 359.99450683594, 0.4229736328125, "SAPD") --  lvpd
+    vehicle = createVehicle(598, 2260.5, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2264.0107421875, 2430.9755859375, 3.0165886878967, 359.6044921875, 0, 0.010986328125, "SAPD") --  lvpd
+    vehicle = createVehicle(598, 2269.1000976563, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
+    vehicle = createVehicle(598, 2273.5, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    vehicle = createVehicle(598, 2277.8999023438, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    vehicle = createVehicle(598, 2282.3000488281, 2476.6999511719, 10.574999809265, 0, 0, 180, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+
+    vehicle = createVehicle(598, 2251.8000488281, 2459.3999023438, 10.574999809265, 0, 0, 0, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    vehicle = createVehicle(598, 2256.1000976563, 2459.3999023438, 10.574999809265, 0, 0, 0, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    vehicle = createVehicle(598, 2260.5, 2459.3999023438, 10.574999809265, 0, 0, 0, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    -- Predator --
     vehicle = createVehicle(430, 2291.9931640625, 514.3828125, 0.23248034715652, 0.406494140625, 356.37451171875, 179.29138183595, "SAPD") --  lvpd
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
     vehicle = createVehicle(430, 2296.4228515625, 514.3642578125, 0.18538917601109, 2.6641845703125, 0.999755859375, 181.5380859375, "SAPD") --  lvpd
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2259.5087890625, 2430.4755859375, 3.0190734863281, 359.60998535156, 0, 0.615234375, "SAPD") --  lvpd
+    -- HPV 1000 (Police-Bike) --
+    vehicle = createVehicle(523, 2269.1000976563, 2459.6000976563, 10.39999961853, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2255.2705078125, 2430.427734375, 3.0203061103821, 359.61547851563, 0, 359.22546386719, "SAPD") --  lvpd
+    vehicle = createVehicle(523, 2273.5, 2459.6000976563, 10.39999961853, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2250.755859375, 2431.0771484375, 3.0218994617462, 359.62097167969, 359.99450683594, 359.43420410156, "SAPD") -- lvpd
+    vehicle = createVehicle(523, 2277.8000488281, 2459.6000976563, 10.39999961853, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2246.49609375, 2430.927734375, 3.0186352729797, 359.60998535156, 359.99450683594, 359.80224609375, "SAPD") -- lvpd
+    vehicle = createVehicle(523, 2282.1999511719, 2459.6000976563, 10.39999961853, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2240.177734375, 2437.2255859375, 3.0224223136902, 359.62097167969, 0, 271.0546875, "SAPD") --lvpd
+    -- Police Ranger --
+    vehicle = createVehicle(599, 2251.6999511719, 2442.8999023438, 11, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(598, 2240.060546875, 2442.1884765625, 3.0242650508881, 359.62646484375, 0, 268.61022949219, "SAPD") -- lvpd
+    vehicle = createVehicle(599, 2256.1000976563, 2430.5, 3.4621651172638, 0.5218505859375, 359.99450683594, 1.0107421875, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(523, 2284.8349609375, 2430.544921875, 2.8411757946014, 359.62646484375, 0, 359.97253417969, "SAPD") -- lvpd
+    vehicle = createVehicle(599, 2260.5, 2431.44921875, 3.4613847732544, 0.5218505859375, 359.99450683594, 359.736328125, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(523, 2287.2001953125, 2431.79296875, 2.8401181697845, 359.59350585938, 0, 2.92236328125, "SAPD") -- lvpd
+    -- Towtruck --
+    vehicle = createVehicle(525, 2295.3000488281, 2443.1000976563, 10.75, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(523, 2289.326171875, 2431.875, 2.8439378738403, 359.63745117188, 0, 359.6044921875, "SAPD") -- lvpd
+    vehicle = createVehicle(525, 2290.8999023438, 2443.1000976563, 10.75, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(523, 2291.4423828125, 2432.41796875, 2.8435256481171, 359.63195800781, 0, 358.53332519531, "SAPD") --d
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(599, 2294.75390625, 2431.314453125, 3.4566819667816, 0.538330078125, 359.99450683594, 359.6923828125, "SAPD") --
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(599, 2299.07421875, 2430.5, 3.4621651172638, 0.5218505859375, 359.99450683594, 1.0107421875, "SAPD") --
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(599, 2303.6171875, 2431.44921875, 3.4613847732544, 0.5218505859375, 359.99450683594, 359.736328125, "SAPD") -- lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(599, 2307.7216796875, 2430.5224609375, 3.4625604152679, 0.516357421875, 0.0054931640625, 359.92309570313, "SAPD") -- lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(599, 2312.16015625, 2430.1796875, 3.4580566883087, 0.5328369140625, 359.99450683594, 358.92333984375, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(497, 2271.8999023438, 2470.1000976563, 41, 0, 0, 0, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(497, 2285.6000976563, 2470.1999511719, 41, 0, 0, 0, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(525, 2239.419921875, 2447.1123046875, 3.145247220993, 358.03894042969, 0, 269.89562988281, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(525, 2240.44921875, 2451.865234375, 3.1482298374176, 358.08837890625, 0, 269.93957519531, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(525, 2240.1005859375, 2456.49609375, 3.1592817306519, 358.26965332031, 0, 270.03295898438, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(525, 2240.1904296875, 2461.3251953125, 3.1484417915344, 358.09387207031, 0, 268.84094238281, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(525, 2240.1748046875, 2466.240234375, 3.1644797325134, 358.35754394531, 0, 268.60473632813, "SAPD") --//  lvpd
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[9], vehicle)
-    vehicle = createVehicle(601, 2297.60546875, 2460.4267578125, 3.032190322876, 0.010986328125, 0, 269.93408203125, "SAPD") --//  lvpd
+    -- S.W.A.T. (Wasserwerfer) --
+    vehicle = createVehicle(601, 2282.1999511719, 2443, 10.60000038147, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
     table.insert(spezpoliceVehicles, vehicle)
-    vehicle = createVehicle(427, 2297.75390625, 2455.951171875, 3.4052803516388, 0.0164794921875, 0, 270.97229003906, "SAPD") --//  lvpd
+    -- F.B.I. Truck --
+    vehicle = createVehicle(528, 2277.8000488281, 2443, 10.845000267029, 0, 0, 0, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[9], vehicle)
     table.insert(spezpoliceVehicles, vehicle)
+    -- Enforcer --
+    vehicle = createVehicle(427, 2273.3999023438, 2443.3999023438, 10.944999694824, 0, 0, 0, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    table.insert(spezpoliceVehicles, vehicle)
+    vehicle = createVehicle(427, 2269.1000976563, 2443.3999023438, 10.944999694824, 0, 0, 0, "SAPD")
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[9], vehicle)
+    table.insert(spezpoliceVehicles, vehicle)
+
     for key, theVehicle in pairs(policeVehicles) do
         vioSetElementData(theVehicle, "Beamtenvehicle", 110);
         vioSetElementData(theVehicle, "tank", 100);

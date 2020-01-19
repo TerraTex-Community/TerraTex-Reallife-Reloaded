@@ -524,7 +524,7 @@
     <map src="MAPS/autohauser/bootskaufhaus.map"/>
     <!-- Frakbase -->
     <map src="MAPS/fraktionsbase/MedicBaseLS.map"/>
-    <!-- <map src="MAPS/fraktionsbase/sekbase.map"/> -->
+    <map src="MAPS/fraktionsbase/sekbase.map"/>
     <map src="MAPS/fraktionsbase/waffentest_name.map"/>
     <map src="MAPS/fraktionsbase/Newsbase_new.map"/>
     <map src="MAPS/fraktionsbase/mafiabase_neu.map"/>

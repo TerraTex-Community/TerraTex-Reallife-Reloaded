@@ -7,7 +7,7 @@ sekSkin={[141]=true,[163]=true,[164]=true,[165]=true,[166]=true,[286]=true,[285]
 armySkin={[287]=true,[73]=true,[191]=true,[312]=true,[179]=true}
 taxiSkin={[61]=true,[172]=true,[255]=true,[59]=true,[126]=true,[98]=true,[25]=true}
 medicSkin={[274]=true,[275]=true,[276]=true,[70]=true,[71]=true}
-cashForceSkin={[117]=true,[118]=true,[120]=true,[171]=true,[172]=true,[186]=true}
+cashForceSkin={[117]=true,[118]=true,[120]=true,[171]=true,[172]=true,[186]=true,[240]=true}
 violettasSkin={[13]=true,[102]=true,[103]=true,[104]=true }
 sharkracerSkin={[41]=true,[114]=true,[115]=true,[116]=true,[173]=true,[174]=true,[175]=true}
 

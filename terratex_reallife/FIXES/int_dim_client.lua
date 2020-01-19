@@ -7,27 +7,26 @@
 --
 
 
-_setElementDimension=setElementDimension
-_setElementInterior=setElementInterior
+_setElementDimension = setElementDimension
+_setElementInterior = setElementInterior
 
-function setElementInterior(thePed,int,x,y,z)
-    if(thePed==getLocalPlayer())then
-        triggerServerEvent("clientSetElementInterior",getLocalPlayer(),getLocalPlayer(),int,x,y,z)
+function setElementInterior(thePed, int, x, y, z)
+    if (thePed == getLocalPlayer()) then
+        triggerServerEvent("clientSetElementInterior", getLocalPlayer(), getLocalPlayer(), int, x, y, z)
     else
-        _setElementInterior(thePed,int,x,y,z)
+        _setElementInterior(thePed, int, x, y, z)
     end
 end
 
-
-function setElementDimension(thePed,dim)
-    if(thePed==getLocalPlayer())then
-        if (dim < -1) then
+function setElementDimension(thePed, dim)
+    if (thePed == getLocalPlayer()) then
+        if (dim < 0) then
             local stack = debug.traceback();
             triggerServerEvent("debugClientError", getLocalPlayer(), "Error on setElementDimension", stack)
         end
-        triggerServerEvent("clientSetElementDimension",getLocalPlayer(),getLocalPlayer(),dim)
+        triggerServerEvent("clientSetElementDimension", getLocalPlayer(), getLocalPlayer(), dim)
     else
-        _setElementDimension(thePed,dim)
+        _setElementDimension(thePed, dim)
     end
 end
 

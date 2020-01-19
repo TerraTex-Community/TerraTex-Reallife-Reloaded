@@ -57,7 +57,7 @@ end
 
 function _renderFraktionsManagementOverviewPage(dataTable)
     if (not isElement(managementBrowser) and isElement(managementWindow)) then
-        outputDebugString("Browser not loaded yet ... delay call");
+        --outputDebugString("Browser not loaded yet ... delay call");
         setTimer ( _renderFraktionsManagementOverviewPage, 250, 1, dataTable );
         return;
     end

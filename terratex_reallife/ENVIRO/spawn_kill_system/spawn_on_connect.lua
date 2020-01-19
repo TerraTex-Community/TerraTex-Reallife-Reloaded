@@ -14,14 +14,18 @@ function onPlayerDisconnect(quitType, reason, responsibleElement)
         local dim = getElementDimension(source);
         local hospitalTime = getElementData(source, "todezeit");
         local duty = vioGetElementData(source, "isMedicDuty") or vioGetElementData(source, "isCopDuty") or vioGetElementData(source, "taxi_duty");
-        if (duty) then duty = 1; else duty = 0; end
+        if (duty) then
+            duty = 1;
+        else
+            duty = 0;
+        end
 
         if (vioGetElementData(source, "isCopSwat")) then
             duty = 2;
         end
 
         local weapons = {};
-        if ((quitType ~= "Kicked" and quitType ~= "Banned") or reason=="GMX" or reason == "ShutDown") then
+        if ((quitType ~= "Kicked" and quitType ~= "Banned") or reason == "GMX" or reason == "ShutDown") then
             weapons = getPlayerWeapons(source);
         end
 
@@ -82,11 +86,10 @@ function offOnSpawn(offlineData)
     return false
 end
 
-
-local frakSpawnInZiviSkin = {1, 4, 5, 9, 10};
+local frakSpawnInZiviSkin = { 1, 4, 5, 9, 10 };
 function spawnPlayerOnServerConnect(thePlayer)
     local playerName = getPlayerName(thePlayer);
-    local result = MySql.helper.getSync("user_offline_data", "*", {Nickname = playerName});
+    local result = MySql.helper.getSync("user_offline_data", "*", { Nickname = playerName });
     local offlineData = result[1];
 
     if (tonumber(offlineData.WasSavedBefore) == 1 and offOnSpawn(offlineData)) then
@@ -102,15 +105,15 @@ function spawnPlayerOnServerConnect(thePlayer)
         end
 
         if additionalData.inarena then
-            position = {2745.8544921875, -1837.2998046875, 10.328806877136};
-            rotation = {0, 0, 154.12683105469};
+            position = { 2745.8544921875, -1837.2998046875, 10.328806877136 };
+            rotation = { 0, 0, 154.12683105469 };
             interior = 0;
             dimension = 0;
         elseif additionalData.iniraumshop then
             interior = 0;
             dimension = 0;
-            position = {967.048828125, 2153.7392578125, 10.8203125};
-            rotation = {0, 0, 0};
+            position = { 967.048828125, 2153.7392578125, 10.8203125 };
+            rotation = { 0, 0, 0 };
         end
 
         spawnPlayer(thePlayer, position[1], position[2], position[3], rotation[3], skin, interior, dimension, team[vioGetElementData(thePlayer, "fraktion")]);
@@ -123,8 +126,8 @@ function spawnPlayerOnServerConnect(thePlayer)
                     vioSetElementData(thePlayer, "isCopDuty", true);
                     setElementModel(thePlayer, vioGetElementData(thePlayer, "FrakSkin"));
                     if (tonumber(offlineData.DutyState) == 2) then
-                        vioSetElementData(thePlayer,"isCopSwat",true)
-                        setElementModel(thePlayer,285)
+                        vioSetElementData(thePlayer, "isCopSwat", true)
+                        setElementModel(thePlayer, 285)
                     end
                 elseif (vioGetElementData(thePlayer, "fraktion") == 10) then
                     vioSetElementData(thePlayer, "isMedicDuty", true);
@@ -185,22 +188,24 @@ function suicide_func(thePlayer)
     if vioGetElementData(thePlayer, "canUseSuicide") then
         if (getRealTime().timestamp - vioGetElementData(thePlayer, "canUseSuicide") < (60 * 60)) then
             outputChatBox("Dieser Befehl kann nur alle 60 Minuten benutzt werden", thePlayer);
-            return;
+            return ;
         end
     end
 
     local x, y, z = getElementPosition(thePlayer);
     outputChatBox("Bewege dich 5 Minuten nicht von hier weg. Danach wirst du automatisch getötet. (Dieser Befehl kann nur alle 60 Minuten benutzt werden)", thePlayer);
-    setTimer(executeSuicide, (5 * 60 *1000), 1, thePlayer, x, y, z);
+    setTimer(executeSuicide, (5 * 60 * 1000), 1, thePlayer, x, y, z);
 end
 addCommandHandler("suicide", suicide_func, false, false);
 
 function executeSuicide(thePlayer, x, y, z)
-    local newX, newY, newZ = getElementPosition(thePlayer);
-    if (getDistanceBetweenPoints3D(x, y, z, newX, newY, newZ) < 5) then
-        killPed(thePlayer, thePlayer);
-        vioSetElementData(thePlayer, "canUseSuicide", getRealTime().timestamp);
-    else
-        outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen", thePlayer);
+    if (isElement(thePlayer)) then
+        local newX, newY, newZ = getElementPosition(thePlayer);
+        if (getDistanceBetweenPoints3D(x, y, z, newX, newY, newZ) < 5) then
+            killPed(thePlayer, thePlayer);
+            vioSetElementData(thePlayer, "canUseSuicide", getRealTime().timestamp);
+        else
+            outputChatBox("Du hast dich von deinem Ort wegbewegt. /suicide wurde abgebrochen", thePlayer);
+        end
     end
 end

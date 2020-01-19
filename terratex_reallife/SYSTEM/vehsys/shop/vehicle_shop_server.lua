@@ -213,10 +213,7 @@ addEvent("event_vehicleShopBuyCar", true)
 addEventHandler("event_vehicleShopBuyCar", getRootElement(), vehicleShopBuyVehicle)
 
 function getVehicleShopDataByModelId(modelId) 
-    local data =  {
-        name= nil, buyType= nil, price= nil, modelId= nil, inSellPercentage= nil, inSell= nil, currentPrice= nil
-    };
-
+    outputDebugString(modelId);
     for theKey, theVehicle in ipairs(vehicleShopCars) do
         if (theVehicle.modelId == modelId) then
             theVehicle.currentPrice = theVehicle.price;

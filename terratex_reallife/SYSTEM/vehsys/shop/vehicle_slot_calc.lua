@@ -25,13 +25,13 @@ end
 function getSlotPrice(currentMaxSlots)
     local slotPrice = math.pow(2, (currentMaxSlots - 1)) * 1000
 
-    if (latestSlot > 9) then
+    if (currentMaxSlots > 9) then
         slotPrice = math.pow(2, 9) * 1000 + math.pow(2, (currentMaxSlots - 5)) * 300
     end
-    if (latestSlot > 14) then
+    if (currentMaxSlots > 14) then
         slotPrice = math.pow(2, 9) * 1000 + math.pow(2, 9) * 300 + math.pow(2, (currentMaxSlots - 10)) * 300
     end
-    if (latestSlot > 20) then
+    if (currentMaxSlots > 20) then
         slotPrice = math.pow(2, 9) * 1000 + math.pow(2, 9) * 300 + math.pow(2, 10) * 300 + math.pow(1.3, (currentMaxSlots - 1)) * 300
     end
 

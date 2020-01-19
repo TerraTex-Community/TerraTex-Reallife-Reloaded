@@ -130,7 +130,7 @@ addEventHandler("event_vehicleShopBuySlot", getRootElement(), vehicleShopBuyCarS
 
 -- buy Vehicle
 function vehicleShopBuyVehicle(modelId)
-    local slotData = getPlayerSlotData(thePlayer)
+    local slotData = getPlayerSlotData(client)
 
     if (slotData.freeSlots == 0) then
         triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast keinen freien Slot mehr!");

@@ -10,6 +10,7 @@ frakselfcars = {}
 fraktanksatz = {}
 
 fraktionbezeichner = {}
+fraktionkuerzel = {}
 fraktionsrange = {}
 
 function teamserstellen()
@@ -17,6 +18,8 @@ function teamserstellen()
     local result = MySql.helper.getSync("faction_names", "*");
     for theKey, dasatz in ipairs(result) do
         fraktionbezeichner[tonumber(dasatz["ID"])] = dasatz["Name"];
+        fraktionkuerzel[tonumber(dasatz["ID"])] = dasatz["NumberPlate"];
+
     end
 
     result = MySql.helper.getSync("faction_ranks", "*");

@@ -200,6 +200,8 @@ function prepare(thevehicle, frakid)
     vioSetElementData(thevehicle, "respawn", 1)
     vioSetElementData(thevehicle, "motor", false)
     vioSetElementData(thevehicle, "motornum", 0)
+
+    setVehiclePlateText( thevehicle, fraktionkuerzel[frakid] )
 end
 
 function onvehicleexplode_func()

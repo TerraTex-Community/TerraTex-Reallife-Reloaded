@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/css/custom/custom.css">
     <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/Popper.js"></script>
     <script src="styles/js/tether.min.js"></script>
     <script src="styles/js/bootstrap.min.js"></script>
 </head>
@@ -13,8 +14,8 @@
 <div class="placer-holder-top"></div>
 <div class="container-fluid">
 
-    <div class="card card-inverse card-info">
-        <div class="card-header card-info">
+    <div class="card card-inverse bg-info">
+        <div class="card-header bg-info">
             <h4 class="card-title text-gold" style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
                 Goldshop
             </h4>
@@ -22,17 +23,21 @@
                 <button class="btn btn-danger" id="closeGoldMarket">Shop verlassen</button>
             </div>
         </div>
-        <div class="card-block">
+        <div class="card-body">
             <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
             <span class="text-gold text-bold"><span id="imBesitz"></span> Gold im Besitz</span>
         </div>
-        <div class="card-footer card-info">
+        <div class="card-footer bg-info">
             <div class="form-inline">
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">Gold</div>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Gold</span>
+                        </div>
                         <input type="number" class="form-control text-xs-right" placeholder="Menge" step="1" max="10000000000000" min="0" id="buyGoldAmount">
-                        <div class="input-group-addon">für <span id="buyprice">0.00</span>$</div>
+                        <div class="input-group-append">
+                            <span class="input-group-text">für&nbsp;<span id="buyprice">0.00</span>$</span>
+                        </div>
                         <input type="hidden" value="0" id="pricePerGold" />
                     </div>
                 </div>
@@ -40,10 +45,10 @@
             </div>
         </div>
     </div>
-    <div class="card-group">
+    <div class="card-group" style="margin-top: 15px">
         <div class="card" id="FoodBooster">
             <h5 class="card-header">Food Booster</h5>
-            <div class="card-block">
+            <div class="card-body">
                 Der "Food Booster" reduziert dein Hunger um 50% ganze 30 Tage lang. Das heißt du musst auch nur halb so oft essen. Eine schöne Sache oder?
 
             </div>
@@ -58,7 +63,7 @@
 
         <div class="card" id="HufeisenBooster">
             <h5 class="card-header">Hufeisen Booster</h5>
-            <div class="card-block">
+            <div class="card-body">
                 50% mehr Hufeisen auf der Karte? So einfach? Kaufe jetzt den "Hufeisen Booster" und finde 30 Tage lang schneller Hufeisen!
 
             </div>
@@ -73,7 +78,7 @@
 
         <div class="card" id="FuelBooster">
             <h5 class="card-header">Fuel Booster</h5>
-            <div class="card-block">
+            <div class="card-body">
                 Das Tanken an der Tankstelle dauert dir zu lange? Dann spaare die nächsten 30 Tage mit dem "Fuel Booster" 75% der Zeit.
 
             </div>
@@ -91,7 +96,7 @@
 
         <div class="card" id="SkillBooster">
             <h5 class="card-header">Skill Booster</h5>
-            <div class="card-block">
+            <div class="card-body">
                Erhalte jetzt 30 Tage lang doppelte Skillpunkte! Einfach den Skill Booster kaufen!
 
             </div>

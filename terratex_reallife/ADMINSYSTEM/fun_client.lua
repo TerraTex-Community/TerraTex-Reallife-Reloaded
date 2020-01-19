@@ -88,7 +88,7 @@ addCommandHandler("hovercar", hovercar_func)
 local godcar=false
 function godcar_func()
 	if( isAdminLevel(getLocalPlayer(),3))then
-		if not hovercar then
+		if not godcar then
 			godcar=true
 			outputChatBox("godcar ON")
 		else

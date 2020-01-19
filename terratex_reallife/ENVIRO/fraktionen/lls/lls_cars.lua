@@ -33,7 +33,7 @@ function createllscars()
 		table.insert(frakcars, theVehicle)
 	end
 end
- addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createllscars)
+ addEventHandler("factionLoadingReady",getResourceRootElement(getThisResource()),createllscars)
 
  
  function notinllsCarEnter(thePlayer, seat, jacked ,door)

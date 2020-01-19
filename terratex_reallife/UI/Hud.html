@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles/css/custom/custom.css">
     <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/Popper.js"></script>
     <script src="styles/js/tether.min.js"></script>
     <script src="styles/js/bootstrap.min.js"></script>
     <script src="styles/js/countUp.js" ></script>
@@ -50,7 +51,7 @@
                 <img src="styles/images/food.png" class="status_front"/>
             </div>
         </div>
-        <div id="water" class="hidden-xs-up">
+        <div id="water" class="hidden">
             <img src="styles/images/water_background.png"/>
             <div class="status_front ">
                 <img src="styles/images/water.png" class="status_front"/>
@@ -123,7 +124,7 @@
         }
 
         function setIconHidden(id, status){
-            $("#" + id).toggleClass("hidden-xs-up", status);
+            $("#" + id).toggleClass("hidden", status);
         }
         function setGold(value) {
             $("#gold_container .value").html(value);

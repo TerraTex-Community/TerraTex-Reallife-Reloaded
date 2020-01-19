@@ -337,6 +337,16 @@ function drawSnow()
                             jitter_y = (flake.jitter_direction[2] * jitter_cycle)
                         end
 
+                        if (
+                            type(flake.x + lx + jitter_x) ~= "number" or
+                            type(flake.y + ly + jitter_y) ~= "number" or
+                            type(flake.z + lz) ~= "number" or
+                            (flake.x + lx + jitter_x) ~= (flake.x + lx + jitter_x) or
+                            (flake.y + ly + jitter_y) ~= (flake.y + ly + jitter_y) or
+                            (flake.z + lz) ~= (flake.z + lz)
+                        ) then
+                            return
+                        end
                         draw_x, draw_y = getScreenFromWorldPosition(flake.x + lx + jitter_x, flake.y + ly + jitter_y, flake.z + lz, 15, false)
 
                         if draw_x and draw_y then

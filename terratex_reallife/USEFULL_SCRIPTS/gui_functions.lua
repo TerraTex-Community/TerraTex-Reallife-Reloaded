@@ -71,3 +71,31 @@ function enable_input_gui()
     toggleAllControls (true,true,true)
 end
 addEventHandler("onClientGUIBlur",getRootElement(),enable_input_gui)
+
+
+local guisToCloseOnDistance = {}
+function registerGuiToCloseOnPositionChange(gui, maxDistance, closeFunc)
+    local currentPositionX, currentPositionY, currentPositionZ = getElementPosition(getLocalPlayer())
+    table.insert(guisToCloseOnDistance, {
+        position = {currentPositionX, currentPositionY, currentPositionZ},
+        gui = gui,
+        maxDistance = maxDistance,
+        closeFunc = closeFunc
+    });
+end
+
+function checkDistanceOnGui()
+    local currentPositionX, currentPositionY, currentPositionZ = getElementPosition(getLocalPlayer())
+    for theKey, theGui in ipairs(guisToCloseOnDistance) do
+        if (theGui.gui) then
+            if (
+                isElement(theGui.gui) and
+                getDistanceBetweenPoints3D(currentPositionX, currentPositionY, currentPositionZ, theGui.position[1], theGui.position[2], theGui.position[3]) > theGui.maxDistance
+            ) then
+                theGui.gui = false;
+                theGui.closeFunc();
+            end
+        end
+    end
+end
+addEventHandler ( "onClientRender", getRootElement(), checkDistanceOnGui )

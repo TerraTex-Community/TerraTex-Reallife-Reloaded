@@ -211,7 +211,11 @@ function playerClickOnVehicleGUI(button, state, absoluteX, absoluteY, worldX, wo
                             guiSetVisible(FahrzeufUE_Button[5], true)
                         end
                     else
-                        guiSetText(FahrzeufUE_Label[4], "Besitzer: unbekannt")
+                        if (getElementData(clickedWorld, "factionName")) then
+                            guiSetText(FahrzeufUE_Label[4], "Besitzer: " .. getElementData(clickedWorld, "factionName"))
+                        else
+                            guiSetText(FahrzeufUE_Label[4], "Besitzer: unbekannt")
+                        end
                         guiSetText(FahrzeufUE_Label[3], "SlotID: unbekannt")
                         guiSetText(FahrzeufUE_Label[1], "Erstellungszahl: unbekannt")
                         guiSetText(FahrzeufUE_Label[2], "Kilometerstand: unbekannt")

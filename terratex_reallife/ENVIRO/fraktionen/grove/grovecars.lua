@@ -68,7 +68,7 @@ function creategrovecars()
     vioSetElementData(console[1], "adminlvl", 4)
 end
 
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), creategrovecars)
+addEventHandler("factionLoadingReady", getResourceRootElement(getThisResource()), creategrovecars)
 
 addEvent("triggerMeGroveCar", true)
 function sendGroveEiswagenPosition()

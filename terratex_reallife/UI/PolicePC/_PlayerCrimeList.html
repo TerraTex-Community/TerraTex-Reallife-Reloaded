@@ -6,13 +6,14 @@
     <div class="card-header">
         StVO-Punkte von %playerName%
     </div>
-    <div class="card-block">
+    <div class="card-body">
         %playerName% hat derzeit <span id="stvo">%stvo%</span> StVO-Punkte.
-
-        <hr/>
+    </div>
+    <hr style="margin: 0"/>
+    <div class="card-body">
         <span class="font-weight-bold">Neue StVO:</span><br/>
         <div class="input-group">
-            <input type="number" class="form-control" id="stvo_number" placeholder="StVO-Anzahl" style="width: 30%">
+            <input type="number" class="form-control" id="stvo_number" placeholder="StVO-Anzahl" style="width: 30%; flex: none;">
             <input type="text" class="form-control" id="stvo_reason" placeholder="StVO-Grund" style="width: 70%">
 
             <span class="input-group-btn">
@@ -22,11 +23,11 @@
     </div>
 </div>
 
-<div class="card" id="giveCrimeCard">
+<div class="card card-margin-top" id="giveCrimeCard">
     <div class="card-header">
         Akte von %playerName%
     </div>
-    <div class="card-block">
+    <div class="card-body">
         <div class="form-group">
             <label for="crimeID">Verbrechenscode</label>
 
@@ -49,7 +50,7 @@
     </div>
 
     <table class="table table-hover table-sm" id="playerCrimeTable">
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th></th>
             <th>Code</th>
@@ -81,7 +82,7 @@
                     <div class="card-header">
                         Filter
                     </div>
-                    <div class="card-block">
+                    <div class="card-body">
                         <div class="input-group">
                             <div class="input-group-addon">Zeige Kategorie:</div>
                             <div class="dropdown" id="filterCategory_dropdown">
@@ -121,3 +122,4 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+

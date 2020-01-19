@@ -35,7 +35,7 @@ function createBlackAliens()
 			
 		
 end
-addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createBlackAliens)
+addEventHandler("factionLoadingReady",getResourceRootElement(getThisResource()),createBlackAliens)
 
 function hitWMarker(thePlayer)
 	if(vioGetElementData(thePlayer,"fraktion")==8)then

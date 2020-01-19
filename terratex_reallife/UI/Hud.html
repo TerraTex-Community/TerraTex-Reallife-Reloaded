@@ -51,7 +51,7 @@
                 <img src="styles/images/food.png" class="status_front"/>
             </div>
         </div>
-        <div id="water" class="hidden-xs-up">
+        <div id="water" class="hidden">
             <img src="styles/images/water_background.png"/>
             <div class="status_front ">
                 <img src="styles/images/water.png" class="status_front"/>
@@ -124,7 +124,7 @@
         }
 
         function setIconHidden(id, status){
-            $("#" + id).toggleClass("hidden-xs-up", status);
+            $("#" + id).toggleClass("hidden", status);
         }
         function setGold(value) {
             $("#gold_container .value").html(value);

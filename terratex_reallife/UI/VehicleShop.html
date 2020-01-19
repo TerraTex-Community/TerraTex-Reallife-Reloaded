@@ -16,7 +16,8 @@
 
     <div class="card card-inverse card-darkblue">
         <div class="card-header card-darkblue">
-            <h4 class="card-title text-light" style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
+            <h4 class="card-title text-light"
+                style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
                 Fahrzeugshop
             </h4>
             <div style="float: right">
@@ -33,7 +34,9 @@
                     <span class="input-group-text">davon Frei: </span>
                     <span class="input-group-text" id="freeSlots">~</span>
                 </div>
-                <button class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span> kaufen!</button>
+                <button class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span>
+                    kaufen!
+                </button>
             </div>
             <div id="slotMessages">
 
@@ -64,21 +67,21 @@
 
 <script>
     $(document).ready(function () {
-        $(document).on('click', '.sellButton', function(){
+        $("html").on('click', '.sellButton', function () {
             var id = $(this).parent().parent().parent().attr("id");
             $.ajax("http://mta/local/ajax_vehshop_buyCar.html?modelId=" + id);
             return false;
         });
 
-        $("#closeGoldMarket").click(function(){
+        $("#closeGoldMarket").click(function () {
             $.ajax("http://mta/local/ajax_vehshop_close.html");
         });
 
-        $("#buyNewSlot").click(function(){
+        $("#buyNewSlot").click(function () {
             $.ajax("http://mta/local/ajax_vehshop_buySlot.html");
         });
 
-        $('#search').on('input', function() {
+        $('#search').on('input', function () {
             const srch = $("#search").val();
             $(".car").removeClass("hidden");
 
@@ -119,6 +122,7 @@
         </div>`;
         $("html").append(error);
     }
+
     function showBuySlotSuccessMessage() {
         const success = `<div class="alert alert-success alert-dismissible fade show" role="alert">
             Du hast erfolgreich einen weiteren Fahrzeugslot erworben!
@@ -149,7 +153,7 @@
                     Preis: ${price}
                 </div>
                 <div class="card-footer text-muted text-xs-center">
-                    <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
+                    <a href="#" class="btn btn-primary sellButton">Jetzt Kaufen!</a>
                 </div>
             </div>
         </div>`;

@@ -131,20 +131,21 @@ addEventHandler("event_vehicleShopBuySlot", getRootElement(), vehicleShopBuyCarS
 -- buy Vehicle
 function vehicleShopBuyVehicle(modelId)
     local slotData = getPlayerSlotData(client)
+    modelId = tonumber(modelId)
 
     if (slotData.freeSlots == 0) then
         triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast keinen freien Slot mehr!");
     else
-        local shopVehicleData = getVehicleShopDataByModelId(tonumber(modelId))
+        local shopVehicleData = getVehicleShopDataByModelId(modelId)
         if (canPlayerHaveVehicle(client, shopVehicleData.price)) then
-            if (hasTheLicenseFor(client, thevehicle)) then
+            if (hasTheLicenseFor(client, modelId)) then
 
                 if (getPlayerMoney(client) < shopVehicleData.currentPrice) then
                     triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast nicht genügend Geld für dieses Fahrzeug!");
                     outputChatBox("Du hast nicht genügend Geld!", client, 255, 0, 0)
                 else
-                    changePlayerMoney(source, -shopVehicleData.currentPrice, "fahrzeug", "Fahrzeugkauf")
-                    local currentShopData = vioGetElementData(thePlayer, "activeVehicleShop");
+                    changePlayerMoney(client, -shopVehicleData.currentPrice, "fahrzeug", "Fahrzeugkauf")
+                    local currentShopData = vioGetElementData(client, "activeVehicleShop");
 
                     local spawnVeh = createVehicle(modelId, currentShopData.spawn[1], currentShopData.spawn[2], currentShopData.spawn[3], currentShopData.spawn[4], currentShopData.spawn[5], currentShopData.spawn[6])
                     vioSetElementData(client, "slot" .. slotData.firstFreeSlot, spawnVeh)

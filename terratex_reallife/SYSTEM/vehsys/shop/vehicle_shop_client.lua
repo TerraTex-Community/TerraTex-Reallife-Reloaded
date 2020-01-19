@@ -27,8 +27,8 @@ function openVehicleShop(vehicleJson, slotData)
     addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
                 setBrowserAjaxHandler(source, "ajax_vehshop_close.html", closeVehShop);
-                setBrowserAjaxHandler(source, "ajax_vehshop_buySlot.html", buySlot);
-                setBrowserAjaxHandler(source, "ajax_vehshop_buyCar.html", buyCar);
+                setBrowserAjaxHandler(source, "ajax_vehshop_buySlot.html", ajax_vehshop_buySlot);
+                setBrowserAjaxHandler(source, "ajax_vehshop_buyCar.html", ajax_vehshop_buyCar);
                 loadBrowserURL(source, "http://mta/local/UI/VehicleShop.html");
             end);
 

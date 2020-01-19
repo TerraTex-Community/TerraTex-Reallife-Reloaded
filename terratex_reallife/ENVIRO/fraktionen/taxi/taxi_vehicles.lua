@@ -60,7 +60,7 @@ function onCreatetaxicars_func()
 	end
 	loadTaxiPricesFromDB()
 end
-addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),onCreatetaxicars_func)
+addEventHandler("factionLoadingReady",getResourceRootElement(getThisResource()),onCreatetaxicars_func)
 
 function loadTaxiPricesFromDB()
 	local tarifa = MySql.helper.getValueSync("data_taxi_prices", "preis", {timezone = 1, tarifzone = 1});

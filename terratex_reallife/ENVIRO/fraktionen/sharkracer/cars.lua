@@ -37,7 +37,7 @@ function createracecars()
     end
 	
 end
-addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),createracecars)
+addEventHandler("factionLoadingReady",getResourceRootElement(getThisResource()),createracecars)
 
  
 function donotenterrace(player,seat)

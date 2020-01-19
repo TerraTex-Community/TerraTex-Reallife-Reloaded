@@ -28,7 +28,7 @@ function createviolettacars()
         table.insert(frakcars, theVehicle)
     end
 end
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createviolettacars)
+addEventHandler("factionLoadingReady", getResourceRootElement(getThisResource()), createviolettacars)
 
 function donotentercarshforce(player, seat)
     if not (vioGetElementData(player, "fraktion") == 12) and (seat == 0) then

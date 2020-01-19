@@ -1,3 +1,5 @@
+addEvent("factionLoadingReady", false)
+
 team = {}
 frakkasse = {}
 blacklist = {}
@@ -21,6 +23,8 @@ function teamserstellen()
         fraktionkuerzel[tonumber(dasatz["ID"])] = dasatz["NumberPlate"];
 
     end
+
+    outputDebugString(toJSON(fraktionkuerzel));
 
     result = MySql.helper.getSync("faction_ranks", "*");
     for theKey, dasatz in ipairs(result) do
@@ -108,6 +112,8 @@ function teamserstellen()
             end
         end
     end
+
+    triggerEvent("factionLoadingReady", getRootElement())
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), teamserstellen)
 

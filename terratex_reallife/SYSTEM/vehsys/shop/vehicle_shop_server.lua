@@ -135,7 +135,7 @@ function vehicleShopBuyVehicle(modelId)
     if (slotData.freeSlots == 0) then
         triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast keinen freien Slot mehr!");
     else
-        local shopVehicleData = getVehicleShopDataByModelId(modelId)
+        local shopVehicleData = getVehicleShopDataByModelId(tonumber(modelId))
         if (canPlayerHaveVehicle(client, shopVehicleData.price)) then
             if (hasTheLicenseFor(client, thevehicle)) then
 

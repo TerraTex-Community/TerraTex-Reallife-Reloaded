@@ -200,7 +200,7 @@ function prepare(thevehicle, frakid)
     vioSetElementData(thevehicle, "respawn", 1)
     vioSetElementData(thevehicle, "motor", false)
     vioSetElementData(thevehicle, "motornum", 0)
-
+    vioSetElementData(thevehicle, "factionName", fraktionbezeichner[frakid])
     setVehiclePlateText( thevehicle, fraktionkuerzel[frakid] )
 end
 

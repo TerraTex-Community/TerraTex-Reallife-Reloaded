@@ -8,8 +8,8 @@ function getPlayerSlotData(thePlayer)
 
     local freeSlots = 0
     local firstFreeSlot = 0
-    for zah = vioGetElementData(source, "maxslots"), 1, -1 do
-        if tonumber(vioGetElementData(source, "slot" .. zah)) == -1 then
+    for zah = vioGetElementData(thePlayer, "maxslots"), 1, -1 do
+        if tonumber(vioGetElementData(thePlayer, "slot" .. zah)) == -1 then
             freeSlots = freeSlots + 1
             firstFreeSlot = zah
         end

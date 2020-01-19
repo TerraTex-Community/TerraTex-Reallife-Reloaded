@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="card card-inverse card-darkblue">
-        <div class="card-header card-darkblue  text-light">
+        <div class="card-header card-darkblue text-light">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Anzahl deiner Fahrzeugslots: </span>
@@ -34,6 +34,9 @@
                     <span class="input-group-text" id="freeSlots">~</span>
                 </div>
                 <button type="submit" class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span> kaufen!</button>
+            </div>
+            <div id="slotMessages">
+
             </div>
         </div>
     </div>
@@ -73,6 +76,26 @@
         $("#slotPrice").text(slotPrice);
         $("#freeSlots").text(freeSlots);
         $("#totalSlots").text(totalSlots);
+    }
+
+    function showBuySlotErrorMessage(errorMsg) {
+        // #slotMessages
+        const error = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            ${errorMsg}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>`;
+        $("#slotMessages").append(error);
+    }
+    function showBuySlotSuccessMessage() {
+        const success = `<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Du hast erfolgreich einen weiteren Fahrzeugslot erworben!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+        </div>`;
+        $("#slotMessages").append(success);
     }
 
     function addVehicleToShopList(id, name, price, inSale, salePercentage, salePrice) {

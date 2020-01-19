@@ -111,3 +111,19 @@ function showReducedCarsCmd(thePlayer)
 end
 addCommandHandler("rabattcars", showReducedCarsCmd, false, false)
 
+-- buy Slot
+function vehicleShopBuyCarSlot()
+    local slotData = getPlayerSlotData(client)
+
+    if (getPlayerMoney(client) < slotData.price) then
+        triggerClientEvent(client, "event_vehicleShopBuySlot_error", client, "Du hast nicht genug Geld für einen Fahrzeugslot.");
+    else
+        vioSetElementData(client, "maxslots", (maxslot + 1))
+        vioSetElementData(client, "slot" .. (maxslot + 1), -1)
+        changePlayerMoney(client, -slotprice, "fahrzeug", "Fahrzeugslotkauf")
+        outputChatBox("Du hast erfolgreich einen weiteren Slot gekauft!", client, 255, 0, 0)
+        triggerClientEvent(client, "event_vehicleShopBuySlot_success", client, toJSON(getPlayerSlotData(client)));
+    end
+end
+addEvent("event_vehicleShopBuySlot", true)
+addEventHandler("event_vehicleShopBuySlot", getRootElement(), vehicleShopBuyCarSlot)

@@ -27,6 +27,8 @@ function openVehicleShop(vehicleJson, slotData)
     addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
             function()
                 setBrowserAjaxHandler(source, "ajax_vehshop_close.html", closeVehShop);
+                setBrowserAjaxHandler(source, "ajax_vehshop_buySlot.html", buySlot);
+                setBrowserAjaxHandler(source, "ajax_vehshop_buyCar.html", buyCar);
                 loadBrowserURL(source, "http://mta/local/UI/VehicleShop.html");
             end);
 
@@ -57,6 +59,40 @@ function openVehicleShop(vehicleJson, slotData)
 
 end
 addEventHandler("openVehicleShop", getRootElement(), openVehicleShop)
+
+function successOnBuySlot(slotDataJson)
+    if (vehicleShopBrowser and isElement(vehicleShopBrowser)) then
+        local slotData = fromJSON(slotDataJson)
+        updateSlotData(slotData.totalSlots, slotData.freeSlots, slotData.price);
+
+        executeBrowserJavascript(vehicleShopBrowser, "showBuySlotSuccessMessage()")
+    end
+end
+addEvent("event_vehicleShopBuySlot_success", true)
+addEventHandler("event_vehicleShopBuySlot_success", getRootElement(), errorOnBuySlot)
+
+function errorOnBuySlot(txt)
+    if (vehicleShopBrowser and isElement(vehicleShopBrowser)) then
+        local slotData = fromJSON(slotDataJson)
+        updateSlotData(slotData.totalSlots, slotData.freeSlots, slotData.price);
+
+        executeBrowserJavascript(vehicleShopBrowser, "showBuySlotErrorMessage(\"" .. txt .."\")")
+    end
+end
+addEvent("event_vehicleShopBuySlot_error", true)
+addEventHandler("event_vehicleShopBuySlot_error", getRootElement(), errorOnBuySlot)
+
+function ajax_vehshop_buySlot()
+    triggerServerEvent("event_vehicleShopBuySlot", getLocalPlayer())
+end
+
+function ajax_vehshop_buyCar(get)
+    if (get) then
+        if (get.modelId and tonumber(get.modelId)) then
+        --    buy a car
+        end
+    end
+end
 
 function updateSlotData(totalSlots, freeSlots, price)
     if (vehicleShopBrowser and isElement(vehicleShopBrowser)) then

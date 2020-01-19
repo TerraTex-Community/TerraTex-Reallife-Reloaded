@@ -26,14 +26,14 @@
     </div>
     <div class="card card-inverse card-darkblue">
         <div class="card-header card-darkblue text-light">
-            <div class="input-group mb-3">
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Anzahl deiner Fahrzeugslots: </span>
                     <span class="input-group-text" id="totalSlots">~</span>
                     <span class="input-group-text">davon Frei: </span>
                     <span class="input-group-text" id="freeSlots">~</span>
                 </div>
-                <button type="submit" class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span> kaufen!</button>
+                <button class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span> kaufen!</button>
             </div>
             <div id="slotMessages">
 
@@ -42,16 +42,19 @@
     </div>
 
     <div class="card card-inverse card-darkblue">
-        <div class="card-header card-darkblue  text-light">
+        <div class="card-header card-darkblue text-light">
             <div>
-                Filter optionen.....
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="search" placeholder="Suche" aria-label="Suche">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="row row-cols-3 card-margin-top" id="vehList">
-
-
 
     </div>
 
@@ -63,12 +66,29 @@
     $(document).ready(function () {
         $(document).on('click', '.sellButton', function(){
             var id = $(this).parent().parent().parent().attr("id");
-            $.ajax("http://mta/local/ajax_vehshop_item.html?item=" + id);
+            $.ajax("http://mta/local/ajax_vehshop_buyCar.html?modelId=" + id);
             return false;
         });
 
         $("#closeGoldMarket").click(function(){
             $.ajax("http://mta/local/ajax_vehshop_close.html");
+        });
+
+        $("#buyNewSlot").click(function(){
+            $.ajax("http://mta/local/ajax_vehshop_buySlot.html");
+        });
+
+        $('#search').on('input', function() {
+            const srch = $("#search").val();
+            $(".car").removeClass("hidden");
+
+            if (srch.length > 0) {
+                $(".car").each(function () {
+                    if (!$(this).attr("data-name").includes(srch)) {
+                        $(this).addClass("hidden");
+                    }
+                });
+            }
         });
     });
 
@@ -102,7 +122,7 @@
         const salePriceClass = inSale ? "" : "hidden";
         const nonSalePriceClass = inSale ? "hidden" : "";
 
-        const template = `<div class="col mb-4" id="${id}">
+        const template = `<div class="col mb-4 car" id="${id}" data-name="${name}">
             <div class="card">
                 <h5 class="card-header">${name}</h5>
                 <div style="position: relative; overflow: hidden">

@@ -69,13 +69,10 @@ function successOnBuySlot(slotDataJson)
     end
 end
 addEvent("event_vehicleShopBuySlot_success", true)
-addEventHandler("event_vehicleShopBuySlot_success", getRootElement(), errorOnBuySlot)
+addEventHandler("event_vehicleShopBuySlot_success", getRootElement(), successOnBuySlot)
 
 function errorOnBuySlot(txt)
     if (vehicleShopBrowser and isElement(vehicleShopBrowser)) then
-        local slotData = fromJSON(slotDataJson)
-        updateSlotData(slotData.totalSlots, slotData.freeSlots, slotData.price);
-
         executeBrowserJavascript(vehicleShopBrowser, "showBuySlotErrorMessage(\"" .. txt .."\")")
     end
 end
@@ -89,7 +86,7 @@ end
 function ajax_vehshop_buyCar(get)
     if (get) then
         if (get.modelId and tonumber(get.modelId)) then
-        --    buy a car
+            triggerServerEvent("event_vehicleShopBuyCar", getLocalPlayer(), get.modelId);
         end
     end
 end
@@ -106,6 +103,11 @@ function updateSlotData(totalSlots, freeSlots, price)
     end
 end
 
+function vehicleShopBuyCarError(txt)
+    executeBrowserJavascript(vehicleShopBrowser, "showBuyCarErrorMessage(\"" .. txt .."\")")
+end
+addEvent("event_vehicleShopBuyCar_error", true)
+addEventHandler("event_vehicleShopBuyCar_error", getRootElement(), vehicleShopBuyCarError)
 
 function closeVehShop()
     if isElement(vehicleShopWindow) then
@@ -114,3 +116,5 @@ function closeVehShop()
     vehicleShopWindow = false;
     vehicleShopBrowser = false;
 end
+addEvent("event_vehicleShopBuyCar_success", true)
+addEventHandler("event_vehicleShopBuyCar_success", getRootElement(), closeVehShop)

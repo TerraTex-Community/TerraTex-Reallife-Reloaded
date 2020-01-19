@@ -127,3 +127,129 @@ function vehicleShopBuyCarSlot()
 end
 addEvent("event_vehicleShopBuySlot", true)
 addEventHandler("event_vehicleShopBuySlot", getRootElement(), vehicleShopBuyCarSlot)
+
+-- buy Vehicle
+function vehicleShopBuyVehicle(modelId)
+    local slotData = getPlayerSlotData(thePlayer)
+
+    if (slotData.freeSlots == 0) then
+        triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast keinen freien Slot mehr!");
+    else
+        local shopVehicleData = getVehicleShopDataByModelId(modelId)
+        if (canPlayerHaveVehicle(client, shopVehicleData.price)) then
+            if (hasTheLicenseFor(client, thevehicle)) then
+
+                if (getPlayerMoney(client) < shopVehicleData.currentPrice) then
+                    triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast nicht genügend Geld für dieses Fahrzeug!");
+                    outputChatBox("Du hast nicht genügend Geld!", client, 255, 0, 0)
+                else
+                    changePlayerMoney(source, -shopVehicleData.currentPrice, "fahrzeug", "Fahrzeugkauf")
+                    local currentShopData = vioGetElementData(thePlayer, "activeVehicleShop");
+
+                    local spawnVeh = createVehicle(modelId, currentShopData.spawn[1], currentShopData.spawn[2], currentShopData.spawn[3], currentShopData.spawn[4], currentShopData.spawn[5], currentShopData.spawn[6])
+                    vioSetElementData(client, "slot" .. slotData.firstFreeSlot, spawnVeh)
+                    vioSetElementData(spawnVeh, "besitzer", getPlayerName(client))
+                    vioSetElementData(spawnVeh, "slotid", slotData.firstFreeSlot)
+                    vioSetElementData(spawnVeh, "spawnx", 0)
+                    vioSetElementData(spawnVeh, "spawny", 0)
+                    vioSetElementData(spawnVeh, "spawnz", 0)
+                    vioSetElementData(spawnVeh, "spawnrx", 0)
+                    vioSetElementData(spawnVeh, "spawnry", 0)
+                    vioSetElementData(spawnVeh, "spawnrz", 0)
+                    vioSetElementData(spawnVeh, "motor", false)
+                    vioSetElementData(spawnVeh, "colors", "0|0|0|0")
+                    vioSetElementData(spawnVeh, "locked", true)
+                    vioSetElementData(spawnVeh, "tuning", "0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0")
+                    vioSetElementData(spawnVeh, "paintjob", 3)
+                    vioSetElementData(spawnVeh, "model", getElementModel(vehicle[1]))
+                    vioSetElementData(spawnVeh, "tank", 100)
+                    vioSetElementData(spawnVeh, "kmstand", 0)
+                    vioSetElementData(spawnVeh, "falter", 0)
+                    vioSetElementData(spawnVeh, "abgeschleppt", 0)
+                    vioSetElementData(spawnVeh, "kaufpreis", vehicle[4])
+                    vioSetElementData(spawnVeh, "Lichterfarbe", "255|255|255")
+                    vioSetElementData(spawnVeh, "premColor", "-1")
+                    fixVehicle(spawnVeh)
+
+                    table.insert(privVeh, { getPlayerName(client), slotData.firstFreeSlot, spawnVeh })
+                    privCars[spawnVeh] = true
+
+                    local dbid = MySql.helper.insertSync("user_vehicles", {
+                        SlotID = slotData.firstFreeSlot,
+                        Besitzer = getPlayerName(client),
+                        Model = getElementModel(spawnVeh),
+                        SpawnX = 0,
+                        SpawnY = 0,
+                        SpawnZ = 0,
+                        SpawnRX = 0,
+                        SpawnRY = 0,
+                        SpawnRZ = 0,
+                        Colors = "0|0|0|0",
+                        kaufpreis = shopVehicleData.currentPrice
+                    });
+
+                    vioSetElementData(spawnVeh, "dbid", dbid)
+                    warpPedIntoVehicle(client, spawnVeh)
+                    showError(client, "Du hast dieses Fahrzeug erfolgreich gekauft! Bitte parke es auf einen PARKPLATZ Reallife mäßig mit /park. Parkst du es nicht wird es an den Koordinaten 0 0 0 spawnen und eventuell gelöscht!")
+                    outputChatBox("Du hast dieses Fahrzeug erfolgreich gekauft! Bitte parke es auf einen PARKPLATZ Reallife mäßig mit /park.", client, 255, 0, 0)
+                    outputChatBox("Parkst du es nicht wird es an den Koordinaten 0 0 0 spawnen und eventuell gelöscht!", client, 255, 0, 0)
+
+                    if (vioGetElementData(client, "Erfolg_Autoeinsteiger") ~= 1) then
+                        vioSetElementData(client, "Erfolg_Autoeinsteiger", 1)
+                        triggerClientEvent(client, "onClientCreatePokalGUI", client, "Autoeinsteiger", "Kaufe ein Auto!")
+                    end
+
+                    triggerClientEvent(client, "event_vehicleShopBuyCar_success", client)
+                end
+            else
+                triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Du hast nicht die nötigen Lizensen!");
+            end
+        else
+            triggerClientEvent(client, "event_vehicleShopBuyCar_error", client, "Dieses Fahrzeug kostet mehr als dein Lebensstandard hergibt.");
+        end
+    end
+end
+addEvent("event_vehicleShopBuyCar", true)
+addEventHandler("event_vehicleShopBuyCar", getRootElement(), vehicleShopBuyVehicle)
+
+function getVehicleShopDataByModelId(modelId) 
+    local data =  {
+        name= nil, buyType= nil, price= nil, modelId= nil, inSellPercentage= nil, inSell= nil, currentPrice= nil
+    };
+
+    for theKey, theVehicle in ipairs(vehicleShopCars) do
+        if (theVehicle.modelId == modelId) then
+            theVehicle.currentPrice = theVehicle.price;
+            if (theVehicle.inSell) then
+                theVehicle.currentPrice = theVehicle.price * (100 - theVehicle.inSellPercentage) / 100;
+            end
+
+            return theVehicle;
+        end
+    end
+
+    return false;
+end
+
+function checkForCarBuyEvent(thePlayer)
+    local slotData = getPlayerSlotData(thePlayer)
+
+    if (slotData.totalSlots - slotData.freeSlots > 10) then
+        if (vioGetElementData(thePlayer, "Erfolg_10erFahrzeugrausch") ~= 1) then
+            vioSetElementData(thePlayer, "Erfolg_10erFahrzeugrausch", 1)
+            triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "10er Fahrzeugrausch", "Besitze 10 Fahrzeuge!")
+        end
+    end
+    if (slotData.totalSlots - slotData.freeSlots > 15) then
+        if (vioGetElementData(thePlayer, "Erfolg_20erFahrzeugrausch") ~= 1) then
+            vioSetElementData(thePlayer, "Erfolg_20erFahrzeugrausch", 1)
+            triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "15er Fahrzeugrausch", "Besitze 15 Fahrzeuge!")
+        end
+    end
+    if (slotData.totalSlots - slotData.freeSlots > 20) then
+        if (vioGetElementData(thePlayer, "Erfolg_50erFahrzeugrausch") ~= 1) then
+            vioSetElementData(thePlayer, "Erfolg_50erFahrzeugrausch", 1)
+            triggerClientEvent(thePlayer, "onClientCreatePokalGUI", thePlayer, "20er Fahrzeugrausch", "Besitze 20 Fahrzeuge!")
+        end
+    end
+end

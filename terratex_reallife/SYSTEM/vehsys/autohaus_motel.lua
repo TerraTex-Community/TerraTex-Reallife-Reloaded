@@ -135,28 +135,4 @@ end
 addEvent("buyCar_Event", true)
 addEventHandler("buyCar_Event", getRootElement(), buyCar)
 
-function buyCarSlot()
-    local maxslot = vioGetElementData(source, "maxslots")
-    slotprice = math.pow(2, (tonumber(getElementData(source, "maxslots")) - 1)) * 1000
-    if (tonumber(getElementData(source, "maxslots")) > 9) then
-        slotprice = math.pow(2, 9) * 1000 + math.pow(2, (tonumber(getElementData(source, "maxslots")) - 5)) * 300
-    end
-    if (tonumber(getElementData(source, "maxslots")) > 14) then
-        slotprice = math.pow(2, 9) * 1000 + math.pow(2, 9) * 300 + math.pow(2, (tonumber(getElementData(source, "maxslots")) - 10)) * 300
-    end
-    if (tonumber(getElementData(source, "maxslots")) > 20) then
-        slotprice = math.pow(2, 9) * 1000 + math.pow(2, 9) * 300 + math.pow(2, 10) * 300 + math.pow(1.3, (tonumber(getElementData(source, "maxslots")) - 1)) * 300
-    end
-    if (getPlayerMoney(source) < slotprice) then
-        showError(source, "Du hast nicht genuegend Geld!")
-    else
-        vioSetElementData(source, "maxslots", (maxslot + 1))
-        vioSetElementData(source, "slot" .. (maxslot + 1), -1)
-        changePlayerMoney(source, -slotprice, "fahrzeug", "Fahrzeugslotkauf")
-        showError(source, "Du hast erfolgreich einen weiteren Slot gekauft!")
-        outputChatBox("Du hast erfolgreich einen weiteren Slot gekauft!", source, 255, 0, 0)
-    end
-end
 
-addEvent("buyCarSlot_Event", true)
-addEventHandler("buyCarSlot_Event", getRootElement(), buyCarSlot)

@@ -1,12 +1,14 @@
 local vehicleShopWindow = nil;
 local vehicleShopBrowser = nil;
 local vehicleList;
+local vehicleLatestSlotData;
 
 -- @todo: close window on distance
 
 addEvent("openVehicleShop", true)
-function openVehicleShop(vehicleJson)
+function openVehicleShop(vehicleJson, slotData)
     vehicleList = fromJSON(vehicleJson);
+    vehicleLatestSlotData = fromJSON(slotData)
 
     if (vehicleShopWindow) then
         if isElement(vehicleShopWindow) then
@@ -32,6 +34,7 @@ function openVehicleShop(vehicleJson)
             function(url)
                 showCursor(true)
                 vehicleShopBrowser = source;
+                updateSlotData(vehicleLatestSlotData.totalSlots, vehicleLatestSlotData.freeSlots, vehicleLatestSlotData.price);
 
                 for theKey, theVehicle in ipairs(vehicleList) do
                     -- addVehicleToShopList(id, name, price, inSale, salePercentage, salePrice)
@@ -48,13 +51,25 @@ function openVehicleShop(vehicleJson)
                     end
 
                     addFunc = addFunc .. ");"
-                    outputDebugString(addFunc);
                     executeBrowserJavascript(vehicleShopBrowser, addFunc)
                 end
             end);
 
 end
 addEventHandler("openVehicleShop", getRootElement(), openVehicleShop)
+
+function updateSlotData(totalSlots, freeSlots, price)
+    if (vehicleShopBrowser and isElement(vehicleShopBrowser)) then
+        -- totalSlots, freeSlots, slotPrice
+        local slotFunc = "setSlotData(";
+        slotFunc = slotFunc .. totalSlots;
+        slotFunc = slotFunc .. ", " .. freeSlots;
+        slotFunc = slotFunc .. ", \"" .. toprice(price) .. "\");";
+
+        executeBrowserJavascript(vehicleShopBrowser, slotFunc)
+    end
+end
+
 
 function closeVehShop()
     if isElement(vehicleShopWindow) then

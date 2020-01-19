@@ -24,6 +24,19 @@
             </div>
         </div>
     </div>
+    <div class="card card-inverse card-darkblue">
+        <div class="card-header card-darkblue  text-light">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Anzahl deiner Fahrzeugslots: </span>
+                    <span class="input-group-text" id="totalSlots">~</span>
+                    <span class="input-group-text">davon Frei: </span>
+                    <span class="input-group-text" id="freeSlots">~</span>
+                </div>
+                <button type="submit" class="btn btn-success" id="buyNewSlot">Neuen Fahrzeugslot für <span id="slotPrice">~</span> kaufen!</button>
+            </div>
+        </div>
+    </div>
 
     <div class="card card-inverse card-darkblue">
         <div class="card-header card-darkblue  text-light">
@@ -45,8 +58,6 @@
 
 <script>
     $(document).ready(function () {
-
-
         $(document).on('click', '.sellButton', function(){
             var id = $(this).parent().parent().parent().attr("id");
             $.ajax("http://mta/local/ajax_vehshop_item.html?item=" + id);
@@ -57,6 +68,12 @@
             $.ajax("http://mta/local/ajax_vehshop_close.html");
         });
     });
+
+    function setSlotData(totalSlots, freeSlots, slotPrice) {
+        $("#slotPrice").text(slotPrice);
+        $("#freeSlots").text(freeSlots);
+        $("#totalSlots").text(totalSlots);
+    }
 
     function addVehicleToShopList(id, name, price, inSale, salePercentage, salePrice) {
         const salePriceClass = inSale ? "" : "hidden";

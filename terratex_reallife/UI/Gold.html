@@ -56,8 +56,8 @@
                 10 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
             </div>
             <div class="card-footer text-muted text-xs-center">
-                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
-                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
             </div>
         </div>
 
@@ -71,8 +71,8 @@
                 5 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
             </div>
             <div class="card-footer text-muted text-xs-center">
-                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
-                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
             </div>
         </div>
 
@@ -86,8 +86,8 @@
                 10 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
             </div>
             <div class="card-footer text-muted text-xs-center">
-                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
-                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
             </div>
         </div>
     </div>
@@ -104,8 +104,8 @@
                 20 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
             </div>
             <div class="card-footer text-muted text-xs-center">
-                <a href="#" class="btn btn-primary sellButton hidden-xs-up">Jetzt Kaufen!</a>
-                <span class="expiringTime hidden-xs-up"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
             </div>
         </div>
 
@@ -146,16 +146,16 @@
         var obj = $("#" + id);
         if (state) {
             obj.find(".days").html(state);
-            obj.find(".sellButton").addClass("hidden-xs-up");
-            obj.find(".expiringTime").removeClass("hidden-xs-up");
+            obj.find(".sellButton").addClass("hidden");
+            obj.find(".expiringTime").removeClass("hidden");
         } else {
             if (extend) {
                 obj.find(".sellButton").html("Jetzt Verlängern!");
             } else {
                 obj.find(".sellButton").html("Jetzt Kaufen!");
             }
-            obj.find(".sellButton").removeClass("hidden-xs-up");
-            obj.find(".expiringTime").addClass("hidden-xs-up");
+            obj.find(".sellButton").removeClass("hidden");
+            obj.find(".expiringTime").addClass("hidden");
         }
     }
 </script>

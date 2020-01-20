@@ -58,7 +58,7 @@
             </label>
             <br/>
             <button type="button" id="vacationmode" class="btn btn-primary vacationmode" disabled>Urlaubsmodus aktivieren!</button>
-            <span id="vacation_disabled" class="hidden-xs-up"> Kann noch <u>30</u> Tage nicht aktiviert werden.</span>
+            <span id="vacation_disabled" class="hidden"> Kann noch <u>30</u> Tage nicht aktiviert werden.</span>
         </fieldset>
     </div>
     <button type="button" class="btn btn-danger closeBtn btn-fullwidth">schließen</button>
@@ -88,11 +88,11 @@
         $("#email").val(email);
         $("#birthday").val(birthday);
         if (vacationDays) {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", false);
+            $("#vacation_disabled").toggleClass("hidden", false);
             $("#vacation_disabled u").html(vacationDays);
             $(".vacationmode").attr("disabled", "disabled");
         } else {
-            $("#vacation_disabled").toggleClass("hidden-xs-up", true);
+            $("#vacation_disabled").toggleClass("hidden", true);
             $(".vacationmode").attr("disabled", false);
         }
     }

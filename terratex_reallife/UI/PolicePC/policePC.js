@@ -95,7 +95,7 @@ function setContent(content) {
 }
 
 function toggleContentLoader(bool) {
-    $("#page-loading").toggleClass("hidden-xs-up", !bool);
+    $("#page-loading").toggleClass("hidden", !bool);
 }
 
 function setCar(id, html, newTop, newLeft) {
@@ -249,11 +249,11 @@ function setStVO(number) {
 
 function startReloadPlayerCrimeList() {
     $("#playerCrimeTable tbody").html("");
-    $("#crime-loading").toggleClass("hidden-xs-up", false);
+    $("#crime-loading").toggleClass("hidden", false);
 }
 
 function finishPlayerCrimeList() {
-    $("#crime-loading").toggleClass("hidden-xs-up", true);
+    $("#crime-loading").toggleClass("hidden", true);
 }
 
 function addCrimeToPlayerCrimeList(id, code, crimeText, info, date, getBy, deleteAble) {

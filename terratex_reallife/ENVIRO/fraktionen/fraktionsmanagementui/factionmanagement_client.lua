@@ -22,8 +22,12 @@ function showLeaderManagementGUI()
             local browser = guiCreateBrowser(10, 10, 800, 600, true, false, false, managementWindow);
 
 
+
+
             addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
                 function()
+                    setDevelopmentMode(true, true)
+                    toggleBrowserDevTools ( source, true )
                     setBrowserAjaxHandler(source, "ajax_faction_management_load_page.html", loadFManagementPage);
                     setBrowserAjaxHandler(source, "ajax_faction_management_execute_member_function.html", executeFactionManagementFunction);
                     loadBrowserURL(source, "http://mta/local/UI/Fraktionsmanagement/Main.html");

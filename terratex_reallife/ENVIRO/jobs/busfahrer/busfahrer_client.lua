@@ -13,6 +13,7 @@ function playHalteStellenSound_func(haltestellenname)
     haltestellenname=string.gsub(haltestellenname, "ü", "ue")
     haltestellenname=string.gsub(haltestellenname, "ö", "oe")
 	playSound(string.format("http://www.voicerss.org/controls/speech.ashx?hl=de-de&src=Die nächste Haltestelle ist: %s&c=mp3", haltestellenname))
+--    maybe change to local URL = "https://code.responsivevoice.org/getvoice.php?tl=" .. lang .. "&t=" .. text
 
 end
 addEventHandler("playHalteStellenSound",getRootElement(),playHalteStellenSound_func)

@@ -2640,6 +2640,7 @@ function hitDuengen(playa)
             local finished = false
             if (duenger >= (table.getn(duengermarker) / 4)) then
                 finished = true
+                DeleteMissionFarmerStop_func()
                 triggerServerEvent("finish_farmer_mission_3", getLocalPlayer())
             end
         end

@@ -50,7 +50,7 @@ function stealTooExpensiveVehicles()
 
     local allVehicles = getElementsByType("vehicle")
     for theKey, theVehicle in ipairs(allVehicles) do
-        if (privCars[theVehicle]) then
+        if (isVehiclePrivate(theVehicle)) then
             local buyWert = vioGetElementData(theVehicle, "kaufpreis")
             local besitzer = vioGetElementData(theVehicle, "besitzer")
             local player = getPlayerFromName(besitzer)
@@ -63,7 +63,6 @@ function stealTooExpensiveVehicles()
             local maxWert = getMaxVehicleWert(hkey)
             if (buyWert > maxWert) then
                 if (math.random(1, 4) == 2) then
-                    privCars[theVehicle] = nil
                     if (player) then
                         outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde von der Polizei nach einem Diebstahl gefunden.", vioGetElementData(theVehicle, "slotid")), player, 255, 0, 0)
                         vioSetElementData(player, "slot" .. vioGetElementData(theVehicle, "slotid"), -2)

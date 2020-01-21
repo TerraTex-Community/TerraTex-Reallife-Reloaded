@@ -12,7 +12,6 @@ function abschleppNullSystem()
     local shape = createColSphere(0, 0, 0, 20)
     local vehicles = getElementsWithinColShape(shape, "vehicle")
     for theKey, theVehicle in ipairs(vehicles) do
-        privCars[theVehicle] = nil
         if (getPlayerFromName(vioGetElementData(theVehicle, "besitzer"))) then
             outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")), getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), 255, 0, 0)
             vioSetElementData(getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), "slot" .. vioGetElementData(theVehicle, "slotid"), -2)
@@ -58,7 +57,7 @@ function abgeschleppt_police_click(theVehicle, grund)
     if (isBeamter(source) or isAdminLevel(source, 0)) then
         if isElement(theVehicle) then
             if (isElementWithinColShape(theVehicle, abgabecol) or isElementWithinColShape(theVehicle, abgabecolA) or (isAdminLevel(source, 0))) then
-                privCars[theVehicle] = nil
+
                 if (getPlayerFromName(vioGetElementData(theVehicle, "besitzer"))) then
                     outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde von %s abgeschleppt, weil: %s", vioGetElementData(theVehicle, "slotid"), getPlayerName(source), grund), getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), 255, 0, 0)
                     vioSetElementData(getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), "slot" .. vioGetElementData(theVehicle, "slotid"), -2)
@@ -101,7 +100,7 @@ end
 addEventHandler("abgeschleppt_Event", getRootElement(), abgeschleppt_police_click)
 
 function attachAbschleppingCar(theTruck)
-    if (isPoliceCar(theTruck) and privCars[source]) then
+    if (isPoliceCar(theTruck) and isVehiclePrivate(source)) then
         setElementFrozen(source, false)
     end
 end
@@ -240,7 +239,7 @@ function getcar_func(thePlayer, cmd, IDs)
                         end
 
                         setVehiclePaintjob(thevehicle, tonumber(dasatz["paintjob"]))
-                        privCars[thevehicle] = true
+                        setVehiclePrivate(thevehicle, true)
                         local vara = dasatz["Besitzer"]
                         local slot = tonumber(dasatz["SlotID"])
 

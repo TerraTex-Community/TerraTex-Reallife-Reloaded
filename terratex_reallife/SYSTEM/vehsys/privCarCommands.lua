@@ -273,7 +273,6 @@ function deletecar_func(thePlayer, command, SloteID)
                         end
                     end
 
-                    privCars[vioGetElementData(thePlayer, "slot" .. SlotID)] = nil
                     for theKey, theTable in ipairs(privVeh) do
                         if (theTable[3] == vioGetElementData(thePlayer, "slot" .. SlotID)) then
                             table.remove(privVeh, theKey)

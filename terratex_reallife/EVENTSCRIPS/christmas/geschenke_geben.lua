@@ -46,7 +46,7 @@ function wantAKart_Event_func()
             setTimer(fixVehicle, 2000, 1, spawnVeh)
             setTimer(fixVehicle, 3000, 1, spawnVeh)
             table.insert(privVeh, { getPlayerName(source), firstfreeslot, spawnVeh })
-            privCars[spawnVeh] = true
+            setVehiclePrivate(spawnVeh, true)
 
             MySql.helper.insert("user_vehicles", {
                 SlotID = firstfreeslot,

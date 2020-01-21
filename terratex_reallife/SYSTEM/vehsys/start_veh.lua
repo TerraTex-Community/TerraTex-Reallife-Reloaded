@@ -26,7 +26,7 @@ function startEngine_func(playerSource)
             vioSetElementData(theVehicle, "motornum", 0)
         end
     end
-    if (privCars[theVehicle]) or frakcars[theVehicle] then
+    if (isVehiclePrivate(theVehicle)) or frakcars[theVehicle] then
         if (vioGetElementData(theVehicle, "tank")) then
             if tonumber(vioGetElementData(theVehicle, "tank")) then
                 vioSetElementData(theVehicle, "tank", tonumber(vioGetElementData(theVehicle, "tank")))
@@ -99,7 +99,7 @@ function StartMotorPlaneTimerElapsed(thePlayer, theVehicle, start)
         if (isTimer(motorAnTimer[getPlayerName(thePlayer)])) then
             killTimer(motorAnTimer[getPlayerName(thePlayer)])
         end
-        if (privCars[theVehicle] or frakcars[theVehicle]) then
+        if (isVehiclePrivate(theVehicle) or frakcars[theVehicle]) then
             if (vioGetElementData(theVehicle, "tank")) then
                 if (tonumber(vioGetElementData(theVehicle, "tank"))) then
                     vioSetElementData(theVehicle, "tank", tonumber(vioGetElementData(theVehicle, "tank")))
@@ -208,7 +208,7 @@ function prepare(thevehicle, frakid)
 end
 
 function onvehicleexplode_func()
-    if not (privCars[source]) then
+    if not (isVehiclePrivate(source)) then
         if (vioGetElementData(source, "respawn") == 1) then
             if (vioGetElementData(source, "frakid") ~= 0) then
                 if (frakkasse[vioGetElementData(source, "frakid")] >= (100 - vioGetElementData(source, "tank")) * serversettings["tankpreis"] * 2) then
@@ -255,7 +255,6 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
 
         local slot = vioGetElementData(vehicle, "slotid");
 
-        privCars[vehicle] = false
         for theKey, theTable in ipairs(privVeh) do
             if (theTable[3] == vehicle) then
                 table.remove(privVeh, theKey);
@@ -299,7 +298,7 @@ function checkNewWaterKill(vehicle, timerCounter)
                 setTimer(checkNewWaterKill, 1000, 1, vehicle, timerCounter + 1)
             else
                 if (isElement(vehicle) and not (isWetterEventID == 2) and not (isWetterEventID == 3)) then
-                    if (privCars[vehicle]) then
+                    if (isVehiclePrivate(vehicle)) then
                         onvehicleexplode_exec(vehicle)
                     else
                         if (isElement(vehicle)) then

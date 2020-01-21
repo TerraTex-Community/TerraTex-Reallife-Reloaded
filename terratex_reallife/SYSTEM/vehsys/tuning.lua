@@ -67,7 +67,7 @@ function tuningMarker_func(hitElement)
 				if(theMarker[1]==source)then
 					if(isGarageOpen(theMarker[2]) and not(torData[theMarker[2]]["disabled"]))then
 						local driver=getVehicleOccupant ( hitElement, 0 )
-						if(getVehicleType(hitElement)=="Automobile" and (privCars[hitElement]==true or (table.hasValue(frakselfcars[13], hitElement)) and vioGetElementData(source,"isRacerBase") and vioGetElementData(driver,"fraktion")==13) )then
+						if(getVehicleType(hitElement)=="Automobile" and (isVehiclePrivate(hitElement) or (table.hasValue(frakselfcars[13], hitElement)) and vioGetElementData(source,"isRacerBase") and vioGetElementData(driver,"fraktion")==13) )then
                             if(table.hasValue(frakselfcars[13], hitElement) and vioGetElementData(source,"isRacerBase"))then
                                 setGarageOpen(theMarker[2],false)
                                 setElementDimension(driver,theKey)

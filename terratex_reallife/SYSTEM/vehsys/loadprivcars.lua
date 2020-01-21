@@ -1,4 +1,3 @@
-privCars = {}
 privVeh = {}
 
 addEvent("setElementCollisionsEnabled_Event", true)
@@ -15,11 +14,11 @@ function loadPrivCars()
     for theKey, dasatz in ipairs(result) do
         local thevehicle = createVehicle(dasatz["Model"], dasatz["SpawnX"], dasatz["SpawnY"], dasatz["SpawnZ"], dasatz["SpawnRX"], dasatz["SpawnRY"], dasatz["SpawnRZ"], dasatz["Besitzer"])
         local colors = {}
-        
+
         if (tonumber(dasatz["Model"]) == 409 and dasatz["Besitzer"] == "[TTeam]Johann") then
             vehicleLightsJohann(thevehicle)
         end
-        
+
         local counter = 0
         for color = 0, 3, 1 do
             local countlast = counter
@@ -106,26 +105,25 @@ function loadPrivCars()
         end
 
         setVehiclePaintjob(thevehicle, tonumber(dasatz["paintjob"]))
-        privCars[thevehicle] = true
+        setVehiclePrivate(thevehicle, true)
+
         local vara = dasatz["Besitzer"]
         local slot = dasatz["SlotID"]
         vioSetElementData(thevehicle, "motor", false)
         vioSetElementData(thevehicle, "locked", true)
         if (abgeschleppt == 1) then
-            privCars[thevehicle] = false
             destroyElement(thevehicle)
             table.insert(privVeh, { vara, slot, -2 })
         else
             table.insert(privVeh, { vara, slot, thevehicle })
             vioSetElementData(thevehicle, "abgeschleppt", 0)
         end
-      
+
     end
 end
-
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrivCars)
 
-function vehicleLightsJohann (veh) 
+function vehicleLightsJohann (veh)
    setVehicleSirens ( veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )     -- vorne L
    setVehicleSirens ( veh, 2, -0.900, -3.800, 0.300, 255, 0, 0, 255, 255 )            -- hinten L
    setVehicleSirens ( veh, 3, 0.900, -3.800, 0.300, 0, 0, 255, 255, 255 )            -- hinten R
@@ -134,8 +132,8 @@ function vehicleLightsJohann (veh)
    setVehicleSirens ( veh, 6, 0.100, -2.500, 0.600, 0, 0, 255, 255, 255 )            -- Heckscheibe R
    setVehicleSirens ( veh, 7, -0.100, -2.500, 0.600, 255, 0, 0, 255, 255 )            -- Heckscheibe L
    setVehicleSirens ( veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )        -- vorne R
-   addVehicleSirens ( veh, 8, 2, true, false, false, true ) 
-end 
+   addVehicleSirens ( veh, 8, 2, true, false, false, true )
+end
 
 function onVehicleDisableFire(thePlayer)
     if (vioGetElementData(source, "besitzer")) then
@@ -208,7 +206,7 @@ function onvehicleexplode_exec(source)
         end
     end
 
-    if (privCars[source]) then
+    if (isVehiclePrivate(source)) then
         if not (vioGetElementData(source, "locked") and isElementFrozen(source)) then
             setTimer(respawnVehicle, 10000, 1, source)
             vioSetElementData(source, "motor", false)
@@ -273,7 +271,6 @@ function onvehicleexplode_exec(source)
 
         vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
         destroyElement(source)
-        privCars[source] = nil
 
     else
         if (isElement(source)) then
@@ -286,7 +283,7 @@ end
 function onVehicleDamage_func(loss)
     if (isElement(source)) then
         if (vioGetElementData(source, "locked") and isElementFrozen(source)) then
-            if (privCars[source]) then
+            if (isVehiclePrivate(source)) then
                 if not (getVehicleOccupant(source)) then
                     if (getElementHealth(source) > 500) then
                         if (getElementHealth(source) + loss > 1000) then
@@ -326,7 +323,7 @@ end
 
 
 function onPlayerQuitVehicle(thePlayer)
-    if (privCars[source]) then
+    if (isVehiclePrivate(source)) then
         vioSetElementData(source, "lastLeavePlayer", thePlayer)
         if (isTimer(vioGetElementData(source, "lastLeavePlayerTimer"))) then
             killTimer(vioGetElementData(source, "lastLeavePlayerTimer"))
@@ -370,7 +367,7 @@ end
 addEventHandler("onPlayerQuit", getRootElement(), checkPlayerQuitVehicleOffline_varianteB)
 
 function onVehicleRespawn_private(exploded)
-    if (privCars[source]) then
+    if (isVehiclePrivate(source)) then
         vioSetElementData(source, "locked", true)
         local seats = getVehicleOccupants(source)
         if not (seats[0]) and not (seats[1]) and not (seats[2]) and not (seats[3]) then

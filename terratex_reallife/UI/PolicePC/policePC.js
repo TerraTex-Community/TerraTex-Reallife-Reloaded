@@ -124,7 +124,7 @@ function removeSOSSignal(id) {
 }
 
 function updateSosSignal(id, top, left) {
-    if ($("#map div[data-sos-id='" + id + "']").length > 0) {
+    if ($("#map div[data-sos-id='" + id + "']").length == 0) {
         setSOSSignal(id, top, left);
     } else {
         $("#map div[data-sos-id='" + id + "']").css("top", top + "%");

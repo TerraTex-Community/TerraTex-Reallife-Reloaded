@@ -63,8 +63,6 @@ function hitbox_client(attacker, weapon, bodypart, loss)
             if not (not (attacker) and isElementFrozen(getLocalPlayer())) then
                 triggerServerEvent("onCustomPlayerDamage", source, attacker, weapon, bodypart, loss)
             end
-        elseif (getLocalPlayer() == attacker) then
-            triggerServerEvent("onCustomPlayerDamageControl", source, attacker, weapon, bodypart, loss)
         end
     else
         if (getElementsDistance(source, attacker) < 10 and attacker ~= source) then

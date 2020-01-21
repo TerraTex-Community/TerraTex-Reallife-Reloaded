@@ -369,3 +369,45 @@ function policePCAkte(get)
         end
     end
 end
+
+
+local showPlayerSoS = {}
+local markerId = 0
+
+function processPlayerSoSMarker(player)
+    markerId = markerId + 1
+    table.insert(showPlayerSoS, {
+        markerId = markerId,
+        playerElement = player,
+        showUntil = (getRealTime().timestamp + 30)
+    });
+end
+addEvent("showSOSOnPolicePC", true)
+addEventHandler("showSOSOnPolicePC", getRootElement(), processPlayerSoSMarker)
+
+function renderMarker()
+    if (isElement(policePCBrowser) and policePCActivePage == "overview") then
+        local removeIds = {}
+        for theId, theMarker in ipairs(showPlayerSoS) do
+            if (theMarker.showUntil < getRealTime().timestamp or not isElement(theMarker.playerElement)) then
+                executeBrowserJavascript(policePCBrowser, "removeSOSSignal(" .. theMarker.markerId .. ");");
+                table.insert(removeIds, theId);
+            else
+                local posX, posY, posZ = getElementPosition(theMarker.player);
+                posX = (posX + 3000) / 60;
+                posY = (-(posY - 3000)) / 60;
+
+                local js = "updateSosSignal(".. theMarker.markerId .. "," .. posY .. "," .. posX ..");"
+
+                executeBrowserJavascript(policePCBrowser, js);
+            end
+        end
+
+        for id, theId in ipairs(removeIds) do
+            table.remove(showPlayerSoS, theId);
+        end
+
+    end
+end
+addEventHandler("onClientRender", getRootElement(), renderMarker)
+

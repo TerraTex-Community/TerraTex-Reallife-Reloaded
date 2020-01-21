@@ -111,6 +111,27 @@ function setCar(id, html, newTop, newLeft) {
     });
 }
 
+function setSOSSignal(id, top, left) {
+    const sosSignal = `<div data-sos-id="${id}" class="cop-point" style="top: ${top}%; left: ${left}%;" data-toggle="tooltip" data-placement="top" title="SOS-Signal">
+        <i class="fa fa-exclamation-triangle car"></i>
+    </div>`;
+
+    $("#map").append(sosSignal);
+}
+
+function removeSOSSignal(id) {
+    $(`#map div[data-sos-id=${id}]`).remove();
+}
+
+function updateSosSignal(id, top, left) {
+    if ($("#map div[data-sos-id='" + id + "']").length > 0) {
+        setSOSSignal(id, top, left);
+    } else {
+        $("#map div[data-sos-id='" + id + "']").css("top", top + "%");
+        $("#map div[data-sos-id='" + id + "']").css("left", left + "%");
+    }
+}
+
 function removeCar(id) {
     if ($("#map div[data-car-id='" + id + "']").length > 0) {
         $("#map div[data-car-id='" + id + "']").tooltip('hide');

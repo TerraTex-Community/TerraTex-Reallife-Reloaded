@@ -684,26 +684,35 @@ function sos_func(thePlayer)
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
+            else
+                outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
         for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
+            else
+                outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
         for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
+            else
+                outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
         for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
+            else
+                outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
+        triggerClientEvent(getRootElement(), "showSOSOnPolicePC", getResourceRootElement(getThisResource()), thePlayer)
         setTimer(destroyElement, 15000, 1, blip)
     end
 end

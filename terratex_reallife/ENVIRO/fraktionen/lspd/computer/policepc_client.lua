@@ -393,7 +393,7 @@ function renderMarker()
                 executeBrowserJavascript(policePCBrowser, "removeSOSSignal(" .. theMarker.markerId .. ");");
                 table.insert(removeIds, theId);
             else
-                local posX, posY, posZ = getElementPosition(theMarker.player);
+                local posX, posY, posZ = getElementPosition(theMarker.playerElement);
                 posX = (posX + 3000) / 60;
                 posY = (-(posY - 3000)) / 60;
 

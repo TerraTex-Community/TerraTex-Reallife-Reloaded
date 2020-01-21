@@ -78,6 +78,7 @@
     <script src="SYSTEM/antisystem/anti_frame_client.lua" type="client"/>
     <script src="SYSTEM/antisystem/anti_frame_server.lua" type="server"/>
     <!-- Vehiclesystem-->
+    <script src="SYSTEM/vehsys/privateVehicle/functions_server.lua" type="server"/>
     <script src="SYSTEM/vehsys/vehicle_pcolor.lua" type="server"/>
     <script src="SYSTEM/vehsys/vehicle_pcolor_client.lua" type="client"/>
     <script src="SYSTEM/vehsys/vehicle_house.lua" type="server"/>

@@ -119,9 +119,9 @@ function vehicleShopBuyCarSlot()
     if (getPlayerMoney(client) < slotData.price) then
         triggerClientEvent(client, "event_vehicleShopBuySlot_error", client, "Du hast nicht genug Geld für einen Fahrzeugslot.");
     else
-        vioSetElementData(client, "maxslots", (maxslot + 1))
-        vioSetElementData(client, "slot" .. (maxslot + 1), -1)
-        changePlayerMoney(client, -slotprice, "fahrzeug", "Fahrzeugslotkauf")
+        vioSetElementData(client, "maxslots", (slotData.totalSlots + 1))
+        vioSetElementData(client, "slot" .. (slotData.totalSlots + 1), -1)
+        changePlayerMoney(client, -slotData.price, "fahrzeug", "Fahrzeugslotkauf")
         outputChatBox("Du hast erfolgreich einen weiteren Slot gekauft!", client, 255, 0, 0)
         triggerClientEvent(client, "event_vehicleShopBuySlot_success", client, toJSON(getPlayerSlotData(client)));
     end

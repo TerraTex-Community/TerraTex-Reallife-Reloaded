@@ -14,6 +14,16 @@ function showChatIcon()
                 end
             end
 
+            if (getDistanceBetweenPoints3D(px, py, pz, posx, posy, posz) < dis) then
+                if (getElementData(thePlayer, "isTalking") == "true" and isLineOfSightClear(px, py, pz, posx, posy, posz, true, false, false, true, false, true)) then
+                    local sx, sy, sz = getScreenFromWorldPosition(posx, posy, posz + 0.5)
+                    if (sx) then
+                        --dxDrawText (theTable[7], sx,sy, sx,sy, theTable[6], theTable[11], "default", "left", "top", false ,true,false,false, false)
+                        dxDrawImage(sx, sy, 25, 25, "FILES/IMAGES/talking.png")
+                    end
+                end
+            end
+
             --kopfgeld
             if (getDistanceBetweenPoints3D(px, py, pz, posx, posy, posz) < 200) then
                 if (isLineOfSightClear(px, py, pz, posx, posy, posz, true, false, false, true, false, true)) then

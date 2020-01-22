@@ -24,6 +24,7 @@ function createSweeperJob()
  		prepare(theVehicle,0)
 
 		vioSetElementData(theVehicle, "hasTank", true)
+		vioSetElementData(theVehicle, "hasTankFactor", 0.25)
 		vioSetElementData(theVehicle, "tank", 100)
 	end
 	respawnSweeperCars()

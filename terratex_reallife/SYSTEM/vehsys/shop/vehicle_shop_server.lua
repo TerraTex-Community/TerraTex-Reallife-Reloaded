@@ -46,6 +46,9 @@ function createVehicleShops()
     end
 
     generateVehicleShopList()
+
+    local reduceIcon = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000);
+    addEventHandler("onPickupHit", reduceIcon, showReducedCars, false);
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createVehicleShops)
 
@@ -71,8 +74,6 @@ function onVehicleShopMarkerHit(thePlayer)
         triggerClientEvent(thePlayer, "openVehicleShop", thePlayer, transferJson, slotJson);
     end
 
-    local reduceIcon = createPickup(1051.06640625, 1007.8193359375, 11, 3, 1239, 5000);
-    addEventHandler("onPickupHit", reduceIcon, showReducedCars, false);
 end
 
 function generateVehicleShopList()

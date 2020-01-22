@@ -9,5 +9,6 @@ function setVehiclePrivate(vehicle, isPrivate)
 end
 
 function isVehiclePrivate(theVehicle)
+    outputDebugString(vioGetElementData(theVehicle, "isPrivateCar"))
     return vioGetElementData(theVehicle, "isPrivateCar") == true
 end

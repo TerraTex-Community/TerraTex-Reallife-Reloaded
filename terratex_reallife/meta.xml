@@ -43,6 +43,9 @@
     <script src="USEFULL_SCRIPTS/blips_client.lua" type="client"/>
 
     <script src="ENVIRO/accept.lua" type="server"/>
+
+    <script src="ENVIRO/voice_chat/voice_chat_client.lua" type="client"/>
+    <script src="ENVIRO/voice_chat/voice_chat_server.lua" type="server"/>
     <!--custom eventmanager -->
     <script src="SYSTEM/eventmanager/client.lua" type="client"/>
     <script src="SYSTEM/eventmanager/server.lua" type="server"/>

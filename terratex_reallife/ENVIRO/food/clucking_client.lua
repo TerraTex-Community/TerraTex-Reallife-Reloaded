@@ -95,7 +95,7 @@ end
 function cMenubuy_func()
     if (cMenuShowing) then
         if (cMenu[showCMenu][3] < getPlayerMoney(getLocalPlayer()) + 1) then
-            triggerEvent("addFood", getLocalPlayer(), cMenu[showCMenu][4])
+            triggerEvent("addFood", getLocalPlayer(), cMenu[showCMenu][4], true)
             triggerServerEvent("buyFood_B", getLocalPlayer(), cMenu[showCMenu][3], "huhn")
             showError(getLocalPlayer(), "Du hast dieses Menu erfolgreich gekauft!")
         else

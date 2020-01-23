@@ -75,7 +75,7 @@ function reduceFood()
 end
 addEvent("addFood", true)
 
-function addFoodLevel(menge)
+function addFoodLevel(menge, isFoodPokalEvent)
 
     food = food + menge
     triggerServerEvent("FoodLevelIs", getLocalPlayer(), food)
@@ -87,7 +87,9 @@ function addFoodLevel(menge)
     end
     if (food < 0) then food = 0 end
 
-    triggerServerEvent("giveFoodPokal", getLocalPlayer())
+    if (isFoodPokalEvent == true) then
+        triggerServerEvent("giveFoodPokal", getLocalPlayer())
+    end
 end
 addEventHandler("addFood", getRootElement(), addFoodLevel)
 addEvent("setHalfFoodLevel", true)

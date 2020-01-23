@@ -204,7 +204,7 @@ function onVehicleExplode_func()
 
     if (isVehiclePrivate(source)) then
         outputDebugString("is private car")
-        if not (vioGetElementData(source, "locked") and isElementFrozen(source)) then
+        if vioGetElementData(source, "locked") and isElementFrozen(source) then
             setTimer(respawnVehicle, 10000, 1, source)
             vioSetElementData(source, "motor", false)
             outputDebugString("respawn because of issue")

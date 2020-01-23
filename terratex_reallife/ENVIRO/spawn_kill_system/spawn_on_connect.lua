@@ -104,6 +104,10 @@ function spawnPlayerOnServerConnect(thePlayer)
             skin = vioGetElementData(thePlayer, "FrakSkin");
         end
 
+        if (vioGetElementData(thePlayer, "knastzeit") > 0) then
+            skin = 62;
+        end
+
         if additionalData.inarena then
             position = { 2745.8544921875, -1837.2998046875, 10.328806877136 };
             rotation = { 0, 0, 154.12683105469 };

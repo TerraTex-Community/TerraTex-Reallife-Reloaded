@@ -87,9 +87,11 @@ function createpoliceVehicles()
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
     vehicle = createVehicle(497, 1380.3095703125, -1607.3212890625, 38.484413146973, 0.32958984375, 359.57702636719, 345.38269042969, "SAPD")    --  police
+    table.insert(policeVehicles, vehicle)
+    table.insert(frakselfcars[1], vehicle)
 
     --[[	-- Enforcer --
-        local vehicle = createVehicle(427, 1526.5, -1645.2001953125, 6, 0, 0, 180, "SAPD")
+        vehicle = createVehicle(427, 1526.5, -1645.2001953125, 6, 0, 0, 180, "SAPD")
         table.insert(policeVehicles, vehicle)
         table.insert(frakselfcars[1], vehicle)
         table.insert(spezpoliceVehicles, vehicle)
@@ -648,7 +650,6 @@ function createpoliceVehicles()
         vioSetElementData(theVehicle, "tank", 100);
         vioSetElementData(theVehicle, "police-car-id", key);
         table.insert(frakcars, theVehicle)
-        setVehiclePlateText(theVehicle, getVehiclePlateText(theVehicle) .. "-" .. key);
     end
     for key, theVehicle in pairs(frakselfcars[7]) do
         prepare(theVehicle, 7)

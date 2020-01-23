@@ -9,7 +9,14 @@
 local _createVehicle = createVehicle
 
 function createVehicle(model, x, y, z, rx, ry, rz, numberplate, bDirection, variant1, variant2)
-    local vehicle = _createVehicle(model, x, y, z, rx, ry, rz, numberplate, bDirection, variant1, variant2);
+
+    local state, vehicleOrError = pcall(_createVehicle, model, x, y, z, rx, ry, rz, numberplate, bDirection, variant1, variant2);
+
+    if (not state) then
+        outputDebugString(vehicleOrError);
+        outputDebugString(debug.traceback());
+        return false;
+    end
 
     local spawnX, spawnY, spawnZ, spawnRX, spawnRY, spawnRZ = 0, 0, 0, 0, 0, 0;
     if x and y and z then
@@ -27,7 +34,7 @@ function createVehicle(model, x, y, z, rx, ry, rz, numberplate, bDirection, vari
         end
     end
 
-    setElementData(vehicle, "_getVehicleRespawn", {spawnX, spawnY, spawnZ, spawnRX, spawnRY, spawnRZ});
-    return vehicle;
+    setElementData(vehicleOrError, "_getVehicleRespawn", {spawnX, spawnY, spawnZ, spawnRX, spawnRY, spawnRZ});
+    return vehicleOrError;
 end
 

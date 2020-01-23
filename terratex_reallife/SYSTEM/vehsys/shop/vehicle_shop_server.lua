@@ -174,6 +174,7 @@ function vehicleShopBuyVehicle(modelId)
                     fixVehicle(spawnVeh)
 
                     table.insert(privVeh, { getPlayerName(client), slotData.firstFreeSlot, spawnVeh })
+
                     setVehiclePrivate(spawnVeh, true)
 
                     local dbid = MySql.helper.insertSync("user_vehicles", {

@@ -88,11 +88,11 @@ function loadPrivCars()
                 setElementRotation(thevehicle, position[4], position[5], position[6])
             end
         end
-        vioSetElementData(thevehicle,"damageAfterFreeze", fromJSON(dasatz["lastDamageStates"]))
+        vioSetElementData(thevehicle, "damageAfterFreeze", fromJSON(dasatz["lastDamageStates"]))
 
         setElementFrozen(thevehicle, true)
 
-        setVehicleDamageProof ( thevehicle, true )
+        setVehicleDamageProof(thevehicle, true)
 
         vioSetElementData(thevehicle, "premColor", "-1")
 
@@ -124,15 +124,15 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), loadPrivCars)
 
 function vehicleLightsJohann (veh)
-   setVehicleSirens ( veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )     -- vorne L
-   setVehicleSirens ( veh, 2, -0.900, -3.800, 0.300, 255, 0, 0, 255, 255 )            -- hinten L
-   setVehicleSirens ( veh, 3, 0.900, -3.800, 0.300, 0, 0, 255, 255, 255 )            -- hinten R
-   setVehicleSirens ( veh, 4, -0.100, 1.400, 0.700, 255, 0, 0, 255, 255 )            -- Winschutzscheibe L
-   setVehicleSirens ( veh, 5, 0.100, 1.400, 0.700, 0, 0, 255, 255, 255 )            -- Windschutzscheibe R
-   setVehicleSirens ( veh, 6, 0.100, -2.500, 0.600, 0, 0, 255, 255, 255 )            -- Heckscheibe R
-   setVehicleSirens ( veh, 7, -0.100, -2.500, 0.600, 255, 0, 0, 255, 255 )            -- Heckscheibe L
-   setVehicleSirens ( veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255 )        -- vorne R
-   addVehicleSirens ( veh, 8, 2, true, false, false, true )
+    setVehicleSirens(veh, 1, -0.800, 3.600, -0.300, 255, 255, 255, 255, 255)     -- vorne L
+    setVehicleSirens(veh, 2, -0.900, -3.800, 0.300, 255, 0, 0, 255, 255)            -- hinten L
+    setVehicleSirens(veh, 3, 0.900, -3.800, 0.300, 0, 0, 255, 255, 255)            -- hinten R
+    setVehicleSirens(veh, 4, -0.100, 1.400, 0.700, 255, 0, 0, 255, 255)            -- Winschutzscheibe L
+    setVehicleSirens(veh, 5, 0.100, 1.400, 0.700, 0, 0, 255, 255, 255)            -- Windschutzscheibe R
+    setVehicleSirens(veh, 6, 0.100, -2.500, 0.600, 0, 0, 255, 255, 255)            -- Heckscheibe R
+    setVehicleSirens(veh, 7, -0.100, -2.500, 0.600, 255, 0, 0, 255, 255)            -- Heckscheibe L
+    setVehicleSirens(veh, 8, 0.800, 3.600, -0.300, 255, 255, 255, 255, 255)        -- vorne R
+    addVehicleSirens(veh, 8, 2, true, false, false, true)
 end
 
 function onVehicleDisableFire(thePlayer)
@@ -152,7 +152,7 @@ end
 addEventHandler("onVehicleExit", getRootElement(), onVehicleEnableFire)
 
 function save_priv_carsB()
---    outputDebugString("Started Cars Saving")
+    --    outputDebugString("Started Cars Saving")
     if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
         for theKey, thetable in ipairs(privVeh) do
             if (isElement(thetable[3])) then
@@ -170,7 +170,7 @@ function save_priv_carsB()
             end
         end
     end
---    outputDebugString("Cars saved!")
+    --    outputDebugString("Cars saved!")
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_priv_carsB)
@@ -193,12 +193,8 @@ function save_car(veh)
     }, { ID = vioGetElementData(veh, "dbid") });
 end
 
-function onvehicleexplode_func()
-    setTimer(onvehicleexplode_exec, 3000, 1, source)
-end
-addEventHandler("onVehicleExplode", getRootElement(), onvehicleexplode_func)
-
-function onvehicleexplode_exec(source)
+function onVehicleExplode_func()
+    outputDebugString("is car exploding")
     if (isElement(source)) then
         local passengers = getVehicleOccupants(source)
         for theKey, thePassenger in pairs(passengers) do
@@ -207,10 +203,12 @@ function onvehicleexplode_exec(source)
     end
 
     if (isVehiclePrivate(source)) then
+        outputDebugString("is private car")
         if not (vioGetElementData(source, "locked") and isElementFrozen(source)) then
             setTimer(respawnVehicle, 10000, 1, source)
             vioSetElementData(source, "motor", false)
-            return;
+            outputDebugString("respawn because of issue")
+            return ;
         end
 
         MySql.helper.delete("user_vehicles", { ID = vioGetElementData(source, "dbid") });
@@ -279,6 +277,7 @@ function onvehicleexplode_exec(source)
         end
     end
 end
+addEventHandler("onVehicleExplode", getRootElement(), onVehicleExplode_func)
 
 function onVehicleDamage_func(loss)
     if (isElement(source)) then
@@ -320,7 +319,6 @@ end
 function getElementLastPostion(vehicle)
     return vioGetElementData(source, "lastX"), vioGetElementData(source, "lastY"), vioGetElementData(soruce, "lastZ")
 end
-
 
 function onPlayerQuitVehicle(thePlayer)
     if (isVehiclePrivate(source)) then

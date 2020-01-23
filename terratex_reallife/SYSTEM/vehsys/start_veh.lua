@@ -281,7 +281,6 @@ function deletetheVehiclebyadmin_func(vehicle, grund)
         destroyElement(vehicle);
     end
 end
-
 addEvent("deleteVehicleByAdmin", true)
 addEventHandler("deleteVehicleByAdmin", getRootElement(), deletetheVehiclebyadmin_func)
 
@@ -299,7 +298,7 @@ function checkNewWaterKill(vehicle, timerCounter)
             else
                 if (isElement(vehicle) and not (isWetterEventID == 2) and not (isWetterEventID == 3)) then
                     if (isVehiclePrivate(vehicle)) then
-                        onvehicleexplode_exec(vehicle)
+                        blowVehicle ( vehicle, true )
                     else
                         if (isElement(vehicle)) then
                             local passengers = getVehicleOccupants(vehicle)

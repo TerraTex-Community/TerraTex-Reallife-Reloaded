@@ -188,7 +188,7 @@ function death_func(ammo, attacker, weapon, bodypart)
         loadKrankenhaus(source)
 
         -- logging
-        if (attacker and attacker ~= source) then
+        if (attacker and attacker ~= source and getElementType ( attacker ) == "player"  ) then
             if wasBlacklistOrWantedKill then wasBlacklistOrWantedKill = 1 else wasBlacklistOrWantedKill = 0 end
 
             MySql.helper.insert("log_kills", {

@@ -266,6 +266,8 @@ function deletecar_func(thePlayer, command, SloteID)
                     outputChatBox("Dieses Fahrzeug wurde abgeschleppt und muss an der Verwahrungsstelle abgeholt werden!", thePlayer, 255, 0, 0)
                 else
                     local vehmod = getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID))
+
+                    -- @fixme
                     for theKey, theVehicle in ipairs(autohausVehicles) do
                         if (getElementModel(theVehicle[1]) == vehmod) then
                             carPrice = theVehicle[4]

@@ -89,7 +89,7 @@ function TankenMarkerHit(hitElement)
             local price = math.round((100 - vioGetElementData(hitElement, "tank")) * fuelStations[stationID].price);
             local frakPrice = 0;
 
-            if (vioGetElementData(hitElement, "frakid")) then
+            if (vioGetElementData(hitElement, "frakid") and vioGetElementData(hitElement, "frakid") > 0) then
                 local frak = vioGetElementData(hitElement, "frakid");
                 local satz = fraktanksatz[frak];
                 frakPrice = price / 100 * satz;

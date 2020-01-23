@@ -269,12 +269,6 @@ function onVehicleExplode_func()
 
         vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
         destroyElement(source)
-
-    else
-        if (isElement(source)) then
-            setTimer(respawnVehicle, 10000, 1, source)
-            vioSetElementData(source, "motor", false)
-        end
     end
 end
 addEventHandler("onVehicleExplode", getRootElement(), onVehicleExplode_func)

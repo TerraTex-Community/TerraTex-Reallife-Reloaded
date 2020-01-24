@@ -215,8 +215,7 @@ end
 addEvent("event_vehicleShopBuyCar", true)
 addEventHandler("event_vehicleShopBuyCar", getRootElement(), vehicleShopBuyVehicle)
 
-function getVehicleShopDataByModelId(modelId) 
-    outputDebugString(modelId);
+function getVehicleShopDataByModelId(modelId)
     for theKey, theVehicle in ipairs(vehicleShopCars) do
         if (theVehicle.modelId == modelId) then
             theVehicle.currentPrice = theVehicle.price;

@@ -228,22 +228,8 @@ function onVehicleExplode_func()
             versicherung = MySql.helper.getValueSync("user_data", "versicherung", { Nickname = vioGetElementData(source, "besitzer") });
         end
 
-        if (versicherung == 1) then
-            local satz = 0.55
-            local wert = 0
-
-            --WERT?
-            if (not (vioGetElementData(source, "kaufpreis")) == 0) then
-                local vehmod = getElementModel(source)
-                for theKey, theVehicle in ipairs(autohausVehicles) do
-                    if (getElementModel(theVehicle[1]) == vehmod) then
-                        wert = theVehicle[4]
-                    end
-                end
-            else
-                wert = vioGetElementData(source, "kaufpreis")
-            end
-        end
+        local satz = 0.55
+        local wert  = vioGetElementData(source, "kaufpreis")
 
         if (getPlayerFromName(vioGetElementData(source, "besitzer"))) then
 

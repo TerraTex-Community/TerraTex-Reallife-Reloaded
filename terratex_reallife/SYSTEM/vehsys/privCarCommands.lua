@@ -121,7 +121,6 @@ function park_func(thePlayer)
                             SpawnRZ = spawnrz
                         }, { ID = vioGetElementData(theVehicle, "dbid") });
 
-
                         showError(thePlayer, "Dein Fahrzeug wurde erfolgreich an dieser Position geparkt!")
                     end
                 end
@@ -153,7 +152,7 @@ function lock_func(thePlayer, Command, SloteID)
                                 showError(thePlayer, "Du hast das Fahrzeug erfolgreich aufgeschlossen!")
                                 if (isElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID))) then
                                     setElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID), false)
-                                    setVehicleDamageProof ( vioGetElementData(thePlayer, "slot" .. SlotID), false )
+                                    setVehicleDamageProof(vioGetElementData(thePlayer, "slot" .. SlotID), false)
                                 end
                             else
                                 vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "locked", true)
@@ -161,9 +160,9 @@ function lock_func(thePlayer, Command, SloteID)
                                 seats = getVehicleOccupants(vioGetElementData(thePlayer, "slot" .. SlotID))
                                 if not (seats[0]) and not (seats[1]) and not (seats[2]) and not (seats[3]) then
                                     setElementFrozen(vioGetElementData(thePlayer, "slot" .. SlotID), true)
-                                    vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID),"damageAfterFreeze", getVehicleDamageParts(vioGetElementData(thePlayer, "slot" .. SlotID)))
+                                    vioSetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "damageAfterFreeze", getVehicleDamageParts(vioGetElementData(thePlayer, "slot" .. SlotID)))
 
-                                    setVehicleDamageProof ( vioGetElementData(thePlayer, "slot" .. SlotID), true )
+                                    setVehicleDamageProof(vioGetElementData(thePlayer, "slot" .. SlotID), true)
                                 end
                             end
                         else
@@ -259,22 +258,11 @@ function deletecar_func(thePlayer, command, SloteID)
     local SlotID = tonumber(SloteID)
     if (SlotID) then
         local carPrice = 0
-        local ocarPrice = 0
         if not (vioGetElementData(thePlayer, "slot" .. SlotID) == nil) then
             if (not (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID)) == -1)) then
                 if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID)) == -2) then
                     outputChatBox("Dieses Fahrzeug wurde abgeschleppt und muss an der Verwahrungsstelle abgeholt werden!", thePlayer, 255, 0, 0)
                 else
-                    local vehmod = getElementModel(vioGetElementData(thePlayer, "slot" .. SlotID))
-
-                    -- @fixme
-                    for theKey, theVehicle in ipairs(autohausVehicles) do
-                        if (getElementModel(theVehicle[1]) == vehmod) then
-                            carPrice = theVehicle[4]
-                            ocarPrice = carPrice
-                        end
-                    end
-
                     for theKey, theTable in ipairs(privVeh) do
                         if (theTable[3] == vioGetElementData(thePlayer, "slot" .. SlotID)) then
                             table.remove(privVeh, theKey)
@@ -285,12 +273,12 @@ function deletecar_func(thePlayer, command, SloteID)
 
                     local vehicle = vioGetElementData(thePlayer, "slot" .. SlotID);
                     log_car_delete(vioGetElementData(vehicle, "besitzer"),
-                        vioGetElementData(vehicle, "slotid"),
-                        getElementModel(vehicle),
-                        "sold by user",
-                        vioGetElementData(vehicle, "besitzer"));
+                            vioGetElementData(vehicle, "slotid"),
+                            getElementModel(vehicle),
+                            "sold by user",
+                            vioGetElementData(vehicle, "besitzer"));
 
-                    carPrice = math.round((carPrice / 100) * 55, 0)
+                    local carPrice = 0
 
                     if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then
                         carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.55
@@ -397,7 +385,6 @@ end
 
 addCommandHandler("givecar", givecar_func, false, false)
 
-
 function sellcar_func(thePlayer, Command, newplayername, SloteID, price)
     if (SloteID) then
         local SlotID = tonumber(SloteID)
@@ -420,18 +407,18 @@ function sellcar_func(thePlayer, Command, newplayername, SloteID, price)
 
                                 if (not price) then
                                     showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
-                                    return;
+                                    return ;
                                 end
 
                                 if (not tonumber(price)) then
                                     showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
-                                    return;
+                                    return ;
                                 end
 
                                 price = tonumber(price);
                                 if (price < 1) then
                                     showError(thePlayer, "Nutzung: /sellcar [Spielername] [SlotId] [Preis]");
-                                    return;
+                                    return ;
                                 end
 
                                 if (freeslots > 0) then
@@ -488,30 +475,29 @@ function accept_sellcar(toPlayer)
     local newplayer = toPlayer;
     local price = acceptTable.price;
 
-
     if (not SlotID) then
         outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
-        return;
+        return ;
     end
 
     if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -2)) then
         outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
-        return;
+        return ;
     end
 
     if (tonumber(vioGetElementData(thePlayer, "slot" .. SlotID) == -1)) then
         outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
-        return;
+        return ;
     end
 
     if (price < 1) then
         outputChatBox("Das Angebot ist nicht mehr gültig", toPlayer);
-        return;
+        return ;
     end
 
     if (getPlayerMoney(toPlayer) < price) then
         outputChatBox("Du hast nicht genug Geld auf deiner Hand.", toPlayer);
-        return;
+        return ;
     end
 
     local freeslots = 0

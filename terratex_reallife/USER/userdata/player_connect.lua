@@ -156,6 +156,10 @@ function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber, gen
                 pass = hash("sha512", salt .. pass)
             end
 
+            if (werber == "") then
+                werber = nil
+            end
+
             local query = "INSERT INTO user (UUID,Nickname,Passwort,EMail,Geb_T,Geb_M,Geb_Y,werber,Salt,Serial,IP,Gender) VALUES (uuid(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             dbExec(MySql._connection, query, nickname, pass, email, gebt, gebm, geby, werber, salt, getPlayerSerial(source), getPlayerIP(source), gender);
 

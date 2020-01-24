@@ -12,9 +12,11 @@ function createVehicle(model, x, y, z, rx, ry, rz, numberplate, bDirection, vari
 
     local state, vehicleOrError = pcall(_createVehicle, model, x, y, z, rx, ry, rz, numberplate, bDirection, variant1, variant2);
 
-    if (not state) then
-        outputDebugString(vehicleOrError);
-        outputDebugString(debug.traceback());
+    if (not state or not isElement(vehicleOrError)) then
+        if (vehicleOrError) then
+            outputDebugString(vehicleOrError);
+        end
+        outputDebugString("create Vehicle Error at: " .. debug.traceback());
         return false;
     end
 

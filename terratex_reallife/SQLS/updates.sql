@@ -12,3 +12,9 @@ UPDATE `faction_names` SET `NumberPlate` = 'SAM' WHERE `faction_names`.`ID` = 10
 UPDATE `faction_names` SET `NumberPlate` = 'CF' WHERE `faction_names`.`ID` = 11;
 UPDATE `faction_names` SET `NumberPlate` = 'PP' WHERE `faction_names`.`ID` = 12;
 UPDATE `faction_names` SET `NumberPlate` = 'SR' WHERE `faction_names`.`ID` = 13;
+
+
+ALTER TABLE `user` CHANGE `werber` `werber` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL;
+ALTER TABLE `user` CHANGE `werber` `werber` VARCHAR(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+UPDATE user SET werber = null;
+ALTER TABLE `user` ADD CONSTRAINT `werberToNickname` FOREIGN KEY (`werber`) REFERENCES `user`(`Nickname`) ON DELETE SET NULL ON UPDATE CASCADE;

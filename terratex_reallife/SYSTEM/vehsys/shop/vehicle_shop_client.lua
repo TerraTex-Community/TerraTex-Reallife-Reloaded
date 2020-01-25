@@ -3,8 +3,6 @@ local vehicleShopBrowser = nil;
 local vehicleList;
 local vehicleLatestSlotData;
 
--- @todo: close window on distance
-
 addEvent("openVehicleShop", true)
 function openVehicleShop(vehicleJson, slotData)
     vehicleList = fromJSON(vehicleJson);
@@ -115,6 +113,7 @@ function closeVehShop()
     end
     vehicleShopWindow = false;
     vehicleShopBrowser = false;
+    showCursor(false)
 end
 addEvent("event_vehicleShopBuyCar_success", true)
 addEventHandler("event_vehicleShopBuyCar_success", getRootElement(), closeVehShop)

@@ -217,7 +217,7 @@ function onVehicleExplode_func()
         end
 
         local ownerName = vioGetElementData(source, "besitzer");
-        local owner = getPlayerFromName(owner)
+        local owner = getPlayerFromName(ownerName)
         local slotId = vioGetElementData(source, "slotid")
 
         log_car_delete(ownerName, slotId, getElementModel(source), "crash", "system");

@@ -24,7 +24,7 @@ function getMaxVehicleWert(houseID)
         end
 
         if (hwert > 1000000) then
-            return 1000000000
+            return 10000000000
         end
 
         local vWert = 0.2638 * hwert + 3320

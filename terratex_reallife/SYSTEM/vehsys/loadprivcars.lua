@@ -194,7 +194,6 @@ function save_car(veh)
 end
 
 function onVehicleExplode_func()
-    outputDebugString("is car exploding")
     if (isElement(source)) then
         local passengers = getVehicleOccupants(source)
         for theKey, thePassenger in pairs(passengers) do
@@ -203,11 +202,9 @@ function onVehicleExplode_func()
     end
 
     if (isVehiclePrivate(source)) then
-        outputDebugString("is private car")
         if vioGetElementData(source, "locked") and isElementFrozen(source) then
             setTimer(respawnVehicle, 10000, 1, source)
             vioSetElementData(source, "motor", false)
-            outputDebugString("respawn because of issue")
             return ;
         end
 
@@ -219,41 +216,44 @@ function onVehicleExplode_func()
             end
         end
 
-        log_car_delete(vioGetElementData(source, "besitzer"), vioGetElementData(source, "slotid"), getElementModel(source), "crash", "system");
+        local ownerName = vioGetElementData(source, "besitzer");
+        local owner = getPlayerFromName(owner)
+        local slotId = vioGetElementData(source, "slotid")
+
+        log_car_delete(ownerName, slotId, getElementModel(source), "crash", "system");
 
         local versicherung = false;
-        if (getPlayerFromName(vioGetElementData(source, "besitzer"))) then
-            versicherung = vioGetElementData(besitzer, "versicherung");
+        if (owner) then
+            versicherung = vioGetElementData(owner, "versicherung");
         else
-            versicherung = MySql.helper.getValueSync("user_data", "versicherung", { Nickname = vioGetElementData(source, "besitzer") });
+            versicherung = MySql.helper.getValueSync("user_data", "versicherung", { Nickname = ownerName});
         end
 
         local satz = 0.55
         local wert  = vioGetElementData(source, "kaufpreis")
 
-        if (getPlayerFromName(vioGetElementData(source, "besitzer"))) then
+        if (owner) then
+            outputChatBox(string.format("Ihr Fahrzeug im Slot %s wurde zerstört", slotId), owner, 255, 0, 0)
 
-            local besitzer = getPlayerFromName(vioGetElementData(source, "besitzer"))
-            outputChatBox(string.format("Ihr Fahrzeug im Slot %s wurde zerstört", vioGetElementData(source, "slotid")), besitzer, 255, 0, 0)
-
-            if (versicherung == 1) then
-                outputChatBox("Eine Versicherung hat ihnen 55% vom Einkaufspreis wieder gutgeschrieben!", besitzer, 255, 0, 0)
-                changePlayerMoney(besitzer, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
+            if (versicherung or versicherung == 1) then
+                outputChatBox("Eine Versicherung hat ihnen 55% vom Einkaufspreis (" .. toprice(satz * wert) .. ") wieder gutgeschrieben!", owner, 255, 0, 0)
+                changePlayerMoney(owner, satz * wert, "fahrzeug", "Versicherungszahlung wegen zerstörten Fahrzeug")
             end
+
+            vioSetElementData(owner, "slot" .. slotId, -1)
         else
 
-            if (versicherung == 1) then
+            if (versicherung or versicherung == 1) then
                 MySql.helper.insert("user_gifts", {
-                    Nickname = vioGetElementData(source, "besitzer"),
-                    Grund = "Fahrzeugsystem: Eine Versicherung hat ihnen " .. math.round(satz * 100) .. "% vom Einkaufspreis wieder gutgeschrieben!",
+                    Nickname = ownerName,
+                    Grund = "Fahrzeugsystem: Eine Versicherung hat ihnen 55%  (" .. toprice(satz * wert) .. ") vom Einkaufspreis wieder gutgeschrieben!",
                     Geld = (wert * satz)
                 });
             end
 
-            save_offline_message(vioGetElementData(source, "besitzer"), "Fahrzeugsystem", "Ihr Fahrzeug im Slot " .. vioGetElementData(source, "slotid") .. " wurde zerstört")
+            save_offline_message(ownerName, "Fahrzeugsystem", "Ihr Fahrzeug im Slot " .. slotId .. " wurde zerstört")
         end
 
-        vioSetElementData(besitzer, "slot" .. vioGetElementData(source, "slotid"), -1)
         destroyElement(source)
     end
 end

@@ -29,8 +29,17 @@ function createBlitzerDummysOnStartUp()
         vioSetElementData(blitzerElement, "deletedBy", false);
         vioSetElementData(blitzerElement, "id", c);
     end
+
+    setTimer(autoDeleteBlitzerCheck, 600000, 0)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
+
+function autoDeleteBlitzerCheck()
+    local hour = getRealTime().hour
+    if (realTimeHour > endTime or realTimeHour < startTime) then
+        removeBlitzer("all")
+    end
+end
 
 function createBlitzer_func(thePlayer, cmd, blitzerids)
     local realTimeHour = getRealTime().hour
@@ -87,7 +96,7 @@ function createBlitzer_func(thePlayer, cmd, blitzerids)
                 outputChatBox("Nutzung: /cblitzer [1-" .. blitzerMax .. "]", thePlayer, 255, 0, 0)
             end
         end
-    elseif (realTimeHour > endTime and realTimeHour < startTime) then
+    elseif (realTimeHour > endTime or realTimeHour < startTime) then
         outputChatBox("Blitzer dürfen nur zwischen " .. startTime .. " und " .. endTime .. " aufgestellt werden.", thePlayer, 255, 0, 0)
     end
 end
@@ -121,19 +130,7 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
                 local blitzerElement = getElementByID("blitzer-" .. blitzerid);
 
                 if (vioGetElementData(blitzerElement, "state")) then
-
-                    if (isElement(vioGetElementData(blitzerElement, "object"))) then
-                        destroyElement(vioGetElementData(blitzerElement, "object"))
-                    end
-                    if (isElement(vioGetElementData(blitzerElement, "marker"))) then
-                        destroyElement(vioGetElementData(blitzerElement, "marker"))
-                    end
-
-                    vioSetElementData(blitzerElement, "state", false);
-                    vioSetElementData(blitzerElement, "object", false);
-                    vioSetElementData(blitzerElement, "marker", false);
-                    vioSetElementData(blitzerElement, "createdBy", false);
-                    vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+                    removeBlitzer(blitzerid)
 
                     outputChatBox("Der Blitzer wurde erfolgreich abgebaut!", thePlayer, 255, 0, 0)
                     outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s abgebaut!", blitzerid, getPlayerName(thePlayer)))
@@ -141,23 +138,7 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
                     outputChatBox("Der Blitzer ist zur Zeit nicht in Benutzung! Weitere Infos unter /sblitzer", thePlayer, 255, 0, 0)
                 end
             elseif (blitzerid == "all") then
-                for theKey, blitzerElement in ipairs(getElementsByType("blitzer")) do
-                    if (vioGetElementData(blitzerElement, "state")) then
-
-                        if (isElement(vioGetElementData(blitzerElement, "object"))) then
-                            destroyElement(vioGetElementData(blitzerElement, "object"))
-                        end
-                        if (isElement(vioGetElementData(blitzerElement, "marker"))) then
-                            destroyElement(vioGetElementData(blitzerElement, "marker"))
-                        end
-
-                        vioSetElementData(blitzerElement, "state", false);
-                        vioSetElementData(blitzerElement, "object", false);
-                        vioSetElementData(blitzerElement, "marker", false);
-                        vioSetElementData(blitzerElement, "createdBy", false);
-                        vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
-                    end
-                end
+                removeBlitzer(blitzerid)
                 outputChatBox("Alle Blitzer wurden erolgreich abgebaut!", thePlayer, 255, 0, 0)
                 outputChatBoxForPolice(string.format("Alle Blitzer wurden von %s abgebaut!", getPlayerName(thePlayer)))
             end
@@ -165,6 +146,46 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
     end
 end
 addCommandHandler("dblitzer", dblitzer_func, false, false)
+
+function removeBlitzer(id)
+    if (id == "all") then
+        for theKey, blitzerElement in ipairs(getElementsByType("blitzer")) do
+            if (vioGetElementData(blitzerElement, "state")) then
+
+                if (isElement(vioGetElementData(blitzerElement, "object"))) then
+                    destroyElement(vioGetElementData(blitzerElement, "object"))
+                end
+                if (isElement(vioGetElementData(blitzerElement, "marker"))) then
+                    destroyElement(vioGetElementData(blitzerElement, "marker"))
+                end
+
+                vioSetElementData(blitzerElement, "state", false);
+                vioSetElementData(blitzerElement, "object", false);
+                vioSetElementData(blitzerElement, "marker", false);
+                vioSetElementData(blitzerElement, "createdBy", false);
+                vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+            end
+        end
+    else
+        local blitzerElement = getElementByID("blitzer-" .. id);
+
+        if (vioGetElementData(blitzerElement, "state")) then
+            if (isElement(vioGetElementData(blitzerElement, "object"))) then
+                destroyElement(vioGetElementData(blitzerElement, "object"))
+            end
+            if (isElement(vioGetElementData(blitzerElement, "marker"))) then
+                destroyElement(vioGetElementData(blitzerElement, "marker"))
+            end
+
+            vioSetElementData(blitzerElement, "state", false);
+            vioSetElementData(blitzerElement, "object", false);
+            vioSetElementData(blitzerElement, "marker", false);
+            vioSetElementData(blitzerElement, "createdBy", false);
+            vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+
+        end
+    end
+end
 
 function sblitzer_func(thePlayer)
     if (isBeamter(thePlayer)) then
@@ -178,10 +199,10 @@ function sblitzer_func(thePlayer)
 
                 if (vioGetElementData(thePlayer, "fraktionsrang") >= 5) then
                     outputChatBox(string.format("Nr. %s: Ort: %s Entfernung: %s Aufgebaut von %s",
-                        theKey,
-                        getZoneName(bx, by, bz),
-                        math.round(dis),
-                        vioGetElementData(blitzerElement, "createdBy")
+                            theKey,
+                            getZoneName(bx, by, bz),
+                            math.round(dis),
+                            vioGetElementData(blitzerElement, "createdBy")
                     ), thePlayer, 255, 0, 0)
                 else
                     outputChatBox(string.format("Nr. %s: Ort: %s Entfernung: %s", theKey, getZoneName(bx, by, bz), math.round(dis)), thePlayer, 255, 0, 0)
@@ -219,7 +240,9 @@ end
 addEvent("blitzme_event", true)
 function playerInBlitzer(HitElement)
     if (getElementType(HitElement) == "vehicle") then
-        if (math.random(1,10) == 10) then return end
+        if (math.random(1, 10) == 10) then
+            return
+        end
 
         local tx, ty, tz = getElementVelocity(HitElement)
         local speed = 180 * math.sqrt(tx * tx + ty * ty + tz * tz)

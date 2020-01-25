@@ -1,5 +1,5 @@
 local zones = {
-    { x = 2695.24, y = -2649.56, radius = 280, dimension = 0, interior = 0 } --Atomkraftwerk
+    { x = 2695.24, y = -2649.56, radius = 280, dimension = 0, interior = 0 } -- Atomkraftwerk
 }
 
 function createZones()

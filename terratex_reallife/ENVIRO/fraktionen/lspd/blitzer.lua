@@ -6,6 +6,8 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+local startTime = 10
+local endTime = 23
 local blitzerMax = 10;
 local blitzerMaxPer5Players = 1;
 local blitzerArray = {};
@@ -31,7 +33,8 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
 
 function createBlitzer_func(thePlayer, cmd, blitzerids)
-    if (isBeamter(thePlayer) and not (isPedInVehicle(thePlayer))) then
+    local realTimeHour = getRealTime().hour
+    if (isBeamter(thePlayer) and not (isPedInVehicle(thePlayer)) and realTimeHour < endTime and realTimeHour > startTime) then
         if (blitzerids) then
             local blitzerid = tonumber(blitzerids)
             if (blitzerid) then
@@ -84,6 +87,8 @@ function createBlitzer_func(thePlayer, cmd, blitzerids)
                 outputChatBox("Nutzung: /cblitzer [1-" .. blitzerMax .. "]", thePlayer, 255, 0, 0)
             end
         end
+    elseif (realTimeHour > endTime and realTimeHour < startTime) then
+        outputChatBox("Blitzer dürfen nur zwischen " .. startTime .. " und " .. endTime .. " aufgestellt werden.", thePlayer, 255, 0, 0)
     end
 end
 addCommandHandler("cblitzer", createBlitzer_func, false, false)

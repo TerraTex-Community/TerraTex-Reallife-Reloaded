@@ -1,7 +1,7 @@
 --DEFINES
 local winTimeHour = 19
 local winTimeMinute = 30
-local percentage = 5
+local percentage = 15
 
 function createTombuPotLottery()
     setTimer(isSteuerLotteryTime, 60000, 1)

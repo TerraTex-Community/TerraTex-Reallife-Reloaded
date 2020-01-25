@@ -23,7 +23,8 @@ function loadBizFromDB_func()
             elseif (bizData[zahler]["PaidUntil"] - getRealTime().timestamp < 14 * 24 * 60 * 60) then
                 if (bizData[zahler]["Besitzer"]) then
                     local rest = (bizData[zahler]["PaidUntil"] - getRealTime().timestamp)/60/60/24;
-                    save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. rest .. " Tagen fällig.");
+                    local restDays = math.floor(rest)
+                    save_offline_message(bizData[zahler]["Besitzer"], "Businessvermieter", "Deine Pacht ist in " .. restDays .. " Tagen fällig.");
                 end
             end
         end

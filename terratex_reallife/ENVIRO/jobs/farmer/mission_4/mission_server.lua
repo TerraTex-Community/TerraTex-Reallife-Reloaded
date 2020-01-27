@@ -23,8 +23,12 @@ function finish_farmer_mission_4_func()
 	outputChatBox("Danke, dass du das Feld gepflügt hast!",source,0,255,0)
 	vioSetElementData(source,"isFarmingActiv",false)
 	farmer_mission_cancel(source)
-	destroyElement(vioGetElementData(getPedOccupiedVehicle(source),"anhang"))
-	destroyElement(getPedOccupiedVehicle(source))
+	if (isElement(vioGetElementData(getPedOccupiedVehicle(source)))) then
+		destroyElement(vioGetElementData(getPedOccupiedVehicle(source),"anhang"))
+	end
+	if (isElement(getPedOccupiedVehicle(source))) then
+		destroyElement(getPedOccupiedVehicle(source))
+	end
 end
 addEventHandler("finish_farmer_mission_4",getRootElement(),finish_farmer_mission_4_func)
 

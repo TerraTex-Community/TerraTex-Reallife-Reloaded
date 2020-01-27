@@ -35,7 +35,7 @@ end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createBlitzerDummysOnStartUp)
 
 function autoDeleteBlitzerCheck()
-    local hour = getRealTime().hour
+    local realTimeHour = getRealTime().hour
     if (realTimeHour > endTime or realTimeHour < startTime) then
         removeBlitzer("all")
     end

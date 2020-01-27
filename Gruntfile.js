@@ -18,6 +18,13 @@ module.exports = function(grunt) {
                 cwd: './terratex_reallife',
                 dot: true
             },
+            scripts: {
+                expand: true,
+                src: '**/*',
+                dest: deployPath + "/scripts",
+                cwd: './scripts',
+                dot: true
+            },
             scoreboard: {
                 expand: true,
                 src: '**/*',
@@ -45,7 +52,7 @@ module.exports = function(grunt) {
                 options: {
                     force: true,
                 },
-                src: [deployPath + '/scoreboard_custom_terratex', deployPath + '/terratex_reallife']
+                src: [deployPath + '/scoreboard_custom_terratex', deployPath + '/terratex_reallife', deployPath + '/scripts']
             }
         }
     });
@@ -53,7 +60,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('default', ['copy:backup', 'clean:deploy', 'copy:terratex', 'copy:scoreboard', 'copy:restoreBackup']);
+    grunt.registerTask('default', ['copy:backup', 'clean:deploy', 'copy:terratex', 'copy:scripts', 'copy:scoreboard', 'copy:restoreBackup']);
     grunt.registerTask('logs', ['copy:saveLogs']);
 
 };

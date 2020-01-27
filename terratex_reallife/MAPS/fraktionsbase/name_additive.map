@@ -1,0 +1,6 @@
+<map edf:definitions="editor_main">
+    <object id="object (Helipad1_las) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="4874" doublesided="true" scale="1" dimension="0" posX="369.5" posY="1957.3" posZ="20.3" rotX="0" rotY="0" rotZ="270"></object>
+    <object id="object (helipad01) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3934" doublesided="true" scale="1" dimension="0" posX="225.5" posY="1882.4" posZ="16.635" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (helipad01) (2)" breakable="true" interior="0" collisions="true" alpha="255" model="3934" doublesided="true" scale="1" dimension="0" posX="202.2" posY="1882.4" posZ="16.635" rotX="0" rotY="0" rotZ="90"></object>
+    <object id="object (a51_jetdoor) (1)" breakable="true" interior="0" collisions="true" alpha="255" model="3095" doublesided="true" scale="1" dimension="0" posX="268.70001" posY="1884" posZ="16.065" rotX="0" rotY="0" rotZ="0"></object>
+</map>

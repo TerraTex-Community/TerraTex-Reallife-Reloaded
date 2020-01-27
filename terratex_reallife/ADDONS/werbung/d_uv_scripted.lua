@@ -9,7 +9,7 @@ function onResourceStart_WerbeSchilderGenerieren()
     for i = 1, (werbeschilder), 1 do
         local count = MySql.helper.getCountSync("data_advertising");
         if (count == 0) then
-            werbungenTable[i] = { "WERBEBILDER/standardwerbung.png", 0 }
+            werbungenTable[i] = { ":terratex_reallife/WERBEBILDER/standardwerbung.png", 0 }
             sendFileToClient(werbungenTable[i][1], getRootElement(), "werbung", i, werbungenTable[i][2])
         else
             local query = dbQuery(MySql._connection, "SELECT * FROM data_advertising ORDER BY RAND() LIMIT 1");
@@ -17,10 +17,10 @@ function onResourceStart_WerbeSchilderGenerieren()
             local dsatz = result[1];
 
             if (fileExists("WERBEBILDER/" .. dsatz["picName"])) then
-                werbungenTable[i] = { "WERBEBILDER/" .. dsatz["picName"], tonumber(dsatz["animation"]) }
+                werbungenTable[i] = { ":terratex_reallife/WERBEBILDER/" .. dsatz["picName"], tonumber(dsatz["animation"]) }
                 sendFileToClient(werbungenTable[i][1], getRootElement(), "werbung", i, werbungenTable[i][2])
             else
-                outputDebugString(("[Werbebilder] Die Datei %s konnte nicht gefunden werden"):format("WERBEBILDER/" .. dsatz["picName"]))
+                outputDebugString(("[Werbebilder] Die Datei %s konnte nicht gefunden werden"):format(":terratex_reallife/WERBEBILDER/" .. dsatz["picName"]))
             end
         end
     end
@@ -31,7 +31,7 @@ addEventHandler("onResourceStart", resourceRoot, onResourceStart_WerbeSchilderGe
 addEvent("requestPlayerOfMonth", true)
 function onResourceLoadPlayerOfMonth(thePlayer)
     if not source then source = thePlayer end
-    sendFileToClient("WERBEBILDER/big_wall/" .. serversettings["playerOfMonthPic"], source, "month", 0)
+    sendFileToClient(":terratex_reallife/WERBEBILDER/big_wall/" .. serversettings["playerOfMonthPic"], source, "month", 0)
 
     for i = 1, (werbeschilder), 1 do
         sendFileToClient(werbungenTable[i][1], source, "werbung", i, werbungenTable[i][2])
@@ -41,7 +41,7 @@ end
 addEventHandler("requestPlayerOfMonth", getRootElement(), onResourceLoadPlayerOfMonth)
 
 function sendFileToClient(file, client, typer, ID, animation)
-    local fh = fileExists(file) and fileOpen(file)
+    local fh = fileExists(file) and fileOpen(file, true)
     assert(fh, "File does not exist: " .. file)
 
     local data = fileRead(fh, fileGetSize(fh))

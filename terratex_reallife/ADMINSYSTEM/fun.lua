@@ -8,7 +8,9 @@ end
 addCommandHandler("fixveh", fixVeh_Admin_func, false, false)
 
 function veh_func(player, command, vehid, useTank)
-    if (not useTank) then useTank = 1 end
+    if (not useTank) then
+        useTank = 1
+    end
     if (isAdminLevel(player, 3)) then
         local vehmod = tonumber(vehid)
         local x, y, z = getElementPosition(player)
@@ -25,8 +27,12 @@ end
 addCommandHandler("veh", veh_func, false, false)
 
 function rveh_func(player, command, useTank, vehtype)
-    if (not useTank) then useTank = 1 end
-    if (not vehtype) then vehtype = "automobile" end
+    if (not useTank) then
+        useTank = 1
+    end
+    if (not vehtype) then
+        vehtype = "automobile"
+    end
     if (vehtype == "monster") then
         vehtype = "monster truck"
     end
@@ -97,7 +103,6 @@ function setColor_func(thePlayer, cmd, colorA, colorB, colorC, colorA2, colorB2,
         colorA2, colorB2, colorC2 = colorA, colorB, colorC
     end
 
-
     if (isAdminLevel(thePlayer, 3)) then
         local vehicle = getPedOccupiedVehicle(thePlayer)
         setVehicleHeadLightColor(vehicle, colorA, colorB, colorC)
@@ -122,76 +127,75 @@ function skydive_func(thePlayer, cmd, toPlayerNamePart)
 end
 addCommandHandler("sky", skydive_func, false, false)
 
-function slap_func(theMaker,Command,thePlayerName)
-    if(isAdminLevel(theMaker,3))then
-        local thePlayer=getPlayerFromIncompleteName(thePlayerName)
-        if(thePlayer)then
-            local px,py,pz=getElementPosition(thePlayer)
-            setElementPosition(thePlayer,px,py,pz+1)
-            setPedOnFire(thePlayer,true)
-            local aname=getPlayerName(theMaker)
+function slap_func(theMaker, Command, thePlayerName)
+    if (isAdminLevel(theMaker, 3)) then
+        local thePlayer = getPlayerFromIncompleteName(thePlayerName)
+        if (thePlayer) then
+            local px, py, pz = getElementPosition(thePlayer)
+            setElementPosition(thePlayer, px, py, pz + 1)
+            setPedOnFire(thePlayer, true)
+            local aname = getPlayerName(theMaker)
         else
-            outputChatBox("Falscher Spielername",theMaker,255,0,0)
+            outputChatBox("Falscher Spielername", theMaker, 255, 0, 0)
         end
     end
 
 end
-addCommandHandler("slap",slap_func,false,false)
+addCommandHandler("slap", slap_func, false, false)
 
-addCommandHandler("explode", function (thePlayer, cmd, toPlayerPart)
-    if(isAdminLevel(thePlayer,3))then
-        if(toPlayerPart)then
-            local toPlayer=getPlayerFromIncompleteName(toPlayerPart)
-            if(toPlayer)then
-                local x,y,z=getElementPosition(toPlayer)
-                createExplosion ( x, y, z, 0 ,thePlayer )
-                createExplosion ( x+0.5, y, z, 0 ,thePlayer )
-                createExplosion ( x, y+0.5, z, 0 ,thePlayer )
-                createExplosion ( x+0.5, y+0.5, z, 0 ,thePlayer )
-                createExplosion ( x-0.5, y, z, 0 ,thePlayer )
-                createExplosion ( x, y-0.5, z, 0 ,thePlayer )
-                createExplosion ( x-0.5, y-0.5, z, 0 ,thePlayer )
-                createExplosion ( x-0.5, y+0.5, z, 0 ,thePlayer )
-                createExplosion ( x+0.5, y-0.5, z, 0 ,thePlayer )
+addCommandHandler("explode", function(thePlayer, cmd, toPlayerPart)
+    if (isAdminLevel(thePlayer, 3)) then
+        if (toPlayerPart) then
+            local toPlayer = getPlayerFromIncompleteName(toPlayerPart)
+            if (toPlayer) then
+                local x, y, z = getElementPosition(toPlayer)
+                createExplosion(x, y, z, 0, thePlayer)
+                createExplosion(x + 0.5, y, z, 0, thePlayer)
+                createExplosion(x, y + 0.5, z, 0, thePlayer)
+                createExplosion(x + 0.5, y + 0.5, z, 0, thePlayer)
+                createExplosion(x - 0.5, y, z, 0, thePlayer)
+                createExplosion(x, y - 0.5, z, 0, thePlayer)
+                createExplosion(x - 0.5, y - 0.5, z, 0, thePlayer)
+                createExplosion(x - 0.5, y + 0.5, z, 0, thePlayer)
+                createExplosion(x + 0.5, y - 0.5, z, 0, thePlayer)
             else
-                showError(thePlayer,"Dieser Spieler existiert nicht.")
+                showError(thePlayer, "Dieser Spieler existiert nicht.")
             end
         else
-            showError(thePlayer,"Dieser Spieler existiert nicht.")
+            showError(thePlayer, "Dieser Spieler existiert nicht.")
         end
     end
 end)
 
-
-addCommandHandler("lolgun", function (thePlayer, cmd, toPlayerNamePart)
-    if (isAdminLevel(thePlayer,3)) then
-        if(toPlayerNamePart)then
-            local toPlayer=getPlayerFromIncompleteName(toPlayerNamePart)
-            if(toPlayer)then
-                if (not vioGetElementData(toPLayer, "lolgunActive")) then
-                    vioSetElementData(toPlayer, "lolgunActive", true )
+addCommandHandler("lolgun", function(thePlayer, cmd, toPlayerNamePart)
+    if (isAdminLevel(thePlayer, 3)) then
+        if (toPlayerNamePart) then
+            local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)
+            if (toPlayer) then
+                if (not vioGetElementData(toPlayer, "lolgunActive")) then
+                    vioSetElementData(toPlayer, "lolgunActive", true)
                     outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " active", thePlayer)
                 else
-                    vioSetElementData(toPlayer, "lolgunActive", false )
-                     outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " not active", thePlayer)
+                    vioSetElementData(toPlayer, "lolgunActive", false)
+                    outputChatBox("LolGun for " .. getPlayerName(toPlayer) .. " not active", thePlayer)
                 end
             else
-                showError(thePlayer,"Dieser Spieler existiert nicht.")
+                showError(thePlayer, "Dieser Spieler existiert nicht.")
             end
         else
-            showError(thePlayer,"Dieser Spieler existiert nicht.")
+            showError(thePlayer, "Dieser Spieler existiert nicht.")
         end
     end
 end)
 
 addEvent("onCustomPedFire", true)
-addEventHandler ("onCustomPedFire", getRootElement(),
-   function (endX, endY, endZ)
-        if (vioGetElementData(source, "lolgunActive")) then
-            local x,y,z = getElementPosition(source)
-            if (getDistanceBetweenPoints3D (endX, endY, endZ, x, y, z) >= 5) then
-                createExplosion(endX, endY, endZ, 2, source)
+addEventHandler("onCustomPedFire", getRootElement(),
+        function(endX, endY, endZ)
+            if (vioGetElementData(source, "lolgunActive")) then
+                local x, y, z = getElementPosition(source)
+                if (getDistanceBetweenPoints3D(endX, endY, endZ, x, y, z) >= 5) then
+                    createExplosion(endX, endY, endZ, 2, source)
+                end
             end
         end
-   end
 )

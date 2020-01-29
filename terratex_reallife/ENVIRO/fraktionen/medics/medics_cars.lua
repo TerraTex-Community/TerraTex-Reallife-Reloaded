@@ -32,7 +32,7 @@ local function handlerCreateMedicVehicle()
 	vehicle = createVehicle(596, 1110.5, -1297.8000488281, 13.300000190735, 0, 0, 0, "Medic")
 	table.insert(frakselfcars[10], vehicle)
 	-- Raindance --
-	vehicle = createVehicle(417, 1138.8000488281, -1301.5999755859, 20.549999237061, 0, 0, 90, "Medic")
+	vehicle = createVehicle(563, 1138.8000488281, -1301.5999755859, 20.549999237061, 0, 0, 90, "Medic")
 	table.insert(frakselfcars[10],vehicle)
 	-- Maverick --
 	vehicle = createVehicle(487, 1118.0999755859, -1301.5999755859, 19.85000038147, 0, 0, 270, "Medic")
@@ -40,7 +40,7 @@ local function handlerCreateMedicVehicle()
 
 	----- Fahrzeuge Las Venturas -----
 	-- Raindance --
-	vehicle = createVehicle(417, 1607.841796875, 1800.9755859375, 33.121593475342, 1.0491943359375, 359.99450683594, 265.24841308594, "Medic")
+	vehicle = createVehicle(563, 1607.841796875, 1800.9755859375, 33.121593475342, 1.0491943359375, 359.99450683594, 265.24841308594, "Medic")
 	table.insert(frakselfcars[10],vehicle)
 	-- Police LV --
 	vehicle = createVehicle(598, 1594.6999511719, 1831.6999511719, 10.534999847412, 0, 0, 180, "Medic")

@@ -52,7 +52,7 @@ function setGeramyInOfHisGerage(thePlayer)
 				setTimer(setElementFrozen,2000,1,thePlayer,false)			
 				hasPortedGeramy=true
 				setTimer(resetGeramyPortState,5000,1)
-				outputChatBox("Du hast Geramys Garage betreten!",thePlayer,0,255,0)				
+				outputChatBox("Du hast Johann's Garage betreten!",thePlayer,0,255,0)				
 			end		
 		else
 			outputChatBox("Du bist nicht berechtigt diesen Teil der Garage zu betreten!",thePlayer,0,255,0)

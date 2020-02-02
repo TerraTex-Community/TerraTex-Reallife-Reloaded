@@ -130,7 +130,7 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
                 local blitzerElement = getElementByID("blitzer-" .. blitzerid);
 
                 if (vioGetElementData(blitzerElement, "state")) then
-                    removeBlitzer(blitzerid)
+                    removeBlitzer(blitzerid, thePlayer)
 
                     outputChatBox("Der Blitzer wurde erfolgreich abgebaut!", thePlayer, 255, 0, 0)
                     outputChatBoxForPolice(string.format("Der Blitzer %s wurde von %s abgebaut!", blitzerid, getPlayerName(thePlayer)))
@@ -138,7 +138,7 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
                     outputChatBox("Der Blitzer ist zur Zeit nicht in Benutzung! Weitere Infos unter /sblitzer", thePlayer, 255, 0, 0)
                 end
             elseif (blitzerid == "all") then
-                removeBlitzer(blitzerid)
+                removeBlitzer(blitzerid, thePlayer)
                 outputChatBox("Alle Blitzer wurden erolgreich abgebaut!", thePlayer, 255, 0, 0)
                 outputChatBoxForPolice(string.format("Alle Blitzer wurden von %s abgebaut!", getPlayerName(thePlayer)))
             end
@@ -147,7 +147,10 @@ function dblitzer_func(thePlayer, cmd, blitzerid)
 end
 addCommandHandler("dblitzer", dblitzer_func, false, false)
 
-function removeBlitzer(id)
+function removeBlitzer(id, thePlayer)
+    if (not thePlayer) then
+        thePlayer = "System"
+    end
     if (id == "all") then
         for theKey, blitzerElement in ipairs(getElementsByType("blitzer")) do
             if (vioGetElementData(blitzerElement, "state")) then

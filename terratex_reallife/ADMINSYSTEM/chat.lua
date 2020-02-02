@@ -37,7 +37,7 @@ addCommandHandler("report", report_func, false, false)
 
 function a_func(theMaker, Command, ...)
     local message = table.concat({ ... }, "  ")
-    local adminpre;
+    local adminpre = "";
     if (isAdminLevel(theMaker, 0)) then
         if (vioGetElementData(theMaker, "SupportLVL") == 1) then adminpre = "Supporter " end
         if (vioGetElementData(theMaker, "adminlvl") == 1) then adminpre = "Moderator " end
@@ -46,6 +46,7 @@ function a_func(theMaker, Command, ...)
         if (vioGetElementData(theMaker, "adminlvl") == 4) then adminpre = "Serverleiter " end
         if (vioGetElementData(theMaker, "adminlvl") == 5) then adminpre = "[Hidden] " end
         if (vioGetElementData(theMaker, "adminlvl") == 1337 ) then adminpre = "1337 Gott " end
+
         local players = getElementsByType("player")
         for theKey, thePlayer in ipairs(players) do
             if (isPlayerLoggedIn(thePlayer)) then

@@ -176,7 +176,7 @@ function showIR(id)
 
     lastIR = id
     setElementInterior(getLocalPlayer(), validIraum[id]["int"])
-    setElementDimension(getLocalPlayer(), -1)
+    setElementDimension(getLocalPlayer(), 60000)
     setElementPosition(getLocalPlayer(), validIraum[id]["coord"][1], validIraum[id]["coord"][2], validIraum[id]["coord"][3])
 end
 

@@ -136,8 +136,6 @@ function auszahlen()
         showError(getLocalPlayer(), "Ung\195\188ltiger Betrag!")
 
     end
-
-
 end
 
 function einzahlen()
@@ -149,8 +147,6 @@ function einzahlen()
     else
         triggerServerEvent("einzahlenServer", getLocalPlayer(), betrag)
     end
-
-
 end
 
 function aktualiseBankGui(theTab)
@@ -161,7 +157,6 @@ function aktualiseBankGui(theTab)
             guiSetText(BankGUI_Label[6], getPlayerBank(getLocalPlayer()))
         end
     end
-
 end
 addEventHandler("onClientGUITabSwitched", getRootElement(), aktualiseBankGui)
 

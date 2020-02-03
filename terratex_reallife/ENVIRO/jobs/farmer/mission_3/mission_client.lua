@@ -2634,7 +2634,9 @@ function hitDuengen(playa)
         if not (istractor) then
             outputChatBox("Duengen kann man nur mit dem Tractor!", 255, 0, 0)
         else
-            destroyElement(source)
+            if (isElement(source)) then
+                destroyElement(source)
+            end
             duenger = duenger + 1
             --setElementFrozen(playa,true)
             local finished = false

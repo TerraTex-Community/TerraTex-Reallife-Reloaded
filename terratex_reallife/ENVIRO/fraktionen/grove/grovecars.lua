@@ -34,11 +34,6 @@ function creategrovecars()
     table.insert(frakselfcars[2], vehicle)
     vehicle = createVehicle(536, 2508.3999023438, -1666.5, 13.125, 0, 0, 11.75, "GROVE")
     table.insert(frakselfcars[2], vehicle)
-    -- FCR 900
-    vehicle = createVehicle(521, 2506, -1677.3000488281, 12.89999961853, 0, 0, 0, "GROVE")
-    table.insert(frakselfcars[2], vehicle)
-    vehicle = createVehicle(521, 2507.3999023438, -1675.3000488281, 12.89999961853, 0, 0, 0, "GROVE")
-    table.insert(frakselfcars[2], vehicle)
     -- Uranus
     vehicle = createVehicle(558, 2462.3999023438, -1683.3000488281, 13.10000038147, 0, 0, 230, "GROVE")
     table.insert(frakselfcars[2], vehicle)
@@ -46,9 +41,6 @@ function creategrovecars()
     vehicle = createVehicle(600, 2473.3000488281, -1697.0999755859, 13.199999809265, 0, 0, 0, "GROVE")
     table.insert(frakselfcars[2], vehicle)
     vehicle = createVehicle(600, 2473.3000488281, -1704.3000488281, 13.199999809265, 0, 0, 0, "GROVE")
-    table.insert(frakselfcars[2], vehicle)
-    -- Maverick
-    vehicle = createVehicle(487, 2510.5, -1718.3000488281, 18.700000762939, 0, 0, 270, "GROVE")
     table.insert(frakselfcars[2], vehicle)
     -- Rumpo
     vehicle = createVehicle(440, 2443, -1635.9000244141, 13.60000038147, 0, 0, 180, "GROVE")

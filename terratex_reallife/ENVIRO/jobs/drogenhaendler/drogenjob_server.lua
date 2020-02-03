@@ -35,8 +35,9 @@ function wantBuyDrogenDealer_drogen_func(menge)
     else
         vioSetElementData(source, "drogen", vioGetElementData(source, "drogen") + menge)
         changePlayerMoney(source, -price, "job", "Drogendealer", "Drogenkauf")
-        frakkasse[2] = frakkasse[2] + price / 2
-        frakkasse[12] = frakkasse[12] + price / 2
+
+        addMoneyOfGFType("drugs", price,true, "Einkauf beim Drogenhändler")
+
         for theKey, thePlayer in ipairs(getPlayersInTeam(team[2])) do
             outputChatBox("Hauptdrogenkurier: Jemand hat Drogen gekauft!", thePlayer, 255, 0, 0)
         end

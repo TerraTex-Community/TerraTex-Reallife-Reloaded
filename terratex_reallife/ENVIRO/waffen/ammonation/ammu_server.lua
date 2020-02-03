@@ -114,8 +114,8 @@ function ammoBuyMuni_Event_func(ID, howmany)
                 changePlayerMoney(source, -weaponPrice, "sonstiges", "Einkauf im Ammonation")
                 showError(source, "Du hast erfolgreich die Munition zu dieser Waffe gekauft!")
                 giveWeapon(source, weaponID, howmany)
-                frakkasse[attackerLadenInfos[1][1]] = frakkasse[attackerLadenInfos[1][1]] + weaponPrice / 10
-                frakkasse[attackerLadenInfos[2][1]] = frakkasse[attackerLadenInfos[2][1]] + weaponPrice / 10
+
+                addMoneyOfGFType("weapon", weaponPrice / 3, true, "Einkauf beim Waffenhändler")
             end
         end
     else

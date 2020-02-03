@@ -75,7 +75,7 @@ function disableRadialBlur()
 
 	-- Destroy all shaders
 	for _,part in ipairs(effectParts) do
-		if part then
+		if part and isElement(part) then
 			destroyElement( part )
 		end
 	end

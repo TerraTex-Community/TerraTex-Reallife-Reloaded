@@ -280,7 +280,9 @@ function hitDuengenc(playa)
         if not (istractor) then
             outputChatBox("Ernten kann man nur mit dem Mähdrescher!", 255, 0, 0)
         else
-            destroyElement(source)
+            if (isElement(source)) then
+                destroyElement(source)
+            end
             duengerc = duengerc + 1
 
             local finished = false

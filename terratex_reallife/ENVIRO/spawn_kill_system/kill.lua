@@ -84,6 +84,11 @@ function death_func(ammo, attacker, weapon, bodypart)
         vioSetElementData(source, "isDeathPlayerBlip", mechaBlip)
 
         local todelast = vioGetElementData(source, "todelast")
+
+        if (not todelast) then
+            todelast = 0;
+        end
+
         local deathtime = 200 + (todelast) * 30
         todelast = todelast + 1
 
@@ -188,8 +193,12 @@ function death_func(ammo, attacker, weapon, bodypart)
         loadKrankenhaus(source)
 
         -- logging
-        if (attacker and attacker ~= source and getElementType ( attacker ) == "player"  ) then
-            if wasBlacklistOrWantedKill then wasBlacklistOrWantedKill = 1 else wasBlacklistOrWantedKill = 0 end
+        if (attacker and attacker ~= source and getElementType(attacker) == "player") then
+            if wasBlacklistOrWantedKill then
+                wasBlacklistOrWantedKill = 1
+            else
+                wasBlacklistOrWantedKill = 0
+            end
 
             MySql.helper.insert("log_kills", {
                 Attacker = getPlayerName(attacker),

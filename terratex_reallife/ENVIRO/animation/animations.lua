@@ -154,11 +154,6 @@ function stopanima(playerSource)
         end
         setPedAnimation(playerSource)
         vioSetElementData(playerSource,"anim", 0)
-
-        local lastAnim=vioGetElementData(playerSource,"lastAnim")
-        if(lastAnim=="smoke" or lastAnim=="smokef" or lastAnim=="smokem")then
-            triggerClientEvent(getRootElement(),"deleteZigarre",playerSource)
-        end
     end
 end
 addCommandHandler("stopanim",stopanima,false,false)

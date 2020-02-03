@@ -38,8 +38,11 @@ function loadWerbePic(id)
     local tec;
     werbetafel[id][3], tec = dxCreateShader("ADDONS/werbung/uv_scripted.fx")
     local myTexture = dxCreateTexture(werbetafel[id][2])
-    dxSetShaderValue(werbetafel[id][3], "CUSTOMTEX0", myTexture);
-    local returnm = engineApplyShaderToWorldTexture(werbetafel[id][3], werbetafel[id][1])
+    if (myTexture) then
+        dxSetShaderValue(werbetafel[id][3], "CUSTOMTEX0", myTexture);
+        local returnm = engineApplyShaderToWorldTexture(werbetafel[id][3], werbetafel[id][1])
+
+    end
     -- outputChatBox("und eingefügt!"..id)
 end
 

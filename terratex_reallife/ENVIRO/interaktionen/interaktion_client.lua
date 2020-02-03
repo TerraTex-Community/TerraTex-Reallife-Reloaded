@@ -187,7 +187,7 @@ function addElementsForCops(bool)
                 addEventHandler("onClientGUIClick", Interaktion_GUI_Button[12], cop_arrest_interaktion_Gui_func, false)
             end
         else
-            if (Interaktion_GUI_Tab[4]) then
+            if (isElement(Interaktion_GUI_Tab[4])) then
                 guiDeleteTab(Interaktion_GUI_Tab[4], Interaktion_GUI_TabPanel[1])
                 guiDeleteTab(Interaktion_GUI_Tab[3], Interaktion_GUI_TabPanel[1])
                 Interaktion_GUI_Tab[3] = nil
@@ -578,7 +578,7 @@ function onClientInterClick_func(button, state, absoluteX, absoluteY, worldX, wo
                             local vehele = getElementData(getLocalPlayer(), "slot" .. n)
                             if (vehele ~= -1) then
                                 if (vehele ~= -2) then
-                                    if not (tonumber(vehele)) then
+                                    if not tonumber(vehele) and isElement(vehele) then
                                         local vehname = getVehicleNameFromModel(getElementModel(vehele))
                                         --local zone=getElementZoneName(vehele)
                                         row = guiGridListAddRow(Click_Self_GUI_Grid[5])

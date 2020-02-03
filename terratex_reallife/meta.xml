@@ -664,6 +664,10 @@
     <file src="FILES/IMAGES/lapptapp/obTAN.png"/>
     <file src="FILES/IMAGES/lapptapp/obSchutzLogo.png"/>
     <file src="FILES/IMAGES/lapptapp/obSchutzMain.png"/>
+    <file src="FILES/IMAGES/lapptapp/EMail.png"/>
+    <file src="FILES/IMAGES/lapptapp/Kompass.png"/>
+    <file src="FILES/IMAGES/lapptapp/Notizblock.png"/>
+    <file src="FILES/IMAGES/lapptapp/tictactoe.png"/>
     <!-- HUD -->
     <file src="FILES/IMAGES/tacho/needle.png"/>
     <file src="FILES/IMAGES/tacho/needle_blue.png"/>

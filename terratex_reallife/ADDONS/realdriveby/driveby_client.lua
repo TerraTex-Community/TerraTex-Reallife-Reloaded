@@ -147,7 +147,9 @@ function removeKeyToggles(vehicle)
 	toggleControl ( "vehicle_look_left",true )
 	toggleControl ( "vehicle_look_right",true )
 	toggleControl ( "vehicle_secondary_fire",true )
-	toggleTurningKeys(getElementModel(vehicle),true)
+	if (isElement(vehicle)) then
+		toggleTurningKeys(getElementModel(vehicle),true)
+	end
 	fadeOutHelp()
 	removeEventHandler ( "onClientPlayerVehicleExit",localPlayer,removeKeyToggles )
 end

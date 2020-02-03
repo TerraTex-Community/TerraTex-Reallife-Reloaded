@@ -132,6 +132,10 @@ function updateSnowDensity(dense, blend, speed)
                 end
             else
                 speed = 0
+
+                if (not settings.density) then
+                    settings.density = 1;
+                end
                 if dense > settings.density then
                     for i = settings.density + 1, dense do
                         local x, y = random(0, box_width * 2), random(0, box_depth * 2)

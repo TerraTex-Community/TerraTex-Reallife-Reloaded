@@ -104,7 +104,7 @@ addEventHandler( "onClientHUDRender", root,
 		end
 
 		-- Set settings
-		if radialBlurShader then
+		if isElement(radialBlurShader) then
 			dxSetShaderValue( radialBlurShader, "sLengthScale", vars.lengthScale )
 			dxSetShaderValue( radialBlurShader, "sMaskScale", vars.maskScale )
 			dxSetShaderValue( radialBlurShader, "sMaskOffset", vars.maskOffset )

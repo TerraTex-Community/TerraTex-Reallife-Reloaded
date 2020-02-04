@@ -86,9 +86,6 @@ function createpoliceVehicles()
     vehicle = createVehicle(525, 1602.0107421875, -1692.1064453125, 5.7696723937988, 358.15979003906, 0, 89.511108398438, "SAPD")
     table.insert(policeVehicles, vehicle)
     table.insert(frakselfcars[1], vehicle)
-    vehicle = createVehicle(497, 1380.3095703125, -1607.3212890625, 38.484413146973, 0.32958984375, 359.57702636719, 345.38269042969, "SAPD")    --  police
-    table.insert(policeVehicles, vehicle)
-    table.insert(frakselfcars[1], vehicle)
 
     --[[	-- Enforcer --
         vehicle = createVehicle(427, 1526.5, -1645.2001953125, 6, 0, 0, 180, "SAPD")

@@ -1,5 +1,6 @@
 ruhezonen = {};
 isInRuheZone = false;
+isRuheZoneActiveForLocalPlayer = true
 
 addEvent("empfangeRuhezonenData", true)
 function empfangeRuhezonenData_func(ruhezonenneu)
@@ -16,7 +17,7 @@ function checkRuheZonenEnter()
 
     for theKey, theZone in pairs(ruhezonen) do
 
-        if (isInsideRadarArea(theZone, x, y)) then
+        if (isInsideRadarArea(theZone, x, y) and isRuheZoneActiveForLocalPlayer) then
             isNowRuheZone = true
             idKey = theKey
         end
@@ -46,7 +47,7 @@ addEventHandler("onClientRender", getRootElement(), checkRuheZonenEnter)
 
 function onVehicleExitInRuheZone(playa)
     if (playa == getLocalPlayer()) then
-        if (isInRuheZone) then
+        if (isInRuheZone and isRuheZoneActiveForLocalPlayer) then
             if not (getPedWeaponSlot(getLocalPlayer()) == 0 or getPedWeaponSlot(getLocalPlayer()) == 11 or getPedWeaponSlot(getLocalPlayer()) == 9) then
                 if tonumber(getElementData(getLocalPlayer(), "fraktion")) == 0 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 3 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 10 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 4 then
                     setPedWeaponSlot(getLocalPlayer(), 0)
@@ -58,11 +59,11 @@ end
 addEventHandler("onClientVehicleExit", getRootElement(), onVehicleExitInRuheZone)
 
 function player_ruhe_waffen_switch(asd, currentWeaponSlot)
-    if (isInRuheZone) then
+    if (isInRuheZone and isRuheZoneActiveForLocalPlayer) then
         if tonumber(getElementData(getLocalPlayer(), "fraktion")) == 0 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 3 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 10 or tonumber(getElementData(getLocalPlayer(), "fraktion")) == 4 then
            if(currentWeaponSlot ~= 11 and currentWeaponSlot ~= 9 and currentWeaponSlot ~= 0) then
-		cancelEvent()
-	   end
+                cancelEvent()
+           end
         end
     end
 end

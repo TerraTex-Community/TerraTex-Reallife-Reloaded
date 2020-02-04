@@ -254,7 +254,7 @@ function enterVehicle()
                         else
                             isnotFrakcar = true
                         end
-                        if (isInRuheZone and (getElementData(veh, "besitzer") or isnotFrakcar)) then
+                        if (isInRuheZone and (getElementData(veh, "besitzer") or isnotFrakcar)) and isRuheZoneActiveForLocalPlayer then
                             if (messpeed > (1 / 180 * 30)) then
                                 local mult = ((1 / 180 * 30) / (messpeed / 100)) / 100
                                 setElementVelocity(veh, tx * mult, ty * mult, tz * mult)

@@ -116,3 +116,16 @@ function onClientPlayerWeaponFireFunc(weapon, ammo, ammoInClip, hitX, hitY, hitZ
 end
 -- Add this as a handler so that the function will be triggered every time a player fires.
 addEventHandler("onClientPlayerWeaponFire", getRootElement(), onClientPlayerWeaponFireFunc)
+
+function setNoRuhe()
+	if isAdminLevel(getLocalPlayer(), 4) then
+		isRuheZoneActiveForLocalPlayer = not isRuheZoneActiveForLocalPlayer;
+		if (isRuheZoneActiveForLocalPlayer) then
+			outputChatBox("active")
+		else
+			outputChatBox("not active")
+		end
+
+	end
+end
+addCommandHandler("noruhe", setNoRuhe, false, false)

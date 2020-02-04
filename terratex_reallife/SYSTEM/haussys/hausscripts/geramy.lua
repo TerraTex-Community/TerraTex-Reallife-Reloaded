@@ -28,7 +28,7 @@ local hasPortedGeramy = false
 function createGeramyGarage()
     local marker = createMarker(1741.2, -1595.1, 4048.7, "cylinder", 3)
     addEventHandler("onMarkerHit", marker, setGeramyOutOfHisGerage)
-    local marker = createMarker(1656.7, -1693.1, 15.1, "cylinder", 3)
+    marker = createMarker(1656.7, -1693.1, 15.1, "cylinder", 3)
     addEventHandler("onMarkerHit", marker, setGeramyInOfHisGerage)
 
     markerSchrankeA = createMarker(1628.1103515625, -1672.2724609375, 12.8, "cylinder", 2)

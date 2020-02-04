@@ -290,6 +290,10 @@
     <!-- SKINSYSTEM -->
     <script src="ENVIRO/skins/fskin.lua" type="server"/>
     <script src="ENVIRO/skins/skingui_client.lua" type="client"/>
+
+    <script src="ENVIRO/skins/new/skin_definitions.lua" type="shared" />
+    <script src="ENVIRO/skins/new/skin_server.lua" type="server" />
+
     <!--FRAKTION-->
     <script src="ENVIRO/fraktionen/fraktion.lua" type="server"/>
     <script src="ENVIRO/fraktionen/setFrakWeapons.lua" type="server"/>

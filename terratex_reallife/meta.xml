@@ -1031,8 +1031,6 @@
     <file src="UI/styles/images/weaponIcons/weapon-45.png"/>
     <file src="UI/styles/images/weaponIcons/weapon-46.png"/>
 
-
-
     <file src="UI\styles\images\skinIcons\Skinid0.png" />
     <file src="UI\styles\images\skinIcons\Skinid1.png" />
     <file src="UI\styles\images\skinIcons\Skinid2.png" />
@@ -1331,9 +1329,7 @@
     <file src="UI\styles\images\skinIcons\Skinid310.png" />
     <file src="UI\styles\images\skinIcons\Skinid311.png" />
     <file src="UI\styles\images\skinIcons\Skinid312.png" />
-    
-    
-    
+
     <file src="UI/styles/images/vehicleImages/Vehicle_400.png"/>
     <file src="UI/styles/images/vehicleImages/Vehicle_401.png"/>
     <file src="UI/styles/images/vehicleImages/Vehicle_402.png"/>

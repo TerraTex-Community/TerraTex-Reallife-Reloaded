@@ -80,8 +80,13 @@
         });
     });
 
-    // @todo allow only allowed skins + set for all others .hiddenOverride
+    function showOnlySkins(skinArray) {
+        $(".skin").addClass("hiddenOverride");
 
+        for (const id of skinArray) {
+            $(`.skin#${id}`).removeClass("hiddenOverride");
+        }
+    }
 
     function createSkins() {
         let startTemplate = "";

@@ -17,27 +17,44 @@ function startGf()
     local gfPositionData = vioGetElementData(gfPosition, "data");
 
     --    create ColShapes
-    disableSpawnCollision = createColCircle ( gfPositionData.X, gfPositionData.Y, 1.5 );
+    disableSpawnCollision = createColCircle(gfPositionData.X, gfPositionData.Y, 1.5);
     table.insert(colshapes, disableSpawnCollision);
     setElementDimension(disableSpawnCollision, 1337);
     addEventHandler("onColShapeLeave", disableSpawnCollision, resetElementCollision);
 
-    disableSpawnCollision = createColCircle ( gfPositionData.ASpawnX, gfPositionData.ASpawnY, 1.5 );
+    disableSpawnCollision = createColCircle(gfPositionData.ASpawnX, gfPositionData.ASpawnY, 1.5);
     table.insert(colshapes, disableSpawnCollision);
     setElementDimension(disableSpawnCollision, 1337);
     addEventHandler("onColShapeLeave", disableSpawnCollision, resetElementCollision);
 
-    local killPlayerColShape = createColCircle ( gfPositionData.X, gfPositionData.Y, gfPositionData.RSmall );
+    local RLarge = getDistanceBetweenPoints2D(gfPositionData.X, gfPositionData.Y, gfPositionData.ASpawnX, gfPositionData.ASpawnY) * 1.5
+    local RSmall = getDistanceBetweenPoints2D(gfPositionData.X, gfPositionData.Y, gfPositionData.ASpawnX, gfPositionData.ASpawnY) * 0.5
+    gfPositionData.RLarge = RLarge;
+    gfPositionData.RSmall = RSmall;
+
+    local killPlayerColShape = createColCircle(gfPositionData.X, gfPositionData.Y, RSmall);
     table.insert(colshapes, killPlayerColShape);
     setElementDimension(killPlayerColShape, 1337);
     vioSetElementData(killPlayerColShape, "gfColType", 1);
     addEventHandler("onColShapeLeave", killPlayerColShape, sendKillWarning);
 
-    local killPlayerColShape = createColCircle ( gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.RLarge );
+    local killPlayerColShape = createColCircle(gfPositionData.X, gfPositionData.Y, RLarge);
     table.insert(colshapes, killPlayerColShape);
     setElementDimension(killPlayerColShape, 1337);
     vioSetElementData(killPlayerColShape, "gfColType", 2);
     addEventHandler("onColShapeLeave", killPlayerColShape, sendKillWarning);
+
+    for theKey, thePlayer in ipairs(data.attackers) do
+        if (isElement(thePlayer)) then
+            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", true, gfPositionData.X, gfPositionData.Y, RSmall, RLarge)
+        end
+    end
+
+    for theKey, thePlayer in ipairs(data.defenders) do
+        if (isElement(thePlayer)) then
+            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", true, gfPositionData.X, gfPositionData.Y, RSmall, RLarge)
+        end
+    end
 
     startRound();
 end
@@ -51,22 +68,22 @@ function sendKillWarning(element, matchDim)
         if (colType == 1) then
             --        attacker colshape
             if (data.round % 2 == 1) then
-                if (data.attackFaction == vioGetElementData(element, "fraktion"))then
+                if (data.attackFaction == vioGetElementData(element, "fraktion")) then
                     triggerClientEvent(element, "sendGfKillWarning", source, 10);
                 end
             else
-                if (data.defendFaction == vioGetElementData(element, "fraktion"))then
+                if (data.defendFaction == vioGetElementData(element, "fraktion")) then
                     triggerClientEvent(element, "sendGfKillWarning", source, 10);
                 end
             end
         else
             --        defender colshape
             if (data.round % 2 == 1) then
-                if (data.defendFaction == vioGetElementData(element, "fraktion"))then
+                if (data.defendFaction == vioGetElementData(element, "fraktion")) then
                     triggerClientEvent(element, "sendGfKillWarning", source, 10);
                 end
             else
-                if (data.attackFaction == vioGetElementData(element, "fraktion"))then
+                if (data.attackFaction == vioGetElementData(element, "fraktion")) then
                     triggerClientEvent(element, "sendGfKillWarning", source, 10);
                 end
             end
@@ -76,7 +93,7 @@ end
 
 function resetElementCollision(element, matchDim)
     if (matchDim and startedRound) then
-        setElementCollisionsEnabled ( element, true);
+        setElementCollisionsEnabled(element, true);
     end
 end
 
@@ -126,7 +143,7 @@ function spawnFirstTeam()
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -137,7 +154,7 @@ function spawnFirstTeam()
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -159,7 +176,7 @@ function spawnOtherGFTeam()
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
-                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
+                spawnPlayer(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -170,7 +187,7 @@ function spawnOtherGFTeam()
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
-                spawnPlayer ( thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
+                spawnPlayer(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -195,14 +212,14 @@ function checkEndGfOrNextRound()
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight gewonnen, ihr behaltet den Laden!", thePlayer, 0, 255, 0);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
             end
         end
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight verloren!", thePlayer, 0, 255, 0);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
             end
         end
@@ -237,15 +254,17 @@ function checkEndGfOrNextRound()
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight verloren, ihr verliert den Laden!", thePlayer, 0, 255, 0);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
+                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", false, 0, 0, 0, 0)
             end
         end
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
                 outputChatBox("Ihr habt den Gangfight gewonnen, ihr habt den Laden erobert!", thePlayer, 0, 255, 0);
-                spawnPlayer ( thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
+                spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
+                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", false, 0, 0, 0, 0)
             end
         end
 
@@ -277,7 +296,7 @@ function checkEndGfOrNextRound()
         setTimer(destroyAllGFColshapes, 60000, 1);
     else
         -- Es hat noch keiner gewonnen
-        setTimer(startRound, 5000,1);
+        setTimer(startRound, 5000, 1);
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
                 outputChatBox("Die nächste Runde beginnt in wenigen Sekunden!", thePlayer, 0, 255, 0);
@@ -370,7 +389,7 @@ function gfPlayerDeath()
         local countFrakA = 0;
         for theKey, thePlayer in ipairs(data.attackers) do
             if (isElement(thePlayer)) then
-                if (not(isPedDead(thePlayer))) then
+                if (not (isPedDead(thePlayer))) then
                     countFrakA = countFrakA + 1;
                 end
             end
@@ -379,7 +398,7 @@ function gfPlayerDeath()
         local countFrakD = 0;
         for theKey, thePlayer in ipairs(data.defenders) do
             if (isElement(thePlayer)) then
-                if (not(isPedDead(thePlayer))) then
+                if (not (isPedDead(thePlayer))) then
                     countFrakD = countFrakD + 1;
                 end
             end

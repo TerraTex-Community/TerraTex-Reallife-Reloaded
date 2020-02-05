@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
+local gfx, gfy, gfz, gfsizeInner, gfsizeOuter, showGf = false;
 local killGFTimer = false;
 local colshape = false;
 
@@ -73,48 +74,46 @@ function showKillGfText()
         dxDrawText(taxastring, sX, sY, (sX + 456), (sY + 56), tocolor(255, 255, 255, 255), 2.0, "default", "center", "center", false, false, false)
 
     end
+
+
+    if (showGf) then
+        local listI = getCoordinateList(gfsizeInner, tocolor(255, 255, 0, 100))
+        local listO = getCoordinateList(gfsizeOuter, tocolor(255, 0, 0, 100))
+
+        dxDrawPrimitive3D("trianglefan", false, unpack(listI))
+        dxDrawPrimitive3D("trianglefan", false, unpack(listO))
+    end
 end
 addEventHandler("onClientRender", getRootElement(), showKillGfText)
 
-local x, y, sizeInner, sizeOuter, showGf;
-function setGangFightColShapes(enable, ex, ey, esizeInner, esizeOuter)
+function setGangFightColShapes(enable, ex, ey, ez, esizeInner, esizeOuter)
     showGf = enable;
-    x = ex;
-    y= ey;
-    sizeInner = esizeInner;
-    sizeOuter = esizeOuter;
+    gfx = ex;
+    gfy = ey;
+    gfz = ez;
+    gfsizeInner = esizeInner;
+    gfsizeOuter = esizeOuter;
 end
 addEvent("event_gf_set_col_shapes", true)
 addEventHandler("event_gf_set_col_shapes", getRootElement(), setGangFightColShapes)
 
+function findPointOnCircle(originX, originY, radius, angleRadians)
+    local newX = radius * math.cos(angleRadians) + originX
+    local newY = radius * math.sin(angleRadians) + originY
 
+    return newX, newY
+end
 
--- @todo: calc borders of colshape and show them
--- js code for it:
---let canvas, ctx, player
---
---function init() {
---    canvas = document.getElementById("canvas")
---    ctx = canvas.getContext( "2d" )
---
---
---    const midX = 30;
---    const midY = 50;
---    const r = 100;
---
---    ctx.fillRect(midX,midY,1,1);
---
---for (let i = 0; i < 7; i += 0.01) {
---const pos = findPointOnCircle(midX, midY , r, i);
---ctx.fillRect(pos.x,pos.y,1,1);
---}
---
---}
---function findPointOnCircle(originX, originY , radius, angleRadians) {
---var newX = radius * Math.cos(angleRadians) + originX
---
---var newY = radius * Math.sin(angleRadians) + originY
---
---return {"x" : newX, "y" : newY}
---
---}
+function getCoordinateList(radius, color)
+    local listTable = {}
+
+    local i = 0;
+    for i = 0, 628, 1 do
+        local cAngle = i / 100;
+        local nx, ny =  findPointOnCircle(gfx, gfy , radius, cAngle);
+        table.insert(listTable, {nx, ny, gfz - 15, color});
+        table.insert(listTable, {nx, ny, gfz + 15, color});
+    end
+    return listTable;
+end
+

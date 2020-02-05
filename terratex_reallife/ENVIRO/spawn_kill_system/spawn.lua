@@ -1,4 +1,6 @@
 function setPlayerSpawn(source, spawn, skinid, fraktion, firstspawn)
+    -- @todo: check not in GF if is in gf return false (just to make sure not to run this func unintended)
+    outputDebugString("GF DEBUG " .. getPlayerName(source) .. " spawned... is he in gf?")
 
     local frakid = vioGetElementData(source, "fraktion")
     if (frakid == 1 or frakid == 4 or frakid == 5 or frakid == 9 or frakid == 10) then

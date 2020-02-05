@@ -75,6 +75,7 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
         end
 
         local x, y, z = getElementPosition(source)
+        setElementHealth(source, 0)
         killPed(source, attacker, attackerweapon, bodypart, false)
         setElementPosition(source, x, y, z)
     else

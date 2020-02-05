@@ -1,4 +1,4 @@
-frakSkins = {
+factionSkins = {
     -- SAPD
     [1] = { 150, 265, 266, 280, 281, 282, 283, 284, 288, 267 },
     -- Grove Street

@@ -7,26 +7,41 @@ function createSkinShopMarkers()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), createSkinShopMarkers)
 
+addEvent("event_skin_shop_buy", true)
+function skin_shop_buy(modelId)
+    changeBizKasse(15,5, "Skin Einkauf")
+
+    if (getSkinFactionId(client) > 0) then
+        vioSetElementData(client,"FrakSkin", modelId)
+        setElementModel(client,vioGetElementData(client,"FrakSkin"))
+    else
+        vioSetElementData(client,"skinid", modelId)
+        setElementModel(client,vioGetElementData(client,"skinid"))
+    end
+end
+addEventHandler("event_skin_shop_buy", getRootElement(), skin_shop_buy)
+
 function hitSkinShopMarker(thePlayer)
     if (isElement(thePlayer)) then
         if (getElementType(thePlayer) == "player") then
             if (not vioGetElementData(thePlayer, "isCopSwat")) then
                 if not (isPedInVehicle(thePlayer)) then
-
-                    -- @todo: has to be reworked?
-                    triggerClientEvent(thePlayer, "showSkinGui", thePlayer, isUserDutyInFaction(thePlayer))
-
+                    triggerClientEvent(thePlayer, "event_skin_shop_open", thePlayer, getSkinFactionId(thePlayer))
                 end
             end
         end
     end
 end
 
-function isUserDutyInFaction(thePlayer)
-    if (isBeamter(thePlayer) or vioGetElementData(thePlayer, "fraktion") == 4 or vioGetElementData(thePlayer, "fraktion") == 10) then
+function getSkinFactionId(thePlayer)
+    local factionId = vioGetElementData(thePlayer, "fraktion")
+    if (factionId == 4 or factionId == 10 or isBeamter(thePlayer)) then
         if (vioGetElementData(thePlayer, "taxi_duty") or vioGetElementData(thePlayer, "isCopDuty") or vioGetElementData(thePlayer, "isMedicDuty")) then
-            return true;
+            return factionId;
         end
+
+        return 0
     end
-    return false;
+
+    return factionId;
 end

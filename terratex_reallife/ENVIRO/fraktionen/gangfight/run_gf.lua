@@ -46,13 +46,13 @@ function startGf()
 
     for theKey, thePlayer in ipairs(data.attackers) do
         if (isElement(thePlayer)) then
-            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", true, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, RSmall, RLarge)
+            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", thePlayer, true, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, RSmall, RLarge)
         end
     end
 
     for theKey, thePlayer in ipairs(data.defenders) do
         if (isElement(thePlayer)) then
-            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", true, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, RSmall, RLarge)
+            triggerClientEvent(thePlayer, "event_gf_set_col_shapes", thePlayer, true, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, RSmall, RLarge)
         end
     end
 
@@ -256,7 +256,7 @@ function checkEndGfOrNextRound()
                 outputChatBox("Ihr habt den Gangfight verloren, ihr verliert den Laden!", thePlayer, 0, 255, 0);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
-                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", false, 0, 0, 0, 0, 0)
+                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", thePlayer, false, 0, 0, 0, 0, 0)
             end
         end
         for theKey, thePlayer in ipairs(data.attackers) do
@@ -264,7 +264,7 @@ function checkEndGfOrNextRound()
                 outputChatBox("Ihr habt den Gangfight gewonnen, ihr habt den Laden erobert!", thePlayer, 0, 255, 0);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 0);
                 vioSetElementData(thePlayer, "isInGf", false);
-                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", false, 0, 0, 0, 0, 0)
+                triggerClientEvent(thePlayer, "event_gf_set_col_shapes", thePlayer, false, 0, 0, 0, 0, 0)
             end
         end
 

@@ -1,7 +1,7 @@
 function createSkinShopMarkers()
     for theKey, thePosition in ipairs(skinShopPositions) do
-        local marker = createMarker(unpack(thePosition), "corona", 1)
-        createBlip(unpack(thePosition), 45, 0.5, 255, 0, 0, 255, 0, 255, getRootElement())
+        local marker = createMarker(thePosition[1], thePosition[2], thePosition[3], "corona", 1)
+        createBlip(thePosition[1], thePosition[2], thePosition[3], 45, 0.5, 255, 0, 0, 255, 0, 255, getRootElement())
         addEventHandler("onMarkerHit", marker, hitSkinShopMarker)
     end
 end
@@ -9,14 +9,14 @@ addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), cr
 
 addEvent("event_skin_shop_buy", true)
 function skin_shop_buy(modelId)
-    changeBizKasse(15,5, "Skin Einkauf")
+    changeBizKasse(15, 5, "Skin Einkauf")
 
     if (getSkinFactionId(client) > 0) then
-        vioSetElementData(client,"FrakSkin", modelId)
-        setElementModel(client,vioGetElementData(client,"FrakSkin"))
+        vioSetElementData(client, "FrakSkin", modelId)
+        setElementModel(client, vioGetElementData(client, "FrakSkin"))
     else
-        vioSetElementData(client,"skinid", modelId)
-        setElementModel(client,vioGetElementData(client,"skinid"))
+        vioSetElementData(client, "skinid", modelId)
+        setElementModel(client, vioGetElementData(client, "skinid"))
     end
 end
 addEventHandler("event_skin_shop_buy", getRootElement(), skin_shop_buy)

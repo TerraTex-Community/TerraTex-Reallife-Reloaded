@@ -51,7 +51,7 @@ function a_func(theMaker, Command, ...)
         for theKey, thePlayer in ipairs(players) do
             if (isPlayerLoggedIn(thePlayer)) then
                 if (isAdminLevel(thePlayer, 0)) then
-                    outputChatBox(adminpre .. " " .. getPlayerName(theMaker) .. ": " .. message, thePlayer, 255, 255, 0)
+                    outputChatBox(adminpre .. " " .. getPlayerName(theMaker) .. ": " .. message, thePlayer, 255, 78, 0)
                 end
             end
         end

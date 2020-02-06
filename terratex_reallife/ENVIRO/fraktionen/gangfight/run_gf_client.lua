@@ -80,11 +80,17 @@ function showKillGfText()
         local listI = getCoordinateList(gfsizeInner, tocolor(255, 255, 0, 100))
         local listO = getCoordinateList(gfsizeOuter, tocolor(255, 0, 0, 100))
 
-        dxDrawPrimitive3D("trianglefan", false, unpack(listI))
-        dxDrawPrimitive3D("trianglefan", false, unpack(listO))
+        dxDrawPrimitive3D("trianglelist", false, unpack(listI))
+        dxDrawPrimitive3D("trianglelist", false, unpack(listO))
     end
 end
 addEventHandler("onClientRender", getRootElement(), showKillGfText)
+
+function test_gfSign()
+    local ex,ey,ez = getElementPosition(getLocalPlayer())
+    setGangFightColShapes(true, ex, ey, ez, 20, 50)
+end
+addCommandHandler("gfBorder")
 
 function setGangFightColShapes(enable, ex, ey, ez, esizeInner, esizeOuter)
     showGf = enable;

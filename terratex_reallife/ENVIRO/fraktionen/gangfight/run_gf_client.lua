@@ -80,8 +80,8 @@ function showKillGfText()
         local listI = getCoordinateList(gfsizeInner, tocolor(255, 255, 0, 100))
         local listO = getCoordinateList(gfsizeOuter, tocolor(255, 0, 0, 100))
 
-        dxDrawPrimitive3D("trianglefan", false, unpack(listI))
-        dxDrawPrimitive3D("trianglefan", false, unpack(listO))
+        dxDrawPrimitive3D("trianglestrip", false, unpack(listI))
+        dxDrawPrimitive3D("trianglestrip", false, unpack(listO))
     end
 end
 addEventHandler("onClientRender", getRootElement(), showKillGfText)
@@ -108,11 +108,11 @@ function getCoordinateList(radius, color)
     local listTable = {}
 
     local i = 0;
-    for i = 0, 628, 1 do
+    for i = 0, 630, 1 do
         local cAngle = i / 100;
         local nx, ny =  findPointOnCircle(gfx, gfy , radius, cAngle);
-        table.insert(listTable, {nx, ny, gfz - 15, color});
-        table.insert(listTable, {nx, ny, gfz + 15, color});
+        table.insert(listTable, {nx, ny, gfz - 25, color});
+        table.insert(listTable, {nx, ny, gfz + 25, color});
     end
     return listTable;
 end

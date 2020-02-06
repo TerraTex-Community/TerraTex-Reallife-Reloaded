@@ -24,8 +24,8 @@ function skinShopOpen(factionId)
             function()
 
                 setBrowserAjaxHandler(source, "ajax_skinshop_close.html", closeSkinShop);
-                setBrowserAjaxHandler(source, "ajax_skinshop_trySkin.html", ajax_skinshop_tryskin);
-                setBrowserAjaxHandler(source, "ajax_skinshop_buySkin.html", ajax_skinshop_buyskin);
+                setBrowserAjaxHandler(source, "ajax_skinshop_tryskin.html", ajax_skinshop_tryskin);
+                setBrowserAjaxHandler(source, "ajax_skinshop_buyskin.html", ajax_skinshop_buyskin);
 
                 loadBrowserURL(source, "http://mta/local/UI/SkinShop.html");
             end);
@@ -36,6 +36,9 @@ function skinShopOpen(factionId)
                 skinShopBrowser = source;
 
                 local skinString = table.concat(getSkinList(factionId), ",");
+                outputChatBox(factionId);
+                outputDebugString("showOnlySkins([" .. skinString .. "]);");
+
                 executeBrowserJavascript(skinShopBrowser, "showOnlySkins([" .. skinString .. "]);");
             end);
 
@@ -55,6 +58,7 @@ function closeSkinShop()
 end
 
 function ajax_skinshop_buyskin(get)
+    outputChatBox("buy")
     if (get) then
         if (get.modelId and tonumber(get.modelId)) then
             closeSkinShop();
@@ -64,6 +68,7 @@ function ajax_skinshop_buyskin(get)
 end
 
 function ajax_skinshop_tryskin(get)
+    outputChatBox("try")
     if (get) then
         if (get.modelId and tonumber(get.modelId)) then
             setElementModel(getLocalPlayer(), tonumber(get.modelId));
@@ -74,7 +79,7 @@ end
 function getSkinList(factionId)
     local validSkins = getValidPedModels();
     local showSkins = {}
-    if (factionId > 0) then
+    if (factionId == 0) then
         for theKey, theSkinId in ipairs(validSkins) do
             if (not isFactionSkin(theSkinId)) then
                 table.insert(showSkins, theSkinId);

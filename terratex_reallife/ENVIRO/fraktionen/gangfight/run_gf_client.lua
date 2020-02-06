@@ -90,7 +90,7 @@ function test_gfSign()
     local ex,ey,ez = getElementPosition(getLocalPlayer())
     setGangFightColShapes(true, ex, ey, ez, 20, 50)
 end
-addCommandHandler("gfBorder")
+addCommandHandler("gfBorder", test_gfSign)
 
 function setGangFightColShapes(enable, ex, ey, ez, esizeInner, esizeOuter)
     showGf = enable;

@@ -36,8 +36,6 @@ function skinShopOpen(factionId)
                 skinShopBrowser = source;
 
                 local skinString = table.concat(getSkinList(factionId), ",");
-                outputChatBox(factionId);
-                outputDebugString("showOnlySkins([" .. skinString .. "]);");
 
                 executeBrowserJavascript(skinShopBrowser, "showOnlySkins([" .. skinString .. "]);");
             end);
@@ -58,7 +56,6 @@ function closeSkinShop()
 end
 
 function ajax_skinshop_buyskin(get)
-    outputChatBox("buy")
     if (get) then
         if (get.modelId and tonumber(get.modelId)) then
             closeSkinShop();
@@ -68,7 +65,6 @@ function ajax_skinshop_buyskin(get)
 end
 
 function ajax_skinshop_tryskin(get)
-    outputChatBox("try")
     if (get) then
         if (get.modelId and tonumber(get.modelId)) then
             setElementModel(getLocalPlayer(), tonumber(get.modelId));

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="styles/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="styles/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/css/custom/custom.css">
+    <script src="styles/js/jquery.min.js"></script>
+    <script src="styles/js/Popper.js"></script>
+    <script src="styles/js/tether.min.js"></script>
+    <script src="styles/js/bootstrap.min.js"></script>
+</head>
+<body id="gold-ui">
+<div class="placer-holder-top"></div>
+<div class="container-fluid">
+
+    <div class="card card-inverse card-darkblue">
+        <div class="card-header card-darkblue">
+            <h4 class="card-title text-light"
+                style="display:inline-block; line-height: 26px;margin-top: 7px;margin-bottom: 6px">
+                SkinShop
+            </h4>
+            <div style="float: right">
+                <button class="btn btn-danger" id="closeGoldMarket">Shop verlassen</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card card-inverse card-darkblue">
+        <div class="card-header card-darkblue text-light">
+            <div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="search" placeholder="Suche" aria-label="Suche">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-cols-10 card-margin-top" id="skinList">
+
+    </div>
+
+
+</div>
+<div class="placer-holder-top"></div>
+
+<script>
+    $(document).ready(function () {
+        $("html").on('click', '.tryButton', function () {
+            var id = $(this).parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_skinshop_tryskin.html?modelId=" + id);
+            return false;
+        });
+
+        $("html").on('click', '.sellButton', function () {
+            var id = $(this).parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_skinshop_buyskin.html?modelId=" + id);
+            return false;
+        });
+
+        $("#closeGoldMarket").click(function () {
+            $.ajax("http://mta/local/ajax_skinshop_close.html");
+        });
+
+        $('#search').on('input', function () {
+            const srch = $("#search").val();
+            $(".skin").removeClass("hidden");
+
+            if (srch.length > 0) {
+                $(".skin").each(function () {
+                    if (!$(this).attr("data-id").includes(srch)) {
+                        $(this).addClass("hidden");
+                    }
+                });
+            }
+        });
+    });
+
+    function showOnlySkins(skinArray) {
+        $(".skin").addClass("hiddenOverride");
+
+        for (const id of skinArray) {
+            $(`.skin#${id}`).removeClass("hiddenOverride");
+        }
+    }
+
+    function createSkins() {
+        let startTemplate = "";
+
+        for(let id = 1; id < 313; id++) {
+            const template = `
+                <div class="col mb-3 skin" style="flex-grow: 1; max-width: 145px" id="${id}" data-id="${id}">
+                    <div class="card">
+                        <h5 class="card-header">${id}</h5>
+                        <div style="position: relative; overflow: hidden">
+                            <img src="styles/images/skinIcons/Skinid${id}.png" style="height:290px" class="card-img-top">
+                        </div>
+                        <a href="#" class="btn btn-primary btn-sm tryButton">Anprobieren!</a>
+                        <a href="#" class="btn btn-success btn-sm sellButton">Kaufen!</a>
+                    </div>
+                </div>
+            `;
+            startTemplate += template;
+        }
+
+
+        $("#skinList").append(startTemplate);
+    }
+    createSkins();
+
+
+</script>
+</body>
+
+</html>

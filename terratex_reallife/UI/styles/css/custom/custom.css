@@ -2249,9 +2249,9 @@ a.ui-button:active,
 .salebar {
   padding: 5px 30px;
   position: absolute;
-  top: 65%;
+  top: 64%;
   white-space: nowrap;
-  left: 57%;
+  left: 56%;
   transform: rotate(-45deg); }
 
 .price s {
@@ -2262,4 +2262,7 @@ a.ui-button:active,
   font-weight: bold; }
 
 .hidden {
+  display: none; }
+
+.hiddenOverride {
   display: none; }

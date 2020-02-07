@@ -6,43 +6,9 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-local killGFTimer = false;
-local colshape = false;
-
-addEvent("sendGfKillWarning", true);
-function sendGfKillWarning_func(seconds)
---  source = colshape
-    colshape = source;
-    if (isTimer(killGFTimer)) then
-        killTimer(killGFTimer);
-    end
-    killGFTimer = setTimer(killPlayer, seconds * 1000, 1);
-end
-addEventHandler("sendGfKillWarning", getRootElement(), sendGfKillWarning_func);
-
-function killPlayer()
-    if (isTimer(killGFTimer)) then killTimer(killGFTimer); end
-    if not isElementWithinColShape (getLocalPlayer(), colshape) then
-        setElementHealth(getLocalPlayer(), 0);
-    end
-end
+local gfx, gfy, gfz, gfsizeInner, gfsizeOuter, showGf = false;
 
 function showKillGfText()
-    if (isTimer(killGFTimer)) then
-        local timeLeft = getTimerDetails ( killGFTimer);
-        timeLeft = math.round(timeLeft / 1000);
-
-        local text = "Du hast das GF Gebiet verlassen. Kehre in den nächsten " .. timeLeft .. " Sekunden zurück oder du wirst getötet!";
-
-        local screenW, screenH = guiGetScreenSize();
-        dxDrawText ( text, 0,0, screenW, screenH, tocolor(255,0,0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0 );
-
-        if (not isElementWithinColShape ( getLocalPlayer(), colshape )) then
-            killTimer(killGFTimer);
-            killGFTimer = false;
-            colshape = false;
-        end
-    end
 
     local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
@@ -53,7 +19,7 @@ function showKillGfText()
     end
 
     if (restTime > 0 and (table.hasValue(data.attackers, getLocalPlayer()) or table.hasValue(data.defenders, getLocalPlayer()))) then
---        Spieler ist im GF
+        --        Spieler ist im GF
         local minutes = math.floor(restTime / 60);
         local seconds = math.floor(restTime - (minutes * 60));
         if (seconds < 10) then
@@ -61,15 +27,121 @@ function showKillGfText()
         end
 
         local screenX, screenY = guiGetScreenSize();
-
         local sX = (screenX / 2) - (456 / 2)
         local sY = 0
 
-        dxDrawRectangle(sX,sY,456.0,56.0,tocolor(0,0,0,255),false)
-        local taxastring="Rundenzeit: "..minutes..":"..seconds;
+        dxDrawRectangle(sX, sY, 456.0, 56.0, tocolor(0, 0, 0, 255), false)
+        local taxastring = "Rundenzeit: " .. minutes .. ":" .. seconds;
 
-        dxDrawText(taxastring,sX,sY,(sX + 456),(sY + 56), tocolor(255,255,255,255),2.0,"default","center","center",false,false,false)
+        dxDrawText(taxastring, sX, sY, (sX + 456), (sY + 56), tocolor(255, 255, 255, 255), 2.0, "default", "center", "center", false, false, false)
 
     end
+
+
+    if (showGf) then
+        checkGfPositioning()
+
+        local s = 0;
+        for s = 0, 600, 10 do
+
+            local listI = getCoordinateList(gfsizeInner, s, tocolor(255, 255, 0, 75))
+            local listO = getCoordinateList(gfsizeOuter, s, tocolor(255, 0, 0, 75))
+
+            dxDrawPrimitive3D("trianglestrip", false, unpack(listI))
+            dxDrawPrimitive3D("trianglestrip", false, unpack(listO))
+        end
+    end
 end
-addEventHandler ( "onClientRender", getRootElement(), showKillGfText )
+addEventHandler("onClientRender", getRootElement(), showKillGfText)
+
+local wasOutSideOfArea = false;
+local firstNotificationOfOutsideArea = 0;
+local secondsUntilDeath = 10
+function checkGfPositioning()
+    if (isPlayerOutSideOfGFArea()) then
+        if (not wasOutSideOfArea) then
+            firstNotificationOfOutsideArea = getRealTime().timestamp
+            wasOutSideOfArea = true
+        end
+
+        local restSeconds = secondsUntilDeath - (getRealTime().timestamp - firstNotificationOfOutsideArea)
+
+        local text = "Du hast das GF Gebiet verlassen. Kehre in den nächsten " .. restSeconds .. " Sekunden zurück oder du wirst getötet!";
+
+        local screenW, screenH = guiGetScreenSize();
+        dxDrawText(text, 0, 0, screenW, screenH, tocolor(255, 0, 0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0);
+
+        if (restSeconds < 0) then
+            setElementHealth(getLocalPlayer(), 0)
+            killPed(getLocalPlayer())
+        end
+    else
+        firstNotificationOfOutsideArea = 0
+        wasOutSideOfArea = false
+    end
+end
+
+function isPlayerOutSideOfGFArea()
+
+    local gfElement = getElementByID("GFSync");
+    local data = getElementData(gfElement, "data");
+
+    if (tonumber(getElementData(gfElement, "startedRound")) == 0 or isPedDead(getLocalPlayer())) then
+        return false
+    end
+
+    local px,py,pz = getElementPosition(getLocalPlayer())
+    local distanceToMid = getDistanceBetweenPoints3D(gfx, gfy, gfz,px,py,pz)
+
+    -- angreifer
+    if (data.attackFaction == tonumber(getElementData(getLocalPlayer(), "fraktion"))) then
+        if (tonumber(data.round) % 2 == 1) then
+            -- muss im inneren sein
+            return distanceToMid > gfsizeInner
+        else
+            -- muss außen sein
+            return distanceToMid > gfsizeOuter
+        end
+    else
+        if (tonumber(data.round) % 2 == 1) then
+            -- muss im außen sein
+            return distanceToMid > gfsizeOuter
+        else
+            -- muss inneren sein
+            return distanceToMid > gfsizeInner
+        end
+    end
+
+end
+
+function setGangFightColShapes(enable, ex, ey, ez, esizeInner, esizeOuter)
+    showGf = enable;
+    gfx = ex;
+    gfy = ey;
+    gfz = ez;
+    gfsizeInner = esizeInner;
+    gfsizeOuter = esizeOuter;
+end
+addEvent("event_gf_set_col_shapes", true)
+addEventHandler("event_gf_set_col_shapes", getRootElement(), setGangFightColShapes)
+
+function findPointOnCircle(originX, originY, radius, angleRadians)
+    local newX = radius * math.cos(angleRadians) + originX
+    local newY = radius * math.sin(angleRadians) + originY
+
+    return newX, newY
+end
+
+function getCoordinateList(radius, start, color)
+    local listTable = {}
+
+    local i = start;
+    for i = start, start + 10, 1 do
+        local cAngle = i / 100;
+        local nx, ny =  findPointOnCircle(gfx, gfy , radius, cAngle);
+        table.insert(listTable, {nx, ny, gfz - 25, color});
+        table.insert(listTable, {nx, ny, gfz + 25, color});
+    end
+    return listTable;
+end
+

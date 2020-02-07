@@ -26,7 +26,7 @@ function setDeath_command_func(thePlayer, command, toPlayer)
         if (toPlayer) then
             local to = getPlayerFromIncompleteName(toPlayer)
             if (to) then
-                triggerEvent("onCustomPlayerDamage", to, thePlayer, 34, 9, 500)
+                killPed(to, thePlayer)
             end
         end
     end
@@ -59,7 +59,7 @@ function death_func(ammo, attacker, weapon, bodypart)
     local gfData = vioGetElementData(gfElement, "data");
 
     if not (vioGetElementData(source, "inArena")) and not (table.hasValue(gfData.attackers, source)) and not (table.hasValue(gfData.defenders, source)) then
-        -- Vars for Logging
+
         local wasBlacklistOrWantedKill = false
 
         local x, y, z = getElementPosition(source)

@@ -57,26 +57,54 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 local isHusting = false
 local checkHustenTimer = false
 function hitbox_client(attacker, weapon, bodypart, loss)
-    cancelEvent()
-    if not (weapon == 41 or weapon == 17) then
-        if (source == getLocalPlayer()) then
-            if not (not (attacker) and isElementFrozen(getLocalPlayer())) then
-                triggerServerEvent("onCustomPlayerDamage", source, attacker, weapon, bodypart, loss)
-            end
+    if (source ~= getLocalPlayer()) then
+        return;
+    end
+
+    if (getElementData(source, "smode")) then
+        return;
+    end
+
+    triggerEvent("StopHealingTimer", source)
+
+    if (getElementData(source, "flys_spawner_damage")) then
+        cancelEvent()
+        return;
+    end
+
+    if (weapon == 34 or bodypart == 9) and not cancelCalc then
+
+        local additionalLoss = loss
+
+        if (weapon == 34) then additionalLoss = loss * 3 end
+        if (bodypart == 9) then additionalLoss = additionalLoss * 3 end
+
+        local newArmor = getPedArmor(getLocalPlayer()) - additionalLoss
+        if (newArmor < 0) then
+            local newHealth = getElementHealth(getLocalPlayer()) + newArmor
+            setElementHealth(getLocalPlayer(), newHealth);
+            setPedArmor(getLocalPlayer(), 0)
+        else
+            setPedArmor(getLocalPlayer(), newArmor)
         end
-    else
-        if (getElementsDistance(source, attacker) < 10 and attacker ~= source) then
-            if not (isHusting) and not (isTimer(checkHustenTimer)) then
-                isHusting = true
-                checkHustenTimer = setTimer(checkHusten_spc, 250, 1)
-                triggerServerEvent("spc_start_event", getLocalPlayer())
+    end
+
+    if (not isPedDead(getLocalPlayer())) then
+        if (weapon == 41 or weapon == 17) then
+            cancelEvent()
+            if (getElementsDistance(source, attacker) < 10 and attacker ~= source) then
+                if not (isHusting) and not (isTimer(checkHustenTimer)) then
+                    isHusting = true
+                    checkHustenTimer = setTimer(checkHusten_spc, 250, 1)
+                    triggerServerEvent("spc_start_event", getLocalPlayer())
+                end
+                isHusting = true;
             end
-            isHusting = true;
         end
     end
 end
-
 addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
+
 
 local spruehtimer = 0
 

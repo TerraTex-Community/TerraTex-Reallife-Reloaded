@@ -64,7 +64,6 @@ function showKillGfText()
         end
 
         local screenX, screenY = guiGetScreenSize();
-
         local sX = (screenX / 2) - (456 / 2)
         local sY = 0
 

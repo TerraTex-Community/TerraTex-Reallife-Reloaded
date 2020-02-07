@@ -57,6 +57,10 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 local isHusting = false
 local checkHustenTimer = false
 function hitbox_client(attacker, weapon, bodypart, loss)
+    if (source ~= getLocalPlayer) then
+        return;
+    end
+
     local cancelCalc = false
 
     if (getElementData(source, "smode")) then
@@ -101,8 +105,6 @@ function hitbox_client(attacker, weapon, bodypart, loss)
     end
 end
 addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
-
-
 
 
 local spruehtimer = 0

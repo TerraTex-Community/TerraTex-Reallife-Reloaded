@@ -64,7 +64,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
         cancelCalc = true;
     end
 
-    triggerClientEvent(source, "StopHealingTimer", source)
+    triggerEvent("StopHealingTimer", source)
 
     if (getElementData(source, "flys_spawner_damage")) then
         cancelEvent()
@@ -87,20 +87,20 @@ function hitbox_client(attacker, weapon, bodypart, loss)
     end
 
     if (weapon == 34 or bodypart == 9) and not cancelCalc then
-        outputChatBox("calc more damage: " .. loss)
+        --outputChatBox("calc more damage: " .. loss)
 
         local additionalLoss = loss * 4
 
         local newArmor = getPedArmor(getLocalPlayer()) - additionalLoss
         if (armor < 0) then
             local newHealth = getElementHealth(getLocalPlayer()) + newArmor
-            outputChatBox("calc more damage: " .. newHealth)
+            --outputChatBox("calc more damage: " .. newHealth)
             setElementHealth(getLocalPlayer, newHealth);
             setPedArmor(getLocalPlayer(), 0)
         else
             setPedArmor(getLocalPlayer(), newArmor)
         end
-        outputChatBox("calc more damage: " .. newArmor)
+        --outputChatBox("calc more damage: " .. newArmor)
     end
 end
 addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)

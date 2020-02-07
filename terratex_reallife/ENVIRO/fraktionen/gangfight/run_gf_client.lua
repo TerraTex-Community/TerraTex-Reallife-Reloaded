@@ -42,7 +42,7 @@ function showKillGfText()
         checkGfPositioning()
 
         local s = 0;
-        for s = 0, 600, 100 do
+        for s = 0, 600, 10 do
 
             local listI = getCoordinateList(gfsizeInner, s, tocolor(255, 255, 0, 75))
             local listO = getCoordinateList(gfsizeOuter, s, tocolor(255, 0, 0, 75))
@@ -136,7 +136,7 @@ function getCoordinateList(radius, start, color)
     local listTable = {}
 
     local i = start;
-    for i = start, start + 100, 1 do
+    for i = start, start + 10, 1 do
         local cAngle = i / 100;
         local nx, ny =  findPointOnCircle(gfx, gfy , radius, cAngle);
         table.insert(listTable, {nx, ny, gfz - 25, color});

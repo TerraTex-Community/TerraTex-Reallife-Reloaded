@@ -83,7 +83,7 @@ end
 
 function isPlayerOutSideOfGFArea()
     local gfElement = getElementByID("GFSync");
-    local data = fetElementData(gfElement, "data");
+    local data = getElementData(gfElement, "data");
 
     local px,py,pz = getElementPosition(getLocalPlayer())
     local distanceToMid = getDistanceBetweenPoints3D(gfx, gfy, gfz,px,py,pz)

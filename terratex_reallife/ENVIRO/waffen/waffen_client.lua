@@ -76,7 +76,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
 
         local additionalLoss = loss
 
-        if (weapon == 34) then additionalLoss = loss * 4 end
+        if (weapon == 34) then additionalLoss = loss * 3 end
         if (bodypart == 9) then additionalLoss = additionalLoss * 3 end
 
         local newArmor = getPedArmor(getLocalPlayer()) - additionalLoss

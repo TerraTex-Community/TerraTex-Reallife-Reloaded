@@ -66,19 +66,19 @@ function setPedChocking_server()
         addSPCSeconds = a
         killTimer(restTimer)
 
-        -- outputChatBox("rest: "..addSPCSeconds)
+         outputChatBox("rest: "..addSPCSeconds)
     else
         addSPCSeconds = 0
     end
-    setPedChoking(source, true)
-    -- outputChatBox("started")
+    setPedChoking(client, true)
+     outputChatBox("started")
 end
 addEvent("spc_start_event", true)
 addEventHandler("spc_start_event", getRootElement(), setPedChocking_server)
 
 function setPedChockingStop_server(spruehtimer)
     spruehtimer = spruehtimer + addSPCSeconds
-    -- outputChatBox(spruehtimer)
+     outputChatBox(spruehtimer)
     restTimer = setTimer(setPedChoking, spruehtimer, 1, source, false)
 end
 addEvent("spc_stop_event", true)

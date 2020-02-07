@@ -288,9 +288,6 @@
     <script src="ENVIRO/spawn_kill_system/spawnchange.lua" type="server"/>
     <script src="ENVIRO/spawn_kill_system/hitbox.lua" type="server"/>
     <!-- SKINSYSTEM -->
-    <script src="ENVIRO/skins/fskin.lua" type="server"/>
-    <script src="ENVIRO/skins/skingui_client.lua" type="client"/>
-
     <script src="ENVIRO/skins/skin_definitions.lua" type="shared" />
     <script src="ENVIRO/skins/skin_server.lua" type="server" />
     <script src="ENVIRO/skins/skin_client.lua" type="client" />
@@ -622,6 +619,7 @@
     <file src="UI/Login.html"/>
     <file src="UI/Profile.html"/>
     <file src="UI/VehicleShop.html"/>
+    <file src="UI/SkinShop.html"/>
     <file src="UI/Register.html"/>
     <file src="UI/Fraktionsmanagement/Main.html"/>
     <file src="UI/Fraktionsmanagement/_Overview.html"/>

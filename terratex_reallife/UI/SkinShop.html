@@ -51,14 +51,14 @@
 <script>
     $(document).ready(function () {
         $("html").on('click', '.tryButton', function () {
-            var id = $(this).parent().parent().parent().attr("id");
-            $.ajax("http://mta/local/ajax_skinshop_trySkin.html?modelId=" + id);
+            var id = $(this).parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_skinshop_tryskin.html?modelId=" + id);
             return false;
         });
 
         $("html").on('click', '.sellButton', function () {
-            var id = $(this).parent().parent().parent().attr("id");
-            $.ajax("http://mta/local/ajax_skinshop_buySkin.html?modelId=" + id);
+            var id = $(this).parent().parent().attr("id");
+            $.ajax("http://mta/local/ajax_skinshop_buyskin.html?modelId=" + id);
             return false;
         });
 

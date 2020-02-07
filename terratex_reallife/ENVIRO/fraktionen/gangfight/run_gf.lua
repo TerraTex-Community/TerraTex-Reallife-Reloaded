@@ -105,6 +105,10 @@ function spawnFirstTeam()
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
+                setTimer(function ()
+                    setPlayerPosition(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z)
+                    setElementDimension(thePlayer, 1337)
+                end, 500, 1)
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 10 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -116,6 +120,10 @@ function spawnFirstTeam()
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
+                setTimer(function ()
+                    setPlayerPosition(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z)
+                    setElementDimension(thePlayer, 1337)
+                end, 500, 1)
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 10 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -138,6 +146,11 @@ function spawnOtherGFTeam()
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
+
+                setTimer(function ()
+                    setPlayerPosition(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ)
+                    setElementDimension(thePlayer, 1337)
+                end, 500, 1)
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -149,6 +162,10 @@ function spawnOtherGFTeam()
             if (isElement(thePlayer)) then
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ, 0, getElementModel(thePlayer), 0, 1337);
+                setTimer(function ()
+                    setPlayerPosition(thePlayer, gfPositionData.ASpawnX, gfPositionData.ASpawnY, gfPositionData.ASpawnZ)
+                    setElementDimension(thePlayer, 1337)
+                end, 500, 1)
                 setElementFrozen(thePlayer, false);
                 outputChatBox("Und die nächste Runde beginnt... Erobert den Laden!", thePlayer);
                 givePlayerGFWeapons(thePlayer);
@@ -422,6 +439,7 @@ addEventHandler("onPlayerWasted", getRootElement(), gfPlayerDeath)
 
 function givePlayerGFWeapons(thePlayer)
     setPedArmor(thePlayer, 100);
+    setElementHealth(thePlayer, 100);
 
     takeWeapon(thePlayer, 5);
     giveWeapon(thePlayer, 5, 1);

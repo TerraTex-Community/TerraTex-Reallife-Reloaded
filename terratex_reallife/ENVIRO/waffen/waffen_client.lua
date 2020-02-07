@@ -77,10 +77,20 @@ function hitbox_client(attacker, weapon, bodypart, loss)
                 isHusting = true;
             end
         end
-
+    else
+        outputChatBox("is dead test")
+        setElementHealth(source, 0)
     end
 end
 addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
+
+addEvent("setPedDeadAgain", true)
+function setPedDeadAgain()
+    setElementHealth(getLocalPlayer(), 0)
+    killPed(getLocalPlayer())
+end
+addEventHandler("setPedDeadAgain", getRootElement(), setPedDeadAgain)
+
 
 local spruehtimer = 0
 

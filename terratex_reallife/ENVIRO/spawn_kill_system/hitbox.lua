@@ -85,6 +85,7 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
         setElementHealth(source, 0)
         local x, y, z = getElementPosition(source)
         setElementPosition(source, x, y, z)
+        triggerClientEvent(source, "setPedDeadAgain", source)
     else
         if (isElement(attacker)) then
             local hitTimer = setTimer(resetHitTimer, 30000, 1, source)

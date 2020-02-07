@@ -12,6 +12,8 @@ local startedRound = false;
 
 function startGf()
     local gfElement = getElementByID("GFSync");
+    vioSetElementData(gfElement, "startedRound", 0)
+
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
@@ -152,6 +154,7 @@ function spawnOtherGFTeam()
     end
 
     startedRound = true;
+    vioSetElementData(gfElement, "startedRound", 1)
 
     data.timerEnd = getRealTime().timestamp + 300;
     data.timer = setTimer(gfRoundTimeUp, 300000, 1);
@@ -327,6 +330,7 @@ function gfRoundTimeUp()
             checkEndGfOrNextRound();
         end
         startedRound = false;
+        vioSetElementData(gfElement, "startedRound", 0)
     end
 end
 
@@ -369,6 +373,7 @@ function gfPlayerDeath()
             for theKey, thePlayer in ipairs(data.defenders) do
                 if (isElement(thePlayer)) then
                     startedRound = false;
+                    vioSetElementData(gfElement, "startedRound", 0)
                     outputChatBox("Diese Runde habt ihr gewonnen!", thePlayer, 0, 255, 0);
                 end
             end
@@ -376,6 +381,7 @@ function gfPlayerDeath()
             for theKey, thePlayer in ipairs(data.attackers) do
                 if (isElement(thePlayer)) then
                     startedRound = false;
+                    vioSetElementData(gfElement, "startedRound", 0)
                     outputChatBox("Diese Runde habt ihr verloren!", thePlayer, 255, 0, 0);
                 end
             end
@@ -390,6 +396,7 @@ function gfPlayerDeath()
             for theKey, thePlayer in ipairs(data.attackers) do
                 if (isElement(thePlayer)) then
                     startedRound = false;
+                    vioSetElementData(gfElement, "startedRound", 0)
                     outputChatBox("Diese Runde habt ihr gewonnen!", thePlayer, 0, 255, 0);
                 end
             end
@@ -397,6 +404,7 @@ function gfPlayerDeath()
             for theKey, thePlayer in ipairs(data.defenders) do
                 if (isElement(thePlayer)) then
                     startedRound = false;
+                    vioSetElementData(gfElement, "startedRound", 0)
                     outputChatBox("Diese Runde habt ihr verloren!", thePlayer, 255, 0, 0);
                 end
             end

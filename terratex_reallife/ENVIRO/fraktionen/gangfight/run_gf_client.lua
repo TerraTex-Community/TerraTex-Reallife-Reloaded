@@ -82,28 +82,33 @@ function checkGfPositioning()
 end
 
 function isPlayerOutSideOfGFArea()
+
     local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
+
+    if (tonumber(getElementData(gfElement, "startedRound")) == 0) then
+        return false
+    end
 
     local px,py,pz = getElementPosition(getLocalPlayer())
     local distanceToMid = getDistanceBetweenPoints3D(gfx, gfy, gfz,px,py,pz)
 
     -- angreifer
     if (data.attackFaction == tonumber(getElementData(getLocalPlayer(), "fraktion"))) then
-        if (data.round % 2 == 0) then
-            -- muss im inneren sein
-            return distanceToMid > gfsizeInner
-        else
+        if (tonumber(data.round) % 2 == 1) then
             -- muss außen sein
             return distanceToMid > gfsizeOuter
+        else
+            -- muss im inneren sein
+            return distanceToMid > gfsizeInner
         end
     else
-        if (data.round % 2 == 0) then
-            -- muss im außen sein
-            return distanceToMid > gfsizeOuter
-        else
+        if (tonumber(data.round) % 2 == 1) then
             -- muss inneren sein
             return distanceToMid > gfsizeInner
+        else
+            -- muss im außen sein
+            return distanceToMid > gfsizeOuter
         end
     end
 

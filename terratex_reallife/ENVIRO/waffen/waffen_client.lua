@@ -57,17 +57,23 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 local isHusting = false
 local checkHustenTimer = false
 function hitbox_client(attacker, weapon, bodypart, loss)
-    if (not isPedDead(getLocalPlayer())) then
-        outputChatBox("test")
+    if (weapon == 34 or bodypart == 9) then
+        loss = loss * 5
+    end
 
+    if (getElementData(source, "smode")) then
         cancelEvent()
-        if not (weapon == 41 or weapon == 17) then
-            if (source == getLocalPlayer()) then
-                if not (not (attacker) and isElementFrozen(getLocalPlayer())) then
-                    triggerServerEvent("onCustomPlayerDamage", source, attacker, weapon, bodypart, loss)
-                end
-            end
-        else
+    end
+
+    triggerClientEvent(source, "StopHealingTimer", source)
+
+    if (getElementData(source, "flys_spawner_damage")) then
+        cancelEvent()
+    end
+
+    if (not isPedDead(getLocalPlayer())) then
+        if (weapon == 41 or weapon == 17) then
+            cancelEvent()
             if (getElementsDistance(source, attacker) < 10 and attacker ~= source) then
                 if not (isHusting) and not (isTimer(checkHustenTimer)) then
                     isHusting = true
@@ -77,19 +83,11 @@ function hitbox_client(attacker, weapon, bodypart, loss)
                 isHusting = true;
             end
         end
-    else
-        outputChatBox("is dead test")
-        setElementHealth(source, 0)
     end
 end
 addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
 
-addEvent("setPedDeadAgain", true)
-function setPedDeadAgain()
-    setElementHealth(getLocalPlayer(), 0)
-    killPed(getLocalPlayer())
-end
-addEventHandler("setPedDeadAgain", getRootElement(), setPedDeadAgain)
+
 
 
 local spruehtimer = 0

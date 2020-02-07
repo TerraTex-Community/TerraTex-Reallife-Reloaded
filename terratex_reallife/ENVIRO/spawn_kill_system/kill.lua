@@ -26,7 +26,7 @@ function setDeath_command_func(thePlayer, command, toPlayer)
         if (toPlayer) then
             local to = getPlayerFromIncompleteName(toPlayer)
             if (to) then
-                triggerEvent("onCustomPlayerDamage", to, thePlayer, 34, 9, 500)
+                killPed(to, thePlayer)
             end
         end
     end

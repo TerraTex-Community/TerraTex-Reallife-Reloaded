@@ -98,7 +98,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
             setElementHealth(getLocalPlayer, newHealth);
             setPedArmor(getLocalPlayer(), 0)
         else
-            setElementArmor(getLocalPlayer(), newArmor)
+            setPedArmor(getLocalPlayer(), newArmor)
         end
         outputChatBox("calc more damage: " .. newArmor)
     end

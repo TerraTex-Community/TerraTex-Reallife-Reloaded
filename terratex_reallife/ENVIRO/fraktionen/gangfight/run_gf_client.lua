@@ -96,19 +96,19 @@ function isPlayerOutSideOfGFArea()
     -- angreifer
     if (data.attackFaction == tonumber(getElementData(getLocalPlayer(), "fraktion"))) then
         if (tonumber(data.round) % 2 == 1) then
-            -- muss außen sein
-            return distanceToMid > gfsizeOuter
-        else
             -- muss im inneren sein
             return distanceToMid > gfsizeInner
+        else
+            -- muss außen sein
+            return distanceToMid > gfsizeOuter
         end
     else
         if (tonumber(data.round) % 2 == 1) then
-            -- muss inneren sein
-            return distanceToMid > gfsizeInner
-        else
             -- muss im außen sein
             return distanceToMid > gfsizeOuter
+        else
+            -- muss inneren sein
+            return distanceToMid > gfsizeInner
         end
     end
 

@@ -44,8 +44,8 @@ function showKillGfText()
         local s = 0;
         for s = 0, 600, 100 do
 
-            local listI = getCoordinateList(gfsizeInner, s, tocolor(255, 255, 0, 100))
-            local listO = getCoordinateList(gfsizeOuter, s, tocolor(255, 0, 0, 100))
+            local listI = getCoordinateList(gfsizeInner, s, tocolor(255, 255, 0, 75))
+            local listO = getCoordinateList(gfsizeOuter, s, tocolor(255, 0, 0, 75))
 
             dxDrawPrimitive3D("trianglestrip", false, unpack(listI))
             dxDrawPrimitive3D("trianglestrip", false, unpack(listO))

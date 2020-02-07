@@ -86,7 +86,7 @@ function isPlayerOutSideOfGFArea()
     local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
 
-    if (tonumber(getElementData(gfElement, "startedRound")) == 0) then
+    if (tonumber(getElementData(gfElement, "startedRound")) == 0 or isPedDead(getLocalPlayer())) then
         return false
     end
 

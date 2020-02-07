@@ -94,6 +94,7 @@ function spawnFirstTeam()
     local data = vioGetElementData(gfElement, "data");
     local gfPosition = data.attack;
     local gfPositionData = vioGetElementData(gfPosition, "data");
+    vioSetElementData(gfElement, "startedRound", 1)
 
     data.round = data.round + 1;
     if (data.round % 2 == 1) then
@@ -103,7 +104,7 @@ function spawnFirstTeam()
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
-                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
+                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 10 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
             end
         end
@@ -114,13 +115,13 @@ function spawnFirstTeam()
                 setElementCollisionsEnabled(thePlayer, false);
                 spawnPlayer(thePlayer, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 0, getElementModel(thePlayer), 0, 1337);
                 setElementFrozen(thePlayer, false);
-                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 30 Sekunden.", thePlayer);
+                outputChatBox("Und die nächste Runde beginnt... bereitet euch vor und verteidigt den Laden! Das Gegnerteam spawned in 10 Sekunden.", thePlayer);
                 givePlayerGFWeapons(thePlayer);
             end
         end
     end
 
-    setTimer(spawnOtherGFTeam, 30000, 1);
+    setTimer(spawnOtherGFTeam, 10000, 1);
 end
 
 function spawnOtherGFTeam()
@@ -154,7 +155,6 @@ function spawnOtherGFTeam()
     end
 
     startedRound = true;
-    vioSetElementData(gfElement, "startedRound", 1)
 
     data.timerEnd = getRealTime().timestamp + 300;
     data.timer = setTimer(gfRoundTimeUp, 300000, 1);

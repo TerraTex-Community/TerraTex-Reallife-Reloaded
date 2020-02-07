@@ -57,23 +57,24 @@ addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource(
 local isHusting = false
 local checkHustenTimer = false
 function hitbox_client(attacker, weapon, bodypart, loss)
-    if (weapon == 34 or bodypart == 9) then
-        loss = loss * 5
-    end
+    local cancelCalc = false
 
     if (getElementData(source, "smode")) then
         cancelEvent()
+        cancelCalc = true;
     end
 
     triggerClientEvent(source, "StopHealingTimer", source)
 
     if (getElementData(source, "flys_spawner_damage")) then
         cancelEvent()
+        cancelCalc = true;
     end
 
     if (not isPedDead(getLocalPlayer())) then
         if (weapon == 41 or weapon == 17) then
             cancelEvent()
+            cancelCalc = true;
             if (getElementsDistance(source, attacker) < 10 and attacker ~= source) then
                 if not (isHusting) and not (isTimer(checkHustenTimer)) then
                     isHusting = true
@@ -82,6 +83,19 @@ function hitbox_client(attacker, weapon, bodypart, loss)
                 end
                 isHusting = true;
             end
+        end
+    end
+
+    if (weapon == 34 or bodypart == 9) and not cancelCalc then
+        local additionalLoss = loss * 4
+
+        local newArmor = getPedArmor(getLocalPlayer()) - additionalLoss
+        if (armor < 0) then
+            local newHealth = getElementHealth(getLocalPlayer()) + newArmor
+            setElementHealth(getLocalPlayer, newHealth);
+            setPedArmor(getLocalPlayer(), 0)
+        else
+            setElementArmor(getLocalPlayer(), newArmor)
         end
     end
 end

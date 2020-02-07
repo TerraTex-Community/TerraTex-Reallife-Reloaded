@@ -21,7 +21,7 @@ end
 addEventHandler("onResourceStart", getRootElement(), setWeaponStats_balanced)
 
 function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
-    local health = getElementHealth(getLocalPlayer())
+    local health = getElementHealth(source)
 
     if (health < 1) then
         if (isPedInVehicle(source)) then

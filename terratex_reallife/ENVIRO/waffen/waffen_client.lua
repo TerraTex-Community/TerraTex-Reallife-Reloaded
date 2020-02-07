@@ -58,6 +58,8 @@ local isHusting = false
 local checkHustenTimer = false
 function hitbox_client(attacker, weapon, bodypart, loss)
     if (not isPedDead(getLocalPlayer())) then
+        outputChatBox("test")
+
         cancelEvent()
         if not (weapon == 41 or weapon == 17) then
             if (source == getLocalPlayer()) then

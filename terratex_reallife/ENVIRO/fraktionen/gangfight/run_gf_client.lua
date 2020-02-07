@@ -7,45 +7,8 @@
 --
 
 local gfx, gfy, gfz, gfsizeInner, gfsizeOuter, showGf = false;
-local killGFTimer = false;
-local colshape = false;
-
-addEvent("sendGfKillWarning", true);
-function sendGfKillWarning_func(seconds)
-    --  source = colshape
-    colshape = source;
-    if (isTimer(killGFTimer)) then
-        killTimer(killGFTimer);
-    end
-    killGFTimer = setTimer(killPlayer, seconds * 1000, 1);
-end
-addEventHandler("sendGfKillWarning", getRootElement(), sendGfKillWarning_func);
-
-function killPlayer()
-    if (isTimer(killGFTimer)) then
-        killTimer(killGFTimer);
-    end
-    if not isElementWithinColShape(getLocalPlayer(), colshape) then
-        setElementHealth(getLocalPlayer(), 0);
-    end
-end
 
 function showKillGfText()
-    if (isTimer(killGFTimer)) then
-        local timeLeft = getTimerDetails(killGFTimer);
-        timeLeft = math.round(timeLeft / 1000);
-
-        local text = "Du hast das GF Gebiet verlassen. Kehre in den nächsten " .. timeLeft .. " Sekunden zurück oder du wirst getötet!";
-
-        local screenW, screenH = guiGetScreenSize();
-        dxDrawText(text, 0, 0, screenW, screenH, tocolor(255, 0, 0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0);
-
-        if (not isElementWithinColShape(getLocalPlayer(), colshape)) then
-            killTimer(killGFTimer);
-            killGFTimer = false;
-            colshape = false;
-        end
-    end
 
     local gfElement = getElementByID("GFSync");
     local data = getElementData(gfElement, "data");
@@ -76,6 +39,7 @@ function showKillGfText()
 
 
     if (showGf) then
+        checkGfPositioning()
 
         local s = 0;
         for s = 0, 600, 100 do
@@ -89,6 +53,61 @@ function showKillGfText()
     end
 end
 addEventHandler("onClientRender", getRootElement(), showKillGfText)
+
+local wasOutSideOfArea = false;
+local firstNotificationOfOutsideArea = 0;
+local secondsUntilDeath = 10
+function checkGfPositioning()
+    if (isPlayerOutSideOfGFArea()) then
+        if (not wasOutSideOfArea) then
+            firstNotificationOfOutsideArea = getRealTime().timestamp
+            wasOutSideOfArea = true
+        end
+
+        local restSeconds = secondsUntilDeath - (getRealTime().timestamp - firstNotificationOfOutsideArea)
+
+        local text = "Du hast das GF Gebiet verlassen. Kehre in den nächsten " .. restSeconds .. " Sekunden zurück oder du wirst getötet!";
+
+        local screenW, screenH = guiGetScreenSize();
+        dxDrawText(text, 0, 0, screenW, screenH, tocolor(255, 0, 0), 1.5, "default", "center", "center", false, true, true, false, false, 0, 0, 0);
+
+        if (restSeconds < 0) then
+            setElementHealth(getLocalPlayer(), 0)
+            killPed(getLocalPlayer())
+        end
+    else
+        firstNotificationOfOutsideArea = 0
+        wasOutSideOfArea = false
+    end
+end
+
+function isPlayerOutSideOfGFArea()
+    local gfElement = getElementByID("GFSync");
+    local data = vioGetElementData(gfElement, "data");
+
+    local px,py,pz = getElementPosition(getLocalPlayer())
+    local distanceToMid = getDistanceBetweenPoints3D(gfx, gfy, gfz,px,py,pz)
+
+    -- angreifer
+    if (data.attackFaction == tonumber(getElementData(getLocalPlayer(), "fraktion"))) then
+        if (data.round % 2 == 0) then
+            -- muss im inneren sein
+            return distanceToMid > esizeInner
+        else
+            -- muss außen sein
+            return distanceToMid > esizeOuter
+        end
+    else
+        if (data.round % 2 == 1) then
+            -- muss im außen sein
+            return distanceToMid > esizeOuter
+        else
+            -- muss inneren sein
+            return distanceToMid > esizeInner
+        end
+    end
+
+end
 
 function setGangFightColShapes(enable, ex, ey, ez, esizeInner, esizeOuter)
     showGf = enable;

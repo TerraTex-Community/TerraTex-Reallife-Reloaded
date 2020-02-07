@@ -32,18 +32,6 @@ function startGf()
     gfPositionData.RLarge = RLarge;
     gfPositionData.RSmall = RSmall;
 
-    local killPlayerColShape = createColCircle(gfPositionData.X, gfPositionData.Y, RSmall);
-    table.insert(colshapes, killPlayerColShape);
-    setElementDimension(killPlayerColShape, 1337);
-    vioSetElementData(killPlayerColShape, "gfColType", 1);
-    addEventHandler("onColShapeLeave", killPlayerColShape, sendKillWarning);
-
-    local killPlayerColShape = createColCircle(gfPositionData.X, gfPositionData.Y, RLarge);
-    table.insert(colshapes, killPlayerColShape);
-    setElementDimension(killPlayerColShape, 1337);
-    vioSetElementData(killPlayerColShape, "gfColType", 2);
-    addEventHandler("onColShapeLeave", killPlayerColShape, sendKillWarning);
-
     for theKey, thePlayer in ipairs(data.attackers) do
         if (isElement(thePlayer)) then
             triggerClientEvent(thePlayer, "event_gf_set_col_shapes", thePlayer, true, gfPositionData.X, gfPositionData.Y, gfPositionData.Z, RSmall, RLarge)
@@ -57,38 +45,6 @@ function startGf()
     end
 
     startRound();
-end
-
-function sendKillWarning(element, matchDim)
-    if (matchDim) then
-        local gfElement = getElementByID("GFSync");
-        local data = vioGetElementData(gfElement, "data");
-
-        local colType = vioGetElementData(source, "gfColType");
-        if (colType == 1) then
-            --        attacker colshape
-            if (data.round % 2 == 1) then
-                if (data.attackFaction == vioGetElementData(element, "fraktion")) then
-                    triggerClientEvent(element, "sendGfKillWarning", source, 10);
-                end
-            else
-                if (data.defendFaction == vioGetElementData(element, "fraktion")) then
-                    triggerClientEvent(element, "sendGfKillWarning", source, 10);
-                end
-            end
-        else
-            --        defender colshape
-            if (data.round % 2 == 1) then
-                if (data.defendFaction == vioGetElementData(element, "fraktion")) then
-                    triggerClientEvent(element, "sendGfKillWarning", source, 10);
-                end
-            else
-                if (data.attackFaction == vioGetElementData(element, "fraktion")) then
-                    triggerClientEvent(element, "sendGfKillWarning", source, 10);
-                end
-            end
-        end
-    end
 end
 
 function resetElementCollision(element, matchDim)

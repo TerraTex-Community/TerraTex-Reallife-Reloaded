@@ -76,7 +76,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
     end
 end
 
-addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
+--addEventHandler("onClientPlayerDamage", getRootElement(), hitbox_client)
 
 local spruehtimer = 0
 

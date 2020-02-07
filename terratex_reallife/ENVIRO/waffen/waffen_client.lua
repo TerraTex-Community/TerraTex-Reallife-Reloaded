@@ -93,7 +93,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
         local newArmor = getPedArmor(getLocalPlayer()) - additionalLoss
         if (newArmor < 0) then
             local newHealth = getElementHealth(getLocalPlayer()) + newArmor
-            setElementHealth(getLocalPlayer, newHealth);
+            setElementHealth(getLocalPlayer(), newHealth);
             setPedArmor(getLocalPlayer(), 0)
         else
             setPedArmor(getLocalPlayer(), newArmor)

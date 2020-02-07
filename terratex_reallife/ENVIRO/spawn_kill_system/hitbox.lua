@@ -79,7 +79,7 @@ addEventHandler("spc_start_event", getRootElement(), setPedChocking_server)
 function setPedChockingStop_server(spruehtimer)
     spruehtimer = spruehtimer + addSPCSeconds
      outputChatBox(spruehtimer)
-    restTimer = setTimer(setPedChoking, spruehtimer, 1, source, false)
+    restTimer = setTimer(setPedChoking, spruehtimer, 1, client, false)
 end
 addEvent("spc_stop_event", true)
 addEventHandler("spc_stop_event", getRootElement(), setPedChockingStop_server)

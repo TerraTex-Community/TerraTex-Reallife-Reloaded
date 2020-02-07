@@ -69,14 +69,16 @@ function onPlayerDamage_func(attacker, attackerweapon, bodypart, loss)
         health = health + armor
         armor = 0
     end
+
+    outputChatBox("debug:" .. health)
     if (health < 1) then
         if (isPedInVehicle(source)) then
             removePedFromVehicle(source)
         end
 
         local x, y, z = getElementPosition(source)
-        setElementHealth(source, 0)
         killPed(source, attacker, attackerweapon, bodypart, false)
+        setElementHealth(source, 0)
         setElementPosition(source, x, y, z)
     else
         if (isElement(attacker)) then

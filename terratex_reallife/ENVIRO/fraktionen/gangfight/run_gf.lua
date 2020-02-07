@@ -75,12 +75,14 @@ function startRound()
 
     for theKey, thePlayer in ipairs(data.attackers) do
         if (isElement(thePlayer)) then
+            setElementHealth(thePlayer, 0)
             killPed(thePlayer);
         end
     end
 
     for theKey, thePlayer in ipairs(data.defenders) do
         if (isElement(thePlayer)) then
+            setElementHealth(thePlayer, 0)
             killPed(thePlayer);
         end
     end
@@ -336,6 +338,9 @@ end
 
 function gfPlayerDeath()
     if (vioGetElementData(source, "inGf") and startedRound) then
+        killPed(source);
+        outputChatBox("killed ".. getPlayerName(source))
+
         local gfElement = getElementByID("GFSync");
         local data = vioGetElementData(gfElement, "data");
 

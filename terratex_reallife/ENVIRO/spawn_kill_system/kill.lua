@@ -59,9 +59,6 @@ function death_func(ammo, attacker, weapon, bodypart)
     local gfData = vioGetElementData(gfElement, "data");
 
     if not (vioGetElementData(source, "inArena")) and not (table.hasValue(gfData.attackers, source)) and not (table.hasValue(gfData.defenders, source)) then
-        -- Vars for Logging
-        -- @todo: log for debug on gf
-        outputDebugString("GF DEBUG " .. getPlayerName(source) .. " died... is he in gf?")
 
         local wasBlacklistOrWantedKill = false
 

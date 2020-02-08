@@ -46,8 +46,8 @@ function findBizMarkler_function(theBizID)
         changePlayerMoney(source,-50,"sonstiges","Nutzung des Maklers in der Stadthalle")
 		local bx,by,bz=getElementPosition(bizData[theBizID]["Pickup"])
 		local blip=createBlip ( bx,by,bz ,0,2,0,255,0,255, 0 , 99999.0, source )
-		outputChatBox("Das Biz befindet sich an der grün Markierten Stelle! (Die Markierung verschwindet automatisch nach 2 Minuten!)",source)
-		setTimer(deleteBlipmarkler,120000,1,blip)	
+		outputChatBox("Das Biz befindet sich an der grün Markierten Stelle! (Die Markierung verschwindet automatisch nach 5 Minuten!)",source)
+		setTimer(deleteBlipmarkler,300000,1,blip)
 	else
 		showError(source,"Du brauchst 5000$ um den Dienst eines Maklers zu nutzen!")
 	end

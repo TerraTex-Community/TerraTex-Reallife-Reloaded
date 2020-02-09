@@ -62,6 +62,7 @@ function hitbox_client(attacker, weapon, bodypart, loss)
     end
 
     if (getElementData(source, "smode")) then
+        cancelEvent()
         return;
     end
 

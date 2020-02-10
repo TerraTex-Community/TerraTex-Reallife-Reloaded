@@ -50,6 +50,11 @@ function save_steuer_log(player, betrag, type)
     });
 end
 
+
+---save_log
+---@param logname string path to file
+---@param message string string to store
+---@param noNewLineAtEnd boolean optional=false do not add new line
 function save_log(logname, message, noNewLineAtEnd)
     local filename = "LOGS/" .. logname .. ".log"
     local filehandler

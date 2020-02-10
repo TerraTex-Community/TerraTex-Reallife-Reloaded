@@ -25,3 +25,21 @@ function debug.table(tablevalue, step)
         end
     end
 end
+
+
+---try catch function - errors will be stored on Server directly
+---@param func function that should be called
+---@param ... any parameters of functions
+---@return boolean Status - false if error true if success
+---@return any|nil Value - returns value if success otherwise nil
+function debug.tryAndCatch(func, ...)
+    local status, errorOrValue = pcall(func, ...)
+    if (status == false) then
+        logMessageWithStackTrace(1, errorOrValue)
+        return false, nil
+    else
+        return true, errorOrValue
+    end
+end
+
+

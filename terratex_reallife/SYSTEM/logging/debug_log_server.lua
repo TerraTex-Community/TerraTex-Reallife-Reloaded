@@ -58,7 +58,7 @@ end
 
 
 function onDebugStoreRunner()
-    setTimer(storeDebugLogEntries, 600000, 0)
+    setTimer(storeDebugLogEntriesInFile, 120000, 0)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onDebugStoreRunner)
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), storeDebugLogEntriesInFile)

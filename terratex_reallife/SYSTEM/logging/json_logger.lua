@@ -53,7 +53,7 @@ end
 
 
 function onJsonLogStoreRunner()
-    setTimer(storeDebugLogEntries, 600000, 0)
+    setTimer(storeJSONLogEntriesInFile, 120000, 0)
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onJsonLogStoreRunner)
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), storeJSONLogEntriesInFile)

@@ -42,7 +42,7 @@ function storeLogEntriesAsjson(message, level, file, line, time, stacktrace, use
     table.insert(currentBulkTable, json);
 end
 
-function storeDebugLogEntriesInFile()
+function storeJSONLogEntriesInFile()
     lastBulkTable = currentBulkTable;
     currentBulkTable = {};
 
@@ -52,8 +52,8 @@ function storeDebugLogEntriesInFile()
 end
 
 
-function onDebugStoreRunner()
+function onJsonLogStoreRunner()
     setTimer(storeDebugLogEntries, 600000, 0)
 end
-addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onDebugStoreRunner)
-addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), storeDebugLogEntries)
+addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), onJsonLogStoreRunner)
+addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), storeJSONLogEntriesInFile)

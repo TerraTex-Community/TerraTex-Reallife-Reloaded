@@ -55,6 +55,8 @@
 
     <script src="SYSTEM/logging/loggingsys.lua" type="server"/>
     <script src="SYSTEM/logging/debug_log_client.lua" type="client"/>
+    <script src="SYSTEM/logging/json_logger.lua" type="server"/>
+    <script src="SYSTEM/logging/logging_server_func.lua" type="server"/>
     <script src="SYSTEM/logging/debug_log_server.lua" type="server"/>
     <script src="SYSTEM/elementdata/data.lua" type="server"/>
     <script src="SYSTEM/train.lua" type="server"/>

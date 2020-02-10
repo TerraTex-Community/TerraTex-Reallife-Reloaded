@@ -1,23 +1,23 @@
 function store_client_debug_func(time, message, level, file, line)
-    addLogEntryToBulk(getPlayerName(client), time, message, level, file, line)
+    addLogEntryToBulkFileWriter(getPlayerName(client), time, message, level, file, line)
 end
 addEvent("store_client_debug", true)
 addEventHandler ( "store_client_debug", getRootElement(), store_client_debug_func, true, "low" )
 
 local levelOptions = {
-    [0] = "[CUSTOM]",
-    [1] = "[ERROR]",
-    [2] = "[WARNING]",
-    [3] = "[INFO]",
+    [0] = "CUSTOM",
+    [1] = "ERROR",
+    [2] = "WARNING",
+    [3] = "INFO",
 }
 
 local currentBulkTable = {}
 local lastBulkTable = {}
-function addLogEntryToBulk(username, time, message, level, file, line)
+function addLogEntryToBulkFileWriter(username, time, message, level, file, line)
     -- add timestramp to log
     local entry = "[" .. time.monthday .. "." .. (time.month + 1) .. "." .. (time.year + 1900) .. " - " .. time.hour .. ":" .. time.minute .. ":" .. time.second .. "] ";
     -- add level
-    entry = entry .. levelOptions[level].. " ";
+    entry = entry .. "[".. levelOptions[level].. "] ";
 
     -- add file path if extist
     if (file) then
@@ -38,7 +38,7 @@ function addLogEntryToBulk(username, time, message, level, file, line)
     });
 end
 
-function storeDebugLogEntries()
+function storeDebugLogEntriesInFile()
     lastBulkTable = currentBulkTable;
     currentBulkTable = {};
 

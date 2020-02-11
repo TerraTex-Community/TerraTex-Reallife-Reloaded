@@ -141,7 +141,7 @@ exports.updateGitHubIssue = async (dbId, githubId = null, issueData) => {
     let oldGithubText = "";
     if (githubId) {
         const data = issues.getIssue(githubId);
-        if (data.state === "closed" &&
+        if (data.state === "open" ||
                 getDaysBetween(new Date(data.closed_at), new Date()) <= 30) {
             return githubId;
         }
@@ -173,6 +173,7 @@ ${oldGithubText}
 };
 
 function getDaysBetween(date1, date2) {
+    if (isNaN(date1.getTime())) return 0;
     let diff = date2.getTime() - date1.getTime();
     diff = diff / 1000 / 3600 / 24;
     return diff;

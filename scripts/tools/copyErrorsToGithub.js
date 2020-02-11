@@ -56,9 +56,10 @@ async function run() {
     const files = glob.sync("../../**/debug_json.log.log");
 
     for (const file of files) {
-        fs.renameSync(file, file + ".copied.log");
+        const time = new Date().getTime();
+        fs.renameSync(file, file + time + ".copied.log");
 
-        const fileStream = fs.createReadStream(file + ".copied.log");
+        const fileStream = fs.createReadStream(file + time +".copied.log");
 
         const rl = readline.createInterface({
             input: fileStream,

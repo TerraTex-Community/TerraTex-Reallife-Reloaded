@@ -54,7 +54,6 @@ async function run() {
     global.issues = github.getIssues("TerraTex-Community", "TerraTex-Reallife-Reloaded");
 
     const files = glob.sync("../../**/debug_json.log.log");
-    console.log(files);
 
     for (const file of files) {
         fs.renameSync(file, file + ".copied.log");
@@ -80,7 +79,7 @@ async function run() {
                 await updateIssueToDatabase(issue.ID, true, githubId);
             } else {
                 const dbId = await writeIssueToDatabase(issueData);
-                const githubId = await updateGitHubIssue(dbId, null, issueData);
+                const githubId = await updateGitHubIssue(dbId,null, issueData);
                 await updateIssueToDatabase(dbId, false, githubId);
             }
         }

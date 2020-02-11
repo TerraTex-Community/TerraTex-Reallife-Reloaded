@@ -3,51 +3,177 @@
 
 /**
  *
- * @param issueData
+ * @param {{
+  message: string,
+  line: number,
+  time: number,
+  user: string,
+  stacktrace: string,
+  level: string,
+  logType: string,
+  file: string}} issueData
  * @returns {Promise<boolean>}
  */
 exports.doesIssueExist = async (issueData) => {
-    // check for .message .line .file .logType
+    const rows = await db.query(`
+SELECT * 
+FROM log_errors_to_github 
+WHERE 
+  message = ? AND 
+  line = ? AND 
+  file = ? AND 
+  logType = ?            
+    `, [issueData.message, issueData.line, issueData.file, issueData.logType]);
+
+    const entry = rows[0];
+    return !!entry;
 };
 
 /**
  *
- * @param issueData
+ * @param  {{
+  message: string,
+  line: number,
+  time: number,
+  user: string,
+  stacktrace: string,
+  level: string,
+  logType: string,
+  file: string}} issueData
  * @returns {Promise<{ID, github_id}>}
  */
 exports.getIssueFromDB = async (issueData) => {
-    // check for .message .line .file .logType
+    const rows = await db.query(`
+SELECT * 
+FROM log_errors_to_github 
+WHERE 
+  message = ? AND 
+  line = ? AND 
+  file = ? AND 
+  logType = ?            
+    `, [issueData.message, issueData.line, issueData.file, issueData.logType]);
+
+    const entry = rows[0];
+    if (entry)
+        return entry;
+    else
+        return false;
 };
 
 /**
  *
- * @param issueData
+ * @param  {{
+  message: string,
+  line: number,
+  time: number,
+  user: string,
+  stacktrace: string,
+  level: string,
+  logType: string,
+  file: string}} issueData
  * @returns {Promise<void>}
  */
 exports.writeIssueToDatabase = async (issueData) => {
-    // check for {
-    //   "message": "loaded 110 vehicles for shops",
-    //   "line": 82,
-    //   "time": 1581349761000,
-    //   "user": "server",
-    //   "stacktrace": "stack traceback:\n\t...atex_reallife\\SYSTEM\\logging\\logging_server_func.lua:16: in function <...atex_reallife\\SYSTEM\\logging\\logging_server_func.lua:15>\n\t[C]: in function 'outputDebugString'\n\t..._reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop_server.lua:82: in function 'generateVehicleShopList'\n\t..._reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop_server.lua:48: in function <..._reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop_server.lua:39>",
-    //   "level": "INFO",
-    //   "logType": "server",
-    //   "file": "terratex_reallife\\SYSTEM\\vehsys\\shop\\vehicle_shop_server.lua"
-    // }
+    const rows = await db.query(`
+INSERT INTO log_errors_to_github (
+    message, line, time, user, stacktrace, level, logType, file
+)
+VALUES (?,?,?,?,?,?,?,?);         
+    `, [
+        issueData.message, issueData.line, (issueData.time /1000),
+        issueData.user, issueData.stacktrace, issueData.level, issueData.logType,
+        issueData.file
+    ]);
+
+
+    return rows.insertId;
 };
 
+/**
+ *
+ * @param issueId
+ * @param countUp
+ * @param githubId
+ * @returns {Promise<void>}
+ */
 exports.updateIssueToDatabase = async (issueId, countUp = false, githubId = null) => {
     // if countUp = true counted + 1
     // if githubId !== null update it
+    let updateCounted = "";
+    let updategithub = "";
+    let updateComma = "";
+    let updateValues = [];
+
+    if (countUp) {
+        updateCounted = "counted = counted + 1";
+        if (githubId) {
+            updateComma = ",";
+        }
+    }
+    if (githubId) {
+        updategithub = "github_id = ?";
+        updateValues = [githubId];
+    }
+    updateValues.push(issueId);
+
+    const rows = await db.query(`
+UPDATE log_errors_to_github SET    
+${updateCounted}${updateComma}${updategithub}
+WHERE ID = ?
+    `, updateValues);
 };
 
 /**
  *
  * @param dbId
- * @param issueData
+ * @param githubId
+ * @param  {{
+  message: string,
+  line: number,
+  time: number,
+  user: string,
+  stacktrace: string,
+  level: string,
+  logType: string,
+  file: string}} issueData
  */
 exports.updateGitHubIssue = async (dbId, githubId = null, issueData) => {
-    // create github Issue - if older then 30 days recreate
-    //    @see http://github-tools.github.io/github/docs/3.2.3/Issue.html
+    let oldGithubText = "";
+    if (githubId) {
+        const data = issues.getIssue(githubId);
+        if (data.state === "closed" &&
+                getDaysBetween(new Date(data.closed_at), new Date()) <= 30) {
+            return githubId;
+        }
+        oldGithubText = `Old Github Ticket to this Issue: #${githubId}`
+    }
+
+    const stackmark = "```";
+
+    const newIssueData = await issues.createIssue({
+        title: "From Error log: " + issueData.message,
+        body: `
+- Database Id: ${dbId}
+- Message: ${issueData.message}
+- Stacktrace: 
+${stackmark}
+${issueData.stacktrace}
+${stackmark}
+- Level: ${issueData.level}
+- Source: ${issueData.file}:${issueData.line}
+- LogType: ${issueData.logType}
+- Appeared at User: ${issueData.user} 
+
+${oldGithubText}       
+        `,
+        labels: ["bug", "generated"]
+    });
+
+    return newIssueData.data.number;
 };
+
+function getDaysBetween(date1, date2) {
+    let diff = date2.getTime() - date1.getTime();
+    diff = diff / 1000 / 3600 / 24;
+    return diff;
+}

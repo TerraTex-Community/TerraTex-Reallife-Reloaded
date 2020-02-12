@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "github-api": "^3.3.0",
+    "glob": "^7.1.6",
     "mariadb": "^2.1.5",
     "randomstring": "^1.1.5",
     "uniqid": "^5.2.0",

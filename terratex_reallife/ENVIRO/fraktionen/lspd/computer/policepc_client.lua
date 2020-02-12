@@ -356,7 +356,7 @@ function policePCAkte(get)
     if (get) then
         if (get.todo) then
             if (get.todo == "stvo") then
-                local stvos = decodeURI(get.count);
+                local stvos = get.count;
                 local reason = decodeURI(get.reason);
                 triggerServerEvent("executeServerCommandHandler", getLocalPlayer(), "stvo", getPlayerName(policePCData.activePlayer) .. " " .. stvos .. " " .. reason);
             elseif (get.todo == "crime") then

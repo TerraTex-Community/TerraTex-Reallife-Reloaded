@@ -61,8 +61,7 @@ pipeline {
 - ${commitInfo.getCommitMessage()}"""
                     }
                 } catch (e) {}
-                    telegramSend telegram
-                }
+                telegramSend telegram
             } else {
                 telegramSend "MTA:SA: Es gibt einen neuen Pullrequest auf Github"
             }

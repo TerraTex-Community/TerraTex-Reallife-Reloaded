@@ -33,37 +33,38 @@ pipeline {
 
     post {
         success {
-        script {
-            if (env.BRANCH_NAME == "master") {
-                telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
-                def telegram = "MTA:SA Änderungen: "
+            script {
+                if (env.BRANCH_NAME == "master") {
+                    telegramSend "Eine neue Version wurde auf den MTA:SA Server geladen. Sie geht live mit dem nächsten GMX."
+                    def telegram = "MTA:SA Änderungen: "
 
-                try {
-                    def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
-                    publisher.publishLastChanges()
-                    def changes = publisher.getLastChanges()
-                    for (commit in changes.getCommits()) {
-                        def commitInfo = commit.getCommitInfo()
-                        telegram = """${telegram}
+                    try {
+                        def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+                        publisher.publishLastChanges()
+                        def changes = publisher.getLastChanges()
+                        for (commit in changes.getCommits()) {
+                            def commitInfo = commit.getCommitInfo()
+                            telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
-                    }
-                } catch (e) {}
-                telegramSend telegram
-            }  else if (!env.BRANCH_NAME.startsWith("PR")) {
-                def telegram = "MTA:SA: Neuer Commit auf dem Dev-Server mit: "
-                try {
-                    def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
-                    publisher.publishLastChanges()
-                    def changes = publisher.getLastChanges()
-                    for (commit in changes.getCommits()) {
-                        def commitInfo = commit.getCommitInfo()
-                        telegram = """${telegram}
+                        }
+                    } catch (e) {}
+                    telegramSend telegram
+                }  else if (!env.BRANCH_NAME.startsWith("PR")) {
+                    def telegram = "MTA:SA: Neuer Commit auf dem Dev-Server mit: "
+                    try {
+                        def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""
+                        publisher.publishLastChanges()
+                        def changes = publisher.getLastChanges()
+                        for (commit in changes.getCommits()) {
+                            def commitInfo = commit.getCommitInfo()
+                            telegram = """${telegram}
 - ${commitInfo.getCommitMessage()}"""
-                    }
-                } catch (e) {}
-                telegramSend telegram
-            } else {
-                telegramSend "MTA:SA: Es gibt einen neuen Pullrequest auf Github"
+                        }
+                    } catch (e) {}
+                    telegramSend telegram
+                } else {
+                    telegramSend "MTA:SA: Es gibt einen neuen Pullrequest auf Github"
+                }
             }
         }
         failure {

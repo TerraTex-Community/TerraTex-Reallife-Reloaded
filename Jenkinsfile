@@ -22,7 +22,7 @@ pipeline {
                     if (env.BRANCH_NAME == "master") {
                         bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources logs'
                         bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\server\\mods\\deathmatch\\resources'
-                    } else if (!env.BRANCH_NAME.startsWith("PR") {
+                    } else if (!env.BRANCH_NAME.startsWith("PR")) {
                         bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources logs'
                         bat 'grunt --path=D:\\TerraTex\\Spiele\\mta\\tmp-test-server\\mods\\deathmatch\\resources'
                     }
@@ -49,7 +49,7 @@ pipeline {
                     }
                 } catch (e) {}
                 telegramSend telegram
-            }  else if (!env.BRANCH_NAME.startsWith("PR") {
+            }  else if (!env.BRANCH_NAME.startsWith("PR")) {
                 def telegram = "MTA:SA: Neuer Commit auf dem Dev-Server mit: "
                 try {
                     def publisher = LastChanges.getLastChangesPublisher "LAST_SUCCESSFUL_BUILD", "SIDE", "LINE", true, true, "", "", "", "", ""

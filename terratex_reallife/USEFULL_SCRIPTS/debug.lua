@@ -8,6 +8,8 @@ function debug.print(value)
     end
 end
 
+--- Internal function - will print a table debug to console - please use debug.print instead
+--- @private
 function debug.table(tablevalue, step)
     if not step then step = 1 end
 
@@ -40,5 +42,3 @@ function debug.tryAndCatch(func, ...)
         return true, errorOrValue
     end
 end
-
-

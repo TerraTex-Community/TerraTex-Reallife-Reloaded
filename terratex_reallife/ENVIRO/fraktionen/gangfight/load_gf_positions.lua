@@ -89,6 +89,10 @@ function hitGfPositionPickup(thePlayer)
 end
 
 function calcAndSaveGfPositionIncome()
+    if (isDevServer()) then
+        return;
+    end
+
     for theKey, theGfPositionElement in ipairs(gfPositions) do
         local theGfPosition = vioGetElementData(theGfPositionElement, "data");
         theGfPosition.HoursWithoutAttack = tonumber(theGfPosition.HoursWithoutAttack) + 1;
@@ -120,16 +124,12 @@ function calcAndSaveGfPositionIncome()
             end
         end
 
-        if (not isDevServer()) then
-            MySql.helper.update("faction_gangfights", {
-                Owner = theGfPosition.Owner,
-                HoursWithoutAttack = theGfPosition.HoursWithoutAttack
-            }, {
-                ID = theGfPosition.ID
-            });
-
-            --outputServerLog ( "stored gfladen " .. theGfPosition.ID )
-        end
+        MySql.helper.update("faction_gangfights", {
+            Owner = theGfPosition.Owner,
+            HoursWithoutAttack = theGfPosition.HoursWithoutAttack
+        }, {
+            ID = theGfPosition.ID
+        });
 
         vioSetElementData(theGfPositionElement, "data", theGfPosition);
     end

@@ -12,7 +12,7 @@ local deleteNullAfterDays = 30
 
 --[[ SCRIPT ]]
 function onPlayerDevServerConnect(nickname)
-    if (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
+    if (isDevServer()) then
         local isDev = MySql.helper.getValueSync("user", "isDeveloper", { Nickname = nickname });
         if (isDev) then
             if (isDev == 0) then

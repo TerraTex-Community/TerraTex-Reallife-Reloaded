@@ -5,12 +5,6 @@ function kickMeBecauseWrongVersion_func(player)
 end
 addEventHandler("kickMeBecauseWrongVersion", getRootElement(), kickMeBecauseWrongVersion_func)
 
-local isDevServerV = false
-function isDevServer()
-    isDevServerV = fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")
-    return isDevServerV
-end
-
 serversettings = {}
 Tagesdurchnitte = {}
 
@@ -56,7 +50,7 @@ function loadSettingsFromDB()
     resetWaterLevel(0)
 
     serversettings["Max_User"] = 0
-    if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
+    if not (isDevServer()) then
         local lastDailyReset = MySql.helper.getValueSync("data_settings", "Wert", { Name = "DailyReset" });
 
         local time = getRealTime()
@@ -127,7 +121,7 @@ function loadSettingsFromDB()
             outputDebugString(tostring(changeaccounts) .. " Accounts have been Changed")
         end
     else
-        isDevServerV = true
+        outputDebugString("Started Server as DEVELOPMENT Server. Whitelist enabled. Storing disabled.")
     end
     setTimer(saveSettingsInDB, 3600000, 1)
 end

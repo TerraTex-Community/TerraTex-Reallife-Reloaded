@@ -7,8 +7,6 @@ function createDefendRocket()
     setTimer(moreRockets, 1000, 1, source)
     setTimer(moreRockets, 2000, 1, source)
     setTimer(moreRockets, 3000, 1, source)
-
-
 end
 addEventHandler("defend_rocket_to", getRootElement(), createDefendRocket)
 
@@ -20,34 +18,6 @@ function moreRockets(source)
         createProjectile(getLocalPlayer(), 20, 188.1630859375, 2081.0068359375, 26.025737762451, 0.25, source)
     end
 end
-
-local auswurf = 0
-addEvent("startNevadaRockets", true)
-function startBombingNevadaRockets(creator, nearbyPlayers)
-    if (creator == getLocalPlayer()) then
-        outputChatBox("Abschuss gestartet")
-    end
-    local x, y, z = getElementPosition(source)
-    --outputChatBox(x.." "..y.." "..z)
-    local chatSphere = createColCircle(x, y, 50)
-    local nearbyPlayers = getElementsWithinColShape(chatSphere, "vehicle")
-    --outputChatBox(tostring(nearbyPlayers).." "..table.getn(nearbyPlayers))
-    if (nearbyPlayers) then
-        for theKey, theVehicle in ipairs(nearbyPlayers) do
-            if not (theVehicle == source) then
-                local x, y, z = getElementPosition(theVehicle)
-                createProjectile(creator, 20, x, y, (z + 20), 3.25, theVehicle)
-            end
-        end
-    end
-    destroyElement(chatSphere)
-end
-addEventHandler("startNevadaRockets", getRootElement(), startBombingNevadaRockets)
-
-function setDevelopmentMode_mode()
-    setDevelopmentMode(true)
-end
-addCommandHandler("devmode", setDevelopmentMode_mode)
 
 function attackedAPed(attacker, weapon, bodypart, loss)
     cancelEvent()

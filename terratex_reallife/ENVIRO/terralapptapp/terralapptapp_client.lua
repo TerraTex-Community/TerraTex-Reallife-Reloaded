@@ -47,10 +47,14 @@ function terralapptapp_open(apptable, text)
 	guiSetVisible(TerralappAppWindow[1], true)
 	showCursor(true)
 	for theKey, theElement in ipairs(TerralappAppImage) do
-		destroyElement(theElement)
+		if (isElement(theElement))then
+			destroyElement(theElement)
+		end
 	end
 	for theKey, theElement in ipairs(TerralappAppButton) do
-		destroyElement(theElement)
+		if (isElement(theElement))then
+			destroyElement(theElement)
+		end
 	end
 	TerralappAppImage = {}
 	TerralappAppButton = {}

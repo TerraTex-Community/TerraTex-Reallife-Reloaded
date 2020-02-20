@@ -71,21 +71,22 @@ end
 addCommandHandler("flip", flip, false, false)
 
 function tune_perkm(thePlayer, cmd, kmh)
-    if (isAdminLevel(thePlayer, 3)) then
+    if (isAdminLevel(thePlayer, 3) and isPedInVehicle(thePlayer)) then
         local kmold = kmh
         local kmh = tonumber(kmh) * 2.5
 
         local model = getElementModel(getPedOccupiedVehicle(thePlayer))
         local vehicle = getPedOccupiedVehicle(thePlayer)
-        local originalTABEL = getOriginalHandling(model)
-        local Handler = (originalTABEL["maxVelocity"] + tonumber(kmh)) / originalTABEL["maxVelocity"]
-        local HandlerB = (originalTABEL["maxVelocity"] + tonumber(kmold)) / originalTABEL["maxVelocity"]
-        setVehicleHandling(vehicle, "maxVelocity", originalTABEL["maxVelocity"] * Handler)
-        setVehicleHandling(vehicle, "engineAcceleration", originalTABEL["engineAcceleration"] * Handler)
-        setVehicleHandling(vehicle, "engineInertia", originalTABEL["engineInertia"] * Handler)
+        local originalTable = getOriginalHandling(model)
 
-        setVehicleHandling(vehicle, "tractionLoss", originalTABEL["tractionLoss"] * HandlerB)
-        setVehicleHandling(vehicle, "tractionMultiplier", originalTABEL["tractionMultiplier"] * HandlerB)
+        local Handler = (originalTable["maxVelocity"] + tonumber(kmh)) / originalTable["maxVelocity"]
+        local HandlerB = (originalTable["maxVelocity"] + tonumber(kmold)) / originalTable["maxVelocity"]
+        setVehicleHandling(vehicle, "maxVelocity", originalTable["maxVelocity"] * Handler)
+        setVehicleHandling(vehicle, "engineAcceleration", originalTable["engineAcceleration"] * Handler)
+        setVehicleHandling(vehicle, "engineInertia", originalTable["engineInertia"] * Handler)
+
+        setVehicleHandling(vehicle, "tractionLoss", originalTable["tractionLoss"] * HandlerB)
+        setVehicleHandling(vehicle, "tractionMultiplier", originalTable["tractionMultiplier"] * HandlerB)
 
         if (originalTABEL["tractionLoss"] * HandlerB > 100) then
             setVehicleHandling(vehicle, "tractionLoss", 100)

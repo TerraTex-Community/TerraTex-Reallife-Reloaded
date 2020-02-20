@@ -88,10 +88,10 @@ function tune_perkm(thePlayer, cmd, kmh)
         setVehicleHandling(vehicle, "tractionLoss", originalTable["tractionLoss"] * HandlerB)
         setVehicleHandling(vehicle, "tractionMultiplier", originalTable["tractionMultiplier"] * HandlerB)
 
-        if (originalTABEL["tractionLoss"] * HandlerB > 100) then
+        if (originalTable["tractionLoss"] * HandlerB > 100) then
             setVehicleHandling(vehicle, "tractionLoss", 100)
         end
-        if (originalTABEL["tractionMultiplier"] * HandlerB > 100) then
+        if (originalTable["tractionMultiplier"] * HandlerB > 100) then
             setVehicleHandling(vehicle, "tractionMultiplier", 100)
         end
         outputChatBox("done", thePlayer)

@@ -1,5 +1,12 @@
 -- not used in all files... will be set later
+--- @field isDevServer boolean
 config={}
+
+--- Is Development Server = Enable Whitelisting and Disable some Functions that
+--- could cause issues if a dev server and a live server are running on same database
+--- @type boolean
+config["isDevServer"]=false
+
 -- Name of Owner
 config["owner"]="[TTeam]Geramy92"
 

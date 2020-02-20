@@ -274,10 +274,6 @@ function LoginPlayerData(nickname, pw)
 
         triggerClientEvent(source, "setAtomKatastropheClient", source, atomkatastrophe)
 
-        if (isDevServer()) then
-            triggerClientEvent(source, "recieveNewDevState", source)
-        end
-
         local ip = getPlayerIP(source)
         local serial = getPlayerSerial(source)
         MySql.helper.update("user", { Serial = serial }, { Nickname = nickname });

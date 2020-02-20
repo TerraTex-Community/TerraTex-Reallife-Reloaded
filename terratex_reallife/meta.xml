@@ -7,6 +7,7 @@
     <!-- CONFIG -->
     <script src="config.lua" type="shared"/>
     <script src="database_config.lua" type="server"/>
+    <script src="ADMINSYSTEM/dev/devserver.lua" type="shared" />
     <!-- FIXXES -->
     <script src="FIXES/setElementFrozen.lua" type="shared"/>
     <script src="FIXES/createVehicle.lua" type="server"/>

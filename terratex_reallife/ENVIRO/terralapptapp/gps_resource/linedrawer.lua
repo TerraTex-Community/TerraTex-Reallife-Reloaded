@@ -109,7 +109,7 @@ function unloadTile ( name )
 	return true
 end
 
-addEventHandler ( "onClientHUDRender", getRootElement ( ),
+addGpsEventHandler ( "onClientHUDRender", getRootElement ( ),
 	function ( )
 		local visibleTileNames = table.merge_gps ( engineGetVisibleTextureNames ( "radar??" ), engineGetVisibleTextureNames ( "radar???" ) )
 		

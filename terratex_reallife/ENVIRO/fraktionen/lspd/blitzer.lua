@@ -166,7 +166,11 @@ function removeBlitzer(id, thePlayer)
                 vioSetElementData(blitzerElement, "object", false);
                 vioSetElementData(blitzerElement, "marker", false);
                 vioSetElementData(blitzerElement, "createdBy", false);
-                vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+                if isElement(thePlayer) then
+                    vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+                else
+                    vioSetElementData(blitzerElement, "deletedBy", thePlayer);
+                end
             end
         end
     else
@@ -184,7 +188,11 @@ function removeBlitzer(id, thePlayer)
             vioSetElementData(blitzerElement, "object", false);
             vioSetElementData(blitzerElement, "marker", false);
             vioSetElementData(blitzerElement, "createdBy", false);
-            vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+            if isElement(thePlayer) then
+                vioSetElementData(blitzerElement, "deletedBy", getPlayerName(thePlayer));
+            else
+                vioSetElementData(blitzerElement, "deletedBy", thePlayer);
+            end
 
         end
     end

@@ -27,7 +27,7 @@ end
 server = setmetatable({}, serverMT)
 
 addEvent('onServerCallbackReply', true)
-addEventHandler('onServerCallbackReply', getResourceRootElement(getThisResource()),
+addGpsEventHandler('onServerCallbackReply', getResourceRootElement(getThisResource()),
 	function(crID, ...)
 		coroutine.resume(CRs[crID], ...)
 	end,
@@ -44,12 +44,11 @@ local function wrapHandler(fn)
 	end
 end
 
-local _addEventHandler = addEventHandler
-function addEventHandler(event, elem, fn, getPropagated)
+function addGpsEventHandler(event, elem, fn, getPropagated)
     if(not isElement(elem))then
         outputDebugString("ErrorHelp addEventHandler: "..debug.traceback())
     end
-	return _addEventHandler(
+	return addEventHandler(
 		event,
 		elem,
 		(event == 'onClientRender' or event == 'onClientPreRender') and fn or wrapHandler(fn),
@@ -57,9 +56,8 @@ function addEventHandler(event, elem, fn, getPropagated)
 	)
 end
 
-local _addCommandHandler = addCommandHandler
-function addCommandHandler(command, fn)
-	return _addCommandHandler(command, wrapHandler(fn))
+function addGpsCommandHandler(command, fn)
+	return addCommandHandler(command, wrapHandler(fn))
 end
 
 

@@ -7,6 +7,7 @@
     <!-- CONFIG -->
     <script src="config.lua" type="shared"/>
     <script src="database_config.lua" type="server"/>
+    <script src="ADMINSYSTEM/dev/devserver.lua" type="shared" />
     <!-- FIXXES -->
     <script src="FIXES/setElementFrozen.lua" type="shared"/>
     <script src="FIXES/createVehicle.lua" type="server"/>
@@ -64,7 +65,6 @@
     <script src="SYSTEM/clicksys_client.lua" type="client"/>
     <script src="SYSTEM/scheinesys_vehicle.lua" type="server"/>
     <script src="SYSTEM/loadserversettings.lua" type="server"/>
-    <script src="SYSTEM/isDevServer_client.lua" type="client"/>
     <script src="SYSTEM/infomessages.lua" type="server"/>
     <!-- Goldsystem -->
     <script src="SYSTEM/goldsystem/gold_client.lua" type="client"/>
@@ -673,6 +673,7 @@
     <file src="FILES/IMAGES/lapptapp/Kompass.png"/>
     <file src="FILES/IMAGES/lapptapp/Notizblock.png"/>
     <file src="FILES/IMAGES/lapptapp/tictactoe.png"/>
+    <file src="FILES/IMAGES/lapptapp/colorpicker.png"/>
     <!-- HUD -->
     <file src="FILES/IMAGES/tacho/needle.png"/>
     <file src="FILES/IMAGES/tacho/needle_blue.png"/>

@@ -19,9 +19,10 @@ function setVoiceVolumeOnDistance()
             if (hitLtoR or hitRtoL) then
                 outSoundVolume = outSoundVolume - 0.1
 
-                if (hitLtoR and hitRtoL) then
+                if (hitLtoR and hitRtoL and hitRtoLX and hitLtoRX) then
                     local interruptedDistance = getDistanceBetweenPoints3D(hitRtoLX, hitRtoLY, hitRtoLZ, hitLtoRX, hitLtoRY, hitLtoRZ)
-                    if (interruptedDistance > maxDistance / 4) then
+
+                    if (interruptedDistance and interruptedDistance > maxDistance / 4) then
                         outSoundVolume = 0
                     end
                 end

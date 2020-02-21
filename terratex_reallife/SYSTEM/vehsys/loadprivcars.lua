@@ -152,30 +152,34 @@ end
 addEventHandler("onVehicleExit", getRootElement(), onVehicleEnableFire)
 
 function save_priv_carsB()
-    --    outputDebugString("Started Cars Saving")
-    if not (fileExists(":" .. getResourceName(getThisResource()) .. "/devmode.dev")) then
-        for theKey, thetable in ipairs(privVeh) do
-            if (isElement(thetable[3])) then
-                local x, y, z = getElementPosition(thetable[3])
-                local rx, ry, rz = getElementRotation(thetable[3])
-                local position = { x, y, z, rx, ry, rz };
+    if isDevServer() then
+        return;
+    end
 
-                MySql.helper.update("user_vehicles", {
-                    Tank = vioGetElementData(thetable[3], "tank"),
-                    kmstand = vioGetElementData(thetable[3], "kmstand"),
-                    lastPosition = toJSON(position),
-                    lastDamageStates = toJSON(getVehicleDamageParts(thetable[3])),
-                    lastHealth = getElementHealth(thetable[3])
-                }, { ID = vioGetElementData(thetable[3], "dbid") });
-            end
+    for theKey, thetable in ipairs(privVeh) do
+        if (isElement(thetable[3])) then
+            local x, y, z = getElementPosition(thetable[3])
+            local rx, ry, rz = getElementRotation(thetable[3])
+            local position = { x, y, z, rx, ry, rz };
+
+            MySql.helper.update("user_vehicles", {
+                Tank = vioGetElementData(thetable[3], "tank"),
+                kmstand = vioGetElementData(thetable[3], "kmstand"),
+                lastPosition = toJSON(position),
+                lastDamageStates = toJSON(getVehicleDamageParts(thetable[3])),
+                lastHealth = getElementHealth(thetable[3])
+            }, { ID = vioGetElementData(thetable[3], "dbid") });
         end
     end
-    --    outputDebugString("Cars saved!")
 end
 
 addEventHandler("onResourceStop", getResourceRootElement(getThisResource()), save_priv_carsB)
 
 function save_car(veh)
+    if isDevServer() then
+        return;
+    end
+
     if not (vioGetElementData(veh, "tuning")) then
         vioSetElementData(veh, "tuning", "0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0")
     end
@@ -202,6 +206,10 @@ function onVehicleExplode_func()
     end
 
     if (isVehiclePrivate(source)) then
+        if isDevServer() then
+            return;
+        end
+
         if vioGetElementData(source, "locked") and isElementFrozen(source) then
             setTimer(respawnVehicle, 10000, 1, source)
             vioSetElementData(source, "motor", false)

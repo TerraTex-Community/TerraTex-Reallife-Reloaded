@@ -46,8 +46,12 @@ addEventHandler("event_skin_shop_open", getRootElement(), skinShopOpen)
 function closeSkinShop()
     setElementModel(getLocalPlayer(), startSkin);
 
-    destroyElement(skinShopBrowser);
-    destroyElement(skinShopWindow);
+    if (isElement(skinShopBrowser)) then
+        destroyElement(skinShopBrowser);
+    end
+    if (isElement(skinShopWindow)) then
+        destroyElement(skinShopWindow);
+    end
 
     skinShopBrowser = false;
     skinShopWindow = false;

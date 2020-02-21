@@ -14,8 +14,8 @@ function math.round(number, decimals, method)
     if not number then
         if getLocalPlayer then
             triggerServerEvent("debugClientError", getLocalPlayer(), "[Math.round] Number expected got nil", debug.traceback());
-            assert(false, "[Math.round] Number expected got nil");
         end
+        assert(false, "[Math.round] Number expected got nil");
     end
 
     decimals = decimals or 0

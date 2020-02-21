@@ -1,6 +1,6 @@
 local floor = math.floor
 
-addCommandHandler('path', 
+addGpsCommandHandler('path',
 	function(command, node1, node2)
 		if not tonumber(node1) or not tonumber(node2) then
 			outputChatBox("Usage: /path node1 node2", 255, 0, 0)
@@ -24,7 +24,7 @@ addCommandHandler('path',
 	end
 )
 GPSMarker={}
-addCommandHandler('path2', 
+addGpsCommandHandler('path2',
 	function (command, tox, toy, toz)
 		if not tonumber(tox) or not tonumber(toy) then
 			outputChatBox("Usage: /path2 x y z (z is optional)", 255, 0, 0)
@@ -72,7 +72,7 @@ local function getNodeByID(db, nodeID)
 end
 
 --[[
-addEventHandler('onClientRender', getRootElement(),
+addGpsEventHandler('onClientRender', getRootElement(),
 	function()
 		local db = vehicleNodes
 		

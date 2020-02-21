@@ -8,6 +8,8 @@ function debug.print(value)
     end
 end
 
+--- Internal function - will print a table debug to console - please use debug.print instead
+--- @private
 function debug.table(tablevalue, step)
     if not step then step = 1 end
 
@@ -30,8 +32,7 @@ end
 ---try catch function - errors will be stored on Server directly
 ---@param func function that should be called
 ---@param ... any parameters of functions
----@return boolean Status - false if error true if success
----@return any|nil Value - returns value if success otherwise nil
+---@return boolean, any|nil Status, Value
 function debug.tryAndCatch(func, ...)
     local status, errorOrValue = pcall(func, ...)
     if (status == false) then
@@ -41,5 +42,3 @@ function debug.tryAndCatch(func, ...)
         return true, errorOrValue
     end
 end
-
-

@@ -317,12 +317,14 @@ function actualizePolicePCPage()
         end
     elseif (policePCActivePage == "PlayerCrimeList") then
         local stvo = getElementData(policePCData.activePlayer, "stvo");
-        executeBrowserJavascript(policePCBrowser, "setStVO(".. stvo ..");");
+        if (stvo) then
+            executeBrowserJavascript(policePCBrowser, "setStVO(".. stvo ..");");
 
-        local crimeLevel = tonumber(getElementData(policePCData.activePlayer, "crimeLevel"));
+            local crimeLevel = tonumber(getElementData(policePCData.activePlayer, "crimeLevel"));
 
-        if (crimeLevel ~= policePCData.lastActivePlayerCrimeLevel) then
-            loadPlayerCrimeList();
+            if (crimeLevel ~= policePCData.lastActivePlayerCrimeLevel) then
+                loadPlayerCrimeList();
+            end
         end
     end
 end

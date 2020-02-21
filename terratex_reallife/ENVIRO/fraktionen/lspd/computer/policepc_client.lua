@@ -315,7 +315,7 @@ function actualizePolicePCPage()
                 end
             end
         end
-    elseif (policePCActivePage == "PlayerCrimeList") then
+    elseif (policePCActivePage == "PlayerCrimeList" and isElement(policePCData.activePlayer)) then
         local stvo = getElementData(policePCData.activePlayer, "stvo");
         if (stvo) then
             executeBrowserJavascript(policePCBrowser, "setStVO(".. stvo ..");");

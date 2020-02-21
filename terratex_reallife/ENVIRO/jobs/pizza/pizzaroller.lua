@@ -63,7 +63,7 @@ function StartPizzaLieferant(thePlayer)
 end
 
 function PizzaSetMarkerHit(thePlayer)
-    if (source == vioGetElementData(thePlayer, "PizzaMarker")) then
+    if (source == vioGetElementData(thePlayer, "PizzaMarker") and getElementType(thePlayer) == "player") then
         if (isElement(vioGetElementData(thePlayer, "PizzaBlip"))) then
             destroyElement(vioGetElementData(thePlayer, "PizzaBlip"))
         end
@@ -85,14 +85,6 @@ function PizzaSetMarkerHit(thePlayer)
 
 
         local betragDirekt, betragPayDay = giveJobGehalt(thePlayer, 8, 1, dis)
-
-        if not betragDirekt then
-            outputDebugString("ERROR - Pizzadebug: ");
-            outputDebugString(getPlayerName(thePlayer));
-            outputDebugString("Distance: " .. dis);
-            outputDebugString("Gehalt: " .. tostring(betragDirekt) .. " ".. tostring(betragPayDay));
-        end
-
 
         outputChatBox(string.format("Du erhälst für diese Bestellung %s Gehalt und zusätzlich %s Trinkgeld.", toprice(betragPayDay), toprice(betragDirekt)), thePlayer, 50, 255, 30)
 

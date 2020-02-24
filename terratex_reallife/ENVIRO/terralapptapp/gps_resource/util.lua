@@ -27,7 +27,7 @@ end
 server = setmetatable({}, serverMT)
 
 addEvent('onServerCallbackReply', true)
-addGpsEventHandler('onServerCallbackReply', getResourceRootElement(getThisResource()),
+addEventHandler('onServerCallbackReply', getResourceRootElement(getThisResource()),
 	function(crID, ...)
 		coroutine.resume(CRs[crID], ...)
 	end,

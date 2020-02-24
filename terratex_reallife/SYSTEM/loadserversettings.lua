@@ -9,7 +9,7 @@ serversettings = {}
 Tagesdurchnitte = {}
 
 function version_func(thePlayer)
-    outputChatBox(string.format("Aktuelle Serverversion: %s", serversettings["Version"]), thePlayer)
+    outputChatBox(string.format("Aktuelle Serverversion: %s", globalConfig.version), thePlayer)
 end
 
 addCommandHandler("version", version_func, false, false)
@@ -39,12 +39,12 @@ function loadSettingsFromDB()
     serversettings["lottojackpot"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Jackpot" });
     serversettings["Ueberweisungssteuer"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Ueberweisungssteuer" });
     serversettings["tankpreis"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "tankpreis" });
-    serversettings["Version"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "Version" });
+    serversettings["Version"] = globalConfig.version;
     serversettings["atommuell"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "atommuell" });
     serversettings["playerOfMonthPic"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "spielerDesMonats" });
     serversettings["steuerlottojackpot"] = MySql.helper.getValueSync("data_settings", "Wert", { Name = "steuerlottojackpot" });
 
-    setGameType("TerraTex Reallife Reloaded Script " .. serversettings["Version"])
+    setGameType("TerraTex Reallife Reloaded Script " .. globalConfig.version)
     setRuleValue("Homepage", config["maindomain"])
     setMapName("TerraTex")
     resetWaterLevel(0)

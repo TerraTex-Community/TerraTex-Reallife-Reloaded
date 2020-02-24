@@ -22,11 +22,8 @@ function abschleppTruck_Aufladen(theVehicle, z)
     local abschleppTruck = getPedOccupiedVehicle(source)
     local player = source
     if (isPedInVehicle(source) and getElementData(abschleppTruck, "isAbschleppTruck")) then
-        local driverCounter = 0
-        for seat, player in pairs(getVehicleOccupants(theVehicle)) do
-            driverCounter = driverCounter + 1
-        end
-        if (driverCounter == 0) then
+
+        if (table.getSize(getVehicleOccupants(theVehicle)) == 0) then
             local vehicleType = getVehicleType(theVehicle)
             if (getElementType(theVehicle) == "vehicle" and getElementData(theVehicle,"besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(abschleppTruck, "AbschleppTruck_PoliceTruck") or getElementData(theVehicle,"besitzer") == getPlayerName(source))) then
                 local ax, ay, az = getElementPosition(abschleppTruck)
@@ -43,11 +40,7 @@ function abschleppTruck_Aufladen(theVehicle, z)
                     setElementFrozen(theVehicle, true)
                     setTimer(function()
                         if (isElement(theVehicle) and isElementFrozen(abschleppTruck)) then
-                            local driverCounter = 0
-                            for seat, player in pairs(getVehicleOccupants(theVehicle)) do
-                                driverCounter = driverCounter + 1
-                            end
-                            if (driverCounter == 0) then
+                            if (table.getSize(getVehicleOccupants(theVehicle)) == 0) then
                                 attachElements(theVehicle, abschleppTruck, 0, -1.5, z/2+0.05)
                                 setElementData(abschleppTruck, "abschleppTruck_AttachedVehicle", theVehicle)
                                 triggerClientEvent(player, "abschleppTruck_SetClientAttachedVehicle", player, theVehicle)
@@ -74,6 +67,7 @@ function abschleppTruck_Aufladen(theVehicle, z)
 end
 addEventHandler("abschleppTruck_Aufladen", getRootElement(), abschleppTruck_Aufladen)
 
+-- @todo: why first parameter theVehicle then?
 addEvent("abschleppTruck_Abladen", true)
 function abschleppTruck_Abladen(theVehicle, x, y, z, rx, ry, rz)
     local abschleppTruck = getPedOccupiedVehicle(source)
@@ -106,7 +100,7 @@ function abschleppTruck_Abladen(theVehicle, x, y, z, rx, ry, rz)
 end
 addEventHandler("abschleppTruck_Abladen", getRootElement(), abschleppTruck_Abladen)
 
-function abschleppTruckEnter(theVehicle, seat, jacked)
+function abschleppTruckEnter(theVehicle, seat)
     if (getElementData(theVehicle, "isAbschleppTruck")) then
         local attached = getElementData(theVehicle, "abschleppTruck_AttachedVehicle")
         if (isElement(attached) and seat == 0) then

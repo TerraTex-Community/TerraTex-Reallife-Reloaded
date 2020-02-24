@@ -1,7 +1,7 @@
 local showCMenu = 1
 local cMenuShowing = false
 local cMenuObject = false
-local cMenu = { { "Kleines Menue", 2215, 0.50, 20 }, { "Mittleres Menu", 2216, 0.80, 40 }, { "Grosses Menu", 2217, 1.20, 90 }, { "Salat", 2353, 1.00, 120 } }
+local cMenu = { { "Kleines Menü", 2215, 0.50, 20 }, { "Mittleres Menü", 2216, 0.80, 40 }, { "Grosses Menü", 2217, 1.20, 90 }, { "Salat", 2353, 1.00, 120 } }
 
 function createCluckingMarker()
     local mark = false

@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 10.05.14
--- Time: 20:13
--- To change this template use File | Settings | File Templates.
---
 local allDimObj={}
 function alldimensionsobject_create()
     local allObject=getElementsByType('alldimensionsobject')

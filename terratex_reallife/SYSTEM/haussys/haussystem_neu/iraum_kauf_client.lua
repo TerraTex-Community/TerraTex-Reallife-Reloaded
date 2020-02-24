@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 15.05.14
--- Time: 19:20
--- To change this template use File | Settings | File Templates.
---
-
 local validIraum = {}
 local lastIR = 1
 local showText = "Daten Innenraum\nInnenraum ID: 12 / 32\nPreis: 1.000.000 $\nQM: 1.000 qm\nStockwerke: 2\nAusstattung: heruntergekommen";

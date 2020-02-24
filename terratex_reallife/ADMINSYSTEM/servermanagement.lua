@@ -1,12 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 13.07.2016
--- Time: 13:37
--- To change this template use File | Settings | File Templates.
---
-
-
 local gmxtimer = false
 local secondgmxtimer = false
 

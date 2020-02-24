@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 04.07.2016
--- Time: 16:29
--- To change this template use File | Settings | File Templates.
---
-
 addEvent("getFactionOverviewData", true);
 function getFactionOverviewData_func()
     local fraktion = vioGetElementData(source, "fraktion");

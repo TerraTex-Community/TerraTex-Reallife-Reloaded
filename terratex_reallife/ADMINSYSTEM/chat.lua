@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 13.07.2016
--- Time: 13:35
--- To change this template use File | Settings | File Templates.
---
-
 function report_func(theMaker, command, text, ...)
     if not (text) then
         outputChatBox("Nutzung: /report [Text]", theMaker, 255, 0, 0)

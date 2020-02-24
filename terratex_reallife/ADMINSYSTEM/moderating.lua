@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 13.07.2016
--- Time: 13:38
--- To change this template use File | Settings | File Templates.
---
-
 function check_func(thePlayer, command, toPlayerNamePart)
 
     if (isAdminLevel(thePlayer, 0)) then

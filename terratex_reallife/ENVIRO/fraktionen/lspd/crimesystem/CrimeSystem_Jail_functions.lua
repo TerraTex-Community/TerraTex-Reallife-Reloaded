@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 27.07.2016
--- Time: 15:58
--- To change this template use File | Settings | File Templates.
---
-
 CrimeSystem.Jail = {};
 
 function CrimeSystem.Jail.getRandomJailSpawnById(jailId)

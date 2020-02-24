@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 10.05.14
--- Time: 14:06
--- To change this template use File | Settings | File Templates.
---
-
 function getMaxVehicleWert(houseID)
     if (not houseID) then
         houseID = 0;

@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy
--- Date: 31.07.2014
--- Time: 20:15
--- To change this template use File | Settings | File Templates.
---
-
 function checkAdditionalPunishment(thePlayer)
     checkAdditionalPunishment_offline(getPlayerName(thePlayer))
 end

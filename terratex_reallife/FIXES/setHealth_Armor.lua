@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 2016-07-19
--- Time: 21:24
--- To change this template use File | Settings | File Templates.
---
-
 _setElementHealth = setElementHealth
 _setPedArmor = setPedArmor
 

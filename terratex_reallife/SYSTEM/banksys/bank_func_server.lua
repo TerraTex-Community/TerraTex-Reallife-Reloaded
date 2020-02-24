@@ -1,13 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 03.05.14
--- Time: 12:11
--- To change this template use File | Settings | File Templates.
---
-
---- NUR SERVER
-
 -- Spielertransaktionen zB Übergeben sind mit spieler abgedeckt
 local validKategorien = { ["job"] = true, ["fahrzeug"] = true, ["spieler"] = true, ["sonstiges"] = true, ["fraktion"] = true }
 --Optionale Parameter ab Kategorie

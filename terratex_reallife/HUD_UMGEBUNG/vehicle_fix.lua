@@ -1,12 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 01.06.2014
--- Time: 15:43
--- To change this template use File | Settings | File Templates.
---
-
-
 local vehicleShowUntil=0
 local vehicleName=""
 

@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 00:34
--- To change this template use File | Settings | File Templates.
---
-
 function setGuiCenter(element, setNewX, setNewY)
     if (setNewX == nil) then
         setNewX = true;

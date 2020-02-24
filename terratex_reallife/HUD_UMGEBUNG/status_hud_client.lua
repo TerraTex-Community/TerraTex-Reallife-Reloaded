@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 24.06.2016
--- Time: 17:44
--- To change this template use File | Settings | File Templates.
---
 hideHud = false;
 function toggleHudViaCommand()
     hideHud = not hideHud;

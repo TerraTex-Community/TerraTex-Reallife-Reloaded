@@ -1,7 +1,3 @@
-/**
- * Created by geramy on 06.07.2016.
- */
-
 $(document).ready(function(){
     $("html").on("click", ".kickFromFaction", function(){
         var nickname = $(this).parent().parent().parent().attr("data-nickname");

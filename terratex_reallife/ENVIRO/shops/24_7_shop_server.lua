@@ -28,7 +28,7 @@ function buySuperShopGUI(id)
     if (getPlayerMoney(source) < SuperShopWaren[id]) then
         showError(source, "Du hast nicht genug Geld!");
     else
-        local playerbetrag = 0;
+        local playerBetrag = 0;
         if (id == 5 or id == 6 or id == 7 or id == 8) then
             local faktor = 1;
             if (isWetterEventID == 1) then
@@ -42,9 +42,9 @@ function buySuperShopGUI(id)
             elseif (isWetterEventID == 6) then
                 faktor = 0.9;
             end
-            playerbetrag = SuperShopWaren[id] * faktor;
+            playerBetrag = SuperShopWaren[id] * faktor;
         else
-            playerbetrag = SuperShopWaren[id];
+            playerBetrag = SuperShopWaren[id];
         end
         if (id == 1) then
             giveWeapon(source, 14);
@@ -79,7 +79,7 @@ function buySuperShopGUI(id)
         elseif (id == 11) then
             if (vioGetElementData(source, "terralapptapp") > 0) then
                 showError(source, "Du hast bereits einen TerraLappTapp!");
-                playerbetrag = 0;
+                playerBetrag = 0;
             else
                 vioSetElementData(source, "terralapptapp", 1);
                 showError(source, "Du hast erfolgreich ein TerraLappTapp gekauft!");
@@ -87,7 +87,7 @@ function buySuperShopGUI(id)
         elseif (id == 12) then
             if (vioGetElementData(source, "tachodig_addon") > 0) then
                 showError(source, "Du hast bereits eine digitale Tachoerweiterung!");
-                playerbetrag = 0;
+                playerBetrag = 0;
             else
                 vioSetElementData(source, "tachodig_addon", 1);
                 showError(source, "Du hast erfolgreich eine digitale Tachoerweiterung gekauft!");
@@ -97,7 +97,7 @@ function buySuperShopGUI(id)
                 vioSetElementData(source, "dice", vioGetElementData(source, "dice") + 1);
                 showError(source, "Du hast erfolgreich einen Würfel gekauft!");
             else
-                playerbetrag = 0;
+                playerBetrag = 0;
                 showError(source, "Du kannst höchstens 10 Würfel besitzen!");
             end
         elseif (id == 14) then
@@ -107,9 +107,9 @@ function buySuperShopGUI(id)
             vioSetElementData(source, "blutmesser", vioGetElementData(source, "blutmesser") + 5);
             showError(source, "Du hast 5 Blutteststreifen gekauft.");
         end
-        if (playerbetrag > 0) then
-            changeBizKasse(8, playerbetrag / 10, "Einkauf") --> id 8
-            changePlayerMoney(source, -playerbetrag, "sonstiges", "Einkauf im 24/7");
+        if (playerBetrag > 0) then
+            changeBizKasse(8, playerBetrag / 10, "Einkauf") --> id 8
+            changePlayerMoney(source, -playerBetrag, "sonstiges", "Einkauf im 24/7");
         end
     end
 end

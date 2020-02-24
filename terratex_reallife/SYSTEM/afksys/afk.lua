@@ -38,7 +38,7 @@ function end_afk_check(thePlayer)
     end
 end
 
-addEvent("resetAFKevent", true)
+addEvent("resetAFKEvent", true)
 function resetAFKTimer()
     local thePlayer = source
     if (thePlayer) then
@@ -52,7 +52,7 @@ function resetAFKTimer()
 end
 addEventHandler("onPlayerCommand", getRootElement(), resetAFKTimer)
 addEventHandler("onPlayerChat", getRootElement(), resetAFKTimer)
-addEventHandler("resetAFKevent", getRootElement(), resetAFKTimer)
+addEventHandler("resetAFKEvent", getRootElement(), resetAFKTimer)
 
 function afk_timer()
     for theKey, thePlayer in ipairs(getElementsByType("player")) do

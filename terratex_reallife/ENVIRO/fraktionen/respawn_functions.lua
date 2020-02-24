@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 01:50
--- To change this template use File | Settings | File Templates.
---
-
 function respawnFrakVehicle(id, admin, thePlayer)
     local pricePerLiter=serversettings["tankpreis"]*2
     local summe=500

@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 01:21
--- To change this template use File | Settings | File Templates.
---
-
 function getElementsDistance(elementA,elementB)
     local x,y,z=getElementPosition(elementA)
     local x2,y2,z2=getElementPosition(elementB)

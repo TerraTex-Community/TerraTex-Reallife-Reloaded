@@ -1,12 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 01:11
--- To change this template use File | Settings | File Templates.
---
-
-
 _outputChatBox=outputChatBox
 function outputChatBox(text, visibleTo, r,g,b, colorCoded )
 

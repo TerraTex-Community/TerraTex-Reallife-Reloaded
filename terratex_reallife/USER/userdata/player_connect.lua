@@ -7,7 +7,7 @@ addEventHandler("onPlayerChangeNick", getRootElement(), nickChangeHandler)
 privVeh = {}
 
 function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playerVersionNumber)
-    vioSetElementData(source, "playTime_formated", "connecting")
+    vioSetElementData(source, "playTimeFormatted", "connecting")
     if playerNick == "Player" then
         cancelEvent(true, "Der Nick \"Player\" ist nicht gestattet! Wähle im Settings-Menü einen neuen!")
         return true;

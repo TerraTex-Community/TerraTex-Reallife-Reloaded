@@ -7,20 +7,20 @@ function afk_func(thePlayer)
         outputChatBox("Du bist AFK. Der AFK Modus kann mit /afk wieder aufgehoben werden!", thePlayer, 255, 0, 0)
         vioSetElementData(thePlayer, "afk_end_status", true)
         setTimer(end_afk_check, 10000, 1, thePlayer)
-        vioSetElementData(thePlayer, "playTime_formated", "AFK")
+        vioSetElementData(thePlayer, "playTimeFormatted", "AFK")
         if (vioGetElementData(thePlayer, "Innendienst")) then
             vioSetElementData(thePlayer, "Innendienst", false)
             local message = string.format("!!!INNENDIENST!!! %s hat sich im Innendienst abgemeldet (/afk)!!!INNENDIENST!!!", getPlayerName(thePlayer))
-            for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
+            for _, thePlayers in ipairs(getPlayersInTeam(team[1])) do
                 outputChatBox(message, thePlayers, 255, 0, 0)
             end
-            for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
+            for _, thePlayers in ipairs(getPlayersInTeam(team[5])) do
                 outputChatBox(message, thePlayers, 255, 0, 0)
             end
-            for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
+            for _, thePlayers in ipairs(getPlayersInTeam(team[7])) do
                 outputChatBox(message, thePlayers, 255, 0, 0)
             end
-            for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
+            for _, thePlayers in ipairs(getPlayersInTeam(team[9])) do
                 outputChatBox(message, thePlayers, 255, 0, 0)
             end
         end

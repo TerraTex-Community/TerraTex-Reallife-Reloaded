@@ -41,7 +41,9 @@ addEvent("showLoginGui", true);
 addEventHandler("showLoginGui", getRootElement(), startLoginUI);
 
 function disableLoginGui()
-    destroyElement(loginWindow);
+    if (isElement(loginWindow)) then
+        destroyElement(loginWindow);
+    end
     loginWindow = false;
     showCursor(false)
     toggleAllControls(true, true, true)

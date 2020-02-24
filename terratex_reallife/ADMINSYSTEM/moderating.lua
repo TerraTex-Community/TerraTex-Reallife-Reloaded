@@ -83,7 +83,7 @@ function afkkick_func(thePlayer, command, time, theBeBanned, reason, ...)
         if not (banmeele == false) then
             local pname = getPlayerName(banmeele)
 
-            vioSetElementData(banmeele, "afktime", vioGetElementData(banmeele, "afktime") + tonumber(time));
+            vioSetElementData(banmeele, "AFKTime", vioGetElementData(banmeele, "AFKTime") + tonumber(time));
 
             outputChatBox("Der Spieler " .. pname .. " wurde von der Console AFK - gekickt. Grund " .. reasons, getRootElement(), 255, 0, 0)
             outputDebugString("Der Spieler " .. pname .. " wurde von der Console AFK - gekickt. Grund " .. reasons)
@@ -101,7 +101,7 @@ function afkkick_func(thePlayer, command, time, theBeBanned, reason, ...)
                 local pname = getPlayerName(banmeele)
                 local aname = getPlayerName(thePlayer)
 
-                vioSetElementData(banmeele, "afktime", vioGetElementData(banmeele, "afktime") + tonumber(time));
+                vioSetElementData(banmeele, "AFKTime", vioGetElementData(banmeele, "AFKTime") + tonumber(time));
 
                 outputChatBox("Der Spieler " .. pname .. " wurde von " .. aname .. " AFK - gekickt. Grund :" .. reasons, getRootElement(), 255, 0, 0)
                 kickPlayer(banmeele, thePlayer, reasons)

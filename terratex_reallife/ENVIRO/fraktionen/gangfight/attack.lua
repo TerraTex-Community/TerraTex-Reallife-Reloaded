@@ -88,10 +88,10 @@ function cmdAttack(thePlayer, cmd, ...)
                             showError(thePlayer, "Es läuft bereits ein Gangfight!");
                         end
                     else
-                        showError(thePlayer, "Ihr seid zuviele! Es stehen nur " .. getMaxDefenders(tonumber(gfPositionData.Owner)) .. " Verteidiger zur Verfügung.");
+                        showError(thePlayer, "Ihr seid zu viele! Es stehen nur " .. getMaxDefenders(tonumber(gfPositionData.Owner)) .. " Verteidiger zur Verfügung.");
                     end
                 else
-                    showError(thePlayer, "Usage: /attack playername playername2 playername3 ...");
+                    showError(thePlayer, "Usage: /attack Spielername Spielername2 Spielername3 ...");
                 end
             end
         else
@@ -204,10 +204,10 @@ function cmdDefend(thePlayer, cmd, ...)
 
 
                 else
-                    showError(thePlayer, "Ihr seid zuviele! Es stehen nur " .. table.getSize(data.attackers) .. " Angreifer zur Verfügung.");
+                    showError(thePlayer, "Ihr seid zu viele! Es stehen nur " .. table.getSize(data.attackers) .. " Angreifer zur Verfügung.");
                 end
             else
-                showError(thePlayer, "Usage: /defend name1 name2 name3 ...");
+                showError(thePlayer, "Usage: /defend Spielername Spielername2 Spielername3 ...");
             end
         end
     end

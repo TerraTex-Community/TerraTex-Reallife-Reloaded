@@ -5,8 +5,8 @@ function update_play_time_func()
     for theKey, thePlayer in ipairs(getElementsByType("player")) do
         if (isPlayerLoggedIn(thePlayer)) then
             if (vioGetElementData(thePlayer, "afk_status") == 0) then
-                if (vioGetElementData(thePlayer, "afktime") > 0) then
-                    vioSetElementData(thePlayer, "afktime", vioGetElementData(thePlayer, "afktime") - 1);
+                if (vioGetElementData(thePlayer, "AFKTime") > 0) then
+                    vioSetElementData(thePlayer, "AFKTime", vioGetElementData(thePlayer, "AFKTime") - 1);
                 else
                     vioSetElementData(thePlayer, "playtime", (vioGetElementData(thePlayer, "playtime") + 1))
                     local paydaytime = math.mod((vioGetElementData(thePlayer, "playtime")), 60)

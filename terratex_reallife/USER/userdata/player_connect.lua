@@ -129,15 +129,16 @@ end
 addEventHandler("onPlayerConnect", getRootElement(), playerConnect)
 
 addEvent("clientisreadyforlogin", true)
-function playerreadylogin()
+function playerReadyLogin()
     vioSetElementData(source, "logtries", 0)
+    outputChatBox("Willkommen auf " .. getServerName() .. " - Version: " .. globalConfig.version, source)
     if (MySql.helper.existSync("user", { Nickname = getPlayerName(source) })) then
         triggerClientEvent(source, "showLoginGui", source, source)
     else
         triggerClientEvent(source, "showRegisterGui", source, source)
     end
 end
-addEventHandler("clientisreadyforlogin", getRootElement(), playerreadylogin)
+addEventHandler("clientisreadyforlogin", getRootElement(), playerReadyLogin)
 
 function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber, gender)
 

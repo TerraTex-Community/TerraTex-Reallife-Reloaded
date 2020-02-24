@@ -24,10 +24,10 @@ function showCluckingMenu(player, mathchdim)
         setElementInterior(cMenuObject, 9)
         setElementDimension(cMenuObject, getElementDimension(getLocalPlayer()))
         setCameraMatrix(368.97998, -5.31222, 1003.06665, 368.97998, -5.31222, 1002.06665)
-        bindKey("arrow_r", "down", cMenunext_func)
-        bindKey("arrow_l", "down", cMenubefore_func)
-        bindKey("space", "down", cMenuclose_func)
-        bindKey("enter", "down", cMenubuy_func)
+        bindKey("arrow_r", "down", cMenuNext_func)
+        bindKey("arrow_l", "down", cMenuBefore_func)
+        bindKey("space", "down", cMenuClose_func)
+        bindKey("enter", "down", cMenuBuy_func)
     end
 end
 
@@ -37,7 +37,7 @@ function showCMenuInfo()
         local x, y, z = getElementPosition(getLocalPlayer())
         if (30 < getDistanceBetweenPoints3D(x, y, z, getElementPosition(cMenuObject))) then
             cMenuShowing = false;
-            cMenuclose_func();
+            cMenuClose_func();
         end
 
         local scx, scy = guiGetScreenSize()
@@ -65,20 +65,23 @@ end
 
 addEventHandler("onClientRender", getRootElement(), showCMenuInfo)
 
-function cMenunext_func()
+function cMenuNext_func()
     showCMenu = showCMenu + 1
-    if (showCMenu > 4) then showCMenu = 1 end
+    if (showCMenu > 4) then
+        showCMenu = 1
+    end
     setElementModel(cMenuObject, cMenu[showCMenu][2])
 end
 
-function cMenubefore_func()
+function cMenuBefore_func()
     showCMenu = showCMenu - 1
-    if (showCMenu < 1) then showCMenu = 4 end
+    if (showCMenu < 1) then
+        showCMenu = 4
+    end
     setElementModel(cMenuObject, cMenu[showCMenu][2])
 end
 
-
-function cMenuclose_func()
+function cMenuClose_func()
     destroyElement(cMenuObject)
     cMenuObject = false
     setElementFrozen(getLocalPlayer(), false)
@@ -86,20 +89,20 @@ function cMenuclose_func()
     showCMenu = 1
     setCameraTarget(getLocalPlayer())
 
-    unbindKey("arrow_r", "down", cMenunext_func)
-    unbindKey("arrow_l", "down", cMenubefore_func)
-    unbindKey("space", "down", cMenuclose_func)
-    unbindKey("enter", "down", cMenubuy_func)
+    unbindKey("arrow_r", "down", cMenuNext_func)
+    unbindKey("arrow_l", "down", cMenuBefore_func)
+    unbindKey("space", "down", cMenuClose_func)
+    unbindKey("enter", "down", cMenuBuy_func)
 end
 
-function cMenubuy_func()
+function cMenuBuy_func()
     if (cMenuShowing) then
         if (cMenu[showCMenu][3] < getPlayerMoney(getLocalPlayer()) + 1) then
             triggerEvent("addFood", getLocalPlayer(), cMenu[showCMenu][4], true)
             triggerServerEvent("buyFood_B", getLocalPlayer(), cMenu[showCMenu][3], "huhn")
             showError(getLocalPlayer(), "Du hast dieses Menu erfolgreich gekauft!")
         else
-            showError(getLocalPlayer(), "Du hast nicht genuegend Geld!")
+            showError(getLocalPlayer(), "Du hast nicht genügend Geld!")
         end
     end
 end

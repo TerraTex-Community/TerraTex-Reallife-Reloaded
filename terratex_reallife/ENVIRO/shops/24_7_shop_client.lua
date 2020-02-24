@@ -2,7 +2,7 @@ SuperShop_Window = {};
 SuperShop_Button = {};
 SuperShop_Label = {};
 SuperShop_Grid = {};
-SuperShop_Colum = {};
+SuperShop_Column = {};
 SuperShop_Rows = {};
 
 addEventHandler("onClientResourceStart", resourceRoot,
@@ -18,98 +18,98 @@ addEventHandler("onClientResourceStart", resourceRoot,
         SuperShop_Grid[1] = guiCreateGridList(0.0209, 0.1891, 0.6388, 0.6841, true, SuperShop_Window[1]);
         guiGridListSetSelectionMode(SuperShop_Grid[1], 0);
         guiGridListSetSortingEnabled(SuperShop_Grid[1], false);
-        SuperShop_Colum[1] = guiGridListAddColumn(SuperShop_Grid[1], "ID", 0.2);
-        SuperShop_Colum[2] = guiGridListAddColumn(SuperShop_Grid[1], "Name", 0.2);
-        SuperShop_Colum[3] = guiGridListAddColumn(SuperShop_Grid[1], "Preis", 0.2);
+        SuperShop_Column[1] = guiGridListAddColumn(SuperShop_Grid[1], "ID", 0.2);
+        SuperShop_Column[2] = guiGridListAddColumn(SuperShop_Grid[1], "Name", 0.2);
+        SuperShop_Column[3] = guiGridListAddColumn(SuperShop_Grid[1], "Preis", 0.2);
         guiSetVisible(SuperShop_Window[1], false);
 
         local row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "1", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Blumen", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "2.99", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "1", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Blumen", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "2.99", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "2", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "EinwegFotoapperat", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "24.89", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "2", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "EinwegFotoapperat", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "24.89", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "3", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Benzinkanister", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "589.75", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "3", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Benzinkanister", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "589.75", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "4", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Lottoschein", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "15", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "4", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Lottoschein", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "15", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "5", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Snack", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "1.95", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "5", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Snack", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "1.95", false, false);
         SuperShop_Rows["Snack"] = row;
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "6", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Hamburger", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "4.85", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "6", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Hamburger", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "4.85", false, false);
         SuperShop_Rows["Hamburger"] = row;
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "7", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Fertigessen", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "9.99", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "7", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Fertigessen", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "9.99", false, false);
         SuperShop_Rows["Fertigessen"] = row;
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "8", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Schnellhilfe", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "49.75", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "8", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Schnellhilfe", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "49.75", false, false);
         SuperShop_Rows["Schnellhilfe"] = row;
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "9", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Carfinder", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "53.45", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "9", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Carfinder", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "53.45", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "10", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Hufeisenhelfer", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "485.75", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "10", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Hufeisenhelfer", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "485.75", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "11", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "TerraLappTapp", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "10000", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "11", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "TerraLappTapp", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "10000", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "12", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "digitale Tachoerweiterung", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "10000", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "12", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "digitale Tachoerweiterung", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "10000", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "13", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "Würfel", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "2.50", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "13", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "Würfel", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "2.50", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "14", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "5er Packung Kondome", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "2.50", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "14", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "5er Packung Kondome", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "2.50", false, false);
 
         row = guiGridListAddRow(SuperShop_Grid[1]);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1], "15", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[2], "5 Blutteststreifen", false, false);
-        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Colum[3], "145.29", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[1], "15", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[2], "5 Blutteststreifen", false, false);
+        guiGridListSetItemText(SuperShop_Grid[1], row, SuperShop_Column[3], "145.29", false, false);
 
         addEventHandler("onClientGUIClick", SuperShop_Button[1], closeSuperShopGUI);
         addEventHandler("onClientGUIClick", SuperShop_Button[2], buy_SuperShop_Gui);
     end)
 
 function buy_SuperShop_Gui()
-    local row, colum = guiGridListGetSelectedItem(SuperShop_Grid[1]);
+    local row = guiGridListGetSelectedItem(SuperShop_Grid[1]);
     if (row ~= -1) then
-        local id = guiGridListGetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1]);
+        local id = guiGridListGetItemText(SuperShop_Grid[1], row, SuperShop_Column[1]);
         triggerServerEvent("buySuperShopGUI_Event", getLocalPlayer(), tonumber(id));
     else
         showError(getLocalPlayer(), "Du hast keine Waren ausgewaehlt!");
@@ -138,10 +138,10 @@ function showSuperShopGUI()
         faktor = 0.9;
     end
 
-    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Snack"], SuperShop_Colum[3], (oldValues["Snack"] * faktor), false, false);
-    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Hamburger"], SuperShop_Colum[3], (oldValues["Hamburger"] * faktor), false, false);
-    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Fertigessen"], SuperShop_Colum[3], (oldValues["Fertigessen"] * faktor), false, false);
-    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Schnellhilfe"], SuperShop_Colum[3], (oldValues["Schnellhilfe"] * faktor), false, false);
+    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Snack"], SuperShop_Column[3], (oldValues["Snack"] * faktor), false, false);
+    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Hamburger"], SuperShop_Column[3], (oldValues["Hamburger"] * faktor), false, false);
+    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Fertigessen"], SuperShop_Column[3], (oldValues["Fertigessen"] * faktor), false, false);
+    guiGridListSetItemText(SuperShop_Grid[1], SuperShop_Rows["Schnellhilfe"], SuperShop_Column[3], (oldValues["Schnellhilfe"] * faktor), false, false);
 
     guiSetVisible(SuperShop_Window[1], true);
     showCursor(true);
@@ -170,7 +170,7 @@ function clickOnSuperShopGui()
     if (guiGetVisible(SuperShop_Window[1])) then
         local row, colum = guiGridListGetSelectedItem(SuperShop_Grid[1]);
         if (row ~= -1) then
-            local id = guiGridListGetItemText(SuperShop_Grid[1], row, SuperShop_Colum[1]);
+            local id = guiGridListGetItemText(SuperShop_Grid[1], row, SuperShop_Column[1]);
             guiSetText(SuperShop_Label[1], "Beschreibung:\n" .. SuperShop_Description[tonumber(id)]);
         else
             guiSetText(SuperShop_Label[1], "Beschreibung:");

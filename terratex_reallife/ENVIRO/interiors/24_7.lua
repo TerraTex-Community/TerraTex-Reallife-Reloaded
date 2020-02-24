@@ -40,7 +40,7 @@ function on247Create()
     for keyExitMarker, tableExitMarker in next, shop247ExitMarker do
         local mark = createMarker(tableExitMarker.x, tableExitMarker.y, tableExitMarker.z, "corona", 2.0)
         setElementInterior(mark, keyExitMarker)--ID 98
-        addEventHandler("onMarkerHit", mark, portPlayerOutof247)
+        addEventHandler("onMarkerHit", mark, portPlayerOutOf247)
         for keyMarker, tableMarker in ipairs(shop247marker) do
             if (tableMarker.interior == keyExitMarker) then
                 local marker = createMarker(tableExitMarker.x, tableExitMarker.y, tableExitMarker.z, "corona", 1)
@@ -56,10 +56,10 @@ function on247Create()
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), on247Create)
 
-function onPlayerJOin_shopblip()
+function onPlayerJOin_shopBlip()
     setTimer(loadEinkaufBlips, 10000, 1, source)
 end
-addEventHandler("onPlayerJoin", getRootElement(), onPlayerJOin_shopblip)
+addEventHandler("onPlayerJoin", getRootElement(), onPlayerJOin_shopBlip)
 
 function loadEinkaufBlips(source)
     if (isElement(source)) then
@@ -88,7 +88,7 @@ function portPlayerIn247(thePlayer)
 end
 addEventHandler("onMarkerHit", getRootElement(), portPlayerIn247)
 
-function portPlayerOutof247(thePlayer)
+function portPlayerOutOf247(thePlayer)
     if (vioGetElementData(thePlayer,"in247bell")) then
         local in247=vioGetElementData(thePlayer,"in247bell")
         setElementPosition(thePlayer, shop247marker[in247].pedX, shop247marker[in247].pedY, shop247marker[in247].pedZ)

@@ -12,7 +12,6 @@ function createSuperShopMarkers()
     end
 
     -- create Fake Markers for view
-    local ports = get247PortTable()
     for keyMarker, tableMarker in ipairs(get247PortTable()) do
         local marker = createMarker(shopMarker[tableMarker.interior].x, shopMarker[tableMarker.interior].y, shopMarker[tableMarker.interior].z, "corona", 1)
         setElementInterior(marker, tableMarker.interior)

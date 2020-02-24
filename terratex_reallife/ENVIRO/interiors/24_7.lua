@@ -50,7 +50,7 @@ function on247Create()
         end
     end
 
-    for theKey, theTable in ipairs(shop247marker) do
+    for _, theTable in ipairs(shop247marker) do
         theTable.marker = createMarker(theTable.x, theTable.y, theTable.z, "corona", 2.0)
     end
 end
@@ -63,8 +63,8 @@ addEventHandler("onPlayerJoin", getRootElement(), onPlayerJOin_shopBlip)
 
 function loadEinkaufBlips(source)
     if (isElement(source)) then
-        for theKey, theTable in ipairs(shop247marker)do
-            local x, y, z = getElementPosition(theTable.marker)
+        for _, theTable in ipairs(shop247marker)do
+            local x, y = getElementPosition(theTable.marker)
             triggerClientEvent(source, "createCustomBlip_event", source, x, y, 16, 16, "FILES/IMAGES/blips/kauf.png", 255)
         end
     end

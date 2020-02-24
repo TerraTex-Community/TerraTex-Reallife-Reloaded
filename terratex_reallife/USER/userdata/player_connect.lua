@@ -567,10 +567,10 @@ function LoginPlayerData(nickname, pw)
             vioSetElementData(source, "slot" .. k, -1)
         end
 
-        for theKey, thevehicleentry in ipairs(privVeh) do
-            if (string.lower(thevehicleentry[1]) == string.lower(getPlayerName(source))) then
-                local slot = thevehicleentry[2]
-                vioSetElementData(source, "slot" .. slot, thevehicleentry[3])
+        for theKey, theVehicleentry in ipairs(privVeh) do
+            if (string.lower(theVehicleentry[1]) == string.lower(getPlayerName(source))) then
+                local slot = theVehicleentry[2]
+                vioSetElementData(source, "slot" .. slot, theVehicleentry[3])
             end
         end
 

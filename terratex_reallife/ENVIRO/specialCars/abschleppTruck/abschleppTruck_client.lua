@@ -1,11 +1,8 @@
 abschleppTruck_Aufladen_GUI = function(lastclicked)
     local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (isElement(truck) and getElementData(truck, "isAbschleppTruck") and not getElementData(truck, "abschleppTruck_AttachedVehicle")) then
-        local driverCounter = 0
-        for seat, player in pairs(getVehicleOccupants(lastclicked)) do
-            driverCounter = driverCounter + 1
-        end
-        if (driverCounter == 0) then
+
+        if (table.getSize(getVehicleOccupants(lastclicked)) == 0) then
             local vehicleType = getVehicleType(lastclicked)
             if (getElementType(lastclicked) == "vehicle" and getElementData(lastclicked, "besitzer") and (vehicleType == "Automobile" or vehicleType == "Bike" or vehicleType == "BMX" or vehicleType == "Boat" or vehicleType == "Quad" or vehicleType == "Monster Truck") and (getElementData(truck, "AbschleppTruck_PoliceTruck") or getElementData(lastclicked, "besitzer") == getPlayerName(getLocalPlayer()))) then
                 local speedx, speedy, speedz = getElementVelocity(truck)
@@ -31,12 +28,12 @@ abschleppTruck_Aufladen_GUI = function(lastclicked)
                 showError(getLocalPlayer(), "Dieses Fahrzeug kann nicht aufgeladen werden")
             end
         else
-            showError(getLocalPlayer(), "In dem aufzuladenen Fahrzeug befindet sich ein Spieler!")
+            showError(getLocalPlayer(), "In dem aufzuladenden Fahrzeug befindet sich ein Spieler!")
         end
     end
 end
 
-local abschleppTruckPreview = nil
+local abschleppTruckPreview
 abschleppTruck_Abladen_GUI = function()
     closeFahrzeugGUI_Reset()
     setTimer(function()
@@ -54,7 +51,7 @@ abschleppTruck_Abladen_GUI = function()
                     end
                     setVehiclePaintjob(abschleppTruckPreview, getVehiclePaintjob(attached))
                     local upgrades = getVehicleUpgrades(attached)
-                    for upgradeKey, upgradeValue in ipairs(upgrades) do
+                    for _, upgradeValue in ipairs(upgrades) do
                         addVehicleUpgrade(abschleppTruckPreview, upgradeValue)
                     end
                     setElementCollisionsEnabled(abschleppTruckPreview, false)
@@ -74,11 +71,11 @@ end
 function abschleppTruck_Abladen_Preview()
     local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (isElement(truck) and getElementData(truck, "isAbschleppTruck")) then
-        local screenx, screeny, worldx, worldy, worldz = getCursorPosition()
-        if (worldx and worldy and worldz) then
+        local _, _, worldX, worldY, worldZ = getCursorPosition()
+        if (worldX and worldY and worldZ) then
             local px, py, pz = getCameraMatrix()
             if (px and py and pz) then
-                local hit, x, y, z, elementHit = processLineOfSight(px, py, pz, worldx, worldy, worldz)
+                local hit, x, y, z = processLineOfSight(px, py, pz, worldX, worldY, worldZ)
                 if (x and y and z) then
                     local tx, ty, tz = getElementPosition(truck)
                     local distance = getDistanceBetweenPoints3D(x, y, z, tx, ty, tz)
@@ -104,13 +101,13 @@ function abschleppTruck_Abladen_Preview()
     end
 end
 
-function abschleppTruckLeave(theVehicle, seat)
+function abschleppTruckLeave(theVehicle)
     if (theVehicle and isElement(theVehicle) and getElementData(theVehicle, "isAbschleppTruck")) then
         local attachedElements = getAttachedElements(theVehicle)
         if (attachedElements) then
-            for ElementKey, ElementValue in ipairs(attachedElements) do
-                if (getElementType(ElementValue) == "vehicle") then
-                    setElementCollisionsEnabled(ElementValue, true)
+            for _, elementValue in ipairs(attachedElements) do
+                if (getElementType(elementValue) == "vehicle") then
+                    setElementCollisionsEnabled(elementValue, true)
                 end
                 break
             end
@@ -124,9 +121,9 @@ function abschleppTruckEnter()
     if (getElementData(theVehicle, "isAbschleppTruck")) then
         local attachedElements = getAttachedElements(theVehicle)
         if (attachedElements) then
-            for ElementKey, ElementValue in ipairs(attachedElements) do
-                if (getElementType(ElementValue) == "vehicle") then
-                    setElementCollisionsEnabled(ElementValue, false)
+            for _, elementValue in ipairs(attachedElements) do
+                if (getElementType(elementValue) == "vehicle") then
+                    setElementCollisionsEnabled(elementValue, false)
                 end
                 break
             end
@@ -161,7 +158,6 @@ function abschleppTruck_Abladen_EndPreview()
 end
 
 function abschleppTruck_Abladen_Click()
-    local truck = getPedOccupiedVehicle(getLocalPlayer())
     if (abschleppTruckPreview) then
         local x, y, z = getElementPosition(abschleppTruckPreview)
         local rx, ry, rz = getElementRotation(abschleppTruckPreview)
@@ -192,7 +188,7 @@ function abschleppTruck_Abladen_Click()
     end
 end
 
-function abschleppTruckAttachedNoEnter(player, seat, jacked)
+function abschleppTruckAttachedNoEnter(player)
     local attachedTo = getElementAttachedTo(source)
     if (attachedTo and getElementData(attachedTo, "abschleppTruck_AttachedVehicle") == source and getElementData(attachedTo, "isAbschleppTruck")) then
         cancelEvent()
@@ -201,7 +197,7 @@ function abschleppTruckAttachedNoEnter(player, seat, jacked)
 end
 addEventHandler("onClientVehicleStartEnter", getRootElement(), abschleppTruckAttachedNoEnter)
 
-function abschleppTruckAttachedNoEnter_Loading(player, seat, jacked)
+function abschleppTruckAttachedNoEnter_Loading(player)
     if (getElementData(source, "abschleppTruckAttached_Loading")) then
         cancelEvent()
         showError(player, "Du kannst in das Fahrzeug nicht einsteigen, da es gerade aufgeladen wird!")

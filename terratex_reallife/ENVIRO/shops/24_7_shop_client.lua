@@ -168,7 +168,7 @@ SuperShop_Description = {
 
 function clickOnSuperShopGui()
     if (guiGetVisible(SuperShop_Window[1])) then
-        local row, colum = guiGridListGetSelectedItem(SuperShop_Grid[1]);
+        local row = guiGridListGetSelectedItem(SuperShop_Grid[1]);
         if (row ~= -1) then
             local id = guiGridListGetItemText(SuperShop_Grid[1], row, SuperShop_Column[1]);
             guiSetText(SuperShop_Label[1], "Beschreibung:\n" .. SuperShop_Description[tonumber(id)]);

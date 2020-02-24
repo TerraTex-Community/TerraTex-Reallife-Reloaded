@@ -73,11 +73,11 @@ function checkTrainSchrankenStatus()
     for theKey, theTable in ipairs(schranken) do
         local elements = getElementsWithinColShape(theTable[10], "vehicle")
         local trains = 0
-        for theNewKey, thevehicle in ipairs(elements) do
-            if (getVehicleType(thevehicle) == "Train" or getElementModel(thevehicle) == 569 or getElementModel(thevehicle) == 570 or getElementModel(thevehicle) == 590) then
+        for theNewKey, theVehicle in ipairs(elements) do
+            if (getVehicleType(theVehicle) == "Train" or getElementModel(theVehicle) == 569 or getElementModel(theVehicle) == 570 or getElementModel(theVehicle) == 590) then
                 trains = trains + 1
-                if (getElementModel(thevehicle) == 569 or getElementModel(thevehicle) == 570 or getElementModel(thevehicle) == 590) then
-                    --outputDebugString("Found #"..getElementModel(thevehicle))
+                if (getElementModel(theVehicle) == 569 or getElementModel(theVehicle) == 570 or getElementModel(theVehicle) == 590) then
+                    --outputDebugString("Found #"..getElementModel(theVehicle))
                 end
             end
         end

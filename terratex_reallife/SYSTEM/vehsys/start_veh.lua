@@ -195,15 +195,15 @@ end
 
 addCommandHandler("rebind", rebind_func, false, false)
 
-function prepare(thevehicle, frakid)
-    vioSetElementData(thevehicle, "frakid", frakid)
-    vioSetElementData(thevehicle, "respawn", 1)
-    vioSetElementData(thevehicle, "motor", false)
-    vioSetElementData(thevehicle, "motornum", 0)
+function prepare(theVehicle, frakid)
+    vioSetElementData(theVehicle, "frakid", frakid)
+    vioSetElementData(theVehicle, "respawn", 1)
+    vioSetElementData(theVehicle, "motor", false)
+    vioSetElementData(theVehicle, "motornum", 0)
 
     if (frakid > 0) then
-        vioSetElementData(thevehicle, "factionName", fraktionbezeichner[frakid])
-        setVehiclePlateText( thevehicle, fraktionkuerzel[frakid] )
+        vioSetElementData(theVehicle, "factionName", fraktionbezeichner[frakid])
+        setVehiclePlateText( theVehicle, fraktionkuerzel[frakid] )
     end
 end
 

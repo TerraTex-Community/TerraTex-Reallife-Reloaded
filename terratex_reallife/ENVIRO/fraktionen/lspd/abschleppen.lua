@@ -1,7 +1,7 @@
 abgabecol = createColSphere(2483.384765625,-2110.2294921875,13.114736557007, 40)
 abgabecolA = createColRectangle(2241.9189453125, 2434.1201171875, 55, 58)
 
-local VerwahrungLSPD = createBlip(2447.8000488281, -2120.8999023438, 13.60000038147, 51, 1, 0, 0, 0, 255, 0, 255, getRootElement())
+createBlip(2447.8000488281, -2120.8999023438, 13.60000038147, 51, 1, 0, 0, 0, 255, 0, 255, getRootElement())
 
 function abschleppNullSystem()
 
@@ -11,7 +11,7 @@ function abschleppNullSystem()
 
     local shape = createColSphere(0, 0, 0, 20)
     local vehicles = getElementsWithinColShape(shape, "vehicle")
-    for theKey, theVehicle in ipairs(vehicles) do
+    for _, theVehicle in ipairs(vehicles) do
         if (getPlayerFromName(vioGetElementData(theVehicle, "besitzer"))) then
             outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")), getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), 255, 0, 0)
             vioSetElementData(getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), "slot" .. vioGetElementData(theVehicle, "slotid"), -2)
@@ -35,9 +35,9 @@ function abschleppNullSystem()
             lastHealth = getElementHealth(theVehicle)
         }, { ID = vioGetElementData(theVehicle, "dbid") });
 
-        for theKey, theTable in ipairs(privVeh) do
+        for tableKey, theTable in ipairs(privVeh) do
             if (theTable[3] == source) then
-                table.remove(privVeh, theKey)
+                table.remove(privVeh, tableKey)
             end
         end
 
@@ -153,23 +153,23 @@ function getcar_func(thePlayer, cmd, IDs)
                         });
 
                         local daSatz = result[1];
-                        local thevehicle = thePlayer;
+                        local theVehicle = thePlayer;
 
                         if not (isPlane(tonumber(daSatz["Model"])) or isHeli(tonumber(daSatz["Model"])) or isBoat(tonumber(daSatz["Model"])) or isWaterPlane(daSatz["Model"])) then
-                            thevehicle = createVehicle(daSatz["Model"], 2459.900390625, -2114.5, 13.5, 0, 0, 0, daSatz["Besitzer"])
+                            theVehicle = createVehicle(daSatz["Model"], 2459.900390625, -2114.5, 13.5, 0, 0, 0, daSatz["Besitzer"])
                         elseif (isBoat(tonumber(daSatz["Model"])) or isWaterPlane(daSatz["Model"])) then
-                            thevehicle = createVehicle(daSatz["Model"], 801.3193359375, -2054.2001953125, -0.44321331381798, 3.702392578125, 4.691162109375, 0.010986328125, daSatz["Besitzer"])
+                            theVehicle = createVehicle(daSatz["Model"], 801.3193359375, -2054.2001953125, -0.44321331381798, 3.702392578125, 4.691162109375, 0.010986328125, daSatz["Besitzer"])
 						elseif (isHeli(tonumber(daSatz["Model"]))) then
-							thevehicle = createVehicle(daSatz["Model"], 2654.1000976563, -2092, 19.39999961853, 0, 0, 90, daSatz["Besitzer"])
+							theVehicle = createVehicle(daSatz["Model"], 2654.1000976563, -2092, 19.39999961853, 0, 0, 90, daSatz["Besitzer"])
                         else
-                            thevehicle = createVehicle(daSatz["Model"], 1945.5, -2316.3, 16.7, 0, 0, 184, daSatz["Besitzer"])
+                            theVehicle = createVehicle(daSatz["Model"], 1945.5, -2316.3, 16.7, 0, 0, 184, daSatz["Besitzer"])
                         end
 
-                        setElementHealth(thevehicle, daSatz["lastHealth"]);
-                        setVehicleDamageParts(thevehicle, fromJSON(daSatz["lastDamageStates"]));
+                        setElementHealth(theVehicle, daSatz["lastHealth"]);
+                        setVehicleDamageParts(theVehicle, fromJSON(daSatz["lastDamageStates"]));
 
-                        vioSetElementData(thePlayer, "slot" .. id, thevehicle)
-                        vioSetElementData(thevehicle, "abgeschleppt", 0)
+                        vioSetElementData(thePlayer, "slot" .. id, theVehicle)
+                        vioSetElementData(theVehicle, "abgeschleppt", 0)
 
                         MySql.helper.update("user_vehicles", {
                             SpawnX = 0,
@@ -196,62 +196,61 @@ function getcar_func(thePlayer, cmd, IDs)
 
                             counter = counter + 1
                         end
-                        setVehicleColor(thevehicle, tonumber(colors[0]), tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
+                        setVehicleColor(theVehicle, tonumber(colors[0]), tonumber(colors[1]), tonumber(colors[2]), tonumber(colors[3]))
                         local tun = daSatz["Tuning"]
                         if (tun == "") then
                             tun = "0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0"
                         end
                         local tuning = getStringComponents(tun)
-                        for theKey, theTuning in ipairs(tuning) do
+                        for _, theTuning in ipairs(tuning) do
                             if (theTuning ~= 0) then
-                                addVehicleUpgrade(thevehicle, theTuning)
+                                addVehicleUpgrade(theVehicle, theTuning)
                             end
                         end
 
-                        vioSetElementData(thevehicle, "besitzer", daSatz["Besitzer"])
-                        vioSetElementData(thevehicle, "model", daSatz["Model"])
-                        vioSetElementData(thevehicle, "dbid", tonumber(daSatz["ID"]))
-                        vioSetElementData(thevehicle, "slotid", daSatz["SlotID"])
-                        vioSetElementData(thevehicle, "spawnx", 0)
-                        vioSetElementData(thevehicle, "spawny", 0)
-                        vioSetElementData(thevehicle, "spawnz", 0)
-                        vioSetElementData(thevehicle, "spawnrx", 0)
-                        vioSetElementData(thevehicle, "spawnry", 0)
-                        vioSetElementData(thevehicle, "spawnrz", 0)
-                        vioSetElementData(thevehicle, "colors", daSatz["Colors"])
-                        vioSetElementData(thevehicle, "falter", daSatz["fahrzeugalter"])
-                        vioSetElementData(thevehicle, "tuning", daSatz["Tuning"])
-                        vioSetElementData(thevehicle, "paintjob", daSatz["paintjob"])
-                        vioSetElementData(thevehicle, "tank", daSatz["Tank"])
-                        vioSetElementData(thevehicle, "abgeschleppt", 0)
-                        vioSetElementData(thevehicle, "Lichterfarbe", daSatz["Lichterfarbe"])
-                        vioSetElementData(thevehicle, "kaufpreis", tonumber(daSatz["kaufpreis"]))
-                        vioSetElementData(thevehicle, "kmstand", daSatz["kmstand"])
-                        vioSetElementData(thevehicle, "premColor", "-1")
-                        local time = getRealTime()
+                        vioSetElementData(theVehicle, "besitzer", daSatz["Besitzer"])
+                        vioSetElementData(theVehicle, "model", daSatz["Model"])
+                        vioSetElementData(theVehicle, "dbid", tonumber(daSatz["ID"]))
+                        vioSetElementData(theVehicle, "slotid", daSatz["SlotID"])
+                        vioSetElementData(theVehicle, "spawnx", 0)
+                        vioSetElementData(theVehicle, "spawny", 0)
+                        vioSetElementData(theVehicle, "spawnz", 0)
+                        vioSetElementData(theVehicle, "spawnrx", 0)
+                        vioSetElementData(theVehicle, "spawnry", 0)
+                        vioSetElementData(theVehicle, "spawnrz", 0)
+                        vioSetElementData(theVehicle, "colors", daSatz["Colors"])
+                        vioSetElementData(theVehicle, "falter", daSatz["fahrzeugalter"])
+                        vioSetElementData(theVehicle, "tuning", daSatz["Tuning"])
+                        vioSetElementData(theVehicle, "paintjob", daSatz["paintjob"])
+                        vioSetElementData(theVehicle, "tank", daSatz["Tank"])
+                        vioSetElementData(theVehicle, "abgeschleppt", 0)
+                        vioSetElementData(theVehicle, "Lichterfarbe", daSatz["Lichterfarbe"])
+                        vioSetElementData(theVehicle, "kaufpreis", tonumber(daSatz["kaufpreis"]))
+                        vioSetElementData(theVehicle, "kmstand", daSatz["kmstand"])
+                        vioSetElementData(theVehicle, "premColor", "-1")
 
-                        local lights = getStringComponents(vioGetElementData(thevehicle, "Lichterfarbe"))
-                        setVehicleHeadLightColor(thevehicle, tonumber(lights[1]), tonumber(lights[2]), tonumber(lights[3]))
-                        vioSetElementData(thevehicle, "premColor", daSatz["premColors"])
-                        if (vioGetElementData(thevehicle, "premColor") ~= "-1") then
-                            local premcolor = getStringComponents(vioGetElementData(thevehicle, "premColor"))
-                            setVehicleColor(thevehicle, tonumber(premcolor[1]), tonumber(premcolor[2]), tonumber(premcolor[3]), tonumber(premcolor[4]), tonumber(premcolor[5]), tonumber(premcolor[6]))
+                        local lights = getStringComponents(vioGetElementData(theVehicle, "Lichterfarbe"))
+                        setVehicleHeadLightColor(theVehicle, tonumber(lights[1]), tonumber(lights[2]), tonumber(lights[3]))
+                        vioSetElementData(theVehicle, "premColor", daSatz["premColors"])
+                        if (vioGetElementData(theVehicle, "premColor") ~= "-1") then
+                            local premcolor = getStringComponents(vioGetElementData(theVehicle, "premColor"))
+                            setVehicleColor(theVehicle, tonumber(premcolor[1]), tonumber(premcolor[2]), tonumber(premcolor[3]), tonumber(premcolor[4]), tonumber(premcolor[5]), tonumber(premcolor[6]))
                         end
 
-                        setVehiclePaintjob(thevehicle, tonumber(daSatz["paintjob"]))
-                        setVehiclePrivate(thevehicle, true)
+                        setVehiclePaintjob(theVehicle, tonumber(daSatz["paintjob"]))
+                        setVehiclePrivate(theVehicle, true)
                         local vara = daSatz["Besitzer"]
                         local slot = tonumber(daSatz["SlotID"])
 
-                        vioSetElementData(thevehicle, "motor", false)
-                        vioSetElementData(thevehicle, "locked", true)
-                        table.insert(privVeh, { vara, slot, thevehicle })
+                        vioSetElementData(theVehicle, "motor", false)
+                        vioSetElementData(theVehicle, "locked", true)
+                        table.insert(privVeh, { vara, slot, theVehicle })
 
                         outputChatBox("Parke dieses mal dein Fahrzeug richtig und beachte dabei die geltenden Regeln! (mit /park)", thePlayer, 255, 0, 0)
                         changePlayerMoney(thePlayer, -abholpreis, "fahrzeug", "Abgeschleppt")
-                        local px, py, pz = getElementPosition(thevehicle)
-                        setElementPosition(thePlayer, px, py, pz)
-                        warpPedIntoVehicle(thePlayer, thevehicle, 0)
+                        local vx, vy, vz = getElementPosition(theVehicle)
+                        setElementPosition(thePlayer, vx, vy, vz)
+                        warpPedIntoVehicle(thePlayer, theVehicle, 0)
                     end
                 else
                     outputChatBox("Du hast eine ungültige ID eingegeben!", thePlayer, 211, 22, 0)

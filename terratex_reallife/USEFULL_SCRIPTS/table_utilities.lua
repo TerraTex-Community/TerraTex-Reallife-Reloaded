@@ -27,6 +27,9 @@ function table.deletevalue(thetable, value, newkeys)
     return thetable
 end
 
+---getSize returns real size of a table by pairs loop
+---@param table table
+---@return number amount of values in table
 function table.getSize(table)
     if (type(table) ~= "table") then
         outputDebugString(debug.traceback());

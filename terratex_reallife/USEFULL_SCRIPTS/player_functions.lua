@@ -49,7 +49,7 @@ function getPlayerFromIncompleteName(name)
         local players=getElementsByType("player")
         local pname=""
         local ergebnisse=0
-        local ergebnis=nil
+        local ergebnis
         if(getPlayerFromName(name))then
             if(not isPlayerLoggedIn(getPlayerFromName(name)))then
                 return false

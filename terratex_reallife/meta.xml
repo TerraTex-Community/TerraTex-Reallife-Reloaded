@@ -480,6 +480,16 @@
     <script src="ENVIRO/casino/casino_bj_client.lua" type="client"/>
     <script src="ENVIRO/casino/casino_bj_server.lua" type="server"/>
     <script src="ENVIRO/casino/casino_pferde_client.lua" type="client"/>
+    <!-- GPS Resource -->
+    <script src="ENVIRO/terralapptapp/gps_resource/util.lua" type="client"/>
+    <file src="ENVIRO/terralapptapp/gps_resource/overlay.fx"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/vehiclenodes.lua" type="server"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/MinHeap.lua" type="server"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/gps.lua" type="server"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/client.lua" type="client"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/linedrawer.lua" type="client"/>
+    <script src="ENVIRO/terralapptapp/gps_resource/vehiclenodes_client.lua" type="client"/>
+
     <!-- TerraLappTapp -->
     <script src="ENVIRO/terralapptapp/terralapptapp_server.lua" type="server"/>
     <script src="ENVIRO/terralapptapp/terralapptapp_client.lua" type="client"/>
@@ -502,15 +512,6 @@
     <script src="ENVIRO/terralapptapp/OnlineBanking_Server.lua" type="server"/>
     <script src="ENVIRO/terralapptapp/OnlineSchutz_Client.lua" type="client"/>
     <script src="ENVIRO/terralapptapp/OnlineSchutz_Server.lua" type="server"/>
-    <!-- GPS Resource -->
-    <script src="ENVIRO/terralapptapp/gps_resource/util.lua" type="client"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/client.lua" type="client"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/linedrawer.lua" type="client"/>
-    <file src="ENVIRO/terralapptapp/gps_resource/overlay.fx"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/vehiclenodes.lua" type="server"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/vehiclenodes_client.lua" type="client"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/MinHeap.lua" type="server"/>
-    <script src="ENVIRO/terralapptapp/gps_resource/gps.lua" type="server"/>
 
     <!--FILES-->
     <!-- MAPS -->

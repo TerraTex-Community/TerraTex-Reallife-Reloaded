@@ -7,7 +7,7 @@ function changePlayerMoney(thePlayer, theBetrag, Kategorie, theReason, theReason
     if (not validKategorien[Kategorie]) then
         Kategorie = "sonstiges"
     end
-    saveMoneyLog(thePlayer, "Money", Kategorie, theBetrag, theReason, theReasonAdd)
+    saveMoneyLog(thePlayer, "Money", Kategorie, theBetrag, theReason, theReasonAdd, AdditionalData)
 end
 
 --Optionale Parameter ab Kategorie

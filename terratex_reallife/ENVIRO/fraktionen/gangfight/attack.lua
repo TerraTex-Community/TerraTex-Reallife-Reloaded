@@ -6,7 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-function cmdAttack(thePlayer, cmd, ...)
+function cmdAttack(thePlayer, _, ...)
 -- is Player in a faction that can attack?
     if (frakmun[vioGetElementData(thePlayer, "fraktion")]) then
         local gfPosition, gfPositionData = getNearGfPosition(thePlayer);
@@ -28,7 +28,7 @@ function cmdAttack(thePlayer, cmd, ...)
                 local players = {...};
                 local playersElements = {};
                 if (table.getSize(players) > 0) then
-                    for theKey, theUserName in ipairs(players) do
+                    for _, theUserName in ipairs(players) do
                         local player = getPlayerFromIncompleteName(theUserName);
                         if not player then
                             showError(thePlayer, "Der Spieler ".. theUserName .. " existiert nicht!");
@@ -56,10 +56,10 @@ function cmdAttack(thePlayer, cmd, ...)
                             local blip = createBlip ( gfPositionData.X, gfPositionData.Y, gfPositionData.Z, 19, 2, 255, 0, 0, 255, 0, 99999.0, getRootElement() )
                             vioSetElementData(blip, "flashing");
                             setElementVisibleTo ( blip, getRootElement(), false );
-                            for theKey, theMember in ipairs(getPlayersInTeam(team[vioGetElementData(thePlayer, "fraktion")])) do
+                            for _, theMember in ipairs(getPlayersInTeam(team[vioGetElementData(thePlayer, "fraktion")])) do
                                 setElementVisibleTo ( blip, theMember, true );
                             end
-                            for theKey, theMember in ipairs(getPlayersInTeam(team[tonumber(gfPositionData.Owner)])) do
+                            for _, theMember in ipairs(getPlayersInTeam(team[tonumber(gfPositionData.Owner)])) do
                                 setElementVisibleTo ( blip, theMember, true );
                                 outputChatBox("Einer eurer Läden wird angegriffen! Fahrt hin und verteidigt ihn (mit bis zu " .. table.getSize(players) .. " Teilnehmern)!", theMember, 255, 0, 0);
                             end
@@ -80,7 +80,7 @@ function cmdAttack(thePlayer, cmd, ...)
 
                             vioSetElementData(gfElement, "data", data);
 
-                            for theKey, player in ipairs(playersElements) do
+                            for _, player in ipairs(playersElements) do
                                 showError(player, "Der Angriff wurde gestartet, bitte warte auf die Verteidiger!");
                                 setElementDimension(player, 1337);
                             end
@@ -105,11 +105,11 @@ function noDefendersOnGf()
     local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
 
-    for theKey, theMember in ipairs(team[data.defendFaction]) do
+    for _, theMember in ipairs(team[data.defendFaction]) do
         outputChatBox("Ihr seid zu spät! Ihr habt den Laden verloren!", theMember, 255, 0, 0);
     end
 
-    for theKey, player in ipairs(data.attackers) do
+    for _, player in ipairs(data.attackers) do
         showError(player, "Der Laden gehört nun euch!");
         setElementDimension(player, 0);
     end
@@ -139,7 +139,7 @@ function noDefendersOnGf()
     vioSetElementData(gfElement, "data", data);
 end
 
-function cmdDefend(thePlayer, cmd, ...)
+function cmdDefend(thePlayer, _, ...)
     local gfElement = getElementByID("GFSync");
     local data = vioGetElementData(gfElement, "data");
 
@@ -153,7 +153,7 @@ function cmdDefend(thePlayer, cmd, ...)
             local players = {...};
             local playersElements = {};
             if (table.getSize(players) > 0) then
-                for theKey, theUserName in ipairs(players) do
+                for _, theUserName in ipairs(players) do
                     local player = getPlayerFromIncompleteName(theUserName);
                     if not player then
                         showError(thePlayer, "Der Spieler ".. theUserName .. " existiert nicht!");
@@ -185,14 +185,14 @@ function cmdDefend(thePlayer, cmd, ...)
                     frakmun[data.attackFaction] = frakmun[data.attackFaction] - costAttack;
                     frakmun[data.defendFaction] = frakmun[data.defendFaction] - costDef;
 
-                    for theKey, theMember in ipairs(data.defenders) do
+                    for _, theMember in ipairs(data.defenders) do
                         outputChatBox("Die Kosten von " .. costDef .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                         setElementDimension(theMember, 1337);
                         vioSetElementData(theMember, "isInGf", true);
                         table.insert(data.defenderNames, getPlayerName(theMember));
                     end
-                    for theKey, theMember in ipairs(data.attackers) do
+                    for _, theMember in ipairs(data.attackers) do
                         outputChatBox("Die Kosten von " .. costAttack .. " Materialien für den GF wurden vom Depot eingezogen.", theMember);
                         outputChatBox("Der Gangfight beginnt in wenigen Sekunden .... ", theMember, 255, 0, 0)
                         vioSetElementData(theMember, "isInGf", true);
@@ -222,7 +222,7 @@ function rejoinGf(thePlayer)
         if (not vioGetElementData(thePlayer, "isInGf")) then
             local userName = getPlayerName(thePlayer);
 
-            for theKey, theMemberName in ipairs(data.attackerNames) do
+            for _, theMemberName in ipairs(data.attackerNames) do
                 if (theMemberName == userName) then
                     table.insert(data.attackers, thePlayer);
                     setElementHealth(thePlayer, 0)
@@ -231,7 +231,7 @@ function rejoinGf(thePlayer)
                 end
             end
 
-            for theKey, theMemberName in ipairs(data.defenderNames) do
+            for _, theMemberName in ipairs(data.defenderNames) do
                 if (theMemberName == userName) then
                     table.insert(data.defenders, thePlayer);
                     setElementHealth(thePlayer, 0)

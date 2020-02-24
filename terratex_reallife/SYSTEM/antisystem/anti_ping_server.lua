@@ -7,14 +7,14 @@ function init_anti_high_ping()
     setTimer(checkHighPing, 1000, 0)
 
 	local result = MySql.helper.getSync("admin_whitelist", "*", {ANTIHIGHPING = 1});
-    for theKey, dsatz in ipairs(result) do
-        pingWhiteList[string.lower(dsatz["Nickname"])] = true;
+    for _, dSatz in ipairs(result) do
+        pingWhiteList[string.lower(dSatz["Nickname"])] = true;
     end
 end
 addEventHandler("onResourceStart", getResourceRootElement(getThisResource()), init_anti_high_ping)
 
 function checkHighPing()
-    for theKey, thePlayer in ipairs(getElementsByType("player")) do
+    for _, thePlayer in ipairs(getElementsByType("player")) do
         if (vioGetElementData(thePlayer, "playtime")) then
             local ping = getPlayerPing(thePlayer)
 

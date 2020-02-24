@@ -39,7 +39,7 @@ function StellenNow(thePlayer)
                 end
 
                 vioSetElementData(thePlayer, "alkaknast", 0);
-                local int, x, y, z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
+                local _, x, y, z = CrimeSystem.Jail.getRandomJailSpawnByJailName("ls");
                 setElementPosition(thePlayer, x, y, z);
 
                 CrimeSystem.clear(thePlayer);
@@ -54,7 +54,7 @@ function StellenNow(thePlayer)
     end
 end
 
-function onStellenClick(mouseButton, buttonState, clickedElement)
+function onStellenClick(_, buttonState, clickedElement)
     if (buttonState == "up") then
         if (isStellBoit[clickedElement]) then
             if (CrimeSystem.getCrimePercentage(source) > 0 and not (vioGetElementData(toPlayer, "mussAlka") == 1)) then
@@ -81,7 +81,7 @@ registerAcceptHandler("stellen", accept_stellen, {
     requestedDataValues = { "canStellen" }
 });
 
-function beamtenchat(thePlayer, command, ...)
+function beamtenchat(thePlayer, _, ...)
     local reason = table.concat({ ... }, " ")
     if (isBeamter(thePlayer) or (vioGetElementData(thePlayer, "fraktion") == 10)) then
         local name = getPlayerName(thePlayer)
@@ -89,19 +89,19 @@ function beamtenchat(thePlayer, command, ...)
         local frakrang = fraktionsrange[vioGetElementData(thePlayer, "fraktion")][vioGetElementData(thePlayer, "fraktionsrang")]
         chat_log(thePlayer, string.format("Beamtenchat: %s", reason))
         local message = string.format("**%s %s %s: %s , over **", frak, frakrang, name, reason)
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[1])) do
             outputChatBox(message, thePlayers, 255, 130, 130)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[5])) do
             outputChatBox(message, thePlayers, 255, 130, 130)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[7])) do
             outputChatBox(message, thePlayers, 255, 130, 130)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[9])) do
             outputChatBox(message, thePlayers, 255, 130, 130)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[10])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[10])) do
             outputChatBox(message, thePlayers, 255, 130, 130)
         end
     end
@@ -110,35 +110,35 @@ addCommandHandler("b", beamtenchat, false, false)
 
 function outputChatBoxForPolice(message, c, d, e)
     if (not (c) or not (d) or not (e)) then
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[1])) do
             outputChatBox(message, thePlayers, 0, 0, 255)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[5])) do
             outputChatBox(message, thePlayers, 0, 0, 255)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[7])) do
             outputChatBox(message, thePlayers, 0, 0, 255)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[9])) do
             outputChatBox(message, thePlayers, 0, 0, 255)
         end
     else
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[1])) do
             outputChatBox(message, thePlayers, c, d, e)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[5])) do
             outputChatBox(message, thePlayers, c, d, e)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[7])) do
             outputChatBox(message, thePlayers, c, d, e)
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[9])) do
             outputChatBox(message, thePlayers, c, d, e)
         end
     end
 end
 
-function antiofflineflucht_func(quitType, reason, responsibleElement)
+function antiofflineflucht_func(quitType)
     if (isPlayerLoggedIn(source)) then
         if not (vioGetElementData(source, "cuffed")) then
             vioSetElementData(source, "cuffed", 0)
@@ -150,7 +150,7 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
             local x, y, z = getElementPosition(source)
             local gangInNear = 0
             local policeInNear = 0
-            for theKey, thePlayer in ipairs(getElementsByType("player")) do
+            for _, thePlayer in ipairs(getElementsByType("player")) do
                 if (thePlayer ~= source) then
                     if (isBeamter(thePlayer)) then
                         local px, py, pz = getElementPosition(thePlayer)
@@ -181,7 +181,7 @@ function antiofflineflucht_func(quitType, reason, responsibleElement)
                         save_offline_message(getPlayerName(source), "Anti-Offlineflucht-System", "Da du absichtlich Offlineflucht begangen hast, wurdest du automatisch eingeknastet (+20 Min Strafe)!")
                     end
                 end
-                for theKey, thePlayer in ipairs(getElementsByType("player")) do
+                for _, thePlayer in ipairs(getElementsByType("player")) do
                     if (isAdminLevel(thePlayer, 1)) then
                         outputChatBox(string.format("Mögliche Offlineflucht von %s", getPlayerName(source)), thePlayer, 255, 0, 0)
                     end
@@ -197,7 +197,7 @@ function setPlayerCuffedInVar(thePlayer)
 end
 addEventHandler("onVehicleEnter", getRootElement(), setPlayerCuffedInVar)
 
-function take_func(thePlayer, Command, wasstring, vonPlayerName)
+function take_func(thePlayer, _, wasstring, vonPlayerName)
     if (isBeamter(thePlayer) or isAdminLevel(thePlayer, 1)) then
         if (wasstring) and (vonPlayerName) then
             local vonPlayer = getPlayerFromIncompleteName(vonPlayerName)
@@ -243,29 +243,23 @@ end
 
 addCommandHandler("take", take_func, false, false)
 
-function goverment_message(thePlayer, cmd, ...)
+function goverment_message(thePlayer, _, ...)
     if (vioGetElementData(thePlayer, "fraktionsrang") > 4) then
         if (isBeamter(thePlayer)) then
             outputChatBox(string.format("#FF0000|____________| #00FF00Regierungsmeldung von %s #FF0000|____________|", getPlayerName(thePlayer)), getRootElement(), 255, 255, 255, true)
             local message = table.concat({ ... }, " ")
             chat_log(thePlayer, message)
             local messages = getMessageGovComponents(message)
-            for theKey, messagepart in ipairs(messages) do
+            for _, messagepart in ipairs(messages) do
                 if (string.len(messagepart) > 55) then
-                    --outputChatBox(messagepart)
                     local partedMessage = getMessageGovLenghtspart(messagepart)
-                    for theKey, theSend in ipairs(partedMessage) do
+                    for _, theSend in ipairs(partedMessage) do
                         outputChatBox(theSend, getRootElement(), 255, 0, 0, true)
                     end
-
-                    --[[local begin,ende=string.find (messagepart, " ",50)
-                    outputChatBox(string.sub(messagepart,0,begin),getRootElement(),255,0,0,true)
-                    outputChatBox(string.sub(messagepart,ende),getRootElement(),255,0,0,true)]]
                 else
                     outputChatBox(messagepart, getRootElement(), 255, 0, 0, true)
                 end
             end
-            --outputChatBox(,getRootElement(),255,0,0,true)
             outputChatBox(string.format("#FF0000|____________| #00FF00Regierungsmeldung von %s #FF0000|____________|", getPlayerName(thePlayer)), getRootElement(), 255, 255, 255, true)
         end
     end
@@ -277,10 +271,10 @@ function getMessageGovLenghtspart(theString)
     if (theString) then
         local stringtab = {}
         local counter = 0
-        local countlast
+        local counterLast
         local zahler = 1
         while string.len(theString) > 0 do
-            counterlast = counter
+            counterLast = counter
             --outputChatBox(theString)
             counter = string.find(theString, " ", 60)
             --outputChatBox(tostring(counter))
@@ -288,7 +282,7 @@ function getMessageGovLenghtspart(theString)
                 stringtab[zahler] = string.sub(theString, 0, counter - 1)
                 theString = string.sub(theString, counter + 1)
             else
-                stringtab[zahler] = string.sub(theString, counterlast)
+                stringtab[zahler] = string.sub(theString, counterLast)
                 theString = ""
             end
             zahler = zahler + 1
@@ -329,7 +323,7 @@ function getMessageGovComponents(theString)
     end
 end
 
-function m_func(thePlayer, Command, ...)
+function m_func(thePlayer, _, ...)
     local reason = table.concat({ ... }, " ")
     if (reason) then
         if (isPedInVehicle(thePlayer)) then
@@ -341,7 +335,7 @@ function m_func(thePlayer, Command, ...)
                     local chatSphere = createColSphere(posX, posY, posZ, 100)
                     local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
                     destroyElement(chatSphere)
-                    for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                    for _, nearbyPlayer in ipairs(nearbyPlayers) do
                         outputChatBox(string.format("[[Megafon von %s: %s]]", getPlayerName(thePlayer), reason), nearbyPlayer, 255, 255, 0)
                     end
                 end
@@ -361,7 +355,7 @@ function tazer_func(thePlayer)
                 destroyElement(tazerSphere)
                 local nearestdis = 10000.123
                 local nearestplayer = thePlayer
-                for theKey, theNP in ipairs(nearbyPlayers) do
+                for _, theNP in ipairs(nearbyPlayers) do
                     if (getElementType(theNP) == "player") then
                         if not (theNP == thePlayer) then
                             local nx, ny, nz = getElementPosition(theNP)
@@ -391,7 +385,7 @@ function tazer_func(thePlayer)
                             local chatSphere = createColSphere(posX, posY, posZ, 10)
                             local nearbyPlayers = getElementsWithinColShape(chatSphere, "player")
                             destroyElement(chatSphere)
-                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                            for _, nearbyPlayer in ipairs(nearbyPlayers) do
                                 outputChatBox(string.format("%s hat %s getazert!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
                             end
                             toggleAllControls(nearestplayer, false, true, false)
@@ -400,7 +394,7 @@ function tazer_func(thePlayer)
                             setTimer(unfreeze_tazer, 14000, 1, nearestplayer, thePlayer)
                             vioSetElementData(thePlayer, "Tazer", 1)
                         else
-                            for index, nearbyPlayer in ipairs(nearbyPlayers) do
+                            for _, nearbyPlayer in ipairs(nearbyPlayers) do
                                 outputChatBox(string.format("%s hat %s getazert, allerdings zeigte dieser keinen Effect!", getPlayerName(thePlayer), getPlayerName(nearestplayer)), nearbyPlayer, 100, 0, 200)
                             end
                         end
@@ -442,7 +436,7 @@ function unfreeze_tazer_toggle(thePlayer)
     end
 end
 
-function grab_func(theMaker, Command, PlayerName)
+function grab_func(theMaker, _, PlayerName)
     if (isBeamter(theMaker)) then
         if (isPedInVehicle(theMaker)) then
             local thePlayer = getPlayerFromIncompleteName(PlayerName)
@@ -486,7 +480,7 @@ end
 
 addCommandHandler("grab", grab_func, false, false)
 
-function cuff_func(theMaker, Command, thePlayerName)
+function cuff_func(theMaker, _, thePlayerName)
     if (isBeamter(theMaker)) or (vioGetElementData(theMaker, "fraktion") == 2) or (vioGetElementData(theMaker, "fraktion") == 8) or (vioGetElementData(theMaker, "fraktion") == 13) or (vioGetElementData(theMaker, "fraktion") == 6) or (vioGetElementData(theMaker, "fraktion") == 11) or (vioGetElementData(theMaker, "fraktion") == 12) then
         local thePlayer = getPlayerFromIncompleteName(thePlayerName)
         if (thePlayer) then
@@ -536,7 +530,7 @@ end
 
 addEventHandler("onVehicleStartExit", getRootElement(), donotexistoutofcar)
 
-function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
+function delstvo_func(theMaker, _, anzahl, thePlayerName, ...)
 
     local reason = "" .. table.concat({ ... }, " ")
     if not (tonumber(anzahl)) then
@@ -556,7 +550,7 @@ function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
                     outputChatBox(string.format("Du hast %s StVO-Punkt(e) von %s gelöscht bekommen! Grund: %s", anzahl, getPlayerName(theMaker), reason), thePlayer, 255, 255, 0)
                     outputChatBox(string.format("Du hast jetzt %s StVO-Punkte", vioGetElementData(thePlayer, "stvo")), thePlayer, 255, 255, 0)
 
-                    for theKey, player in ipairs(getElementsByType("player")) do
+                    for _, player in ipairs(getElementsByType("player")) do
                         if (isBeamter(player)) then
                             outputChatBox(string.format("%s hat %s StVO-Punkte gelöscht bekommen! Grund: %s", getPlayerName(thePlayer), anzahl, reason), player, 255, 255, 0)
                             outputChatBox(string.format("Er hat %s StVO-Punkte! Reporter: %s", vioGetElementData(thePlayer, "stvo"), getPlayerName(theMaker)), player, 255, 255, 0)
@@ -576,7 +570,7 @@ function delstvo_func(theMaker, Command, anzahl, thePlayerName, ...)
 end
 addCommandHandler("delstvo", delstvo_func, false, false)
 
-function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
+function stvo_func(theMaker, _, anzahl, thePlayerName, ...)
     if (anzahl) and (thePlayerName) then
         local reason = table.concat({ ... }, " ")
         if not (tonumber(anzahl)) then
@@ -625,7 +619,7 @@ function stvo_func(theMaker, Command, anzahl, thePlayerName, ...)
 end
 addCommandHandler("stvo", stvo_func, false, false)
 
-function ticket_func(theMaker, Command, thePlayerName, thePrice, ...)
+function ticket_func(theMaker, _, thePlayerName, thePrice, ...)
     if (isBeamter(theMaker)) then
         local reason = table.concat({ ... }, " ")
         if (thePlayerName) and (thePrice) then
@@ -680,7 +674,7 @@ function sos_func(thePlayer)
         local green = math.random(0, 255)
         outputChatBox("Du hast deine Position an alle Beamte übermittelt.(10s)", thePlayer, red, green, blue)
         local blip = createBlipAttachedTo(thePlayer, 0, 2, red, green, blue, 255, 0, 999999.0, thePlayer)
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[1])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[1])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
@@ -688,7 +682,7 @@ function sos_func(thePlayer)
                 outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[7])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[7])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
@@ -696,7 +690,7 @@ function sos_func(thePlayer)
                 outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[5])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[5])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)
@@ -704,7 +698,7 @@ function sos_func(thePlayer)
                 outputChatBox(string.format("%s sendet ein SOS-Signal. Du kannst dieses (30s) auf jedem Polizei-Computer sehen.", getPlayerName(thePlayer)), thePlayers, red, green, blue)
             end
         end
-        for theKey, thePlayers in ipairs(getPlayersInTeam(team[9])) do
+        for _, thePlayers in ipairs(getPlayersInTeam(team[9])) do
             if (vioGetElementData(thePlayers, "Innendienst")) then
                 outputChatBox(string.format("%s sendet ein SOS und zeigt allen Beamten im Innendienst seine Position. (10s)", getPlayerName(thePlayer)), thePlayers, red, green, blue)
                 setElementVisibleTo(blip, thePlayers, true)

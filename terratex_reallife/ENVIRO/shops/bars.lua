@@ -11,7 +11,7 @@ end
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),barBots)
 
 function respawnBarBots()
-	for theKey, theBot in pairs(barBot) do
+	for _, theBot in pairs(barBot) do
         if (isElement(theBot)) then
             destroyElement(theBot)
         end
@@ -33,14 +33,14 @@ function respawnBarBots()
     barBot[4]=createPed(11,1761.8193359375,-1921.47265625,16.2,0)--Marktplatz am Rookiespawn
 	addEventHandler("onPedWasted",barBot[4],respawnBarBots)
     
-    for theKey, theBot in pairs(stripperBot) do
+    for _, theBot in pairs(stripperBot) do
         setElementFrozen(theBot, true)
     end
 end
 
 
 function respawnStripperBots()
-    for theKey, theBot in pairs(stripperBot) do
+    for _, theBot in pairs(stripperBot) do
         if (isElement(theBot)) then
             destroyElement(theBot)
         end
@@ -72,14 +72,14 @@ function respawnStripperBots()
 	setElementInterior(stripperBot[5],2)
 	addEventHandler("onPedWasted",stripperBot[5],respawnStripperBots)
     
-    for theKey, theBot in pairs(stripperBot) do
+    for _, theBot in pairs(stripperBot) do
         setElementFrozen(theBot, true)
     end
 end
 
 local dances={"STR_Loop_A","STR_Loop_B","STR_Loop_C","strip_A","strip_B","strip_C","strip_D","strip_E","strip_F","strip_G" }
 function setPedDancingQueen()
-    for theKey, theBot in pairs(stripperBot) do
+    for _, theBot in pairs(stripperBot) do
         setPedAnimation(theBot, "STRIP", dances[math.random(1, table.getn(dances))], -1, true, true, false, false)
     end
     
@@ -88,7 +88,7 @@ end
 
 function onPlayerClickOnBarTusse(mouseButton, buttonState, clickedElement)
     if (mouseButton == "left" and buttonState == "down") then
-        for theKey, theBot in pairs(barBot) do
+        for _, theBot in pairs(barBot) do
             if (clickedElement == theBot) then
                 outputChatBox("Hey Süßer! Kauf dir doch was zu trinken mit /drink", source, 135,237,225)
                 break
@@ -98,10 +98,10 @@ function onPlayerClickOnBarTusse(mouseButton, buttonState, clickedElement)
 end
 addEventHandler("onPlayerClick", getRootElement(), onPlayerClickOnBarTusse)
 
-function drink_func(thePlayer, cmd, text)
+function drink_func(thePlayer, _, text)
 	local px, py, pz = getElementPosition(thePlayer)
     local nextTo = false
-    for theKey, theBot in pairs(barBot) do
+    for _, theBot in pairs(barBot) do
         local bx, by, bz = getElementPosition(theBot)
         local dis = getDistanceBetweenPoints3D(bx, by, bz, px, py, pz)
         if (dis < 10) then

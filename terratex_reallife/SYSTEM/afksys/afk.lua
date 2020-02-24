@@ -55,7 +55,7 @@ addEventHandler("onPlayerChat", getRootElement(), resetAFKTimer)
 addEventHandler("resetAFKEvent", getRootElement(), resetAFKTimer)
 
 function afk_timer()
-    for theKey, thePlayer in ipairs(getElementsByType("player")) do
+    for _, thePlayer in ipairs(getElementsByType("player")) do
         if (vioGetElementData(thePlayer, "afk_status")) then
             if not (vioGetElementData(thePlayer, "afk_status") == 1) then
                 vioSetElementData(thePlayer, "afk_timer", vioGetElementData(thePlayer, "afk_timer") + 1)

@@ -98,10 +98,10 @@ function loadSettingsFromDB()
 --            local result = dbPoll(handler, -1);
 --
 --            if (result) then
---                for theKey, dasatz in ipairs(result) do
---                    MySql.helper.delete("user", {Nickname = dasatz["Nickname"]});
+--                for theKey, daSatz in ipairs(result) do
+--                    MySql.helper.delete("user", {Nickname = daSatz["Nickname"]});
 --
---                    save_log("nickdelete", dasatz["Nickname"]);
+--                    save_log("nickdelete", daSatz["Nickname"]);
 --                    changeaccounts = changeaccounts + 1;
 --                end
 --            end
@@ -111,10 +111,10 @@ function loadSettingsFromDB()
             local qh = dbQuery(MySql._connection, query);
             local result = dbPoll( qh, -1 );
             if (result) then
-                for theKey, dasatz in ipairs(result) do
-                    MySql.helper.delete("admin_user_bans", {Nickname = dasatz["Nickname"]});
+                for theKey, daSatz in ipairs(result) do
+                    MySql.helper.delete("admin_user_bans", {Nickname = daSatz["Nickname"]});
 
-                    save_log("nickdelete", dasatz["Nickname"]);
+                    save_log("nickdelete", daSatz["Nickname"]);
                     changeaccounts = changeaccounts + 1;
                 end
             end

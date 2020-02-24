@@ -16,10 +16,10 @@ addEventHandler("buyFood_B", getRootElement(), buyFood_B_func)
 local fastfoodmarker = {}
 function fastfoodmarker_load()
     local result = MySql.helper.getSync("objects_drivein", "*");
-    for theKey, dasatz in ipairs(result) do
-        local area = createMarker(dasatz["x"], dasatz["y"], dasatz["z"], "cylinder", dasatz["size"], 0, 0, 150, 150, getRootElement())
-        fastfoodmarker[area] = dasatz["ID"]
-        vioSetElementData(area, "typ", dasatz["typ"])
+    for theKey, daSatz in ipairs(result) do
+        local area = createMarker(daSatz["x"], daSatz["y"], daSatz["z"], "cylinder", daSatz["size"], 0, 0, 150, 150, getRootElement())
+        fastfoodmarker[area] = daSatz["ID"]
+        vioSetElementData(area, "typ", daSatz["typ"])
         addEventHandler("onMarkerHit", area, hitDriveInMarker, false)
     end
 end

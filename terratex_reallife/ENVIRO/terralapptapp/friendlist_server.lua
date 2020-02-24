@@ -3,22 +3,22 @@ function sendgetRequestAndFriendList()
     local requestTable = {}
     local result = MySql.helper.getSync("user_tapps_friendlist_request", "*", {Toname = getPlayerName(source)});
 
-    for theKey, dasatz in ipairs(result) do
-        table.insert(requestTable, dasatz["Fromname"]);
+    for theKey, daSatz in ipairs(result) do
+        table.insert(requestTable, daSatz["Fromname"]);
     end
 
     local sendRequestTable = {}
     result = MySql.helper.getSync("user_tapps_friendlist_request", "*", {Fromname = getPlayerName(source)});
 
-    for theKey, dasatz in ipairs(result) do
-        table.insert(sendRequestTable, dasatz["Toname"]);
+    for theKey, daSatz in ipairs(result) do
+        table.insert(sendRequestTable, daSatz["Toname"]);
     end
 
     local friendlistTable = {}
 
     result = MySql.helper.getSync("user_tapps_friendlist", "*", {Nickname = getPlayerName(source)});
-    for theKey, dasatz in ipairs(result) do
-            table.insert(friendlistTable, dasatz["Friendname"])
+    for theKey, daSatz in ipairs(result) do
+            table.insert(friendlistTable, daSatz["Friendname"])
     end
     vioSetElementData(source, "friendlist_table", friendlistTable)
     triggerClientEvent(source, "sendrequestInfos", source, requestTable, sendRequestTable, friendlistTable)
@@ -301,8 +301,8 @@ function aktualize_friendlist_element_data(thePlayer)
     local friendlistTable = {}
 
     local result = MySql.helper.getSync("user_tapps_friendlist", "*", {Nickname = getPlayerName(thePlayer)});
-    for theKey, dasatz in ipairs(result) do
-        table.insert(friendlistTable, dasatz["Friendname"])
+    for theKey, daSatz in ipairs(result) do
+        table.insert(friendlistTable, daSatz["Friendname"])
     end
     vioSetElementData(thePlayer, "friendlist_table", friendlistTable)
 end

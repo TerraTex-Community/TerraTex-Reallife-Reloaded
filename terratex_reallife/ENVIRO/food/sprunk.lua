@@ -3,10 +3,10 @@ sprunktable = {}
 function startTrinkCreate()
 
     local result = MySql.helper.getSync("objects_sprunk", "*");
-    for theKey, dasatz in ipairs(result) do
+    for theKey, daSatz in ipairs(result) do
 
-        local colShape = createColSphere(dasatz["X"], dasatz["Y"], dasatz["Z"], 0.5)
-        table.insert(sprunktable, { colShape, dasatz["X"], dasatz["Y"], dasatz["Z"], dasatz["Rot"] })
+        local colShape = createColSphere(daSatz["X"], daSatz["Y"], daSatz["Z"], 0.5)
+        table.insert(sprunktable, { colShape, daSatz["X"], daSatz["Y"], daSatz["Z"], daSatz["Rot"] })
 
     end
     outputDebugString("# " .. table.getSize(sprunktable) .. " Sprunkautomaten loaded!")

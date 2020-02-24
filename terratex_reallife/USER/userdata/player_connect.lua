@@ -667,32 +667,32 @@ addEventHandler("onPlayerCommand", getRootElement(), dontcmd)
 function loadGutschriften(thePlayer)
     local result = MySql.helper.getSync("user_gifts", "*", { Nickname = getPlayerName(thePlayer) });
 
-    for theKey, dasatz in ipairs(result) do
-        outputChatBox(dasatz["Grund"], thePlayer, 0, 255, 0)
+    for theKey, daSatz in ipairs(result) do
+        outputChatBox(daSatz["Grund"], thePlayer, 0, 255, 0)
         outputChatBox("Du erhälst dafür:", thePlayer, 0, 255, 0)
 
-        if (tonumber(dasatz["Geld"]) > 0) or (tonumber(dasatz["Geld"]) < 0) then
-            outputChatBox(string.format("- Geld: %s", toprice(dasatz["Geld"])), thePlayer, 0, 255, 0)
-            changePlayerBank(thePlayer, tonumber(dasatz["Geld"]), "sonstiges", "Gutschrift", dasatz["Grund"])
+        if (tonumber(daSatz["Geld"]) > 0) or (tonumber(daSatz["Geld"]) < 0) then
+            outputChatBox(string.format("- Geld: %s", toprice(daSatz["Geld"])), thePlayer, 0, 255, 0)
+            changePlayerBank(thePlayer, tonumber(daSatz["Geld"]), "sonstiges", "Gutschrift", daSatz["Grund"])
         end
 
-        if (tonumber(dasatz["VehSlots"]) > 0) then
-            outputChatBox(string.format("- Fahrzeugslots: %s", dasatz["VehSlots"]), thePlayer, 0, 255, 0)
-            vioSetElementData(thePlayer, "maxslots", vioGetElementData(thePlayer, "maxslots") + tonumber(dasatz["VehSlots"]))
+        if (tonumber(daSatz["VehSlots"]) > 0) then
+            outputChatBox(string.format("- Fahrzeugslots: %s", daSatz["VehSlots"]), thePlayer, 0, 255, 0)
+            vioSetElementData(thePlayer, "maxslots", vioGetElementData(thePlayer, "maxslots") + tonumber(daSatz["VehSlots"]))
             local k = 0
-            for k = 0, tonumber(dasatz["VehSlots"]) - 1, 1 do
+            for k = 0, tonumber(daSatz["VehSlots"]) - 1, 1 do
                 vioSetElementData(thePlayer, "slot" .. vioGetElementData(thePlayer, "maxslots") - k, -1)
             end
         end
 
-        MySql.helper.delete("user_gifts", { ID = dasatz["ID"] });
+        MySql.helper.delete("user_gifts", { ID = daSatz["ID"] });
     end
 
     local result = MySql.helper.getSync("user_offline_messages", "*", { Nickname = getPlayerName(thePlayer) });
 
-    for theKey, dasatz in ipairs(result) do
-        outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", dasatz["VonName"], dasatz["Message"], dasatz["Time"]), thePlayer)
-        MySql.helper.delete("user_offline_messages", { ID = dasatz["ID"] });
+    for theKey, daSatz in ipairs(result) do
+        outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", daSatz["VonName"], daSatz["Message"], daSatz["Time"]), thePlayer)
+        MySql.helper.delete("user_offline_messages", { ID = daSatz["ID"] });
     end
 
     MySql.helper.update("user", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });

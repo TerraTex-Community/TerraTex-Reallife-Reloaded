@@ -5,14 +5,14 @@ local hwunsche={}
 function inWunschSystemStart()
     local result = MySql.helper.getSync("objects_houses_wishes", "*");
 
-    for theKey, dasatz in ipairs(result) do
+    for theKey, daSatz in ipairs(result) do
         local wunsch={
-            ["ID"]=tonumber(dasatz["ID"]),
-            ["x"]=tonumber(dasatz["x"]),
-            ["y"]=tonumber(dasatz["y"]),
-            ["z"]=tonumber(dasatz["z"]),
-            ["nickname"]=dasatz["Nickname"],
-            ["timestamp"]=tonumber(dasatz["unixtimestamp"])
+            ["ID"]=tonumber(daSatz["ID"]),
+            ["x"]=tonumber(daSatz["x"]),
+            ["y"]=tonumber(daSatz["y"]),
+            ["z"]=tonumber(daSatz["z"]),
+            ["nickname"]=daSatz["Nickname"],
+            ["timestamp"]=tonumber(daSatz["unixtimestamp"])
         }
         table.insert(hwunsche,wunsch)
 

@@ -16,8 +16,8 @@ end
 
 addEventHandler("onClientResourceStart", getRootElement(), createPizzaMarker)
 
-function showPizzaMenu(player, mathchdim)
-    if (mathchdim) and not (pMenuShowing) and player == getLocalPlayer() then
+function showPizzaMenu(player, matchDim)
+    if (matchDim) and not (pMenuShowing) and player == getLocalPlayer() then
         showPMenu = 1
         pMenuShowing = true
         setElementFrozen(getLocalPlayer(), true)
@@ -41,7 +41,7 @@ function showPMenuInfo()
             pMenuClose_func();
         end
 
-        local scx, scy = guiGetScreenSize()
+        local _, scy = guiGetScreenSize()
         dxDrawText("Keys: Enter-Kaufen", 3, scy / 2 - 30, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText("           Leertaste-Beenden", 3, scy / 2 - 30 + 15, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText("           Links-Zurück", 3, scy / 2, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")

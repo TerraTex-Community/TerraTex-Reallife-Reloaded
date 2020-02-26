@@ -60,13 +60,6 @@ function addGpsCommandHandler(command, fn)
 	return addCommandHandler(command, wrapHandler(fn))
 end
 
-function table.each(t, callback, ...)
-	for k,v in pairs(t) do
-		callback(v, ...)
-	end
-	return t
-end
-
 function table.merge_gps ( ... )
 	local ret = { }
 	
@@ -78,19 +71,6 @@ function table.merge_gps ( ... )
 	
 	return ret
 end
-
-function table.find ( tbl, val )
-	for index, value in ipairs ( tbl ) do
-		if value == val then
-			return index
-		end
-	end
-	
-	return false
-end
-
-
-
 
 
 

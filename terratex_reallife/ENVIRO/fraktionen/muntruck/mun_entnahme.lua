@@ -196,7 +196,7 @@ end
 function resetAttackingDefendCars(attackerFrak)
 
     for theKey, theVehicle in pairs(ersatzCars)do
-        frakcars = table.deletevalue(frakcars,theVehicle,true)
+        frakcars = table.deleteValue(frakcars,theVehicle,true)
         destroyElement(theVehicle)
     end
     ersatzCars = {}

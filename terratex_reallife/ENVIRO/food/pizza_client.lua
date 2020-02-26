@@ -25,10 +25,10 @@ function showPizzaMenu(player, mathchdim)
         setElementInterior(pMenuObject, 5)
         setElementDimension(pMenuObject, getElementDimension(getLocalPlayer()))
         setCameraMatrix(375.6870, -118.07375, 1002.62158, 375.6870, -118.07375, 1001.62158)
-        bindKey("arrow_r", "down", pMenunext_func)
-        bindKey("arrow_l", "down", pMenubefore_func)
-        bindKey("space", "down", pMenuclose_func)
-        bindKey("enter", "down", pMenubuy_func)
+        bindKey("arrow_r", "down", pMenuNext_func)
+        bindKey("arrow_l", "down", pMenuBefore_func)
+        bindKey("space", "down", pMenuClose_func)
+        bindKey("enter", "down", pMenuBuy_func)
     end
 end
 
@@ -38,7 +38,7 @@ function showPMenuInfo()
         local x, y, z = getElementPosition(getLocalPlayer())
         if (30 < getDistanceBetweenPoints3D(x, y, z, getElementPosition(pMenuObject))) then
             pMenuShowing = false;
-            pMenuclose_func();
+            pMenuClose_func();
         end
 
         local scx, scy = guiGetScreenSize()
@@ -47,7 +47,7 @@ function showPMenuInfo()
         dxDrawText("           Links-Zurück", 3, scy / 2, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText("           Rechts-Weiter", 3, scy / 2 + 15, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
         dxDrawText(string.format("Art: %s", pMenu[showPMenu][1]), 3, scy / 2 + 30, 1, 1, tocolor(0, 0, 255, 255), 1.5, "default-bold")
-        local preis = bMenu[showPMenu][3]
+        local preis = pMenu[showPMenu][3]
         if (isWetterEventID == 1) then
             preis = preis * 3
         elseif (isWetterEventID == 2) then
@@ -66,19 +66,19 @@ end
 
 addEventHandler("onClientRender", getRootElement(), showPMenuInfo)
 
-function pMenunext_func()
+function pMenuNext_func()
     showPMenu = showPMenu + 1
     if (showPMenu > 4) then showPMenu = 1 end
     setElementModel(pMenuObject, pMenu[showPMenu][2])
 end
 
-function pMenubefore_func()
+function pMenuBefore_func()
     showPMenu = showPMenu - 1
     if (showPMenu < 1) then showPMenu = 4 end
     setElementModel(pMenuObject, pMenu[showPMenu][2])
 end
 
-function pMenuclose_func()
+function pMenuClose_func()
     destroyElement(pMenuObject)
     pMenuObject = false
     setElementFrozen(getLocalPlayer(), false)
@@ -86,20 +86,20 @@ function pMenuclose_func()
     showPMenu = 1
     setCameraTarget(getLocalPlayer())
 
-    unbindKey("arrow_r", "down", pMenunext_func)
-    unbindKey("arrow_l", "down", pMenubefore_func)
-    unbindKey("space", "down", pMenuclose_func)
-    unbindKey("enter", "down", pMenubuy_func)
+    unbindKey("arrow_r", "down", pMenuNext_func)
+    unbindKey("arrow_l", "down", pMenuBefore_func)
+    unbindKey("space", "down", pMenuClose_func)
+    unbindKey("enter", "down", pMenuBuy_func)
 end
 
-function pMenubuy_func()
+function pMenuBuy_func()
     if (pMenuShowing) then
         if (pMenu[showPMenu][3] < getPlayerMoney(getLocalPlayer()) + 1) then
             triggerEvent("addFood", getLocalPlayer(), pMenu[showPMenu][4], true)
             triggerServerEvent("buyFood_B", getLocalPlayer(), pMenu[showPMenu][3], "pizza")
             showError(getLocalPlayer(), "Du hast dieses Menu erfolgreich gekauft!")
         else
-            showError(getLocalPlayer(), "Du hast nicht genuegend Geld!")
+            showError(getLocalPlayer(), "Du hast nicht genügend Geld!")
         end
     end
 end

@@ -121,7 +121,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
         if (MySql.helper.getValueSync("user", "force_nickchange", { Nickname = playerNick }) == 1) then
-            cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage einen Nickchange auf " .. config["maindomain"] .. " um deinen Account wieder freizuschalten.")
+            cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage eine Nickname-Änderung auf " .. config["maindomain"] .. " um deinen Account wieder freizuschalten.")
             return true;
         end
     end

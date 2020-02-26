@@ -1,7 +1,7 @@
 local showPMenu = 1
 local pMenuShowing = false
 local pMenuObject = false
-local pMenu = { { "Kleines Menue", 2218, 0.50, 20 }, { "Mittleres Menu", 2219, 0.80, 40 }, { "Grosses Menu", 2220, 1.20, 90 }, { "Salat", 2355, 1.00, 120 } }
+local pMenu = { { "Kleines Menü", 2218, 0.50, 20 }, { "Mittleres Menü", 2219, 0.80, 40 }, { "Grosses Menü", 2220, 1.20, 90 }, { "Salat", 2355, 1.00, 120 } }
 
 
 function createPizzaMarker()

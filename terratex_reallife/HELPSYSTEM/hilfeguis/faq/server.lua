@@ -9,24 +9,24 @@ function loadFAQ()
     local katCounter = 0
     local katIDs = {}
 
-    for theKey, dasatz in ipairs(result) do
+    for theKey, daSatz in ipairs(result) do
         -- Antwort Frage kat
         local tmpTable = {}
         local tmpID = katCounter + 1
-        if (katIDs[dasatz["kat"]]) then
-            tmpID = katIDs[dasatz["kat"]]
+        if (katIDs[daSatz["kat"]]) then
+            tmpID = katIDs[daSatz["kat"]]
         else
-            katIDs[dasatz["kat"]] = tmpID
+            katIDs[daSatz["kat"]] = tmpID
             faq[tmpID] = {
-                ["title"] = dasatz["kat"],
+                ["title"] = daSatz["kat"],
                 ["rules"] = {},
             }
             katCounter = katCounter + 1
         end
 
         tmpTable = {
-            ["text"] = dasatz["Frage"],
-            ["answer"] = dasatz["Antwort"]
+            ["text"] = daSatz["Frage"],
+            ["answer"] = daSatz["Antwort"]
         }
 
         table.insert(faq[tmpID]["rules"], tmpTable)

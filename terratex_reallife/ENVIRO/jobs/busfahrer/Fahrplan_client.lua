@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 15.02.14
--- Time: 22:47
--- To change this template use File | Settings | File Templates.
---
-
 fahrplanGUI = {
     tab = {},
     tabpanel = {},

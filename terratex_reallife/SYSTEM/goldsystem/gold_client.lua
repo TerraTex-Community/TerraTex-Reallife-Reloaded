@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 21.06.2016
--- Time: 14:12
--- To change this template use File | Settings | File Templates.
---
 local goldWindow;
 local goldBrowser;
 function startGoldUI()

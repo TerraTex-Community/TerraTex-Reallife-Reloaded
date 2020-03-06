@@ -5,46 +5,46 @@ function loadPrestigeFromDB()
 
     local result = MySql.helper.getSync("objects_prestiges", "*");
 
-    for theKey, dasatz in ipairs(result) do
+    for theKey, daSatz in ipairs(result) do
         -- ID 	x y	z stufe	name preis stufengeld
-        prestigeObjects[tonumber(dasatz["ID"])] = {}
-        prestigeObjects[tonumber(dasatz["ID"])]["x"] = dasatz["x"]
-        prestigeObjects[tonumber(dasatz["ID"])]["y"] = dasatz["y"]
-        prestigeObjects[tonumber(dasatz["ID"])]["z"] = dasatz["z"]
-        prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = tonumber(dasatz["stufe"])
-        prestigeObjects[tonumber(dasatz["ID"])]["name"] = dasatz["name"]
-        prestigeObjects[tonumber(dasatz["ID"])]["preis"] = tonumber(dasatz["preis"])
-        prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"] = tonumber(dasatz["grundpreis"])
-        prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["stufengeld"])
-        prestigeObjects[tonumber(dasatz["ID"])]["besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { prestigeKey = dasatz["ID"] });
-        prestigeObjects[tonumber(dasatz["ID"])]["pickup"] = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1247, 5000)
-        vioSetElementData(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], "prestigeID", tonumber(dasatz["ID"]))
-        addEventHandler("onPickupHit", prestigeObjects[tonumber(dasatz["ID"])]["pickup"], showPrestigeInfos)
+        prestigeObjects[tonumber(daSatz["ID"])] = {}
+        prestigeObjects[tonumber(daSatz["ID"])]["x"] = daSatz["x"]
+        prestigeObjects[tonumber(daSatz["ID"])]["y"] = daSatz["y"]
+        prestigeObjects[tonumber(daSatz["ID"])]["z"] = daSatz["z"]
+        prestigeObjects[tonumber(daSatz["ID"])]["stufe"] = tonumber(daSatz["stufe"])
+        prestigeObjects[tonumber(daSatz["ID"])]["name"] = daSatz["name"]
+        prestigeObjects[tonumber(daSatz["ID"])]["preis"] = tonumber(daSatz["preis"])
+        prestigeObjects[tonumber(daSatz["ID"])]["grundpreis"] = tonumber(daSatz["grundpreis"])
+        prestigeObjects[tonumber(daSatz["ID"])]["stufengeld"] = tonumber(daSatz["stufengeld"])
+        prestigeObjects[tonumber(daSatz["ID"])]["besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { prestigeKey = daSatz["ID"] });
+        prestigeObjects[tonumber(daSatz["ID"])]["pickup"] = createPickup(daSatz["x"], daSatz["y"], daSatz["z"], 3, 1247, 5000)
+        vioSetElementData(prestigeObjects[tonumber(daSatz["ID"])]["pickup"], "prestigeID", tonumber(daSatz["ID"]))
+        addEventHandler("onPickupHit", prestigeObjects[tonumber(daSatz["ID"])]["pickup"], showPrestigeInfos)
 
-        local Text = dasatz["name"]
-        Text = string.format("%s\nWert: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["preis"])
-        Text = string.format("%s\nStufe: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["stufe"])
+        local Text = daSatz["name"]
+        Text = string.format("%s\nWert: %s", Text, prestigeObjects[tonumber(daSatz["ID"])]["preis"])
+        Text = string.format("%s\nStufe: %s", Text, prestigeObjects[tonumber(daSatz["ID"])]["stufe"])
 
-        if (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) then
-            Text = string.format("%s\nBesitzer: %s", Text, prestigeObjects[tonumber(dasatz["ID"])]["besitzer"])
+        if (prestigeObjects[tonumber(daSatz["ID"])]["besitzer"]) then
+            Text = string.format("%s\nBesitzer: %s", Text, prestigeObjects[tonumber(daSatz["ID"])]["besitzer"])
         end
 
-        setElementShowText(prestigeObjects[tonumber(dasatz["ID"])]["pickup"], { 0, 0, 255, 255 }, Text, false, 15, 1.3, 0.2)
+        setElementShowText(prestigeObjects[tonumber(daSatz["ID"])]["pickup"], { 0, 0, 255, 255 }, Text, false, 15, 1.3, 0.2)
 
-        if (not (prestigeObjects[tonumber(dasatz["ID"])]["besitzer"]) and prestigeObjects[tonumber(dasatz["ID"])]["stufe"] > 1) then
-            prestigeObjects[tonumber(dasatz["ID"])]["preis"] = prestigeObjects[tonumber(dasatz["ID"])]["grundpreis"]
-            prestigeObjects[tonumber(dasatz["ID"])]["stufe"] = 1
+        if (not (prestigeObjects[tonumber(daSatz["ID"])]["besitzer"]) and prestigeObjects[tonumber(daSatz["ID"])]["stufe"] > 1) then
+            prestigeObjects[tonumber(daSatz["ID"])]["preis"] = prestigeObjects[tonumber(daSatz["ID"])]["grundpreis"]
+            prestigeObjects[tonumber(daSatz["ID"])]["stufe"] = 1
 
             MySql.helper.update("objects_prestiges", {
-                preis = prestigeObjects[tonumber(dasatz["ID"])]["preis"],
+                preis = prestigeObjects[tonumber(daSatz["ID"])]["preis"],
                 stufe = 1
             }, {
-                ID = dasatz["ID"]
+                ID = daSatz["ID"]
             });
         end
 
-        if (tonumber(dasatz["stufe"]) == 1) then
-            prestigeObjects[tonumber(dasatz["ID"])]["stufengeld"] = tonumber(dasatz["grundpreis"])
+        if (tonumber(daSatz["stufe"]) == 1) then
+            prestigeObjects[tonumber(daSatz["ID"])]["stufengeld"] = tonumber(daSatz["grundpreis"])
         end
     end
 

@@ -1,14 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 16.04.14
--- Time: 23:21
--- To change this template use File | Settings | File Templates.
---
-
-
-
-
 local timers = {
     ["lv"] = nil,
     ["sf"] = nil,

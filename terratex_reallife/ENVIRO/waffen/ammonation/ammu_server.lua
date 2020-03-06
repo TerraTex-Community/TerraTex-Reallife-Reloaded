@@ -14,14 +14,14 @@ function respawnAmmoBot_Server()
     setElementInterior(ammoPed, 7)
     setElementPosition(ammoPed, 316.111328125, -133.859375, 999.6015625)
     setPedRotation(ammoPed, 95)
-    for theKey, thePlayer in ipairs(getElementsByType("player")) do
+    for _, thePlayer in ipairs(getElementsByType("player")) do
         triggerBotToClient_new(thePlayer)
     end
 
     addEventHandler("onPedWasted", ammoPed, respawnAmmoBot_Server)
 end
 
-function playerChangedDim_ammo(int, dim)
+function playerChangedDim_ammo(_, dim)
     if (dim ~= -1) then
         setTimer(playerChangedDim_ammo_now, 2000, 1, source)
     end

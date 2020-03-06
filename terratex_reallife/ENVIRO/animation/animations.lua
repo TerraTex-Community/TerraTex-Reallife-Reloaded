@@ -159,10 +159,10 @@ end
 
 --dancing
 
-function dance_func (player, cmd, style)
+function dance_func (player, _, style)
 
     if style then
-        local style = tonumber(style)
+        style = tonumber(style)
         if style == 1 then
             setPedAnimation(player, "DANCING", "dnce_M_a", -1, true, false, false)
         elseif style == 2 then
@@ -196,7 +196,7 @@ function dance_func (player, cmd, style)
 end
 addCommandHandler("dance", dance_func, false, false)
 
-function anim_test(thePlayer, cmd, block, anim)
+function anim_test(thePlayer, _, block, anim)
     setPedAnimation(thePlayer, block, anim, -1, false, false, false)
 end
 addCommandHandler("animtest", anim_test, false, false)

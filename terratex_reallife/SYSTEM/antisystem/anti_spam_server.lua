@@ -53,30 +53,27 @@ end
 addEventHandler("onPlayerChat", getRootElement(), chatfunc)
 
 function test_onconsole(command)
-    local cmdstring = split(command, " ")
-    local cmd = cmdstring[1]
+    local cmdString = split(command, " ")
+    local cmd = cmdString[1]
     if (not (cmd == "Next") and not (cmd == "Previous") and not (cmd == "Toggle")) then
         if not (tonumber(anti_flut_Data[source])) then
             anti_flut_Data[source] = 0
         end
-        cmdstring[1] = ""
-        local rest = table.concat(cmdstring, " ")
         anti_flut_Data[source] = anti_flut_Data[source] + 1
 
         if (isTimer(antifluttimer)) then
             if (anti_flut_Data[source] > 150) then
-                local pname = getPlayerName(source)
-                local IP = getPlayerIP(source)
+                local pName = getPlayerName(source)
                 local Serial = getPlayerSerial(source)
 
                 MySql.helper.insert("admin_user_timebans", {
-                    Nickname = pname,
+                    Nickname = pName,
                     Serial = Serial,
                     Grund = "ChatBoxSpam",
                     Admin = "Anti-Flood-System",
                     Minuten = 120
                 });
-                outputChatBox(string.format("Der Spieler %s wurde vom Anti-Flood-System gebannt. Grund: %s", pname, "ChatBoxSpam"), getRootElement(), 255, 0, 0)
+                outputChatBox(string.format("Der Spieler %s wurde vom Anti-Flood-System gebannt. Grund: %s", pName, "ChatBoxSpam"), getRootElement(), 255, 0, 0)
                 kickPlayer(source, "ChatBoxSpam")
             end
         end

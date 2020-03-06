@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy
--- Date: 23.02.2015
--- Time: 20:22
--- To change this template use File | Settings | File Templates.
---
-
 addEvent("startRace",true)
 function startRace_func(gegner, preis, ziel)
     vioSetElementData(gegner, "Racer", source)

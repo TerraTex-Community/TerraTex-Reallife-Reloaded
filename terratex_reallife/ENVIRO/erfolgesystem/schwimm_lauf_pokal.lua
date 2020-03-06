@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy
--- Date: 11.08.2014
--- Time: 20:37
--- To change this template use File | Settings | File Templates.
---
-
 function checkAddLaufUndSchwimm()
     setTimer(checkAddLaufUndSchwimm,1000,1)
     for theKey,thePlayer in ipairs(getElementsByType("player"))do

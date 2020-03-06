@@ -31,7 +31,6 @@ end
 
 ---try catch function - errors will be stored on Server directly
 ---@param func function that should be called
----@param ... any parameters of functions
 ---@return boolean, any|nil Status, Value
 function debug.tryAndCatch(func, ...)
     local status, errorOrValue = pcall(func, ...)

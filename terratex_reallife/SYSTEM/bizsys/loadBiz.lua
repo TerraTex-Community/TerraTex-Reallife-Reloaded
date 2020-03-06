@@ -3,14 +3,14 @@ bizPickupInfo = {}
 function loadBizFromDB_func()
     local result = MySql.helper.getSync("objects_businesses", "*");
     local zahler;
-    for theKey, dasatz in ipairs(result) do
-        zahler = tonumber(dasatz["ID"]);
+    for theKey, daSatz in ipairs(result) do
+        zahler = tonumber(daSatz["ID"]);
         bizData[zahler] = {}
-        bizData[zahler]["Name"] = dasatz["Name"]
-        bizData[zahler]["Preis"] = tonumber(dasatz["Preis"])
-        bizData[zahler]["Kasse"] = tonumber(dasatz["Kasse"])
+        bizData[zahler]["Name"] = daSatz["Name"]
+        bizData[zahler]["Preis"] = tonumber(daSatz["Preis"])
+        bizData[zahler]["Kasse"] = tonumber(daSatz["Kasse"])
         bizData[zahler]["Besitzer"] = MySql.helper.getValueSync("user_data", "Nickname", { bizKey = zahler });
-        bizData[zahler]["PaidUntil"] = tonumber(dasatz["PaidUntil"]);
+        bizData[zahler]["PaidUntil"] = tonumber(daSatz["PaidUntil"]);
 
         if (not isDevServer()) then
             if (bizData[zahler]["PaidUntil"] < getRealTime().timestamp) then
@@ -29,7 +29,7 @@ function loadBizFromDB_func()
             end
         end
 
-        local bizpickup = createPickup(dasatz["x"], dasatz["y"], dasatz["z"], 3, 1274, 5000)
+        local bizpickup = createPickup(daSatz["x"], daSatz["y"], daSatz["z"], 3, 1274, 5000)
         addEventHandler("onPickupHit", bizpickup, showBizInfo)
         bizPickupInfo[bizpickup] = zahler
         bizData[zahler]["Pickup"] = bizpickup

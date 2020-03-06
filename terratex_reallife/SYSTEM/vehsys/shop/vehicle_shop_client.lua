@@ -1,5 +1,5 @@
-local vehicleShopWindow = nil;
-local vehicleShopBrowser = nil;
+local vehicleShopWindow;
+local vehicleShopBrowser;
 local vehicleList;
 local vehicleLatestSlotData;
 

@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 2016-09-04
--- Time: 17:48
--- To change this template use File | Settings | File Templates.
---
-
 function replaceModel()
     local txd = engineLoadTXD("FILES/MODS/blitzer.txd", 1250 )
     engineImportTXD(txd, 1250)

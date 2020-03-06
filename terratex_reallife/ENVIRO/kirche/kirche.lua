@@ -133,7 +133,8 @@ function finishHeiratstart(verlobteName, TrauzeuginName, TrauzeugeName)
     local Trauzeuge = getPlayerFromIncompleteName(TrauzeugeName)
     if (verlobte) and (Trauzeugin) and (Trauzeuge) then
         if (vioGetElementData(verlobte, "verheiratet") == 0) and (vioGetElementData(source, "verheiratet") == 0) then
-            if (verlobte ~= source) and (Trauzeugin ~= source) and (Trauzeuge ~= source) and (Trauzeugin ~= Trauzeuge) and (Trauzeuge ~= verlobte) and (Trauzeugin ~= verlobte) then
+            if (verlobte ~= source) then
+                -- remove check as there are not so many players : and (Trauzeugin ~= source) and (Trauzeuge ~= source) and (Trauzeugin ~= Trauzeuge) and (Trauzeuge ~= verlobte) and (Trauzeugin ~= verlobte)
                 local vx, vy, vz = getElementPosition(source)
                 local tx, ty, tz = getElementPosition(source)
                 local tnx, tny, tnz = getElementPosition(source)

@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 23.06.2016
--- Time: 11:48
--- To change this template use File | Settings | File Templates.
---
 local timedGoldBooster = {"FoodBooster", "FuelBooster", "HufeisenBooster", "SkillBooster"}
 function getTimedGoldBooster()
     return timedGoldBooster;

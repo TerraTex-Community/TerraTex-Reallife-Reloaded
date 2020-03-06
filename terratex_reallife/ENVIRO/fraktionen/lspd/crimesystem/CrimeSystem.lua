@@ -1,10 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 21.07.2016
--- Time: 16:16
--- To change this template use File | Settings | File Templates.
---
 CrimeSystem.syncObject = false;
 function createCrimeSystemSyncObject()
     CrimeSystem.syncObject = createElement("SyncElement", "CrimeSystem");

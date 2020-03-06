@@ -18,11 +18,11 @@ function createABaustelle()
         c = c+1
     end
 
-    for theKey, theBaustellenID in ipairs(which) do
+    for _, theBaustellenID in ipairs(which) do
         table.insert(baustellentable, theBaustellenID)
         outputDebugString(string.format("Baustelle mit ID %s wurde geladen!", theBaustellenID))
         local node = xmlLoadFile(":"..getResourceName(getThisResource()).."/MAPS/baustellen/baustelle_"..theBaustellenID..".map")
-        local mapRoot = loadMapData(node, root)
+        loadMapData(node, root)
         xmlUnloadFile(node)
     end
 
@@ -44,7 +44,7 @@ function loadAllBaustellen()
     for theKey,theID in ipairs(baustellentable)do
         outputDebugString(string.format("Baustelle %s von %s wurde geladen!", theKey.."("..theID..")", table.getSize(baustellentable)))
         local node = xmlLoadFile(":"..getResourceName(getThisResource()).."/MAPS/baustellen/baustelle_"..theID..".map")
-        local mapRoot = loadMapData(node, root)
+        loadMapData(node, root)
         xmlUnloadFile(node)
 
     end

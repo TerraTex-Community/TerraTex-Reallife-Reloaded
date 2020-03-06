@@ -1,13 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 03.05.14
--- Time: 12:11
--- To change this template use File | Settings | File Templates.
---
-
---- NUR SERVER
-
 -- Spielertransaktionen zB Übergeben sind mit spieler abgedeckt
 local validKategorien = { ["job"] = true, ["fahrzeug"] = true, ["spieler"] = true, ["sonstiges"] = true, ["fraktion"] = true }
 --Optionale Parameter ab Kategorie
@@ -17,7 +7,7 @@ function changePlayerMoney(thePlayer, theBetrag, Kategorie, theReason, theReason
     if (not validKategorien[Kategorie]) then
         Kategorie = "sonstiges"
     end
-    saveMoneyLog(thePlayer, "Money", Kategorie, theBetrag, theReason, theReasonAdd)
+    saveMoneyLog(thePlayer, "Money", Kategorie, theBetrag, theReason, theReasonAdd, AdditionalData)
 end
 
 --Optionale Parameter ab Kategorie

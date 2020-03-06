@@ -1,5 +1,5 @@
-local skinShopWindow = nil;
-local skinShopBrowser = nil;
+local skinShopWindow;
+local skinShopBrowser;
 local startSkin = 0;
 
 addEvent("event_skin_shop_open", true);

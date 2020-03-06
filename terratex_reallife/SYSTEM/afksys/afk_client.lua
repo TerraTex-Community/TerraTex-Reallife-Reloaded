@@ -1,16 +1,16 @@
 local wasAFKTriggered=false
 
 
-function resetAFKtimer_client()
+function resetAFKTimer_client()
 		if(not(wasAFKTriggered))then
-			triggerServerEvent("resetAFKevent",getLocalPlayer())
+			triggerServerEvent("resetAFKEvent",getLocalPlayer())
 			wasAFKTriggered=true
 			setTimer(end_afk_trigger,150000,1)
 		
 		end
 end
-addEventHandler("onClientKey",getRootElement(),resetAFKtimer_client)
-addEventHandler("onClientClick",getRootElement(),resetAFKtimer_client)
+addEventHandler("onClientKey",getRootElement(),resetAFKTimer_client)
+addEventHandler("onClientClick",getRootElement(),resetAFKTimer_client)
 
 
 

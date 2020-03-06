@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 13.07.2016
--- Time: 13:36
--- To change this template use File | Settings | File Templates.
---
-
 function admins_func(theMaker, command)
     outputChatBox("Adminliste:", theMaker)
     local adminpre = " "

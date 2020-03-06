@@ -18,17 +18,17 @@ fraktionsrange = {}
 function teamserstellen()
 
     local result = MySql.helper.getSync("faction_names", "*");
-    for theKey, dasatz in ipairs(result) do
-        fraktionbezeichner[tonumber(dasatz["ID"])] = dasatz["Name"];
-        fraktionkuerzel[tonumber(dasatz["ID"])] = dasatz["NumberPlate"];
+    for theKey, daSatz in ipairs(result) do
+        fraktionbezeichner[tonumber(daSatz["ID"])] = daSatz["Name"];
+        fraktionkuerzel[tonumber(daSatz["ID"])] = daSatz["NumberPlate"];
     end
 
     result = MySql.helper.getSync("faction_ranks", "*");
-    for theKey, dasatz in ipairs(result) do
-        if (not fraktionsrange[tonumber(dasatz["FrakID"])]) then
-            fraktionsrange[tonumber(dasatz["FrakID"])] = {}
+    for theKey, daSatz in ipairs(result) do
+        if (not fraktionsrange[tonumber(daSatz["FrakID"])]) then
+            fraktionsrange[tonumber(daSatz["FrakID"])] = {}
         end
-        fraktionsrange[tonumber(dasatz["FrakID"])][tonumber(dasatz["RangID"])] = dasatz["Name"]
+        fraktionsrange[tonumber(daSatz["FrakID"])][tonumber(daSatz["RangID"])] = daSatz["Name"]
     end
 
     blacklist[0] = false
@@ -102,8 +102,8 @@ function teamserstellen()
     for n = 1, table.getn(team), 1 do
         if (blacklist[n] ~= false) then
             local result = MySql.helper.getSync("faction_blacklist", "*", { Fraktion = n });
-            for theKey, dasatz in ipairs(result) do
-                table.insert(blacklist[n], { dasatz["Name"], dasatz["ID"], dasatz["Von"], dasatz["Grund"] });
+            for theKey, daSatz in ipairs(result) do
+                table.insert(blacklist[n], { daSatz["Name"], daSatz["ID"], daSatz["Von"], daSatz["Grund"] });
             end
         end
     end

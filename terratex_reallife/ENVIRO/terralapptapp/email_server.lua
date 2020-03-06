@@ -3,12 +3,12 @@ function SendeMirMeineEmailsZu_func()
     local emails = MySql.helper.getSync("user_emails", "*", {Empfaenger = getPlayerName(source)});
     local emailTable = {};
 
-    for theKey, dasatz in ipairs(emails) do
+    for theKey, daSatz in ipairs(emails) do
         local readbool = false;
-        if (dasatz["neu"] == "1") then
+        if (daSatz["neu"] == "1") then
             readbool = true;
         end
-        table.insert(emailTable, { dasatz["Empfaenger"], dasatz["Sender"], dasatz["Datum"], dasatz["Betreff"], dasatz["Inhalt"], readbool, tonumber(dasatz["ID"]) });
+        table.insert(emailTable, { daSatz["Empfaenger"], daSatz["Sender"], daSatz["Datum"], daSatz["Betreff"], daSatz["Inhalt"], readbool, tonumber(daSatz["ID"]) });
     end
 
     triggerClientEvent(source, "hierdeineemails", source, emailTable);

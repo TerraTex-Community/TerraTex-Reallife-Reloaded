@@ -13,7 +13,7 @@ function agw_func(thePlayer, Command, player, Weapon)
 end
 addCommandHandler("agw", agw_func, false, false)
 
-function weaponPacket(thePlayer)
+function weaponPaket(thePlayer)
     if (isAdminLevel(thePlayer, 3)) then
         setPedArmor(thePlayer, 100)
         giveWeapon(thePlayer, 24, 1000)
@@ -23,7 +23,8 @@ function weaponPacket(thePlayer)
         giveWeapon(thePlayer, 31, 1000)
         giveWeapon(thePlayer, 38, 5000)
         triggerClientEvent(thePlayer, "addFood", thePlayer, 1000)
-        outputChatBox("Du hast ein Waffenpacket erhalten.", thePlayer)
+        outputChatBox("Du hast ein Waffenpaket erhalten.", thePlayer)
     end
 end
-addCommandHandler("waffenpacket", weaponPacket, false, false)
+addCommandHandler("waffenpaket", weaponPaket, false, false)
+addCommandHandler("wp", weaponPaket, false, false)

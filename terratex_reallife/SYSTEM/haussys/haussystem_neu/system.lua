@@ -31,35 +31,35 @@ end
 -- Häuser Laden
 function haussys_startup()
     local result = MySql.helper.getSync("objects_houses", "*");
-    for theKey, dasatz in ipairs(result) do
-         haeuser[tonumber(dasatz["ID"])]=new(Haus,
-                                                dasatz["ID"],
-                                                dasatz["CoordX"],
-                                                dasatz["CoordY"],
-                                                dasatz["CoordZ"],
-                                                dasatz["IRID"],
-                                                dasatz["Preis"],
-                                                dasatz["Miete"],
-                                                dasatz["Kasse"],
-                                                dasatz["city"],
-                                                dasatz["QM"],
-                                                dasatz["Stockwerke"],
-                                                dasatz["Wert"]);
+    for theKey, daSatz in ipairs(result) do
+         haeuser[tonumber(daSatz["ID"])]=new(Haus,
+                                                daSatz["ID"],
+                                                daSatz["CoordX"],
+                                                daSatz["CoordY"],
+                                                daSatz["CoordZ"],
+                                                daSatz["IRID"],
+                                                daSatz["Preis"],
+                                                daSatz["Miete"],
+                                                daSatz["Kasse"],
+                                                daSatz["city"],
+                                                daSatz["QM"],
+                                                daSatz["Stockwerke"],
+                                                daSatz["Wert"]);
     end
     outputDebugString("# "..table.getSize(haeuser).." Houses loaded!");
 
     result = MySql.helper.getSync("objects_houses_rooms", "*");
-    for theKey, dasatz in ipairs(result) do
-        iraeume[tonumber(dasatz["ID"])]=new(IRaum,
-                                    dasatz["ID"],
-                                    dasatz["CoordX"],
-                                    dasatz["CoordY"],
-                                    dasatz["CoordZ"],
-                                    dasatz["Interior"],
-                                    dasatz["Preis"],
-                                    dasatz["QM"],
-                                    dasatz["Stockwerke"],
-                                    dasatz["Wert"]);
+    for theKey, daSatz in ipairs(result) do
+        iraeume[tonumber(daSatz["ID"])]=new(IRaum,
+                                    daSatz["ID"],
+                                    daSatz["CoordX"],
+                                    daSatz["CoordY"],
+                                    daSatz["CoordZ"],
+                                    daSatz["Interior"],
+                                    daSatz["Preis"],
+                                    daSatz["QM"],
+                                    daSatz["Stockwerke"],
+                                    daSatz["Wert"]);
     end
     outputDebugString("# "..table.getSize(iraeume).." Interior-Rooms loaded!");
 end

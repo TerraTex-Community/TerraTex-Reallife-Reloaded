@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 27.07.2016
--- Time: 15:40
--- To change this template use File | Settings | File Templates.
---
-
 function cmdSuspect(thePlayer, cmd, crimeStateOrPlayNamePart)
     if (isBeamter(thePlayer)) then
         local criminals = CrimeSystem.getSuspects();

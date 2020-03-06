@@ -1,12 +1,12 @@
-function table.removeKey(theTable, index, newkeys)
-    if not newkeys then
-        newkeys = false
+function table.removeKey(theTable, index, newKeys)
+    if not newKeys then
+        newKeys = false
     end
 
     local newTable = {}
     for theKey, theValue in pairs(theTable) do
         if (not (theKey == index)) then
-            if (newkeys) then
+            if (newKeys) then
                 table.insert(newTable, theValue)
             else
                 newTable[theKey] = theValue
@@ -18,24 +18,29 @@ function table.removeKey(theTable, index, newkeys)
 
 end
 
-function table.deletevalue(thetable, value, newkeys)
-    for theKey, theTableValue in ipairs(thetable) do
+function table.deleteValue(theTable, value, newKeys)
+    for theKey, theTableValue in ipairs(theTable) do
         if (theTableValue == value) then
-            thetable = table.removeKey(thetable, theKey, newkeys)
+            theTable = table.removeKey(theTable, theKey, newKeys)
         end
     end
-    return thetable
+    return theTable
 end
 
+---getSize returns real size of a table by pairs loop
+---@param table table
+---@return number amount of values in table
 function table.getSize(table)
     if (type(table) ~= "table") then
         outputDebugString(debug.traceback());
     end
-    assert(type(table) == "table", "Table Espected got " .. type(table));
+    assert(type(table) == "table", "Table expected got " .. type(table));
+
     local i = 0
-    for theKey, theContent in pairs(table) do
+    for _, _ in pairs(table) do
         i = i + 1
     end
+
     return i
 end
 
@@ -85,16 +90,24 @@ end
 
 function table.merge(table1, table2)
     local newTable = {};
-    if (not table2 or table.getn(table2) ~= 0) then
-        for theKey, theValue in ipairs(table1) do
+    if (not table2 or table.getSize(table2) ~= 0) then
+        for _, theValue in ipairs(table1) do
             table.insert(newTable, theValue);
         end
-        for theKey, theValue in ipairs(table2) do
+
+        for _, theValue in ipairs(table2) do
             table.insert(newTable, theValue);
         end
     else
         newTable = table1;
     end
+
     return newTable;
 end
 
+function table.each(t, callback, ...)
+    for k, v in pairs(t) do
+        callback(v, ...)
+    end
+    return t
+end

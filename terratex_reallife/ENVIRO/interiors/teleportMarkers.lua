@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: Geramy92
--- Date: 16.06.2016
--- Time: 15:48
--- To change this template use File | Settings | File Templates.
---
-
 local teleportMarkers = {}
 function getTeleportMarkers()
     return teleportMarkers;

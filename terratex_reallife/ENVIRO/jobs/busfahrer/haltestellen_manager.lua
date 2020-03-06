@@ -1,13 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 14:49
--- To change this template use File | Settings | File Templates.
--- @Description: Diese Datei ist zur Generierung von Haltestellen und Routen von Grund auf NEU
-
-
-
 --@Scriptbeginn
 local aktuelleRoute=false
 

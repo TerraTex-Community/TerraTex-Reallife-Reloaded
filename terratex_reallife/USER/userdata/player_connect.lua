@@ -7,7 +7,7 @@ addEventHandler("onPlayerChangeNick", getRootElement(), nickChangeHandler)
 privVeh = {}
 
 function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playerVersionNumber)
-    vioSetElementData(source, "playTime_formated", "connecting")
+    vioSetElementData(source, "playTimeFormatted", "connecting")
     if playerNick == "Player" then
         cancelEvent(true, "Der Nick \"Player\" ist nicht gestattet! Wähle im Settings-Menü einen neuen!")
         return true;
@@ -121,7 +121,7 @@ function playerConnect(playerNick, playerIP, playerUsername, playerSerial, playe
         end
 
         if (MySql.helper.getValueSync("user", "force_nickchange", { Nickname = playerNick }) == 1) then
-            cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage einen Nickchange auf " .. config["maindomain"] .. " um einen Account wieder freizuschalten.")
+            cancelEvent(true, "Dein Account ist gesperrt: Dein Nickname entspricht nicht den Richtlinien. Beantrage eine Nickname-Änderung auf " .. config["maindomain"] .. " um deinen Account wieder freizuschalten.")
             return true;
         end
     end
@@ -129,15 +129,16 @@ end
 addEventHandler("onPlayerConnect", getRootElement(), playerConnect)
 
 addEvent("clientisreadyforlogin", true)
-function playerreadylogin()
+function playerReadyLogin()
     vioSetElementData(source, "logtries", 0)
+    outputChatBox("Willkommen auf " .. getServerName() .. " - Version: " .. globalConfig.version, source)
     if (MySql.helper.existSync("user", { Nickname = getPlayerName(source) })) then
         triggerClientEvent(source, "showLoginGui", source, source)
     else
         triggerClientEvent(source, "showRegisterGui", source, source)
     end
 end
-addEventHandler("clientisreadyforlogin", getRootElement(), playerreadylogin)
+addEventHandler("clientisreadyforlogin", getRootElement(), playerReadyLogin)
 
 function RegisterPlayerData(nickname, pass, email, gebt, gebm, geby, werber, gender)
 
@@ -337,10 +338,10 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "tode", tonumber(userdataData["Tode"]))
         vioSetElementData(source, "todelast", tonumber(userdataData["TodeLast"]))
         vioSetElementData(source, "playtime", tonumber(userdataData["PlayTime"]))
-        vioSetElementData(source, "afktime", tonumber(userdataData["afktime"]))
+        vioSetElementData(source, "AFKTime", tonumber(userdataData["AFKTime"]))
 
         if (tonumber(userdataData["afktime"]) > 0) then
-            outputChatBox("Aufgrund deiner Verstösse gegen das AFK System, wird deine Spielzeit weitere " .. tonumber(userdataData["afktime"]) .. " Minuten nicht gezählt", source, 255, 0, 0);
+            outputChatBox("Aufgrund deiner Verstösse gegen das AFK System, wird deine Spielzeit weitere " .. tonumber(userdataData["AFKTime"]) .. " Minuten nicht gezählt", source, 255, 0, 0);
         end
 
         vioSetElementData(source, "money", tonumber(userdataData["Geld"]))
@@ -566,10 +567,10 @@ function LoginPlayerData(nickname, pw)
             vioSetElementData(source, "slot" .. k, -1)
         end
 
-        for theKey, thevehicleentry in ipairs(privVeh) do
-            if (string.lower(thevehicleentry[1]) == string.lower(getPlayerName(source))) then
-                local slot = thevehicleentry[2]
-                vioSetElementData(source, "slot" .. slot, thevehicleentry[3])
+        for theKey, theVehicleentry in ipairs(privVeh) do
+            if (string.lower(theVehicleentry[1]) == string.lower(getPlayerName(source))) then
+                local slot = theVehicleentry[2]
+                vioSetElementData(source, "slot" .. slot, theVehicleentry[3])
             end
         end
 
@@ -666,32 +667,32 @@ addEventHandler("onPlayerCommand", getRootElement(), dontcmd)
 function loadGutschriften(thePlayer)
     local result = MySql.helper.getSync("user_gifts", "*", { Nickname = getPlayerName(thePlayer) });
 
-    for theKey, dasatz in ipairs(result) do
-        outputChatBox(dasatz["Grund"], thePlayer, 0, 255, 0)
+    for theKey, daSatz in ipairs(result) do
+        outputChatBox(daSatz["Grund"], thePlayer, 0, 255, 0)
         outputChatBox("Du erhälst dafür:", thePlayer, 0, 255, 0)
 
-        if (tonumber(dasatz["Geld"]) > 0) or (tonumber(dasatz["Geld"]) < 0) then
-            outputChatBox(string.format("- Geld: %s", toprice(dasatz["Geld"])), thePlayer, 0, 255, 0)
-            changePlayerBank(thePlayer, tonumber(dasatz["Geld"]), "sonstiges", "Gutschrift", dasatz["Grund"])
+        if (tonumber(daSatz["Geld"]) > 0) or (tonumber(daSatz["Geld"]) < 0) then
+            outputChatBox(string.format("- Geld: %s", toprice(daSatz["Geld"])), thePlayer, 0, 255, 0)
+            changePlayerBank(thePlayer, tonumber(daSatz["Geld"]), "sonstiges", "Gutschrift", daSatz["Grund"])
         end
 
-        if (tonumber(dasatz["VehSlots"]) > 0) then
-            outputChatBox(string.format("- Fahrzeugslots: %s", dasatz["VehSlots"]), thePlayer, 0, 255, 0)
-            vioSetElementData(thePlayer, "maxslots", vioGetElementData(thePlayer, "maxslots") + tonumber(dasatz["VehSlots"]))
+        if (tonumber(daSatz["VehSlots"]) > 0) then
+            outputChatBox(string.format("- Fahrzeugslots: %s", daSatz["VehSlots"]), thePlayer, 0, 255, 0)
+            vioSetElementData(thePlayer, "maxslots", vioGetElementData(thePlayer, "maxslots") + tonumber(daSatz["VehSlots"]))
             local k = 0
-            for k = 0, tonumber(dasatz["VehSlots"]) - 1, 1 do
+            for k = 0, tonumber(daSatz["VehSlots"]) - 1, 1 do
                 vioSetElementData(thePlayer, "slot" .. vioGetElementData(thePlayer, "maxslots") - k, -1)
             end
         end
 
-        MySql.helper.delete("user_gifts", { ID = dasatz["ID"] });
+        MySql.helper.delete("user_gifts", { ID = daSatz["ID"] });
     end
 
     local result = MySql.helper.getSync("user_offline_messages", "*", { Nickname = getPlayerName(thePlayer) });
 
-    for theKey, dasatz in ipairs(result) do
-        outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", dasatz["VonName"], dasatz["Message"], dasatz["Time"]), thePlayer)
-        MySql.helper.delete("user_offline_messages", { ID = dasatz["ID"] });
+    for theKey, daSatz in ipairs(result) do
+        outputChatBox(string.format("Offline-Message von %s: %s (Zeit: %s)", daSatz["VonName"], daSatz["Message"], daSatz["Time"]), thePlayer)
+        MySql.helper.delete("user_offline_messages", { ID = daSatz["ID"] });
     end
 
     MySql.helper.update("user", { AktiveDays = 0 }, { Nickname = getPlayerName(thePlayer) });

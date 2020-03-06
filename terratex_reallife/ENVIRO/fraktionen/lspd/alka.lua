@@ -28,7 +28,7 @@ addEventHandler("onColShapeHit_alka", Alka_recHitShape, Alka_SendWarning)
 
 function Alka_setsechsWanted(hitPlayer)
     if (getElementInterior(hitPlayer) == 0 and getElementDimension(hitPlayer) == 0) then
-        local x, y, z = getElementPosition(hitPlayer)
+        local x, y = getElementPosition(hitPlayer)
         if (isInsideRadarArea(Alka_recHitShape, x, y)) then
             if (CrimeSystem.getCrimePercentage(hitPlayer) < 70) then
                 CrimeSystem.addNewCrime(hitPlayer, 904, "System");
@@ -41,7 +41,7 @@ function Alka_setsechsWanted(hitPlayer)
     end
 end
 
-function setAlka_func(thePlayer, cmd, toPlayerNamePart)
+function setAlka_func(thePlayer, _, toPlayerNamePart)
     if (toPlayerNamePart) then
         if (isBeamter(thePlayer)) then
             local toPlayer = getPlayerFromIncompleteName(toPlayerNamePart)

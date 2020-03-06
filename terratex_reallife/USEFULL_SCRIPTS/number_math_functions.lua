@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 09.02.14
--- Time: 01:15
--- To change this template use File | Settings | File Templates.
---
-
 function isNumeric(a)
     return type(tonumber(a)) == "number"
 end

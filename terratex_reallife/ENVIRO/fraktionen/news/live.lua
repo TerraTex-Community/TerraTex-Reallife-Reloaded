@@ -57,7 +57,7 @@ function live_func(thePlayer, Command, theCommand, theArgument)
                         local player = getPlayerFromIncompleteName(theArgument)
                         if (player) then
                             if (vioGetElementData(player, "isInNewsLive")) then
-                                table.deletevalue(livePlayers, player)
+                                table.deleteValue(livePlayers, player)
                                 vioSetElementData(player, "isInNewsLive", false)
                                 outputChatBox("Du wurdest aus dem Livegspräch entfernt!", player, 255, 150, 150)
                                 outputChatBox("Du hast den Spieler erfolgreich aus dem Livegespräch entfernt!", thePlayer, 255, 150, 150)
@@ -107,7 +107,7 @@ function live_func(thePlayer, Command, theCommand, theArgument)
             if (theCommand == "cancel") then
                 if (vioGetElementData(thePlayer, "isInNewsLive")) then
                     vioSetElementData(thePlayer, "isInNewsLive", false)
-                    table.deletevalue(livePlayers, thePlayer)
+                    table.deleteValue(livePlayers, thePlayer)
                     showError(thePlayer, "Du hast das Livegespraech verlassen!")
                     outputChatBox(string.format("Der Spieler %s hat das Livegespräch verlassen!", getPlayerName(thePlayer)), liveLeader, 255, 150, 150)
                 else
@@ -132,7 +132,7 @@ function onLiveDisconnect()
         livePlayers = {}
         liveLeader = nil
     elseif (vioGetElementData(source, "isInNewsLive")) then
-        table.deletevalue(livePlayers, source)
+        table.deleteValue(livePlayers, source)
         outputChatBox(string.format("Der Spieler %s hat das Livegespräch verlassen!", getPlayerName(source)), liveLeader, 255, 150, 150)
     end
 end

@@ -1,11 +1,3 @@
---
--- Created by IntelliJ IDEA.
--- User: geramy
--- Date: 21.06.2016
--- Time: 21:57
--- To change this template use File | Settings | File Templates.
---
-
 function buyNewGold_func(amount)
     if (amount * config["gold.price"] <= getPlayerMoney(source)) then
         if (amount > 0) then

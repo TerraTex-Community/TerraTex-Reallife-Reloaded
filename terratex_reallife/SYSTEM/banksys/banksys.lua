@@ -96,7 +96,7 @@ function getCarVersicherung_func(thePlayer)
 end
 addEventHandler("getCarVersicherung", getRootElement(), getCarVersicherung_func)
 
-function showBankGui(mouseButton, buttonState, playerWhoClicked)
+function showBankGui(_, _, playerWhoClicked)
     if (getElementModel(source) == 2942 and playerWhoClicked) then
         local dis = getElementsDistance(source, playerWhoClicked)
 
@@ -107,7 +107,7 @@ function showBankGui(mouseButton, buttonState, playerWhoClicked)
 end
 addEventHandler("onElementClicked", getRootElement(), showBankGui)
 
-function pay_func(source, command, empf, betrags)
+function pay_func(source, _, empf, betrags)
     if (empf and betrags) then
         if (isPlayerLoggedIn(source)) then
             local betrag = tonumber(betrags)
@@ -145,7 +145,7 @@ function pay_func(source, command, empf, betrags)
 end
 addCommandHandler("pay", pay_func, false, false)
 
-function betteln_func(thePlayer, Command, empf, betrag)
+function betteln_func(thePlayer, _, empf, betrag)
     if (empf) and (betrag) then
         local pp = getPlayerFromIncompleteName(empf)
         if (pp) then
@@ -196,7 +196,7 @@ function spendenServer_func(betrag)
     vioSetElementData(source, "ingamespenden", vioGetElementData(source, "ingamespenden") + betrag)
     showError(source, string.format("Sie haben erfolgreich %s $ an die Vereinigten Hilfswerke fuer Eventveranstalltung \195\188berwiesen!", betrag))
     frakkasse[3] = frakkasse[3] + betrag
-    for theKey, thePlayer in ipairs(getPlayersInTeam(team[3])) do
+    for _, thePlayer in ipairs(getPlayersInTeam(team[3])) do
         outputChatBox(string.format("%s hat %s gespendet!", getPlayerName(source), toprice(betrag)), thePlayer, 0, 255, 0)
     end
 end

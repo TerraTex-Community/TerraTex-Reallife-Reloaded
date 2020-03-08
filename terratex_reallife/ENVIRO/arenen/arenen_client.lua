@@ -63,6 +63,9 @@ function showArenenGui_func(gungamePlayer, gungamerestzeit, stuntplayers, active
     guiGridListSetItemText(ArenaGUI_Grid[1], row, ArenaGUI_Colum[3], "12", false, true)
     guiGridListSetItemText(ArenaGUI_Grid[1], row, ArenaGUI_Colum[4], tostring(activeDurbyPlayers), false, true)
 
+    if (not getDurbyRestTime) then
+        getDurbyRestTime = 0
+    end
     local timestring = "-"
     if (getRestTimeType) then
         if tonumber(getRestTimeType) then

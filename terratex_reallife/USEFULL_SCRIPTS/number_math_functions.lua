@@ -50,6 +50,15 @@ end
 
 math.__random = math.random
 function math.random(value, maxvalue)
+    if (value and type(value) ~= "number") then
+        logMessageWithStackTrace(LOG_LEVEL.ERROR, "Expected Number at Argument #1 ");
+        return;
+    else
+        if (maxvalue and type(maxvalue) ~= "number") then
+            logMessageWithStackTrace(LOG_LEVEL.ERROR, "Expected Number at Argument #2 ");
+            return;
+        end
+    end
 
     if (not value) then
         return math.__random()

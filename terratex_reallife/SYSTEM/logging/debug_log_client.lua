@@ -16,3 +16,10 @@ function logMessageWithStackTrace(level, message)
 
     triggerLatentServerEvent ( "store_client_debug", 5000, true, getLocalPlayer(), getRealTime(), message, level, callInfo.source, callInfo.linedefined, debug.traceback())
 end
+
+LOG_LEVEL = {
+    CUSTOM_MSG = 0,
+    ERROR = 1,
+    WARNING = 2,
+    INFO = 3
+}

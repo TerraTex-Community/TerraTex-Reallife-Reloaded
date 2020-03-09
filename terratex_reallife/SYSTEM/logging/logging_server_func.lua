@@ -15,3 +15,10 @@ addEventHandler("onDebugMessage", getRootElement(),
         function(message, level, file, line)
             storeLogEntriesAsjson(message, level, file, line, getRealTime(), debug.traceback())
         end)
+
+LOG_LEVEL = {
+    CUSTOM_MSG = 0,
+    ERROR = 1,
+    WARNING = 2,
+    INFO = 3
+}

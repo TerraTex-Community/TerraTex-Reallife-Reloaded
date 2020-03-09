@@ -60,6 +60,9 @@ function save_log(logname, message, noNewLineAtEnd)
     local filehandler
     if not (fileExists(filename)) then
         filehandler = fileCreate(filename)
+        if (not filehandler) then
+            outputDebugString("Could not create logfile: " .. logname, 1)
+        end
         fileClose(filehandler)
     end
 

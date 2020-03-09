@@ -173,7 +173,7 @@ function isWaterPlane(vehid)
     if type(vehid) == "userdata" then
         vehid = getElementModel(vehid)
     end
-    if (getVehicleType(vehid) == "460") then
+    if (vehid == 460) then
         return true
     else
         return false

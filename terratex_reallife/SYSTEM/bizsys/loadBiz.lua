@@ -214,7 +214,7 @@ function paylease_cmd_info(thePlayer)
         if (price <= getPlayerBank(thePlayer)) then
             changePlayerBank(thePlayer, -price, "sonstiges", "Business Pachtkosten")
             bizData[bizNum]["PaidUntil"] = calcTimeStamp;
-            showError(thePlayer, "Die Pacht deines Business wurde um " .. paidDays .. " Tage verlängert!");
+            showError(thePlayer, "Die Pacht deines Business wurde um " .. math.round(paidDays) .. " Tage verlängert!");
         else
             showError(thePlayer, "Die Pacht kostet " .. toprice(price) .. ". Du hast nicht genug auf deiner Bank!");
         end

@@ -53,8 +53,9 @@ function ammoBuyWeste_server_func(theType)
         else
             changePlayerMoney(source, -15, "sonstiges", "Einkauf im Ammonation")
             setPedArmor(source, 50)
-            frakkasse[attackerLadenInfos[1][1]] = frakkasse[attackerLadenInfos[1][1]] + 1.50
-            frakkasse[attackerLadenInfos[2][1]] = frakkasse[attackerLadenInfos[2][1]] + 1.50
+
+
+            addMoneyOfGFType("weapon", 15, true, "Einkauf beim Waffenhändler")
             showError(source, "Sie haben erfolgreich eine leichte Schutzweste gekauft!")
         end
     else
@@ -63,8 +64,8 @@ function ammoBuyWeste_server_func(theType)
         else
             changePlayerMoney(source, -25, "sonstiges", "Einkauf im Ammonation")
             setPedArmor(source, 100)
-            frakkasse[attackerLadenInfos[1][1]] = frakkasse[attackerLadenInfos[1][1]] + 1.50
-            frakkasse[attackerLadenInfos[2][1]] = frakkasse[attackerLadenInfos[2][1]] + 1.50
+
+            addMoneyOfGFType("weapon", 25, true, "Einkauf beim Waffenhändler")
             showError(source, "Sie haben erfolgreich eine schwere Schutzweste gekauft!")
         end
     end
@@ -89,9 +90,7 @@ function ammoBuyWeapon_Event_func(ID)
             changePlayerMoney(source, -weaponPrice, "sonstiges", "Einkauf im Ammonation")
             giveWeapon(source, weaponID, 5, false)
 
-            --frakkasse[6]=frakkasse[6]+weaponPrice/10
-            frakkasse[attackerLadenInfos[1][1]] = frakkasse[attackerLadenInfos[1][1]] + weaponPrice / 10
-            frakkasse[attackerLadenInfos[2][1]] = frakkasse[attackerLadenInfos[2][1]] + weaponPrice / 10
+            addMoneyOfGFType("weapon", weaponPrice / 5, true, "Einkauf beim Waffenhändler")
             showError(source, "Du hast erfolgreich diese Waffe gekauft!")
 
         end

@@ -100,6 +100,16 @@ end
 addCommandHandler("tunekmh", tune_perkm, false, false)
 
 function setColor_func(thePlayer, cmd, colorA, colorB, colorC, colorA2, colorB2, colorC2)
+    if not colorA then
+        colorA = math.random(0,255)
+    end
+    if not colorB then
+        colorA = math.random(0,255)
+    end
+    if not colorC then
+        colorA = math.random(0,255)
+    end
+
     if not colorA2 or not colorB2 or not colorC2 then
         colorA2, colorB2, colorC2 = colorA, colorB, colorC
     end

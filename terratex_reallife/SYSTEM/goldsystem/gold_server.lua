@@ -18,7 +18,9 @@ local itemPrices = {
     FoodBooster = 10,
     FuelBooster = 10,
     HufeisenBooster = 5,
-    SkillBooster = 20
+    SkillBooster = 20,
+    ["Corona.SkillBooster"] = -1,
+    ["Corona.MoneyBooster"] = -1
 };
 
 function buyGoldItem_func(itemId)
@@ -57,3 +59,15 @@ function buyGoldItem_func(itemId)
 end
 addEvent("buyGoldItem", true)
 addEventHandler("buyGoldItem", getRootElement(), buyGoldItem_func)
+
+function extendGoldItem(player, itemId, days)
+    local timestampOld = vioGetElementData(player, "Gold." .. itemId);
+    local time = getRealTime();
+    local timestamp = time.timestamp;
+    local result = timestampOld - timestamp;
+    if (result < 0) then
+        result = 0
+    end
+    result = result + timestamp + (days * 24 * 60 * 60);
+    vioSetElementData(player, "Gold." .. itemId, result);
+end

@@ -128,6 +128,12 @@ function giveEasterPresent(player)
     elseif ("carslot" == config.item) then
         vioSetElementData(player, "maxslots", vioGetElementData(player, "maxslots") + amount)
         outputChatBox("Du hast im Inneren des Eis " .. amount .. " Carslots gefunden!", player, 166, 0, 166)
+    elseif ("coronaskillbooster" == config.item) then
+        extendGoldItem(player, "Corona.SkillBooster", amount)
+        outputChatBox("Du hast im Inneren des Eis einen Special Skill Booster für " .. amount .. " Tage gefunden!", player, 166, 0, 166)
+    elseif ("coronamoneybooster" == config.item) then
+        extendGoldItem(player, "Corona.MoneyBooster", amount)
+        outputChatBox("Du hast im Inneren des Eis einen Special Money Booster für " .. amount .. " Tage gefunden!", player, 166, 0, 166)
     end
 end
 
@@ -170,7 +176,11 @@ easterPresents = {
     { ["maxAmount"] = 10, ["item"] = "blutstreifentest" },
     { ["maxAmount"] = 15, ["item"] = "blutstreifentest" },
     { ["maxAmount"] = 20, ["item"] = "blutstreifentest" },
-    { ["maxAmount"] = 1, ["item"] = "carslot" }
+    { ["maxAmount"] = 1, ["item"] = "carslot" },
+    { ["maxAmount"] = 1, ["item"] = "coronaskillbooster" },
+    { ["maxAmount"] = 7, ["item"] = "coronaskillbooster" },
+    { ["maxAmount"] = 1, ["item"] = "coronamoneybooster" },
+    { ["maxAmount"] = 7, ["item"] = "coronamoneybooster" }
 }
 
 function addEi_func(thePlayer, cmd, comment, ...)

@@ -18,3 +18,6 @@ ALTER TABLE `user` CHANGE `werber` `werber` TEXT CHARACTER SET latin1 COLLATE la
 ALTER TABLE `user` CHANGE `werber` `werber` VARCHAR(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 UPDATE user SET werber = null;
 ALTER TABLE `user` ADD CONSTRAINT `werberToNickname` FOREIGN KEY (`werber`) REFERENCES `user`(`Nickname`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `user_gold` ADD `CoronaSkillBooster` INT NOT NULL DEFAULT '0';
+ALTER TABLE `user_gold` ADD `CoronaMoneyBooster` INT NOT NULL DEFAULT '0';

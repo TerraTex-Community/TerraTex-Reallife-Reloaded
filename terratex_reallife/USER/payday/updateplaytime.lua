@@ -75,12 +75,11 @@ function controlWeber(thePlayer)
                     Geld = 1500,
                     Grund = "Der von dir geworbene Spieler " .. getPlayerName(thePlayer) .. " hat 25 Spielstunden erreicht!"
                 });
-                dbExec(MySql._connection, "UPDATE user_data SET werbernum = werbernum + 1 WHERE Nickname = ?", werber);
-                local maxwerb = MySql.helper.getValueSync("user_data", "werbernum", { Nickname = werber });
+                local currentWerber = MySql.helper.getValueSync("user_data", "werbernum", { Nickname = werber }) + 1;
+                local currentWerber = currentWerber + 1
 
-                if (maxwerb == 5) then
-                    MySql.helper.update("user_data", { werbernum = 0 }, { Nickname = werber });
-
+                if (currentWerber == 5) then
+                    currentWerber = 0;
                     MySql.helper.insert("user_gifts", {
                         Nickname = werber,
                         Geld = 10000,
@@ -88,6 +87,7 @@ function controlWeber(thePlayer)
                         Grund = "Es haben 5 von dir Geworbene Spieler 25 Spielstunden erreicht!"
                     });
                 end
+                MySql.helper.update("user_data", { werbernum = currentWerber }, { Nickname = werber });
             end
         end
     end

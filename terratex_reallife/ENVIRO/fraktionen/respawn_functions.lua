@@ -80,7 +80,7 @@ function respawnNoobCars(thePlayer,command,vehiclestring,frak)
         end
 
     elseif(vehiclestring=="noob")then
-        if(isAdminLevel(thePlayer,1)) or (console[1]==thePlayer) then
+        if(isAdminLevel(thePlayer,1)) then
 
             for key, theVehicle in pairs(noobCars) do
                 if not(isAnyOneInVehicle(theVehicle))then
@@ -102,7 +102,7 @@ function respawnNoobCars(thePlayer,command,vehiclestring,frak)
             end
         end
     elseif(vehiclestring=="muell")then
-        if(isAdminLevel(thePlayer,1)) or (console[1]==thePlayer) then
+        if(isAdminLevel(thePlayer,1)) then
 
             for key, theVehicle in pairs(trashCars) do
                 if not(isAnyOneInVehicle(theVehicle))then
@@ -124,7 +124,7 @@ function respawnNoobCars(thePlayer,command,vehiclestring,frak)
             end
         end
     elseif(vehiclestring=="pizza")then
-        if(isAdminLevel(thePlayer,1)) or (console[1]==thePlayer) then
+        if(isAdminLevel(thePlayer,1)) then
 
             for key, theVehicle in pairs(pizzaRoller) do
                 if not(isAnyOneInVehicle(theVehicle))then

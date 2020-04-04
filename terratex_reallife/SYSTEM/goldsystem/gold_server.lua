@@ -62,6 +62,9 @@ addEventHandler("buyGoldItem", getRootElement(), buyGoldItem_func)
 
 function extendGoldItem(player, itemId, days)
     local timestampOld = vioGetElementData(player, "Gold." .. itemId);
+    if (not timestampOld) then
+        timestampOld = 0
+    end
     local time = getRealTime();
     local timestamp = time.timestamp;
     local result = timestampOld - timestamp;

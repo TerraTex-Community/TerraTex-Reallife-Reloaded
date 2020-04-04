@@ -14,8 +14,8 @@ function foundHufeisen()
         if (math.random(0,1) == 1) then
             type = "Skill"
         end
-        extendGoldItem(player, "Corona.".. type .. "Booster", value)
-        outputChatBox("Du hast am Hufeisen noch einen Special ".. type .. " Booster für "..value.." Tage gefunden!", player, 166, 0, 166)
+        extendGoldItem(source, "Corona.".. type .. "Booster", value)
+        outputChatBox("Du hast am Hufeisen noch einen Special ".. type .. " Booster für "..value.." Tage gefunden!", source, 166, 0, 166)
     end
 
     if (vioGetElementData(source, "Hufeisen") > 9) then

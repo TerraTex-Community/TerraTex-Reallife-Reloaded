@@ -109,10 +109,35 @@
             </div>
         </div>
 
-        <div class="card" id="placeholder">
+        <div class="card" id="Corona.MoneyBooster">
+            <h5 class="card-header">Special Money Booster</h5>
+            <div class="card-body">
+                Diesen Booster kannst du nur in verschiedenen Drops finden (Events, Bahnhöfe ...).
+                Er verdoppelt das Gehalt bei allen Jobs.
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                20 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+            </div>
         </div>
 
-        <div class="card" id="placeholder2">
+        <div class="card" id="Corona.SkillBooster">
+            <h5 class="card-header">Special Skill Booster</h5>
+            <div class="card-body">
+                Diesen Booster kannst du nur in verschiedenen Drops finden (Events, Bahnhöfe ...).
+                Er verdreifacht deine Skillpunkte bei allen Jobs. (kann mit dem normalen Skillbooster kombiniert werden)
+
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                20 <img src="styles/images/gold-1013618_640.png" style="height: 30px"/>
+            </div>
+            <div class="card-footer text-muted text-xs-center">
+                <a href="#" class="btn btn-primary sellButton hidden">Jetzt Kaufen!</a>
+                <span class="expiringTime hidden"><i class="fa fa-clock-o fa-lg"></i> <span class="days"></span> Tage</span>
+            </div>
         </div>
     </div>
 </div>
@@ -149,13 +174,17 @@
             obj.find(".sellButton").addClass("hidden");
             obj.find(".expiringTime").removeClass("hidden");
         } else {
+            obj.find(".expiringTime").addClass("hidden");
+            if (id.startsWith("Corona.")) {
+                return;
+            }
+
             if (extend) {
                 obj.find(".sellButton").html("Jetzt Verlängern!");
             } else {
                 obj.find(".sellButton").html("Jetzt Kaufen!");
             }
             obj.find(".sellButton").removeClass("hidden");
-            obj.find(".expiringTime").addClass("hidden");
         }
     }
 </script>

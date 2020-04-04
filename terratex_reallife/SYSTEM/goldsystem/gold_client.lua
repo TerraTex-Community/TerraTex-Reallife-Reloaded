@@ -70,6 +70,8 @@ function browserActualizeFields(browser)
     js = js .. getItemJS("HufeisenBooster");
     js = js .. getItemJS("FoodBooster");
     js = js .. getItemJS("SkillBooster");
+    js = js .. getItemJS("Corona.SkillBooster");
+    js = js .. getItemJS("Corona.MoneyBooster");
 
     js = js .. "});";
     executeBrowserJavascript(browser, js)

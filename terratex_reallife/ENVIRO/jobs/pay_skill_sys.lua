@@ -164,6 +164,7 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
                 end
             end
         end
+
         --Berechnung aufteilung PayDay und direkte Auszahlung
         local PayDayFaktor = math.random(jobSetupTable[jobID][4][1] * 100, jobSetupTable[jobID][4][2] * 100) / 100
         local betragPayDay = math.round(PayDayFaktor * gesamtGehalt, 2)
@@ -173,20 +174,32 @@ function giveJobGehalt(thePlayer, jobID, auftraege, entfernung, definedMoney)
             betragDirekt = math.random(betragDirekt * jobSetupTable[jobID][5], betragDirekt)
         end
 
+        if (isGoldBoosterActive(thePlayer, "Corona.MoneyBooster")) then
+            betragPayDay = betragPayDay * 2;
+            betragDirekt = betragDirekt * 2;
+        end
+
+
         vioSetElementData(thePlayer, "addPayDayGehalt", vioGetElementData(thePlayer, "addPayDayGehalt") + betragPayDay) -- Geld zum PayDay addieren
         --PayDay Gehalt in den Log anzeigen
         saveMoneyLog(thePlayer, "Bank", "job", betragPayDay, jobSetupTable[jobID][8], "Gehalt zum PayDay")
 
         if (betragDirekt > 0) then -- Nur Geldeintrag, wenn auch Geld zum eintragen vorhanden ist
-        changePlayerMoney(thePlayer, betragDirekt, "job", jobSetupTable[jobID][8], "direktes Gehalt")
+            changePlayerMoney(thePlayer, betragDirekt, "job", jobSetupTable[jobID][8], "direktes Gehalt")
+        end
+
+        local multiplicator = 1;
+        if (isGoldBoosterActive(thePlayer, "SkillBooster")) then
+            multiplicator = 2;
+        end
+        if (isGoldBoosterActive(thePlayer, "Corona.SkillBooster")) then
+            multiplicator = multiplicator * 3;
         end
 
         --Ehöhung der Skillpunkte nach Anzahl auftraege
-        vioSetElementData(thePlayer, skillPointsString, skillPoints + auftraege)
+        vioSetElementData(thePlayer, skillPointsString, skillPoints + (auftraege * multiplicator))
 
-        if (isGoldBoosterActive(thePlayer, "SkillBooster")) then
-            vioSetElementData(thePlayer, skillPointsString, skillPoints + (auftraege * 2))
-        end
+
 
         if (skill < 5) then
             if (vioGetElementData(thePlayer, skillPointsString) >= jobSetupTable[jobID][2][skill + 1]) then

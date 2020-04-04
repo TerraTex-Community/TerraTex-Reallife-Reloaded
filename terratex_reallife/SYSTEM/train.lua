@@ -37,6 +37,10 @@ trainDropItemList = {
     { 10, "Kondome", 1 },
     {  1, "Gold", 0.15 },
     { 10, "Gold", 0.05 },
+    { 1, "GoldMoneyBooster", 0.03 },
+    { 7, "GoldMoneyBooster", 0.02 },
+    { 1, "GoldSkillBooster", 0.03 },
+    { 7, "GoldSkillBooster", 0.02 },
 }
 trainSpawnItem = 1550
 trainSpawnItemWaitTime = 10000
@@ -202,6 +206,12 @@ function pickupItemsByTrainDrop(player)
         elseif ("Gold" == SettingTable[2]) then
             vioSetElementData(player, "Gold", vioGetElementData(player, "Gold") + SettingTable[1])
             outputChatBox(string.format("Hier hat wohl ein Zug %s Gold verloren...", SettingTable[1]), player, 0, 255, 0)
+        elseif ("GoldSkillBooster" == SettingTable[2]) then
+            extendGoldItem(player, "Corona.SkillBooster", SettingTable[1])
+            outputChatBox(string.format("Hier hat wohl ein Zug einen Special Skill Booster für %s Tage verloren...", SettingTable[1]), player, 0, 255, 0)
+        elseif ("GoldMoneyBooster" == SettingTable[2]) then
+            extendGoldItem(player, "Corona.MoneyBooster", SettingTable[1])
+            outputChatBox(string.format("Hier hat wohl ein Zug einen Special Money Booster für %s Tage verloren...", SettingTable[1]), player, 0, 255, 0)
         end
         setTimer(resetItemSpawning, trainSpawnItemWaitTime, 1, SettingTable[3])
     end

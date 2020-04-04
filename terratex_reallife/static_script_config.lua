@@ -4,5 +4,5 @@ globalConfig = {}
 
 --- Versionnumber
 --- @type string
-globalConfig.version = "1.3.3"
+globalConfig.version = "1.3.4"
 

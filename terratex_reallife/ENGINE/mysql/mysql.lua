@@ -286,6 +286,34 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
     end
 end
 
+--- Get a spezifc value from database
+-- @param tableName Name of the Table
+-- @param conditions Optional: Table with conditions (optional) Form:{ "fieldName" = "value" } or { "fieldName" = { "copmarer", "value"}
+-- @param operation Optional: How should the fields from the condition table concatinated (Default: AND)
+-- @return theValue if success false otherwise or false if there are more then one row as result
+MySql.helper.countValuesSync = function(tableName, conditions, operation)
+    local query = "SELECT count(*) as Anzahl FROM `??`";
+    local params = {};
+    table.insert(params, tableName);
+
+    local conditionQuery, conditionParams = prepareConditions(conditions, operation);
+
+    query = query .. conditionQuery;
+    params = table.merge(params, conditionParams);
+
+    local handler = dbQuery(MySql._connection, query, unpack(params));
+    local result, rows = dbPoll(handler, -1);
+    if (rows == 1) then
+        if (isNumeric(result[1]["Anzahl"])) then
+            return tonumber(result[1]["Anzahl"]);
+        else
+            return result[1]["Anzahl"];
+        end
+    else
+        return false;
+    end
+end
+
 
 -- init mysql
 MySql.init();

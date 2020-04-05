@@ -34,14 +34,14 @@ module.exports = function(grunt) {
             },
             backup: {
                 expand: true,
-                src: '*config.lua',
+                src: ['config.lua', 'database_config.lua'],
                 dest: deployPath,
                 cwd: deployPath + "/terratex_reallife",
                 dot: true
             },
             restoreBackup: {
                 expand: true,
-                src: '*config.lua',
+                src: ['config.lua', 'database_config.lua'],
                 dest: deployPath + "/terratex_reallife",
                 cwd: deployPath,
                 dot: true

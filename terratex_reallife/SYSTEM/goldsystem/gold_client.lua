@@ -85,7 +85,7 @@ function getItemJS(itemId)
     if tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) then
         if (tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) >= timestamp) then
             local days = math.floor((tonumber(getElementData(getLocalPlayer(), "Gold." .. itemId)) - timestamp) / 60 / 60 / 24)
-            if (days > 0) then
+            if (days > 0 or itemId == "Corona.SkillBooster" or itemId == "Corona.MoneyBooster") then
                 js = "setBuyState('" .. itemId .. "', " .. days .. ");"
             else
                 js = "setBuyState('" .. itemId .. "', false, true);"

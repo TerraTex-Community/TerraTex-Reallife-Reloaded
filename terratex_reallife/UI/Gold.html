@@ -109,7 +109,7 @@
             </div>
         </div>
 
-        <div class="card" id="Corona.MoneyBooster">
+        <div class="card" id="Corona_MoneyBooster">
             <h5 class="card-header">Special Money Booster</h5>
             <div class="card-body">
                 Diesen Booster kannst du nur in verschiedenen Drops finden (Events, Bahnhöfe ...).
@@ -124,7 +124,7 @@
             </div>
         </div>
 
-        <div class="card" id="Corona.SkillBooster">
+        <div class="card" id="Corona_SkillBooster">
             <h5 class="card-header">Special Skill Booster</h5>
             <div class="card-body">
                 Diesen Booster kannst du nur in verschiedenen Drops finden (Events, Bahnhöfe ...).
@@ -168,6 +168,7 @@
         });
     });
     function setBuyState(id, state, extend) {
+        id = id.replace(".", "_");
         var obj = $("#" + id);
         if (state) {
             obj.find(".days").html(state);

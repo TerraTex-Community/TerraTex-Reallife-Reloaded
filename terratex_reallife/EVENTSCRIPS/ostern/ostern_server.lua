@@ -67,11 +67,12 @@ function eiHit(thePlayer)
 
         MySql.helper.update("objects_events_pickups", { State = 1 }, { ID = id });
         MySql.helper.update("objects_events_pickups", { gefundenVon = pName }, { ID = id });
+        giveEasterPresent(thePlayer)
 
-        local anzGefunden = MySql.helper.getValueSync("objects_events_pickups", "count(*)", { gefundenVon = pName, event = "ostern" });
+        local anzGefunden = MySql.helper.countValuesSync("objects_events_pickups", { gefundenVon = pName, event = "ostern" });
 
         outputChatBox("Osterhase: Glückwunsch, du hast jetzt schon " .. anzGefunden .. " Ostereier gefunden", thePlayer, math.random(1, 255), math.random(1, 255), math.random(1, 255))
-        giveEasterPresent(thePlayer)
+
 
         local thereAreEier = 0
         for theKey, theEi in ipairs(eier) do

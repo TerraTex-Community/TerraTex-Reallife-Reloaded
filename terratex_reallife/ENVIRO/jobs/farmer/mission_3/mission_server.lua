@@ -19,7 +19,11 @@ function finish_farmer_mission_3_func()
     outputChatBox("Danke, dass du das Feld gedüngt hast!", client, 0, 255, 0)
     vioSetElementData(client, "isFarmingActiv", false)
     destroyElement(getPedOccupiedVehicle(client))
-    farmer_mission_cancel(client)
+
+    local vehicle = getPedOccupiedVehicle(source);
+    if (isElement(vehicle)) then
+        destroyElement(vehicle)
+    end
 end
 addEventHandler("finish_farmer_mission_3", getRootElement(), finish_farmer_mission_3_func)
 

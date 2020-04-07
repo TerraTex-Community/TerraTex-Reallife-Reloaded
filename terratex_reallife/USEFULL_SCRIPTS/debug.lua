@@ -41,3 +41,16 @@ function debug.tryAndCatch(func, ...)
         return true, errorOrValue
     end
 end
+
+---try catch function to store log but rethrowing error to not hide it
+---@param func function that should be called
+---@return any|nil Value
+function debug.catchAndThrow(func, ...)
+    local status, errorOrValue = pcall(func, ...)
+    if (status == false) then
+        logMessageWithStackTrace(1, errorOrValue, {params = ...})
+        error(errorOrValue);
+    else
+        return errorOrValue
+    end
+end

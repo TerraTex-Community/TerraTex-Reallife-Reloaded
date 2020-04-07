@@ -185,7 +185,7 @@ MySql.helper.insert = function(tableName, insertValues, callback, callbackParams
             return dbQuery(callback, MySql._connection, query, unpack(params));
         end
     else
-        return dbExec(MySql._connection, query, unpack(params));
+        return debug.catchAndThrow(dbExec, query, unpack(params))
     end
 end
 
@@ -198,12 +198,14 @@ MySql.helper.insertSync = function(tableName, insertValues)
     if result then
         return lastInsertId;
     else
-        outputDebugString("ERROR IN MySql.helper.insertSync: " .. errorCode);
-        outputDebugString(errorString);
-        outputDebugString("in Query: " .. query .." Params: " .. table.concat(params, ", "));
-        outputDebugString("Stacktrace: ");
-        outputDebugString(debug.traceback());
-        return false;
+        logMessageWithStackTrace(1, "ERROR IN MySql.helper.insertSync", {
+            errorCode = rows,
+            msg = lastInsertId,
+            query = query,
+            params = params
+        });
+
+        error("ERROR IN MySql.helper.insertSync");
     end
 end
 
@@ -274,7 +276,7 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
     params = table.merge(params, conditionParams);
 
     local handler = dbQuery(MySql._connection, query, unpack(params));
-    local result, rows = dbPoll(handler, -1);
+    local result, rows, lastInsertId = dbPoll(handler, -1);
     if (rows == 1) then
         if (isNumeric(result[1][fieldName])) then
             return tonumber(result[1][fieldName]);
@@ -282,7 +284,18 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
             return result[1][fieldName];
         end
     else
-        return false;
+        logMessageWithStackTrace(1, "ERROR IN MySql.helper.getValueSync", {
+            errorCode = rows,
+            msg = lastInsertId,
+            query = query,
+            params= params,
+            tableName = tableName,
+            fieldName = fieldName,
+            conditions = conditions,
+            operation = operation
+        });
+
+        error("ERROR IN MySql.helper.getValueSync");
     end
 end
 

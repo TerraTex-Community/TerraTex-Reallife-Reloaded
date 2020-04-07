@@ -281,9 +281,9 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
         if (isNumeric(result[1][fieldName])) then
             return tonumber(result[1][fieldName]);
         else
-            return result[1][fieldName];
+            return result[1][fieldName]
         end
-    else
+    elseif (not result) then
         logMessageWithStackTrace(1, "ERROR IN MySql.helper.getValueSync", {
             errorCode = rows,
             msg = lastInsertId,
@@ -296,6 +296,8 @@ MySql.helper.getValueSync = function(tableName, fieldName, conditions, operation
         });
 
         error("ERROR IN MySql.helper.getValueSync");
+    else
+        return false;
     end
 end
 

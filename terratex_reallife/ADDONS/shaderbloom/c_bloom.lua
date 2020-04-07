@@ -67,7 +67,7 @@ addEventHandler( "onClientHUDRender", root,
 		if not Settings.var then
 			return
 		end
-        if bAllValid and bloomEnabled then
+        if bAllValid and bloomEnabled and isElement(myScreenSource) then
 			-- Reset render target pool
 			RTPool.frameStart()
 
@@ -119,7 +119,7 @@ function applyGBlurH( Src, bloom )
 	local mx,my = dxGetMaterialSize( Src )
 	local newRT = RTPool.GetUnused(mx,my)
 	if not newRT then return nil end
-	dxSetRenderTarget( newRT, true ) 
+	dxSetRenderTarget( newRT, true )
 	dxSetShaderValue( blurHShader, "TEX0", Src )
 	dxSetShaderValue( blurHShader, "TEX0SIZE", mx,my )
 	dxSetShaderValue( blurHShader, "BLOOM", bloom )
@@ -132,7 +132,7 @@ function applyGBlurV( Src, bloom )
 	local mx,my = dxGetMaterialSize( Src )
 	local newRT = RTPool.GetUnused(mx,my)
 	if not newRT then return nil end
-	dxSetRenderTarget( newRT, true ) 
+	dxSetRenderTarget( newRT, true )
 	dxSetShaderValue( blurVShader, "TEX0", Src )
 	dxSetShaderValue( blurVShader, "TEX0SIZE", mx,my )
 	dxSetShaderValue( blurVShader, "BLOOM", bloom )
@@ -145,7 +145,7 @@ function applyBrightPass( Src, cutoff, power )
 	local mx,my = dxGetMaterialSize( Src )
 	local newRT = RTPool.GetUnused(mx,my)
 	if not newRT then return nil end
-	dxSetRenderTarget( newRT, true ) 
+	dxSetRenderTarget( newRT, true )
 	dxSetShaderValue( brightPassShader, "TEX0", Src )
 	dxSetShaderValue( brightPassShader, "CUTOFF", cutoff )
 	dxSetShaderValue( brightPassShader, "POWER", power )

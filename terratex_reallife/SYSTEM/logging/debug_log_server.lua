@@ -1,6 +1,6 @@
-function store_client_debug_func(time, message, level, file, line, stacktrace)
+function store_client_debug_func(time, message, level, file, line, stacktrace, data)
     addLogEntryToBulkFileWriter(getPlayerName(client), time, message, level, file, line)
-    storeLogEntriesAsjson(message, level, file, line, time, stacktrace, getPlayerName(client))
+    storeLogEntriesAsjson(message, level, file, line, time, stacktrace, getPlayerName(client), data)
 end
 addEvent("store_client_debug", true)
 addEventHandler ( "store_client_debug", getRootElement(), store_client_debug_func, true, "low" )

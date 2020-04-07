@@ -96,7 +96,10 @@ end
 
 function shutdownRestZeit(zeit)
     if (table.getSize(getElementsByType("player")) == 0) then
-        killTimer(gmxtimer)
+
+        if (isTimer(gmxtimer)) then
+            killTimer(gmxtimer)
+        end
         startShutDown()
         return
     end

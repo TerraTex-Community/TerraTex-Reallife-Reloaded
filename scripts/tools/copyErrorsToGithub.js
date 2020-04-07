@@ -8,6 +8,7 @@
  `time` INT NOT NULL ,
  `user` VARCHAR(255) NOT NULL ,
  `stacktrace` TEXT NOT NULL ,
+ `additionalData` TEXT NOT NULL ,
  `level` VARCHAR(50) NOT NULL ,
  `logType` VARCHAR(15) NOT NULL ,
  `file` TEXT NOT NULL ,

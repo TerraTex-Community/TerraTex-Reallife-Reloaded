@@ -6,16 +6,17 @@
 --- 3: Information message.
 ---
 ---@param message string - message
-function logMessageWithStackTrace(level, message)
+---@param additionalData table - table with additional data stuff
+function logMessageWithStackTrace(level, message, additionalData)
     local callInfo = debug.getinfo(2);
     local stackTrace = debug.traceback();
-    storeLogEntriesAsjson(message, level, callInfo.source, callInfo.linedefined, getRealTime(), stackTrace)
+    storeLogEntriesAsjson(message, level, callInfo.source, callInfo.linedefined, getRealTime(), stackTrace, additionalData)
 end
 
 addEventHandler("onDebugMessage", getRootElement(),
         function(message, level, file, line)
             local stackTrace = debug.traceback();
-            storeLogEntriesAsjson(message, level, file, line, getRealTime(), stackTrace)
+            storeLogEntriesAsjson(message, level, file, line, getRealTime(), stackTrace, nil, {})
         end)
 
 LOG_LEVEL = {

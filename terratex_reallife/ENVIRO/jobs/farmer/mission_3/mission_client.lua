@@ -2626,10 +2626,8 @@ end
 function hitDuengen(playa)
     if (playa == getLocalPlayer()) then
         local istractor = false
-        if (isPedInVehicle(getLocalPlayer())) then
-            if (getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 531) then
-                istractor = true
-            end
+        if (isPedInVehicle(getLocalPlayer()) and getElementModel(getPedOccupiedVehicle(getLocalPlayer())) == 531) then
+            istractor = true
         end
         if not (istractor) then
             outputChatBox("Duengen kann man nur mit dem Tractor!", 255, 0, 0)

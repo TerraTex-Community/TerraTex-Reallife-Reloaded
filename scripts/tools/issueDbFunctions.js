@@ -9,6 +9,7 @@
   time: number,
   user: string,
   stacktrace: string,
+  additionalData: string,
   level: string,
   logType: string,
   file: string}} issueData
@@ -37,6 +38,7 @@ WHERE
   time: number,
   user: string,
   stacktrace: string,
+  additionalData: string,
   level: string,
   logType: string,
   file: string}} issueData
@@ -68,6 +70,7 @@ WHERE
   time: number,
   user: string,
   stacktrace: string,
+  additionalData: string,
   level: string,
   logType: string,
   file: string}} issueData
@@ -76,13 +79,13 @@ WHERE
 exports.writeIssueToDatabase = async (issueData) => {
     const rows = await db.query(`
 INSERT INTO log_errors_to_github (
-    message, line, time, user, stacktrace, level, logType, file
+    message, line, time, user, stacktrace, level, logType, file, additionalData
 )
-VALUES (?,?,?,?,?,?,?,?);         
+VALUES (?,?,?,?,?,?,?,?,?);         
     `, [
         issueData.message, issueData.line, (issueData.time /1000),
         issueData.user, issueData.stacktrace, issueData.level, issueData.logType,
-        issueData.file
+        issueData.file, JSON.stringify(issueData.additionalData, null,4)
     ]);
 
 
@@ -134,6 +137,7 @@ WHERE ID = ?
   user: string,
   stacktrace: string,
   level: string,
+  additionalData: string,
   logType: string,
   file: string}} issueData
  */
@@ -163,6 +167,10 @@ ${stackmark}
 - Source: ${issueData.file}:${issueData.line}
 - LogType: ${issueData.logType}
 - Appeared at User: ${issueData.user} 
+- Stacktrace: 
+${stackmark}
+${JSON.stringify(issueData.additionalData, null,4)}
+${stackmark}
 
 ${oldGithubText}       
         `,

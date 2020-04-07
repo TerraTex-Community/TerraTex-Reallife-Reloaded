@@ -185,7 +185,7 @@ MySql.helper.insert = function(tableName, insertValues, callback, callbackParams
             return dbQuery(callback, MySql._connection, query, unpack(params));
         end
     else
-        return debug.catchAndThrow(dbExec, query, unpack(params))
+        return debug.catchAndThrow(dbExec, MySql._connection, query, unpack(params))
     end
 end
 

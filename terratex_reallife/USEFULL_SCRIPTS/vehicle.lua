@@ -22,9 +22,11 @@ function getVehicleRealSpeed(vehicle)
 end
 
 function isVehicleOnRoof(vehicle)
-    local rx,ry=getElementRotation(vehicle)
-    if (rx>90 and rx<270) or (ry>90 and ry<270) then
-        return true
+    local rx, ry = getElementRotation(vehicle)
+    if (rx) then
+        if (rx>90 and rx<270) or (ry>90 and ry<270) then
+            return true
+        end
     end
     return false
 end

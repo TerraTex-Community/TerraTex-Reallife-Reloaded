@@ -23,9 +23,9 @@ addEventHandler("onClientResourceStart",resourceRoot,
         guiGridListAddColumn(Pokal_disc_GUI_Grid[1],"Name",0.3)
 
         guiGridListAddColumn(Pokal_disc_GUI_Grid[1],"Erhalten?",0.3)
-		
+
 		---ADD Rows for Discribtion
-		
+
 		Pokal_disc_GUI_Rows[1]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[1], 1, "1", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[1], 2, "Fischermeister", false, false )
@@ -50,85 +50,85 @@ addEventHandler("onClientResourceStart",resourceRoot,
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[5], 1, "5", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[5], 2, "First 1000", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[5]]="First 1000"..":\n".."Erreiche 1000 Spielstunden"
-		
+
 		Pokal_disc_GUI_Rows[6]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[6], 1, "6", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[6], 2, "Millionaer", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[6]]="Millionaer"..":\n".."Erreiche 1 Mio. $"
-				
+
 		Pokal_disc_GUI_Rows[7]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[7], 1, "7", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[7], 2, "10er Fahrzeugrausch", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[7]]="10er Fahrzeugrausch"..":\n".."Besitze 10 Fahrzeuge"
-				
+
 		Pokal_disc_GUI_Rows[8]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[8], 1, "8", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[8], 2, "15er Fahrzeugrausch", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[8]]="15er Fahrzeugrausch"..":\n".."Besitze 15 Fahrzeuge"
-				
+
 		Pokal_disc_GUI_Rows[9]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[9], 1, "9", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[9], 2, "20er Fahrzeugrausch", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[9]]="20er Fahrzeugrausch"..":\n".."Besitze 20 Fahrzeuge"
-				
+
 		Pokal_disc_GUI_Rows[10]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[10], 1, "10", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[10], 2, "Busmeister", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[10]]="Busmeister"..":\n".."Fahre 100 Haltestellen ab"
-			
+
 		Pokal_disc_GUI_Rows[11]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[11], 1, "11", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[11], 2, "1er Lotto", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[11]]="1er Lotto"..":\n".."Gewinne mit einen 1er im Lotto"
-			
+
 		Pokal_disc_GUI_Rows[12]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[12], 1, "12", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[12], 2, "2er Lotto", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[12]]="2er Lotto"..":\n".."Gewinne mit einen 2er im Lotto"
-			
+
 		Pokal_disc_GUI_Rows[13]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[13], 1, "13", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[13], 2, "3er Lotto", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[13]]="3er Lotto"..":\n".."Gewinne mit einen 3er im Lotto"
 
 
-		
+
 		Pokal_disc_GUI_Rows[16]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[16], 1, "16", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[16], 2, "Benzin leer", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[16]]="Benzin leer"..":\n".."Gehe das erste Mal Tanken"
-						
+
 		Pokal_disc_GUI_Rows[17]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[17], 1, "17", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[17], 2, "Mein erstes Geld", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[17]]="Mein erstes Geld"..":\n".."Erhalte deinen ersten Payday"
-						
+
 		Pokal_disc_GUI_Rows[18]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[18], 1, "18", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[18], 2, "My Own Home", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[18]]="My Own Home"..":\n".."Besitze dein erstes eigenes Haus (Pokal wird zum nächsten PayDay erst vergeben)"
-						
+
 		Pokal_disc_GUI_Rows[19]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[19], 1, "19", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[19], 2, "My Own Biz", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[19]]="My Own Biz"..":\n".."Besitze dein erstes eigenes Buisness (Pokal wird zum nächsten PayDay erst vergeben)"
-						
+
 		Pokal_disc_GUI_Rows[20]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[20], 1, "20", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[20], 2, "Autoeinsteiger", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[20]]="Autoeinsteiger"..":\n".."Kaufe ein Auto"
-						
+
 		Pokal_disc_GUI_Rows[21]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[21], 1, "21", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[21], 2, "Mein erstes Brot", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[21]]="Mein erstes Brot"..":\n".."Iss das erste Mal etwas"
-						
+
 		Pokal_disc_GUI_Rows[22]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[22], 1, "22", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[22], 2, "Ersatztanke", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[22]]="Ersatztanke"..":\n".."Benutze einen Benzinkanister"
-						
-		
+
+
 		Pokal_disc_GUI_Rows[23]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[23], 1, "23", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[23], 2, "Fraktionseinsteiger", false, false )
@@ -138,27 +138,27 @@ addEventHandler("onClientResourceStart",resourceRoot,
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[24], 1, "24", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[24], 2, "Hufeisenprinz", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[24]]="Hufeisenprinz"..":\n".."Finde 10 Hufeisen!"
-			
+
 		Pokal_disc_GUI_Rows[25]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[25], 1, "25", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[25], 2, "Hufeisenkönig", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[25]]="Hufeisenkönig"..":\n".."Finde 100 Hufeisen!"
-			
+
 		Pokal_disc_GUI_Rows[26]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[26], 1, "26", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[26], 2, "Hufeisenkaiser", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[26]]="Hufeisenkaiser"..":\n".."Finde 1000 Hufeisen!"
-			
+
 		Pokal_disc_GUI_Rows[27]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[27], 1, "27", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[27], 2, "Truckermeister", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[27]]="Truckermeister"..":\n".."Schließe 1000 Truckerfahrten ab!"
-			
+
 		Pokal_disc_GUI_Rows[28]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[28], 1, "28", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[28], 2, "Meisterpilot", false, false )
 			Pokal_disc_disc[Pokal_disc_GUI_Rows[28]]="Meisterpilot"..":\n".."Beende 1000 Flüge!"
-			
+
 		Pokal_disc_GUI_Rows[29]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[29], 1, "29", false, false )
 			guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[29], 2, "Kilometerfresser", false, false )
@@ -169,7 +169,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
         guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[30], 2, "TerraFriend", false, false )
         Pokal_disc_disc[Pokal_disc_GUI_Rows[30]]="TerraFriend"..":\n".."Wirb 5 User, die sich 25 Spielstunden erspielen! (Wird zum PayDay vergeben)"
 
-        
+
         --neu
         Pokal_disc_GUI_Rows[31]=guiGridListAddRow ( Pokal_disc_GUI_Grid[1])
         guiGridListSetItemText ( Pokal_disc_GUI_Grid[1], Pokal_disc_GUI_Rows[31], 1, "31", false, false )
@@ -217,7 +217,7 @@ addEventHandler("onClientResourceStart",resourceRoot,
         guiSetVisible(Pokal_disc_GUI_Window[1],false)
 		addEventHandler("onClientGUIClick",Pokal_disc_GUI_Button[1],click_Pokal_disc_Close_Button,false)
 		addEventHandler("onClientGUIClick",Pokal_disc_GUI_Grid[1],click_Pokal_disc_disc,false)
-		
+
     end
 )
 
@@ -228,10 +228,10 @@ function click_Pokal_disc_disc()
 	if(selected)then
 		if(selected[1]["row"])then
 			if tonumber(selected[1]["row"])>-1 then
-				
-				guiSetText(Pokal_disc_GUI_Label[1],Pokal_disc_disc[selected[1]["row"]])
-			
-			end	
+
+				guiSetText(Pokal_disc_GUI_Label[1], Pokal_disc_disc[selected[1]["row"]])
+
+			end
 		end
 	end
 end

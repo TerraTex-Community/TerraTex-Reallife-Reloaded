@@ -21,7 +21,8 @@ local lastBulkTable = {}
 ---@param time table getRealTime()
 ---@param stacktrace string stacktrace
 ---@param user userdata|nil User or not if it is serversided
-function storeLogEntriesAsjson(message, level, file, line, time, stacktrace, user)
+---@param additionalData table|nil Additional Data to store
+function storeLogEntriesAsjson(message, level, file, line, time, stacktrace, user, additionalData)
     local logType = "client"
     if (not user) then
         user = "server"
@@ -36,7 +37,8 @@ function storeLogEntriesAsjson(message, level, file, line, time, stacktrace, use
         time = time.timestamp * 1000,
         stacktrace = stacktrace,
         user = user,
-        logType = logType
+        logType = logType,
+        additionalData = additionalData
     }) .. "\n";
 
     table.insert(currentBulkTable, json);

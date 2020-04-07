@@ -11,7 +11,8 @@ end)
 --- 3: Information message.
 ---
 ---@param message string - message
-function logMessageWithStackTrace(level, message)
+---@param additionalData table - table with additionalData
+function logMessageWithStackTrace(level, message, additionalData)
     local callInfo = debug.getinfo(2);
 
     triggerLatentServerEvent ( "store_client_debug", 5000, true, getLocalPlayer(), getRealTime(), message, level, callInfo.source, callInfo.linedefined, debug.traceback())

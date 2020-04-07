@@ -67,10 +67,10 @@ function geben_test_interaktion_Gui_func()
                 menge = tonumber(menge) * -1
             end
         else
-            menge = tonumber(menge) * -1
+            menge = 1
         end
     else
-        menge = tonumber(menge) * -1
+        menge = 1
     end
 
     if (menge) then

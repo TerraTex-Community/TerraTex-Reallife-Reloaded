@@ -12,38 +12,41 @@ function abschleppNullSystem()
     local shape = createColSphere(0, 0, 0, 20)
     local vehicles = getElementsWithinColShape(shape, "vehicle")
     for _, theVehicle in ipairs(vehicles) do
-        if (getPlayerFromName(vioGetElementData(theVehicle, "besitzer"))) then
-            outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")), getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), 255, 0, 0)
-            vioSetElementData(getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), "slot" .. vioGetElementData(theVehicle, "slotid"), -2)
-        else
-            save_offline_message(vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem", string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")))
-        end
-        save_car(theVehicle)
+        if (isVehiclePrivate(theVehicle)) then
 
-        log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem-Nullspawn");
-
-        MySql.helper.update("user_vehicles", {
-            SpawnX = 0,
-            SpawnY = 0,
-            SpawnZ = 0,
-            SpawnRX = 0,
-            SpawnRY = 0,
-            SpawnRZ = 0,
-            abgeschleppt = 1,
-            lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
-            lastPosition = '[{0,0,0,0,0,0}]',
-            lastHealth = getElementHealth(theVehicle)
-        }, { ID = vioGetElementData(theVehicle, "dbid") });
-
-        for tableKey, theTable in ipairs(privVeh) do
-            if (theTable[3] == source) then
-                table.remove(privVeh, tableKey)
+            if (getPlayerFromName(vioGetElementData(theVehicle, "besitzer"))) then
+                outputChatBox(string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")), getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), 255, 0, 0)
+                vioSetElementData(getPlayerFromName(vioGetElementData(theVehicle, "besitzer")), "slot" .. vioGetElementData(theVehicle, "slotid"), -2)
+            else
+                save_offline_message(vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem", string.format("Dein Fahrzeug im Slot %s wurde vom Abschleppsystem abgeschleppt! (Nullspawn)", vioGetElementData(theVehicle, "slotid")))
             end
+            save_car(theVehicle)
+
+            log_tow_police(vioGetElementData(theVehicle, "slotid"), vioGetElementData(theVehicle, "besitzer"), "Abschleppsystem-Nullspawn");
+
+            MySql.helper.update("user_vehicles", {
+                SpawnX = 0,
+                SpawnY = 0,
+                SpawnZ = 0,
+                SpawnRX = 0,
+                SpawnRY = 0,
+                SpawnRZ = 0,
+                abgeschleppt = 1,
+                lastDamageStates = toJSON(getVehicleDamageParts(theVehicle)),
+                lastPosition = '[{0,0,0,0,0,0}]',
+                lastHealth = getElementHealth(theVehicle)
+            }, { ID = vioGetElementData(theVehicle, "dbid") });
+
+            for tableKey, theTable in ipairs(privVeh) do
+                if (theTable[3] == source) then
+                    table.remove(privVeh, tableKey)
+                end
+            end
+
+            table.insert(privVeh, { vioGetElementData(theVehicle, "besitzer"), vioGetElementData(theVehicle, "slotid"), -2 })
+
+            destroyElement(theVehicle)
         end
-
-        table.insert(privVeh, { vioGetElementData(theVehicle, "besitzer"), vioGetElementData(theVehicle, "slotid"), -2 })
-
-        destroyElement(theVehicle)
     end
 end
 

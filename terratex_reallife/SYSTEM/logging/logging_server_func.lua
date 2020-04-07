@@ -10,7 +10,7 @@
 function logMessageWithStackTrace(level, message, additionalData)
     local callInfo = debug.getinfo(2);
     local stackTrace = debug.traceback();
-    storeLogEntriesAsjson(message, level, callInfo.source, callInfo.linedefined, getRealTime(), stackTrace, additionalData)
+    storeLogEntriesAsjson(message, level, callInfo.source, callInfo.linedefined, getRealTime(), stackTrace, nil, additionalData)
 end
 
 addEventHandler("onDebugMessage", getRootElement(),

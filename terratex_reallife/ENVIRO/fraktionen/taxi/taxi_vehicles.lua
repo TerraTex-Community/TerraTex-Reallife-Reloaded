@@ -42,10 +42,11 @@ function onCreatetaxicars_func()
 	frakselfcars[4][10]  = createVehicle(420, 1794.099609375, -2024.2998046875, 13.35000038147, 0, 0, 180, "SA-TAXI")
 	-- Maverick
 	frakselfcars[4][11] = createVehicle(487, 1736.099609375, -2063.099609375, 17.75, 0, 0, 212, "SA-TAXI")
-	-- Stafford
+	--- Stafford
 	frakselfcars[4][12]  = createVehicle(580, 1807.6999511719, -2043.3000488281, 13.345000267029, 0, 0, 90, "SA-TAXI")
 	frakselfcars[4][13]  = createVehicle(580, 1807.6999511719, -2047.0999755859, 13.345000267029, 0, 0, 90, "SA-TAXI")
-	frakselfcars[4][14]  = createVehicle(580, 1807.6999511719, -2050.8999023438, 13.345000267029, 0, 0, 90, "SA-TAXI")
+	--- Moonbeam
+	frakselfcars[4][14]  = createVehicle(418, 1807.6999511719, -2050.8999023438, 13.345000267029, 0, 0, 90, "SA-TAXI")
 	-- Stretch
 	frakselfcars[4][15] = createVehicle(409, 1806.8000488281, -2054.6000976563, 13.319999694824, 0, 0, 90, "SA-TAXI")
 	-- Bus

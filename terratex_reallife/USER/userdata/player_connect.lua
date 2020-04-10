@@ -313,6 +313,7 @@ function LoginPlayerData(nickname, pw)
         vioSetElementData(source, "Gold.HufeisenBooster", goldData.HufeisenBooster);
         vioSetElementData(source, "Gold.FuelBooster", goldData.FuelBooster);
         vioSetElementData(source, "Gold.SkillBooster", goldData.SkillBooster);
+        vioSetElementData(source, "Gold.HufeisenfinderImprover", goldData.HufeisenfinderImprover);
 
         vioSetElementData(source, "Gold.Corona.SkillBooster", goldData.CoronaSkillBooster);
         vioSetElementData(source, "Gold.Corona.MoneyBooster", goldData.CoronaMoneyBooster);

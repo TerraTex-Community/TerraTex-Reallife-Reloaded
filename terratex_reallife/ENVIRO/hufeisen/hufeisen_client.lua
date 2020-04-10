@@ -40,17 +40,17 @@ function spawnHufeisen_func()
             table.insert(hufeisen, pickup)
             pickuocolshapedata[pickup] = colshape
             addEventHandler("onClientPickupHit", pickup, findHufeisen)
-            --outputDebugString(tostring(n))
+
+            -- debug
+            createMarker(x, y, 0)
         end
     else
         setTimer(spawnHufeisen_func, 5000, 1)
     end
 end
-
 addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), spawnHufeisen_func)
 
 function setpickuphigher_hufeisen()
-    --outputChatBox("hit")
     local pickup = colshapedata[source]
     if (isElement(pickup)) then
         local x, y, z = getElementPosition(pickup)
@@ -62,7 +62,6 @@ function setpickuphigher_hufeisen()
             setElementPosition(pickup, x, y, 0)
         end
         if (isElementWithinColShape(getLocalPlayer(), source)) then
-            colsahpe = true
             syncHufeisen(source)
         end
     end
@@ -79,19 +78,44 @@ function muteHufeisen_func()
 end
 addCommandHandler("mutehufeisen", muteHufeisen_func, false, false)
 
+local isPlayingSound = false
+local maxDistanceSoundSpeed = 3
+local minDistanceSoundSpeed = 0.25
+local maxDistanceSoundVolume = 1
+local minDistanceSoundVolume = 0.25
+local maxDistance = 70
 function startCheckHufeisenTimer()
     if (getElementData(getLocalPlayer(), "Hufeisenhelfer")) then
         if ((tonumber(getElementData(getLocalPlayer(), "Hufeisenhelfer")) > 0)) then
             if (isInAnyHufeisenCol()) then
                 if (not (muteHufeisen)) then
-                    playSound("FILES/SOUNDS/Windows_Battery_Critical.wav")
+                    if (not isElement(isPlayingSound)) then
+                        isPlayingSound = playSound("FILES/SOUNDS/Windows_Battery_Critical.wav", true)
+                    end
+
+                    if (not isGoldBoosterActive(getLocalPlayer(), "HufeisenfinderImprover")) then
+                        setSoundSpeed(isPlayingSound, minDistanceSoundSpeed)
+                        setSoundVolume(isPlayingSound, maxDistanceSoundVolume)
+                        return;
+                    end
+
+                    local positionOfHufeisenInColshape = colshapedata[isInAnyHufeisenCol()]
+                    local distanceBetween = getElementsDistance(positionOfHufeisenInColshape, getLocalPlayer())
+                    local percentageOfMaxDistance = 1 - distanceBetween / maxDistance
+                    local speed = (maxDistanceSoundSpeed - minDistanceSoundSpeed) * percentageOfMaxDistance + minDistanceSoundSpeed
+                    local volume = (maxDistanceSoundVolume - minDistanceSoundVolume) * percentageOfMaxDistance + minDistanceSoundVolume
+
+                    setSoundSpeed(isPlayingSound, speed)
+                    setSoundVolume(isPlayingSound, volume)
+                    return;
                 end
             end
         end
     end
-    setTimer(startCheckHufeisenTimer, 500, 1)
+    isPlayingSound = false;
 end
-addEventHandler("onClientResourceStart", getResourceRootElement(getThisResource()), startCheckHufeisenTimer)
+addEventHandler("onClientRender", getResourceRootElement(getThisResource()), startCheckHufeisenTimer)
+
 
 function syncHufeisen(thecolshape)
     if (isElement(thecolshape) and isElement(colshapedata[thecolshape])) then
@@ -108,17 +132,16 @@ function syncHufeisen(thecolshape)
 end
 
 function isInAnyHufeisenCol()
-    local colsahpe = false
     for theKey, theColShape in pairs(colshapedata) do
         if (isElement(theKey) and isElement(theColShape)) then
             if (isElementWithinColShape(getLocalPlayer(), theKey)) then
-                colsahpe = true
                 syncHufeisen(theKey)
+                return theColShape
             end
         end
     end
 
-    return colsahpe
+    return false
 end
 
 function findHufeisen(thePlayer)

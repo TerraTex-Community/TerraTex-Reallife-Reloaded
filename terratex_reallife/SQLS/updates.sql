@@ -21,3 +21,4 @@ ALTER TABLE `user` ADD CONSTRAINT `werberToNickname` FOREIGN KEY (`werber`) REFE
 
 ALTER TABLE `user_gold` ADD `CoronaSkillBooster` INT NOT NULL DEFAULT '0';
 ALTER TABLE `user_gold` ADD `CoronaMoneyBooster` INT NOT NULL DEFAULT '0';
+ALTER TABLE `user_gold` ADD `HufeisenfinderImprover` INT NOT NULL DEFAULT '0';

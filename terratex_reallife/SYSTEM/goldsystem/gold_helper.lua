@@ -1,4 +1,4 @@
-local timedGoldBooster = {"FoodBooster", "FuelBooster", "HufeisenBooster", "SkillBooster", "Corona.SkillBooster", "Corona.MoneyBooster"}
+local timedGoldBooster = {"FoodBooster", "FuelBooster", "HufeisenBooster", "HufeisenfinderImprover", "SkillBooster", "Corona.SkillBooster", "Corona.MoneyBooster"}
 function getTimedGoldBooster()
     return timedGoldBooster;
 end

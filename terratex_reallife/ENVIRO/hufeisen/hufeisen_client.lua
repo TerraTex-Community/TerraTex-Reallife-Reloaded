@@ -87,6 +87,7 @@ local maxDistance = 70
 function startCheckHufeisenTimer()
     if (getElementData(getLocalPlayer(), "Hufeisenhelfer")) then
         if ((tonumber(getElementData(getLocalPlayer(), "Hufeisenhelfer")) > 0)) then
+            outputChatBox("hasHufeisenFinder")
             if (isInAnyHufeisenCol()) then
                 outputChatBox("is in colshape")
                 if (not (muteHufeisen)) then

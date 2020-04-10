@@ -40,9 +40,6 @@ function spawnHufeisen_func()
             table.insert(hufeisen, pickup)
             pickuocolshapedata[pickup] = colshape
             addEventHandler("onClientPickupHit", pickup, findHufeisen)
-
-            -- debug
-            createBlip(x, y, 0)
         end
     else
         setTimer(spawnHufeisen_func, 5000, 1)

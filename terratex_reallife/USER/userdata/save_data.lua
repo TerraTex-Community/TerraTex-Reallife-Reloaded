@@ -212,6 +212,7 @@ function save_data()
             setTable["user_gold"]["Gold"] = vioGetElementData(source, "Gold");
             setTable["user_gold"]["FoodBooster"] = vioGetElementData(source, "Gold.FoodBooster");
             setTable["user_gold"]["HufeisenBooster"] = vioGetElementData(source, "Gold.HufeisenBooster");
+            setTable["user_gold"]["HufeisenfinderImprover"] = vioGetElementData(source, "Gold.HufeisenfinderImprover");
             setTable["user_gold"]["FuelBooster"] = vioGetElementData(source, "Gold.FuelBooster");
             setTable["user_gold"]["SkillBooster"] = vioGetElementData(source, "Gold.SkillBooster");
             setTable["user_gold"]["CoronaSkillBooster"] = vioGetElementData(source, "Gold.Corona.SkillBooster");

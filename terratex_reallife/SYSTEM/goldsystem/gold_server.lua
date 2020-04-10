@@ -17,8 +17,9 @@ addEventHandler("buyNewGold", getRootElement(), buyNewGold_func)
 local itemPrices = {
     FoodBooster = 10,
     FuelBooster = 10,
-    HufeisenBooster = 5,
-    SkillBooster = 20,
+    HufeisenBooster = 7,
+    HufeisenfinderImprover = 10,
+    SkillBooster = 25,
     ["Corona.SkillBooster"] = -1,
     ["Corona.MoneyBooster"] = -1
 };

@@ -84,9 +84,13 @@ end
 addEventHandler("onMarkerHit", getRootElement(), enterPaynSprayMarker)
 
 function repairPaynSpray(hitElement, door, health, m)
+    local driver = getVehicleOccupant(hitElement, 0)
+    if (not driver) then
+        return
+    end
+
     fixVehicle(hitElement)
     setVehicleWheelStates(hitElement, 0, 0, 0, 0)
-    local driver = getVehicleOccupant(hitElement, 0)
     toggleAllControls(driver, true)
     health = 1000 - health
     local price = 0

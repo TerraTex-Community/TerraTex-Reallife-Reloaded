@@ -5,11 +5,11 @@ function startGoldUI()
         if isElement(goldWindow) then destroyElement(goldWindow) end
         goldWindow = false;
     else
-        goldWindow = guiCreateWindow(0, 0, 720, 550, "Goldseller", false)
+        goldWindow = guiCreateWindow(0, 0, 800, 600, "Goldseller", false)
         table.insert(allGuis, goldWindow);
         setGuiCenter(goldWindow);
 
-        local browser = guiCreateBrowser(0, 0, 720, 550, true, false, false, goldWindow)
+        local browser = guiCreateBrowser(0, 0, 800, 600, true, false, false, goldWindow)
 
 
         addEventHandler("onClientBrowserCreated", guiGetBrowser(browser),
@@ -70,6 +70,7 @@ function browserActualizeFields(browser)
     js = js .. getItemJS("HufeisenBooster");
     js = js .. getItemJS("FoodBooster");
     js = js .. getItemJS("SkillBooster");
+    js = js .. getItemJS("HufeisenfinderImprover");
     js = js .. getItemJS("Corona.SkillBooster");
     js = js .. getItemJS("Corona.MoneyBooster");
 

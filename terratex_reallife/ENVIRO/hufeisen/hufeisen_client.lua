@@ -143,7 +143,7 @@ function isInAnyHufeisenCol()
         if (isElement(theKey) and isElement(theColShape)) then
             if (isElementWithinColShape(getLocalPlayer(), theKey)) then
                 syncHufeisen(theKey)
-                return theColShape
+                return theKey
             end
         end
     end

@@ -280,7 +280,8 @@ function deletecar_func(thePlayer, command, SloteID)
 
                     local carPrice = 0
 
-                    if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") ~= 0) then
+                    if (vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") and
+                            vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") > 0) then
                         carPrice = vioGetElementData(vioGetElementData(thePlayer, "slot" .. SlotID), "kaufpreis") * 0.55
                     end
 

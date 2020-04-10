@@ -84,6 +84,7 @@ local minDistanceSoundSpeed = 0.25
 local maxDistanceSoundVolume = 1
 local minDistanceSoundVolume = 0.25
 local maxDistance = 70
+
 function startCheckHufeisenTimer()
     outputChatBox("hasHufeisenFinderCheck 1")
     if (getElementData(getLocalPlayer(), "Hufeisenhelfer")) then
@@ -123,7 +124,7 @@ function startCheckHufeisenTimer()
     end
     isPlayingSound = false;
 end
-addEventHandler("onClientRender", getResourceRootElement(getThisResource()), startCheckHufeisenTimer)
+addEventHandler("onClientRender", root, startCheckHufeisenTimer)
 
 
 function syncHufeisen(thecolshape)

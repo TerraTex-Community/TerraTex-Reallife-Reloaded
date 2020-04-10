@@ -88,12 +88,15 @@ function startCheckHufeisenTimer()
     if (getElementData(getLocalPlayer(), "Hufeisenhelfer")) then
         if ((tonumber(getElementData(getLocalPlayer(), "Hufeisenhelfer")) > 0)) then
             if (isInAnyHufeisenCol()) then
+                outputChatBox("is in colshape")
                 if (not (muteHufeisen)) then
                     if (not isElement(isPlayingSound)) then
                         isPlayingSound = playSound("FILES/SOUNDS/Windows_Battery_Critical.wav", true)
+                        outputChatBox("start sound")
                     end
 
                     if (not isGoldBoosterActive(getLocalPlayer(), "HufeisenfinderImprover")) then
+                        outputChatBox("no hufeisen gold")
                         setSoundSpeed(isPlayingSound, minDistanceSoundSpeed)
                         setSoundVolume(isPlayingSound, maxDistanceSoundVolume)
                         return;

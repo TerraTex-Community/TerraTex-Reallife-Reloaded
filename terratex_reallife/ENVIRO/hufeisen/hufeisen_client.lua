@@ -42,7 +42,7 @@ function spawnHufeisen_func()
             addEventHandler("onClientPickupHit", pickup, findHufeisen)
 
             -- debug
-            createMarker(x, y, 0)
+            createBlip(x, y, 0)
         end
     else
         setTimer(spawnHufeisen_func, 5000, 1)

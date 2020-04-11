@@ -103,9 +103,6 @@ function startCheckHufeisenTimer()
                     local speed = (maxDistanceSoundSpeed - minDistanceSoundSpeed) * percentageOfMaxDistance + minDistanceSoundSpeed
                     local volume = (maxDistanceSoundVolume - minDistanceSoundVolume) * percentageOfMaxDistance + minDistanceSoundVolume
 
-                    outputChatBox(speed)
-                    outputChatBox(volume)
-
                     setSoundSpeed(isPlayingSound, speed)
                     setSoundVolume(isPlayingSound, volume)
                     return;

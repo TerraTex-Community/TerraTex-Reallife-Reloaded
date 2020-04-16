@@ -35,7 +35,7 @@ end
 function debug.tryAndCatch(func, ...)
     local status, errorOrValue = pcall(func, ...)
     if (status == false) then
-        logMessageWithStackTrace(1, errorOrValue)
+        logMessageWithStackTrace(1, errorOrValue, {params = ...})
         return false, nil
     else
         return true, errorOrValue

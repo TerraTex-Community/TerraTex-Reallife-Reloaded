@@ -546,7 +546,7 @@
     <map src="MAPS/fraktionsbase/pd/lvpd.map"/>
     <map src="MAPS/fraktionsbase/pd/PDInnenraumverbesserung.map"/>
     <map src="MAPS/fraktionsbase/grove_base.map"/>
-    <map src="MAPS/fraktionsbase/name_additive.map"/>
+    <!-- <map src="MAPS/fraktionsbase/name_additive.map"/> -->
     <!-- Umgebung -->
     <map src="MAPS/umgebung/deleteBlitzerFromWorld.map"/>
     <map src="MAPS/umgebung/TankstelleanderMaut.map"/>

@@ -5,15 +5,16 @@
 
 Refactored TerraTex Script - Pay Attention, this Version is not compatible with the old one.
 
-> <b>PAY ATTENTION THIS SCRIPT IS WORK IN PROGRESS!!</b>
+> [!INFO] 
+> There are still a lot of open issues - as refactoring was never finished. Some of the Features are outdated.
 
-##Requirements
+## Requirements
 
 * Server MTA:SA 1.5
 * MySQL Database
 
 
-##Installation
+## Installation
 
 1. Create A Database and import all sql files (update files in correct Order) from Directory "terratex_reallife/SQLS"
 2. Edit config_example.lua and rename to config.lua

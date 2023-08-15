@@ -21,7 +21,7 @@ Refactored TerraTex Script - Pay Attention, this Version is not compatible with 
 3. Edit database_config_example.lua and rename to database_config.lua
 4. UPDATE ACL.XML of the Server -> Add the TerraTex Script resource to admin
 
-##How to change Styles via scss
+## How to change Styles via scss
 For the TerraTex script we work with the source SCSS Files. We also deliver compiled css files but if you want to change some more stuff we would suggest to use scss.
 To use it you have to install a sass compiler.
 We are using Node-Sass for that you have to install nodeJs & NPM and you can install node-sass with "npm install node-sass -g"

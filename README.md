@@ -1,6 +1,7 @@
 # TerraTex-Reloaded
 
-[![Join the chat at https://gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded](https://badges.gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded.svg)](https://gitter.im/TerraTex-Community/TerraTex-Reallife-Reloaded?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+> [!WARNING]  
+> This Repository targets MTA:SA - It is currently not maintained anymore as I focus on a bunch of new projects. - The Script was latest 2018 fully functional - I can not garantee that this is still the case as a lot > of the stuff is outdated (e.g. UI Libs)
 
 Refactored TerraTex Script - Pay Attention, this Version is not compatible with the old one.
 
